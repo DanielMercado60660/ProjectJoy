@@ -1,16 +1,21 @@
-# ProjectJoy — The Joy Lab shelf
+# ProjectJoy
 
-Independent ML side quests, one per numbered folder. The first wave was built overnight on 2026-10-22 (04:57–10:25 CDT) on the M5 Max by 13 Claude builder agents. Each project was then checked by a separate reviewer agent that reran the tests, traced the headline numbers to files on disk, and fixed overclaims. Each folder holds a `README.md` (how to run it), a `RESULTS.md` (numbers and caveats), and its demos in `media/`.
+Machine learning for the joy of it. Each numbered folder is a small, self-contained project: ants that learn to forage, a bat that finds its way by echoes, a tiny AlphaZero you can play Connect Four against, a robot dog crossing lava, a drum machine that invents grooves. They're here for anyone who enjoys ML, wants to see what a technique does on a problem small enough to understand, or just wants to play with the demos.
 
-**Status: all 31 original projects are built and reviewed.** 32 Microduck Phase 1 (a longer, milestone-by-milestone brief) followed on 2026-10-26/27, one reviewer per milestone. Wave 1 (13 projects) ran overnight. In the evening came 31 Silicon Decathlon, wave 2 (02, 06, 12, 13, 14, 16, 20, 22, 28) with an exact-solver follow-up for 09, and a short round 3 (17 Cartographic Necromancy plus follow-ups on 06, 12, 14, 20 and 28, each a **Follow-up** sentence in its row). Round 4 (2026-10-23/24) built the seven long-run projects: 18, 19, 21, 23, 24, 25 and 27. Round 5 (2026-10-24) revisited ten exhibits (03, 08, 09, 11, 13, 15, 22, 25, 30, 31) with Astra writing the code and Claude running and reviewing. Every review changed something real, and most often the fix was a stronger baseline (see the "Reviewer caught" column).
+Every project folder has:
+- `README.md`: what it is and how to run it
+- `RESULTS.md`: what happened, with the numbers and the caveats
+- `media/`: GIFs, videos and browser demos
+
+The table below gives each project's main result and a demo to start with. Claude went over each one and tried harder baselines. The "Reviewer caught" column says what that check changed; often a learned model's lead shrank once the hand-written alternative was tuned properly.
 
 ## Setup
 ```bash
 uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -r requirements.txt
 ```
-Run project commands from inside the project folder; they use `../.venv/bin/python`. Heavy runs go through `../bin/gpu_run`, a shared GPU-slot lock that creates its own lock files on first use. Every project's `smoke.sh` or `pytest` passed at build time. Trained weights (`checkpoints/`) are not stored in git; they are on [Hugging Face](https://huggingface.co/DaMHuggingface/ProjectJoy-checkpoints). Fetch them with `.venv/bin/python bin/get_checkpoints` (all, about 1.7 GB) or `.venv/bin/python bin/get_checkpoints 09_tiny_alphazero` (one project) before running anything that reloads a saved model. Nanochat first needs its data step (about 40 s, see its README); the other 12 need nothing extra.
+Run project commands from inside the project folder; they use `../.venv/bin/python`. Heavy runs go through `../bin/gpu_run`, a shared GPU-slot lock that creates its own lock files on first use. Every project's `smoke.sh` or `pytest` passed at build time. Trained weights (`checkpoints/`) are not stored in git; they are on [Hugging Face](https://huggingface.co/DaMHuggingface/ProjectJoy-checkpoints). Fetch them with `.venv/bin/python bin/get_checkpoints` (all, about 1.7 GB) or `.venv/bin/python bin/get_checkpoints 09_tiny_alphazero` (one project) before running anything that reloads a saved model. Nanochat (30) first needs its data step (about 40 s, see its README).
 
-Open any `media/demo.html` directly in a browser. They are self-contained and work offline. All 13 were rendered in a browser at the end of the run with no console errors, and the NCA regrowth and AlphaZero play were exercised. Animated demos only run while the page is visible.
+Open any `media/demo.html` directly in a browser. They are self-contained and work offline. Animated demos only run while the page is visible.
 
 | # | Project | Headline (held-out, after review) | Demo | Reviewer caught |
 |---|---|---|---|---|
