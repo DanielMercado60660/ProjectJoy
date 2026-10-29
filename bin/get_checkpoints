@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+"""Download trained checkpoints from Hugging Face into each project's checkpoints/ folder.
+
+    .venv/bin/python bin/get_checkpoints                       # all projects (~1.7 GB)
+    .venv/bin/python bin/get_checkpoints 09_tiny_alphazero 29_image_gen
+
+Weights live at https://huggingface.co/DaMHuggingface/ProjectJoy-checkpoints with the same
+folder layout as this repo, so files land where the scripts expect them.
+"""
+import sys
+from pathlib import Path
+
+from huggingface_hub import snapshot_download
+
+REPO_ID = "DaMHuggingface/ProjectJoy-checkpoints"
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def main(projects):
+    for p in projects:
+        if not (ROOT / p).is_dir():
+            sys.exit(f"no project folder named {p!r} (use the full name, e.g. 09_tiny_alphazero)")
+    patterns = [f"{p}/checkpoints/*" for p in projects] or ["*/checkpoints/*"]
+    path = snapshot_download(REPO_ID, allow_patterns=patterns, local_dir=ROOT)
+    print(f"checkpoints ready under {path}")
+
+
+if __name__ == "__main__":
+    main([a.rstrip("/") for a in sys.argv[1:]])

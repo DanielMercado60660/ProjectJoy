@@ -8,7 +8,7 @@ Independent ML side quests, one per numbered folder. The first wave was built ov
 ```bash
 uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -r requirements.txt
 ```
-Run project commands from inside the project folder; they use `../.venv/bin/python`. Heavy runs go through `../bin/gpu_run`, a shared GPU-slot lock that creates its own lock files on first use. Every project's `smoke.sh` or `pytest` passed at build time. Trained weights (`checkpoints/`) are not stored in git, so anything that reloads a saved model needs them first. Nanochat first needs its data step (about 40 s, see its README); the other 12 need nothing extra.
+Run project commands from inside the project folder; they use `../.venv/bin/python`. Heavy runs go through `../bin/gpu_run`, a shared GPU-slot lock that creates its own lock files on first use. Every project's `smoke.sh` or `pytest` passed at build time. Trained weights (`checkpoints/`) are not stored in git; they are on [Hugging Face](https://huggingface.co/DaMHuggingface/ProjectJoy-checkpoints). Fetch them with `.venv/bin/python bin/get_checkpoints` (all, about 1.7 GB) or `.venv/bin/python bin/get_checkpoints 09_tiny_alphazero` (one project) before running anything that reloads a saved model. Nanochat first needs its data step (about 40 s, see its README); the other 12 need nothing extra.
 
 Open any `media/demo.html` directly in a browser. They are self-contained and work offline. All 13 were rendered in a browser at the end of the run with no console errors, and the NCA regrowth and AlphaZero play were exercised. Animated demos only run while the page is visible.
 
