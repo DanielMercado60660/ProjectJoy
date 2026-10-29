@@ -1,0 +1,18 @@
+baselines
+  real_test        c2st 0.496 acc 0.992 nn 4.65 copy% 0.0 div 29.7 barrep 3.90 profL1 0.0000
+  real_val         c2st 0.519 acc 0.998 nn 4.56 copy% 0.0 div 29.4 barrep 3.88 profL1 0.0161
+  bernoulli        c2st 0.989 acc 0.989 nn 18.87 copy% 0.0 div 30.7 barrep 15.81 profL1 0.0127
+  markov           c2st 0.980 acc 0.986 nn 17.27 copy% 0.0 div 30.7 barrep 15.75 profL1 0.0133
+  markov_bar       c2st 0.973 acc 0.976 nn 14.35 copy% 0.0 div 30.2 barrep 4.89 profL1 0.0130
+  copy_train       c2st 0.484 acc 1.000 nn 0.00 copy% 100.0 div 30.4 barrep 3.84 profL1 0.0137
+vae_quick_b1.0 {'kind': 'mlp', 'latent': 16, 'hidden': 512, 'cond': True, 'trained_epochs': 200}
+  NLL val 19.43 test 19.48 recon {'hit_f1': 0.9640120373530233, 'exact_recon_pct': 26.81818181818182}
+  vae_quick_b1.0:thr c2st 0.621 acc 0.988 nn 4.27 copy% 10.3 div 26.9 barrep 3.69 profL1 0.0163
+  vae_quick_b1.0:sample c2st 0.580 acc 0.990 nn 6.14 copy% 2.0 div 28.6 barrep 5.82 profL1 0.0150
+  vae_quick_b1.0:sample_T0.7 c2st 0.573 acc 0.990 nn 5.35 copy% 4.3 div 27.8 barrep 4.98 profL1 0.0153
+  vae_quick_b1.0:sample_T0.5 c2st 0.607 acc 0.988 nn 4.90 copy% 6.0 div 27.3 barrep 4.52 profL1 0.0157
+selected checkpoints/vae_quick_b1.0 demo mode sample_T0.7
+  interp vae: {'adjacent_hamming_mean': 6.51171875, 'max_over_mean_step_ratio': 2.933222192110059, 'midpoints_nn_hamming_to_train': 4.870535850524902, 'midpoints_bar_repeat_hamming': 4.069196428571429, 'p_targetstyle_monotone_frac': 0.99609375, 'endpoint_hamming_error': 2.3671875, 'sparse_point_pct': 0.0}
+  interp crossfade: {'adjacent_hamming_mean': 5.916015625, 'max_over_mean_step_ratio': 1.6799461752677671, 'midpoints_nn_hamming_to_train': 14.578125, 'midpoints_bar_repeat_hamming': 11.584821428571427, 'p_targetstyle_monotone_frac': 0.998046875, 'endpoint_hamming_error': 0.0, 'sparse_point_pct': 0.0}
+  style transfer {'target_style_acc': 0.9945652173913043, 'per_target_acc': {'rock': 1.0, 'funk': 0.9565217391304348, 'house': 1.0, 'breakbeat': 1.0, 'hiphop': 1.0, 'bossa': 1.0, 'halftime': 1.0, 'reggaeton': 1.0}, 'mean_cells_changed': 30.595225334928237}
+wrote results/eval.json in 15s

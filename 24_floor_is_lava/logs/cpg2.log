@@ -1,0 +1,81 @@
+[gpu_run] acquired gpu0: bash -c 
+PY=../.venv/bin/python
+$PY tune_cpg.py --warm checkpoints/cpg_params.json --seed 1 --n_random 60 --n_layouts 40 --cem_gens 20 --cem_pop 48 --final_layouts 192 --out checkpoints/cpg2_params.json
+$PY evaluate.py --policy "" --planner "" --cpg checkpoints/cpg2_params.json --n 500 --out results/eval_cpg2_full.json
+$PY evaluate.py --policy "" --planner "" --cpg checkpoints/cpg2_params.json --n 500 --gap_max 0.125 --push 0 --out results/eval_cpg2_gap0125.json
+$PY evaluate.py --policy "" --planner "" --cpg checkpoints/cpg2_params.json --n 200 --flat --push 80 --out results/eval_cpg2_flat_push80.json
+
+[random] best 0.186  (24s)
+[cem 0] best 0.152 succ 0.05 mean-of-pop 0.080 (48s)
+[cem 1] best 0.121 succ 0.03 mean-of-pop 0.077 (71s)
+[cem 2] best 0.171 succ 0.07 mean-of-pop 0.097 (97s)
+[cem 3] best 0.203 succ 0.07 mean-of-pop 0.110 (123s)
+[cem 4] best 0.156 succ 0.05 mean-of-pop 0.089 (147s)
+[cem 5] best 0.152 succ 0.05 mean-of-pop 0.094 (173s)
+[cem 6] best 0.197 succ 0.07 mean-of-pop 0.110 (198s)
+[cem 7] best 0.205 succ 0.10 mean-of-pop 0.106 (225s)
+[cem 8] best 0.240 succ 0.10 mean-of-pop 0.125 (252s)
+[cem 9] best 0.217 succ 0.10 mean-of-pop 0.116 (279s)
+[cem 10] best 0.227 succ 0.10 mean-of-pop 0.122 (307s)
+[cem 11] best 0.194 succ 0.07 mean-of-pop 0.123 (336s)
+[cem 12] best 0.314 succ 0.17 mean-of-pop 0.135 (365s)
+[cem 13] best 0.231 succ 0.10 mean-of-pop 0.128 (393s)
+[cem 14] best 0.260 succ 0.15 mean-of-pop 0.149 (422s)
+[cem 15] best 0.308 succ 0.17 mean-of-pop 0.163 (450s)
+[cem 16] best 0.180 succ 0.07 mean-of-pop 0.105 (474s)
+[cem 17] best 0.216 succ 0.10 mean-of-pop 0.118 (500s)
+[cem 18] best 0.249 succ 0.12 mean-of-pop 0.137 (527s)
+[cem 19] best 0.320 succ 0.17 mean-of-pop 0.171 (556s)
+[final] best score 0.201 succ 0.078 frac 0.408  configs=1031  env steps=7921008  582s
+{
+ "freq": 3.1378045096636575,
+ "stride": 0.1709746154158431,
+ "height": 0.2915868953524301,
+ "clear": 0.10257965047570418,
+ "duty": 0.6425329259429423,
+ "xoff_f": -0.03598517289517272,
+ "xoff_r": 0.05202620961392944,
+ "abd": 0.051621278525510614,
+ "dh": 0.03551276176636797,
+ "p1": 0.727638662433788,
+ "p2": 0.894144537594036,
+ "p3": 0.33455852535284286,
+ "k_yaw": 1.684009248372573,
+ "look": 0.6997110413083303
+}
+cpg_baseline: success (0.068, np.float64(0.04906621332682857), np.float64(0.09352145708387197))  push-success (0.052, np.float64(0.03573001990962654), np.float64(0.07510163829406287)) (16s)
+{
+ "n_layouts": 500,
+ "gap_max": 0.2,
+ "flat": false,
+ "mask_stones": false,
+ "policy": "",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 40.0,
+ "push_s": 0.1,
+ "wall_s": 16.01799511909485
+}
+cpg_baseline: success (0.466, np.float64(0.4226999925744605), np.float64(0.5098184814856409))  push-success None (13s)
+{
+ "n_layouts": 500,
+ "gap_max": 0.125,
+ "flat": false,
+ "mask_stones": false,
+ "policy": "",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 0.0,
+ "push_s": 0.1,
+ "wall_s": 12.925755023956299
+}
+cpg_baseline: success (0.985, np.float64(0.9568335194437211), np.float64(0.9948858548155076))  push-success (0.745, np.float64(0.6803694869280502), np.float64(0.8003959701719726)) (11s)
+{
+ "n_layouts": 200,
+ "gap_max": 0.2,
+ "flat": true,
+ "mask_stones": false,
+ "policy": "",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 80.0,
+ "push_s": 0.1,
+ "wall_s": 10.887156009674072
+}

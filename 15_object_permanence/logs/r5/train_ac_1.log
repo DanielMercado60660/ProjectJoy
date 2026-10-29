@@ -1,0 +1,726 @@
+[gpu_run] acquired gpu2: ../.venv/bin/python -u r5_train.py --out checkpoints/r5_ac --steps 6000 --batch 8 --save-every 100 --val-count 16 --max-minutes 35
+PAIR_START step=0 warm_sha256=3ad40681584360c9bdc214e7fc14fa71734c2bf989e796fc019cfcc7ac184a32 cfg={'architecture': {'enc_dim': 512, 'hid': 256, 'layers': 1}, 'steps': 6000, 'batch': 8, 'seed': 51024, 'lr': 0.0002, 'tiny': False, 'warm_sha256': '3ad40681584360c9bdc214e7fc14fa71734c2bf989e796fc019cfcc7ac184a32', 'version': 1, 'training_split': 'hard_train', 'peek_probability': 0.6666666666666666, 'cue_sigma_px': 0.25, 'beta': 0.5, 'aux_fraction': 0.25, 'source_sha256': {'r5_train.py': 'd9984ee99f0194590a542620643eddacb8e757909a6af07e42e3d01044fc1476', 'r5_model.py': 'ddac980b8bd76c676529192e715d95535f8a93a5271302dd5c59852bf0138bca', 'r5_data.py': 'd47eab500840ce08f73b300959cbc072be3510cee32d3e308587638a378f3566', 'model.py': 'c10967a6fbe90d99706111ac647ba202db56cf444f15a6d473e42051dd066922', 'train.py': '478645fec274ed7eafec3eb6df0b743642536add0e0cc8729cb8810e60c8d47b', 'sim.py': 'c8bdd2a4f8f0a7624c7ef6ff9dc0208f48e247c21912149b87fa93668e0c043e'}}
+PAIR step=1 loss={'gaussian': 2.2560806274414062, 'mixture': 2.2489302158355713} elapsed_s=0.3
+PAIR step=2 loss={'gaussian': 1.0422108173370361, 'mixture': 1.0341227054595947} elapsed_s=0.3
+PAIR step=10 loss={'gaussian': 8.682269096374512, 'mixture': 9.518802642822266} elapsed_s=0.6
+PAIR step=20 loss={'gaussian': 3.06298828125, 'mixture': 2.715801954269409} elapsed_s=0.8
+PAIR step=30 loss={'gaussian': 3.063521146774292, 'mixture': 5.17555046081543} elapsed_s=1.1
+PAIR step=40 loss={'gaussian': 2.1148746013641357, 'mixture': 3.098522901535034} elapsed_s=1.4
+PAIR step=50 loss={'gaussian': 1.0575238466262817, 'mixture': 1.2081652879714966} elapsed_s=1.7
+PAIR step=60 loss={'gaussian': 0.3367801904678345, 'mixture': 0.5196480751037598} elapsed_s=2.0
+PAIR step=70 loss={'gaussian': 0.704461932182312, 'mixture': 1.053767442703247} elapsed_s=2.3
+PAIR step=80 loss={'gaussian': 2.838243007659912, 'mixture': 3.7388408184051514} elapsed_s=2.6
+PAIR step=90 loss={'gaussian': 7.433687210083008, 'mixture': 7.61219596862793} elapsed_s=2.9
+PAIR step=100 loss={'gaussian': 2.746636152267456, 'mixture': 2.3778557777404785} elapsed_s=3.2
+SAVED checkpoints/r5_ac/last.pkl paired_step=100
+VAL step=100 pixel_nll={'gaussian': 5.194284958254391, 'mixture': 5.1935935243681675}
+PAIR step=110 loss={'gaussian': 1.6911771297454834, 'mixture': 1.3697090148925781} elapsed_s=3.7
+PAIR step=120 loss={'gaussian': 1.6297186613082886, 'mixture': 1.4305145740509033} elapsed_s=4.0
+PAIR step=130 loss={'gaussian': 3.8308029174804688, 'mixture': 5.2823309898376465} elapsed_s=4.3
+PAIR step=140 loss={'gaussian': 5.685549736022949, 'mixture': 8.111984252929688} elapsed_s=4.6
+PAIR step=150 loss={'gaussian': 1.5160975456237793, 'mixture': 1.9425389766693115} elapsed_s=4.9
+PAIR step=160 loss={'gaussian': 13.157087326049805, 'mixture': 5.178125858306885} elapsed_s=5.1
+PAIR step=170 loss={'gaussian': 4.186910152435303, 'mixture': 4.542540073394775} elapsed_s=5.4
+PAIR step=180 loss={'gaussian': 5.086145877838135, 'mixture': 6.796773910522461} elapsed_s=5.7
+PAIR step=190 loss={'gaussian': 0.8988121747970581, 'mixture': 0.5939145088195801} elapsed_s=6.0
+PAIR step=200 loss={'gaussian': 1.8023033142089844, 'mixture': 4.129168510437012} elapsed_s=6.3
+SAVED checkpoints/r5_ac/last.pkl paired_step=200
+VAL step=200 pixel_nll={'gaussian': 4.680633265220245, 'mixture': 4.548046350912405}
+PAIR step=210 loss={'gaussian': 2.8457798957824707, 'mixture': 3.231783628463745} elapsed_s=6.8
+PAIR step=220 loss={'gaussian': 0.3710300326347351, 'mixture': 0.553325355052948} elapsed_s=7.1
+PAIR step=230 loss={'gaussian': 1.0277295112609863, 'mixture': 1.11838960647583} elapsed_s=7.4
+PAIR step=240 loss={'gaussian': 1.4207322597503662, 'mixture': 2.5187649726867676} elapsed_s=7.7
+PAIR step=250 loss={'gaussian': 6.730250358581543, 'mixture': 7.1230902671813965} elapsed_s=8.0
+PAIR step=260 loss={'gaussian': 0.7745916247367859, 'mixture': 0.7804514765739441} elapsed_s=8.3
+PAIR step=270 loss={'gaussian': 7.915881633758545, 'mixture': 7.860276699066162} elapsed_s=8.6
+PAIR step=280 loss={'gaussian': 2.4069788455963135, 'mixture': 1.5799691677093506} elapsed_s=8.9
+PAIR step=290 loss={'gaussian': 1.2172892093658447, 'mixture': 1.226562738418579} elapsed_s=9.2
+PAIR step=300 loss={'gaussian': 3.3532960414886475, 'mixture': 1.741054892539978} elapsed_s=9.4
+SAVED checkpoints/r5_ac/last.pkl paired_step=300
+VAL step=300 pixel_nll={'gaussian': 4.53883813236206, 'mixture': 4.36806016369306}
+PAIR step=310 loss={'gaussian': 2.508730411529541, 'mixture': 3.020960569381714} elapsed_s=9.9
+PAIR step=320 loss={'gaussian': 2.3731496334075928, 'mixture': 1.9076719284057617} elapsed_s=10.2
+PAIR step=330 loss={'gaussian': 4.0556840896606445, 'mixture': 4.913520812988281} elapsed_s=10.5
+PAIR step=340 loss={'gaussian': 0.4448609948158264, 'mixture': 0.415022075176239} elapsed_s=10.8
+PAIR step=350 loss={'gaussian': 9.284404754638672, 'mixture': 8.835892677307129} elapsed_s=11.1
+PAIR step=360 loss={'gaussian': 1.660149335861206, 'mixture': 2.8615312576293945} elapsed_s=11.4
+PAIR step=370 loss={'gaussian': 11.286003112792969, 'mixture': 7.157122611999512} elapsed_s=11.7
+PAIR step=380 loss={'gaussian': 2.5962743759155273, 'mixture': 3.4734206199645996} elapsed_s=12.0
+PAIR step=390 loss={'gaussian': 2.60839581489563, 'mixture': 2.07379150390625} elapsed_s=12.2
+PAIR step=400 loss={'gaussian': 0.8864735960960388, 'mixture': 0.7795366048812866} elapsed_s=12.5
+SAVED checkpoints/r5_ac/last.pkl paired_step=400
+VAL step=400 pixel_nll={'gaussian': 4.413937128624237, 'mixture': 4.273056418859216}
+PAIR step=410 loss={'gaussian': 0.5223986506462097, 'mixture': 0.494905948638916} elapsed_s=13.0
+PAIR step=420 loss={'gaussian': 0.40495139360427856, 'mixture': 0.30935177206993103} elapsed_s=13.3
+PAIR step=430 loss={'gaussian': 2.5698299407958984, 'mixture': 3.1180408000946045} elapsed_s=13.6
+PAIR step=440 loss={'gaussian': 0.824038028717041, 'mixture': 0.8551939725875854} elapsed_s=13.9
+PAIR step=450 loss={'gaussian': 1.7594074010849, 'mixture': 1.2389912605285645} elapsed_s=14.2
+PAIR step=460 loss={'gaussian': 0.8824137449264526, 'mixture': 1.1084070205688477} elapsed_s=14.5
+PAIR step=470 loss={'gaussian': 0.8600468635559082, 'mixture': 1.0304193496704102} elapsed_s=14.8
+PAIR step=480 loss={'gaussian': 0.7044892311096191, 'mixture': 0.6283674240112305} elapsed_s=15.1
+PAIR step=490 loss={'gaussian': 0.2128566950559616, 'mixture': 0.15435604751110077} elapsed_s=15.4
+PAIR step=500 loss={'gaussian': 0.8553010821342468, 'mixture': 0.7645851969718933} elapsed_s=15.7
+SAVED checkpoints/r5_ac/last.pkl paired_step=500
+VAL step=500 pixel_nll={'gaussian': 4.417685399183316, 'mixture': 4.106026776886194}
+PAIR step=510 loss={'gaussian': 0.5360147953033447, 'mixture': 0.6071214079856873} elapsed_s=16.2
+PAIR step=520 loss={'gaussian': 1.9141709804534912, 'mixture': 1.8344768285751343} elapsed_s=16.4
+PAIR step=530 loss={'gaussian': 3.9001502990722656, 'mixture': 2.618083953857422} elapsed_s=16.7
+PAIR step=540 loss={'gaussian': 0.8094555139541626, 'mixture': 1.0030932426452637} elapsed_s=17.0
+PAIR step=550 loss={'gaussian': 0.8523861765861511, 'mixture': 1.1492772102355957} elapsed_s=17.3
+PAIR step=560 loss={'gaussian': 3.885575771331787, 'mixture': 3.5824527740478516} elapsed_s=17.6
+PAIR step=570 loss={'gaussian': 0.2953251600265503, 'mixture': 0.3752124011516571} elapsed_s=17.9
+PAIR step=580 loss={'gaussian': 0.8520705103874207, 'mixture': 2.0875282287597656} elapsed_s=18.2
+PAIR step=590 loss={'gaussian': 0.5103126764297485, 'mixture': 0.4606853127479553} elapsed_s=18.5
+PAIR step=600 loss={'gaussian': 0.11597874015569687, 'mixture': 0.10568495094776154} elapsed_s=18.8
+SAVED checkpoints/r5_ac/last.pkl paired_step=600
+VAL step=600 pixel_nll={'gaussian': 3.9515892824009136, 'mixture': 3.9540002635057627}
+PAIR step=610 loss={'gaussian': 5.075481414794922, 'mixture': 4.915467262268066} elapsed_s=19.3
+PAIR step=620 loss={'gaussian': 0.8771951198577881, 'mixture': 0.6649025678634644} elapsed_s=19.6
+PAIR step=630 loss={'gaussian': 1.2354415655136108, 'mixture': 1.357338309288025} elapsed_s=19.9
+PAIR step=640 loss={'gaussian': 0.7582720518112183, 'mixture': 0.7384065389633179} elapsed_s=20.2
+PAIR step=650 loss={'gaussian': 1.3044551610946655, 'mixture': 0.6697479486465454} elapsed_s=20.5
+PAIR step=660 loss={'gaussian': 1.4207851886749268, 'mixture': 1.4067137241363525} elapsed_s=20.8
+PAIR step=670 loss={'gaussian': 0.9281579256057739, 'mixture': 1.1174404621124268} elapsed_s=21.0
+PAIR step=680 loss={'gaussian': 2.0790491104125977, 'mixture': 2.773804187774658} elapsed_s=21.3
+PAIR step=690 loss={'gaussian': 2.0363616943359375, 'mixture': 2.107574939727783} elapsed_s=21.6
+PAIR step=700 loss={'gaussian': 0.3505246043205261, 'mixture': 0.22907397150993347} elapsed_s=21.9
+SAVED checkpoints/r5_ac/last.pkl paired_step=700
+VAL step=700 pixel_nll={'gaussian': 4.365668823989912, 'mixture': 4.081708722903327}
+PAIR step=710 loss={'gaussian': 2.1005144119262695, 'mixture': 1.844238042831421} elapsed_s=22.4
+PAIR step=720 loss={'gaussian': 0.3988989591598511, 'mixture': 0.6767718195915222} elapsed_s=22.7
+PAIR step=730 loss={'gaussian': 0.5664764642715454, 'mixture': 0.4442529082298279} elapsed_s=23.0
+PAIR step=740 loss={'gaussian': 0.5141417384147644, 'mixture': 0.5353828072547913} elapsed_s=23.3
+PAIR step=750 loss={'gaussian': 1.5732276439666748, 'mixture': 1.9192194938659668} elapsed_s=23.6
+PAIR step=760 loss={'gaussian': 0.31458181142807007, 'mixture': 0.4422632157802582} elapsed_s=23.9
+PAIR step=770 loss={'gaussian': 1.8943674564361572, 'mixture': 1.081005334854126} elapsed_s=24.2
+PAIR step=780 loss={'gaussian': 1.5503311157226562, 'mixture': 1.5619533061981201} elapsed_s=24.5
+PAIR step=790 loss={'gaussian': 0.40187788009643555, 'mixture': 0.3544744849205017} elapsed_s=24.8
+PAIR step=800 loss={'gaussian': 0.7875978350639343, 'mixture': 1.6626107692718506} elapsed_s=25.1
+SAVED checkpoints/r5_ac/last.pkl paired_step=800
+VAL step=800 pixel_nll={'gaussian': 3.927619204478671, 'mixture': 3.9564989704534437}
+PAIR step=810 loss={'gaussian': 0.4402451515197754, 'mixture': 0.3599383234977722} elapsed_s=25.6
+PAIR step=820 loss={'gaussian': 0.13752222061157227, 'mixture': 0.22150854766368866} elapsed_s=25.9
+PAIR step=830 loss={'gaussian': 0.03886961191892624, 'mixture': 0.03610677644610405} elapsed_s=26.2
+PAIR step=840 loss={'gaussian': 3.746610641479492, 'mixture': 3.9446027278900146} elapsed_s=26.5
+PAIR step=850 loss={'gaussian': 0.15025274455547333, 'mixture': 0.2449457347393036} elapsed_s=26.8
+PAIR step=860 loss={'gaussian': 0.24386677145957947, 'mixture': 0.22212378680706024} elapsed_s=27.1
+PAIR step=870 loss={'gaussian': 3.210289716720581, 'mixture': 2.5160696506500244} elapsed_s=27.4
+PAIR step=880 loss={'gaussian': 0.5559781789779663, 'mixture': 0.5796567797660828} elapsed_s=27.7
+PAIR step=890 loss={'gaussian': 0.3747793138027191, 'mixture': 0.2930869162082672} elapsed_s=28.0
+PAIR step=900 loss={'gaussian': 0.06625023484230042, 'mixture': 0.05271534621715546} elapsed_s=28.2
+SAVED checkpoints/r5_ac/last.pkl paired_step=900
+VAL step=900 pixel_nll={'gaussian': 3.895279744586224, 'mixture': 3.70405101057272}
+PAIR step=910 loss={'gaussian': 0.0746130496263504, 'mixture': 0.054221343249082565} elapsed_s=28.8
+PAIR step=920 loss={'gaussian': 0.8903226852416992, 'mixture': 1.0621397495269775} elapsed_s=29.0
+PAIR step=930 loss={'gaussian': 1.538336157798767, 'mixture': 1.2745517492294312} elapsed_s=29.3
+PAIR step=940 loss={'gaussian': 3.9533419609069824, 'mixture': 0.27552324533462524} elapsed_s=29.6
+PAIR step=950 loss={'gaussian': 0.23980355262756348, 'mixture': 0.36142978072166443} elapsed_s=29.9
+PAIR step=960 loss={'gaussian': 0.07628752291202545, 'mixture': 0.04297284781932831} elapsed_s=30.2
+PAIR step=970 loss={'gaussian': 0.4771714210510254, 'mixture': 0.7135472297668457} elapsed_s=30.5
+PAIR step=980 loss={'gaussian': 0.32376039028167725, 'mixture': 0.31913936138153076} elapsed_s=30.8
+PAIR step=990 loss={'gaussian': 1.5904293060302734, 'mixture': 2.593816041946411} elapsed_s=31.1
+PAIR step=1000 loss={'gaussian': 0.11996357142925262, 'mixture': 0.07471169531345367} elapsed_s=31.4
+SAVED checkpoints/r5_ac/last.pkl paired_step=1000
+VAL step=1000 pixel_nll={'gaussian': 3.887676470007372, 'mixture': 3.902696460242757}
+PAIR step=1010 loss={'gaussian': 0.9655512571334839, 'mixture': 1.782994270324707} elapsed_s=31.9
+PAIR step=1020 loss={'gaussian': 0.6385097503662109, 'mixture': 0.6729122400283813} elapsed_s=32.2
+PAIR step=1030 loss={'gaussian': 0.5189471244812012, 'mixture': 0.5820499658584595} elapsed_s=32.5
+PAIR step=1040 loss={'gaussian': 0.1409032642841339, 'mixture': 0.2653334140777588} elapsed_s=32.8
+PAIR step=1050 loss={'gaussian': 0.07950088381767273, 'mixture': 0.1320241391658783} elapsed_s=33.1
+PAIR step=1060 loss={'gaussian': 0.12607406079769135, 'mixture': 0.07957100868225098} elapsed_s=33.4
+PAIR step=1070 loss={'gaussian': 0.2046196460723877, 'mixture': 0.11175351589918137} elapsed_s=33.7
+PAIR step=1080 loss={'gaussian': 0.5030244588851929, 'mixture': 0.426457017660141} elapsed_s=34.0
+PAIR step=1090 loss={'gaussian': 1.621891975402832, 'mixture': 1.2933186292648315} elapsed_s=34.3
+PAIR step=1100 loss={'gaussian': 0.036908529698848724, 'mixture': 0.01908152364194393} elapsed_s=34.6
+SAVED checkpoints/r5_ac/last.pkl paired_step=1100
+VAL step=1100 pixel_nll={'gaussian': 3.6909415289796015, 'mixture': 3.6199588534349734}
+PAIR step=1110 loss={'gaussian': 1.0430912971496582, 'mixture': 0.8973734378814697} elapsed_s=35.1
+PAIR step=1120 loss={'gaussian': -0.04034286364912987, 'mixture': -0.040511079132556915} elapsed_s=35.4
+PAIR step=1130 loss={'gaussian': 0.42427921295166016, 'mixture': 0.5237917900085449} elapsed_s=35.7
+PAIR step=1140 loss={'gaussian': -0.001563559053465724, 'mixture': 0.006684240885078907} elapsed_s=36.0
+PAIR step=1150 loss={'gaussian': 2.2899928092956543, 'mixture': 2.787104606628418} elapsed_s=36.3
+PAIR step=1160 loss={'gaussian': 0.01342787779867649, 'mixture': 0.056934576481580734} elapsed_s=36.6
+PAIR step=1170 loss={'gaussian': -0.06094210594892502, 'mixture': -0.09568160772323608} elapsed_s=36.8
+PAIR step=1180 loss={'gaussian': 0.2670106589794159, 'mixture': 0.07936029881238937} elapsed_s=37.1
+PAIR step=1190 loss={'gaussian': 0.12246250361204147, 'mixture': 0.12275569140911102} elapsed_s=37.4
+PAIR step=1200 loss={'gaussian': 0.6341729760169983, 'mixture': 0.39673054218292236} elapsed_s=37.7
+SAVED checkpoints/r5_ac/last.pkl paired_step=1200
+VAL step=1200 pixel_nll={'gaussian': 3.829260628541003, 'mixture': 3.6501210611112427}
+PAIR step=1210 loss={'gaussian': 0.144362673163414, 'mixture': 0.15401142835617065} elapsed_s=38.3
+PAIR step=1220 loss={'gaussian': 0.3800128400325775, 'mixture': 0.9735714197158813} elapsed_s=38.6
+PAIR step=1230 loss={'gaussian': 0.2664637565612793, 'mixture': 0.10279570519924164} elapsed_s=38.8
+PAIR step=1240 loss={'gaussian': 1.7380197048187256, 'mixture': 0.2600723206996918} elapsed_s=39.1
+PAIR step=1250 loss={'gaussian': 0.1484544575214386, 'mixture': 0.2705743908882141} elapsed_s=39.4
+PAIR step=1260 loss={'gaussian': 0.628925621509552, 'mixture': 0.5610365271568298} elapsed_s=39.7
+PAIR step=1270 loss={'gaussian': 0.2459878921508789, 'mixture': 0.15943077206611633} elapsed_s=40.0
+PAIR step=1280 loss={'gaussian': -0.011925282888114452, 'mixture': 0.03325113654136658} elapsed_s=40.3
+PAIR step=1290 loss={'gaussian': -0.04462316259741783, 'mixture': -0.05056380853056908} elapsed_s=40.6
+PAIR step=1300 loss={'gaussian': -0.032095927745103836, 'mixture': -0.004533756524324417} elapsed_s=40.9
+SAVED checkpoints/r5_ac/last.pkl paired_step=1300
+VAL step=1300 pixel_nll={'gaussian': 3.6298162437068107, 'mixture': 3.5781689151750156}
+PAIR step=1310 loss={'gaussian': -0.055708032101392746, 'mixture': -0.04700765758752823} elapsed_s=41.4
+PAIR step=1320 loss={'gaussian': -0.07848240435123444, 'mixture': -0.06794693320989609} elapsed_s=41.7
+PAIR step=1330 loss={'gaussian': 0.29285284876823425, 'mixture': 0.18535494804382324} elapsed_s=42.0
+PAIR step=1340 loss={'gaussian': -0.0495138093829155, 'mixture': -0.03524006903171539} elapsed_s=42.3
+PAIR step=1350 loss={'gaussian': 1.093263030052185, 'mixture': 1.2799928188323975} elapsed_s=42.7
+PAIR step=1360 loss={'gaussian': 0.2516440749168396, 'mixture': -0.04810463637113571} elapsed_s=43.0
+PAIR step=1370 loss={'gaussian': 0.25633931159973145, 'mixture': 0.11369147151708603} elapsed_s=43.3
+PAIR step=1380 loss={'gaussian': -0.06525816768407822, 'mixture': -0.05872441083192825} elapsed_s=43.6
+PAIR step=1390 loss={'gaussian': 0.03528435528278351, 'mixture': 0.018591396510601044} elapsed_s=43.9
+PAIR step=1400 loss={'gaussian': -0.038415826857089996, 'mixture': -0.05323875695466995} elapsed_s=44.2
+SAVED checkpoints/r5_ac/last.pkl paired_step=1400
+VAL step=1400 pixel_nll={'gaussian': 3.6095614348824103, 'mixture': 3.5667578804650293}
+PAIR step=1410 loss={'gaussian': -0.05832836031913757, 'mixture': -0.041617944836616516} elapsed_s=44.7
+PAIR step=1420 loss={'gaussian': 0.06357418745756149, 'mixture': 0.1591385006904602} elapsed_s=45.0
+PAIR step=1430 loss={'gaussian': -0.07565810531377792, 'mixture': -0.11485524475574493} elapsed_s=45.3
+PAIR step=1440 loss={'gaussian': 0.4890725314617157, 'mixture': 0.08113382756710052} elapsed_s=45.7
+PAIR step=1450 loss={'gaussian': -0.05692064389586449, 'mixture': -0.0525602325797081} elapsed_s=46.0
+PAIR step=1460 loss={'gaussian': -0.13958130776882172, 'mixture': -0.1443071812391281} elapsed_s=46.3
+PAIR step=1470 loss={'gaussian': 0.03599327430129051, 'mixture': -0.05092728137969971} elapsed_s=46.6
+PAIR step=1480 loss={'gaussian': -0.09626305103302002, 'mixture': -0.11261701583862305} elapsed_s=46.9
+PAIR step=1490 loss={'gaussian': -0.15149086713790894, 'mixture': -0.1586434245109558} elapsed_s=47.2
+PAIR step=1500 loss={'gaussian': -0.140177384018898, 'mixture': -0.17061398923397064} elapsed_s=47.5
+SAVED checkpoints/r5_ac/last.pkl paired_step=1500
+VAL step=1500 pixel_nll={'gaussian': 3.52816139244006, 'mixture': 3.5343173482374706}
+PAIR step=1510 loss={'gaussian': -0.16381654143333435, 'mixture': -0.156131774187088} elapsed_s=48.1
+PAIR step=1520 loss={'gaussian': -0.15437066555023193, 'mixture': -0.15505379438400269} elapsed_s=48.4
+PAIR step=1530 loss={'gaussian': -0.10832653939723969, 'mixture': -0.1321319043636322} elapsed_s=48.7
+PAIR step=1540 loss={'gaussian': -0.1549045443534851, 'mixture': -0.16569751501083374} elapsed_s=49.0
+PAIR step=1550 loss={'gaussian': -0.13906392455101013, 'mixture': -0.1448567509651184} elapsed_s=49.3
+PAIR step=1560 loss={'gaussian': -0.07483310997486115, 'mixture': -0.09767010062932968} elapsed_s=49.7
+PAIR step=1570 loss={'gaussian': -0.16293632984161377, 'mixture': -0.14847537875175476} elapsed_s=50.0
+PAIR step=1580 loss={'gaussian': -0.15920090675354004, 'mixture': -0.16776585578918457} elapsed_s=50.3
+PAIR step=1590 loss={'gaussian': -0.14346687495708466, 'mixture': -0.1574070155620575} elapsed_s=50.6
+PAIR step=1600 loss={'gaussian': -0.14291834831237793, 'mixture': -0.1563083380460739} elapsed_s=51.0
+SAVED checkpoints/r5_ac/last.pkl paired_step=1600
+VAL step=1600 pixel_nll={'gaussian': 3.500161641586325, 'mixture': 3.5046591079618192}
+PAIR step=1610 loss={'gaussian': -0.16200891137123108, 'mixture': -0.17447786033153534} elapsed_s=51.5
+PAIR step=1620 loss={'gaussian': -0.16002780199050903, 'mixture': -0.1620180308818817} elapsed_s=51.8
+PAIR step=1630 loss={'gaussian': -0.14037811756134033, 'mixture': -0.14482735097408295} elapsed_s=52.1
+PAIR step=1640 loss={'gaussian': -0.14975526928901672, 'mixture': -0.16856133937835693} elapsed_s=52.5
+PAIR step=1650 loss={'gaussian': -0.13685433566570282, 'mixture': -0.15190225839614868} elapsed_s=52.8
+PAIR step=1660 loss={'gaussian': 0.10161972045898438, 'mixture': -0.013916244730353355} elapsed_s=53.1
+PAIR step=1670 loss={'gaussian': -0.17310075461864471, 'mixture': -0.17507140338420868} elapsed_s=53.4
+PAIR step=1680 loss={'gaussian': -0.13703301548957825, 'mixture': -0.15282486379146576} elapsed_s=53.8
+PAIR step=1690 loss={'gaussian': -0.1517522782087326, 'mixture': -0.16596102714538574} elapsed_s=54.1
+PAIR step=1700 loss={'gaussian': -0.1431126594543457, 'mixture': -0.15826323628425598} elapsed_s=54.4
+SAVED checkpoints/r5_ac/last.pkl paired_step=1700
+VAL step=1700 pixel_nll={'gaussian': 3.4676314416603935, 'mixture': 3.4464733140174393}
+PAIR step=1710 loss={'gaussian': -0.1616675853729248, 'mixture': -0.16623589396476746} elapsed_s=55.0
+PAIR step=1720 loss={'gaussian': -0.08418663591146469, 'mixture': -0.08679366111755371} elapsed_s=55.3
+PAIR step=1730 loss={'gaussian': -0.1519155353307724, 'mixture': -0.1655551791191101} elapsed_s=55.6
+PAIR step=1740 loss={'gaussian': -0.14884281158447266, 'mixture': -0.16959618031978607} elapsed_s=56.0
+PAIR step=1750 loss={'gaussian': -0.14887341856956482, 'mixture': -0.15623557567596436} elapsed_s=56.3
+PAIR step=1760 loss={'gaussian': -0.07486673444509506, 'mixture': -0.09409569948911667} elapsed_s=56.6
+PAIR step=1770 loss={'gaussian': -0.15634506940841675, 'mixture': -0.16171269118785858} elapsed_s=57.0
+PAIR step=1780 loss={'gaussian': -0.12047170102596283, 'mixture': -0.12523606419563293} elapsed_s=57.3
+PAIR step=1790 loss={'gaussian': -0.13692960143089294, 'mixture': -0.13952180743217468} elapsed_s=57.6
+PAIR step=1800 loss={'gaussian': -0.14191177487373352, 'mixture': -0.127160906791687} elapsed_s=57.9
+SAVED checkpoints/r5_ac/last.pkl paired_step=1800
+VAL step=1800 pixel_nll={'gaussian': 3.3625414093338053, 'mixture': 3.382942417977893}
+PAIR step=1810 loss={'gaussian': -0.0982895940542221, 'mixture': -0.11652742326259613} elapsed_s=58.5
+PAIR step=1820 loss={'gaussian': -0.082331083714962, 'mixture': -0.15870271623134613} elapsed_s=58.9
+PAIR step=1830 loss={'gaussian': -0.1266314685344696, 'mixture': -0.14854244887828827} elapsed_s=59.2
+PAIR step=1840 loss={'gaussian': -0.15155372023582458, 'mixture': -0.15559393167495728} elapsed_s=59.5
+PAIR step=1850 loss={'gaussian': -0.14738021790981293, 'mixture': -0.11324232816696167} elapsed_s=59.8
+PAIR step=1860 loss={'gaussian': -0.11907613277435303, 'mixture': -0.1266203671693802} elapsed_s=60.1
+PAIR step=1870 loss={'gaussian': -0.09298857301473618, 'mixture': -0.09224115312099457} elapsed_s=60.5
+PAIR step=1880 loss={'gaussian': -0.09824793040752411, 'mixture': -0.10914363712072372} elapsed_s=60.8
+PAIR step=1890 loss={'gaussian': -0.16824251413345337, 'mixture': -0.17425712943077087} elapsed_s=61.1
+PAIR step=1900 loss={'gaussian': -0.148025244474411, 'mixture': -0.15705904364585876} elapsed_s=61.4
+SAVED checkpoints/r5_ac/last.pkl paired_step=1900
+VAL step=1900 pixel_nll={'gaussian': 3.494908183866925, 'mixture': 3.436461186262349}
+PAIR step=1910 loss={'gaussian': -0.15397225320339203, 'mixture': -0.14822283387184143} elapsed_s=62.0
+PAIR step=1920 loss={'gaussian': -0.1403617560863495, 'mixture': -0.1460738629102707} elapsed_s=62.3
+PAIR step=1930 loss={'gaussian': -0.13993895053863525, 'mixture': -0.15896597504615784} elapsed_s=62.6
+PAIR step=1940 loss={'gaussian': -0.12205123901367188, 'mixture': -0.1444641798734665} elapsed_s=62.9
+PAIR step=1950 loss={'gaussian': -0.12634587287902832, 'mixture': -0.12494035810232162} elapsed_s=63.2
+PAIR step=1960 loss={'gaussian': -0.09725497663021088, 'mixture': -0.11620588600635529} elapsed_s=63.6
+PAIR step=1970 loss={'gaussian': -0.12291374057531357, 'mixture': -0.14157724380493164} elapsed_s=63.9
+PAIR step=1980 loss={'gaussian': -0.15451085567474365, 'mixture': -0.16618689894676208} elapsed_s=64.2
+PAIR step=1990 loss={'gaussian': -0.15087023377418518, 'mixture': -0.148911252617836} elapsed_s=64.5
+PAIR step=2000 loss={'gaussian': -0.1187010258436203, 'mixture': -0.14774204790592194} elapsed_s=64.9
+SAVED checkpoints/r5_ac/last.pkl paired_step=2000
+VAL step=2000 pixel_nll={'gaussian': 3.4057228260398786, 'mixture': 3.4162409249394856}
+PAIR step=2010 loss={'gaussian': -0.11385351419448853, 'mixture': -0.1322806477546692} elapsed_s=65.4
+PAIR step=2020 loss={'gaussian': -0.15676425397396088, 'mixture': -0.16781815886497498} elapsed_s=65.8
+PAIR step=2030 loss={'gaussian': -0.12785039842128754, 'mixture': -0.13082626461982727} elapsed_s=66.1
+PAIR step=2040 loss={'gaussian': -0.1572408229112625, 'mixture': -0.16203764081001282} elapsed_s=66.4
+PAIR step=2050 loss={'gaussian': -0.12409567087888718, 'mixture': -0.1350974142551422} elapsed_s=66.7
+PAIR step=2060 loss={'gaussian': -0.13549140095710754, 'mixture': -0.15528655052185059} elapsed_s=67.0
+PAIR step=2070 loss={'gaussian': -0.1588595062494278, 'mixture': -0.161353200674057} elapsed_s=67.4
+PAIR step=2080 loss={'gaussian': -0.13425695896148682, 'mixture': -0.13455791771411896} elapsed_s=67.7
+PAIR step=2090 loss={'gaussian': -0.1469690203666687, 'mixture': -0.16008472442626953} elapsed_s=68.0
+PAIR step=2100 loss={'gaussian': -0.14341913163661957, 'mixture': -0.15439525246620178} elapsed_s=68.4
+SAVED checkpoints/r5_ac/last.pkl paired_step=2100
+VAL step=2100 pixel_nll={'gaussian': 3.3748275698512544, 'mixture': 3.35625363010743}
+PAIR step=2110 loss={'gaussian': -0.14932510256767273, 'mixture': -0.15624277293682098} elapsed_s=69.0
+PAIR step=2120 loss={'gaussian': -0.16233806312084198, 'mixture': -0.17243671417236328} elapsed_s=69.3
+PAIR step=2130 loss={'gaussian': -0.12626534700393677, 'mixture': -0.11538313329219818} elapsed_s=69.6
+PAIR step=2140 loss={'gaussian': -0.13172565400600433, 'mixture': -0.13639327883720398} elapsed_s=69.9
+PAIR step=2150 loss={'gaussian': -0.1539890617132187, 'mixture': -0.16074371337890625} elapsed_s=70.3
+PAIR step=2160 loss={'gaussian': -0.14696195721626282, 'mixture': -0.1759919375181198} elapsed_s=70.6
+PAIR step=2170 loss={'gaussian': -0.14815646409988403, 'mixture': -0.14670829474925995} elapsed_s=70.9
+PAIR step=2180 loss={'gaussian': -0.10371889173984528, 'mixture': -0.14648814499378204} elapsed_s=71.2
+PAIR step=2190 loss={'gaussian': -0.09080295264720917, 'mixture': 0.06756900995969772} elapsed_s=71.6
+PAIR step=2200 loss={'gaussian': -0.15734262764453888, 'mixture': -0.13815632462501526} elapsed_s=71.9
+SAVED checkpoints/r5_ac/last.pkl paired_step=2200
+VAL step=2200 pixel_nll={'gaussian': 3.392467039001657, 'mixture': 3.3227377980217403}
+PAIR step=2210 loss={'gaussian': -0.15424633026123047, 'mixture': -0.1609990894794464} elapsed_s=72.5
+PAIR step=2220 loss={'gaussian': -0.14046543836593628, 'mixture': -0.1440565288066864} elapsed_s=72.8
+PAIR step=2230 loss={'gaussian': -0.1328139752149582, 'mixture': -0.1305573284626007} elapsed_s=73.1
+PAIR step=2240 loss={'gaussian': -0.14335927367210388, 'mixture': -0.13509386777877808} elapsed_s=73.5
+PAIR step=2250 loss={'gaussian': -0.1464345008134842, 'mixture': -0.14190080761909485} elapsed_s=73.8
+PAIR step=2260 loss={'gaussian': -0.1171489804983139, 'mixture': -0.1285218894481659} elapsed_s=74.1
+PAIR step=2270 loss={'gaussian': -0.15272973477840424, 'mixture': -0.15278691053390503} elapsed_s=74.4
+PAIR step=2280 loss={'gaussian': -0.13310201466083527, 'mixture': -0.12210442870855331} elapsed_s=74.8
+PAIR step=2290 loss={'gaussian': -0.11742815375328064, 'mixture': -0.13669930398464203} elapsed_s=75.1
+PAIR step=2300 loss={'gaussian': -0.16072919964790344, 'mixture': -0.16254819929599762} elapsed_s=75.5
+SAVED checkpoints/r5_ac/last.pkl paired_step=2300
+VAL step=2300 pixel_nll={'gaussian': 3.3256310200679646, 'mixture': 3.3006910842262562}
+PAIR step=2310 loss={'gaussian': -0.14110387861728668, 'mixture': -0.13965128362178802} elapsed_s=76.1
+PAIR step=2320 loss={'gaussian': -0.14570686221122742, 'mixture': -0.16325299441814423} elapsed_s=76.4
+PAIR step=2330 loss={'gaussian': -0.1403822898864746, 'mixture': -0.12169384211301804} elapsed_s=76.8
+PAIR step=2340 loss={'gaussian': -0.1329723745584488, 'mixture': -0.13273409008979797} elapsed_s=77.1
+PAIR step=2350 loss={'gaussian': -0.1362191140651703, 'mixture': -0.14856691658496857} elapsed_s=77.4
+PAIR step=2360 loss={'gaussian': -0.15010979771614075, 'mixture': -0.16199859976768494} elapsed_s=77.7
+PAIR step=2370 loss={'gaussian': -0.16034655272960663, 'mixture': -0.1686038374900818} elapsed_s=78.1
+PAIR step=2380 loss={'gaussian': -0.11196492612361908, 'mixture': -0.14278438687324524} elapsed_s=78.4
+PAIR step=2390 loss={'gaussian': -0.12130270898342133, 'mixture': -0.13071517646312714} elapsed_s=78.7
+PAIR step=2400 loss={'gaussian': -0.13653670251369476, 'mixture': -0.11391344666481018} elapsed_s=79.1
+SAVED checkpoints/r5_ac/last.pkl paired_step=2400
+VAL step=2400 pixel_nll={'gaussian': 3.3002490368098223, 'mixture': 3.2888423042714345}
+PAIR step=2410 loss={'gaussian': -0.1609204113483429, 'mixture': -0.1652640849351883} elapsed_s=79.7
+PAIR step=2420 loss={'gaussian': -0.035360537469387054, 'mixture': -0.11722628772258759} elapsed_s=80.0
+PAIR step=2430 loss={'gaussian': -0.1395374834537506, 'mixture': -0.12852567434310913} elapsed_s=80.4
+PAIR step=2440 loss={'gaussian': -0.12749670445919037, 'mixture': -0.12904897332191467} elapsed_s=80.7
+PAIR step=2450 loss={'gaussian': -0.13550835847854614, 'mixture': -0.1371973305940628} elapsed_s=81.0
+PAIR step=2460 loss={'gaussian': -0.1295294612646103, 'mixture': -0.12746760249137878} elapsed_s=81.4
+PAIR step=2470 loss={'gaussian': -0.14799422025680542, 'mixture': -0.13717660307884216} elapsed_s=81.7
+PAIR step=2480 loss={'gaussian': -0.1539745032787323, 'mixture': -0.15602320432662964} elapsed_s=82.1
+PAIR step=2490 loss={'gaussian': -0.15276923775672913, 'mixture': -0.1648847758769989} elapsed_s=82.4
+PAIR step=2500 loss={'gaussian': -0.15972958505153656, 'mixture': -0.16872605681419373} elapsed_s=82.7
+SAVED checkpoints/r5_ac/last.pkl paired_step=2500
+VAL step=2500 pixel_nll={'gaussian': 3.4006430181914404, 'mixture': 3.334141763687845}
+PAIR step=2510 loss={'gaussian': -0.15103843808174133, 'mixture': -0.15064668655395508} elapsed_s=83.3
+PAIR step=2520 loss={'gaussian': -0.13490542769432068, 'mixture': -0.11150181293487549} elapsed_s=83.7
+PAIR step=2530 loss={'gaussian': -0.16263660788536072, 'mixture': -0.1661916971206665} elapsed_s=84.0
+PAIR step=2540 loss={'gaussian': -0.15204550325870514, 'mixture': -0.1511646807193756} elapsed_s=84.3
+PAIR step=2550 loss={'gaussian': -0.0734008252620697, 'mixture': -0.0735553652048111} elapsed_s=84.7
+PAIR step=2560 loss={'gaussian': -0.14642344415187836, 'mixture': -0.15371954441070557} elapsed_s=85.0
+PAIR step=2570 loss={'gaussian': -0.16496515274047852, 'mixture': -0.1683690994977951} elapsed_s=85.3
+PAIR step=2580 loss={'gaussian': -0.11329030990600586, 'mixture': -0.1398782730102539} elapsed_s=85.7
+PAIR step=2590 loss={'gaussian': -0.14117762446403503, 'mixture': -0.14137449860572815} elapsed_s=86.0
+PAIR step=2600 loss={'gaussian': -0.15140432119369507, 'mixture': -0.1494763195514679} elapsed_s=86.4
+SAVED checkpoints/r5_ac/last.pkl paired_step=2600
+VAL step=2600 pixel_nll={'gaussian': 3.3258749947678705, 'mixture': 3.242266147574105}
+PAIR step=2610 loss={'gaussian': -0.12221179902553558, 'mixture': -0.12356223911046982} elapsed_s=87.0
+PAIR step=2620 loss={'gaussian': -0.1465868055820465, 'mixture': -0.15048038959503174} elapsed_s=87.3
+PAIR step=2630 loss={'gaussian': -0.14558349549770355, 'mixture': -0.15595802664756775} elapsed_s=87.7
+PAIR step=2640 loss={'gaussian': -0.11892104148864746, 'mixture': -0.12673549354076385} elapsed_s=88.0
+PAIR step=2650 loss={'gaussian': -0.1362002193927765, 'mixture': -0.12408633530139923} elapsed_s=88.3
+PAIR step=2660 loss={'gaussian': -0.16015063226222992, 'mixture': -0.16045406460762024} elapsed_s=88.7
+PAIR step=2670 loss={'gaussian': -0.14286617934703827, 'mixture': -0.1364797055721283} elapsed_s=89.0
+PAIR step=2680 loss={'gaussian': -0.15259447693824768, 'mixture': -0.15660664439201355} elapsed_s=89.4
+PAIR step=2690 loss={'gaussian': -0.13410510122776031, 'mixture': -0.13609567284584045} elapsed_s=89.7
+PAIR step=2700 loss={'gaussian': -0.13823333382606506, 'mixture': -0.14911608397960663} elapsed_s=90.0
+SAVED checkpoints/r5_ac/last.pkl paired_step=2700
+VAL step=2700 pixel_nll={'gaussian': 3.3025967592694974, 'mixture': 3.3226026132085407}
+PAIR step=2710 loss={'gaussian': -0.05685795843601227, 'mixture': -0.02835305593907833} elapsed_s=90.7
+PAIR step=2720 loss={'gaussian': -0.14497309923171997, 'mixture': -0.15147200226783752} elapsed_s=91.0
+PAIR step=2730 loss={'gaussian': -0.1185997948050499, 'mixture': -0.1354282945394516} elapsed_s=91.4
+PAIR step=2740 loss={'gaussian': -0.14181172847747803, 'mixture': -0.15015724301338196} elapsed_s=91.7
+PAIR step=2750 loss={'gaussian': -0.15067976713180542, 'mixture': -0.15561115741729736} elapsed_s=92.0
+PAIR step=2760 loss={'gaussian': -0.13359114527702332, 'mixture': -0.14421924948692322} elapsed_s=92.4
+PAIR step=2770 loss={'gaussian': -0.16685962677001953, 'mixture': -0.18078407645225525} elapsed_s=92.7
+PAIR step=2780 loss={'gaussian': -0.15465417504310608, 'mixture': -0.15558868646621704} elapsed_s=93.1
+PAIR step=2790 loss={'gaussian': -0.1534084677696228, 'mixture': -0.14553231000900269} elapsed_s=93.4
+PAIR step=2800 loss={'gaussian': -0.14520686864852905, 'mixture': -0.15856210887432098} elapsed_s=93.7
+SAVED checkpoints/r5_ac/last.pkl paired_step=2800
+VAL step=2800 pixel_nll={'gaussian': 3.309677568967494, 'mixture': 3.3072934203603985}
+PAIR step=2810 loss={'gaussian': -0.06721624732017517, 'mixture': -0.1144520565867424} elapsed_s=94.4
+PAIR step=2820 loss={'gaussian': -0.12197421491146088, 'mixture': -0.126554474234581} elapsed_s=94.7
+PAIR step=2830 loss={'gaussian': -0.13562963902950287, 'mixture': -0.139924094080925} elapsed_s=95.1
+PAIR step=2840 loss={'gaussian': -0.15540637075901031, 'mixture': -0.15224090218544006} elapsed_s=95.4
+PAIR step=2850 loss={'gaussian': -0.15593385696411133, 'mixture': -0.13280199468135834} elapsed_s=95.7
+PAIR step=2860 loss={'gaussian': -0.14125865697860718, 'mixture': -0.13362455368041992} elapsed_s=96.1
+PAIR step=2870 loss={'gaussian': -0.13456811010837555, 'mixture': -0.13842445611953735} elapsed_s=96.4
+PAIR step=2880 loss={'gaussian': -0.14043870568275452, 'mixture': -0.13288310170173645} elapsed_s=96.7
+PAIR step=2890 loss={'gaussian': -0.14407670497894287, 'mixture': -0.14602535963058472} elapsed_s=97.1
+PAIR step=2900 loss={'gaussian': -0.16067269444465637, 'mixture': -0.15833643078804016} elapsed_s=97.4
+SAVED checkpoints/r5_ac/last.pkl paired_step=2900
+VAL step=2900 pixel_nll={'gaussian': 3.2470537220513007, 'mixture': 3.197006757064484}
+PAIR step=2910 loss={'gaussian': -0.1418474167585373, 'mixture': -0.13753870129585266} elapsed_s=98.1
+PAIR step=2920 loss={'gaussian': -0.16871432960033417, 'mixture': -0.15880584716796875} elapsed_s=98.4
+PAIR step=2930 loss={'gaussian': -0.04451639950275421, 'mixture': -0.07167693227529526} elapsed_s=98.7
+PAIR step=2940 loss={'gaussian': -0.13187532126903534, 'mixture': -0.12966768443584442} elapsed_s=99.1
+PAIR step=2950 loss={'gaussian': -0.13144651055335999, 'mixture': -0.12440957874059677} elapsed_s=99.4
+PAIR step=2960 loss={'gaussian': -0.14215777814388275, 'mixture': -0.1485283076763153} elapsed_s=99.7
+PAIR step=2970 loss={'gaussian': -0.1351529359817505, 'mixture': -0.14722323417663574} elapsed_s=100.1
+PAIR step=2980 loss={'gaussian': -0.12773917615413666, 'mixture': -0.13633257150650024} elapsed_s=100.4
+PAIR step=2990 loss={'gaussian': -0.15580055117607117, 'mixture': -0.14774134755134583} elapsed_s=100.7
+PAIR step=3000 loss={'gaussian': -0.13303950428962708, 'mixture': -0.1367935687303543} elapsed_s=101.1
+SAVED checkpoints/r5_ac/last.pkl paired_step=3000
+VAL step=3000 pixel_nll={'gaussian': 3.281586155835658, 'mixture': 3.222263006416193}
+PAIR step=3010 loss={'gaussian': -0.04978863522410393, 'mixture': -0.09965809434652328} elapsed_s=101.8
+PAIR step=3020 loss={'gaussian': -0.11227047443389893, 'mixture': -0.11954649537801743} elapsed_s=102.1
+PAIR step=3030 loss={'gaussian': -0.1349417269229889, 'mixture': -0.13941560685634613} elapsed_s=102.5
+PAIR step=3040 loss={'gaussian': -0.12876011431217194, 'mixture': -0.13121140003204346} elapsed_s=102.8
+PAIR step=3050 loss={'gaussian': -0.14485545456409454, 'mixture': -0.15028105676174164} elapsed_s=103.2
+PAIR step=3060 loss={'gaussian': -0.13242165744304657, 'mixture': -0.13513627648353577} elapsed_s=103.5
+PAIR step=3070 loss={'gaussian': -0.08271121978759766, 'mixture': -0.10890144109725952} elapsed_s=103.9
+PAIR step=3080 loss={'gaussian': -0.0778970867395401, 'mixture': -0.08326734602451324} elapsed_s=104.2
+PAIR step=3090 loss={'gaussian': -0.15285468101501465, 'mixture': -0.1551285833120346} elapsed_s=104.6
+PAIR step=3100 loss={'gaussian': -0.09391986578702927, 'mixture': -0.12361740320920944} elapsed_s=105.0
+SAVED checkpoints/r5_ac/last.pkl paired_step=3100
+VAL step=3100 pixel_nll={'gaussian': 3.2202611807051946, 'mixture': 3.204465153510264}
+PAIR step=3110 loss={'gaussian': -0.14410215616226196, 'mixture': -0.14084269106388092} elapsed_s=105.7
+PAIR step=3120 loss={'gaussian': -0.16788801550865173, 'mixture': -0.17041513323783875} elapsed_s=106.0
+PAIR step=3130 loss={'gaussian': -0.12049418687820435, 'mixture': -0.11912421882152557} elapsed_s=106.3
+PAIR step=3140 loss={'gaussian': -0.13735537230968475, 'mixture': -0.12464418262243271} elapsed_s=106.7
+PAIR step=3150 loss={'gaussian': -0.0944572240114212, 'mixture': -0.08546268939971924} elapsed_s=107.0
+PAIR step=3160 loss={'gaussian': -0.14476516842842102, 'mixture': -0.13445964455604553} elapsed_s=107.3
+PAIR step=3170 loss={'gaussian': -0.1464197337627411, 'mixture': -0.14594107866287231} elapsed_s=107.7
+PAIR step=3180 loss={'gaussian': -0.1340685933828354, 'mixture': -0.13461855053901672} elapsed_s=108.0
+PAIR step=3190 loss={'gaussian': -0.1401742398738861, 'mixture': -0.14274251461029053} elapsed_s=108.3
+PAIR step=3200 loss={'gaussian': -0.12256252765655518, 'mixture': -0.12070469558238983} elapsed_s=108.7
+SAVED checkpoints/r5_ac/last.pkl paired_step=3200
+VAL step=3200 pixel_nll={'gaussian': 3.2762477148808946, 'mixture': 3.149300140682157}
+PAIR step=3210 loss={'gaussian': -0.12758806347846985, 'mixture': -0.1324693262577057} elapsed_s=109.3
+PAIR step=3220 loss={'gaussian': -0.13302715122699738, 'mixture': -0.13598588109016418} elapsed_s=109.7
+PAIR step=3230 loss={'gaussian': -0.14649632573127747, 'mixture': -0.15368926525115967} elapsed_s=110.0
+PAIR step=3240 loss={'gaussian': -0.12770166993141174, 'mixture': -0.1359894722700119} elapsed_s=110.4
+PAIR step=3250 loss={'gaussian': -0.09699831902980804, 'mixture': -0.14632660150527954} elapsed_s=110.8
+PAIR step=3260 loss={'gaussian': -0.14401701092720032, 'mixture': -0.15439963340759277} elapsed_s=111.1
+PAIR step=3270 loss={'gaussian': -0.1274554580450058, 'mixture': -0.1278475821018219} elapsed_s=111.5
+PAIR step=3280 loss={'gaussian': -0.15136653184890747, 'mixture': -0.13964854180812836} elapsed_s=111.8
+PAIR step=3290 loss={'gaussian': -0.13039660453796387, 'mixture': -0.13116857409477234} elapsed_s=112.2
+PAIR step=3300 loss={'gaussian': -0.1384509801864624, 'mixture': -0.13776586949825287} elapsed_s=112.5
+SAVED checkpoints/r5_ac/last.pkl paired_step=3300
+VAL step=3300 pixel_nll={'gaussian': 3.2502466178141125, 'mixture': 3.1633471686492007}
+PAIR step=3310 loss={'gaussian': -0.1451844424009323, 'mixture': -0.15009728074073792} elapsed_s=113.2
+PAIR step=3320 loss={'gaussian': -0.14914487302303314, 'mixture': -0.14697448909282684} elapsed_s=113.5
+PAIR step=3330 loss={'gaussian': -0.10885219275951385, 'mixture': -0.08156246691942215} elapsed_s=113.8
+PAIR step=3340 loss={'gaussian': -0.12736833095550537, 'mixture': -0.14224228262901306} elapsed_s=114.2
+PAIR step=3350 loss={'gaussian': -0.1395033895969391, 'mixture': -0.14761680364608765} elapsed_s=114.5
+PAIR step=3360 loss={'gaussian': -0.12977668642997742, 'mixture': -0.13469401001930237} elapsed_s=114.8
+PAIR step=3370 loss={'gaussian': -0.10940136015415192, 'mixture': -0.1067032665014267} elapsed_s=115.1
+PAIR step=3380 loss={'gaussian': -0.14385978877544403, 'mixture': -0.14478300511837006} elapsed_s=115.4
+PAIR step=3390 loss={'gaussian': -0.13515453040599823, 'mixture': -0.12996037304401398} elapsed_s=115.8
+PAIR step=3400 loss={'gaussian': -0.15486429631710052, 'mixture': -0.1546122133731842} elapsed_s=116.1
+SAVED checkpoints/r5_ac/last.pkl paired_step=3400
+VAL step=3400 pixel_nll={'gaussian': 3.2087644444761123, 'mixture': 3.174875951841021}
+PAIR step=3410 loss={'gaussian': -0.14715000987052917, 'mixture': -0.14657852053642273} elapsed_s=116.7
+PAIR step=3420 loss={'gaussian': -0.1340838521718979, 'mixture': -0.13708478212356567} elapsed_s=117.1
+PAIR step=3430 loss={'gaussian': -0.1419384479522705, 'mixture': -0.14299821853637695} elapsed_s=117.4
+PAIR step=3440 loss={'gaussian': -0.04612063616514206, 'mixture': -0.15082696080207825} elapsed_s=117.7
+PAIR step=3450 loss={'gaussian': -0.13889263570308685, 'mixture': -0.14853501319885254} elapsed_s=118.0
+PAIR step=3460 loss={'gaussian': -0.10908178985118866, 'mixture': -0.15046218037605286} elapsed_s=118.4
+PAIR step=3470 loss={'gaussian': -0.14612799882888794, 'mixture': -0.15328001976013184} elapsed_s=118.7
+PAIR step=3480 loss={'gaussian': -0.1267717033624649, 'mixture': -0.13281989097595215} elapsed_s=119.0
+PAIR step=3490 loss={'gaussian': -0.16093836724758148, 'mixture': -0.17262661457061768} elapsed_s=119.4
+PAIR step=3500 loss={'gaussian': -0.07844412326812744, 'mixture': -0.12983942031860352} elapsed_s=119.7
+SAVED checkpoints/r5_ac/last.pkl paired_step=3500
+VAL step=3500 pixel_nll={'gaussian': 3.226847228050937, 'mixture': 3.1927138681695917}
+PAIR step=3510 loss={'gaussian': -0.12743203341960907, 'mixture': -0.13478437066078186} elapsed_s=120.3
+PAIR step=3520 loss={'gaussian': -0.11692677438259125, 'mixture': -0.12605012953281403} elapsed_s=120.6
+PAIR step=3530 loss={'gaussian': 0.06522423774003983, 'mixture': -0.02783353626728058} elapsed_s=121.0
+PAIR step=3540 loss={'gaussian': -0.14049024879932404, 'mixture': -0.140829399228096} elapsed_s=121.3
+PAIR step=3550 loss={'gaussian': -0.14401085674762726, 'mixture': -0.10123495757579803} elapsed_s=121.6
+PAIR step=3560 loss={'gaussian': -0.1344902515411377, 'mixture': -0.1359173059463501} elapsed_s=121.9
+PAIR step=3570 loss={'gaussian': -0.14523400366306305, 'mixture': -0.14369678497314453} elapsed_s=122.3
+PAIR step=3580 loss={'gaussian': -0.16130289435386658, 'mixture': -0.15936297178268433} elapsed_s=122.6
+PAIR step=3590 loss={'gaussian': -0.1267731934785843, 'mixture': -0.1347179263830185} elapsed_s=122.9
+PAIR step=3600 loss={'gaussian': -0.1515863835811615, 'mixture': -0.15363477170467377} elapsed_s=123.3
+SAVED checkpoints/r5_ac/last.pkl paired_step=3600
+VAL step=3600 pixel_nll={'gaussian': 3.17897866604489, 'mixture': 3.1239167208648326}
+PAIR step=3610 loss={'gaussian': -0.14264993369579315, 'mixture': -0.13846908509731293} elapsed_s=123.9
+PAIR step=3620 loss={'gaussian': -0.1320885419845581, 'mixture': -0.1376793384552002} elapsed_s=124.2
+PAIR step=3630 loss={'gaussian': -0.11822059005498886, 'mixture': -0.12346327304840088} elapsed_s=124.5
+PAIR step=3640 loss={'gaussian': -0.13741612434387207, 'mixture': -0.1337551474571228} elapsed_s=124.9
+PAIR step=3650 loss={'gaussian': -0.16383801400661469, 'mixture': -0.1651618778705597} elapsed_s=125.2
+PAIR step=3660 loss={'gaussian': -0.13920989632606506, 'mixture': -0.13500452041625977} elapsed_s=125.5
+PAIR step=3670 loss={'gaussian': -0.1196504533290863, 'mixture': -0.12370091676712036} elapsed_s=125.9
+PAIR step=3680 loss={'gaussian': -0.09621551632881165, 'mixture': -0.1301114559173584} elapsed_s=126.2
+PAIR step=3690 loss={'gaussian': -0.07524284720420837, 'mixture': -0.07665222138166428} elapsed_s=126.5
+PAIR step=3700 loss={'gaussian': -0.14019450545310974, 'mixture': -0.14136099815368652} elapsed_s=126.9
+SAVED checkpoints/r5_ac/last.pkl paired_step=3700
+VAL step=3700 pixel_nll={'gaussian': 3.1253056083539246, 'mixture': 3.1233417687676006}
+PAIR step=3710 loss={'gaussian': -0.14675474166870117, 'mixture': -0.14058296382427216} elapsed_s=127.5
+PAIR step=3720 loss={'gaussian': -0.1276230365037918, 'mixture': -0.12609048187732697} elapsed_s=127.8
+PAIR step=3730 loss={'gaussian': -0.1514587253332138, 'mixture': -0.15548980236053467} elapsed_s=128.1
+PAIR step=3740 loss={'gaussian': -0.12799735367298126, 'mixture': -0.13027739524841309} elapsed_s=128.4
+PAIR step=3750 loss={'gaussian': -0.13178479671478271, 'mixture': -0.13211564719676971} elapsed_s=128.8
+PAIR step=3760 loss={'gaussian': -0.07265973091125488, 'mixture': -0.07131066918373108} elapsed_s=129.1
+PAIR step=3770 loss={'gaussian': -0.14419269561767578, 'mixture': -0.1502348780632019} elapsed_s=129.4
+PAIR step=3780 loss={'gaussian': -0.16746246814727783, 'mixture': -0.1692197024822235} elapsed_s=129.7
+PAIR step=3790 loss={'gaussian': -0.1387234330177307, 'mixture': -0.1409873068332672} elapsed_s=130.1
+PAIR step=3800 loss={'gaussian': -0.10938464105129242, 'mixture': -0.10776006430387497} elapsed_s=130.4
+SAVED checkpoints/r5_ac/last.pkl paired_step=3800
+VAL step=3800 pixel_nll={'gaussian': 3.206005030129683, 'mixture': 3.1961081122002977}
+PAIR step=3810 loss={'gaussian': -0.1430906355381012, 'mixture': -0.1472967118024826} elapsed_s=131.0
+PAIR step=3820 loss={'gaussian': -0.15924471616744995, 'mixture': -0.14277078211307526} elapsed_s=131.3
+PAIR step=3830 loss={'gaussian': -0.11951488256454468, 'mixture': -0.12102669477462769} elapsed_s=131.7
+PAIR step=3840 loss={'gaussian': -0.147532656788826, 'mixture': -0.14910343289375305} elapsed_s=132.0
+PAIR step=3850 loss={'gaussian': -0.09263619035482407, 'mixture': -0.09271153807640076} elapsed_s=132.3
+PAIR step=3860 loss={'gaussian': -0.07403004169464111, 'mixture': -0.07577483355998993} elapsed_s=132.6
+PAIR step=3870 loss={'gaussian': -0.12228195369243622, 'mixture': -0.13107576966285706} elapsed_s=133.0
+PAIR step=3880 loss={'gaussian': -0.08219410479068756, 'mixture': -0.08201415836811066} elapsed_s=133.3
+PAIR step=3890 loss={'gaussian': -0.07784268260002136, 'mixture': -0.07306050509214401} elapsed_s=133.6
+PAIR step=3900 loss={'gaussian': -0.1539817601442337, 'mixture': -0.15556994080543518} elapsed_s=134.0
+SAVED checkpoints/r5_ac/last.pkl paired_step=3900
+VAL step=3900 pixel_nll={'gaussian': 3.180392720527723, 'mixture': 3.1475616701310343}
+PAIR step=3910 loss={'gaussian': -0.13431735336780548, 'mixture': -0.13410434126853943} elapsed_s=134.6
+PAIR step=3920 loss={'gaussian': -0.1601584553718567, 'mixture': -0.16344603896141052} elapsed_s=134.9
+PAIR step=3930 loss={'gaussian': -0.16022716462612152, 'mixture': -0.1495673805475235} elapsed_s=135.2
+PAIR step=3940 loss={'gaussian': -0.13745227456092834, 'mixture': -0.14238259196281433} elapsed_s=135.5
+PAIR step=3950 loss={'gaussian': -0.15425875782966614, 'mixture': -0.1576651930809021} elapsed_s=135.8
+PAIR step=3960 loss={'gaussian': -0.1183268129825592, 'mixture': -0.12506869435310364} elapsed_s=136.2
+PAIR step=3970 loss={'gaussian': -0.08786031603813171, 'mixture': -0.10997238755226135} elapsed_s=136.5
+PAIR step=3980 loss={'gaussian': -0.14671039581298828, 'mixture': -0.1625402420759201} elapsed_s=136.9
+PAIR step=3990 loss={'gaussian': -0.09808704257011414, 'mixture': -0.11220844835042953} elapsed_s=137.2
+PAIR step=4000 loss={'gaussian': -0.13469618558883667, 'mixture': -0.14121639728546143} elapsed_s=137.5
+SAVED checkpoints/r5_ac/last.pkl paired_step=4000
+VAL step=4000 pixel_nll={'gaussian': 3.214277714874057, 'mixture': 3.1618378156989326}
+PAIR step=4010 loss={'gaussian': -0.11927392333745956, 'mixture': -0.11925959587097168} elapsed_s=138.1
+PAIR step=4020 loss={'gaussian': -0.14650721848011017, 'mixture': -0.1488705277442932} elapsed_s=138.4
+PAIR step=4030 loss={'gaussian': -0.14229606091976166, 'mixture': -0.14906105399131775} elapsed_s=138.8
+PAIR step=4040 loss={'gaussian': -0.12871238589286804, 'mixture': -0.13702784478664398} elapsed_s=139.1
+PAIR step=4050 loss={'gaussian': -0.12007443606853485, 'mixture': -0.12951962649822235} elapsed_s=139.4
+PAIR step=4060 loss={'gaussian': -0.14567534625530243, 'mixture': -0.15752679109573364} elapsed_s=139.7
+PAIR step=4070 loss={'gaussian': -0.14663968980312347, 'mixture': -0.15348348021507263} elapsed_s=140.1
+PAIR step=4080 loss={'gaussian': -0.12183811515569687, 'mixture': -0.12311239540576935} elapsed_s=140.4
+PAIR step=4090 loss={'gaussian': -0.1354365199804306, 'mixture': -0.1397467702627182} elapsed_s=140.7
+PAIR step=4100 loss={'gaussian': -0.15639641880989075, 'mixture': -0.1525340974330902} elapsed_s=141.0
+SAVED checkpoints/r5_ac/last.pkl paired_step=4100
+VAL step=4100 pixel_nll={'gaussian': 3.2107367873892185, 'mixture': 3.222007909194838}
+PAIR step=4110 loss={'gaussian': -0.14201116561889648, 'mixture': -0.15376219153404236} elapsed_s=141.6
+PAIR step=4120 loss={'gaussian': -0.13484469056129456, 'mixture': -0.13614577054977417} elapsed_s=142.0
+PAIR step=4130 loss={'gaussian': -0.16116993129253387, 'mixture': -0.15249377489089966} elapsed_s=142.3
+PAIR step=4140 loss={'gaussian': -0.13506841659545898, 'mixture': -0.14891305565834045} elapsed_s=142.6
+PAIR step=4150 loss={'gaussian': -0.13080042600631714, 'mixture': -0.13765829801559448} elapsed_s=142.9
+PAIR step=4160 loss={'gaussian': -0.13340386748313904, 'mixture': -0.13419431447982788} elapsed_s=143.2
+PAIR step=4170 loss={'gaussian': -0.14176520705223083, 'mixture': -0.11992087215185165} elapsed_s=143.6
+PAIR step=4180 loss={'gaussian': -0.12372802942991257, 'mixture': -0.1277136504650116} elapsed_s=143.9
+PAIR step=4190 loss={'gaussian': -0.06766661256551743, 'mixture': -0.1117187961935997} elapsed_s=144.2
+PAIR step=4200 loss={'gaussian': -0.09435459226369858, 'mixture': -0.088033527135849} elapsed_s=144.6
+SAVED checkpoints/r5_ac/last.pkl paired_step=4200
+VAL step=4200 pixel_nll={'gaussian': 3.133620457298943, 'mixture': 3.1288217645169834}
+PAIR step=4210 loss={'gaussian': -0.13402394950389862, 'mixture': -0.13267415761947632} elapsed_s=145.1
+PAIR step=4220 loss={'gaussian': -0.1358974128961563, 'mixture': -0.14207640290260315} elapsed_s=145.4
+PAIR step=4230 loss={'gaussian': -0.09293051064014435, 'mixture': -0.11376933753490448} elapsed_s=145.8
+PAIR step=4240 loss={'gaussian': -0.13658608496189117, 'mixture': -0.14629918336868286} elapsed_s=146.1
+PAIR step=4250 loss={'gaussian': -0.16486775875091553, 'mixture': -0.16972219944000244} elapsed_s=146.4
+PAIR step=4260 loss={'gaussian': -0.13587626814842224, 'mixture': -0.1321500837802887} elapsed_s=146.7
+PAIR step=4270 loss={'gaussian': -0.14549888670444489, 'mixture': -0.14719636738300323} elapsed_s=147.1
+PAIR step=4280 loss={'gaussian': -0.14761489629745483, 'mixture': -0.16273020207881927} elapsed_s=147.4
+PAIR step=4290 loss={'gaussian': -0.028566628694534302, 'mixture': -0.08916687965393066} elapsed_s=147.7
+PAIR step=4300 loss={'gaussian': -0.15653562545776367, 'mixture': -0.15818756818771362} elapsed_s=148.0
+SAVED checkpoints/r5_ac/last.pkl paired_step=4300
+VAL step=4300 pixel_nll={'gaussian': 3.1071021229415066, 'mixture': 3.0742658897671253}
+PAIR step=4310 loss={'gaussian': -0.0952458381652832, 'mixture': -0.09942719340324402} elapsed_s=148.6
+PAIR step=4320 loss={'gaussian': -0.13922029733657837, 'mixture': -0.137727290391922} elapsed_s=148.9
+PAIR step=4330 loss={'gaussian': -0.12530013918876648, 'mixture': -0.11692456901073456} elapsed_s=149.3
+PAIR step=4340 loss={'gaussian': -0.11981154978275299, 'mixture': -0.13710756599903107} elapsed_s=149.6
+PAIR step=4350 loss={'gaussian': -0.14796870946884155, 'mixture': -0.12369140982627869} elapsed_s=149.9
+PAIR step=4360 loss={'gaussian': -0.14811572432518005, 'mixture': -0.15947365760803223} elapsed_s=150.2
+PAIR step=4370 loss={'gaussian': -0.12437045574188232, 'mixture': -0.14033566415309906} elapsed_s=150.5
+PAIR step=4380 loss={'gaussian': -0.14393250644207, 'mixture': -0.1501448154449463} elapsed_s=150.9
+PAIR step=4390 loss={'gaussian': -0.13505618274211884, 'mixture': -0.1353268027305603} elapsed_s=151.2
+PAIR step=4400 loss={'gaussian': -0.08108347654342651, 'mixture': -0.0808551013469696} elapsed_s=151.5
+SAVED checkpoints/r5_ac/last.pkl paired_step=4400
+VAL step=4400 pixel_nll={'gaussian': 3.070500032842565, 'mixture': 3.029112818502722}
+PAIR step=4410 loss={'gaussian': -0.15773236751556396, 'mixture': -0.16425864398479462} elapsed_s=152.1
+PAIR step=4420 loss={'gaussian': -0.1260644644498825, 'mixture': -0.13427844643592834} elapsed_s=152.4
+PAIR step=4430 loss={'gaussian': -0.14637604355812073, 'mixture': -0.1443406343460083} elapsed_s=152.7
+PAIR step=4440 loss={'gaussian': -0.07428028434515, 'mixture': -0.07335839420557022} elapsed_s=153.0
+PAIR step=4450 loss={'gaussian': -0.1353319138288498, 'mixture': -0.12462614476680756} elapsed_s=153.4
+PAIR step=4460 loss={'gaussian': -0.14994309842586517, 'mixture': -0.16013656556606293} elapsed_s=153.7
+PAIR step=4470 loss={'gaussian': -0.13599184155464172, 'mixture': -0.1339680254459381} elapsed_s=154.0
+PAIR step=4480 loss={'gaussian': -0.06942521780729294, 'mixture': -0.0719248354434967} elapsed_s=154.3
+PAIR step=4490 loss={'gaussian': -0.13165491819381714, 'mixture': -0.13946358859539032} elapsed_s=154.7
+PAIR step=4500 loss={'gaussian': -0.1540473997592926, 'mixture': -0.16492486000061035} elapsed_s=155.0
+SAVED checkpoints/r5_ac/last.pkl paired_step=4500
+VAL step=4500 pixel_nll={'gaussian': 3.0972472748610684, 'mixture': 3.0641112930136742}
+PAIR step=4510 loss={'gaussian': -0.12672899663448334, 'mixture': -0.12898212671279907} elapsed_s=155.6
+PAIR step=4520 loss={'gaussian': -0.13610224425792694, 'mixture': -0.13818639516830444} elapsed_s=155.9
+PAIR step=4530 loss={'gaussian': -0.1575789451599121, 'mixture': -0.16827070713043213} elapsed_s=156.2
+PAIR step=4540 loss={'gaussian': -0.13562141358852386, 'mixture': -0.14041128754615784} elapsed_s=156.5
+PAIR step=4550 loss={'gaussian': -0.13890831172466278, 'mixture': -0.1352497935295105} elapsed_s=156.8
+PAIR step=4560 loss={'gaussian': -0.06875406950712204, 'mixture': -0.12160467356443405} elapsed_s=157.1
+PAIR step=4570 loss={'gaussian': -0.14651797711849213, 'mixture': -0.1439274549484253} elapsed_s=157.5
+PAIR step=4580 loss={'gaussian': -0.16516326367855072, 'mixture': -0.16349098086357117} elapsed_s=157.8
+PAIR step=4590 loss={'gaussian': -0.13884899020195007, 'mixture': -0.14228110015392303} elapsed_s=158.1
+PAIR step=4600 loss={'gaussian': -0.1502414047718048, 'mixture': -0.14736035466194153} elapsed_s=158.4
+SAVED checkpoints/r5_ac/last.pkl paired_step=4600
+VAL step=4600 pixel_nll={'gaussian': 3.0988997561618064, 'mixture': 3.0465575968175447}
+PAIR step=4610 loss={'gaussian': -0.15051604807376862, 'mixture': -0.13662850856781006} elapsed_s=159.0
+PAIR step=4620 loss={'gaussian': -0.12139074504375458, 'mixture': -0.12870000302791595} elapsed_s=159.3
+PAIR step=4630 loss={'gaussian': -0.118555948138237, 'mixture': -0.14226742088794708} elapsed_s=159.6
+PAIR step=4640 loss={'gaussian': -0.1174704059958458, 'mixture': -0.11124566197395325} elapsed_s=159.9
+PAIR step=4650 loss={'gaussian': -0.1253724992275238, 'mixture': -0.12732458114624023} elapsed_s=160.2
+PAIR step=4660 loss={'gaussian': -0.08219623565673828, 'mixture': -0.0836038738489151} elapsed_s=160.6
+PAIR step=4670 loss={'gaussian': -0.12020252645015717, 'mixture': -0.12099386751651764} elapsed_s=160.9
+PAIR step=4680 loss={'gaussian': -0.13008740544319153, 'mixture': -0.1380753219127655} elapsed_s=161.2
+PAIR step=4690 loss={'gaussian': -0.14788246154785156, 'mixture': -0.151499405503273} elapsed_s=161.5
+PAIR step=4700 loss={'gaussian': -0.13429200649261475, 'mixture': -0.14161108434200287} elapsed_s=161.9
+SAVED checkpoints/r5_ac/last.pkl paired_step=4700
+VAL step=4700 pixel_nll={'gaussian': 3.093133541569902, 'mixture': 3.057157225466767}
+PAIR step=4710 loss={'gaussian': -0.1379716992378235, 'mixture': -0.13188081979751587} elapsed_s=162.4
+PAIR step=4720 loss={'gaussian': -0.12093810737133026, 'mixture': -0.13031738996505737} elapsed_s=162.8
+PAIR step=4730 loss={'gaussian': -0.1257571429014206, 'mixture': -0.13239240646362305} elapsed_s=163.1
+PAIR step=4740 loss={'gaussian': -0.1398717761039734, 'mixture': -0.149763286113739} elapsed_s=163.4
+PAIR step=4750 loss={'gaussian': -0.1388871967792511, 'mixture': -0.1463896483182907} elapsed_s=163.7
+PAIR step=4760 loss={'gaussian': -0.13364353775978088, 'mixture': -0.1352086365222931} elapsed_s=164.1
+PAIR step=4770 loss={'gaussian': -0.14424128830432892, 'mixture': -0.14998319745063782} elapsed_s=164.4
+PAIR step=4780 loss={'gaussian': -0.13854531943798065, 'mixture': -0.13935333490371704} elapsed_s=164.7
+PAIR step=4790 loss={'gaussian': -0.1339014172554016, 'mixture': -0.14490559697151184} elapsed_s=165.0
+PAIR step=4800 loss={'gaussian': -0.12795986235141754, 'mixture': -0.1367335021495819} elapsed_s=165.3
+SAVED checkpoints/r5_ac/last.pkl paired_step=4800
+VAL step=4800 pixel_nll={'gaussian': 3.0577823424305084, 'mixture': 3.0325137262683843}
+PAIR step=4810 loss={'gaussian': -0.10712413489818573, 'mixture': -0.11758536100387573} elapsed_s=165.9
+PAIR step=4820 loss={'gaussian': -0.13821661472320557, 'mixture': -0.14472123980522156} elapsed_s=166.3
+PAIR step=4830 loss={'gaussian': -0.13101893663406372, 'mixture': -0.13671545684337616} elapsed_s=166.6
+PAIR step=4840 loss={'gaussian': -0.15827056765556335, 'mixture': -0.17577087879180908} elapsed_s=166.9
+PAIR step=4850 loss={'gaussian': -0.14551886916160583, 'mixture': -0.1491655558347702} elapsed_s=167.2
+PAIR step=4860 loss={'gaussian': -0.1305544376373291, 'mixture': -0.14570678770542145} elapsed_s=167.6
+PAIR step=4870 loss={'gaussian': -0.07857953011989594, 'mixture': -0.07432661950588226} elapsed_s=167.9
+PAIR step=4880 loss={'gaussian': -0.15090957283973694, 'mixture': -0.1592651605606079} elapsed_s=168.2
+PAIR step=4890 loss={'gaussian': -0.12603919208049774, 'mixture': -0.13241474330425262} elapsed_s=168.6
+PAIR step=4900 loss={'gaussian': -0.15274859964847565, 'mixture': -0.16479966044425964} elapsed_s=168.9
+SAVED checkpoints/r5_ac/last.pkl paired_step=4900
+VAL step=4900 pixel_nll={'gaussian': 3.0874486627970112, 'mixture': 3.04804603491989}
+PAIR step=4910 loss={'gaussian': -0.15307357907295227, 'mixture': -0.16192947328090668} elapsed_s=169.5
+PAIR step=4920 loss={'gaussian': -0.13932636380195618, 'mixture': -0.1481592357158661} elapsed_s=169.8
+PAIR step=4930 loss={'gaussian': -0.12835179269313812, 'mixture': -0.13736265897750854} elapsed_s=170.1
+PAIR step=4940 loss={'gaussian': -0.14869028329849243, 'mixture': -0.1548675000667572} elapsed_s=170.5
+PAIR step=4950 loss={'gaussian': -0.15552011132240295, 'mixture': -0.15819376707077026} elapsed_s=170.8
+PAIR step=4960 loss={'gaussian': -0.12162157893180847, 'mixture': -0.12710654735565186} elapsed_s=171.1
+PAIR step=4970 loss={'gaussian': -0.131203293800354, 'mixture': -0.11070968955755234} elapsed_s=171.4
+PAIR step=4980 loss={'gaussian': -0.10283570736646652, 'mixture': -0.10576080530881882} elapsed_s=171.8
+PAIR step=4990 loss={'gaussian': -0.16555537283420563, 'mixture': -0.16914665699005127} elapsed_s=172.1
+PAIR step=5000 loss={'gaussian': -0.12768810987472534, 'mixture': -0.13613232970237732} elapsed_s=172.4
+SAVED checkpoints/r5_ac/last.pkl paired_step=5000
+VAL step=5000 pixel_nll={'gaussian': 3.073756863369372, 'mixture': 3.0333283991392572}
+PAIR step=5010 loss={'gaussian': -0.11692497134208679, 'mixture': -0.11650895327329636} elapsed_s=173.0
+PAIR step=5020 loss={'gaussian': -0.13246576488018036, 'mixture': -0.14031410217285156} elapsed_s=173.3
+PAIR step=5030 loss={'gaussian': -0.13853506743907928, 'mixture': -0.14507035911083221} elapsed_s=173.7
+PAIR step=5040 loss={'gaussian': -0.13337354362010956, 'mixture': -0.13530054688453674} elapsed_s=174.0
+PAIR step=5050 loss={'gaussian': -0.12486070394515991, 'mixture': -0.12694355845451355} elapsed_s=174.3
+PAIR step=5060 loss={'gaussian': -0.14376170933246613, 'mixture': -0.15175746381282806} elapsed_s=174.6
+PAIR step=5070 loss={'gaussian': -0.13386884331703186, 'mixture': -0.13664698600769043} elapsed_s=174.9
+PAIR step=5080 loss={'gaussian': -0.14140136539936066, 'mixture': -0.14798414707183838} elapsed_s=175.2
+PAIR step=5090 loss={'gaussian': -0.12216099351644516, 'mixture': -0.1232084259390831} elapsed_s=175.5
+PAIR step=5100 loss={'gaussian': -0.15848544239997864, 'mixture': -0.16857975721359253} elapsed_s=175.8
+SAVED checkpoints/r5_ac/last.pkl paired_step=5100
+VAL step=5100 pixel_nll={'gaussian': 3.092740151216802, 'mixture': 3.0677936886806694}
+PAIR step=5110 loss={'gaussian': -0.12611918151378632, 'mixture': -0.13322776556015015} elapsed_s=176.4
+PAIR step=5120 loss={'gaussian': -0.14781570434570312, 'mixture': -0.14459796249866486} elapsed_s=176.7
+PAIR step=5130 loss={'gaussian': -0.15026363730430603, 'mixture': -0.15081454813480377} elapsed_s=177.0
+PAIR step=5140 loss={'gaussian': -0.15889179706573486, 'mixture': -0.15030866861343384} elapsed_s=177.3
+PAIR step=5150 loss={'gaussian': -0.03797069191932678, 'mixture': -0.10418103635311127} elapsed_s=177.6
+PAIR step=5160 loss={'gaussian': -0.1435610055923462, 'mixture': -0.14583992958068848} elapsed_s=177.9
+PAIR step=5170 loss={'gaussian': -0.13435713946819305, 'mixture': -0.137595996260643} elapsed_s=178.2
+PAIR step=5180 loss={'gaussian': -0.07395961880683899, 'mixture': -0.07531681656837463} elapsed_s=178.5
+PAIR step=5190 loss={'gaussian': -0.16978704929351807, 'mixture': -0.1807488650083542} elapsed_s=178.9
+PAIR step=5200 loss={'gaussian': -0.14928267896175385, 'mixture': -0.15758240222930908} elapsed_s=179.2
+SAVED checkpoints/r5_ac/last.pkl paired_step=5200
+VAL step=5200 pixel_nll={'gaussian': 3.065209867797054, 'mixture': 3.0212165954036516}
+PAIR step=5210 loss={'gaussian': -0.10884597152471542, 'mixture': -0.12854301929473877} elapsed_s=179.7
+PAIR step=5220 loss={'gaussian': -0.07528410851955414, 'mixture': -0.07772194594144821} elapsed_s=180.0
+PAIR step=5230 loss={'gaussian': -0.14077065885066986, 'mixture': -0.14601761102676392} elapsed_s=180.3
+PAIR step=5240 loss={'gaussian': -0.12088115513324738, 'mixture': -0.12835761904716492} elapsed_s=180.6
+PAIR step=5250 loss={'gaussian': -0.14622074365615845, 'mixture': -0.14794041216373444} elapsed_s=180.9
+PAIR step=5260 loss={'gaussian': -0.12946802377700806, 'mixture': -0.13252151012420654} elapsed_s=181.3
+PAIR step=5270 loss={'gaussian': -0.14416345953941345, 'mixture': -0.14864128828048706} elapsed_s=181.6
+PAIR step=5280 loss={'gaussian': -0.152467280626297, 'mixture': -0.16263030469417572} elapsed_s=181.9
+PAIR step=5290 loss={'gaussian': -0.12481846660375595, 'mixture': -0.1273331642150879} elapsed_s=182.2
+PAIR step=5300 loss={'gaussian': -0.13678115606307983, 'mixture': -0.1433890014886856} elapsed_s=182.5
+SAVED checkpoints/r5_ac/last.pkl paired_step=5300
+VAL step=5300 pixel_nll={'gaussian': 3.083034061503387, 'mixture': 3.040289279418789}
+PAIR step=5310 loss={'gaussian': -0.13020221889019012, 'mixture': -0.13316193222999573} elapsed_s=183.0
+PAIR step=5320 loss={'gaussian': -0.13624107837677002, 'mixture': -0.14270536601543427} elapsed_s=183.4
+PAIR step=5330 loss={'gaussian': -0.13829724490642548, 'mixture': -0.14592324197292328} elapsed_s=183.7
+PAIR step=5340 loss={'gaussian': -0.1409483551979065, 'mixture': -0.1398874819278717} elapsed_s=184.0
+PAIR step=5350 loss={'gaussian': -0.1480952501296997, 'mixture': -0.1484421342611313} elapsed_s=184.3
+PAIR step=5360 loss={'gaussian': -0.1330358386039734, 'mixture': -0.14180193841457367} elapsed_s=184.6
+PAIR step=5370 loss={'gaussian': -0.1337551325559616, 'mixture': -0.13257107138633728} elapsed_s=184.9
+PAIR step=5380 loss={'gaussian': -0.13848307728767395, 'mixture': -0.14865286648273468} elapsed_s=185.2
+PAIR step=5390 loss={'gaussian': -0.13955001533031464, 'mixture': -0.13597507774829865} elapsed_s=185.6
+PAIR step=5400 loss={'gaussian': -0.13332262635231018, 'mixture': -0.13643379509449005} elapsed_s=185.9
+SAVED checkpoints/r5_ac/last.pkl paired_step=5400
+VAL step=5400 pixel_nll={'gaussian': 3.063385242324639, 'mixture': 3.040929088016985}
+PAIR step=5410 loss={'gaussian': -0.07467083632946014, 'mixture': -0.09504302591085434} elapsed_s=186.4
+PAIR step=5420 loss={'gaussian': -0.07033100724220276, 'mixture': -0.1236819177865982} elapsed_s=186.7
+PAIR step=5430 loss={'gaussian': -0.12099272012710571, 'mixture': -0.1275852769613266} elapsed_s=187.0
+PAIR step=5440 loss={'gaussian': -0.10479901731014252, 'mixture': -0.10424496233463287} elapsed_s=187.4
+PAIR step=5450 loss={'gaussian': -0.1327650099992752, 'mixture': -0.12888911366462708} elapsed_s=187.7
+PAIR step=5460 loss={'gaussian': -0.14535419642925262, 'mixture': -0.14507484436035156} elapsed_s=188.0
+PAIR step=5470 loss={'gaussian': -0.10390031337738037, 'mixture': -0.10920091718435287} elapsed_s=188.3
+PAIR step=5480 loss={'gaussian': -0.1395803987979889, 'mixture': -0.14391538500785828} elapsed_s=188.6
+PAIR step=5490 loss={'gaussian': -0.09635569155216217, 'mixture': -0.10464736074209213} elapsed_s=188.9
+PAIR step=5500 loss={'gaussian': -0.13021574914455414, 'mixture': -0.1402554214000702} elapsed_s=189.2
+SAVED checkpoints/r5_ac/last.pkl paired_step=5500
+VAL step=5500 pixel_nll={'gaussian': 3.045830504089504, 'mixture': 3.01329326320272}
+PAIR step=5510 loss={'gaussian': -0.12917964160442352, 'mixture': -0.1459026336669922} elapsed_s=189.8
+PAIR step=5520 loss={'gaussian': -0.15194320678710938, 'mixture': -0.15229934453964233} elapsed_s=190.1
+PAIR step=5530 loss={'gaussian': -0.11198040097951889, 'mixture': -0.12480875104665756} elapsed_s=190.4
+PAIR step=5540 loss={'gaussian': -0.11264052242040634, 'mixture': -0.11402586102485657} elapsed_s=190.7
+PAIR step=5550 loss={'gaussian': -0.12290974706411362, 'mixture': -0.12133872509002686} elapsed_s=191.0
+PAIR step=5560 loss={'gaussian': -0.11908673495054245, 'mixture': -0.12037317454814911} elapsed_s=191.3
+PAIR step=5570 loss={'gaussian': -0.09549027681350708, 'mixture': -0.10474330186843872} elapsed_s=191.6
+PAIR step=5580 loss={'gaussian': -0.12089486420154572, 'mixture': -0.14307901263237} elapsed_s=191.9
+PAIR step=5590 loss={'gaussian': -0.1406000256538391, 'mixture': -0.14560340344905853} elapsed_s=192.3
+PAIR step=5600 loss={'gaussian': -0.15253230929374695, 'mixture': -0.15035594999790192} elapsed_s=192.6
+SAVED checkpoints/r5_ac/last.pkl paired_step=5600
+VAL step=5600 pixel_nll={'gaussian': 3.0414296587211864, 'mixture': 3.0218589469044375}
+PAIR step=5610 loss={'gaussian': -0.1329754889011383, 'mixture': -0.1401790827512741} elapsed_s=193.1
+PAIR step=5620 loss={'gaussian': -0.14530879259109497, 'mixture': -0.14555016160011292} elapsed_s=193.4
+PAIR step=5630 loss={'gaussian': -0.13558197021484375, 'mixture': -0.15272866189479828} elapsed_s=193.7
+PAIR step=5640 loss={'gaussian': -0.1090962290763855, 'mixture': -0.13807880878448486} elapsed_s=194.0
+PAIR step=5650 loss={'gaussian': -0.14555227756500244, 'mixture': -0.1463380753993988} elapsed_s=194.3
+PAIR step=5660 loss={'gaussian': -0.07400783896446228, 'mixture': -0.07575961202383041} elapsed_s=194.6
+PAIR step=5670 loss={'gaussian': -0.13701574504375458, 'mixture': -0.13771167397499084} elapsed_s=195.0
+PAIR step=5680 loss={'gaussian': -0.13333669304847717, 'mixture': -0.1363607943058014} elapsed_s=195.3
+PAIR step=5690 loss={'gaussian': -0.13913819193840027, 'mixture': -0.14717072248458862} elapsed_s=195.6
+PAIR step=5700 loss={'gaussian': -0.14392435550689697, 'mixture': -0.15026980638504028} elapsed_s=195.9
+SAVED checkpoints/r5_ac/last.pkl paired_step=5700
+VAL step=5700 pixel_nll={'gaussian': 3.0488184258563393, 'mixture': 3.0094518947116304}
+PAIR step=5710 loss={'gaussian': -0.1291862428188324, 'mixture': -0.13866642117500305} elapsed_s=196.4
+PAIR step=5720 loss={'gaussian': -0.0728638768196106, 'mixture': -0.10810019075870514} elapsed_s=196.8
+PAIR step=5730 loss={'gaussian': -0.11023517698049545, 'mixture': -0.12923544645309448} elapsed_s=197.1
+PAIR step=5740 loss={'gaussian': -0.12366348505020142, 'mixture': -0.12117286771535873} elapsed_s=197.4
+PAIR step=5750 loss={'gaussian': -0.15660923719406128, 'mixture': -0.15732543170452118} elapsed_s=197.7
+PAIR step=5760 loss={'gaussian': -0.14335711300373077, 'mixture': -0.15250436961650848} elapsed_s=198.0
+PAIR step=5770 loss={'gaussian': -0.16051718592643738, 'mixture': -0.16612973809242249} elapsed_s=198.3
+PAIR step=5780 loss={'gaussian': -0.109225332736969, 'mixture': -0.13856241106987} elapsed_s=198.6
+PAIR step=5790 loss={'gaussian': -0.11612315475940704, 'mixture': -0.1167881190776825} elapsed_s=198.9
+PAIR step=5800 loss={'gaussian': -0.15392963588237762, 'mixture': -0.15388242900371552} elapsed_s=199.2
+SAVED checkpoints/r5_ac/last.pkl paired_step=5800
+VAL step=5800 pixel_nll={'gaussian': 3.0667357619115885, 'mixture': 3.0193125794195756}
+PAIR step=5810 loss={'gaussian': -0.1313549131155014, 'mixture': -0.11854521930217743} elapsed_s=199.8
+PAIR step=5820 loss={'gaussian': -0.14546486735343933, 'mixture': -0.14672188460826874} elapsed_s=200.1
+PAIR step=5830 loss={'gaussian': -0.12783974409103394, 'mixture': -0.12833820283412933} elapsed_s=200.4
+PAIR step=5840 loss={'gaussian': -0.10912178456783295, 'mixture': -0.11054732650518417} elapsed_s=200.7
+PAIR step=5850 loss={'gaussian': -0.15603107213974, 'mixture': -0.15618351101875305} elapsed_s=201.0
+PAIR step=5860 loss={'gaussian': -0.13825194537639618, 'mixture': -0.14269360899925232} elapsed_s=201.3
+PAIR step=5870 loss={'gaussian': -0.08120758086442947, 'mixture': -0.0799645259976387} elapsed_s=201.6
+PAIR step=5880 loss={'gaussian': -0.15335321426391602, 'mixture': -0.1594405472278595} elapsed_s=202.0
+PAIR step=5890 loss={'gaussian': -0.13071392476558685, 'mixture': -0.13633564114570618} elapsed_s=202.3
+PAIR step=5900 loss={'gaussian': -0.11151688545942307, 'mixture': -0.11256828159093857} elapsed_s=202.6
+SAVED checkpoints/r5_ac/last.pkl paired_step=5900
+VAL step=5900 pixel_nll={'gaussian': 3.0571599130525895, 'mixture': 3.0026903604812487}
+PAIR step=5910 loss={'gaussian': -0.11352013051509857, 'mixture': -0.1311594545841217} elapsed_s=203.1
+PAIR step=5920 loss={'gaussian': -0.12798812985420227, 'mixture': -0.11590509116649628} elapsed_s=203.4
+PAIR step=5930 loss={'gaussian': -0.12294250726699829, 'mixture': -0.13592928647994995} elapsed_s=203.8
+PAIR step=5940 loss={'gaussian': -0.1326552927494049, 'mixture': -0.1458008587360382} elapsed_s=204.1
+PAIR step=5950 loss={'gaussian': -0.11977748572826385, 'mixture': -0.11889994144439697} elapsed_s=204.4
+PAIR step=5960 loss={'gaussian': -0.12681551277637482, 'mixture': -0.13399110734462738} elapsed_s=204.7
+PAIR step=5970 loss={'gaussian': -0.13047197461128235, 'mixture': -0.13125747442245483} elapsed_s=205.0
+PAIR step=5980 loss={'gaussian': -0.15871736407279968, 'mixture': -0.16723698377609253} elapsed_s=205.3
+PAIR step=5990 loss={'gaussian': -0.13899114727973938, 'mixture': -0.14027827978134155} elapsed_s=205.6
+PAIR step=6000 loss={'gaussian': -0.10869835317134857, 'mixture': -0.11699503660202026} elapsed_s=205.9
+SAVED checkpoints/r5_ac/last.pkl paired_step=6000
+VAL step=6000 pixel_nll={'gaussian': 3.045666391696385, 'mixture': 3.0157163100300073}
+SAVED checkpoints/r5_ac/last.pkl paired_step=6000
+PAIR_DONE paired_step=6000 elapsed_s=206.2

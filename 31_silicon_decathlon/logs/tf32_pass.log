@@ -1,0 +1,64 @@
+[gpu_run] acquired gpu0: ../.venv/bin/python run_event.py all --tf32-pass
+Torch version 2.14.1 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+  n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+== 05_dungeon  (FINAL, TF32 pass; MLX GPU matmul TF32, rel err 0.0008)
+  b=    1 mlx_gpu_tf32          0.219 ms (p90 0.238)  logits_max_err=0, value_max_err=0, h_max_err=0, greedy_action_agreement=1  [Q]
+  b=    1 mlx_gpu_compiled_tf32     0.189 ms (p90 0.214)  logits_max_err=0, value_max_err=0, h_max_err=0, greedy_action_agreement=1  [Q]
+  b=  512 mlx_gpu_tf32          0.291 ms (p90 0.300)  logits_max_err=0.0285, value_max_err=0.000876, h_max_err=0.00168, greedy_action_agreement=0.998  [Q]
+  b=  512 mlx_gpu_compiled_tf32     0.262 ms (p90 0.269)  logits_max_err=0.0285, value_max_err=0.000876, h_max_err=0.00168, greedy_action_agreement=0.998  [Q]
+wrote results/e05_dungeon_tf32.json
+== 07_terra  (FINAL, TF32 pass; MLX GPU matmul TF32, rel err 0.0008)
+  b=    1 mlx_gpu_tf32          1.660 ms (p90 1.696)  r_max_err=0, h_max_rel_err=0  [Q]
+  b=    1 mlx_gpu_compiled_tf32     1.504 ms (p90 1.570)  r_max_err=0, h_max_rel_err=0  [Q]
+  b=   16 mlx_gpu_tf32          7.650 ms (p90 7.774)  r_max_err=0.00466, h_max_rel_err=0.00467  [Q]
+  b=   16 mlx_gpu_compiled_tf32     7.036 ms (p90 7.194)  r_max_err=0.00466, h_max_rel_err=0.00467  [Q]
+wrote results/e07_terra_tf32.json
+== 08_grand_prix  (FINAL, TF32 pass; MLX GPU matmul TF32, rel err 0.0008)
+  b=    1 mlx_gpu_tf32          0.180 ms (p90 0.252)  action_max_err=0, action_mean_err=0  [Q]
+  b=    1 mlx_gpu_compiled_tf32     0.180 ms (p90 0.255)  action_max_err=0, action_mean_err=0  [Q]
+  b=  256 mlx_gpu_tf32          0.160 ms (p90 0.198)  action_max_err=0.00592, action_mean_err=0.000644  [Q]
+  b=  256 mlx_gpu_compiled_tf32     0.160 ms (p90 0.198)  action_max_err=0.00592, action_mean_err=0.000644  [Q]
+wrote results/e08_grand_prix_tf32.json
+== 09_alphazero  (FINAL, TF32 pass; MLX GPU matmul TF32, rel err 0.0008)
+  b=    1 mlx_gpu_tf32          0.699 ms (p90 0.715)  policy_max_err=0, value_max_err=0  [Q]
+  b=    1 mlx_gpu_compiled_tf32     0.507 ms (p90 0.555)  policy_max_err=0, value_max_err=0  [Q]
+  b=  256 mlx_gpu_tf32          1.402 ms (p90 1.436)  policy_max_err=0.0106, value_max_err=0.00105  [Q]
+  b=  256 mlx_gpu_compiled_tf32     1.150 ms (p90 1.204)  policy_max_err=0.0106, value_max_err=0.00105  [Q]
+wrote results/e09_alphazero_tf32.json
+== 10_nca  (FINAL, TF32 pass; MLX GPU matmul TF32, rel err 0.0008)
+  b=    1 mlx_gpu_tf32          0.296 ms (p90 0.303)  state_max_err=0.00903, rgba_max_err=0.000636, alive_cells_diff=0  [Q]
+  b=    1 mlx_gpu_compiled_tf32     0.232 ms (p90 0.238)  state_max_err=0.00903, rgba_max_err=0.000636, alive_cells_diff=0  [Q]
+  b=   32 mlx_gpu_tf32          1.767 ms (p90 1.817)  state_max_err=0.019, rgba_max_err=0.000925, alive_cells_diff=0  [Q]
+  b=   32 mlx_gpu_compiled_tf32     1.669 ms (p90 1.723)  state_max_err=0.019, rgba_max_err=0.000925, alive_cells_diff=0  [Q]
+wrote results/e10_nca_tf32.json
+== 11_physics_detective  (FINAL, TF32 pass; MLX GPU matmul TF32, rel err 0.0008)
+  b=    1 mlx_gpu_tf32          0.261 ms (p90 0.270)  weight_max_err=0.000102, loc_max_err=0.00329, scale_max_err=7.5e-05, post_mean_max_err=0.000349  [Q]
+  b=    1 mlx_gpu_compiled_tf32     0.246 ms (p90 0.254)  weight_max_err=0.000102, loc_max_err=0.00329, scale_max_err=7.5e-05, post_mean_max_err=0.000349  [Q]
+  b= 1000 mlx_gpu_tf32          0.492 ms (p90 0.553)  weight_max_err=0.0314, loc_max_err=0.266, scale_max_err=0.0388, post_mean_max_err=0.00243  [Q]
+  b= 1000 mlx_gpu_compiled_tf32     0.477 ms (p90 0.537)  weight_max_err=0.0314, loc_max_err=0.266, scale_max_err=0.0388, post_mean_max_err=0.00243  [Q]
+wrote results/e11_physics_detective_tf32.json
+== 15_object_permanence  (FINAL, TF32 pass; MLX GPU matmul TF32, rel err 0.0008)
+  b=    1 mlx_gpu_tf32          0.374 ms (p90 0.380)  mean_px_max_err=0, sigma_rel_max_err=0, rho_max_err=0, h_max_err=0  [Q]
+  b=    1 mlx_gpu_compiled_tf32     0.337 ms (p90 0.342)  mean_px_max_err=0, sigma_rel_max_err=0, rho_max_err=0, h_max_err=0  [Q]
+  b=   50 mlx_gpu_tf32          0.793 ms (p90 0.833)  mean_px_max_err=0.0675, sigma_rel_max_err=0.0111, rho_max_err=0.000532, h_max_err=0.00177  [Q]
+  b=   50 mlx_gpu_compiled_tf32     0.743 ms (p90 0.782)  mean_px_max_err=0.0675, sigma_rel_max_err=0.0111, rho_max_err=0.000532, h_max_err=0.00177  [Q]
+wrote results/e15_object_permanence_tf32.json
+== 26_orchestra  (FINAL, TF32 pass; MLX GPU matmul TF32, rel err 0.0008)
+  b=    1 mlx_gpu_tf32          0.161 ms (p90 0.201)  p_max_err=0, vel_max_err=0, off_max_err=0  [Q]
+  b=    1 mlx_gpu_compiled_tf32     0.158 ms (p90 0.196)  p_max_err=0, vel_max_err=0, off_max_err=0  [Q]
+  b= 2000 mlx_gpu_tf32          0.403 ms (p90 0.410)  p_max_err=0.00698, vel_max_err=0.00115, off_max_err=0.00105  [Q]
+  b= 2000 mlx_gpu_compiled_tf32     0.392 ms (p90 0.397)  p_max_err=0.00698, vel_max_err=0.00115, off_max_err=0.00105  [Q]
+wrote results/e26_orchestra_tf32.json
+== 29_image_gen  (FINAL, TF32 pass; MLX GPU matmul TF32, rel err 0.0008)
+  b=    1 mlx_gpu_tf32          3.695 ms (p90 3.778)  v_max_err=0.000872, v_mean_err=0.000101  [Q]
+  b=    1 mlx_gpu_compiled_tf32     3.300 ms (p90 3.362)  v_max_err=0.000872, v_mean_err=0.000101  [Q]
+  b=   64 mlx_gpu_tf32         23.020 ms (p90 23.412)  v_max_err=0.0111, v_mean_err=0.000904  [Q]
+  b=   64 mlx_gpu_compiled_tf32    20.838 ms (p90 21.235)  v_max_err=0.0111, v_mean_err=0.000904  [Q]
+wrote results/e29_image_gen_tf32.json
+== 30_nanochat  (FINAL, TF32 pass; MLX GPU matmul TF32, rel err 0.0008)
+  b=    1 mlx_gpu_tf32          0.668 ms (p90 0.677)  logits_max_err=0.0077, argmax_agreement=1  [Q]
+  b=    1 mlx_gpu_compiled_tf32     0.584 ms (p90 0.589)  logits_max_err=0.0077, argmax_agreement=1  [Q]
+  b=  256 mlx_gpu_tf32          1.298 ms (p90 1.304)  logits_max_err=0.0331, argmax_agreement=1  [Q]
+  b=  256 mlx_gpu_compiled_tf32     1.198 ms (p90 1.206)  logits_max_err=0.0331, argmax_agreement=1  [Q]
+wrote results/e30_nanochat_tf32.json

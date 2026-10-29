@@ -1,0 +1,90 @@
+[gpu_run] acquired gpu0: ../.venv/bin/python ppo.py --run main --minutes 42
+it 5 steps 40960 eps 28 succ 0.214 lava 0.679 frac 0.503 E/m 1711.2 kl 0.0195 cf 0.240 std 0.202 fps 5452 (kl stop)
+it 10 steps 81920 eps 28 succ 0.357 lava 0.571 frac 0.539 E/m 1553.8 kl 0.0192 cf 0.257 std 0.201 fps 5458 (kl stop)
+it 15 steps 122880 eps 29 succ 0.207 lava 0.690 frac 0.536 E/m 1500.0 kl 0.0240 cf 0.282 std 0.199 fps 5337 (kl stop)
+it 19: curriculum level -> 0.1
+it 20 steps 163840 eps 26 succ 0.308 lava 0.692 frac 0.628 E/m 1346.3 kl 0.0188 cf 0.235 std 0.198 fps 5092 (kl stop)
+it 25 steps 204800 eps 28 succ 0.357 lava 0.643 frac 0.560 E/m 1248.1 kl 0.0215 cf 0.277 std 0.196 fps 4897 (kl stop)
+it 30 steps 245760 eps 37 succ 0.459 lava 0.541 frac 0.688 E/m 1179.7 kl 0.0213 cf 0.281 std 0.194 fps 4812 (kl stop)
+it 30: curriculum level -> 0.2
+it 35 steps 286720 eps 45 succ 0.289 lava 0.689 frac 0.559 E/m 1171.7 kl 0.0170 cf 0.223 std 0.193 fps 4989 (kl stop)
+it 40 steps 327680 eps 34 succ 0.147 lava 0.794 frac 0.451 E/m 1106.0 kl 0.0169 cf 0.218 std 0.191 fps 5228 (kl stop)
+it 45 steps 368640 eps 43 succ 0.279 lava 0.651 frac 0.537 E/m 1016.9 kl 0.0195 cf 0.260 std 0.189 fps 3520 
+it 50 steps 409600 eps 48 succ 0.125 lava 0.792 frac 0.474 E/m 959.2 kl 0.0212 cf 0.284 std 0.188 fps 4143 (kl stop)
+it 55 steps 450560 eps 49 succ 0.102 lava 0.837 frac 0.458 E/m 921.2 kl 0.0192 cf 0.251 std 0.187 fps 4637 (kl stop)
+it 60 steps 491520 eps 55 succ 0.255 lava 0.673 frac 0.505 E/m 864.9 kl 0.0184 cf 0.255 std 0.185 fps 3160 
+it 65 steps 532480 eps 51 succ 0.176 lava 0.784 frac 0.467 E/m 857.7 kl 0.0207 cf 0.262 std 0.184 fps 3846 
+it 70 steps 573440 eps 61 succ 0.098 lava 0.852 frac 0.381 E/m 826.0 kl 0.0201 cf 0.273 std 0.183 fps 4226 
+it 75 steps 614400 eps 63 succ 0.063 lava 0.857 frac 0.422 E/m 823.6 kl 0.0190 cf 0.249 std 0.182 fps 5726 
+Process SpawnProcess-3:
+Process SpawnProcess-1:
+Process SpawnProcess-4:
+Process SpawnProcess-2:
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/danielmercado/ProjectJoy/24_floor_is_lava/ppo.py", line 42, in worker
+    msg = conn.recv()
+          ^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 430, in _recv_bytes
+    buf = self._recv(4)
+          ^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 399, in _recv
+    raise EOFError
+EOFError
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/danielmercado/ProjectJoy/24_floor_is_lava/ppo.py", line 42, in worker
+    msg = conn.recv()
+          ^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 430, in _recv_bytes
+    buf = self._recv(4)
+          ^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 399, in _recv
+    raise EOFError
+EOFError
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/danielmercado/ProjectJoy/24_floor_is_lava/ppo.py", line 42, in worker
+    msg = conn.recv()
+          ^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 430, in _recv_bytes
+    buf = self._recv(4)
+          ^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 399, in _recv
+    raise EOFError
+EOFError
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/danielmercado/ProjectJoy/24_floor_is_lava/ppo.py", line 42, in worker
+    msg = conn.recv()
+          ^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 430, in _recv_bytes
+    buf = self._recv(4)
+          ^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 399, in _recv
+    raise EOFError
+EOFError

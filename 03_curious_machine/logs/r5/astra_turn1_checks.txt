@@ -1,0 +1,14 @@
+2026-10-24 — Astra round 5 turn 1; no MLX imported or executed.
+
+Executed with the shared ../.venv/bin/python and thread caps of 4:
+NUMBA_NUM_THREADS=4 OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 ../.venv/bin/python -m pytest -q tests/test_r5_numpy.py --basetemp=logs/r5/pytest_astra_compat
+
+Final captured output:
+..........                                                           [100%]
+14 passed in 1.47s
+AST OK: 9 Python files; no imports executed
+
+bash -n smoke_r5.sh: exit 0.
+AST parsing of eight new Python modules plus tests/test_r5_numpy.py: exit 0.
+The NumPy test demo GIF was also visually inspected; no GUI window was opened.
+smoke_r5.sh, MLX training, learned checkpoint/resume and headline evaluations: NOT RUN.

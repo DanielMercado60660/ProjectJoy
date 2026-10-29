@@ -1,0 +1,18 @@
+[gpu_run] acquired gpu3: ../.venv/bin/python run_r5_turn2.py evaluate --worlds 128 --seed 8202612 --baseline-tuning results/r5/tuning_main.json --tuning results/r5/turn2_tuning.json --mu-size 2401 --gain-size 641 --checkpoint checkpoints/r5_turn2_main.json --out results/r5/turn2_main_summary.json --max-minutes 20
+Traceback (most recent call last):
+  File "/Users/danielmercado/ProjectJoy/11_physics_detective/run_r5_turn2.py", line 248, in <module>
+    sys.exit(run(args))
+             ^^^^^^^^^
+  File "/Users/danielmercado/ProjectJoy/11_physics_detective/run_r5_turn2.py", line 162, in run
+    tune = read_json(args.tuning)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/danielmercado/ProjectJoy/11_physics_detective/run_r5.py", line 40, in read_json
+    return json.loads(Path(path).read_text())
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'results/r5/turn2_tuning.json'

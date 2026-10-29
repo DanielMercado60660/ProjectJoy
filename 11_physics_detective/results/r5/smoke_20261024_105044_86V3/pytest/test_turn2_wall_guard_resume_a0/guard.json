@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "config": {
+    "mode": "turn2_tune",
+    "seed": 73003,
+    "worlds": 1,
+    "source_sha256": "ab028a75d135116972834dc78879a774c6c7999578f61dc7f958241e5a317f0f",
+    "original_source_sha256": "bf4c40b1b997ef173b9b67c2158c475790212369f3fad68623a4a0c62b4d2981",
+    "planner": {
+      "grid_size": 101,
+      "particles": 4,
+      "fantasies": 2,
+      "design_stride": 50
+    },
+    "gain_grid": {
+      "mu_size": 101,
+      "gain_size": 11
+    },
+    "baseline_tuning": {
+      "lsq": {
+        "protocol": "adaptive_10_90",
+        "offset": 0.0
+      },
+      "tobit": {
+        "protocol": "adaptive_10_65",
+        "offset": 0.0
+      }
+    },
+    "baseline_tuning_sha256": "3181f22fbaba6625ca4f2d04e3d76f9d6a64abc0c27da49e8d759527822ee168",
+    "output": "/Users/danielmercado/ProjectJoy/11_physics_detective/results/r5/smoke_20261024_105044_86V3/pytest/test_turn2_wall_guard_resume_a0/tuned.json",
+    "owners": [
+      "eig",
+      "lsq"
+    ],
+    "half_widths": [
+      0.15,
+      0.25
+    ],
+    "resolution_check": false
+  },
+  "next_world": 1,
+  "status": "complete",
+  "elapsed_seconds": 0.055384541919920594,
+  "rows": [],
+  "tuning_totals": [
+    {
+      "method": "gain_bayes",
+      "owner": "eig",
+      "half_width": 0.15,
+      "successes": 6,
+      "trials": 6,
+      "abs_error_sum": 0.04580569672771828,
+      "brier_sum": 0.9563236244425918
+    },
+    {
+      "method": "gain_mle",
+      "owner": "eig",
+      "half_width": 0.15,
+      "successes": 4,
+      "trials": 6,
+      "abs_error_sum": 0.1718882450071737,
+      "brier_sum": 1.5363664506783987
+    },
+    {
+      "method": "gain_bayes",
+      "owner": "eig",
+      "half_width": 0.25,
+      "successes": 6,
+      "trials": 6,
+      "abs_error_sum": 0.04503994187750593,
+      "brier_sum": 0.921773766618133
+    },
+    {
+      "method": "gain_mle",
+      "owner": "eig",
+      "half_width": 0.25,
+      "successes": 6,
+      "trials": 6,
+      "abs_error_sum": 0.05656069605885439,
+      "brier_sum": 1.33168702786251
+    },
+    {
+      "method": "gain_bayes",
+      "owner": "lsq",
+      "half_width": 0.15,
+      "successes": 6,
+      "trials": 6,
+      "abs_error_sum": 0.07274797304063596,
+      "brier_sum": 2.648596952388993
+    },
+    {
+      "method": "gain_mle",
+      "owner": "lsq",
+      "half_width": 0.15,
+      "successes": 2,
+      "trials": 6,
+      "abs_error_sum": 0.8268549821532846,
+      "brier_sum": 0.9915156253843993
+    },
+    {
+      "method": "gain_bayes",
+      "owner": "lsq",
+      "half_width": 0.25,
+      "successes": 4,
+      "trials": 6,
+      "abs_error_sum": 0.28518434383125857,
+      "brier_sum": 0.9396547579547953
+    },
+    {
+      "method": "gain_mle",
+      "owner": "lsq",
+      "half_width": 0.25,
+      "successes": 2,
+      "trials": 6,
+      "abs_error_sum": 0.8434598968971387,
+      "brier_sum": 0.9032052970155212
+    }
+  ],
+  "rng_state": {
+    "algorithm": "PCG64 / SeedSequence",
+    "root_seed": 73003,
+    "addressing": "[seed, world, stream, step]; stream 1 world, 2 camera, 3 planner"
+  },
+  "weights": null,
+  "optimizer": null,
+  "non_neural_note": "Weights/optimizer are not applicable; exact inference plus tuned protocols."
+}

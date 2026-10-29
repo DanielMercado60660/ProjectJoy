@@ -1,0 +1,142 @@
+{
+  "status": "complete",
+  "exploratory": true,
+  "source_checkpoint": "checkpoints/r5_main.json",
+  "source_summary": "results/r5/main_summary.json",
+  "source_resolution": "results/r5/ac_resolution_summary.json",
+  "source_sha256": "bf4c40b1b997ef173b9b67c2158c475790212369f3fad68623a4a0c62b4d2981",
+  "swap_worlds": 128,
+  "swap_budget": 4,
+  "main_summary_recomputed_exactly": true,
+  "policy_overlap": [
+    {
+      "family": "matched",
+      "budget": 1,
+      "n": 512,
+      "last_probe_same_fraction": 0.404296875,
+      "eig_predicted_success_mean": 0.5696691506560361,
+      "voi_predicted_success_mean": 0.597154068900252
+    },
+    {
+      "family": "matched",
+      "budget": 2,
+      "n": 512,
+      "last_probe_same_fraction": 0.37109375,
+      "eig_predicted_success_mean": 0.9554776572312851,
+      "voi_predicted_success_mean": 0.9513314121196446
+    },
+    {
+      "family": "matched",
+      "budget": 4,
+      "n": 512,
+      "last_probe_same_fraction": 0.2578125,
+      "eig_predicted_success_mean": 0.9963078086930385,
+      "voi_predicted_success_mean": 0.995717784295373
+    },
+    {
+      "family": "gain_shift",
+      "budget": 1,
+      "n": 512,
+      "last_probe_same_fraction": 0.404296875,
+      "eig_predicted_success_mean": 0.584704918258868,
+      "voi_predicted_success_mean": 0.6034568393407681
+    },
+    {
+      "family": "gain_shift",
+      "budget": 2,
+      "n": 512,
+      "last_probe_same_fraction": 0.3828125,
+      "eig_predicted_success_mean": 0.9425078736993273,
+      "voi_predicted_success_mean": 0.9302752997974835
+    },
+    {
+      "family": "gain_shift",
+      "budget": 4,
+      "n": 512,
+      "last_probe_same_fraction": 0.265625,
+      "eig_predicted_success_mean": 0.9957843096465623,
+      "voi_predicted_success_mean": 0.9956097049098954
+    }
+  ],
+  "oracle_stats": [
+    {
+      "family": "matched",
+      "n": 512,
+      "min_abs_placement_error_cm": 0.0003684262132264138,
+      "max_nominal_aim_error_cm": 0.5137691016713464
+    },
+    {
+      "family": "gain_shift",
+      "n": 512,
+      "min_abs_placement_error_cm": 4.252086751246075,
+      "max_nominal_aim_error_cm": 0.5137691016713464
+    }
+  ],
+  "boundary_diagnostics": [
+    {
+      "family": "matched",
+      "method": "eig",
+      "n": 512,
+      "underresolved": 0,
+      "underresolved_near_edge": 0
+    },
+    {
+      "family": "matched",
+      "method": "task_voi",
+      "n": 512,
+      "underresolved": 0,
+      "underresolved_near_edge": 0
+    },
+    {
+      "family": "matched",
+      "method": "lsq",
+      "n": 512,
+      "underresolved": 0,
+      "underresolved_near_edge": 0
+    },
+    {
+      "family": "matched",
+      "method": "tobit",
+      "n": 512,
+      "underresolved": 0,
+      "underresolved_near_edge": 0
+    },
+    {
+      "family": "gain_shift",
+      "method": "eig",
+      "n": 512,
+      "underresolved": 29,
+      "underresolved_near_edge": 29
+    },
+    {
+      "family": "gain_shift",
+      "method": "task_voi",
+      "n": 512,
+      "underresolved": 22,
+      "underresolved_near_edge": 22
+    },
+    {
+      "family": "gain_shift",
+      "method": "lsq",
+      "n": 512,
+      "underresolved": 24,
+      "underresolved_near_edge": 24
+    },
+    {
+      "family": "gain_shift",
+      "method": "tobit",
+      "n": 512,
+      "underresolved": 35,
+      "underresolved_near_edge": 35
+    }
+  ],
+  "elapsed_seconds": 6.207588957971893
+}
+gain_shift eig {'saved': 0.5078, 'bayes': 0.5078, 'point_eig': 0.7266, 'force10_eig': 0.5859, 'point_lsq': 0.6172, 'force10_lsq': 0.5312, 'point_tobit': 0.7031, 'force10_tobit': 0.5859}
+gain_shift lsq {'saved': 0.5469, 'bayes': 0.7891, 'point_eig': 0.5703, 'force10_eig': 0.7734, 'point_lsq': 0.5469, 'force10_lsq': 0.7734, 'point_tobit': 0.5312, 'force10_tobit': 0.7969}
+gain_shift task_voi {'saved': 0.5312, 'bayes': 0.5312, 'point_eig': 0.6172, 'force10_eig': 0.5781, 'point_lsq': 0.625, 'force10_lsq': 0.5703, 'point_tobit': 0.6484, 'force10_tobit': 0.5781}
+gain_shift tobit {'saved': 0.5234, 'bayes': 0.75, 'point_eig': 0.5078, 'force10_eig': 0.7422, 'point_lsq': 0.4297, 'force10_lsq': 0.5391, 'point_tobit': 0.5234, 'force10_tobit': 0.7422}
+matched eig {'saved': 1.0, 'bayes': 1.0, 'point_eig': 1.0, 'force10_eig': 0.9141, 'point_lsq': 0.8984, 'force10_lsq': 0.8359, 'point_tobit': 1.0, 'force10_tobit': 0.9141}
+matched lsq {'saved': 0.8672, 'bayes': 0.9609, 'point_eig': 0.8828, 'force10_eig': 0.8359, 'point_lsq': 0.8672, 'force10_lsq': 0.8281, 'point_tobit': 0.8672, 'force10_tobit': 0.8438}
+matched task_voi {'saved': 1.0, 'bayes': 1.0, 'point_eig': 0.9766, 'force10_eig': 0.8984, 'point_lsq': 0.8906, 'force10_lsq': 0.8438, 'point_tobit': 0.9766, 'force10_tobit': 0.8906}
+matched tobit {'saved': 0.8828, 'bayes': 0.9531, 'point_eig': 0.8828, 'force10_eig': 0.8438, 'point_lsq': 0.7109, 'force10_lsq': 0.6953, 'point_tobit': 0.8828, 'force10_tobit': 0.8359}

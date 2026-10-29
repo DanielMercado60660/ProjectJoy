@@ -1,0 +1,130 @@
+{
+  "status": "complete",
+  "source_sha256": "0824de49868daea18b0bcd5053716b684b3dc838f340ad1b4504a34f2c328e5b",
+  "config": {
+    "mode": "turn2_tune",
+    "seed": 8202611,
+    "worlds": 32,
+    "source_sha256": "0824de49868daea18b0bcd5053716b684b3dc838f340ad1b4504a34f2c328e5b",
+    "original_source_sha256": "bf4c40b1b997ef173b9b67c2158c475790212369f3fad68623a4a0c62b4d2981",
+    "planner": {
+      "grid_size": 6001,
+      "particles": 64,
+      "fantasies": 16,
+      "design_stride": 1
+    },
+    "gain_grid": {
+      "mu_size": 2401,
+      "gain_size": 641
+    },
+    "baseline_tuning": {
+      "lsq": {
+        "protocol": "adaptive_10_65",
+        "offset": 0.0
+      },
+      "tobit": {
+        "protocol": "adaptive_10_90",
+        "offset": 0.0
+      }
+    },
+    "baseline_tuning_sha256": "2d0322346cdedd5b2e9da5cee9dfd3f00de7560deb5a2a36c8d4a0a68a393a94",
+    "output": "/Users/danielmercado/ProjectJoy/11_physics_detective/results/r5/turn2_tuning.json",
+    "owners": [
+      "eig",
+      "lsq"
+    ],
+    "half_widths": [
+      0.15,
+      0.25
+    ],
+    "resolution_check": false
+  },
+  "seed": 8202611,
+  "selected": {
+    "gain_bayes": {
+      "owner": "eig",
+      "half_width": 0.15
+    },
+    "gain_mle": {
+      "owner": "eig",
+      "half_width": 0.15
+    }
+  },
+  "candidates": [
+    {
+      "method": "gain_bayes",
+      "owner": "eig",
+      "half_width": 0.15,
+      "successes": 146,
+      "trials": 192,
+      "abs_error_sum": 8.790933174424408,
+      "brier_sum": 17.720162582377846
+    },
+    {
+      "method": "gain_mle",
+      "owner": "eig",
+      "half_width": 0.15,
+      "successes": 114,
+      "trials": 192,
+      "abs_error_sum": 8.630696321422425,
+      "brier_sum": 24.239290874808415
+    },
+    {
+      "method": "gain_bayes",
+      "owner": "eig",
+      "half_width": 0.25,
+      "successes": 144,
+      "trials": 192,
+      "abs_error_sum": 11.223682106994495,
+      "brier_sum": 15.082406488835948
+    },
+    {
+      "method": "gain_mle",
+      "owner": "eig",
+      "half_width": 0.25,
+      "successes": 112,
+      "trials": 192,
+      "abs_error_sum": 12.220205185284495,
+      "brier_sum": 23.082709446085868
+    },
+    {
+      "method": "gain_bayes",
+      "owner": "lsq",
+      "half_width": 0.15,
+      "successes": 137,
+      "trials": 192,
+      "abs_error_sum": 12.665825736792502,
+      "brier_sum": 17.926984136225723
+    },
+    {
+      "method": "gain_mle",
+      "owner": "lsq",
+      "half_width": 0.15,
+      "successes": 105,
+      "trials": 192,
+      "abs_error_sum": 11.857935619047447,
+      "brier_sum": 28.843524784570103
+    },
+    {
+      "method": "gain_bayes",
+      "owner": "lsq",
+      "half_width": 0.25,
+      "successes": 135,
+      "trials": 192,
+      "abs_error_sum": 15.633323625123584,
+      "brier_sum": 19.609516148351634
+    },
+    {
+      "method": "gain_mle",
+      "owner": "lsq",
+      "half_width": 0.25,
+      "successes": 93,
+      "trials": 192,
+      "abs_error_sum": 17.611374336712437,
+      "brier_sum": 27.231295062284232
+    }
+  ],
+  "selection_metric": "Balanced matched/gain_shift success over budgets 1,2,4; ties by MAE then enumeration",
+  "elapsed_seconds": 909.9441407080158,
+  "checkpoint": "/Users/danielmercado/ProjectJoy/11_physics_detective/checkpoints/r5_turn2_tune.json"
+}

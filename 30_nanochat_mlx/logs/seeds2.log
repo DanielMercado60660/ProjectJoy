@@ -1,0 +1,43 @@
+[gpu_run] acquired gpu0: bash run_seeds.sh
+[seeds] Thu Oct 22 09:59:24 CDT 2026 start
+4479 step-examples, 0.35M tokens, built in 0.4s
+step 0 val (assistant-token) loss 8.590671747532042
+step 100/422 loss 0.3822 val 0.3629 29s
+step 200/422 loss 0.3119 val 0.3287 57s
+step 300/422 loss 0.0634 val 0.1223 85s
+step 400/422 loss 0.0026 val 0.0766 114s
+step 422/422 loss 0.0021 val 0.0749 122s
+saved /Users/danielmercado/ProjectJoy/30_nanochat_mlx/checkpoints/sft_n300_s2
+4479 step-examples, 0.35M tokens, built in 0.4s
+step 0 val (assistant-token) loss 9.004429245766323
+step 100/422 loss 0.3901 val 0.3906 30s
+step 200/422 loss 0.3514 val 0.3552 65s
+step 300/422 loss 0.1869 val 0.2302 100s
+step 400/422 loss 0.0848 val 0.1578 135s
+step 422/422 loss 0.0893 val 0.1512 144s
+saved /Users/danielmercado/ProjectJoy/30_nanochat_mlx/checkpoints/sft_n300_scratch_s2
+lm[pretrained,n=300,seed=2]  test_seen  success 0.560 validity 0.540 steps 24.3 lat 33.1ms (84s)
+lm[pretrained,n=300,seed=2]  test       success 0.230 validity 0.342 steps 33.8 lat 21.0ms (80s)
+lm[scratch,n=300,seed=2]     test_seen  success 0.010 validity 0.559 steps 39.7 lat 5.3ms (42s)
+lm[scratch,n=300,seed=2]     test       success 0.020 validity 0.504 steps 39.3 lat 18.0ms (73s)
+14447 step-examples, 1.11M tokens, built in 0.8s
+step 0 val (assistant-token) loss 8.590671747532042
+step 100/407 loss 0.3622 val 0.3628 24s
+step 200/407 loss 0.1676 val 0.1778 46s
+step 300/407 loss 0.1185 val 0.1104 69s
+step 400/407 loss 0.0117 val 0.0189 92s
+step 407/407 loss 0.0121 val 0.0179 94s
+saved /Users/danielmercado/ProjectJoy/30_nanochat_mlx/checkpoints/sft_n1000_s2
+14447 step-examples, 1.11M tokens, built in 0.8s
+step 0 val (assistant-token) loss 9.004429245766323
+step 100/407 loss 0.3925 val 0.3953 23s
+step 200/407 loss 0.3559 val 0.3538 45s
+step 300/407 loss 0.2840 val 0.2843 69s
+step 400/407 loss 0.1362 val 0.1639 103s
+step 407/407 loss 0.1913 val 0.1624 108s
+saved /Users/danielmercado/ProjectJoy/30_nanochat_mlx/checkpoints/sft_n1000_scratch_s2
+lm[pretrained,n=1000,seed=2] test_seen  success 0.790 validity 0.835 steps 18.6 lat 24.6ms (47s)
+lm[pretrained,n=1000,seed=2] test       success 0.610 validity 0.690 steps 24.1 lat 21.5ms (52s)
+lm[scratch,n=1000,seed=2]    test_seen  success 0.100 validity 0.391 steps 36.9 lat 16.5ms (55s)
+lm[scratch,n=1000,seed=2]    test       success 0.080 validity 0.436 steps 37.4 lat 4.4ms (17s)
+[seeds] Thu Oct 22 10:14:54 CDT 2026 end

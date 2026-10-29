@@ -1,0 +1,111 @@
+.......                                                                  [100%]
+7 passed in 1.69s
+{"update": 1, "env_steps": 4096, "train_success": 1.0, "train_ep_len": 32.0, "rew_per_step": 0.0025, "loss": -0.0104, "pg": -0.0013, "vloss": 0.0094, "entropy": 1.3845, "kl": 0.0018, "grad_norm": 0.0714, "sps": 1988.789, "wall": 2.0595}
+{"update": 2, "env_steps": 8192, "train_success": 1.0, "train_ep_len": 89.0, "rew_per_step": 0.0008, "loss": -0.0156, "pg": -0.0022, "vloss": 0.0007, "entropy": 1.3777, "kl": 0.0048, "grad_norm": 0.0619, "sps": 3068.3212, "wall": 2.6699}
+EVAL {"dfs": [0.1, 0.012], "braid": [0.1, 0.008], "rooms": [0.2, 0.031], "caves": [0.7, 0.073], "spiral": [0.0, 0.0]}
+done in 5s
+gen=0 fit_mean=0.866 fit_max=0.964 fail_mean=0.938 solvable=1.000 valid_proposal_rate=0.000 archive=16 wall=0.899 path_len=22.125 dead_ends=3.000 loops=6.438 open2x2=5.438 floor=64.938
+gen=3 fit_mean=0.855 fit_max=0.960 fail_mean=0.812 solvable=1.000 valid_proposal_rate=0.837 archive=52 wall=1.842 path_len=11.500 dead_ends=2.250 loops=17.125 open2x2=16.250 floor=53.250
+{"proposals": 43, "valid_proposals": 36, "valid_proposal_rate": 0.8372093023255814, "final_solvable": 1.0, "final_fit_selected": 0.8552500000000001, "final_fit_fresh": 0.854546875, "final_fail_fresh": 0.8125, "archive": 52}
+dfs                              smoke_solver       succ=0.020 eff=0.125 spl=0.002
+dfs                              smoke_solver:greedy succ=0.000 eff=0.000 spl=0.000
+dfs                              random_walk        succ=0.110 eff=0.260 spl=0.029
+dfs                              wall_follow        succ=1.000 eff=0.685 spl=0.685
+dfs                              tremaux            succ=1.000 eff=0.601 spl=0.601
+dfs                              bfs_oracle         succ=1.000 eff=1.000 spl=1.000
+braid                            smoke_solver       succ=0.030 eff=0.078 spl=0.002
+braid                            smoke_solver:greedy succ=0.000 eff=0.000 spl=0.000
+braid                            random_walk        succ=0.330 eff=0.251 spl=0.083
+braid                            wall_follow        succ=0.720 eff=0.686 spl=0.494
+braid                            tremaux            succ=1.000 eff=0.627 spl=0.627
+braid                            bfs_oracle         succ=1.000 eff=1.000 spl=1.000
+rooms                            smoke_solver       succ=0.340 eff=0.121 spl=0.041
+rooms                            smoke_solver:greedy succ=0.000 eff=0.000 spl=0.000
+rooms                            random_walk        succ=0.640 eff=0.274 spl=0.176
+rooms                            wall_follow        succ=0.570 eff=0.675 spl=0.385
+rooms                            tremaux            succ=1.000 eff=0.474 spl=0.474
+rooms                            bfs_oracle         succ=1.000 eff=1.000 spl=1.000
+caves                            smoke_solver       succ=0.560 eff=0.137 spl=0.077
+caves                            smoke_solver:greedy succ=0.010 eff=1.000 spl=0.010
+caves                            random_walk        succ=0.920 eff=0.254 spl=0.234
+caves                            wall_follow        succ=0.410 eff=0.583 spl=0.239
+caves                            tremaux            succ=1.000 eff=0.506 spl=0.506
+caves                            bfs_oracle         succ=1.000 eff=1.000 spl=1.000
+spiral                           smoke_solver       succ=0.020 eff=0.121 spl=0.002
+spiral                           smoke_solver:greedy succ=0.000 eff=0.000 spl=0.000
+spiral                           random_walk        succ=0.190 eff=0.217 spl=0.041
+spiral                           wall_follow        succ=0.890 eff=0.610 spl=0.543
+spiral                           tremaux            succ=1.000 eff=0.576 spl=0.576
+spiral                           bfs_oracle         succ=1.000 eff=1.000 spl=1.000
+probe: exit in view at spawn     smoke_solver       succ=0.210 eff=0.141 spl=0.030
+probe: exit in view at spawn     smoke_solver:greedy succ=0.000 eff=0.000 spl=0.000
+probe: exit in view at spawn     random_walk        succ=0.590 eff=0.688 spl=0.406
+probe: exit in view at spawn     wall_follow        succ=1.000 eff=0.760 spl=0.760
+probe: exit in view at spawn     tremaux            succ=1.000 eff=0.713 spl=0.713
+probe: exit in view at spawn     bfs_oracle         succ=1.000 eff=1.000 spl=1.000
+designer_smoke                   smoke_solver       succ=0.312 eff=0.139 spl=0.043
+designer_smoke                   smoke_solver:greedy succ=0.000 eff=0.000 spl=0.000
+designer_smoke                   random_walk        succ=0.688 eff=0.308 spl=0.212
+designer_smoke                   wall_follow        succ=0.375 eff=0.451 spl=0.169
+designer_smoke                   tremaux            succ=1.000 eff=0.571 spl=0.571
+designer_smoke                   bfs_oracle         succ=1.000 eff=1.000 spl=1.000
+Success rate (± s.e.) / SPL. 1 rollout(s) per level; train families = dfs, braid, rooms; held-out = caves, spiral.
+
+| level set | smoke_solver | smoke_solver:greedy | random_walk | wall_follow | tremaux | bfs_oracle |
+|---|---|---|---|---|---|---|
+| dfs | 0.020±0.014 / 0.00 | 0.000±0.000 / 0.00 | 0.110±0.031 / 0.03 | 1.000±0.000 / 0.68 | 1.000±0.000 / 0.60 | 1.000±0.000 / 1.00 |
+| braid | 0.030±0.017 / 0.00 | 0.000±0.000 / 0.00 | 0.330±0.047 / 0.08 | 0.720±0.045 / 0.49 | 1.000±0.000 / 0.63 | 1.000±0.000 / 1.00 |
+| rooms | 0.340±0.047 / 0.04 | 0.000±0.000 / 0.00 | 0.640±0.048 / 0.18 | 0.570±0.050 / 0.38 | 1.000±0.000 / 0.47 | 1.000±0.000 / 1.00 |
+| caves (held-out) | 0.560±0.050 / 0.08 | 0.010±0.010 / 0.01 | 0.920±0.027 / 0.23 | 0.410±0.049 / 0.24 | 1.000±0.000 / 0.51 | 1.000±0.000 / 1.00 |
+| spiral (held-out) | 0.020±0.014 / 0.00 | 0.000±0.000 / 0.00 | 0.190±0.039 / 0.04 | 0.890±0.031 / 0.54 | 1.000±0.000 / 0.58 | 1.000±0.000 / 1.00 |
+| probe: exit in view at spawn | 0.210±0.041 / 0.03 | 0.000±0.000 / 0.00 | 0.590±0.049 / 0.41 | 1.000±0.000 / 0.76 | 1.000±0.000 / 0.71 | 1.000±0.000 / 1.00 |
+| designer_smoke | 0.312±0.116 / 0.04 | 0.000±0.000 / 0.00 | 0.688±0.116 / 0.21 | 0.375±0.121 / 0.17 | 1.000±0.000 / 0.57 | 1.000±0.000 / 1.00 |
+
+Path efficiency (BFS length / steps, successful episodes only):
+
+| level set | smoke_solver | smoke_solver:greedy | random_walk | wall_follow | tremaux | bfs_oracle |
+|---|---|---|---|---|---|---|
+| dfs | 0.125 | 0.000 | 0.260 | 0.685 | 0.601 | 1.000 |
+| braid | 0.078 | 0.000 | 0.251 | 0.686 | 0.627 | 1.000 |
+| rooms | 0.121 | 0.000 | 0.274 | 0.675 | 0.474 | 1.000 |
+| caves | 0.137 | 1.000 | 0.254 | 0.583 | 0.506 | 1.000 |
+| spiral | 0.121 | 0.000 | 0.217 | 0.610 | 0.576 | 1.000 |
+| probe: exit in view at spawn | 0.141 | 0.000 | 0.688 | 0.760 | 0.713 | 1.000 |
+| designer_smoke | 0.139 | 0.000 | 0.308 | 0.451 | 0.571 | 1.000 |
+
+Level structure (means):
+
+| level set | floor | path_len | dead_ends | junctions | loops | open2x2 |
+|---|---|---|---|---|---|---|
+| dfs | 71.0 | 30.9 | 5.4 | 3.4 | 0.0 | 0.0 |
+| braid | 73.6 | 23.1 | 2.6 | 5.7 | 2.6 | 0.0 |
+| rooms | 46.1 | 10.4 | 0.0 | 26.0 | 17.2 | 16.6 |
+| caves | 54.1 | 8.0 | 0.7 | 40.9 | 35.4 | 35.3 |
+| spiral | 72.8 | 27.3 | 4.4 | 7.4 | 2.8 | 2.2 |
+| probe: exit in view at spawn | 71.0 | 20.3 | 5.4 | 3.4 | 0.0 | 0.0 |
+| designer_smoke | 53.2 | 11.5 | 2.2 | 27.9 | 17.1 | 16.2 |
+
+Designer runs:
+
+| run | proposals | valid_proposal_rate | final_solvable | gen0_fit_mean | final_fit_selected | final_fit_fresh | final_fail_fresh | archive |
+|---|---|---|---|---|---|---|---|---|
+| ctl1_s2 | 15330 | 0.731 | 1.000 | 0.103 | 0.861 | 0.861 | 0.871 | 8192 |
+| cur1_s2 | 15468 | 0.724 | 1.000 | 0.112 | 0.865 | 0.859 | 0.836 | 9180 |
+| cur1_s3 | 15169 | 0.738 | 1.000 | 0.123 | 0.832 | 0.839 | 0.828 | 8414 |
+| cur2_s5 | 15638 | 0.716 | 1.000 | 0.097 | 0.899 | 0.894 | 0.906 | 8935 |
+| expl_ctl1_s8 | 14713 | 0.761 | 1.000 | 0.124 | 0.817 | 0.824 | 0.821 | 8799 |
+| expl_ctl2_s8 | 14963 | 0.749 | 1.000 | 0.119 | 0.805 | 0.797 | 0.803 | 8256 |
+| expl_ctl3_s8 | 14749 | 0.759 | 1.000 | 0.101 | 0.836 | 0.832 | 0.840 | 8228 |
+| expl_cur1_s8 | 15677 | 0.714 | 1.000 | 0.124 | 0.897 | 0.898 | 0.903 | 9166 |
+| expl_cur2_s8 | 15705 | 0.713 | 1.000 | 0.105 | 0.898 | 0.901 | 0.906 | 9667 |
+| expl_cur3_s8 | 16240 | 0.690 | 1.000 | 0.103 | 0.853 | 0.852 | 0.857 | 8982 |
+| expl_ff_s8 | 14683 | 0.763 | 1.000 | 0.153 | 0.768 | 0.769 | 0.732 | 7780 |
+| expl_v1_s8 | 14790 | 0.757 | 1.000 | 0.136 | 0.744 | 0.740 | 0.732 | 7064 |
+| tremaux_s0 | 12934 | 0.866 | 1.000 | 0.103 | 0.310 | 0.321 | 0.000 | 894 |
+| v1_drift | 17299 | 0.740 | 1.000 | 0.121 | 0.079 | 0.082 | 0.028 | 525 |
+| v1_md12_s7 | 17930 | 0.625 | 1.000 | 0.145 | 0.897 | 0.902 | 0.924 | 9068 |
+| v1_nocon | 3360 | 0.121 | 0.047 | 0.121 | 0.954 | 0.954 | 0.953 | 2812 |
+| v1_s0 | 15076 | 0.743 | 1.000 | 0.121 | 0.843 | 0.842 | 0.846 | 8729 |
+| v1_s1 | 15365 | 0.729 | 1.000 | 0.107 | 0.890 | 0.893 | 0.874 | 8723 |
+| wall_follow_s0 | 14655 | 0.764 | 1.000 | 0.269 | 0.914 | 0.918 | 0.942 | 9817 |
+SMOKE OK

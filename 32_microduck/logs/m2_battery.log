@@ -1,0 +1,192 @@
+{
+ "skills": {
+  "turn_to": {
+   "n": 160,
+   "ok_rate": 1.0,
+   "abs_error_median_rad": 0.06845877073236029,
+   "abs_error_p90_rad": 0.15912474251573364,
+   "ticks_median": 30.0,
+   "attempts_mean": 0.975
+  },
+  "go_to_pad": {
+   "n": 139,
+   "ok_rate": 1.0,
+   "reasons": {
+    "reached": 139
+   },
+   "final_distance_median_m": 0.05712662812611662,
+   "ticks_median": 195.0,
+   "path_over_straight_median": 1.5171552333301088,
+   "runs_with_obstacle_contact": 7
+  },
+  "return_home": {
+   "n": 139,
+   "ok_rate": 1.0
+  },
+  "press_button": {
+   "n": 40,
+   "crossed_rate": 1.0,
+   "exactly_one_press": 40,
+   "presses_hist": {
+    "1": 40
+   },
+   "ticks_median": 250.5,
+   "runs_with_obstacle_contact": 0
+  },
+  "scan_full": {
+   "n": 40,
+   "ok_rate": 1.0,
+   "covered_deg_min": 360.0,
+   "ticks_median": 196.0
+  },
+  "look": {
+   "n": 120,
+   "mean_abs_error_per_joint_rad": [
+    0.249,
+    0.116,
+    0.047,
+    0.021
+   ],
+   "names": [
+    "neck_pitch",
+    "head_pitch",
+    "head_yaw",
+    "head_roll"
+   ]
+  }
+ },
+ "find_ball_setup": {
+  "n": 970,
+  "ok": 970,
+  "failed": [],
+  "rest_error_max_m": 0.0785
+ },
+ "find_ball_v2_spread": {
+  "episodes": 440,
+  "hider": {
+   "occluder": 214,
+   "partition": 226
+  },
+  "left_of_start_view": 224,
+  "back_from_end_m": [
+   0.005,
+   0.192,
+   0.396
+  ],
+  "behind_m": [
+   0.175,
+   0.331,
+   0.477
+  ],
+  "visible_ticks_first_6s": [
+   9.0,
+   11.0,
+   15.0,
+   45.0
+  ]
+ },
+ "find_ball_v2_baselines": {
+  "occluder_only": {
+   "n": 110,
+   "success": 49,
+   "success_by_hider": {
+    "occluder": [
+     47,
+     52
+    ],
+    "partition": [
+     2,
+     58
+    ]
+   },
+   "median_sim_s_successes": 12.1
+  },
+  "all_hiders": {
+   "n": 110,
+   "success": 96,
+   "success_by_hider": {
+    "occluder": [
+     44,
+     52
+    ],
+    "partition": [
+     52,
+     58
+    ]
+   },
+   "median_sim_s_successes": 16.75
+  },
+  "oracle": {
+   "n": 110,
+   "success": 110,
+   "success_by_hider": {
+    "occluder": [
+     52,
+     52
+    ],
+    "partition": [
+     58,
+     58
+    ]
+   },
+   "median_sim_s_successes": 16.3
+  }
+ },
+ "split_smoke_recheck": {
+  "n": 970,
+  "all_ok": true,
+  "max_ball_moved_m": 0.0,
+  "max_tilt_deg": 0.9
+ },
+ "wall_s": 127.7
+}
+{
+ "go_and_return/train": {
+  "n": 60,
+  "setup_errors": 0,
+  "success": 60,
+  "falls": 0,
+  "episodes_with_obstacle_contact": 0,
+  "median_sim_s": 39.3
+ },
+ "go_and_return/instances-dev": {
+  "n": 50,
+  "setup_errors": 0,
+  "success": 50,
+  "falls": 0,
+  "episodes_with_obstacle_contact": 4,
+  "median_sim_s": 40.9
+ },
+ "set_lamp/train": {
+  "n": 60,
+  "setup_errors": 0,
+  "success": 60,
+  "falls": 0,
+  "episodes_with_obstacle_contact": 0,
+  "median_sim_s": 0.1
+ },
+ "set_lamp/instances-dev": {
+  "n": 50,
+  "setup_errors": 0,
+  "success": 50,
+  "falls": 0,
+  "episodes_with_obstacle_contact": 1,
+  "median_sim_s": 20.700000000000003
+ },
+ "find_ball/train": {
+  "n": 60,
+  "setup_errors": 0,
+  "success": 60,
+  "falls": 0,
+  "episodes_with_obstacle_contact": 0,
+  "median_sim_s": 16.15
+ },
+ "find_ball/instances-dev": {
+  "n": 50,
+  "setup_errors": 0,
+  "success": 50,
+  "falls": 0,
+  "episodes_with_obstacle_contact": 0,
+  "median_sim_s": 16.45
+ }
+}

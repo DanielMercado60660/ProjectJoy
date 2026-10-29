@@ -1,0 +1,53 @@
+{
+ "written": "2026-10-26 ~22:00, before any episode on a test split",
+ "rule": "This is the single look at the reserved test sets (lessons file, item 15). Nothing about the bot, the policies, the judges or the setups changes after these runs; anything that looks wrong is written down, not tuned.",
+ "controllers": [
+  "refbot (frozen M3, gaze off)",
+  "oracle (labelled; true pose/layout/state)",
+  "BC policy (M5, selected by results/m5/selection_rule.json)",
+  "DAgger policy (M5, same rule)",
+  "find_ball: no-memory searchers (perfect recognition, true pose/layout): all hiders, occluder only",
+  "set_lamp: the done-at-once floor (episodes needing no press)"
+ ],
+ "sets": {
+  "reserved": {
+   "instances-test": 120,
+   "arrangements-test": 120,
+   "appearances-test": 120,
+   "distractor-test": 120
+  },
+  "familiar": {
+   "train": "configs 0000-0119"
+  }
+ },
+ "episodes": "k=0 of each task on every listed config; same episodes for every controller",
+ "metrics": [
+  "success with Wilson 95% interval",
+  "median sim time of successes",
+  "falls",
+  "episodes touching an obstacle",
+  "task counts (wrong pads, presses needed/extra, find_ball by hider)",
+  "policy: when it said done",
+  "inference latency per tick, labelled under load with uptime"
+ ],
+ "breakdowns": [
+  "go_and_return by target colour (appearances-test: yellow renders ochre)",
+  "set_lamp by press needed",
+  "find_ball by hider"
+ ],
+ "predictions_before_running": [
+  "appearances-test: the bot's cyan window starts at 160 deg and test buttons are drawn at 161-167 deg, close to the green/cyan edge after rendering: some buttons may be seen as green pads or missed -> set_lamp press-needed episodes drop most",
+  "appearances-test: test mats have saturation 0.15-0.25, above the bot's mat limit of 0.15: the bot will rarely see its mat and will home on odometry alone -> more 'just off the mat' go_and_return failures",
+  "appearances-test: dark test yellows render ochre (M1 review) -> yellow targets in go_and_return may be missed or confused with red",
+  "arrangements-test: free-standing partitions and centre occluders are new shapes for exploration and hiding; the bot's frontier exploration should cope, find_ball partition hides may be harder",
+  "instances-test and distractor-test: close to the corresponding dev numbers (both families were used in tuning, so their dev numbers are development numbers)",
+  "the oracle is appearance-blind: its reserved numbers should match its training numbers except arrangements"
+ ],
+ "amendments": [
+  {
+   "written": "2026-10-26 23:30, before any policy episode on a test split (bot/oracle/searcher runs in progress; none of their results seen)",
+   "change": "Policy episode cost (up to 1,200 ticks at ~20-30 ms per tick for failures) makes two full policy grids too long for one night. The DAgger policy (the final learned mind) gets the full grid (5 sets x 120 configs x 3 tasks). The BC policy gets the first 40 configs of each set (600 episodes), the same episodes the other controllers ran, so the comparison is paired on those configs.",
+   "also": "Policy metric added: tick of the first 'done' (early-done errors). M5 change made on train data only, before this: BC v2 trains on 128-tick windows (v1's 64 never spanned the opening scan) and live frames take the recorder's 128->96->64 path (results/m5/tuning.jsonl)."
+  }
+ ]
+}

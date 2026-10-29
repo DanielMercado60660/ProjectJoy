@@ -1,0 +1,11 @@
+# regenerable / bulky training state (checkpoints/ holds the EMA exports needed for the demo)
+data/*.npz
+runs/*/ckpt_*/
+runs/*/latest/
+runs/*/final/*.safetensors
+logs/.lock_*
+__pycache__/
+# reviewer: NOTE the root .gitignore already excludes ALL of runs/ (**/runs/), so the runs/* lines above are no-ops;
+# checkpoints/<model>/{ema.safetensors,config.json,meta.json} is what ships.
+logs/old/*.safetensors
+results/samples_pca.npz

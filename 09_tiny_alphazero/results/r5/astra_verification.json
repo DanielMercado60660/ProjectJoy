@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-10-24T15:59:46-05:00",
+  "command": "NUMBA_NUM_THREADS=4 OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 VECLIB_MAXIMUM_THREADS=4 ../.venv/bin/python -m pytest -q tests/test_r5.py tests/test_c4.py tests/test_solver.py",
+  "passed": 27,
+  "seconds": 1.28,
+  "log": "logs/r5/astra_numpy_tests.log",
+  "mlx_executed": false,
+  "syntax_checks": [
+    "python -m py_compile r5_*.py",
+    "bash -n smoke_r5.sh"
+  ]
+}

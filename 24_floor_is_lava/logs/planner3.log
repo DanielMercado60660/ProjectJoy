@@ -1,0 +1,306 @@
+[gpu_run] acquired gpu0: logs/planner3.sh
+[random] best 0.588  (26s)
+[cem 0] best 0.071 succ 0.00 mean-of-pop 0.035 (48s)
+[cem 1] best 0.072 succ 0.00 mean-of-pop 0.034 (66s)
+[cem 2] best 0.082 succ 0.00 mean-of-pop 0.046 (87s)
+[cem 3] best 0.090 succ 0.00 mean-of-pop 0.049 (107s)
+[cem 4] best 0.075 succ 0.00 mean-of-pop 0.048 (125s)
+[cem 5] best 0.197 succ 0.07 mean-of-pop 0.064 (148s)
+[cem 6] best 0.216 succ 0.07 mean-of-pop 0.087 (174s)
+[cem 7] best 0.235 succ 0.10 mean-of-pop 0.098 (200s)
+[cem 8] best 0.403 succ 0.23 mean-of-pop 0.118 (230s)
+[cem 9] best 0.508 succ 0.33 mean-of-pop 0.142 (259s)
+[cem 10] best 0.443 succ 0.28 mean-of-pop 0.168 (291s)
+[cem 11] best 0.507 succ 0.33 mean-of-pop 0.202 (325s)
+[cem 12] best 0.784 succ 0.55 mean-of-pop 0.278 (364s)
+[cem 13] best 0.630 succ 0.42 mean-of-pop 0.290 (402s)
+[cem 14] best 0.762 succ 0.53 mean-of-pop 0.397 (448s)
+[cem 15] best 0.832 succ 0.60 mean-of-pop 0.431 (495s)
+[cem 16] best 0.870 succ 0.62 mean-of-pop 0.425 (546s)
+[cem 17] best 0.803 succ 0.57 mean-of-pop 0.413 (600s)
+[cem 18] best 0.818 succ 0.57 mean-of-pop 0.453 (652s)
+[cem 19] best 1.020 succ 0.75 mean-of-pop 0.574 (713s)
+[final] best score 0.919 succ 0.667 frac 0.840  configs=1031  env steps=9731322  774s
+{
+ "freq": 2.842809935713111,
+ "stride": 0.14758218996520628,
+ "height": 0.2910812580934712,
+ "clear": 0.0872602174385214,
+ "duty": 0.5395927103590917,
+ "xoff_f": 0.012950911066787061,
+ "xoff_r": 0.0388240572505602,
+ "abd": -0.028360788607400142,
+ "dh": 0.009175188854300773,
+ "p1": 0.49083791911385855,
+ "p2": 0.5515277673487627,
+ "p3": 0.0507743536346829,
+ "k_yaw": 1.326173553135167,
+ "look": 0.8764033507026683,
+ "margin": 0.061579887797853144,
+ "dmax": 0.12531497246595444,
+ "vgain": 1.2357298700863864
+}
+cpg_baseline: success (0.024, np.float64(0.013781177149521824), np.float64(0.04147745969189818))  push-success (0.012, np.float64(0.0055109199671753584), np.float64(0.025930707718986326)) (17s)
+cpg_planner_baseline: success (0.626, np.float64(0.582777860120605), np.float64(0.6673007360096074))  push-success (0.576, np.float64(0.5322644098109273), np.float64(0.6185766481723753)) (53s)
+residual_ppo: success (0.984, np.float64(0.9687485245822888), np.float64(0.9918708446797967))  push-success (0.978, np.float64(0.9610387448516022), np.float64(0.9876721198328542)) (63s)
+{
+ "n_layouts": 500,
+ "gap_max": 0.2,
+ "flat": false,
+ "mask_stones": false,
+ "policy": "checkpoints/policy.npz",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 40.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.96,
+  0.942,
+  0.976
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 480,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 12,
+  "ppo_energy_per_m": [
+   568.3705958681453,
+   562.4998198127435,
+   573.5000521590667
+  ],
+  "base_energy_per_m": [
+   1208.1450268612134,
+   1155.1270137361216,
+   1267.4903794988488
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -639.774430993068,
+   -699.8077419429917,
+   -584.8170471483011
+  ],
+  "ppo_speed": [
+   1.6288349867100036,
+   1.603203046889788,
+   1.6561872692212216
+  ],
+  "base_speed": [
+   0.4696194741679502,
+   0.44920607227942483,
+   0.4889891952861108
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.358,
+  0.318,
+  0.4
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 183,
+  "base_only": 4
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 309,
+  "ppo_energy_per_m": [
+   567.343191014095,
+   565.7958924853829,
+   569.0136811436275
+  ],
+  "base_energy_per_m": [
+   842.5991420411938,
+   836.9398856169865,
+   848.0185100722932
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -275.25595102709866,
+   -280.7439900102036,
+   -269.58518286737626
+  ],
+  "ppo_speed": [
+   1.6443556306359064,
+   1.6384243329044696,
+   1.6499949439959398
+  ],
+  "base_speed": [
+   0.4409682255924152,
+   0.4384591482932502,
+   0.44353250670705086
+  ]
+ },
+ "wall_s": 63.52151107788086
+}
+cpg_baseline: success (0.208, np.float64(0.17471574281917435), np.float64(0.2457370344028732))  push-success None (12s)
+cpg_planner_baseline: success (0.878, np.float64(0.8463946427702861), np.float64(0.9038411456203509))  push-success None (30s)
+residual_ppo: success (0.996, np.float64(0.9855339859585811), np.float64(0.9989023924587627))  push-success None (36s)
+{
+ "n_layouts": 500,
+ "gap_max": 0.125,
+ "flat": false,
+ "mask_stones": false,
+ "policy": "checkpoints/policy.npz",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 0.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.788,
+  0.75,
+  0.822
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 394,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 104,
+  "ppo_energy_per_m": [
+   573.1480831800201,
+   570.6023944088151,
+   575.7471973198151
+  ],
+  "base_energy_per_m": [
+   1209.5295082817395,
+   1180.1246551444333,
+   1238.9178608177285
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -636.3814251017195,
+   -665.8778544486271,
+   -607.5165008448668
+  ],
+  "ppo_speed": [
+   1.5984049554649358,
+   1.588037250126086,
+   1.6084021113812532
+  ],
+  "base_speed": [
+   0.47051099974262856,
+   0.4607899264992771,
+   0.4804705834204313
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.118,
+  0.08995,
+  0.148
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 60,
+  "base_only": 1
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 438,
+  "ppo_energy_per_m": [
+   573.8288702269259,
+   572.476999840601,
+   575.0520556250842
+  ],
+  "base_energy_per_m": [
+   794.4336864239144,
+   790.9012504865581,
+   798.1473054051057
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -220.60481619698837,
+   -224.09807193399416,
+   -217.24799956598278
+  ],
+  "ppo_speed": [
+   1.5961495115794055,
+   1.5915783183179666,
+   1.6011190714377357
+  ],
+  "base_speed": [
+   0.4565392387509513,
+   0.45454143618211684,
+   0.4583935831999345
+  ]
+ },
+ "wall_s": 35.787707805633545
+}
+cpg_baseline: success (0.925, np.float64(0.8799554020266798), np.float64(0.9540254929427476))  push-success (0.595, np.float64(0.5257958199999483), np.float64(0.6606234388755706)) (11s)
+cpg_planner_baseline: success (1.0, np.float64(0.9811539940816791), 1.0)  push-success (0.675, np.float64(0.6073185684304498), np.float64(0.736085329498138)) (24s)
+residual_ppo: success (1.0, np.float64(0.9811539940816791), 1.0)  push-success (0.985, np.float64(0.9568335194437211), np.float64(0.9948858548155076)) (29s)
+{
+ "n_layouts": 200,
+ "gap_max": 0.2,
+ "flat": true,
+ "mask_stones": false,
+ "policy": "checkpoints/policy.npz",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 80.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.075,
+  0.04,
+  0.115
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 15,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 185,
+  "ppo_energy_per_m": [
+   589.1112797094703,
+   587.6396615546022,
+   590.5311914810255
+  ],
+  "base_energy_per_m": [
+   1066.9988081886622,
+   1056.764290712456,
+   1077.524825230292
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -477.88752847919193,
+   -488.6394470974518,
+   -467.4888732131668
+  ],
+  "ppo_speed": [
+   1.4343065289104233,
+   1.4280665110597428,
+   1.4405821542712187
+  ],
+  "base_speed": [
+   0.523554293420074,
+   0.5192025978702424,
+   0.5276846591120453
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 0,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 200,
+  "ppo_energy_per_m": [
+   589.1973191451544,
+   587.7327687197782,
+   590.6039723005935
+  ],
+  "base_energy_per_m": [
+   700.3729251183556,
+   698.7638853528422,
+   701.886998862743
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -111.1756059732012,
+   -112.72194606208468,
+   -109.64146063935135
+  ],
+  "ppo_speed": [
+   1.4344571649564113,
+   1.4285082536850586,
+   1.4407847920427244
+  ],
+  "base_speed": [
+   0.4807126945117025,
+   0.47963918657264615,
+   0.4818196352552771
+  ]
+ },
+ "wall_s": 28.70173406600952
+}

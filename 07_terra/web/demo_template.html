@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terra Pathfinder</title>
+<style>
+:root {
+  --bg: #12161a; --panel: #1b2127; --panel2: #232b33; --ink: #e8ecef; --muted: #93a0ab;
+  --line: #2f3a44; --accent: #ffd400; --danger: #ff5a4f;
+  --c-dijkstra: #ffffff; --c-astar: #ffd400; --c-wastar: #00e5ff; --c-dstar: #ff3b30;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+header { padding: 14px 16px 6px; }
+h1 { margin: 0; font-size: 20px; letter-spacing: .3px; }
+h1 span { color: var(--muted); font-weight: 400; }
+.formula { color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+.formula code { color: var(--ink); background: var(--panel2); padding: 1px 5px; border-radius: 4px; }
+main { display: flex; gap: 16px; padding: 8px 16px 16px; align-items: flex-start; }
+#stage { position: relative; flex: 0 0 auto; }
+canvas#view { display: block; border-radius: 8px; touch-action: none; cursor: crosshair;
+  box-shadow: 0 6px 24px rgba(0,0,0,.45); background: #000; }
+#toast { position: absolute; left: 50%; top: 12px; transform: translateX(-50%); background: rgba(10,12,14,.85);
+  padding: 6px 12px; border-radius: 6px; font-size: 13px; pointer-events: none; opacity: 0; transition: opacity .25s; white-space: nowrap; }
+aside { flex: 1 1 320px; min-width: 280px; max-width: 440px; display: flex; flex-direction: column; gap: 10px; }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+section h2 { margin: 0 0 8px; font-size: 12px; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); font-weight: 600; }
+.row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+button, select { background: var(--panel2); color: var(--ink); border: 1px solid var(--line); border-radius: 6px;
+  padding: 6px 10px; font: inherit; font-size: 13px; cursor: pointer; }
+button:hover { border-color: #4a5966; }
+button.on { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+button.primary { background: #2d3b1d; border-color: #5f7d2b; }
+.tool { display: inline-flex; gap: 6px; align-items: center; }
+.sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; border: 1px solid rgba(0,0,0,.4); }
+input[type=range] { width: 120px; accent-color: var(--accent); }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 13px; }
+th, td { text-align: right; padding: 3px 4px; border-bottom: 1px solid var(--line); }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--muted); font-weight: 500; font-size: 12px; }
+td label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.chip { width: 18px; height: 4px; border-radius: 2px; display: inline-block; }
+#editlog { font-size: 13px; color: var(--muted); min-height: 38px; }
+#editlog b { color: var(--ink); }
+.muted { color: var(--muted); font-size: 12px; }
+.big { font-size: 15px; }
+.ok { color: #8be38b; } .bad { color: var(--danger); }
+@media (max-width: 860px) { main { flex-direction: column; } aside { max-width: none; width: 100%; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Terra <span>· the routing playground</span></h1>
+  <div class="formula">Every planner uses one cost:
+    <code>c(a,b) = d · m̄ · (1 + |Δz| / d)</code>, where d is 1 or √2, m̄ is the mean terrain multiplier
+    (grass 1, forest 2, rock 3, bridge 1), and water can't be crossed. Paint the map and the routes update live.</div>
+  <div class="formula">Try this: press <b>Collapse next bridge</b>, then <b>▶ Walk</b>. Or paint water across the route, or pick
+    <b>D* Lite</b> under "explored" to see how small its repair is next to a fresh A* search.</div>
+</header>
+<main>
+  <div id="stage">
+    <canvas id="view" width="672" height="672"></canvas>
+    <div id="toast"></div>
+  </div>
+  <aside>
+    <section>
+      <h2>Map</h2>
+      <div class="row">
+        <select id="mapsel"></select>
+        <button id="newmap">New random map</button>
+        <button id="resetmap">Reset map</button>
+      </div>
+    </section>
+    <section>
+      <h2>Paint</h2>
+      <div class="row" id="tools"></div>
+      <div class="row" style="margin-top:8px">
+        <span class="muted">Brush</span><input id="brush" type="range" min="0" max="6" value="1"><span id="brushv" class="muted">1</span>
+        <label class="muted" style="margin-left:auto"><input type="checkbox" id="contours"> contours</label>
+      </div>
+    </section>
+    <section>
+      <h2>Planners (from agent to goal)</h2>
+      <table>
+        <thead><tr><th>planner</th><th>cost</th><th>expanded</th><th>ms</th><th>explored</th></tr></thead>
+        <tbody id="stats"></tbody>
+      </table>
+      <div class="row" style="margin-top:8px">
+        <span class="muted">Weighted A* w</span><input id="wslider" type="range" min="1" max="5" step="0.25" value="2"><span id="wv" class="muted">2.00</span>
+      </div>
+      <div class="muted" style="margin-top:6px">Dijkstra, A* and D* Lite are all optimal, so they find the same cost
+        (the lines overlap). Weighted A* and the learned heuristic trade optimality for fewer expansions.</div>
+      <div id="netnote" class="muted" style="margin-top:6px"></div>
+    </section>
+    <section>
+      <h2>Last change</h2>
+      <div id="editlog">Paint something, collapse a bridge, or walk the agent.</div>
+    </section>
+    <section>
+      <h2>Agent</h2>
+      <div class="row">
+        <button id="walk" class="primary">▶ Walk</button>
+        <button id="collapse">Collapse next bridge</button>
+        <button id="resetagent">Back to start</button>
+      </div>
+      <div id="agentinfo" class="muted" style="margin-top:8px"></div>
+    </section>
+  </aside>
+</main>
+<script id="terra-core">
+/*__CORE__*/
+</script>
+<script>
+const BAKED = /*__MAPS__*/;
+</script>
+<script id="hnet">
+/*__HNET__*/
+</script>
+<script>
+const HNET_SPEC = /*__HNET_SPEC__*/;
+if (HNET_SPEC) HNET.load(HNET_SPEC);
+</script>
+<script>
+/*__UI__*/
+</script>
+</body>
+</html>

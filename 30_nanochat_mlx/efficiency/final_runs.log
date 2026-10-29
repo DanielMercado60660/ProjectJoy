@@ -1,0 +1,47 @@
+[gpu_run] acquired gpu0: bash -c ../.venv/bin/python efficiency/bench_step.py --depth 6 --variants base kernel --windows 10 --per-window 15 --tag F_sustained_d6; sleep 20; ../.venv/bin/python efficiency/bench_step.py --depth 12 --B 16 --accum 8 --variants base kernel --windows 8 --per-window 4 --tag F_sustained_d12_handoff
+[bench] matmul peak 59.6 TFLOP/s bf16, loadavg (2.318359375, 2.5087890625, 2.68359375), env {}
+[bench] warm base: 4.5s  loss 6.2276  loader 0.2 ms/update
+[bench] warm kernel: 4.0s  loss 6.2290  loader 0.2 ms/update
+[bench] window 0 base: 232,995 tok/s (563 ms/update)
+[bench] window 0 kernel: 251,147 tok/s (522 ms/update)
+[bench] window 1 kernel: 249,309 tok/s (526 ms/update)
+[bench] window 1 base: 225,722 tok/s (581 ms/update)
+[bench] window 2 base: 222,138 tok/s (590 ms/update)
+[bench] window 2 kernel: 239,391 tok/s (548 ms/update)
+[bench] window 3 kernel: 237,697 tok/s (551 ms/update)
+[bench] window 3 base: 213,254 tok/s (615 ms/update)
+[bench] window 4 base: 212,017 tok/s (618 ms/update)
+[bench] window 4 kernel: 233,502 tok/s (561 ms/update)
+[bench] window 5 kernel: 233,794 tok/s (561 ms/update)
+[bench] window 5 base: 210,317 tok/s (623 ms/update)
+[bench] window 6 base: 203,252 tok/s (645 ms/update)
+[bench] window 6 kernel: 213,307 tok/s (614 ms/update)
+[bench] window 7 kernel: 219,607 tok/s (597 ms/update)
+[bench] window 7 base: 200,891 tok/s (652 ms/update)
+[bench] window 8 base: 198,204 tok/s (661 ms/update)
+[bench] window 8 kernel: 210,842 tok/s (622 ms/update)
+[bench] window 9 kernel: 208,386 tok/s (629 ms/update)
+[bench] window 9 base: 194,923 tok/s (672 ms/update)
+{"time": "2026-10-22 13:45:35", "tag": "F_sustained_d6", "variant": "base", "changes_training": false, "depth": 6, "B": 32, "accum": 4, "T": 1024, "tokens_per_update": 131072, "init": "random", "env": {}, "tok_s_median": 211167.2675, "tok_s_min": 194923.1138, "tok_s_max": 232995.4188, "spread_pct": 18.0295, "windows": [232995, 225722, 222138, 213254, 212017, 210317, 203252, 200891, 198204, 194923], "rel_to_first": 1.0, "tflops": 23.4157, "mfu": 0.4755, "matmul_peak_tflops": [59.6, 38.88], "peak_mem_gb": 9.4711, "loader_ms_per_update": 0.2117, "loss_last": 4.5986, "loadavg_start": [2.318359375, 2.5087890625, 2.68359375], "loadavg_end": [3.9345703125, 3.23095703125, 2.95263671875], "loadavg_windows": [2.49, 2.77, 3.67, 3.81, 4.62, 3.87, 3.81, 3.33, 3.35, 3.93], "warmup": 8, "windows_n": 10, "per_window": 15}
+{"time": "2026-10-22 13:45:35", "tag": "F_sustained_d6", "variant": "kernel", "changes_training": false, "depth": 6, "B": 32, "accum": 4, "T": 1024, "tokens_per_update": 131072, "init": "random", "env": {}, "tok_s_median": 233648.0745, "tok_s_min": 208386.2376, "tok_s_max": 251146.5266, "spread_pct": 18.3012, "windows": [251147, 249309, 239391, 237697, 233502, 233794, 213307, 219607, 210842, 208386], "rel_to_first": 1.1065, "tflops": 25.9085, "mfu": 0.5262, "matmul_peak_tflops": [59.6, 38.88], "peak_mem_gb": 6.8364, "loader_ms_per_update": 0.2165, "loss_last": 4.603, "loadavg_start": [2.318359375, 2.5087890625, 2.68359375], "loadavg_end": [3.9345703125, 3.23095703125, 2.95263671875], "loadavg_windows": [2.37, 2.38, 4.19, 4.23, 4.3, 4.03, 4.15, 3.75, 3.82, 3.85], "warmup": 8, "windows_n": 10, "per_window": 15}
+[bench] matmul peak 59.8 TFLOP/s bf16, loadavg (3.04443359375, 3.06982421875, 2.900390625), env {}
+[bench] warm base: 23.9s  loss 6.2052  loader 0.3 ms/update
+[bench] warm kernel: 23.1s  loss 6.1575  loader 0.3 ms/update
+[bench] window 0 base: 44,864 tok/s (2922 ms/update)
+[bench] window 0 kernel: 45,711 tok/s (2867 ms/update)
+[bench] window 1 kernel: 45,527 tok/s (2879 ms/update)
+[bench] window 1 base: 44,453 tok/s (2949 ms/update)
+[bench] window 2 base: 44,217 tok/s (2964 ms/update)
+[bench] window 2 kernel: 44,681 tok/s (2934 ms/update)
+[bench] window 3 kernel: 43,596 tok/s (3007 ms/update)
+[bench] window 3 base: 42,478 tok/s (3086 ms/update)
+[bench] window 4 base: 42,626 tok/s (3075 ms/update)
+[bench] window 4 kernel: 43,096 tok/s (3041 ms/update)
+[bench] window 5 kernel: 42,768 tok/s (3065 ms/update)
+[bench] window 5 base: 41,824 tok/s (3134 ms/update)
+[bench] window 6 base: 41,618 tok/s (3149 ms/update)
+[bench] window 6 kernel: 41,926 tok/s (3126 ms/update)
+[bench] window 7 kernel: 41,963 tok/s (3124 ms/update)
+[bench] window 7 base: 41,270 tok/s (3176 ms/update)
+{"time": "2026-10-22 13:49:57", "tag": "F_sustained_d12_handoff", "variant": "base", "changes_training": false, "depth": 12, "B": 16, "accum": 8, "T": 1024, "tokens_per_update": 131072, "init": "random", "env": {}, "tok_s_median": 42551.9952, "tok_s_min": 41270.2277, "tok_s_max": 44863.5923, "spread_pct": 8.4446, "windows": [44864, 44453, 44217, 42478, 42626, 41824, 41618, 41270], "rel_to_first": 1.0, "tflops": 28.11, "mfu": 0.5659, "matmul_peak_tflops": [59.81, 39.53], "peak_mem_gb": 12.6166, "loader_ms_per_update": 0.2651, "loss_last": 5.4185, "loadavg_start": [3.04443359375, 3.06982421875, 2.900390625], "loadavg_end": [2.419921875, 2.67724609375, 2.7587890625], "loadavg_windows": [2.52, 2.51, 2.5, 2.63, 2.55, 2.0, 2.39, 2.42], "warmup": 8, "windows_n": 8, "per_window": 4}
+{"time": "2026-10-22 13:49:57", "tag": "F_sustained_d12_handoff", "variant": "kernel", "changes_training": false, "depth": 12, "B": 16, "accum": 8, "T": 1024, "tokens_per_update": 131072, "init": "random", "env": {}, "tok_s_median": 43345.9148, "tok_s_min": 41925.6708, "tok_s_max": 45711.4525, "spread_pct": 8.7339, "windows": [45711, 45527, 44681, 43596, 43096, 42768, 41926, 41963], "rel_to_first": 1.0187, "tflops": 28.6344, "mfu": 0.5765, "matmul_peak_tflops": [59.81, 39.53], "peak_mem_gb": 11.8469, "loader_ms_per_update": 0.2755, "loss_last": 5.4184, "loadavg_start": [3.04443359375, 3.06982421875, 2.900390625], "loadavg_end": [2.419921875, 2.67724609375, 2.7587890625], "loadavg_windows": [2.37, 2.39, 2.73, 2.85, 2.39, 2.08, 2.55, 2.21], "warmup": 8, "windows_n": 8, "per_window": 4}

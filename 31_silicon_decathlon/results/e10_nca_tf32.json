@@ -1,0 +1,174 @@
+{
+ "event": {
+  "id": "10_nca",
+  "project": "10_self_healing_pixels",
+  "model": "NCA lizard_regen (perceive 3x3 + MLP 48-128-16)",
+  "checkpoint": "../10_self_healing_pixels/checkpoints/lizard_regen/model.safetensors",
+  "unit": "NCA steps of one 72x72 creature",
+  "params": 8320,
+  "notes": "Fire mask is an input (fixed seed). Inputs are creatures grown 200 steps (MLX CPU, fixed masks). Core ML packages are fp16."
+ },
+ "final": true,
+ "tf32_pass": true,
+ "batches": {
+  "1": {
+   "agreement": {
+    "mlx_gpu_tf32": {
+     "state_max_err": 0.009033203125,
+     "rgba_max_err": 0.0006361603736877441,
+     "alive_cells_diff": 0
+    },
+    "mlx_gpu_compiled_tf32": {
+     "state_max_err": 0.009033203125,
+     "rgba_max_err": 0.0006361603736877441,
+     "alive_cells_diff": 0
+    }
+   },
+   "memory_bytes": {
+    "mlx_gpu_tf32": 19164534,
+    "mlx_gpu_compiled_tf32": 19061042
+   },
+   "timing": {
+    "mlx_gpu_tf32": {
+     "median_ms": 0.29599999834317714,
+     "p90_ms": 0.30301230144686997,
+     "min_ms": 0.2351660223212093,
+     "calls": 5888,
+     "rounds": 7,
+     "round_median_spread": 1.0084780789264136
+    },
+    "mlx_gpu_compiled_tf32": {
+     "median_ms": 0.2321659994777292,
+     "p90_ms": 0.23829200654290617,
+     "min_ms": 0.1814170100260526,
+     "calls": 7598,
+     "rounds": 7,
+     "round_median_spread": 1.0079221533122389
+    }
+   },
+   "task": {},
+   "coreml": {},
+   "qualifies": {
+    "mlx_gpu_tf32": {
+     "ok": true,
+     "reason": "one-step RGBA max err 0.00064 (tolerance 5e-3)"
+    },
+    "mlx_gpu_compiled_tf32": {
+     "ok": true,
+     "reason": "one-step RGBA max err 0.00064 (tolerance 5e-3)"
+    }
+   }
+  },
+  "32": {
+   "agreement": {
+    "mlx_gpu_tf32": {
+     "state_max_err": 0.018978118896484375,
+     "rgba_max_err": 0.000924527645111084,
+     "alive_cells_diff": 0
+    },
+    "mlx_gpu_compiled_tf32": {
+     "state_max_err": 0.018978118896484375,
+     "rgba_max_err": 0.000924527645111084,
+     "alive_cells_diff": 0
+    }
+   },
+   "memory_bytes": {
+    "mlx_gpu_tf32": 167363842,
+    "mlx_gpu_compiled_tf32": 165168382
+   },
+   "timing": {
+    "mlx_gpu_tf32": {
+     "median_ms": 1.7666249768808484,
+     "p90_ms": 1.8173913937062025,
+     "min_ms": 1.6723329899832606,
+     "calls": 989,
+     "rounds": 7,
+     "round_median_spread": 1.01462424187225
+    },
+    "mlx_gpu_compiled_tf32": {
+     "median_ms": 1.668583499849774,
+     "p90_ms": 1.7227294098120183,
+     "min_ms": 1.5739579976070672,
+     "calls": 1048,
+     "rounds": 7,
+     "round_median_spread": 1.0175019248567674
+    }
+   },
+   "task": {},
+   "coreml": {},
+   "qualifies": {
+    "mlx_gpu_tf32": {
+     "ok": true,
+     "reason": "one-step RGBA max err 0.00092 (tolerance 5e-3)"
+    },
+    "mlx_gpu_compiled_tf32": {
+     "ok": true,
+     "reason": "one-step RGBA max err 0.00092 (tolerance 5e-3)"
+    }
+   }
+  }
+ },
+ "skips": {},
+ "task_checks": false,
+ "settings": {
+  "repeats": 7,
+  "budget_s": 0.25
+ },
+ "mlx_tf32": true,
+ "mlx_gpu_matmul_rel_err": 0.0007571232809227448,
+ "mlx_tf32_env": "1",
+ "env_before": {
+  "time": "2026-10-22 18:11:12",
+  "loadavg": [
+   2.681640625,
+   2.4697265625,
+   2.27392578125
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 404,
+    "cpu": 21.3,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.1721641601761803,
+  "mlx_gpu_2048_matmul_ms": 1.3320750003913417
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.17508916032966226,
+  "mlx_gpu_2048_matmul_ms": 0.5224478998570703
+ },
+ "env_after": {
+  "time": "2026-10-22 18:11:25",
+  "loadavg": [
+   2.3828125,
+   2.41357421875,
+   2.25634765625
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 404,
+    "cpu": 25.9,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

@@ -1,0 +1,598 @@
+[gpu_run] acquired gpu0: logs/after_blind.sh
+residual_ppo: success (0.888, np.float64(0.8573456933034787), np.float64(0.9127376027165404))  push-success (0.858, np.float64(0.8246696706783865), np.float64(0.8858711024534867)) (21s)
+{
+ "n_layouts": 500,
+ "gap_max": 0.2,
+ "flat": false,
+ "mask_stones": false,
+ "policy": "checkpoints/blind_latest.npz",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 40.0,
+ "push_s": 0.1,
+ "wall_s": 20.631636142730713
+}
+residual_ppo: success (0.004, np.float64(0.0010976075412372681), np.float64(0.014466014041418871))  push-success None (9s)
+{
+ "n_layouts": 500,
+ "gap_max": 0.2,
+ "flat": false,
+ "mask_stones": true,
+ "policy": "checkpoints/policy.npz",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 0.0,
+ "push_s": 0.1,
+ "wall_s": 8.78223204612732
+}
+cpg_baseline: success (0.024, np.float64(0.013781177149521824), np.float64(0.04147745969189818))  push-success (0.012, np.float64(0.0055109199671753584), np.float64(0.025930707718986326)) (29s)
+cpg_planner_baseline: success (0.072, np.float64(0.05245772605354006), np.float64(0.09806894740891321))  push-success (0.042, np.float64(0.027632099334746148), np.float64(0.06335205123956134)) (64s)
+residual_ppo: success (0.984, np.float64(0.9687485245822888), np.float64(0.9918708446797967))  push-success (0.862, np.float64(0.8289973296731233), np.float64(0.8894824465105026)) (84s)
+{
+ "n_layouts": 500,
+ "gap_max": 0.2,
+ "flat": false,
+ "mask_stones": false,
+ "policy": "checkpoints/policy.npz",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 80.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.96,
+  0.942,
+  0.976
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 480,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 12,
+  "ppo_energy_per_m": [
+   568.3705958681453,
+   562.4998198127435,
+   573.5000521590667
+  ],
+  "base_energy_per_m": [
+   1208.1450268612134,
+   1155.1270137361216,
+   1267.4903794988488
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -639.774430993068,
+   -699.8077419429917,
+   -584.8170471483011
+  ],
+  "ppo_speed": [
+   1.6288349867100036,
+   1.603203046889788,
+   1.6561872692212216
+  ],
+  "base_speed": [
+   0.4696194741679502,
+   0.44920607227942483,
+   0.4889891952861108
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.912,
+  0.886,
+  0.936
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 456,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 36,
+  "ppo_energy_per_m": [
+   569.9241853331738,
+   565.17434496443,
+   574.442129541801
+  ],
+  "base_energy_per_m": [
+   1051.3882155855922,
+   1010.2215508875548,
+   1092.3589262126563
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -481.4640302524185,
+   -521.8629047392353,
+   -441.40867666390136
+  ],
+  "ppo_speed": [
+   1.630368912087961,
+   1.6141498956650668,
+   1.6466359559536645
+  ],
+  "base_speed": [
+   0.46991154142030883,
+   0.4524783094924472,
+   0.4883438669959106
+  ]
+ },
+ "wall_s": 84.05755805969238
+}
+cpg_baseline: success (0.925, np.float64(0.8799554020266798), np.float64(0.9540254929427476))  push-success (0.595, np.float64(0.5257958199999483), np.float64(0.6606234388755706)) (20s)
+cpg_planner_baseline: success (1.0, np.float64(0.9811539940816791), 1.0)  push-success (0.905, np.float64(0.8563973488560237), np.float64(0.9383373863501365)) (38s)
+residual_ppo: success (1.0, np.float64(0.9811539940816791), 1.0)  push-success (0.985, np.float64(0.9568335194437211), np.float64(0.9948858548155076)) (47s)
+{
+ "n_layouts": 200,
+ "gap_max": 0.2,
+ "flat": true,
+ "mask_stones": false,
+ "policy": "checkpoints/policy.npz",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 80.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.075,
+  0.04,
+  0.115
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 15,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 185,
+  "ppo_energy_per_m": [
+   589.1112797094703,
+   587.6396615546022,
+   590.5311914810255
+  ],
+  "base_energy_per_m": [
+   1066.9988081886622,
+   1056.764290712456,
+   1077.524825230292
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -477.88752847919193,
+   -488.6394470974518,
+   -467.4888732131668
+  ],
+  "ppo_speed": [
+   1.4343065289104233,
+   1.4280665110597428,
+   1.4405821542712187
+  ],
+  "base_speed": [
+   0.523554293420074,
+   0.5192025978702424,
+   0.5276846591120453
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 0,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 200,
+  "ppo_energy_per_m": [
+   589.1973191451544,
+   587.7327687197782,
+   590.6039723005935
+  ],
+  "base_energy_per_m": [
+   761.6145792020756,
+   759.8229313243897,
+   763.3736402075975
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -172.41726005692115,
+   -174.44946736899607,
+   -170.46171598915168
+  ],
+  "ppo_speed": [
+   1.4344571649564113,
+   1.4285082536850586,
+   1.4407847920427244
+  ],
+  "base_speed": [
+   0.598062930208425,
+   0.5967724007096347,
+   0.5993936817159475
+  ]
+ },
+ "wall_s": 47.25623083114624
+}
+cpg_baseline: success (0.925, np.float64(0.8799554020266798), np.float64(0.9540254929427476))  push-success (0.315, np.float64(0.25462218077944276), np.float64(0.38235084141033604)) (18s)
+cpg_planner_baseline: success (1.0, np.float64(0.9811539940816791), 1.0)  push-success (0.255, np.float64(0.19960402982802747), np.float64(0.3196305130719498)) (34s)
+residual_ppo: success (1.0, np.float64(0.9811539940816791), 1.0)  push-success (0.42, np.float64(0.3537348235017175), np.float64(0.48928053744521394)) (42s)
+{
+ "n_layouts": 200,
+ "gap_max": 0.2,
+ "flat": true,
+ "mask_stones": false,
+ "policy": "checkpoints/policy.npz",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 120.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.075,
+  0.04,
+  0.115
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 15,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 185,
+  "ppo_energy_per_m": [
+   589.1112797094703,
+   587.6396615546022,
+   590.5311914810255
+  ],
+  "base_energy_per_m": [
+   1066.9988081886622,
+   1056.764290712456,
+   1077.524825230292
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -477.88752847919193,
+   -488.6394470974518,
+   -467.4888732131668
+  ],
+  "ppo_speed": [
+   1.4343065289104233,
+   1.4280665110597428,
+   1.4405821542712187
+  ],
+  "base_speed": [
+   0.523554293420074,
+   0.5192025978702424,
+   0.5276846591120453
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 0,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 200,
+  "ppo_energy_per_m": [
+   589.1973191451544,
+   587.7327687197782,
+   590.6039723005935
+  ],
+  "base_energy_per_m": [
+   761.6145792020756,
+   759.8229313243897,
+   763.3736402075975
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -172.41726005692115,
+   -174.44946736899607,
+   -170.46171598915168
+  ],
+  "ppo_speed": [
+   1.4344571649564113,
+   1.4285082536850586,
+   1.4407847920427244
+  ],
+  "base_speed": [
+   0.598062930208425,
+   0.5967724007096347,
+   0.5993936817159475
+  ]
+ },
+ "wall_s": 42.590718030929565
+}
+cpg_baseline: success (0.0033333333333333335, np.float64(0.0005886425761407379), np.float64(0.018637164554943353))  push-success None (7s)
+cpg_planner_baseline: success (0.016666666666666666, np.float64(0.0071393720427721935), np.float64(0.038415943621705605))  push-success None (16s)
+residual_ppo: success (0.94, np.float64(0.90715983751747), np.float64(0.9617139440845225))  push-success None (22s)
+{
+ "n_layouts": 300,
+ "gap_max": 0.25,
+ "flat": false,
+ "mask_stones": false,
+ "policy": "checkpoints/policy.npz",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 0.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.9366666666666666,
+  0.91,
+  0.9633333333333334
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 281,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 1,
+  "ppo_energy_per_m": [
+   558.165207718763,
+   558.165207718763,
+   558.165207718763
+  ],
+  "base_energy_per_m": [
+   1449.4510587317777,
+   1449.4510587317777,
+   1449.4510587317777
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -891.2858510130147,
+   -891.2858510130147,
+   -891.2858510130147
+  ],
+  "ppo_speed": [
+   1.6330405579998513,
+   1.6330405579998513,
+   1.6330405579998513
+  ],
+  "base_speed": [
+   0.3881017906880451,
+   0.3881017906880451,
+   0.3881017906880451
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.9233333333333333,
+  0.89,
+  0.9533333333333334
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 278,
+  "base_only": 1
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 4,
+  "ppo_energy_per_m": [
+   568.8253412819678,
+   564.651719082228,
+   575.5175949377277
+  ],
+  "base_energy_per_m": [
+   1158.303518734605,
+   1068.955141912521,
+   1247.6518955566887
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -589.478177452637,
+   -674.6529320749812,
+   -504.3034228302928
+  ],
+  "ppo_speed": [
+   1.6360689379647875,
+   1.6154756785190139,
+   1.6516912151604464
+  ],
+  "base_speed": [
+   0.4231680384079855,
+   0.3881852443161599,
+   0.45815083249981114
+  ]
+ },
+ "wall_s": 22.113277912139893
+}
+[random] best 0.154  (65s)
+[cem 0] best 0.070 succ 0.00 mean-of-pop 0.033 (86s)
+[cem 1] best 0.088 succ 0.00 mean-of-pop 0.038 (110s)
+[cem 2] best 0.117 succ 0.03 mean-of-pop 0.047 (135s)
+[cem 3] best 0.104 succ 0.00 mean-of-pop 0.047 (158s)
+[cem 4] best 0.099 succ 0.00 mean-of-pop 0.056 (189s)
+[cem 5] best 0.218 succ 0.09 mean-of-pop 0.078 (221s)
+[cem 6] best 0.172 succ 0.06 mean-of-pop 0.079 (254s)
+[cem 7] best 0.181 succ 0.06 mean-of-pop 0.080 (288s)
+[cem 8] best 0.186 succ 0.06 mean-of-pop 0.107 (330s)
+[cem 9] best 0.225 succ 0.09 mean-of-pop 0.106 (373s)
+[cem 10] best 0.348 succ 0.19 mean-of-pop 0.138 (418s)
+[cem 11] best 0.326 succ 0.19 mean-of-pop 0.169 (465s)
+[cem 12] best 0.345 succ 0.19 mean-of-pop 0.175 (517s)
+[cem 13] best 0.312 succ 0.16 mean-of-pop 0.164 (566s)
+[cem 14] best 0.396 succ 0.22 mean-of-pop 0.199 (618s)
+[cem 15] best 0.345 succ 0.19 mean-of-pop 0.170 (672s)
+[cem 16] best 0.418 succ 0.25 mean-of-pop 0.182 (726s)
+[cem 17] best 0.374 succ 0.22 mean-of-pop 0.200 (785s)
+[cem 18] best 0.405 succ 0.22 mean-of-pop 0.204 (838s)
+[cem 19] best 0.512 succ 0.31 mean-of-pop 0.279 (897s)
+[cem 20] best 0.609 succ 0.41 mean-of-pop 0.265 (950s)
+[cem 21] best 0.656 succ 0.44 mean-of-pop 0.283 (998s)
+[cem 22] best 0.540 succ 0.34 mean-of-pop 0.231 (1042s)
+[cem 23] best 0.544 succ 0.34 mean-of-pop 0.251 (1088s)
+[final] best score 0.535 succ 0.336 frac 0.662  configs=1263  env steps=8002374  1126s
+{
+ "freq": 2.7659645989343815,
+ "stride": 0.17269166461877813,
+ "height": 0.28146908160729,
+ "clear": 0.09953672376544573,
+ "duty": 0.5599421513124273,
+ "xoff_f": 0.010175632327483104,
+ "xoff_r": 0.03596320925206713,
+ "abd": -0.02749463394981607,
+ "dh": 0.02089317197708873,
+ "p1": 0.5435482559677055,
+ "p2": 0.5297284984979935,
+ "p3": 0.04066541632082245,
+ "k_yaw": 1.6113286030350287,
+ "look": 1.0043629521515918,
+ "margin": 0.06413313085410616,
+ "dmax": 0.11839276717701677,
+ "vgain": 1.3045208961881671
+}
+cpg_baseline: success (0.024, np.float64(0.013781177149521824), np.float64(0.04147745969189818))  push-success (0.012, np.float64(0.0055109199671753584), np.float64(0.025930707718986326)) (15s)
+cpg_planner_baseline: success (0.31, np.float64(0.27103822626974466), np.float64(0.3518591287719986))  push-success (0.336, np.float64(0.29598730030060416), np.float64(0.3785135745775322)) (40s)
+residual_ppo: success (0.984, np.float64(0.9687485245822888), np.float64(0.9918708446797967))  push-success (0.978, np.float64(0.9610387448516022), np.float64(0.9876721198328542)) (51s)
+{
+ "n_layouts": 500,
+ "gap_max": 0.2,
+ "flat": false,
+ "mask_stones": false,
+ "policy": "checkpoints/policy.npz",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 40.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.96,
+  0.942,
+  0.976
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 480,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 12,
+  "ppo_energy_per_m": [
+   568.3705958681453,
+   562.4998198127435,
+   573.5000521590667
+  ],
+  "base_energy_per_m": [
+   1208.1450268612134,
+   1155.1270137361216,
+   1267.4903794988488
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -639.774430993068,
+   -699.8077419429917,
+   -584.8170471483011
+  ],
+  "ppo_speed": [
+   1.6288349867100036,
+   1.603203046889788,
+   1.6561872692212216
+  ],
+  "base_speed": [
+   0.4696194741679502,
+   0.44920607227942483,
+   0.4889891952861108
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.674,
+  0.63195,
+  0.7160499999999997
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 339,
+  "base_only": 2
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 153,
+  "ppo_energy_per_m": [
+   567.5673508133993,
+   565.7194960335687,
+   569.4653924012821
+  ],
+  "base_energy_per_m": [
+   902.9501188327233,
+   889.8003921582808,
+   916.7001456394117
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -335.382768019324,
+   -349.02758978254616,
+   -322.3953600940195
+  ],
+  "ppo_speed": [
+   1.6430045766778278,
+   1.6358063261527527,
+   1.650249649690216
+  ],
+  "base_speed": [
+   0.5186467982695868,
+   0.512227460468801,
+   0.5250012662447686
+  ]
+ },
+ "wall_s": 51.11910796165466
+}
+cpg_baseline: success (0.208, np.float64(0.17471574281917435), np.float64(0.2457370344028732))  push-success None (13s)
+cpg_planner_baseline: success (0.79, np.float64(0.7521544200999409), np.float64(0.8234233011521351))  push-success None (29s)
+residual_ppo: success (0.996, np.float64(0.9855339859585811), np.float64(0.9989023924587627))  push-success None (34s)
+{
+ "n_layouts": 500,
+ "gap_max": 0.125,
+ "flat": false,
+ "mask_stones": false,
+ "policy": "checkpoints/policy.npz",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 0.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.788,
+  0.75,
+  0.822
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 394,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 104,
+  "ppo_energy_per_m": [
+   573.1480831800201,
+   570.6023944088151,
+   575.7471973198151
+  ],
+  "base_energy_per_m": [
+   1209.5295082817395,
+   1180.1246551444333,
+   1238.9178608177285
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -636.3814251017195,
+   -665.8778544486271,
+   -607.5165008448668
+  ],
+  "ppo_speed": [
+   1.5984049554649358,
+   1.588037250126086,
+   1.6084021113812532
+  ],
+  "base_speed": [
+   0.47051099974262856,
+   0.4607899264992771,
+   0.4804705834204313
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.206,
+  0.172,
+  0.242
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 104,
+  "base_only": 1
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 394,
+  "ppo_energy_per_m": [
+   573.9919319948652,
+   572.559438840481,
+   575.4832705253979
+  ],
+  "base_energy_per_m": [
+   865.4629266720276,
+   857.4835208114993,
+   874.280095656234
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -291.4709946771623,
+   -299.96088300214166,
+   -283.88427799113686
+  ],
+  "ppo_speed": [
+   1.5960841221114126,
+   1.5905787756792522,
+   1.6011332962450537
+  ],
+  "base_speed": [
+   0.5301830923584033,
+   0.5260766247834773,
+   0.5341392237452549
+  ]
+ },
+ "wall_s": 34.53971481323242
+}

@@ -1,0 +1,447 @@
+{
+  "complete": true,
+  "checkpoints": {
+    "adapter": {
+      "stage1": "base.pkl",
+      "stage2": "adapter_s2.pkl",
+      "stage3": "adapter_s3.pkl"
+    },
+    "dagger": {
+      "stage1": "base.pkl",
+      "stage2": "dagger_s2.pkl",
+      "stage3": "dagger_s3.pkl"
+    },
+    "joint": {
+      "stage1": "base.pkl",
+      "stage2": "joint_s2.pkl",
+      "stage3": "joint_s3.pkl"
+    }
+  },
+  "ledger": {
+    "adapter": [
+      {
+        "stage": 1,
+        "components": [
+          "base.pkl"
+        ],
+        "cost": {
+          "env_steps": 64,
+          "teacher_queries": 0,
+          "gradient_steps": 2,
+          "gradient_examples": 64,
+          "actor_forward_examples": 336,
+          "critic_forward_examples": 132,
+          "validation_env_steps": 144,
+          "wall_s": 0.07224374997895211,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 64,
+        "expected_credits": 64
+      },
+      {
+        "stage": 2,
+        "components": [
+          "base.pkl",
+          "adapter_s2.pkl"
+        ],
+        "cost": {
+          "env_steps": 256,
+          "teacher_queries": 0,
+          "gradient_steps": 8,
+          "gradient_examples": 256,
+          "actor_forward_examples": 1344,
+          "critic_forward_examples": 532,
+          "validation_env_steps": 576,
+          "wall_s": 0.380536624987144,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 256,
+        "expected_credits": 256
+      },
+      {
+        "stage": 3,
+        "components": [
+          "base.pkl",
+          "adapter_s2.pkl",
+          "adapter_s3.pkl"
+        ],
+        "cost": {
+          "env_steps": 448,
+          "teacher_queries": 0,
+          "gradient_steps": 14,
+          "gradient_examples": 448,
+          "actor_forward_examples": 2352,
+          "critic_forward_examples": 932,
+          "validation_env_steps": 1008,
+          "wall_s": 0.5216354999574833,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 448,
+        "expected_credits": 448
+      }
+    ],
+    "dagger": [
+      {
+        "stage": 1,
+        "components": [
+          "base.pkl"
+        ],
+        "cost": {
+          "env_steps": 64,
+          "teacher_queries": 0,
+          "gradient_steps": 2,
+          "gradient_examples": 64,
+          "actor_forward_examples": 336,
+          "critic_forward_examples": 132,
+          "validation_env_steps": 144,
+          "wall_s": 0.07224374997895211,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 64,
+        "expected_credits": 64
+      },
+      {
+        "stage": 2,
+        "components": [
+          "base.pkl",
+          "dagger_s2.pkl",
+          "teacher_bwd.pkl"
+        ],
+        "cost": {
+          "env_steps": 192,
+          "teacher_queries": 64,
+          "gradient_steps": 8,
+          "gradient_examples": 256,
+          "actor_forward_examples": 1152,
+          "critic_forward_examples": 264,
+          "validation_env_steps": 576,
+          "wall_s": 0.16148479195544496,
+          "specialist_env_steps_included": 64
+        },
+        "credits": 256,
+        "expected_credits": 256
+      },
+      {
+        "stage": 3,
+        "components": [
+          "base.pkl",
+          "dagger_s2.pkl",
+          "teacher_bwd.pkl",
+          "dagger_s3.pkl",
+          "teacher_slow.pkl"
+        ],
+        "cost": {
+          "env_steps": 320,
+          "teacher_queries": 128,
+          "gradient_steps": 14,
+          "gradient_examples": 448,
+          "actor_forward_examples": 2112,
+          "critic_forward_examples": 396,
+          "validation_env_steps": 1152,
+          "wall_s": 0.26720966695575044,
+          "specialist_env_steps_included": 128
+        },
+        "credits": 448,
+        "expected_credits": 448
+      }
+    ],
+    "joint": [
+      {
+        "stage": 1,
+        "components": [
+          "base.pkl"
+        ],
+        "cost": {
+          "env_steps": 64,
+          "teacher_queries": 0,
+          "gradient_steps": 2,
+          "gradient_examples": 64,
+          "actor_forward_examples": 336,
+          "critic_forward_examples": 132,
+          "validation_env_steps": 144,
+          "wall_s": 0.07224374997895211,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 64,
+        "expected_credits": 64
+      },
+      {
+        "stage": 2,
+        "components": [
+          "base.pkl",
+          "joint_s2.pkl"
+        ],
+        "cost": {
+          "env_steps": 256,
+          "teacher_queries": 0,
+          "gradient_steps": 8,
+          "gradient_examples": 256,
+          "actor_forward_examples": 1776,
+          "critic_forward_examples": 532,
+          "validation_env_steps": 1008,
+          "wall_s": 0.23467641696333885,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 256,
+        "expected_credits": 256
+      },
+      {
+        "stage": 3,
+        "components": [
+          "base.pkl",
+          "joint_s2.pkl",
+          "joint_s3.pkl"
+        ],
+        "cost": {
+          "env_steps": 448,
+          "teacher_queries": 0,
+          "gradient_steps": 14,
+          "gradient_examples": 448,
+          "actor_forward_examples": 3648,
+          "critic_forward_examples": 932,
+          "validation_env_steps": 2304,
+          "wall_s": 0.4542655830155127,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 448,
+        "expected_credits": 448
+      }
+    ]
+  },
+  "deployment_selection": {
+    "adapter": {
+      "stage1": {
+        "step": 32,
+        "validation": {
+          "score": [
+            0.0,
+            0.0,
+            -3.0009534885506843
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.0,
+              "mae": 3.0009534885506843,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000
+          ],
+          "env_steps": 72
+        },
+        "full_budget_step": 64
+      },
+      "stage2": {
+        "step": 32,
+        "validation": {
+          "score": [
+            0.0,
+            0.0,
+            -2.999021186808079
+          ],
+          "tasks": {
+            "bwd": {
+              "tracking": 0.0,
+              "mae": 2.999021186808079,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000
+          ],
+          "env_steps": 72
+        },
+        "full_budget_step": 192
+      },
+      "stage3": {
+        "step": 192,
+        "validation": {
+          "score": [
+            0.0,
+            0.0,
+            -1.0009061181724332
+          ],
+          "tasks": {
+            "slow": {
+              "tracking": 0.0,
+              "mae": 1.0009061181724332,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000
+          ],
+          "env_steps": 72
+        },
+        "full_budget_step": 192
+      }
+    },
+    "dagger": {
+      "stage1": {
+        "step": 32,
+        "validation": {
+          "score": [
+            0.0,
+            0.0,
+            -3.0009534885506843
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.0,
+              "mae": 3.0009534885506843,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000
+          ],
+          "env_steps": 72
+        },
+        "full_budget_step": 64
+      },
+      "stage2": {
+        "step": 64,
+        "validation": {
+          "score": [
+            0.0,
+            0.0,
+            -2.999983721197034
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.0,
+              "mae": 3.00103547729668,
+              "fall_proxy": 0.0
+            },
+            "bwd": {
+              "tracking": 0.0,
+              "mae": 2.9989319650973885,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000
+          ],
+          "env_steps": 144
+        },
+        "full_budget_step": 64
+      },
+      "stage3": {
+        "step": 32,
+        "validation": {
+          "score": [
+            0.0,
+            0.0,
+            -2.33360821379587
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.0,
+              "mae": 3.000911154290728,
+              "fall_proxy": 0.0
+            },
+            "bwd": {
+              "tracking": 0.0,
+              "mae": 2.9991296134456866,
+              "fall_proxy": 0.0
+            },
+            "slow": {
+              "tracking": 0.0,
+              "mae": 1.0007838736511947,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000
+          ],
+          "env_steps": 216
+        },
+        "full_budget_step": 64
+      }
+    },
+    "joint": {
+      "stage1": {
+        "step": 32,
+        "validation": {
+          "score": [
+            0.0,
+            0.0,
+            -3.0009534885506843
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.0,
+              "mae": 3.0009534885506843,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000
+          ],
+          "env_steps": 72
+        },
+        "full_budget_step": 64
+      },
+      "stage2": {
+        "step": 192,
+        "validation": {
+          "score": [
+            0.0,
+            0.0,
+            -3.0000545908115983
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.0,
+              "mae": 3.0008741763869096,
+              "fall_proxy": 0.0
+            },
+            "bwd": {
+              "tracking": 0.0,
+              "mae": 2.999235005236287,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000
+          ],
+          "env_steps": 144
+        },
+        "full_budget_step": 192
+      },
+      "stage3": {
+        "step": 32,
+        "validation": {
+          "score": [
+            0.0,
+            0.0,
+            -2.3336981443662346
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.0,
+              "mae": 3.000989800447495,
+              "fall_proxy": 0.0
+            },
+            "bwd": {
+              "tracking": 0.0,
+              "mae": 2.9991414394249585,
+              "fall_proxy": 0.0
+            },
+            "slow": {
+              "tracking": 0.0,
+              "mae": 1.0009631932262493,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000
+          ],
+          "env_steps": 216
+        },
+        "full_budget_step": 192
+      }
+    }
+  }
+}

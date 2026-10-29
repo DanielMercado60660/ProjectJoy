@@ -1,0 +1,61 @@
+[gpu_run] acquired gpu5: ../.venv/bin/python eval.py --vaes checkpoints/vae_cond_b1.0/best checkpoints/vae_cond_b0.5/best checkpoints/vae_cond_b0.25/best checkpoints/vae_uncond_b0.5/best checkpoints/arvae_cond_fb10/best checkpoints/vae_quick_b1.0 --demo_vae checkpoints/vae_cond_b1.0/best
+baselines
+  real_test        c2st 0.490 acc 0.992 nn 4.65 copy% 0.0 div 29.7 barrep 3.90 profL1 0.0000
+  real_val         c2st 0.511 acc 0.998 nn 4.56 copy% 0.0 div 29.4 barrep 3.88 profL1 0.0161
+  bernoulli        c2st 0.988 acc 0.989 nn 18.87 copy% 0.0 div 30.7 barrep 15.81 profL1 0.0127
+  markov           c2st 0.983 acc 0.986 nn 17.27 copy% 0.0 div 30.7 barrep 15.75 profL1 0.0133
+  markov_bar       c2st 0.969 acc 0.976 nn 14.35 copy% 0.0 div 30.2 barrep 4.89 profL1 0.0130
+  copy_train       c2st 0.474 acc 1.000 nn 0.00 copy% 100.0 div 30.4 barrep 3.84 profL1 0.0137
+vae_cond_b1.0 {'kind': 'mlp', 'latent': 16, 'hidden': 512, 'cond': True, 'trained_epochs': 100, 'val_neg_elbo': 22.478558953711605}
+  NLL val 19.31 test 19.54 recon {'hit_f1': 0.9642101990049752, 'exact_recon_pct': 25.795454545454543}
+  vae_cond_b1.0:threshold c2st 0.661 acc 0.990 nn 4.48 copy% 8.8 div 26.4 barrep 3.71 profL1 0.0184
+  vae_cond_b1.0:sample c2st 0.610 acc 0.990 nn 6.81 copy% 1.2 div 28.8 barrep 6.43 profL1 0.0169
+  vae_cond_b1.0:sample_T0.7 c2st 0.618 acc 0.991 nn 5.83 copy% 2.7 div 27.6 barrep 5.40 profL1 0.0172
+  vae_cond_b1.0:sample_T0.5 c2st 0.638 acc 0.988 nn 5.27 copy% 4.6 div 27.0 barrep 4.78 profL1 0.0178
+  interp vae: {'adjacent_hamming_mean': 6.15234375, 'max_over_mean_step_ratio': 2.866333802208527, 'midpoints_nn_hamming_to_train': 4.823660850524902, 'midpoints_bar_repeat_hamming': 3.959821428571429, 'p_targetstyle_monotone_frac': 0.998046875, 'endpoint_hamming_error': 2.4921875, 'sparse_point_pct': 0.0}
+  interp crossfade: {'adjacent_hamming_mean': 5.916015625, 'max_over_mean_step_ratio': 1.6799461752677671, 'midpoints_nn_hamming_to_train': 14.578125, 'midpoints_bar_repeat_hamming': 11.584821428571427, 'p_targetstyle_monotone_frac': 0.998046875, 'endpoint_hamming_error': 0.0, 'sparse_point_pct': 0.0}
+  style transfer 0.9931645582575943
+vae_cond_b0.5 {'kind': 'mlp', 'latent': 16, 'hidden': 512, 'cond': True, 'trained_epochs': 70, 'val_neg_elbo': 24.583387216474687}
+  NLL val 20.69 test 20.78 recon {'hit_f1': 0.9732792022352232, 'exact_recon_pct': 37.15909090909091}
+  vae_cond_b0.5:threshold c2st 0.636 acc 0.982 nn 5.70 copy% 4.5 div 26.8 barrep 4.29 profL1 0.0205
+  vae_cond_b0.5:sample c2st 0.640 acc 0.986 nn 7.40 copy% 1.0 div 28.5 barrep 6.37 profL1 0.0202
+  vae_cond_b0.5:sample_T0.7 c2st 0.632 acc 0.986 nn 6.68 copy% 1.8 div 27.6 barrep 5.56 profL1 0.0201
+  vae_cond_b0.5:sample_T0.5 c2st 0.631 acc 0.985 nn 6.25 copy% 2.3 div 27.3 barrep 5.10 profL1 0.0203
+  interp vae: {'adjacent_hamming_mean': 6.22265625, 'max_over_mean_step_ratio': 2.928448537339417, 'midpoints_nn_hamming_to_train': 5.386160850524902, 'midpoints_bar_repeat_hamming': 4.580357142857142, 'p_targetstyle_monotone_frac': 0.998046875, 'endpoint_hamming_error': 1.8671875, 'sparse_point_pct': 0.0}
+  interp crossfade: {'adjacent_hamming_mean': 5.916015625, 'max_over_mean_step_ratio': 1.6799461752677671, 'midpoints_nn_hamming_to_train': 14.578125, 'midpoints_bar_repeat_hamming': 11.584821428571427, 'p_targetstyle_monotone_frac': 0.998046875, 'endpoint_hamming_error': 0.0, 'sparse_point_pct': 0.0}
+  style transfer 0.9904740338164251
+vae_cond_b0.25 {'kind': 'mlp', 'latent': 16, 'hidden': 512, 'cond': True, 'trained_epochs': 90, 'val_neg_elbo': 28.351038666986632}
+  NLL val 23.19 test 23.06 recon {'hit_f1': 0.9782167251246077, 'exact_recon_pct': 50.0}
+  vae_cond_b0.25:threshold c2st 0.644 acc 0.974 nn 6.36 copy% 3.2 div 27.7 barrep 4.36 profL1 0.0221
+  vae_cond_b0.25:sample c2st 0.666 acc 0.979 nn 7.46 copy% 1.0 div 28.6 barrep 5.80 profL1 0.0220
+  vae_cond_b0.25:sample_T0.7 c2st 0.659 acc 0.979 nn 6.98 copy% 1.7 div 28.2 barrep 5.26 profL1 0.0220
+  vae_cond_b0.25:sample_T0.5 c2st 0.654 acc 0.977 nn 6.71 copy% 2.0 div 27.9 barrep 4.93 profL1 0.0218
+  interp vae: {'adjacent_hamming_mean': 6.287109375, 'max_over_mean_step_ratio': 2.8175831160059266, 'midpoints_nn_hamming_to_train': 5.78125, 'midpoints_bar_repeat_hamming': 4.537946428571429, 'p_targetstyle_monotone_frac': 0.994140625, 'endpoint_hamming_error': 1.5, 'sparse_point_pct': 0.0}
+  interp crossfade: {'adjacent_hamming_mean': 5.916015625, 'max_over_mean_step_ratio': 1.6799461752677671, 'midpoints_nn_hamming_to_train': 14.578125, 'midpoints_bar_repeat_hamming': 11.584821428571427, 'p_targetstyle_monotone_frac': 0.998046875, 'endpoint_hamming_error': 0.0, 'sparse_point_pct': 0.0}
+  style transfer 0.9793225838022053
+vae_uncond_b0.5 {'kind': 'mlp', 'latent': 16, 'hidden': 512, 'cond': False, 'trained_epochs': 80, 'val_neg_elbo': 27.979851593607794}
+  NLL val 23.47 test 23.61 recon {'hit_f1': 0.9746444032158318, 'exact_recon_pct': 42.38636363636364}
+  vae_uncond_b0.5:threshold c2st 0.676 acc 1.000 nn 7.21 copy% 2.2 div 31.0 barrep 4.34 profL1 0.0291
+  vae_uncond_b0.5:sample c2st 0.696 acc 1.000 nn 8.96 copy% 0.6 div 32.7 barrep 6.51 profL1 0.0303
+  vae_uncond_b0.5:sample_T0.7 c2st 0.698 acc 1.000 nn 8.24 copy% 1.0 div 31.9 barrep 5.64 profL1 0.0300
+  vae_uncond_b0.5:sample_T0.5 c2st 0.697 acc 1.000 nn 7.82 copy% 1.6 div 31.5 barrep 5.14 profL1 0.0298
+arvae_cond_fb10 {'kind': 'ar', 'latent': 16, 'hidden': 512, 'cond': True, 'rnn': 256, 'trained_epochs': 120, 'val_neg_elbo': 19.67614010061149}
+  NLL val 17.19 test 17.34 recon {'hit_f1': 0.9238814283062071, 'exact_recon_pct': 16.818181818181817}
+  arvae_cond_fb10:threshold c2st 0.645 acc 0.990 nn 3.88 copy% 16.3 div 28.0 barrep 4.23 profL1 0.0162
+  arvae_cond_fb10:sample c2st 0.601 acc 0.986 nn 5.44 copy% 6.0 div 30.1 barrep 5.92 profL1 0.0159
+  arvae_cond_fb10:sample_T0.7 c2st 0.589 acc 0.989 nn 4.65 copy% 10.2 div 29.0 barrep 5.11 profL1 0.0156
+  arvae_cond_fb10:sample_T0.5 c2st 0.603 acc 0.990 nn 4.26 copy% 13.4 div 28.5 barrep 4.67 profL1 0.0156
+  interp vae: {'adjacent_hamming_mean': 11.244140625, 'max_over_mean_step_ratio': 2.4151788569181587, 'midpoints_nn_hamming_to_train': 5.651785850524902, 'midpoints_bar_repeat_hamming': 5.4642857142857135, 'p_targetstyle_monotone_frac': 0.986328125, 'endpoint_hamming_error': 4.984375, 'sparse_point_pct': 0.0}
+  interp crossfade: {'adjacent_hamming_mean': 5.916015625, 'max_over_mean_step_ratio': 1.6799461752677671, 'midpoints_nn_hamming_to_train': 14.578125, 'midpoints_bar_repeat_hamming': 11.584821428571427, 'p_targetstyle_monotone_frac': 0.998046875, 'endpoint_hamming_error': 0.0, 'sparse_point_pct': 0.0}
+  style transfer 0.9863828502415459
+vae_quick_b1.0 {'kind': 'mlp', 'latent': 16, 'hidden': 512, 'cond': True, 'trained_epochs': 200}
+  NLL val 19.43 test 19.48 recon {'hit_f1': 0.9640120373530233, 'exact_recon_pct': 26.81818181818182}
+  vae_quick_b1.0:threshold c2st 0.633 acc 0.988 nn 4.27 copy% 10.3 div 26.9 barrep 3.69 profL1 0.0163
+  vae_quick_b1.0:sample c2st 0.587 acc 0.990 nn 6.14 copy% 2.0 div 28.6 barrep 5.82 profL1 0.0150
+  vae_quick_b1.0:sample_T0.7 c2st 0.581 acc 0.990 nn 5.35 copy% 4.3 div 27.8 barrep 4.98 profL1 0.0153
+  vae_quick_b1.0:sample_T0.5 c2st 0.610 acc 0.988 nn 4.90 copy% 6.0 div 27.3 barrep 4.52 profL1 0.0157
+  interp vae: {'adjacent_hamming_mean': 6.51171875, 'max_over_mean_step_ratio': 2.933222192110059, 'midpoints_nn_hamming_to_train': 4.870535850524902, 'midpoints_bar_repeat_hamming': 4.069196428571429, 'p_targetstyle_monotone_frac': 0.99609375, 'endpoint_hamming_error': 2.3671875, 'sparse_point_pct': 0.0}
+  interp crossfade: {'adjacent_hamming_mean': 5.916015625, 'max_over_mean_step_ratio': 1.6799461752677671, 'midpoints_nn_hamming_to_train': 14.578125, 'midpoints_bar_repeat_hamming': 11.584821428571427, 'p_targetstyle_monotone_frac': 0.998046875, 'endpoint_hamming_error': 0.0, 'sparse_point_pct': 0.0}
+  style transfer 0.9945652173913043
+selected (val NLL) checkpoints/arvae_cond_fb10/best | demo checkpoints/vae_cond_b1.0/best mode sample
+wrote results/eval.json in 123s

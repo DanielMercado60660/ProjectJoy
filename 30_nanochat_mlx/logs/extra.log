@@ -1,0 +1,81 @@
+[gpu_run] acquired gpu0: bash run_extra.sh
+[extra] Thu Oct 22 09:31:43 CDT 2026 start
+[
+ {
+  "prompt_len": 16,
+  "first_token_ms": 5.742707988247275,
+  "decode_tok_per_s": 205.836782688577,
+  "naive_no_cache_tok_per_s": 81.19982897631392
+ },
+ {
+  "prompt_len": 128,
+  "first_token_ms": 6.076457997551188,
+  "decode_tok_per_s": 195.21837942951197,
+  "naive_no_cache_tok_per_s": 89.43238739905925
+ },
+ {
+  "prompt_len": 512,
+  "first_token_ms": 7.961625000461936,
+  "decode_tok_per_s": 182.61532083109557,
+  "naive_no_cache_tok_per_s": 117.9452282631871
+ }
+]
+4479 step-examples, 0.35M tokens, built in 0.4s
+step 0 val (assistant-token) loss 8.590671747532042
+step 100/422 loss 0.3477 val 0.3633 38s
+step 200/422 loss 0.2976 val 0.3106 66s
+step 300/422 loss 0.0598 val 0.0938 94s
+step 400/422 loss 0.0125 val 0.0890 122s
+step 422/422 loss 0.0056 val 0.0957 130s
+saved /Users/danielmercado/ProjectJoy/30_nanochat_mlx/checkpoints/sft_n300
+4479 step-examples, 0.35M tokens, built in 0.4s
+step 0 val (assistant-token) loss 9.013927620878908
+step 100/422 loss 0.3711 val 0.3776 29s
+step 200/422 loss 0.3195 val 0.3239 54s
+step 300/422 loss 0.0907 val 0.1735 78s
+step 400/422 loss 0.0257 val 0.1294 102s
+step 422/422 loss 0.0126 val 0.1266 110s
+saved /Users/danielmercado/ProjectJoy/30_nanochat_mlx/checkpoints/sft_n300_scratch
+lm[pretrained,n=300]         test_seen  success 0.500 validity 0.605 steps 25.9 lat 25.1ms (70s)
+lm[pretrained,n=300]         test       success 0.320 validity 0.445 steps 31.1 lat 21.6ms (69s)
+lm_constrained[pretrained,n=300] test_seen  success 0.500 validity 0.605 steps 25.9 lat 12.2ms (31s)
+lm_constrained[pretrained,n=300] test       success 0.320 validity 0.435 steps 31.1 lat 12.6ms (40s)
+lm[scratch,n=300]            test_seen  success 0.310 validity 0.476 steps 31.0 lat 23.9ms (78s)
+lm[scratch,n=300]            test       success 0.240 validity 0.455 steps 32.7 lat 4.8ms (33s)
+lm_constrained[scratch,n=300] test_seen  success 0.300 validity 0.463 steps 31.3 lat 4.1ms (13s)
+lm_constrained[scratch,n=300] test       success 0.250 validity 0.458 steps 32.5 lat 4.5ms (14s)
+14447 step-examples, 1.11M tokens, built in 0.7s
+step 0 val (assistant-token) loss 8.590671747532042
+step 100/407 loss 0.3696 val 0.3627 19s
+step 200/407 loss 0.1750 val 0.1644 41s
+step 300/407 loss 0.0849 val 0.0799 63s
+step 400/407 loss 0.0252 val 0.0200 85s
+step 407/407 loss 0.0164 val 0.0194 87s
+saved /Users/danielmercado/ProjectJoy/30_nanochat_mlx/checkpoints/sft_n1000
+14447 step-examples, 1.11M tokens, built in 0.8s
+step 0 val (assistant-token) loss 9.013927620878908
+step 100/407 loss 0.3928 val 0.3903 22s
+step 200/407 loss 0.3430 val 0.3479 44s
+step 300/407 loss 0.1960 val 0.1749 66s
+step 400/407 loss 0.0917 val 0.0978 88s
+step 407/407 loss 0.0813 val 0.0966 90s
+saved /Users/danielmercado/ProjectJoy/30_nanochat_mlx/checkpoints/sft_n1000_scratch
+lm[pretrained,n=1000]        test_seen  success 0.750 validity 0.724 steps 19.8 lat 19.2ms (39s)
+lm[pretrained,n=1000]        test       success 0.610 validity 0.624 steps 23.6 lat 19.4ms (45s)
+lm_constrained[pretrained,n=1000] test_seen  success 0.740 validity 0.701 steps 20.0 lat 4.3ms (9s)
+lm_constrained[pretrained,n=1000] test       success 0.600 validity 0.607 steps 23.8 lat 4.3ms (10s)
+lm[scratch,n=1000]           test_seen  success 0.110 validity 0.253 steps 36.5 lat 23.0ms (90s)
+lm[scratch,n=1000]           test       success 0.080 validity 0.347 steps 37.4 lat 25.7ms (104s)
+lm_constrained[scratch,n=1000] test_seen  success 0.120 validity 0.232 steps 36.3 lat 15.4ms (60s)
+lm_constrained[scratch,n=1000] test       success 0.140 validity 0.318 steps 35.9 lat 17.8ms (70s)
+lm[pretrained]               test3      success 0.040 validity 0.453 steps 39.4 lat 33.0ms (136s)
+lm_constrained[pretrained]   test3      success 0.040 validity 0.453 steps 39.4 lat 21.5ms (89s)
+lm[scratch]                  test3      success 0.000 validity 0.290 steps 40.0 lat 22.0ms (93s)
+lm_constrained[scratch]      test3      success 0.000 validity 0.297 steps 40.0 lat 16.0ms (68s)
+expert                       test3      success 1.000 validity 1.000 steps 25.9 lat 0.0ms (0s)
+random                       test3      success 0.000 validity 1.000 steps 40.0 lat 0.0ms (0s)
+mlp                          test3      success 0.010 validity 0.765 steps 39.8 lat 0.7ms (4s)
+wrote media/loss_curve.png
+wrote media/sft_curve.png
+wrote media/demo.html and media/episode_transcripts.md; 12 / 18 episodes solved
+[extra] Thu Oct 22 09:58:36 CDT 2026 end

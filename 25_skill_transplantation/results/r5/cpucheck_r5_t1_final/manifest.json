@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "tag": "cpucheck_r5_t1_final",
+  "seed": 0,
+  "profile": "tiny",
+  "config": {
+    "base": 64,
+    "teacher": 64,
+    "student": 64,
+    "hidden": 16,
+    "rank": 2,
+    "envs": 2,
+    "rollout": 16,
+    "epochs": 1,
+    "minibatch": 32,
+    "dagger_batches": 2,
+    "horizon": 48,
+    "switch_steps": 16,
+    "replay_capacity": 64,
+    "cpg_iters": 2,
+    "cpg_pop": 4,
+    "cpg_restarts": 2,
+    "cpg_horizon": 40,
+    "eval_segment": 24,
+    "eval_seeds": 1
+  },
+  "targets": [
+    3.0,
+    -3.0,
+    1.0
+  ],
+  "budget": {
+    "base": 64,
+    "teacher": 64,
+    "student": 64,
+    "addition": 192,
+    "final": 448
+  },
+  "unit": "completed training environment steps + teacher query examples; not equal FLOPs",
+  "no_legacy_warm_start": true,
+  "source_sha256": {
+    "r5.py": "9e6928536613b1a1728681f4e50ccee65f0164d9d0aae590b14d225ac7ed4b71",
+    "r5_core.py": "91e7d697f83fe3ede0f99b758dc06dd9b0e2464d9ea2d1fa116be9f7f67e7686",
+    "r5_train.py": "f02e5921525bfc1edff08bde46ca0b155de0438a4fafc0ef23c703cad58049f5",
+    "r5_report.py": "1293ace30ed6c975dffee972cc26ad4455a00c1edaae3759af0bbf3c3d203a8c"
+  }
+}

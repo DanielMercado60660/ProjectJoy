@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "tag": "cpucheck_r5_t1",
+  "seed": 0,
+  "profile": "tiny",
+  "config": {
+    "base": 64,
+    "teacher": 64,
+    "student": 64,
+    "hidden": 16,
+    "rank": 2,
+    "envs": 2,
+    "rollout": 16,
+    "epochs": 1,
+    "minibatch": 32,
+    "dagger_batches": 2,
+    "horizon": 48,
+    "switch_steps": 16,
+    "replay_capacity": 64,
+    "cpg_iters": 2,
+    "cpg_pop": 4,
+    "cpg_restarts": 2,
+    "cpg_horizon": 40,
+    "eval_segment": 24,
+    "eval_seeds": 1
+  },
+  "targets": [
+    3.0,
+    -3.0,
+    1.0
+  ],
+  "budget": {
+    "base": 64,
+    "teacher": 64,
+    "student": 64,
+    "addition": 192,
+    "final": 448
+  },
+  "unit": "completed training environment steps + teacher query examples; not equal FLOPs",
+  "no_legacy_warm_start": true
+}

@@ -1,0 +1,762 @@
+{
+  "seeds": {
+    "0": {
+      "final": {
+        "adapter": {
+          "tracking": 0.38972222222222225,
+          "switch_failure": 0.7708333333333334
+        },
+        "dagger": {
+          "tracking": 0.38486111111111115,
+          "switch_failure": 0.7083333333333334
+        },
+        "joint": {
+          "tracking": 0.21930555555555556,
+          "switch_failure": 1.0
+        },
+        "oracle": {
+          "tracking": 0.37152777777777773,
+          "switch_failure": 0.6666666666666666
+        },
+        "cpg": {
+          "tracking": 0.7119444444444444,
+          "switch_failure": 0.5
+        }
+      },
+      "acquisition": [
+        {
+          "method": "adapter",
+          "task": "fwd",
+          "stage": 1,
+          "acquisition": 0.16749999999999998,
+          "competence": 0.16749999999999998,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "adapter",
+          "task": "bwd",
+          "stage": 2,
+          "acquisition": 0.11124999999999999,
+          "competence": 0.11124999999999999,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "adapter",
+          "task": "slow",
+          "stage": 3,
+          "acquisition": 0.8904166666666667,
+          "competence": 0.8904166666666667,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "dagger",
+          "task": "fwd",
+          "stage": 1,
+          "acquisition": 0.16749999999999998,
+          "competence": 0.16749999999999998,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "dagger",
+          "task": "bwd",
+          "stage": 2,
+          "acquisition": 0.058750000000000004,
+          "competence": 0.058750000000000004,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "dagger",
+          "task": "slow",
+          "stage": 3,
+          "acquisition": 0.8804166666666666,
+          "competence": 0.8804166666666666,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "joint",
+          "task": "fwd",
+          "stage": 1,
+          "acquisition": 0.16749999999999998,
+          "competence": 0.16749999999999998,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "joint",
+          "task": "bwd",
+          "stage": 2,
+          "acquisition": 0.08625000000000001,
+          "competence": 0.08625000000000001,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "joint",
+          "task": "slow",
+          "stage": 3,
+          "acquisition": 0.235,
+          "competence": 0.235,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        }
+      ],
+      "timing": {
+        "adapter_s2.pkl": {
+          "env_steps": 524288,
+          "teacher_queries": 0,
+          "gradient_steps": 4096,
+          "gradient_examples": 2097152,
+          "actor_forward_examples": 3145728,
+          "critic_forward_examples": 2626408,
+          "wall_s": 21.10004204197321
+        },
+        "adapter_s3.pkl": {
+          "env_steps": 524288,
+          "teacher_queries": 0,
+          "gradient_steps": 4096,
+          "gradient_examples": 2097152,
+          "actor_forward_examples": 3145728,
+          "critic_forward_examples": 2626408,
+          "wall_s": 25.324135250004474
+        },
+        "base.pkl": {
+          "env_steps": 262144,
+          "teacher_queries": 0,
+          "gradient_steps": 2048,
+          "gradient_examples": 1048576,
+          "actor_forward_examples": 1572864,
+          "critic_forward_examples": 1313200,
+          "wall_s": 9.291404374991544
+        },
+        "dagger_s2.pkl": {
+          "env_steps": 65536,
+          "teacher_queries": 65536,
+          "gradient_steps": 1280,
+          "gradient_examples": 655360,
+          "actor_forward_examples": 720896,
+          "critic_forward_examples": 0,
+          "wall_s": 3.032631082984153
+        },
+        "dagger_s3.pkl": {
+          "env_steps": 65536,
+          "teacher_queries": 65536,
+          "gradient_steps": 1280,
+          "gradient_examples": 655360,
+          "actor_forward_examples": 720896,
+          "critic_forward_examples": 0,
+          "wall_s": 3.1440886659547687
+        },
+        "joint_s2.pkl": {
+          "env_steps": 524288,
+          "teacher_queries": 0,
+          "gradient_steps": 4096,
+          "gradient_examples": 2097152,
+          "actor_forward_examples": 3145728,
+          "critic_forward_examples": 2626408,
+          "wall_s": 18.102729084028397
+        },
+        "joint_s3.pkl": {
+          "env_steps": 524288,
+          "teacher_queries": 0,
+          "gradient_steps": 4096,
+          "gradient_examples": 2097152,
+          "actor_forward_examples": 3145728,
+          "critic_forward_examples": 2626408,
+          "wall_s": 17.988033749978058
+        },
+        "teacher_bwd.pkl": {
+          "env_steps": 393216,
+          "teacher_queries": 0,
+          "gradient_steps": 3072,
+          "gradient_examples": 1572864,
+          "actor_forward_examples": 2359296,
+          "critic_forward_examples": 1969800,
+          "wall_s": 13.514201707963366
+        },
+        "teacher_slow.pkl": {
+          "env_steps": 393216,
+          "teacher_queries": 0,
+          "gradient_steps": 3072,
+          "gradient_examples": 1572864,
+          "actor_forward_examples": 2359296,
+          "critic_forward_examples": 1969800,
+          "wall_s": 14.464492208033334
+        }
+      },
+      "unique_train_wall_s": 125.9617581659113,
+      "validation_teachers": {
+        "fwd": {
+          "tracking": 0.16,
+          "speed_mae": 2.3557622559945592,
+          "fall_proxy": 0.6666666666666666
+        },
+        "bwd": {
+          "tracking": 0.055,
+          "speed_mae": 1.0459738376303498,
+          "fall_proxy": 0.0
+        },
+        "slow": {
+          "tracking": 0.8683333333333333,
+          "speed_mae": 0.26720529709073704,
+          "fall_proxy": 0.3333333333333333
+        }
+      },
+      "cpg_edges": {
+        "fwd": {},
+        "bwd": {
+          "amplitude_1": 1.9851047253254863,
+          "phase_4": 3.141592653589793,
+          "phase_5": -3.138803513992859
+        },
+        "slow": {
+          "amplitude_4": 0.0
+        }
+      },
+      "cpg_curves": {
+        "0_0": {
+          "last5_mean": 0.6225532791537357,
+          "prior5_mean": 0.5437311929413825,
+          "best_generation": 32
+        },
+        "0_1": {
+          "last5_mean": 0.48294014234479554,
+          "prior5_mean": 0.43623158367498405,
+          "best_generation": 9
+        },
+        "1_0": {
+          "last5_mean": 0.7170133353935767,
+          "prior5_mean": 0.7431588987818765,
+          "best_generation": 23
+        },
+        "1_1": {
+          "last5_mean": 0.7448446138904844,
+          "prior5_mean": 0.7513034322564405,
+          "best_generation": 26
+        },
+        "2_0": {
+          "last5_mean": 0.8953276700015751,
+          "prior5_mean": 0.9054595525898173,
+          "best_generation": 8
+        },
+        "2_1": {
+          "last5_mean": 0.8869320037861591,
+          "prior5_mean": 0.8890246510337647,
+          "best_generation": 27
+        }
+      }
+    },
+    "1": {
+      "final": {
+        "adapter": {
+          "tracking": 0.43263888888888885,
+          "switch_failure": 0.9166666666666666
+        },
+        "dagger": {
+          "tracking": 0.41972222222222216,
+          "switch_failure": 0.75
+        },
+        "joint": {
+          "tracking": 0.40930555555555553,
+          "switch_failure": 0.9166666666666666
+        },
+        "oracle": {
+          "tracking": 0.39666666666666667,
+          "switch_failure": 0.9166666666666666
+        },
+        "cpg": {
+          "tracking": 0.7356944444444445,
+          "switch_failure": 0.5833333333333334
+        }
+      },
+      "acquisition": [
+        {
+          "method": "adapter",
+          "task": "fwd",
+          "stage": 1,
+          "acquisition": 0.06333333333333334,
+          "competence": 0.06333333333333334,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "adapter",
+          "task": "bwd",
+          "stage": 2,
+          "acquisition": 0.34791666666666665,
+          "competence": 0.34791666666666665,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "adapter",
+          "task": "slow",
+          "stage": 3,
+          "acquisition": 0.8866666666666667,
+          "competence": 0.8866666666666667,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "dagger",
+          "task": "fwd",
+          "stage": 1,
+          "acquisition": 0.06333333333333334,
+          "competence": 0.06333333333333334,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "dagger",
+          "task": "bwd",
+          "stage": 2,
+          "acquisition": 0.15833333333333333,
+          "competence": 0.15833333333333333,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "dagger",
+          "task": "slow",
+          "stage": 3,
+          "acquisition": 0.9841666666666667,
+          "competence": 0.9841666666666667,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "joint",
+          "task": "fwd",
+          "stage": 1,
+          "acquisition": 0.06333333333333334,
+          "competence": 0.06333333333333334,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "joint",
+          "task": "bwd",
+          "stage": 2,
+          "acquisition": 0.15125,
+          "competence": 0.15125,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "joint",
+          "task": "slow",
+          "stage": 3,
+          "acquisition": 0.7937500000000001,
+          "competence": 0.7937500000000001,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        }
+      ],
+      "timing": {
+        "adapter_s2.pkl": {
+          "env_steps": 524288,
+          "teacher_queries": 0,
+          "gradient_steps": 4096,
+          "gradient_examples": 2097152,
+          "actor_forward_examples": 3145728,
+          "critic_forward_examples": 2626408,
+          "wall_s": 21.22679041599622
+        },
+        "adapter_s3.pkl": {
+          "env_steps": 524288,
+          "teacher_queries": 0,
+          "gradient_steps": 4096,
+          "gradient_examples": 2097152,
+          "actor_forward_examples": 3145728,
+          "critic_forward_examples": 2626408,
+          "wall_s": 25.18788941699313
+        },
+        "base.pkl": {
+          "env_steps": 262144,
+          "teacher_queries": 0,
+          "gradient_steps": 2048,
+          "gradient_examples": 1048576,
+          "actor_forward_examples": 1572864,
+          "critic_forward_examples": 1313200,
+          "wall_s": 9.314494042017031
+        },
+        "dagger_s2.pkl": {
+          "env_steps": 65536,
+          "teacher_queries": 65536,
+          "gradient_steps": 1280,
+          "gradient_examples": 655360,
+          "actor_forward_examples": 720896,
+          "critic_forward_examples": 0,
+          "wall_s": 3.0118929999880493
+        },
+        "dagger_s3.pkl": {
+          "env_steps": 65536,
+          "teacher_queries": 65536,
+          "gradient_steps": 1280,
+          "gradient_examples": 655360,
+          "actor_forward_examples": 720896,
+          "critic_forward_examples": 0,
+          "wall_s": 3.1747799170552753
+        },
+        "joint_s2.pkl": {
+          "env_steps": 524288,
+          "teacher_queries": 0,
+          "gradient_steps": 4096,
+          "gradient_examples": 2097152,
+          "actor_forward_examples": 3145728,
+          "critic_forward_examples": 2626408,
+          "wall_s": 18.20707883394789
+        },
+        "joint_s3.pkl": {
+          "env_steps": 524288,
+          "teacher_queries": 0,
+          "gradient_steps": 4096,
+          "gradient_examples": 2097152,
+          "actor_forward_examples": 3145728,
+          "critic_forward_examples": 2626408,
+          "wall_s": 18.52587583399145
+        },
+        "teacher_bwd.pkl": {
+          "env_steps": 393216,
+          "teacher_queries": 0,
+          "gradient_steps": 3072,
+          "gradient_examples": 1572864,
+          "actor_forward_examples": 2359296,
+          "critic_forward_examples": 1969800,
+          "wall_s": 13.450508917041589
+        },
+        "teacher_slow.pkl": {
+          "env_steps": 393216,
+          "teacher_queries": 0,
+          "gradient_steps": 3072,
+          "gradient_examples": 1572864,
+          "actor_forward_examples": 2359296,
+          "critic_forward_examples": 1969800,
+          "wall_s": 14.581962958036456
+        }
+      },
+      "unique_train_wall_s": 126.68127333506709,
+      "validation_teachers": {
+        "fwd": {
+          "tracking": 0.09499999999999999,
+          "speed_mae": 2.7695651193559923,
+          "fall_proxy": 1.0
+        },
+        "bwd": {
+          "tracking": 0.14222222222222222,
+          "speed_mae": 1.8948596074207458,
+          "fall_proxy": 1.0
+        },
+        "slow": {
+          "tracking": 0.9844444444444443,
+          "speed_mae": 0.1668681061946545,
+          "fall_proxy": 0.0
+        }
+      },
+      "cpg_edges": {
+        "fwd": {
+          "phase_0": 3.141592653589793
+        },
+        "bwd": {
+          "amplitude_4": 2.0
+        },
+        "slow": {
+          "amplitude_0": 2.0,
+          "amplitude_2": 0.0,
+          "bias_0": 1.0
+        }
+      },
+      "cpg_curves": {
+        "0_0": {
+          "last5_mean": 0.4597100275095734,
+          "prior5_mean": 0.42495851837969567,
+          "best_generation": 18
+        },
+        "0_1": {
+          "last5_mean": 0.48988042893495853,
+          "prior5_mean": 0.4500173218454867,
+          "best_generation": 19
+        },
+        "1_0": {
+          "last5_mean": 0.7782143245393385,
+          "prior5_mean": 0.7491918039224024,
+          "best_generation": 32
+        },
+        "1_1": {
+          "last5_mean": 0.7175582382736058,
+          "prior5_mean": 0.6994484062111919,
+          "best_generation": 9
+        },
+        "2_0": {
+          "last5_mean": 0.854790439111263,
+          "prior5_mean": 0.8569935615853537,
+          "best_generation": 24
+        },
+        "2_1": {
+          "last5_mean": 0.8549926063881161,
+          "prior5_mean": 0.8294452450590691,
+          "best_generation": 4
+        }
+      }
+    },
+    "2": {
+      "final": {
+        "adapter": {
+          "tracking": 0.4781944444444444,
+          "switch_failure": 0.9375
+        },
+        "dagger": {
+          "tracking": 0.4237499999999999,
+          "switch_failure": 0.9583333333333334
+        },
+        "joint": {
+          "tracking": 0.39194444444444443,
+          "switch_failure": 0.6875
+        },
+        "oracle": {
+          "tracking": 0.4198611111111112,
+          "switch_failure": 0.9583333333333334
+        },
+        "cpg": {
+          "tracking": 0.9493055555555556,
+          "switch_failure": 0.0
+        }
+      },
+      "acquisition": [
+        {
+          "method": "adapter",
+          "task": "fwd",
+          "stage": 1,
+          "acquisition": 0.10166666666666666,
+          "competence": 0.10166666666666666,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "adapter",
+          "task": "bwd",
+          "stage": 2,
+          "acquisition": 0.3575,
+          "competence": 0.3575,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "adapter",
+          "task": "slow",
+          "stage": 3,
+          "acquisition": 0.9754166666666667,
+          "competence": 0.9754166666666667,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "dagger",
+          "task": "fwd",
+          "stage": 1,
+          "acquisition": 0.10166666666666666,
+          "competence": 0.10166666666666666,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "dagger",
+          "task": "bwd",
+          "stage": 2,
+          "acquisition": 0.16833333333333333,
+          "competence": 0.16833333333333333,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "dagger",
+          "task": "slow",
+          "stage": 3,
+          "acquisition": 0.98375,
+          "competence": 0.98375,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "joint",
+          "task": "fwd",
+          "stage": 1,
+          "acquisition": 0.10166666666666666,
+          "competence": 0.10166666666666666,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "joint",
+          "task": "bwd",
+          "stage": 2,
+          "acquisition": 0.19458333333333333,
+          "competence": 0.19458333333333333,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        },
+        {
+          "method": "joint",
+          "task": "slow",
+          "stage": 3,
+          "acquisition": 0.6012500000000001,
+          "competence": 0.6012500000000001,
+          "loss": 0.0,
+          "retained_ratio": 1.0
+        }
+      ],
+      "timing": {
+        "adapter_s2.pkl": {
+          "env_steps": 524288,
+          "teacher_queries": 0,
+          "gradient_steps": 4096,
+          "gradient_examples": 2097152,
+          "actor_forward_examples": 3145728,
+          "critic_forward_examples": 2626408,
+          "wall_s": 21.17038920900086
+        },
+        "adapter_s3.pkl": {
+          "env_steps": 524288,
+          "teacher_queries": 0,
+          "gradient_steps": 4096,
+          "gradient_examples": 2097152,
+          "actor_forward_examples": 3145728,
+          "critic_forward_examples": 2626408,
+          "wall_s": 24.772418042004574
+        },
+        "base.pkl": {
+          "env_steps": 262144,
+          "teacher_queries": 0,
+          "gradient_steps": 2048,
+          "gradient_examples": 1048576,
+          "actor_forward_examples": 1572864,
+          "critic_forward_examples": 1313200,
+          "wall_s": 9.310998625005595
+        },
+        "dagger_s2.pkl": {
+          "env_steps": 65536,
+          "teacher_queries": 65536,
+          "gradient_steps": 1280,
+          "gradient_examples": 655360,
+          "actor_forward_examples": 720896,
+          "critic_forward_examples": 0,
+          "wall_s": 2.992991249950137
+        },
+        "dagger_s3.pkl": {
+          "env_steps": 65536,
+          "teacher_queries": 65536,
+          "gradient_steps": 1280,
+          "gradient_examples": 655360,
+          "actor_forward_examples": 720896,
+          "critic_forward_examples": 0,
+          "wall_s": 3.15415016701445
+        },
+        "joint_s2.pkl": {
+          "env_steps": 524288,
+          "teacher_queries": 0,
+          "gradient_steps": 4096,
+          "gradient_examples": 2097152,
+          "actor_forward_examples": 3145728,
+          "critic_forward_examples": 2626408,
+          "wall_s": 18.139504834020045
+        },
+        "joint_s3.pkl": {
+          "env_steps": 524288,
+          "teacher_queries": 0,
+          "gradient_steps": 4096,
+          "gradient_examples": 2097152,
+          "actor_forward_examples": 3145728,
+          "critic_forward_examples": 2626408,
+          "wall_s": 18.269137374998536
+        },
+        "teacher_bwd.pkl": {
+          "env_steps": 393216,
+          "teacher_queries": 0,
+          "gradient_steps": 3072,
+          "gradient_examples": 1572864,
+          "actor_forward_examples": 2359296,
+          "critic_forward_examples": 1969800,
+          "wall_s": 13.313105499953963
+        },
+        "teacher_slow.pkl": {
+          "env_steps": 393216,
+          "teacher_queries": 0,
+          "gradient_steps": 3072,
+          "gradient_examples": 1572864,
+          "actor_forward_examples": 2359296,
+          "critic_forward_examples": 1969800,
+          "wall_s": 14.246708582970314
+        }
+      },
+      "unique_train_wall_s": 125.36940358491847,
+      "validation_teachers": {
+        "fwd": {
+          "tracking": 0.07611111111111112,
+          "speed_mae": 2.9008995077640463,
+          "fall_proxy": 1.0
+        },
+        "bwd": {
+          "tracking": 0.20000000000000004,
+          "speed_mae": 1.904724745124356,
+          "fall_proxy": 1.0
+        },
+        "slow": {
+          "tracking": 0.9905555555555555,
+          "speed_mae": 0.04342481716046163,
+          "fall_proxy": 0.0
+        }
+      },
+      "cpg_edges": {
+        "fwd": {
+          "amplitude_0": 0.0,
+          "phase_2": -3.141592653589793
+        },
+        "bwd": {
+          "amplitude_1": 0.0
+        },
+        "slow": {
+          "amplitude_1": 0.0
+        }
+      },
+      "cpg_curves": {
+        "0_0": {
+          "last5_mean": 0.22070213758503252,
+          "prior5_mean": 0.3916828682312211,
+          "best_generation": 23
+        },
+        "0_1": {
+          "last5_mean": 0.8110802343554235,
+          "prior5_mean": 0.6395649650571413,
+          "best_generation": 31
+        },
+        "1_0": {
+          "last5_mean": 0.7917952106046082,
+          "prior5_mean": 0.8114605106929936,
+          "best_generation": 13
+        },
+        "1_1": {
+          "last5_mean": 0.8538525323973204,
+          "prior5_mean": 0.8226859866343265,
+          "best_generation": 30
+        },
+        "2_0": {
+          "last5_mean": 0.8600067812834122,
+          "prior5_mean": 0.8515344161226647,
+          "best_generation": 32
+        },
+        "2_1": {
+          "last5_mean": 0.9183173448672843,
+          "prior5_mean": 0.9171451848670694,
+          "best_generation": 20
+        }
+      }
+    }
+  },
+  "source": "completed main_s0..2; old test metrics are retrospective only",
+  "validation": "existing policies on validation reset seeds; no new test access"
+}

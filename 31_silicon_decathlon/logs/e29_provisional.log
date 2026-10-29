@@ -1,0 +1,29 @@
+Torch version 2.14.1 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+  n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+Converting PyTorch Frontend ==> MIL Ops:   0%|          | 0/959 [00:00<?, ? ops/s]Converting PyTorch Frontend ==> MIL Ops:  70%|███████   | 675/959 [00:00<00:00, 6739.95 ops/s]Converting PyTorch Frontend ==> MIL Ops: 100%|█████████▉| 958/959 [00:00<00:00, 7543.60 ops/s]
+Running MIL frontend_pytorch pipeline:   0%|          | 0/5 [00:00<?, ? passes/s]Running MIL frontend_pytorch pipeline: 100%|██████████| 5/5 [00:00<00:00, 146.95 passes/s]
+Running MIL default pipeline:   0%|          | 0/95 [00:00<?, ? passes/s]Running MIL default pipeline:  17%|█▋        | 16/95 [00:00<00:00, 155.61 passes/s]Running MIL default pipeline:  34%|███▎      | 32/95 [00:00<00:00, 157.15 passes/s]Running MIL default pipeline:  51%|█████     | 48/95 [00:00<00:00, 121.86 passes/s]Running MIL default pipeline:  64%|██████▍   | 61/95 [00:00<00:00, 55.80 passes/s] Running MIL default pipeline:  74%|███████▎  | 70/95 [00:00<00:00, 56.59 passes/s]Running MIL default pipeline:  92%|█████████▏| 87/95 [00:01<00:00, 76.85 passes/s]Running MIL default pipeline: 100%|██████████| 95/95 [00:01<00:00, 79.44 passes/s]
+Running MIL backend_mlprogram pipeline:   0%|          | 0/12 [00:00<?, ? passes/s]Running MIL backend_mlprogram pipeline: 100%|██████████| 12/12 [00:00<00:00, 178.56 passes/s]
+Converting PyTorch Frontend ==> MIL Ops:   0%|          | 0/959 [00:00<?, ? ops/s]Converting PyTorch Frontend ==> MIL Ops:  98%|█████████▊| 938/959 [00:00<00:00, 6803.12 ops/s]Converting PyTorch Frontend ==> MIL Ops: 100%|█████████▉| 958/959 [00:00<00:00, 6850.29 ops/s]
+Running MIL frontend_pytorch pipeline:   0%|          | 0/5 [00:00<?, ? passes/s]Running MIL frontend_pytorch pipeline: 100%|██████████| 5/5 [00:00<00:00, 142.53 passes/s]
+Running MIL default pipeline:   0%|          | 0/95 [00:00<?, ? passes/s]Running MIL default pipeline:  16%|█▌        | 15/95 [00:00<00:00, 148.68 passes/s]Running MIL default pipeline:  32%|███▏      | 30/95 [00:00<00:00, 148.37 passes/s]Running MIL default pipeline:  47%|████▋     | 45/95 [00:00<00:00, 118.42 passes/s]Running MIL default pipeline:  61%|██████    | 58/95 [00:00<00:00, 106.68 passes/s]Running MIL default pipeline:  74%|███████▎  | 70/95 [00:00<00:00, 52.52 passes/s] Running MIL default pipeline:  92%|█████████▏| 87/95 [00:01<00:00, 71.70 passes/s]Running MIL default pipeline: 100%|██████████| 95/95 [00:01<00:00, 77.19 passes/s]
+Running MIL backend_mlprogram pipeline:   0%|          | 0/12 [00:00<?, ? passes/s]Running MIL backend_mlprogram pipeline: 100%|██████████| 12/12 [00:00<00:00, 175.65 passes/s]
+== 29_image_gen  (provisional)
+  b=    1 numpy_cpu            16.918 ms (p90 17.174)  v_max_err=0.000872, v_mean_err=0.000101  [Q]
+  b=    1 mlx_cpu              13.092 ms (p90 13.316)  v_max_err=0.000871, v_mean_err=0.000101  [Q]
+  b=    1 mlx_gpu               3.658 ms (p90 4.342)  v_max_err=0, v_mean_err=0  [Q]
+  b=    1 mlx_gpu_fp16          3.045 ms (p90 3.086)  v_max_err=0.00476, v_mean_err=0.000667  [Q]
+  b=    1 mlx_gpu_compiled      3.246 ms (p90 3.371)  v_max_err=0, v_mean_err=0  [Q]
+  b=    1 coreml_cpu            1.830 ms (p90 1.866)  v_max_err=0.0463, v_mean_err=0.00436  [Q]
+  b=    1 coreml_gpu            1.833 ms (p90 1.860)  v_max_err=0.0463, v_mean_err=0.00436  [Q]
+  b=    1 coreml_ane            0.503 ms (p90 0.519)  v_max_err=0.0348, v_mean_err=0.00676  [Q]
+  b=   64 numpy_cpu          1222.637 ms (p90 1228.810)  v_max_err=0.0111, v_mean_err=0.000904  [Q]
+  b=   64 mlx_cpu             694.810 ms (p90 744.042)  v_max_err=0.0111, v_mean_err=0.000904  [Q]
+  b=   64 mlx_gpu              22.876 ms (p90 30.708)  v_max_err=0, v_mean_err=0  [Q]
+  b=   64 mlx_gpu_fp16         15.066 ms (p90 18.689)  v_max_err=0.0187, v_mean_err=0.00134  [Q]
+  b=   64 mlx_gpu_compiled     21.450 ms (p90 27.607)  v_max_err=0, v_mean_err=0  [Q]
+  b=   64 coreml_cpu           74.177 ms (p90 76.565)  v_max_err=0.0525, v_mean_err=0.00361  [Q]
+  b=   64 coreml_gpu           21.238 ms (p90 22.409)  v_max_err=0.0122, v_mean_err=0.001  [Q]
+  b=   64 coreml_ane           28.763 ms (p90 46.677)  v_max_err=0.0555, v_mean_err=0.00552  [Q]
+wrote results/e29_image_gen_provisional.json

@@ -1,0 +1,176 @@
+{
+ "event": {
+  "id": "11_physics_detective",
+  "project": "11_physics_detective",
+  "model": "Deep-Sets posterior net (enc 42-192-192-128, head 129-192-192-24, 8-comp MoG)",
+  "checkpoint": "../11_physics_detective/checkpoints/sbi",
+  "unit": "datasets (posterior queries; each = up to 15 pushes x 20 frames)",
+  "params": 136664,
+  "notes": "Inputs: fresh simulated datasets (eval_sbi.py recipe, fixed seed). numpy_cpu uses scipy.special.erf for exact GELU. q8/q4: first encoder layer (in 42) and first head layer (in 129) stay fp32 (in_dim not a multiple of group size 32). Core ML packages are fp16. The MLX GPU fp32 reference runs fp32 matmuls in TF32 by default on this machine (MLX 0.32.4; MLX_ENABLE_TF32='' turns it off), so CPU fp32 engines differ from it by more than fp32 rounding; see qualifies()."
+ },
+ "final": false,
+ "batches": {
+  "1000": {
+   "agreement": {
+    "numpy_cpu": {
+     "weight_max_err": 2.0816922187805176e-05,
+     "loc_max_err": 0.00012493133544921875,
+     "scale_max_err": 2.1457672119140625e-05,
+     "post_mean_max_err": 3.2064232238782076e-06
+    },
+    "mlx_cpu": {
+     "weight_max_err": 2.212822437286377e-05,
+     "loc_max_err": 0.000133514404296875,
+     "scale_max_err": 2.288818359375e-05,
+     "post_mean_max_err": 3.757753631261629e-06
+    },
+    "mlx_gpu": {
+     "weight_max_err": 0.0,
+     "loc_max_err": 0.0,
+     "scale_max_err": 0.0,
+     "post_mean_max_err": 0.0
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 36728300,
+    "mlx_gpu": 36728300
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 36.2747710023541,
+     "p90_ms": 36.954233987489715,
+     "min_ms": 35.3755830146838,
+     "calls": 42,
+     "rounds": 3,
+     "round_median_spread": 1.0279708710753508
+    },
+    "mlx_cpu": {
+     "median_ms": 19.3348335014889,
+     "p90_ms": 19.70645818801131,
+     "min_ms": 19.161833013640717,
+     "calls": 78,
+     "rounds": 3,
+     "round_median_spread": 1.0106334325336581
+    },
+    "mlx_gpu": {
+     "median_ms": 0.5418750224635005,
+     "p90_ms": 0.6042248045559973,
+     "min_ms": 0.49070798559114337,
+     "calls": 2617,
+     "rounds": 3,
+     "round_median_spread": 1.0182351256458684
+    }
+   },
+   "task": {},
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e11_physics_detective_b1000_fp16.mlpackage",
+     "size_bytes": 284893,
+     "placement": {
+      "CPU": 27
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e11_physics_detective_b1000_fp16.mlpackage",
+     "size_bytes": 284893,
+     "placement": {
+      "GPU": 27
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e11_physics_detective_b1000_fp16.mlpackage",
+     "size_bytes": 284893,
+     "placement": {
+      "NeuralEngine": 27
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "posterior mean max err 3.21e-06 (no task check)"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "posterior mean max err 3.76e-06 (no task check)"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "posterior mean max err 0 (no task check)"
+    }
+   }
+  }
+ },
+ "skips": {},
+ "task_checks": false,
+ "settings": {
+  "repeats": 3,
+  "budget_s": 0.5,
+  "only": [
+   "numpy_cpu",
+   "mlx_cpu"
+  ]
+ },
+ "mlx_tf32": false,
+ "mlx_gpu_matmul_rel_err": 5.303472196546295e-07,
+ "mlx_tf32_env": "0",
+ "env_before": {
+  "time": "2026-10-22 18:16:04",
+  "loadavg": [
+   1.78076171875,
+   2.0703125,
+   2.14892578125
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 404,
+    "cpu": 34.2,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.172945840167813,
+  "mlx_gpu_2048_matmul_ms": 1.722074999997858
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.17023084044922143,
+  "mlx_gpu_2048_matmul_ms": 1.6496020994964056
+ },
+ "env_after": {
+  "time": "2026-10-22 18:16:10",
+  "loadavg": [
+   1.8203125,
+   2.06787109375,
+   2.14697265625
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 404,
+    "cpu": 40.5,
+    "comm": "WindowServer"
+   },
+   {
+    "pid": 16934,
+    "cpu": 22.7,
+    "comm": "ANECompilerService"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

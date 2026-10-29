@@ -1,0 +1,120 @@
+[gpu_run] acquired gpu0: logs/review_planner5.sh
+[random] best 0.979  (39s)
+[cem 0] best 0.867 succ 0.62 mean-of-pop 0.177 (76s)
+[cem 1] best 0.871 succ 0.62 mean-of-pop 0.201 (115s)
+[cem 2] best 0.782 succ 0.55 mean-of-pop 0.309 (157s)
+[cem 3] best 0.787 succ 0.55 mean-of-pop 0.311 (205s)
+[cem 4] best 0.833 succ 0.60 mean-of-pop 0.353 (251s)
+[cem 5] best 0.750 succ 0.53 mean-of-pop 0.315 (295s)
+[cem 6] best 0.933 succ 0.68 mean-of-pop 0.463 (345s)
+[cem 7] best 0.899 succ 0.65 mean-of-pop 0.483 (395s)
+[cem 8] best 0.815 succ 0.57 mean-of-pop 0.481 (445s)
+[cem 9] best 0.956 succ 0.70 mean-of-pop 0.465 (494s)
+[final] best score 0.987 succ 0.724 frac 0.877  configs=611  env steps=7904991  548s
+{
+ "freq": 2.9613326741973522,
+ "stride": 0.14494256199942201,
+ "height": 0.29075336136771285,
+ "clear": 0.0955747670658354,
+ "duty": 0.5333820749958242,
+ "xoff_f": 0.021138460173245156,
+ "xoff_r": 0.039225045765697165,
+ "abd": -0.005067302732510337,
+ "dh": 0.003931794249340554,
+ "p1": 0.4982953540350775,
+ "p2": 0.5750128932423627,
+ "p3": 0.07543553795766542,
+ "k_yaw": 1.7121472281244863,
+ "look": 0.8274012057644764,
+ "margin": 0.058877219098983455,
+ "dmax": 0.11783212053206986,
+ "vgain": 1.1932716218496044
+}
+cpg_baseline: success (0.024, np.float64(0.013781177149521824), np.float64(0.04147745969189818))  push-success (0.012, np.float64(0.0055109199671753584), np.float64(0.025930707718986326)) (14s)
+cpg_planner_baseline: success (0.694, np.float64(0.6522544304326852), np.float64(0.7327872175773242))  push-success (0.646, np.float64(0.6031151949321183), np.float64(0.6866584164568579)) (45s)
+residual_ppo: success (0.984, np.float64(0.9687485245822888), np.float64(0.9918708446797967))  push-success (0.978, np.float64(0.9610387448516022), np.float64(0.9876721198328542)) (54s)
+{
+ "n_layouts": 500,
+ "gap_max": 0.2,
+ "flat": false,
+ "mask_stones": false,
+ "policy": "checkpoints/policy.npz",
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 40.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.96,
+  0.942,
+  0.976
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 480,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 12,
+  "ppo_energy_per_m": [
+   568.3705958681453,
+   562.4998198127435,
+   573.5000521590667
+  ],
+  "base_energy_per_m": [
+   1208.1450268612134,
+   1155.1270137361216,
+   1267.4903794988488
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -639.774430993068,
+   -699.8077419429917,
+   -584.8170471483011
+  ],
+  "ppo_speed": [
+   1.6288349867100036,
+   1.603203046889788,
+   1.6561872692212216
+  ],
+  "base_speed": [
+   0.4696194741679502,
+   0.44920607227942483,
+   0.4889891952861108
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.29,
+  0.248,
+  0.332
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 150,
+  "base_only": 5
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 342,
+  "ppo_energy_per_m": [
+   566.9449831315986,
+   565.6110086765847,
+   568.3985947032953
+  ],
+  "base_energy_per_m": [
+   970.4392981755682,
+   964.1264820733538,
+   976.9868575230835
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -403.49431504396955,
+   -410.00114664144354,
+   -397.1285511770405
+  ],
+  "ppo_speed": [
+   1.6452395705312228,
+   1.639714636640763,
+   1.6503047110183382
+  ],
+  "base_speed": [
+   0.4362282227572921,
+   0.43388077459324315,
+   0.4385332969096107
+  ]
+ },
+ "wall_s": 54.458683013916016
+}

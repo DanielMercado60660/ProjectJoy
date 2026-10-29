@@ -1,0 +1,164 @@
+{
+ "event": {
+  "id": "08_grand_prix",
+  "project": "08_tiny_grand_prix",
+  "model": "ES car policy MLP 13-32-32-2 (tanh)",
+  "checkpoint": "../08_tiny_grand_prix/checkpoints/es_best.npz",
+  "unit": "car steps (one observation -> one action)",
+  "params": 1570,
+  "notes": "Inputs: observations recorded while the numpy policy drives held-out tracks 20-27 (fixed). Task check: vendored sim, strict one-lap trial on held-out tracks 0-11, grip 1.0. q8/q4 quantize layers 2-3 only (layer 1 has in_dim 13, not a multiple of the group size 32), so the first layer stays fp32. Core ML packages are fp16. CPU fp32 engines differ from the MLX GPU reference by ~6e-3 at batch 256 because MLX GPU runs fp32 matmuls in TF32 by default here (MLX_ENABLE_TF32='' turns it off)."
+ },
+ "final": true,
+ "tf32_pass": true,
+ "batches": {
+  "1": {
+   "agreement": {
+    "mlx_gpu_tf32": {
+     "action_max_err": 0.0,
+     "action_mean_err": 0.0
+    },
+    "mlx_gpu_compiled_tf32": {
+     "action_max_err": 0.0,
+     "action_mean_err": 0.0
+    }
+   },
+   "memory_bytes": {
+    "mlx_gpu_tf32": 12598890,
+    "mlx_gpu_compiled_tf32": 12598890
+   },
+   "timing": {
+    "mlx_gpu_tf32": {
+     "median_ms": 0.1804999919841066,
+     "p90_ms": 0.2520369045669213,
+     "min_ms": 0.10370800737291574,
+     "calls": 9062,
+     "rounds": 7,
+     "round_median_spread": 1.1961371940393224
+    },
+    "mlx_gpu_compiled_tf32": {
+     "median_ms": 0.18041700241155922,
+     "p90_ms": 0.25508299586363137,
+     "min_ms": 0.09870799840427935,
+     "calls": 8949,
+     "rounds": 7,
+     "round_median_spread": 1.1030701138538495
+    }
+   },
+   "task": {},
+   "coreml": {},
+   "qualifies": {
+    "mlx_gpu_tf32": {
+     "ok": true,
+     "reason": "action max err 0"
+    },
+    "mlx_gpu_compiled_tf32": {
+     "ok": true,
+     "reason": "action max err 0"
+    }
+   }
+  },
+  "256": {
+   "agreement": {
+    "mlx_gpu_tf32": {
+     "action_max_err": 0.005915023386478424,
+     "action_mean_err": 0.0006438368254748639
+    },
+    "mlx_gpu_compiled_tf32": {
+     "action_max_err": 0.005915023386478424,
+     "action_mean_err": 0.0006438368254748639
+    }
+   },
+   "memory_bytes": {
+    "mlx_gpu_tf32": 12704590,
+    "mlx_gpu_compiled_tf32": 12704590
+   },
+   "timing": {
+    "mlx_gpu_tf32": {
+     "median_ms": 0.15995799913071096,
+     "p90_ms": 0.1984999980777502,
+     "min_ms": 0.10729100904427469,
+     "calls": 10489,
+     "rounds": 7,
+     "round_median_spread": 1.0303853254410666
+    },
+    "mlx_gpu_compiled_tf32": {
+     "median_ms": 0.159624993102625,
+     "p90_ms": 0.19809221266768876,
+     "min_ms": 0.11029199231415987,
+     "calls": 10539,
+     "rounds": 7,
+     "round_median_spread": 1.0488651591273987
+    }
+   },
+   "task": {},
+   "coreml": {},
+   "qualifies": {
+    "mlx_gpu_tf32": {
+     "ok": true,
+     "reason": "action max err 0.00592"
+    },
+    "mlx_gpu_compiled_tf32": {
+     "ok": true,
+     "reason": "action max err 0.00592"
+    }
+   }
+  }
+ },
+ "skips": {},
+ "task_checks": false,
+ "settings": {
+  "repeats": 7,
+  "budget_s": 0.25
+ },
+ "mlx_tf32": true,
+ "mlx_gpu_matmul_rel_err": 0.0007571232809227448,
+ "mlx_tf32_env": "1",
+ "env_before": {
+  "time": "2026-10-22 18:10:57",
+  "loadavg": [
+   2.49658203125,
+   2.42626953125,
+   2.25634765625
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 404,
+    "cpu": 20.5,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.17276833998039365,
+  "mlx_gpu_2048_matmul_ms": 0.9187146002659574
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.1705758401658386,
+  "mlx_gpu_2048_matmul_ms": 0.5349416504031979
+ },
+ "env_after": {
+  "time": "2026-10-22 18:11:04",
+  "loadavg": [
+   2.56689453125,
+   2.4443359375,
+   2.26416015625
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

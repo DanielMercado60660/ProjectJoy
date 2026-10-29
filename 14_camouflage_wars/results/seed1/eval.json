@@ -1,0 +1,546 @@
+{
+ "baseline": {
+  "method": "outlier",
+  "sigma": 2.0
+ },
+ "quartile_edges_from_train": [
+  0.407092808438141,
+  0.7495589627113212,
+  1.1335031215633935
+ ],
+ "splits": {
+  "test_id": {
+   "unet": {
+    "scene_iou": 0.8936888261421079,
+    "pixel_iou": 0.8889731633540474,
+    "det_rate": 0.741,
+    "inst_iou": 0.7271989678279827,
+    "det_rate_isolated": 0.9363207547169812,
+    "frac_isolated": 0.636,
+    "det_rate_coverage": 0.9435,
+    "fp_per_scene": 0.03,
+    "n_creatures": 2000,
+    "n_scenes": 1000,
+    "by_delta": {
+     "other family": {
+      "n": 505,
+      "n_isolated": 338,
+      "det_rate": 0.8237623762376237,
+      "det_rate_isolated": 0.9822485207100592,
+      "det_rate_coverage": 0.996039603960396,
+      "inst_iou": 0.8126777554799856
+     },
+     "same \u03b4<0.25": {
+      "n": 347,
+      "n_isolated": 209,
+      "det_rate": 0.5244956772334294,
+      "det_rate_isolated": 0.7320574162679426,
+      "det_rate_coverage": 0.723342939481268,
+      "inst_iou": 0.5109619373829695
+     },
+     "same 0.25\u20130.5": {
+      "n": 399,
+      "n_isolated": 259,
+      "det_rate": 0.7418546365914787,
+      "det_rate_isolated": 0.9613899613899614,
+      "det_rate_coverage": 0.974937343358396,
+      "inst_iou": 0.7357387781851903
+     },
+     "same 0.5\u20130.75": {
+      "n": 370,
+      "n_isolated": 240,
+      "det_rate": 0.8054054054054054,
+      "det_rate_isolated": 0.9833333333333333,
+      "det_rate_coverage": 0.9864864864864865,
+      "inst_iou": 0.772298243617923
+     },
+     "same 0.75\u20131": {
+      "n": 379,
+      "n_isolated": 226,
+      "det_rate": 0.7651715039577837,
+      "det_rate_isolated": 0.9778761061946902,
+      "det_rate_coverage": 1.0,
+      "inst_iou": 0.7582632037787862
+     }
+    },
+    "by_stat_quartile": {
+     "Q1 (closest match)": {
+      "n": 462,
+      "n_isolated": 280,
+      "det_rate": 0.5735930735930735,
+      "det_rate_isolated": 0.7857142857142857,
+      "det_rate_coverage": 0.7878787878787878,
+      "inst_iou": 0.5640471805779103
+     },
+     "Q2": {
+      "n": 519,
+      "n_isolated": 337,
+      "det_rate": 0.7842003853564548,
+      "det_rate_isolated": 0.9703264094955489,
+      "det_rate_coverage": 0.9807321772639692,
+      "inst_iou": 0.7592234947860887
+     },
+     "Q3": {
+      "n": 512,
+      "n_isolated": 329,
+      "det_rate": 0.798828125,
+      "det_rate_isolated": 0.9817629179331308,
+      "det_rate_coverage": 0.99609375,
+      "inst_iou": 0.7850079254085184
+     },
+     "Q4 (least match)": {
+      "n": 507,
+      "n_isolated": 326,
+      "det_rate": 0.7909270216962525,
+      "det_rate_isolated": 0.9846625766871165,
+      "det_rate_coverage": 0.9940828402366864,
+      "inst_iou": 0.7847082576446343
+     }
+    },
+    "quartile_edges": [
+     0.407092808438141,
+     0.7495589627113212,
+     1.1335031215633935
+    ],
+    "by_skin_family": {
+     "cells": {
+      "n": 322,
+      "n_isolated": 201,
+      "det_rate": 0.7236024844720497,
+      "det_rate_isolated": 0.9154228855721394,
+      "det_rate_coverage": 0.9285714285714286,
+      "inst_iou": 0.7174236813748547
+     },
+     "checker": {
+      "n": 318,
+      "n_isolated": 198,
+      "det_rate": 0.7484276729559748,
+      "det_rate_isolated": 0.9444444444444444,
+      "det_rate_coverage": 0.940251572327044,
+      "inst_iou": 0.7203060128896313
+     },
+     "fbm": {
+      "n": 366,
+      "n_isolated": 240,
+      "det_rate": 0.7431693989071039,
+      "det_rate_isolated": 0.9125,
+      "det_rate_coverage": 0.9207650273224044,
+      "inst_iou": 0.7328544956307641
+     },
+     "plaid": {
+      "n": 376,
+      "n_isolated": 238,
+      "det_rate": 0.7420212765957447,
+      "det_rate_isolated": 0.9327731092436975,
+      "det_rate_coverage": 0.9654255319148937,
+      "inst_iou": 0.719202520159508
+     },
+     "spots": {
+      "n": 277,
+      "n_isolated": 187,
+      "det_rate": 0.7472924187725631,
+      "det_rate_isolated": 0.9572192513368984,
+      "det_rate_coverage": 0.9458483754512635,
+      "inst_iou": 0.7492766732594902
+     },
+     "stripes": {
+      "n": 341,
+      "n_isolated": 208,
+      "det_rate": 0.7419354838709677,
+      "det_rate_isolated": 0.9615384615384616,
+      "det_rate_coverage": 0.9589442815249267,
+      "inst_iou": 0.7276705767760884
+     }
+    },
+    "ms_per_scene_under_load": 0.45885419845581055
+   },
+   "baseline": {
+    "scene_iou": 0.48514573215610124,
+    "pixel_iou": 0.41226824806719553,
+    "det_rate": 0.4555,
+    "inst_iou": 0.4191389575468368,
+    "det_rate_isolated": 0.5841194968553459,
+    "frac_isolated": 0.636,
+    "det_rate_coverage": 0.7445,
+    "fp_per_scene": 3.257,
+    "n_creatures": 2000,
+    "n_scenes": 1000,
+    "by_delta": {
+     "other family": {
+      "n": 505,
+      "n_isolated": 338,
+      "det_rate": 0.6376237623762376,
+      "det_rate_isolated": 0.7899408284023669,
+      "det_rate_coverage": 0.9504950495049505,
+      "inst_iou": 0.523614487517931
+     },
+     "same \u03b4<0.25": {
+      "n": 347,
+      "n_isolated": 209,
+      "det_rate": 0.11815561959654179,
+      "det_rate_isolated": 0.17703349282296652,
+      "det_rate_coverage": 0.27089337175792505,
+      "inst_iou": 0.17638284777788316
+     },
+     "same 0.25\u20130.5": {
+      "n": 399,
+      "n_isolated": 259,
+      "det_rate": 0.37343358395989973,
+      "det_rate_isolated": 0.5057915057915058,
+      "det_rate_coverage": 0.656641604010025,
+      "inst_iou": 0.38732788886792013
+     },
+     "same 0.5\u20130.75": {
+      "n": 370,
+      "n_isolated": 240,
+      "det_rate": 0.518918918918919,
+      "det_rate_isolated": 0.6291666666666667,
+      "det_rate_coverage": 0.8324324324324325,
+      "inst_iou": 0.46048604029039614
+     },
+     "same 0.75\u20131": {
+      "n": 379,
+      "n_isolated": 226,
+      "det_rate": 0.5461741424802111,
+      "det_rate_isolated": 0.6946902654867256,
+      "det_rate_coverage": 0.9102902374670184,
+      "inst_iou": 0.4953142167610719
+     }
+    },
+    "by_stat_quartile": {
+     "Q1 (closest match)": {
+      "n": 462,
+      "n_isolated": 280,
+      "det_rate": 0.14502164502164502,
+      "det_rate_isolated": 0.22142857142857142,
+      "det_rate_coverage": 0.3246753246753247,
+      "inst_iou": 0.19762714648335702
+     },
+     "Q2": {
+      "n": 519,
+      "n_isolated": 337,
+      "det_rate": 0.43545279383429675,
+      "det_rate_isolated": 0.5400593471810089,
+      "det_rate_coverage": 0.7649325626204239,
+      "inst_iou": 0.42133846733249597
+     },
+     "Q3": {
+      "n": 512,
+      "n_isolated": 329,
+      "det_rate": 0.56640625,
+      "det_rate_isolated": 0.7142857142857143,
+      "det_rate_coverage": 0.896484375,
+      "inst_iou": 0.49680822946277226
+     },
+     "Q4 (least match)": {
+      "n": 507,
+      "n_isolated": 326,
+      "det_rate": 0.6469428007889546,
+      "det_rate_isolated": 0.8098159509202454,
+      "det_rate_coverage": 0.9526627218934911,
+      "inst_iou": 0.5403031467216131
+     }
+    },
+    "quartile_edges": [
+     0.407092808438141,
+     0.7495589627113212,
+     1.1335031215633935
+    ],
+    "by_skin_family": {
+     "cells": {
+      "n": 322,
+      "n_isolated": 201,
+      "det_rate": 0.40372670807453415,
+      "det_rate_isolated": 0.5074626865671642,
+      "det_rate_coverage": 0.6863354037267081,
+      "inst_iou": 0.36671724517130627
+     },
+     "checker": {
+      "n": 318,
+      "n_isolated": 198,
+      "det_rate": 0.5660377358490566,
+      "det_rate_isolated": 0.7525252525252525,
+      "det_rate_coverage": 0.8427672955974843,
+      "inst_iou": 0.4892832602084425
+     },
+     "fbm": {
+      "n": 366,
+      "n_isolated": 240,
+      "det_rate": 0.28688524590163933,
+      "det_rate_isolated": 0.37083333333333335,
+      "det_rate_coverage": 0.592896174863388,
+      "inst_iou": 0.3351614861252725
+     },
+     "plaid": {
+      "n": 376,
+      "n_isolated": 238,
+      "det_rate": 0.4787234042553192,
+      "det_rate_isolated": 0.5840336134453782,
+      "det_rate_coverage": 0.7845744680851063,
+      "inst_iou": 0.44084698396181815
+     },
+     "spots": {
+      "n": 277,
+      "n_isolated": 187,
+      "det_rate": 0.5487364620938628,
+      "det_rate_isolated": 0.6951871657754011,
+      "det_rate_coverage": 0.7978339350180506,
+      "inst_iou": 0.4612228727132263
+     },
+     "stripes": {
+      "n": 341,
+      "n_isolated": 208,
+      "det_rate": 0.4809384164222874,
+      "det_rate_isolated": 0.6442307692307693,
+      "det_rate_coverage": 0.782991202346041,
+      "inst_iou": 0.4352392368597395
+     }
+    },
+    "ms_per_scene_under_load": 2.526155948638916
+   }
+  },
+  "test_ood": {
+   "unet": {
+    "scene_iou": 0.8391061967577543,
+    "pixel_iou": 0.8316898402349142,
+    "det_rate": 0.7245657568238213,
+    "inst_iou": 0.7080798221215843,
+    "det_rate_isolated": 0.9083333333333333,
+    "frac_isolated": 0.6550868486352357,
+    "det_rate_coverage": 0.9260545905707196,
+    "fp_per_scene": 0.308,
+    "n_creatures": 2015,
+    "n_scenes": 1000,
+    "by_delta": {
+     "other family": {
+      "n": 525,
+      "n_isolated": 333,
+      "det_rate": 0.780952380952381,
+      "det_rate_isolated": 0.990990990990991,
+      "det_rate_coverage": 0.9961904761904762,
+      "inst_iou": 0.7720832246673949
+     },
+     "same \u03b4<0.25": {
+      "n": 361,
+      "n_isolated": 234,
+      "det_rate": 0.4709141274238227,
+      "det_rate_isolated": 0.6196581196581197,
+      "det_rate_coverage": 0.6398891966759003,
+      "inst_iou": 0.4521270940625323
+     },
+     "same 0.25\u20130.5": {
+      "n": 372,
+      "n_isolated": 253,
+      "det_rate": 0.7795698924731183,
+      "det_rate_isolated": 0.9367588932806324,
+      "det_rate_coverage": 0.989247311827957,
+      "inst_iou": 0.742100742730981
+     },
+     "same 0.5\u20130.75": {
+      "n": 384,
+      "n_isolated": 249,
+      "det_rate": 0.7734375,
+      "det_rate_isolated": 0.9839357429718876,
+      "det_rate_coverage": 0.9947916666666666,
+      "inst_iou": 0.7622996698113133
+     },
+     "same 0.75\u20131": {
+      "n": 373,
+      "n_isolated": 251,
+      "det_rate": 0.7855227882037533,
+      "det_rate_isolated": 0.9641434262948207,
+      "det_rate_coverage": 0.9705093833780161,
+      "inst_iou": 0.7759643918621083
+     }
+    },
+    "by_stat_quartile": {
+     "Q1 (closest match)": {
+      "n": 324,
+      "n_isolated": 217,
+      "det_rate": 0.5216049382716049,
+      "det_rate_isolated": 0.663594470046083,
+      "det_rate_coverage": 0.6697530864197531,
+      "inst_iou": 0.49259315338966286
+     },
+     "Q2": {
+      "n": 417,
+      "n_isolated": 279,
+      "det_rate": 0.7362110311750599,
+      "det_rate_isolated": 0.9175627240143369,
+      "det_rate_coverage": 0.9424460431654677,
+      "inst_iou": 0.7163795778917056
+     },
+     "Q3": {
+      "n": 488,
+      "n_isolated": 318,
+      "det_rate": 0.7909836065573771,
+      "det_rate_isolated": 0.9716981132075472,
+      "det_rate_coverage": 0.985655737704918,
+      "inst_iou": 0.7655049778477558
+     },
+     "Q4 (least match)": {
+      "n": 786,
+      "n_isolated": 506,
+      "det_rate": 0.7608142493638677,
+      "det_rate_isolated": 0.9683794466403162,
+      "det_rate_coverage": 0.9860050890585241,
+      "inst_iou": 0.7568498049697141
+     }
+    },
+    "quartile_edges": [
+     0.407092808438141,
+     0.7495589627113212,
+     1.1335031215633935
+    ],
+    "by_skin_family": {
+     "marble": {
+      "n": 657,
+      "n_isolated": 411,
+      "det_rate": 0.7016742770167428,
+      "det_rate_isolated": 0.8929440389294404,
+      "det_rate_coverage": 0.9208523592085236,
+      "inst_iou": 0.688279746037989
+     },
+     "ripples": {
+      "n": 689,
+      "n_isolated": 450,
+      "det_rate": 0.7053701015965167,
+      "det_rate_isolated": 0.9066666666666666,
+      "det_rate_coverage": 0.9404934687953556,
+      "inst_iou": 0.7021835334629358
+     },
+     "streaks": {
+      "n": 669,
+      "n_isolated": 459,
+      "det_rate": 0.7668161434977578,
+      "det_rate_isolated": 0.9237472766884531,
+      "det_rate_coverage": 0.9162929745889388,
+      "inst_iou": 0.7335973002572056
+     }
+    },
+    "ms_per_scene_under_load": 0.43842029571533203
+   },
+   "baseline": {
+    "scene_iou": 0.4332679110179126,
+    "pixel_iou": 0.37466475373887215,
+    "det_rate": 0.42133995037220845,
+    "inst_iou": 0.4038753080604905,
+    "det_rate_isolated": 0.5318181818181819,
+    "frac_isolated": 0.6550868486352357,
+    "det_rate_coverage": 0.7563275434243176,
+    "fp_per_scene": 3.767,
+    "n_creatures": 2015,
+    "n_scenes": 1000,
+    "by_delta": {
+     "other family": {
+      "n": 525,
+      "n_isolated": 333,
+      "det_rate": 0.5866666666666667,
+      "det_rate_isolated": 0.7147147147147147,
+      "det_rate_coverage": 0.940952380952381,
+      "inst_iou": 0.5019674580002638
+     },
+     "same \u03b4<0.25": {
+      "n": 361,
+      "n_isolated": 234,
+      "det_rate": 0.0886426592797784,
+      "det_rate_isolated": 0.1282051282051282,
+      "det_rate_coverage": 0.32132963988919666,
+      "inst_iou": 0.1775011958830941
+     },
+     "same 0.25\u20130.5": {
+      "n": 372,
+      "n_isolated": 253,
+      "det_rate": 0.30913978494623656,
+      "det_rate_isolated": 0.38735177865612647,
+      "det_rate_coverage": 0.6612903225806451,
+      "inst_iou": 0.34328132641232945
+     },
+     "same 0.5\u20130.75": {
+      "n": 384,
+      "n_isolated": 249,
+      "det_rate": 0.4895833333333333,
+      "det_rate_isolated": 0.6465863453815262,
+      "det_rate_coverage": 0.8541666666666666,
+      "inst_iou": 0.4560764034841505
+     },
+     "same 0.75\u20131": {
+      "n": 373,
+      "n_isolated": 251,
+      "det_rate": 0.5522788203753352,
+      "det_rate_isolated": 0.6972111553784861,
+      "det_rate_coverage": 0.9115281501340483,
+      "inst_iou": 0.4915922418623393
+     }
+    },
+    "by_stat_quartile": {
+     "Q1 (closest match)": {
+      "n": 324,
+      "n_isolated": 217,
+      "det_rate": 0.09567901234567901,
+      "det_rate_isolated": 0.1336405529953917,
+      "det_rate_coverage": 0.30246913580246915,
+      "inst_iou": 0.1800137694123691
+     },
+     "Q2": {
+      "n": 417,
+      "n_isolated": 279,
+      "det_rate": 0.35251798561151076,
+      "det_rate_isolated": 0.4551971326164875,
+      "det_rate_coverage": 0.7002398081534772,
+      "inst_iou": 0.36914804509470883
+     },
+     "Q3": {
+      "n": 488,
+      "n_isolated": 318,
+      "det_rate": 0.4979508196721312,
+      "det_rate_isolated": 0.6226415094339622,
+      "det_rate_coverage": 0.8565573770491803,
+      "inst_iou": 0.45429836753340785
+     },
+     "Q4 (least match)": {
+      "n": 786,
+      "n_isolated": 506,
+      "det_rate": 0.544529262086514,
+      "det_rate_isolated": 0.6877470355731226,
+      "det_rate_coverage": 0.910941475826972,
+      "inst_iou": 0.4832721962995982
+     }
+    },
+    "quartile_edges": [
+     0.407092808438141,
+     0.7495589627113212,
+     1.1335031215633935
+    ],
+    "by_skin_family": {
+     "marble": {
+      "n": 657,
+      "n_isolated": 411,
+      "det_rate": 0.3896499238964992,
+      "det_rate_isolated": 0.49391727493917276,
+      "det_rate_coverage": 0.756468797564688,
+      "inst_iou": 0.38965318320515535
+     },
+     "ripples": {
+      "n": 689,
+      "n_isolated": 450,
+      "det_rate": 0.43541364296081275,
+      "det_rate_isolated": 0.5466666666666666,
+      "det_rate_coverage": 0.7793904208998549,
+      "inst_iou": 0.4160524809576145
+     },
+     "streaks": {
+      "n": 669,
+      "n_isolated": 459,
+      "det_rate": 0.43796711509715996,
+      "det_rate_isolated": 0.55119825708061,
+      "det_rate_coverage": 0.7324364723467862,
+      "inst_iou": 0.4053011135968683
+     }
+    },
+    "ms_per_scene_under_load": 2.5639941692352295
+   }
+  }
+ },
+ "uptime_during_eval": "19:23  up 3 days, 47 mins, 2 users, load averages: 4.05 8.42 10.43"
+}

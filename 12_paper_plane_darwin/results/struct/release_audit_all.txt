@@ -1,0 +1,146 @@
+Review audit for the struct follow-up (RESULTS.md section 12).  Re-evaluates, unchanged, EVERY design in
+results/struct/eval.json (winners, baselines, old designs, reviewer probes) and every per-seed CMA-ES / random-search winner in search_s<sigma>.npz.
+
+1. Release-state gap: sim_struct.simulate never checks the load on the release state.  The release-state load
+   ratio is computed directly; any launch with ratio > 1 is re-scored 0 m ("corrected": the wing folds at
+   release), whether or not the run later broke.  Same rule for every design, both dt.
+2. dt-halving failures: for every launch that fails the 0.5 % / 5 cm halving test, print the status and peak
+   load ratio at both dt, to see whether the failure is a near-threshold break flip.
+
+Writes results/struct/release_audit_all.txt.  ~20 s.
+
+== 0.25MPa ==   name | train raw -> corr (gap) | held-out raw -> corr (gap, breaks incl. gap)
+cma_best         |  118.0 ->  118.0 (0) |   57.9 ->   56.5 (17, 28)
+random_best      |  100.9 ->  100.9 (0) |   68.1 ->   64.0 (12, 13)
+hand_retrim      |  104.0 ->  104.0 (0) |   69.0 ->   68.0 (9, 12)
+old_baseline     |   78.6 ->   78.6 (0) |   68.1 ->   68.1 (0, 0)
+old_cma_best     |  101.1 ->  101.1 (1) |   51.5 ->   49.9 (13, 32)
+old_mapel_best   |   65.6 ->   65.6 (0) |   23.6 ->   23.3 (17, 53)
+review_0.5_0.04  |  106.5 ->  106.5 (0) |   66.0 ->   64.6 (14, 24)
+review_0.5_0.05  |  106.1 ->   90.9 (1) |   67.8 ->   67.8 (10, 20)
+review_0.5_0.06  |  104.1 ->  104.1 (0) |   69.8 ->   69.7 (12, 19)
+cma_seed0        |  109.9 ->   94.9 (1) |   65.4 ->   63.8 (11, 17)
+cma_seed1        |  115.3 ->  115.3 (0) |   60.5 ->   57.7 (15, 27)
+cma_seed2        |  118.0 ->  118.0 (0) |   57.9 ->   56.5 (17, 28)
+cma_seed3        |  117.3 ->  117.3 (0) |   44.5 ->   44.4 (15, 33)
+cma_seed4        |  114.8 ->  114.8 (0) |   61.1 ->   59.3 (14, 23)
+rnd_seed0        |   91.6 ->   91.6 (0) |   70.8 ->   64.0 (10, 11)
+rnd_seed1        |   94.4 ->   94.4 (0) |   65.9 ->   65.9 (8, 11)
+rnd_seed2        |  100.9 ->  100.9 (0) |   68.1 ->   64.0 (12, 13)
+rnd_seed3        |   98.4 ->   98.4 (0) |   69.9 ->   69.4 (8, 12)
+rnd_seed4        |   98.8 ->   98.8 (0) |   78.0 ->   70.3 (10, 10)
+  train: 2 raw dt-halving failures; release-exceed among them: 2
+  train: dt-halving failures after release correction: 0
+  dt-fail train review_0.5_0.05  launch  3: dt   91.30 m st +1 load 1.045 | dt/2    0.01 m st -2 load 1.045
+  dt-fail train cma_seed0        launch  3: dt   90.13 m st +1 load 1.019 | dt/2    0.01 m st -2 load 1.019
+  held: 15 raw dt-halving failures; release-exceed among them: 15
+  held: dt-halving failures after release correction: 0
+  dt-fail held cma_best         launch 51: dt   17.27 m st -2 load 1.150 | dt/2    0.02 m st -2 load 1.150
+  dt-fail held random_best      launch 10: dt  138.64 m st +1 load 1.341 | dt/2    0.02 m st -2 load 1.341
+  dt-fail held old_cma_best     launch 54: dt  102.95 m st +1 load 1.049 | dt/2    0.02 m st -2 load 1.049
+  dt-fail held review_0.5_0.04  launch  3: dt   87.51 m st +1 load 1.032 | dt/2    0.01 m st -2 load 1.032
+  dt-fail held review_0.5_0.06  launch 44: dt    1.94 m st -2 load 1.298 | dt/2    0.02 m st -2 load 1.298
+  dt-fail held cma_seed1        launch  3: dt   88.87 m st +1 load 1.032 | dt/2    0.01 m st -2 load 1.032
+  dt-fail held cma_seed2        launch 51: dt   17.27 m st -2 load 1.150 | dt/2    0.02 m st -2 load 1.150
+  dt-fail held cma_seed3        launch 14: dt    5.78 m st -2 load 1.118 | dt/2    0.02 m st -2 load 1.118
+  dt-fail held cma_seed4        launch 28: dt    1.18 m st -2 load 1.100 | dt/2    0.02 m st -2 load 1.100
+  dt-fail held cma_seed4        launch 44: dt    2.06 m st -2 load 1.212 | dt/2    0.02 m st -2 load 1.212
+  dt-fail held rnd_seed0        launch 36: dt   89.10 m st +1 load 1.032 | dt/2    0.02 m st -2 load 1.032
+  dt-fail held rnd_seed2        launch 10: dt  138.64 m st +1 load 1.341 | dt/2    0.02 m st -2 load 1.341
+  dt-fail held rnd_seed3        launch 44: dt   28.12 m st -2 load 1.249 | dt/2    0.02 m st -2 load 1.249
+  dt-fail held rnd_seed4        launch  9: dt   71.51 m st +1 load 1.085 | dt/2    0.02 m st -2 load 1.085
+  dt-fail held rnd_seed4        launch 36: dt   94.40 m st +1 load 1.055 | dt/2    0.02 m st -2 load 1.055
+  5-seed held-out mean corrected: CMA 56.3 random 66.7
+== 0.5MPa ==   name | train raw -> corr (gap) | held-out raw -> corr (gap, breaks incl. gap)
+cma_best         |  117.7 ->  117.7 (0) |   88.1 ->   88.1 (3, 6)
+random_best      |  100.9 ->  100.9 (0) |   77.3 ->   76.9 (1, 1)
+hand_retrim      |  105.4 ->  105.4 (0) |   88.9 ->   88.9 (3, 7)
+old_baseline     |   78.6 ->   78.6 (0) |   68.1 ->   68.1 (0, 0)
+old_cma_best     |  118.1 ->  118.1 (0) |   86.6 ->   86.6 (3, 4)
+old_mapel_best   |  115.3 ->  115.3 (0) |   87.5 ->   87.5 (4, 11)
+review_0.5_0.04  |  106.5 ->  106.5 (0) |   91.7 ->   91.7 (3, 3)
+review_0.5_0.05  |  106.1 ->  106.1 (0) |   90.4 ->   89.2 (3, 3)
+review_0.5_0.06  |  104.1 ->  104.1 (0) |   91.8 ->   91.6 (1, 1)
+cma_seed0        |  117.7 ->  117.7 (0) |   88.1 ->   88.1 (3, 6)
+cma_seed1        |  117.1 ->  117.1 (0) |   87.4 ->   87.4 (3, 7)
+cma_seed2        |  117.1 ->  117.1 (0) |   87.1 ->   86.6 (4, 5)
+cma_seed3        |  115.4 ->  115.4 (0) |   88.3 ->   88.3 (3, 5)
+cma_seed4        |  117.1 ->  117.1 (0) |   80.8 ->   80.8 (3, 5)
+rnd_seed0        |   99.1 ->   99.1 (0) |   82.4 ->   82.4 (3, 9)
+rnd_seed1        |   94.4 ->   94.4 (0) |   75.0 ->   75.0 (1, 1)
+rnd_seed2        |  100.9 ->  100.9 (0) |   77.3 ->   76.9 (1, 1)
+rnd_seed3        |   98.4 ->   98.4 (0) |   80.4 ->   80.4 (0, 0)
+rnd_seed4        |   98.8 ->   98.8 (0) |   83.0 ->   83.0 (0, 0)
+  train: 0 raw dt-halving failures; release-exceed among them: 0
+  train: dt-halving failures after release correction: 0
+  held: 3 raw dt-halving failures; release-exceed among them: 3
+  held: dt-halving failures after release correction: 0
+  dt-fail held review_0.5_0.05  launch 37: dt   78.14 m st +1 load 1.032 | dt/2    0.02 m st -2 load 1.032
+  dt-fail held cma_seed2        launch 44: dt   28.50 m st -2 load 1.079 | dt/2    0.02 m st -2 load 1.079
+  dt-fail held rnd_seed0        launch 10: dt    0.61 m st -2 load 1.114 | dt/2    0.02 m st -2 load 1.114
+  5-seed held-out mean corrected: CMA 86.3 random 79.5
+== 0.125MPa ==   name | train raw -> corr (gap) | held-out raw -> corr (gap, breaks incl. gap)
+cma_best         |  109.9 ->   78.0 (2) |   43.2 ->   35.2 (31, 43)
+random_best      |   92.8 ->   92.8 (0) |   41.6 ->   39.9 (21, 33)
+hand_retrim      |   95.8 ->   95.8 (0) |   43.3 ->   42.1 (17, 27)
+old_baseline     |   78.6 ->   78.6 (0) |   66.3 ->   66.3 (3, 3)
+old_cma_best     |    0.4 ->    0.4 (2) |    0.6 ->    0.6 (30, 64)
+old_mapel_best   |    0.3 ->    0.3 (3) |    0.5 ->    0.4 (36, 64)
+review_0.5_0.04  |    0.6 ->    0.5 (2) |    0.7 ->    0.6 (31, 64)
+review_0.5_0.05  |    0.8 ->    0.7 (1) |    0.9 ->    0.9 (27, 64)
+review_0.5_0.06  |    1.0 ->    1.0 (1) |    1.2 ->    1.2 (29, 64)
+cma_seed0        |  109.9 ->   78.0 (2) |   43.2 ->   35.2 (31, 43)
+cma_seed1        |  109.4 ->   92.0 (1) |   38.1 ->   34.9 (30, 42)
+cma_seed2        |  107.5 ->   75.9 (2) |   42.5 ->   35.2 (31, 41)
+cma_seed3        |  107.2 ->   77.1 (2) |   39.6 ->   33.4 (30, 42)
+cma_seed4        |  109.7 ->   77.4 (2) |   39.1 ->   33.5 (30, 42)
+rnd_seed0        |   89.6 ->   89.6 (0) |   60.5 ->   58.8 (11, 16)
+rnd_seed1        |   91.1 ->   91.1 (0) |   66.1 ->   66.1 (8, 11)
+rnd_seed2        |   92.8 ->   92.8 (0) |   41.6 ->   39.9 (21, 33)
+rnd_seed3        |   89.8 ->   89.8 (0) |   48.2 ->   44.6 (20, 30)
+rnd_seed4        |   89.9 ->   89.9 (0) |   59.6 ->   53.4 (18, 18)
+  train: 7 raw dt-halving failures; release-exceed among them: 7
+  train: dt-halving failures after release correction: 0
+  dt-fail train cma_best         launch  5: dt  102.75 m st +1 load 1.189 | dt/2    0.01 m st -2 load 1.189
+  dt-fail train cma_seed0        launch  5: dt  102.75 m st +1 load 1.189 | dt/2    0.01 m st -2 load 1.189
+  dt-fail train cma_seed1        launch  5: dt  104.10 m st +1 load 1.148 | dt/2    0.01 m st -2 load 1.148
+  dt-fail train cma_seed2        launch  3: dt   87.81 m st +1 load 1.029 | dt/2    0.01 m st -2 load 1.029
+  dt-fail train cma_seed2        launch  5: dt  101.73 m st +1 load 1.195 | dt/2    0.01 m st -2 load 1.195
+  dt-fail train cma_seed3        launch  5: dt   93.23 m st +1 load 1.129 | dt/2    0.01 m st -2 load 1.129
+  dt-fail train cma_seed4        launch  5: dt  103.69 m st +1 load 1.176 | dt/2    0.01 m st -2 load 1.176
+  held: 33 raw dt-halving failures; release-exceed among them: 33
+  held: dt-halving failures after release correction: 0
+  dt-fail held cma_best         launch  2: dt   95.04 m st +1 load 1.122 | dt/2    0.02 m st -2 load 1.122
+  dt-fail held cma_best         launch 32: dt   98.87 m st +1 load 1.275 | dt/2    0.02 m st -2 load 1.275
+  dt-fail held cma_best         launch 35: dt   78.55 m st +1 load 1.121 | dt/2    0.02 m st -2 load 1.121
+  dt-fail held random_best      launch 14: dt    1.50 m st -2 load 1.142 | dt/2    0.02 m st -2 load 1.142
+  dt-fail held random_best      launch 51: dt    0.76 m st -2 load 1.152 | dt/2    0.02 m st -2 load 1.152
+  dt-fail held old_cma_best     launch 10: dt    0.31 m st -2 load 1.534 | dt/2    0.02 m st -2 load 1.534
+  dt-fail held old_cma_best     launch 44: dt    1.50 m st -2 load 1.285 | dt/2    0.02 m st -2 load 1.285
+  dt-fail held old_mapel_best   launch  5: dt    1.22 m st -2 load 1.167 | dt/2    0.02 m st -2 load 1.167
+  dt-fail held old_mapel_best   launch 60: dt    0.98 m st -2 load 1.112 | dt/2    0.02 m st -2 load 1.112
+  dt-fail held review_0.5_0.04  launch 16: dt    0.23 m st -2 load 1.539 | dt/2    0.02 m st -2 load 1.539
+  dt-fail held review_0.5_0.04  launch 18: dt    0.48 m st -2 load 1.137 | dt/2    0.01 m st -2 load 1.137
+  dt-fail held review_0.5_0.04  launch 39: dt    0.57 m st -2 load 1.315 | dt/2    0.02 m st -2 load 1.315
+  dt-fail held review_0.5_0.05  launch 28: dt    0.53 m st -2 load 1.140 | dt/2    0.02 m st -2 load 1.140
+  dt-fail held review_0.5_0.06  launch 16: dt    0.23 m st -2 load 1.411 | dt/2    0.02 m st -2 load 1.411
+  dt-fail held review_0.5_0.06  launch 39: dt    0.66 m st -2 load 1.205 | dt/2    0.02 m st -2 load 1.205
+  dt-fail held review_0.5_0.06  launch 48: dt    0.63 m st -2 load 1.240 | dt/2    0.02 m st -2 load 1.240
+  dt-fail held review_0.5_0.06  launch 54: dt    0.40 m st -2 load 1.048 | dt/2    0.02 m st -2 load 1.048
+  dt-fail held cma_seed0        launch  2: dt   95.04 m st +1 load 1.122 | dt/2    0.02 m st -2 load 1.122
+  dt-fail held cma_seed0        launch 32: dt   98.87 m st +1 load 1.275 | dt/2    0.02 m st -2 load 1.275
+  dt-fail held cma_seed0        launch 35: dt   78.55 m st +1 load 1.121 | dt/2    0.02 m st -2 load 1.121
+  dt-fail held cma_seed1        launch  2: dt    4.79 m st -2 load 1.105 | dt/2    0.02 m st -2 load 1.105
+  dt-fail held cma_seed1        launch 22: dt  126.83 m st -2 load 1.182 | dt/2    0.01 m st -2 load 1.182
+  dt-fail held cma_seed2        launch  2: dt   94.66 m st +1 load 1.103 | dt/2    0.02 m st -2 load 1.103
+  dt-fail held cma_seed2        launch 32: dt   93.75 m st +1 load 1.282 | dt/2    0.02 m st -2 load 1.282
+  dt-fail held cma_seed4        launch  2: dt    5.34 m st -2 load 1.105 | dt/2    0.02 m st -2 load 1.105
+  dt-fail held cma_seed4        launch 32: dt  100.96 m st +1 load 1.259 | dt/2    0.02 m st -2 load 1.259
+  dt-fail held rnd_seed0        launch 15: dt   51.95 m st +1 load 1.014 | dt/2    0.02 m st -2 load 1.014
+  dt-fail held rnd_seed2        launch 14: dt    1.50 m st -2 load 1.142 | dt/2    0.02 m st -2 load 1.142
+  dt-fail held rnd_seed2        launch 51: dt    0.76 m st -2 load 1.152 | dt/2    0.02 m st -2 load 1.152
+  dt-fail held rnd_seed3        launch 14: dt   96.25 m st +1 load 1.164 | dt/2    0.02 m st -2 load 1.164
+  dt-fail held rnd_seed4        launch  1: dt   86.02 m st +1 load 1.061 | dt/2    0.02 m st -2 load 1.061
+  dt-fail held rnd_seed4        launch 16: dt   47.55 m st +1 load 1.295 | dt/2    0.02 m st -2 load 1.295
+  dt-fail held rnd_seed4        launch 39: dt   89.39 m st +1 load 1.167 | dt/2    0.02 m st -2 load 1.167
+  5-seed held-out mean corrected: CMA 34.4 random 52.6

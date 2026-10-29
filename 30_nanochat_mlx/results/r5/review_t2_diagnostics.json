@@ -1,0 +1,4061 @@
+{
+ "kind": "claude_review_diagnostics_numpy_only",
+ "teacher": "Planner((0,1,2), survey_first=False)",
+ "train_states_after_illegal_feedback": {
+  "t2_ac_s51": 661,
+  "t2_ac_s52": 661,
+  "t2_ac_s53": 661
+ },
+ "note": "Same 80 paired scenarios recur across the three training seeds; pooled counts are descriptive, not 240 independent worlds.",
+ "runs": {
+  "battery_s51": {
+   "eval": {
+    "complete": true,
+    "paired": 80,
+    "expected": 80,
+    "excluded_partial": 0,
+    "methods": {
+     "planner": {
+      "episodes": 80,
+      "success": 1.0,
+      "invalid_rate": 0.039100684261974585,
+      "mean_steps": 12.7875,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 1.0
+       },
+       "order": {
+        "n": 16,
+        "success": 1.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 1.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 1.0
+       }
+      }
+     },
+     "mlp": {
+      "episodes": 80,
+      "success": 0.6,
+      "invalid_rate": 0.6770592763664357,
+      "mean_steps": 32.475,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.8125
+       },
+       "order": {
+        "n": 16,
+        "success": 0.6875
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.4375
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0625
+       }
+      }
+     },
+     "scratch": {
+      "episodes": 80,
+      "success": 0.075,
+      "invalid_rate": 0.8215403882279274,
+      "mean_steps": 59.8875,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.125
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.25
+       },
+       "order": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "pretrained": {
+      "episodes": 80,
+      "success": 0.0875,
+      "invalid_rate": 0.7648425945489119,
+      "mean_steps": 59.1625,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "order": {
+        "n": 16,
+        "success": 0.0625
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "reward": {
+      "episodes": 80,
+      "success": 0.1,
+      "invalid_rate": 0.7131252672082087,
+      "mean_steps": 58.475,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.25
+       },
+       "order": {
+        "n": 16,
+        "success": 0.0625
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "control": {
+      "episodes": 80,
+      "success": 0.075,
+      "invalid_rate": 0.8289473684210527,
+      "mean_steps": 59.85,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.125
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "order": {
+        "n": 16,
+        "success": 0.0625
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     }
+    }
+   },
+   "secondary": {
+    "complete": true,
+    "paired": 20,
+    "expected": 20,
+    "excluded_partial": 0,
+    "methods": {
+     "planner": {
+      "episodes": 20,
+      "success": 1.0,
+      "invalid_rate": 0.03937007874015748,
+      "mean_steps": 12.7,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 4,
+        "success": 1.0
+       },
+       "order": {
+        "n": 4,
+        "success": 1.0
+       },
+       "long3": {
+        "n": 4,
+        "success": 1.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 1.0
+       }
+      }
+     },
+     "mlp": {
+      "episodes": 20,
+      "success": 0.6,
+      "invalid_rate": 0.6804281345565749,
+      "mean_steps": 32.7,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 4,
+        "success": 1.0
+       },
+       "order": {
+        "n": 4,
+        "success": 0.25
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.25
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.5
+       }
+      }
+     },
+     "scratch": {
+      "episodes": 20,
+      "success": 0.2,
+      "invalid_rate": 0.8019047619047619,
+      "mean_steps": 52.5,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 0.75
+       },
+       "pairs": {
+        "n": 4,
+        "success": 0.25
+       },
+       "order": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.0
+       }
+      }
+     },
+     "pretrained": {
+      "episodes": 20,
+      "success": 0.1,
+      "invalid_rate": 0.7892491467576792,
+      "mean_steps": 58.6,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 0.25
+       },
+       "pairs": {
+        "n": 4,
+        "success": 0.0
+       },
+       "order": {
+        "n": 4,
+        "success": 0.25
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.0
+       }
+      }
+     },
+     "reward": {
+      "episodes": 20,
+      "success": 0.1,
+      "invalid_rate": 0.6341045415595544,
+      "mean_steps": 58.35,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 0.5
+       },
+       "pairs": {
+        "n": 4,
+        "success": 0.0
+       },
+       "order": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.0
+       }
+      }
+     },
+     "control": {
+      "episodes": 20,
+      "success": 0.0,
+      "invalid_rate": 0.846875,
+      "mean_steps": 64.0,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 0.0
+       },
+       "pairs": {
+        "n": 4,
+        "success": 0.0
+       },
+       "order": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.0
+       }
+      }
+     }
+    }
+   },
+   "train": {
+    "pretrained": {
+     "updates": 8898,
+     "final_step": 8898,
+     "steps_per_s_first": 18.427077504844153,
+     "steps_per_s_last": 21.60851015328841,
+     "wall_utilization": 0.9812426206356447,
+     "peak_memory_gb": 2.137833786,
+     "final_val_nll": 0.02703743241727352,
+     "final_val_metrics": null
+    },
+    "scratch": {
+     "updates": 11064,
+     "final_step": 11064,
+     "steps_per_s_first": 24.35871064349852,
+     "steps_per_s_last": 26.93050052046849,
+     "wall_utilization": 0.9812074999000677,
+     "peak_memory_gb": 2.137833794,
+     "final_val_nll": 0.03737977519631386,
+     "final_val_metrics": null
+    },
+    "mlp_final": {
+     "updates": 999722,
+     "final_step": 1050277,
+     "steps_per_s_first": 2818.9987921775137,
+     "steps_per_s_last": 2797.1061863034924,
+     "wall_utilization": 0.9781225135138041,
+     "peak_memory_gb": 0.00927542,
+     "final_val_nll": 1.5043067378428532e-06,
+     "final_val_metrics": null
+    },
+    "reward_fit": {
+     "updates": 2194,
+     "final_step": 2194,
+     "steps_per_s_first": 34.482512069555575,
+     "steps_per_s_last": 31.91196567971662,
+     "wall_utilization": 0.9013684538738528,
+     "peak_memory_gb": 2.137833786,
+     "final_val_nll": 0.03586728125810623,
+     "final_val_metrics": null
+    },
+    "sft_control": {
+     "updates": 3900,
+     "final_step": 3900,
+     "steps_per_s_first": 28.029167431226913,
+     "steps_per_s_last": 27.45997786076609,
+     "wall_utilization": 0.9473905775001428,
+     "peak_memory_gb": 2.137833786,
+     "final_val_nll": 0.025366980582475662,
+     "final_val_metrics": null
+    }
+   },
+   "reward_collection": {
+    "attempted": 263,
+    "successes": 58,
+    "accepted_episodes": 58,
+    "accepted_steps": 523,
+    "accepted_illegal_actions": null,
+    "accepted_failed_actions": null
+   },
+   "suite_elapsed_s": 1655.294229208026,
+   "mlp_selected_lr": 0.003
+  },
+  "ac_s52": {
+   "eval": {
+    "complete": true,
+    "paired": 80,
+    "expected": 80,
+    "excluded_partial": 0,
+    "methods": {
+     "planner": {
+      "episodes": 80,
+      "success": 1.0,
+      "invalid_rate": 0.039100684261974585,
+      "mean_steps": 12.7875,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 1.0
+       },
+       "order": {
+        "n": 16,
+        "success": 1.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 1.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 1.0
+       }
+      }
+     },
+     "mlp": {
+      "episodes": 80,
+      "success": 0.5625,
+      "invalid_rate": 0.6937590711175616,
+      "mean_steps": 34.45,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.75
+       },
+       "order": {
+        "n": 16,
+        "success": 0.5625
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.375
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.125
+       }
+      }
+     },
+     "scratch": {
+      "episodes": 80,
+      "success": 0.2,
+      "invalid_rate": 0.8285377358490567,
+      "mean_steps": 53.0,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.375
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.4375
+       },
+       "order": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "pretrained": {
+      "episodes": 80,
+      "success": 0.0375,
+      "invalid_rate": 0.6847738287560582,
+      "mean_steps": 61.9,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.0625
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.125
+       },
+       "order": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "reward": {
+      "episodes": 80,
+      "success": 0.0,
+      "invalid_rate": 0.620703125,
+      "mean_steps": 64.0,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.0
+       },
+       "order": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "control": {
+      "episodes": 80,
+      "success": 0.0625,
+      "invalid_rate": 0.6869977333608077,
+      "mean_steps": 60.6625,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.125
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "order": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     }
+    }
+   },
+   "secondary": {
+    "complete": true,
+    "paired": 20,
+    "expected": 20,
+    "excluded_partial": 0,
+    "methods": {
+     "planner": {
+      "episodes": 20,
+      "success": 1.0,
+      "invalid_rate": 0.03937007874015748,
+      "mean_steps": 12.7,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 4,
+        "success": 1.0
+       },
+       "order": {
+        "n": 4,
+        "success": 1.0
+       },
+       "long3": {
+        "n": 4,
+        "success": 1.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 1.0
+       }
+      }
+     },
+     "mlp": {
+      "episodes": 20,
+      "success": 0.65,
+      "invalid_rate": 0.6222961730449251,
+      "mean_steps": 30.05,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 4,
+        "success": 1.0
+       },
+       "order": {
+        "n": 4,
+        "success": 0.25
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.5
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.5
+       }
+      }
+     },
+     "scratch": {
+      "episodes": 20,
+      "success": 0.15,
+      "invalid_rate": 0.8445040214477212,
+      "mean_steps": 55.95,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 0.25
+       },
+       "pairs": {
+        "n": 4,
+        "success": 0.25
+       },
+       "order": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.25
+       }
+      }
+     },
+     "pretrained": {
+      "episodes": 20,
+      "success": 0.0,
+      "invalid_rate": 0.640625,
+      "mean_steps": 64.0,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 0.0
+       },
+       "pairs": {
+        "n": 4,
+        "success": 0.0
+       },
+       "order": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.0
+       }
+      }
+     },
+     "reward": {
+      "episodes": 20,
+      "success": 0.0,
+      "invalid_rate": 0.61875,
+      "mean_steps": 64.0,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 0.0
+       },
+       "pairs": {
+        "n": 4,
+        "success": 0.0
+       },
+       "order": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.0
+       }
+      }
+     },
+     "control": {
+      "episodes": 20,
+      "success": 0.1,
+      "invalid_rate": 0.5754716981132075,
+      "mean_steps": 58.3,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 0.25
+       },
+       "pairs": {
+        "n": 4,
+        "success": 0.25
+       },
+       "order": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.0
+       }
+      }
+     }
+    }
+   },
+   "train": {
+    "pretrained": {
+     "updates": 11874,
+     "final_step": 11874,
+     "steps_per_s_first": 30.581178665910688,
+     "steps_per_s_last": 28.826469903114095,
+     "wall_utilization": 0.9811521324403917,
+     "peak_memory_gb": 2.137833786,
+     "final_val_nll": 0.06050044670701027,
+     "final_val_metrics": null
+    },
+    "scratch": {
+     "updates": 11829,
+     "final_step": 11829,
+     "steps_per_s_first": 28.55526213835251,
+     "steps_per_s_last": 28.71445802541381,
+     "wall_utilization": 0.9811419458333624,
+     "peak_memory_gb": 2.137833794,
+     "final_val_nll": 0.009751464240252972,
+     "final_val_metrics": null
+    },
+    "mlp_final": {
+     "updates": 1007621,
+     "final_step": 1058630,
+     "steps_per_s_first": 2823.8741616701955,
+     "steps_per_s_last": 2819.0076920168026,
+     "wall_utilization": 0.978121709588832,
+     "peak_memory_gb": 0.009273368,
+     "final_val_nll": 2.020968707938664e-07,
+     "final_val_metrics": null
+    },
+    "reward_fit": {
+     "updates": 2340,
+     "final_step": 2340,
+     "steps_per_s_first": 37.69460809977579,
+     "steps_per_s_last": 34.096727430987855,
+     "wall_utilization": 0.9011533233267505,
+     "peak_memory_gb": 2.137833786,
+     "final_val_nll": 0.048304520547389984,
+     "final_val_metrics": null
+    },
+    "sft_control": {
+     "updates": 4060,
+     "final_step": 4060,
+     "steps_per_s_first": 29.49880450383237,
+     "steps_per_s_last": 28.599997010456015,
+     "wall_utilization": 0.9472898697267131,
+     "peak_memory_gb": 2.137833786,
+     "final_val_nll": 0.04881391301751137,
+     "final_val_metrics": null
+    }
+   },
+   "reward_collection": {
+    "attempted": 265,
+    "successes": 59,
+    "accepted_episodes": 59,
+    "accepted_steps": 904,
+    "accepted_illegal_actions": null,
+    "accepted_failed_actions": null
+   },
+   "suite_elapsed_s": 1649.8419341249974,
+   "mlp_selected_lr": 0.003
+  },
+  "ac_s53": {
+   "eval": {
+    "complete": true,
+    "paired": 80,
+    "expected": 80,
+    "excluded_partial": 0,
+    "methods": {
+     "planner": {
+      "episodes": 80,
+      "success": 1.0,
+      "invalid_rate": 0.039100684261974585,
+      "mean_steps": 12.7875,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 1.0
+       },
+       "order": {
+        "n": 16,
+        "success": 1.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 1.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 1.0
+       }
+      }
+     },
+     "mlp": {
+      "episodes": 80,
+      "success": 0.6875,
+      "invalid_rate": 0.6100937918713711,
+      "mean_steps": 27.9875,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 1.0
+       },
+       "order": {
+        "n": 16,
+        "success": 0.6875
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.5
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.25
+       }
+      }
+     },
+     "scratch": {
+      "episodes": 80,
+      "success": 0.3875,
+      "invalid_rate": 0.5706851691240243,
+      "mean_steps": 43.2375,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.8125
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.5625
+       },
+       "order": {
+        "n": 16,
+        "success": 0.3125
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.25
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "pretrained": {
+      "episodes": 80,
+      "success": 0.225,
+      "invalid_rate": 0.7681300024254184,
+      "mean_steps": 51.5375,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.375
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.625
+       },
+       "order": {
+        "n": 16,
+        "success": 0.125
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "reward": {
+      "episodes": 80,
+      "success": 0.1625,
+      "invalid_rate": 0.8483812129502964,
+      "mean_steps": 54.825,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.5625
+       },
+       "order": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0625
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "control": {
+      "episodes": 80,
+      "success": 0.425,
+      "invalid_rate": 0.5211515863689776,
+      "mean_steps": 42.55,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.75
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.6875
+       },
+       "order": {
+        "n": 16,
+        "success": 0.375
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.125
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.1875
+       }
+      }
+     }
+    }
+   },
+   "secondary": {
+    "complete": true,
+    "paired": 20,
+    "expected": 20,
+    "excluded_partial": 0,
+    "methods": {
+     "planner": {
+      "episodes": 20,
+      "success": 1.0,
+      "invalid_rate": 0.03937007874015748,
+      "mean_steps": 12.7,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 4,
+        "success": 1.0
+       },
+       "order": {
+        "n": 4,
+        "success": 1.0
+       },
+       "long3": {
+        "n": 4,
+        "success": 1.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 1.0
+       }
+      }
+     },
+     "mlp": {
+      "episodes": 20,
+      "success": 0.65,
+      "invalid_rate": 0.6473509933774835,
+      "mean_steps": 30.2,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 4,
+        "success": 1.0
+       },
+       "order": {
+        "n": 4,
+        "success": 0.25
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.5
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.5
+       }
+      }
+     },
+     "scratch": {
+      "episodes": 20,
+      "success": 0.4,
+      "invalid_rate": 0.5604265402843602,
+      "mean_steps": 42.2,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 0.75
+       },
+       "pairs": {
+        "n": 4,
+        "success": 0.75
+       },
+       "order": {
+        "n": 4,
+        "success": 0.25
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.25
+       }
+      }
+     },
+     "pretrained": {
+      "episodes": 20,
+      "success": 0.1,
+      "invalid_rate": 0.8039552880481513,
+      "mean_steps": 58.15,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 0.5
+       },
+       "pairs": {
+        "n": 4,
+        "success": 0.0
+       },
+       "order": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.0
+       }
+      }
+     },
+     "reward": {
+      "episodes": 20,
+      "success": 0.2,
+      "invalid_rate": 0.8267045454545454,
+      "mean_steps": 52.8,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 0.5
+       },
+       "pairs": {
+        "n": 4,
+        "success": 0.25
+       },
+       "order": {
+        "n": 4,
+        "success": 0.25
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.0
+       }
+      }
+     },
+     "control": {
+      "episodes": 20,
+      "success": 0.4,
+      "invalid_rate": 0.5977653631284916,
+      "mean_steps": 44.75,
+      "by_split": {
+       "seen": {
+        "n": 4,
+        "success": 0.75
+       },
+       "pairs": {
+        "n": 4,
+        "success": 0.5
+       },
+       "order": {
+        "n": 4,
+        "success": 0.5
+       },
+       "long3": {
+        "n": 4,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 4,
+        "success": 0.25
+       }
+      }
+     }
+    }
+   },
+   "train": {
+    "pretrained": {
+     "updates": 12343,
+     "final_step": 12343,
+     "steps_per_s_first": 31.329336710188077,
+     "steps_per_s_last": 29.965178793476394,
+     "wall_utilization": 0.981186811704815,
+     "peak_memory_gb": 2.137833786,
+     "final_val_nll": 0.01137747336179018,
+     "final_val_metrics": null
+    },
+    "scratch": {
+     "updates": 12122,
+     "final_step": 12122,
+     "steps_per_s_first": 29.462249687118486,
+     "steps_per_s_last": 29.42432263632768,
+     "wall_utilization": 0.9812013141880189,
+     "peak_memory_gb": 2.137833794,
+     "final_val_nll": 0.0005198380094952881,
+     "final_val_metrics": null
+    },
+    "mlp_final": {
+     "updates": 1008365,
+     "final_step": 1058931,
+     "steps_per_s_first": 2812.5354511762894,
+     "steps_per_s_last": 2821.4159470770546,
+     "wall_utilization": 0.9781189074979739,
+     "peak_memory_gb": 0.008481812,
+     "final_val_nll": 4.703293143393239e-06,
+     "final_val_metrics": null
+    },
+    "reward_fit": {
+     "updates": 2502,
+     "final_step": 2502,
+     "steps_per_s_first": 38.00670225757969,
+     "steps_per_s_last": 36.35756400273258,
+     "wall_utilization": 0.9012814371052487,
+     "peak_memory_gb": 2.137833786,
+     "final_val_nll": 0.013852972537279129,
+     "final_val_metrics": null
+    },
+    "sft_control": {
+     "updates": 4138,
+     "final_step": 4138,
+     "steps_per_s_first": 32.27640580149121,
+     "steps_per_s_last": 29.16452405786753,
+     "wall_utilization": 0.9471549794469805,
+     "peak_memory_gb": 2.137833786,
+     "final_val_nll": 0.010090739466249943,
+     "final_val_metrics": null
+    }
+   },
+   "reward_collection": {
+    "attempted": 365,
+    "successes": 164,
+    "accepted_episodes": 164,
+    "accepted_steps": 1625,
+    "accepted_illegal_actions": null,
+    "accepted_failed_actions": null
+   },
+   "suite_elapsed_s": 1625.3992320419638,
+   "mlp_selected_lr": 0.001
+  },
+  "t2_ac_s51": {
+   "eval": {
+    "complete": true,
+    "paired": 80,
+    "expected": 80,
+    "excluded_partial": 0,
+    "methods": {
+     "planner": {
+      "episodes": 80,
+      "success": 1.0,
+      "invalid_rate": 0.039177277179236046,
+      "mean_steps": 12.7625,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 1.0
+       },
+       "order": {
+        "n": 16,
+        "success": 1.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 1.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 1.0
+       }
+      }
+     },
+     "mlp": {
+      "episodes": 80,
+      "success": 0.5875,
+      "invalid_rate": 0.6607480166225916,
+      "mean_steps": 33.0875,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.75
+       },
+       "order": {
+        "n": 16,
+        "success": 0.625
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.25
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.3125
+       }
+      }
+     },
+     "scratch": {
+      "episodes": 80,
+      "success": 0.2625,
+      "invalid_rate": 0.6658316633266533,
+      "mean_steps": 49.9,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.5
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.5625
+       },
+       "order": {
+        "n": 16,
+        "success": 0.125
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0625
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0625
+       }
+      }
+     },
+     "pretrained": {
+      "episodes": 80,
+      "success": 0.05,
+      "invalid_rate": 0.685487158581329,
+      "mean_steps": 61.325,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.0625
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "order": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "reward": {
+      "episodes": 80,
+      "success": 0.05,
+      "invalid_rate": 0.6818181818181818,
+      "mean_steps": 61.325,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.0625
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "order": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "control": {
+      "episodes": 80,
+      "success": 0.05,
+      "invalid_rate": 0.8782182263996731,
+      "mean_steps": 61.175,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.25
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.0
+       },
+       "order": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     }
+    }
+   },
+   "secondary": {
+    "complete": false,
+    "paired": 35,
+    "expected": 80,
+    "excluded_partial": 0,
+    "methods": {
+     "planner": {
+      "episodes": 35,
+      "success": 1.0,
+      "invalid_rate": 0.03837953091684435,
+      "mean_steps": 13.4,
+      "by_split": {
+       "seen": {
+        "n": 7,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 7,
+        "success": 1.0
+       },
+       "order": {
+        "n": 7,
+        "success": 1.0
+       },
+       "long3": {
+        "n": 7,
+        "success": 1.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 1.0
+       }
+      }
+     },
+     "mlp": {
+      "episodes": 35,
+      "success": 0.45714285714285713,
+      "invalid_rate": 0.7455902306648575,
+      "mean_steps": 42.114285714285714,
+      "by_split": {
+       "seen": {
+        "n": 7,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 7,
+        "success": 0.7142857142857143
+       },
+       "order": {
+        "n": 7,
+        "success": 0.14285714285714285
+       },
+       "long3": {
+        "n": 7,
+        "success": 0.2857142857142857
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.14285714285714285
+       }
+      }
+     },
+     "scratch": {
+      "episodes": 35,
+      "success": 0.2571428571428571,
+      "invalid_rate": 0.7046485260770975,
+      "mean_steps": 50.4,
+      "by_split": {
+       "seen": {
+        "n": 7,
+        "success": 0.42857142857142855
+       },
+       "pairs": {
+        "n": 7,
+        "success": 0.7142857142857143
+       },
+       "order": {
+        "n": 7,
+        "success": 0.14285714285714285
+       },
+       "long3": {
+        "n": 7,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.0
+       }
+      }
+     },
+     "pretrained": {
+      "episodes": 35,
+      "success": 0.0,
+      "invalid_rate": 0.7160714285714286,
+      "mean_steps": 64.0,
+      "by_split": {
+       "seen": {
+        "n": 7,
+        "success": 0.0
+       },
+       "pairs": {
+        "n": 7,
+        "success": 0.0
+       },
+       "order": {
+        "n": 7,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 7,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.0
+       }
+      }
+     },
+     "reward": {
+      "episodes": 35,
+      "success": 0.02857142857142857,
+      "invalid_rate": 0.708029197080292,
+      "mean_steps": 62.628571428571426,
+      "by_split": {
+       "seen": {
+        "n": 7,
+        "success": 0.0
+       },
+       "pairs": {
+        "n": 7,
+        "success": 0.14285714285714285
+       },
+       "order": {
+        "n": 7,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 7,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.0
+       }
+      }
+     },
+     "control": {
+      "episodes": 35,
+      "success": 0.02857142857142857,
+      "invalid_rate": 0.8805289557683539,
+      "mean_steps": 62.65714285714286,
+      "by_split": {
+       "seen": {
+        "n": 7,
+        "success": 0.0
+       },
+       "pairs": {
+        "n": 7,
+        "success": 0.0
+       },
+       "order": {
+        "n": 7,
+        "success": 0.14285714285714285
+       },
+       "long3": {
+        "n": 7,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.0
+       }
+      }
+     }
+    }
+   },
+   "train": {
+    "pretrained": {
+     "updates": 13325,
+     "final_step": 13325,
+     "steps_per_s_first": 38.479079776976796,
+     "steps_per_s_last": 32.42480359931864,
+     "wall_utilization": 0.9823160190476171,
+     "peak_memory_gb": 2.137850178,
+     "final_val_nll": 0.08533528481312137,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 3290,
+      "nll": 0.08533528481312137,
+      "teacher_forced_action_exact": 0.7654941373534339,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 1613,
+        "nll": 0.06497512670292559,
+        "teacher_forced_action_exact": 0.8221476510067114
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 1677,
+        "nll": 0.10491843032996442,
+        "teacher_forced_action_exact": 0.7090301003344481
+       }
+      }
+     }
+    },
+    "scratch": {
+     "updates": 11905,
+     "final_step": 11905,
+     "steps_per_s_first": 30.03515597156074,
+     "steps_per_s_last": 28.92939746313387,
+     "wall_utilization": 0.9823184551596309,
+     "peak_memory_gb": 2.137850178,
+     "final_val_nll": 0.033514792134386975,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 3290,
+      "nll": 0.033514792134386975,
+      "teacher_forced_action_exact": 0.9396984924623115,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 1613,
+        "nll": 0.02342257677581117,
+        "teacher_forced_action_exact": 0.9530201342281879
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 1677,
+        "nll": 0.04322185437254009,
+        "teacher_forced_action_exact": 0.9264214046822743
+       }
+      }
+     }
+    },
+    "mlp_final": {
+     "updates": 1009960,
+     "final_step": 1060622,
+     "steps_per_s_first": 2810.891079394726,
+     "steps_per_s_last": 2826.7971179238525,
+     "wall_utilization": 0.9781173029353238,
+     "peak_memory_gb": 0.009261008,
+     "final_val_nll": 8.05850803752241e-06,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 597,
+      "nll": 8.05850803752241e-06,
+      "teacher_forced_action_exact": 1.0,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 298,
+        "nll": 6.558111049984925e-06,
+        "teacher_forced_action_exact": 1.0
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 299,
+        "nll": 9.553886974934352e-06,
+        "teacher_forced_action_exact": 1.0
+       }
+      }
+     }
+    },
+    "reward_fit": {
+     "updates": 2434,
+     "final_step": 2434,
+     "steps_per_s_first": 37.48648222891143,
+     "steps_per_s_last": 35.42695887364665,
+     "wall_utilization": 0.9066576356528349,
+     "peak_memory_gb": 2.137817402,
+     "final_val_nll": 0.07990479038516991,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 3290,
+      "nll": 0.07990479038516991,
+      "teacher_forced_action_exact": 0.7889447236180904,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 1613,
+        "nll": 0.06057769328331723,
+        "teacher_forced_action_exact": 0.8389261744966443
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 1677,
+        "nll": 0.0984943000007265,
+        "teacher_forced_action_exact": 0.7391304347826086
+       }
+      }
+     }
+    },
+    "sft_control": {
+     "updates": 4059,
+     "final_step": 4059,
+     "steps_per_s_first": 31.31775708873842,
+     "steps_per_s_last": 28.67713485469119,
+     "wall_utilization": 0.950369350273395,
+     "peak_memory_gb": 2.137833794,
+     "final_val_nll": 0.07834226636916095,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 3290,
+      "nll": 0.07834226636916095,
+      "teacher_forced_action_exact": 0.7889447236180904,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 1613,
+        "nll": 0.06076310157946318,
+        "teacher_forced_action_exact": 0.8322147651006712
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 1677,
+        "nll": 0.09525055068984223,
+        "teacher_forced_action_exact": 0.745819397993311
+       }
+      }
+     }
+    }
+   },
+   "reward_collection": {
+    "attempted": 255,
+    "successes": 59,
+    "accepted_episodes": 59,
+    "accepted_steps": 1079,
+    "accepted_illegal_actions": 389,
+    "accepted_failed_actions": 439
+   },
+   "suite_elapsed_s": 1672.7072986669955,
+   "mlp_selected_lr": 0.003,
+   "closed_loop": {
+    "mlp": {
+     "episodes": 80,
+     "steps": 2647,
+     "agreement_before_first_divergence": 0.9548306148055207,
+     "steps_before": 797,
+     "agreement_after_first_divergence": 0.02810810810810811,
+     "steps_after": 1850,
+     "never_diverged": 44,
+     "never_diverged_success": 1.0,
+     "diverged": 36,
+     "diverged_success": 0.08333333333333333,
+     "first_divergence_teacher_verb": {
+      "TAKE": 27,
+      "GO": 5,
+      "SEND": 4
+     },
+     "first_divergence_split_verb_success": {
+      "long3/TAKE/fail": 9,
+      "long4/TAKE/fail": 8,
+      "order/TAKE/fail": 5,
+      "pairs/TAKE/fail": 3,
+      "long4/GO/fail": 2,
+      "long3/GO/fail": 2,
+      "order/GO/fail": 1,
+      "long4/TAKE/success": 1,
+      "pairs/TAKE/success": 1,
+      "long3/SEND/fail": 1,
+      "pairs/SEND/success": 1,
+      "pairs/SEND/fail": 1,
+      "long4/SEND/fail": 1
+     },
+     "first_divergence_action_valid": 0.75,
+     "invalid_actions_by_verb": {
+      "TAKE": 1145,
+      "SEND": 603,
+      "GO": 1
+     },
+     "max_repeat_run_median": 1.0,
+     "share_episodes_repeat_run_ge10": 0.3875
+    },
+    "scratch": {
+     "episodes": 80,
+     "steps": 3992,
+     "agreement_before_first_divergence": 0.9039039039039038,
+     "steps_before": 666,
+     "agreement_after_first_divergence": 0.01803968731208659,
+     "steps_after": 3326,
+     "never_diverged": 16,
+     "never_diverged_success": 1.0,
+     "diverged": 64,
+     "diverged_success": 0.078125,
+     "first_divergence_teacher_verb": {
+      "GO": 37,
+      "SEND": 17,
+      "TAKE": 10
+     },
+     "first_divergence_split_verb_success": {
+      "long3/GO/fail": 9,
+      "long4/GO/fail": 7,
+      "seen/GO/fail": 6,
+      "order/GO/fail": 6,
+      "long4/SEND/fail": 6,
+      "pairs/GO/fail": 6,
+      "order/TAKE/fail": 5,
+      "long3/TAKE/fail": 3,
+      "order/SEND/fail": 3,
+      "long3/SEND/fail": 3,
+      "seen/SEND/fail": 2,
+      "long4/TAKE/fail": 2,
+      "order/GO/success": 1,
+      "seen/SEND/success": 1,
+      "pairs/SEND/fail": 1,
+      "long3/GO/success": 1,
+      "pairs/GO/success": 1,
+      "pairs/SEND/success": 1
+     },
+     "first_divergence_action_valid": 0.453125,
+     "invalid_actions_by_verb": {
+      "SEND": 1730,
+      "TAKE": 851,
+      "GO": 77
+     },
+     "max_repeat_run_median": 3.0,
+     "share_episodes_repeat_run_ge10": 0.425
+    },
+    "pretrained": {
+     "episodes": 80,
+     "steps": 4906,
+     "agreement_before_first_divergence": 0.867595818815331,
+     "steps_before": 574,
+     "agreement_after_first_divergence": 0.007156048014773777,
+     "steps_after": 4332,
+     "never_diverged": 4,
+     "never_diverged_success": 1.0,
+     "diverged": 76,
+     "diverged_success": 0.0,
+     "first_divergence_teacher_verb": {
+      "SEND": 41,
+      "GO": 28,
+      "TAKE": 7
+     },
+     "first_divergence_split_verb_success": {
+      "long4/SEND/fail": 10,
+      "order/SEND/fail": 8,
+      "long3/SEND/fail": 8,
+      "seen/SEND/fail": 8,
+      "pairs/SEND/fail": 7,
+      "order/GO/fail": 7,
+      "seen/GO/fail": 6,
+      "long3/GO/fail": 6,
+      "pairs/GO/fail": 5,
+      "long4/GO/fail": 4,
+      "long3/TAKE/fail": 2,
+      "long4/TAKE/fail": 2,
+      "pairs/TAKE/fail": 1,
+      "seen/TAKE/fail": 1,
+      "order/TAKE/fail": 1
+     },
+     "first_divergence_action_valid": 0.6710526315789473,
+     "invalid_actions_by_verb": {
+      "SEND": 2904,
+      "TAKE": 459
+     },
+     "max_repeat_run_median": 37.0,
+     "share_episodes_repeat_run_ge10": 0.55
+    },
+    "reward": {
+     "episodes": 80,
+     "steps": 4906,
+     "agreement_before_first_divergence": 0.8707482993197279,
+     "steps_before": 588,
+     "agreement_after_first_divergence": 0.007410838351088467,
+     "steps_after": 4318,
+     "never_diverged": 4,
+     "never_diverged_success": 1.0,
+     "diverged": 76,
+     "diverged_success": 0.0,
+     "first_divergence_teacher_verb": {
+      "SEND": 43,
+      "GO": 29,
+      "TAKE": 4
+     },
+     "first_divergence_split_verb_success": {
+      "long4/SEND/fail": 11,
+      "order/SEND/fail": 9,
+      "seen/SEND/fail": 9,
+      "long3/SEND/fail": 8,
+      "long3/GO/fail": 7,
+      "seen/GO/fail": 6,
+      "order/GO/fail": 6,
+      "pairs/GO/fail": 6,
+      "pairs/SEND/fail": 6,
+      "long4/GO/fail": 4,
+      "long3/TAKE/fail": 1,
+      "long4/TAKE/fail": 1,
+      "pairs/TAKE/fail": 1,
+      "order/TAKE/fail": 1
+     },
+     "first_divergence_action_valid": 0.7368421052631579,
+     "invalid_actions_by_verb": {
+      "SEND": 3127,
+      "TAKE": 218
+     },
+     "max_repeat_run_median": 51.5,
+     "share_episodes_repeat_run_ge10": 0.525
+    },
+    "control": {
+     "episodes": 80,
+     "steps": 4894,
+     "agreement_before_first_divergence": 0.8739635157545605,
+     "steps_before": 603,
+     "agreement_after_first_divergence": 0.00559310184106269,
+     "steps_after": 4291,
+     "never_diverged": 4,
+     "never_diverged_success": 1.0,
+     "diverged": 76,
+     "diverged_success": 0.0,
+     "first_divergence_teacher_verb": {
+      "SEND": 42,
+      "GO": 28,
+      "TAKE": 6
+     },
+     "first_divergence_split_verb_success": {
+      "long4/SEND/fail": 11,
+      "pairs/SEND/fail": 9,
+      "seen/SEND/fail": 8,
+      "order/SEND/fail": 7,
+      "long3/SEND/fail": 7,
+      "pairs/GO/fail": 7,
+      "long3/GO/fail": 7,
+      "order/GO/fail": 6,
+      "seen/GO/fail": 4,
+      "long4/GO/fail": 4,
+      "order/TAKE/fail": 3,
+      "long3/TAKE/fail": 2,
+      "long4/TAKE/fail": 1
+     },
+     "first_divergence_action_valid": 0.8026315789473685,
+     "invalid_actions_by_verb": {
+      "SEND": 3897,
+      "TAKE": 401
+     },
+     "max_repeat_run_median": 57.0,
+     "share_episodes_repeat_run_ge10": 0.95
+    }
+   },
+   "teacher_forced_numpy_fp32": {
+    "pretrained": {
+     "rows": 597,
+     "all": 0.7671691792294807,
+     "one_delivery": 0.8221476510067114,
+     "two_deliveries": 0.7123745819397993,
+     "by_verb": {
+      "INSPECT": {
+       "n": 199,
+       "exact": 1.0
+      },
+      "GO": {
+       "n": 167,
+       "exact": 0.8023952095808383
+      },
+      "TAKE": {
+       "n": 107,
+       "exact": 0.8878504672897196
+      },
+      "OPEN": {
+       "n": 16,
+       "exact": 0.3125
+      },
+      "SEND": {
+       "n": 107,
+       "exact": 0.2336448598130841
+      },
+      "DROP": {
+       "n": 1,
+       "exact": 0.0
+      }
+     }
+    },
+    "scratch": {
+     "rows": 597,
+     "all": 0.9396984924623115,
+     "one_delivery": 0.9530201342281879,
+     "two_deliveries": 0.9264214046822743,
+     "by_verb": {
+      "INSPECT": {
+       "n": 199,
+       "exact": 1.0
+      },
+      "GO": {
+       "n": 167,
+       "exact": 0.874251497005988
+      },
+      "TAKE": {
+       "n": 107,
+       "exact": 1.0
+      },
+      "OPEN": {
+       "n": 16,
+       "exact": 0.9375
+      },
+      "SEND": {
+       "n": 107,
+       "exact": 0.8785046728971962
+      },
+      "DROP": {
+       "n": 1,
+       "exact": 0.0
+      }
+     }
+    },
+    "reward": {
+     "rows": 597,
+     "all": 0.7889447236180904,
+     "one_delivery": 0.8389261744966443,
+     "two_deliveries": 0.7391304347826086,
+     "by_verb": {
+      "INSPECT": {
+       "n": 199,
+       "exact": 1.0
+      },
+      "GO": {
+       "n": 167,
+       "exact": 0.8502994011976048
+      },
+      "TAKE": {
+       "n": 107,
+       "exact": 0.9252336448598131
+      },
+      "OPEN": {
+       "n": 16,
+       "exact": 0.3125
+      },
+      "SEND": {
+       "n": 107,
+       "exact": 0.2336448598130841
+      },
+      "DROP": {
+       "n": 1,
+       "exact": 1.0
+      }
+     }
+    },
+    "control": {
+     "rows": 597,
+     "all": 0.7906197654941374,
+     "one_delivery": 0.8355704697986577,
+     "two_deliveries": 0.745819397993311,
+     "by_verb": {
+      "INSPECT": {
+       "n": 199,
+       "exact": 1.0
+      },
+      "GO": {
+       "n": 167,
+       "exact": 0.874251497005988
+      },
+      "TAKE": {
+       "n": 107,
+       "exact": 0.897196261682243
+      },
+      "OPEN": {
+       "n": 16,
+       "exact": 0.3125
+      },
+      "SEND": {
+       "n": 107,
+       "exact": 0.2336448598130841
+      },
+      "DROP": {
+       "n": 1,
+       "exact": 1.0
+      }
+     }
+    }
+   }
+  },
+  "t2_ac_s52": {
+   "eval": {
+    "complete": true,
+    "paired": 80,
+    "expected": 80,
+    "excluded_partial": 0,
+    "methods": {
+     "planner": {
+      "episodes": 80,
+      "success": 1.0,
+      "invalid_rate": 0.039177277179236046,
+      "mean_steps": 12.7625,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 1.0
+       },
+       "order": {
+        "n": 16,
+        "success": 1.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 1.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 1.0
+       }
+      }
+     },
+     "mlp": {
+      "episodes": 80,
+      "success": 0.4875,
+      "invalid_rate": 0.7208005249343832,
+      "mean_steps": 38.1,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.5625
+       },
+       "order": {
+        "n": 16,
+        "success": 0.4375
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.375
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0625
+       }
+      }
+     },
+     "scratch": {
+      "episodes": 80,
+      "success": 0.25,
+      "invalid_rate": 0.783777058969893,
+      "mean_steps": 50.2375,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.6875
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.25
+       },
+       "order": {
+        "n": 16,
+        "success": 0.25
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0625
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "pretrained": {
+      "episodes": 80,
+      "success": 0.1375,
+      "invalid_rate": 0.8153440316553089,
+      "mean_steps": 56.8625,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.25
+       },
+       "order": {
+        "n": 16,
+        "success": 0.125
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.125
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "reward": {
+      "episodes": 80,
+      "success": 0.15,
+      "invalid_rate": 0.8312903944729217,
+      "mean_steps": 56.0875,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.25
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "order": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.125
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "control": {
+      "episodes": 80,
+      "success": 0.1875,
+      "invalid_rate": 0.7885238315594633,
+      "mean_steps": 54.025,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.25
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.4375
+       },
+       "order": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0625
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     }
+    }
+   },
+   "secondary": {
+    "complete": false,
+    "paired": 36,
+    "expected": 80,
+    "excluded_partial": 2,
+    "methods": {
+     "planner": {
+      "episodes": 36,
+      "success": 1.0,
+      "invalid_rate": 0.03909465020576132,
+      "mean_steps": 13.5,
+      "by_split": {
+       "seen": {
+        "n": 7,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 7,
+        "success": 1.0
+       },
+       "order": {
+        "n": 7,
+        "success": 1.0
+       },
+       "long3": {
+        "n": 8,
+        "success": 1.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 1.0
+       }
+      }
+     },
+     "mlp": {
+      "episodes": 36,
+      "success": 0.4166666666666667,
+      "invalid_rate": 0.7095730918499353,
+      "mean_steps": 42.94444444444444,
+      "by_split": {
+       "seen": {
+        "n": 7,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 7,
+        "success": 0.5714285714285714
+       },
+       "order": {
+        "n": 7,
+        "success": 0.14285714285714285
+       },
+       "long3": {
+        "n": 8,
+        "success": 0.25
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.14285714285714285
+       }
+      }
+     },
+     "scratch": {
+      "episodes": 36,
+      "success": 0.25,
+      "invalid_rate": 0.7878787878787878,
+      "mean_steps": 50.416666666666664,
+      "by_split": {
+       "seen": {
+        "n": 7,
+        "success": 0.5714285714285714
+       },
+       "pairs": {
+        "n": 7,
+        "success": 0.42857142857142855
+       },
+       "order": {
+        "n": 7,
+        "success": 0.2857142857142857
+       },
+       "long3": {
+        "n": 8,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.0
+       }
+      }
+     },
+     "pretrained": {
+      "episodes": 36,
+      "success": 0.2222222222222222,
+      "invalid_rate": 0.8017103153393907,
+      "mean_steps": 51.97222222222222,
+      "by_split": {
+       "seen": {
+        "n": 7,
+        "success": 0.5714285714285714
+       },
+       "pairs": {
+        "n": 7,
+        "success": 0.5714285714285714
+       },
+       "order": {
+        "n": 7,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 8,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.0
+       }
+      }
+     },
+     "reward": {
+      "episodes": 36,
+      "success": 0.1388888888888889,
+      "invalid_rate": 0.8276877761413843,
+      "mean_steps": 56.583333333333336,
+      "by_split": {
+       "seen": {
+        "n": 7,
+        "success": 0.0
+       },
+       "pairs": {
+        "n": 7,
+        "success": 0.5714285714285714
+       },
+       "order": {
+        "n": 7,
+        "success": 0.14285714285714285
+       },
+       "long3": {
+        "n": 8,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.0
+       }
+      }
+     },
+     "control": {
+      "episodes": 36,
+      "success": 0.2222222222222222,
+      "invalid_rate": 0.8123667377398721,
+      "mean_steps": 52.111111111111114,
+      "by_split": {
+       "seen": {
+        "n": 7,
+        "success": 0.42857142857142855
+       },
+       "pairs": {
+        "n": 7,
+        "success": 0.5714285714285714
+       },
+       "order": {
+        "n": 7,
+        "success": 0.14285714285714285
+       },
+       "long3": {
+        "n": 8,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.0
+       }
+      }
+     }
+    }
+   },
+   "train": {
+    "pretrained": {
+     "updates": 12067,
+     "final_step": 12067,
+     "steps_per_s_first": 31.951182517308844,
+     "steps_per_s_last": 29.324645980734932,
+     "wall_utilization": 0.9823176635904626,
+     "peak_memory_gb": 2.137833794,
+     "final_val_nll": 0.032220073925604865,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 3290,
+      "nll": 0.032220073925604865,
+      "teacher_forced_action_exact": 0.9112227805695142,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 1613,
+        "nll": 0.028574042920553582,
+        "teacher_forced_action_exact": 0.9328859060402684
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 1677,
+        "nll": 0.035726960038394213,
+        "teacher_forced_action_exact": 0.8896321070234113
+       }
+      }
+     }
+    },
+    "scratch": {
+     "updates": 11736,
+     "final_step": 11736,
+     "steps_per_s_first": 28.982307375759934,
+     "steps_per_s_last": 28.506390588191316,
+     "wall_utilization": 0.9823039807546939,
+     "peak_memory_gb": 2.137850178,
+     "final_val_nll": 0.015328921624899865,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 3290,
+      "nll": 0.015328921624899865,
+      "teacher_forced_action_exact": 0.9581239530988275,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 1613,
+        "nll": 0.00534402173363004,
+        "teacher_forced_action_exact": 0.9865771812080537
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 1677,
+        "nll": 0.024932763917456947,
+        "teacher_forced_action_exact": 0.9297658862876255
+       }
+      }
+     }
+    },
+    "mlp_final": {
+     "updates": 945313,
+     "final_step": 996175,
+     "steps_per_s_first": 2828.727691937935,
+     "steps_per_s_last": 2644.8965952832705,
+     "wall_utilization": 0.9781239972094914,
+     "peak_memory_gb": 0.015988084,
+     "final_val_nll": 9.729574517139438e-05,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 597,
+      "nll": 9.729574517139438e-05,
+      "teacher_forced_action_exact": 1.0,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 298,
+        "nll": 6.971917983969586e-05,
+        "teacher_forced_action_exact": 1.0
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 299,
+        "nll": 0.00012478008118760228,
+        "teacher_forced_action_exact": 1.0
+       }
+      }
+     }
+    },
+    "reward_fit": {
+     "updates": 2235,
+     "final_step": 2235,
+     "steps_per_s_first": 34.95339821985036,
+     "steps_per_s_last": 32.495448509172476,
+     "wall_utilization": 0.9065143096921351,
+     "peak_memory_gb": 2.137833786,
+     "final_val_nll": 0.03150045900485654,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 3290,
+      "nll": 0.03150045900485654,
+      "teacher_forced_action_exact": 0.916247906197655,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 1613,
+        "nll": 0.025851998824598516,
+        "teacher_forced_action_exact": 0.9328859060402684
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 1677,
+        "nll": 0.036933354813297924,
+        "teacher_forced_action_exact": 0.8996655518394648
+       }
+      }
+     }
+    },
+    "sft_control": {
+     "updates": 3776,
+     "final_step": 3776,
+     "steps_per_s_first": 29.567988319745815,
+     "steps_per_s_last": 26.68348083253621,
+     "wall_utilization": 0.9504271063930355,
+     "peak_memory_gb": 2.137833794,
+     "final_val_nll": 0.029877566725142957,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 3290,
+      "nll": 0.029877566725142957,
+      "teacher_forced_action_exact": 0.9028475711892797,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 1613,
+        "nll": 0.02486690909423425,
+        "teacher_forced_action_exact": 0.9228187919463087
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 1677,
+        "nll": 0.03469700068975581,
+        "teacher_forced_action_exact": 0.882943143812709
+       }
+      }
+     }
+    }
+   },
+   "reward_collection": {
+    "attempted": 199,
+    "successes": 57,
+    "accepted_episodes": 57,
+    "accepted_steps": 584,
+    "accepted_illegal_actions": 84,
+    "accepted_failed_actions": 110
+   },
+   "suite_elapsed_s": 1670.4025504999445,
+   "mlp_selected_lr": 0.003,
+   "closed_loop": {
+    "mlp": {
+     "episodes": 80,
+     "steps": 3048,
+     "agreement_before_first_divergence": 0.9323943661971831,
+     "steps_before": 710,
+     "agreement_after_first_divergence": 0.03293413173652695,
+     "steps_after": 2338,
+     "never_diverged": 32,
+     "never_diverged_success": 1.0,
+     "diverged": 48,
+     "diverged_success": 0.14583333333333334,
+     "first_divergence_teacher_verb": {
+      "TAKE": 37,
+      "GO": 7,
+      "SEND": 4
+     },
+     "first_divergence_split_verb_success": {
+      "long4/TAKE/fail": 12,
+      "long3/TAKE/fail": 8,
+      "order/TAKE/fail": 7,
+      "pairs/TAKE/fail": 5,
+      "order/TAKE/success": 3,
+      "long4/GO/fail": 3,
+      "pairs/GO/fail": 2,
+      "order/SEND/success": 2,
+      "order/GO/fail": 1,
+      "long3/SEND/fail": 1,
+      "order/SEND/fail": 1,
+      "long4/TAKE/success": 1,
+      "pairs/TAKE/success": 1,
+      "long3/GO/fail": 1
+     },
+     "first_divergence_action_valid": 0.6041666666666666,
+     "invalid_actions_by_verb": {
+      "TAKE": 1304,
+      "SEND": 891,
+      "GO": 2
+     },
+     "max_repeat_run_median": 1.0,
+     "share_episodes_repeat_run_ge10": 0.4875
+    },
+    "scratch": {
+     "episodes": 80,
+     "steps": 4019,
+     "agreement_before_first_divergence": 0.9201570680628273,
+     "steps_before": 764,
+     "agreement_after_first_divergence": 0.002457757296466974,
+     "steps_after": 3255,
+     "never_diverged": 19,
+     "never_diverged_success": 1.0,
+     "diverged": 61,
+     "diverged_success": 0.01639344262295082,
+     "first_divergence_teacher_verb": {
+      "GO": 30,
+      "SEND": 21,
+      "TAKE": 10
+     },
+     "first_divergence_split_verb_success": {
+      "long3/GO/fail": 13,
+      "long4/SEND/fail": 7,
+      "pairs/GO/fail": 6,
+      "order/SEND/fail": 5,
+      "order/GO/fail": 5,
+      "long4/TAKE/fail": 5,
+      "pairs/SEND/fail": 5,
+      "long4/GO/fail": 4,
+      "seen/SEND/fail": 3,
+      "seen/GO/fail": 2,
+      "long3/TAKE/fail": 2,
+      "order/TAKE/fail": 2,
+      "pairs/TAKE/fail": 1,
+      "long3/SEND/success": 1
+     },
+     "first_divergence_action_valid": 0.7868852459016393,
+     "invalid_actions_by_verb": {
+      "SEND": 1760,
+      "TAKE": 1389,
+      "GO": 1
+     },
+     "max_repeat_run_median": 52.5,
+     "share_episodes_repeat_run_ge10": 0.6875
+    },
+    "pretrained": {
+     "episodes": 80,
+     "steps": 4549,
+     "agreement_before_first_divergence": 0.8948948948948949,
+     "steps_before": 666,
+     "agreement_after_first_divergence": 0.006438320885912954,
+     "steps_after": 3883,
+     "never_diverged": 10,
+     "never_diverged_success": 1.0,
+     "diverged": 70,
+     "diverged_success": 0.014285714285714285,
+     "first_divergence_teacher_verb": {
+      "GO": 41,
+      "SEND": 27,
+      "TAKE": 2
+     },
+     "first_divergence_split_verb_success": {
+      "long4/SEND/fail": 10,
+      "seen/GO/fail": 9,
+      "order/GO/fail": 9,
+      "long3/GO/fail": 9,
+      "pairs/GO/fail": 7,
+      "long4/GO/fail": 6,
+      "long3/SEND/fail": 5,
+      "pairs/SEND/fail": 5,
+      "seen/SEND/fail": 4,
+      "order/SEND/fail": 3,
+      "order/TAKE/fail": 2,
+      "pairs/GO/success": 1
+     },
+     "first_divergence_action_valid": 0.8285714285714286,
+     "invalid_actions_by_verb": {
+      "SEND": 3425,
+      "TAKE": 284
+     },
+     "max_repeat_run_median": 56.0,
+     "share_episodes_repeat_run_ge10": 0.7875
+    },
+    "reward": {
+     "episodes": 80,
+     "steps": 4487,
+     "agreement_before_first_divergence": 0.8952234206471494,
+     "steps_before": 649,
+     "agreement_after_first_divergence": 0.006253256904637832,
+     "steps_after": 3838,
+     "never_diverged": 12,
+     "never_diverged_success": 1.0,
+     "diverged": 68,
+     "diverged_success": 0.0,
+     "first_divergence_teacher_verb": {
+      "GO": 42,
+      "SEND": 25,
+      "TAKE": 1
+     },
+     "first_divergence_split_verb_success": {
+      "long3/GO/fail": 10,
+      "order/GO/fail": 9,
+      "long4/SEND/fail": 9,
+      "seen/GO/fail": 8,
+      "pairs/GO/fail": 8,
+      "long4/GO/fail": 7,
+      "pairs/SEND/fail": 5,
+      "long3/SEND/fail": 4,
+      "seen/SEND/fail": 4,
+      "order/SEND/fail": 3,
+      "order/TAKE/fail": 1
+     },
+     "first_divergence_action_valid": 0.8235294117647058,
+     "invalid_actions_by_verb": {
+      "SEND": 3473,
+      "TAKE": 257
+     },
+     "max_repeat_run_median": 56.5,
+     "share_episodes_repeat_run_ge10": 0.8
+    },
+    "control": {
+     "episodes": 80,
+     "steps": 4322,
+     "agreement_before_first_divergence": 0.9076704545454546,
+     "steps_before": 704,
+     "agreement_after_first_divergence": 0.009397457158651189,
+     "steps_after": 3618,
+     "never_diverged": 15,
+     "never_diverged_success": 1.0,
+     "diverged": 65,
+     "diverged_success": 0.0,
+     "first_divergence_teacher_verb": {
+      "GO": 34,
+      "SEND": 31
+     },
+     "first_divergence_split_verb_success": {
+      "long4/SEND/fail": 11,
+      "long3/GO/fail": 9,
+      "order/GO/fail": 9,
+      "seen/GO/fail": 7,
+      "long3/SEND/fail": 6,
+      "long4/GO/fail": 5,
+      "seen/SEND/fail": 5,
+      "pairs/SEND/fail": 5,
+      "order/SEND/fail": 4,
+      "pairs/GO/fail": 4
+     },
+     "first_divergence_action_valid": 0.8,
+     "invalid_actions_by_verb": {
+      "SEND": 3227,
+      "TAKE": 181
+     },
+     "max_repeat_run_median": 53.0,
+     "share_episodes_repeat_run_ge10": 0.725
+    }
+   },
+   "teacher_forced_numpy_fp32": {
+    "pretrained": {
+     "rows": 597,
+     "all": 0.9112227805695142,
+     "one_delivery": 0.9328859060402684,
+     "two_deliveries": 0.8896321070234113,
+     "by_verb": {
+      "INSPECT": {
+       "n": 199,
+       "exact": 1.0
+      },
+      "GO": {
+       "n": 167,
+       "exact": 0.8562874251497006
+      },
+      "TAKE": {
+       "n": 107,
+       "exact": 1.0
+      },
+      "OPEN": {
+       "n": 16,
+       "exact": 1.0
+      },
+      "SEND": {
+       "n": 107,
+       "exact": 0.7289719626168224
+      },
+      "DROP": {
+       "n": 1,
+       "exact": 1.0
+      }
+     }
+    },
+    "scratch": {
+     "rows": 597,
+     "all": 0.9581239530988275,
+     "one_delivery": 0.9865771812080537,
+     "two_deliveries": 0.9297658862876255,
+     "by_verb": {
+      "INSPECT": {
+       "n": 199,
+       "exact": 0.9949748743718593
+      },
+      "GO": {
+       "n": 167,
+       "exact": 0.9640718562874252
+      },
+      "TAKE": {
+       "n": 107,
+       "exact": 0.9439252336448598
+      },
+      "OPEN": {
+       "n": 16,
+       "exact": 1.0
+      },
+      "SEND": {
+       "n": 107,
+       "exact": 0.8878504672897196
+      },
+      "DROP": {
+       "n": 1,
+       "exact": 1.0
+      }
+     }
+    },
+    "reward": {
+     "rows": 597,
+     "all": 0.916247906197655,
+     "one_delivery": 0.9328859060402684,
+     "two_deliveries": 0.8996655518394648,
+     "by_verb": {
+      "INSPECT": {
+       "n": 199,
+       "exact": 1.0
+      },
+      "GO": {
+       "n": 167,
+       "exact": 0.8802395209580839
+      },
+      "TAKE": {
+       "n": 107,
+       "exact": 1.0
+      },
+      "OPEN": {
+       "n": 16,
+       "exact": 1.0
+      },
+      "SEND": {
+       "n": 107,
+       "exact": 0.719626168224299
+      },
+      "DROP": {
+       "n": 1,
+       "exact": 1.0
+      }
+     }
+    },
+    "control": {
+     "rows": 597,
+     "all": 0.9078726968174204,
+     "one_delivery": 0.9295302013422819,
+     "two_deliveries": 0.8862876254180602,
+     "by_verb": {
+      "INSPECT": {
+       "n": 199,
+       "exact": 1.0
+      },
+      "GO": {
+       "n": 167,
+       "exact": 0.8383233532934131
+      },
+      "TAKE": {
+       "n": 107,
+       "exact": 1.0
+      },
+      "OPEN": {
+       "n": 16,
+       "exact": 1.0
+      },
+      "SEND": {
+       "n": 107,
+       "exact": 0.7383177570093458
+      },
+      "DROP": {
+       "n": 1,
+       "exact": 1.0
+      }
+     }
+    }
+   }
+  },
+  "t2_ac_s53": {
+   "eval": {
+    "complete": true,
+    "paired": 80,
+    "expected": 80,
+    "excluded_partial": 0,
+    "methods": {
+     "planner": {
+      "episodes": 80,
+      "success": 1.0,
+      "invalid_rate": 0.039177277179236046,
+      "mean_steps": 12.7625,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 1.0
+       },
+       "order": {
+        "n": 16,
+        "success": 1.0
+       },
+       "long3": {
+        "n": 16,
+        "success": 1.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 1.0
+       }
+      }
+     },
+     "mlp": {
+      "episodes": 80,
+      "success": 0.75,
+      "invalid_rate": 0.545866935483871,
+      "mean_steps": 24.8,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 16,
+        "success": 1.0
+       },
+       "order": {
+        "n": 16,
+        "success": 0.6875
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.5625
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.5
+       }
+      }
+     },
+     "scratch": {
+      "episodes": 80,
+      "success": 0.1625,
+      "invalid_rate": 0.6600136085280109,
+      "mean_steps": 55.1125,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.4375
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.125
+       },
+       "order": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0625
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "pretrained": {
+      "episodes": 80,
+      "success": 0.1125,
+      "invalid_rate": 0.7655709342560554,
+      "mean_steps": 57.8,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.3125
+       },
+       "order": {
+        "n": 16,
+        "success": 0.0625
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "reward": {
+      "episodes": 80,
+      "success": 0.2,
+      "invalid_rate": 0.8162544169611308,
+      "mean_steps": 53.0625,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.5625
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.25
+       },
+       "order": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     },
+     "control": {
+      "episodes": 80,
+      "success": 0.1375,
+      "invalid_rate": 0.7906666666666666,
+      "mean_steps": 56.25,
+      "by_split": {
+       "seen": {
+        "n": 16,
+        "success": 0.3125
+       },
+       "pairs": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "order": {
+        "n": 16,
+        "success": 0.1875
+       },
+       "long3": {
+        "n": 16,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 16,
+        "success": 0.0
+       }
+      }
+     }
+    }
+   },
+   "secondary": {
+    "complete": false,
+    "paired": 31,
+    "expected": 80,
+    "excluded_partial": 3,
+    "methods": {
+     "planner": {
+      "episodes": 31,
+      "success": 1.0,
+      "invalid_rate": 0.03546099290780142,
+      "mean_steps": 13.64516129032258,
+      "by_split": {
+       "seen": {
+        "n": 5,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 6,
+        "success": 1.0
+       },
+       "order": {
+        "n": 6,
+        "success": 1.0
+       },
+       "long3": {
+        "n": 7,
+        "success": 1.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 1.0
+       }
+      }
+     },
+     "mlp": {
+      "episodes": 31,
+      "success": 0.5806451612903226,
+      "invalid_rate": 0.6682600382409177,
+      "mean_steps": 33.74193548387097,
+      "by_split": {
+       "seen": {
+        "n": 5,
+        "success": 1.0
+       },
+       "pairs": {
+        "n": 6,
+        "success": 1.0
+       },
+       "order": {
+        "n": 6,
+        "success": 0.5
+       },
+       "long3": {
+        "n": 7,
+        "success": 0.42857142857142855
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.14285714285714285
+       }
+      }
+     },
+     "scratch": {
+      "episodes": 31,
+      "success": 0.22580645161290322,
+      "invalid_rate": 0.6882463859208046,
+      "mean_steps": 51.32258064516129,
+      "by_split": {
+       "seen": {
+        "n": 5,
+        "success": 0.6
+       },
+       "pairs": {
+        "n": 6,
+        "success": 0.5
+       },
+       "order": {
+        "n": 6,
+        "success": 0.16666666666666666
+       },
+       "long3": {
+        "n": 7,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.0
+       }
+      }
+     },
+     "pretrained": {
+      "episodes": 31,
+      "success": 0.12903225806451613,
+      "invalid_rate": 0.7445838084378563,
+      "mean_steps": 56.58064516129032,
+      "by_split": {
+       "seen": {
+        "n": 5,
+        "success": 0.2
+       },
+       "pairs": {
+        "n": 6,
+        "success": 0.5
+       },
+       "order": {
+        "n": 6,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 7,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.0
+       }
+      }
+     },
+     "reward": {
+      "episodes": 31,
+      "success": 0.22580645161290322,
+      "invalid_rate": 0.7738693467336684,
+      "mean_steps": 51.354838709677416,
+      "by_split": {
+       "seen": {
+        "n": 5,
+        "success": 0.6
+       },
+       "pairs": {
+        "n": 6,
+        "success": 0.5
+       },
+       "order": {
+        "n": 6,
+        "success": 0.16666666666666666
+       },
+       "long3": {
+        "n": 7,
+        "success": 0.0
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.0
+       }
+      }
+     },
+     "control": {
+      "episodes": 31,
+      "success": 0.1935483870967742,
+      "invalid_rate": 0.7300242130750605,
+      "mean_steps": 53.29032258064516,
+      "by_split": {
+       "seen": {
+        "n": 5,
+        "success": 0.4
+       },
+       "pairs": {
+        "n": 6,
+        "success": 0.5
+       },
+       "order": {
+        "n": 6,
+        "success": 0.0
+       },
+       "long3": {
+        "n": 7,
+        "success": 0.14285714285714285
+       },
+       "long4": {
+        "n": 7,
+        "success": 0.0
+       }
+      }
+     }
+    }
+   },
+   "train": {
+    "pretrained": {
+     "updates": 9709,
+     "final_step": 9709,
+     "steps_per_s_first": 19.94093008167742,
+     "steps_per_s_last": 23.573056222753003,
+     "wall_utilization": 0.9823987506927335,
+     "peak_memory_gb": 2.137850178,
+     "final_val_nll": 0.04745265408854746,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 3290,
+      "nll": 0.04745265408854746,
+      "teacher_forced_action_exact": 0.8760469011725294,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 1613,
+        "nll": 0.045937186829846974,
+        "teacher_forced_action_exact": 0.9060402684563759
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 1677,
+        "nll": 0.04891028598376741,
+        "teacher_forced_action_exact": 0.8461538461538461
+       }
+      }
+     }
+    },
+    "scratch": {
+     "updates": 10174,
+     "final_step": 10174,
+     "steps_per_s_first": 24.719851998533684,
+     "steps_per_s_last": 24.718701048230027,
+     "wall_utilization": 0.9824192903786232,
+     "peak_memory_gb": 2.137850178,
+     "final_val_nll": 0.0380960339954987,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 3290,
+      "nll": 0.0380960339954987,
+      "teacher_forced_action_exact": 0.9128978224455612,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 1613,
+        "nll": 0.028933324775187546,
+        "teacher_forced_action_exact": 0.9429530201342282
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 1677,
+        "nll": 0.04690906319786119,
+        "teacher_forced_action_exact": 0.882943143812709
+       }
+      }
+     }
+    },
+    "mlp_final": {
+     "updates": 970440,
+     "final_step": 1020859,
+     "steps_per_s_first": 2869.0777728939224,
+     "steps_per_s_last": 2723.481442878484,
+     "wall_utilization": 0.9781136168118034,
+     "peak_memory_gb": 0.009260036,
+     "final_val_nll": 3.4824288270780987e-07,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 597,
+      "nll": 3.4824288270780987e-07,
+      "teacher_forced_action_exact": 1.0,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 298,
+        "nll": 4.864379063548658e-07,
+        "teacher_forced_action_exact": 1.0
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 299,
+        "nll": 2.1051004977529263e-07,
+        "teacher_forced_action_exact": 1.0
+       }
+      }
+     }
+    },
+    "reward_fit": {
+     "updates": 1525,
+     "final_step": 1525,
+     "steps_per_s_first": 19.59758077555671,
+     "steps_per_s_last": 21.808163310347,
+     "wall_utilization": 0.9082776930271256,
+     "peak_memory_gb": 2.137817402,
+     "final_val_nll": 0.025773890473252698,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 3290,
+      "nll": 0.025773890473252698,
+      "teacher_forced_action_exact": 0.916247906197655,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 1613,
+        "nll": 0.013963157008737485,
+        "teacher_forced_action_exact": 0.9530201342281879
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 1677,
+        "nll": 0.037133886345800726,
+        "teacher_forced_action_exact": 0.8795986622073578
+       }
+      }
+     }
+    },
+    "sft_control": {
+     "updates": 3148,
+     "final_step": 3148,
+     "steps_per_s_first": 22.518709944547247,
+     "steps_per_s_last": 22.254623611862243,
+     "wall_utilization": 0.9509881750001417,
+     "peak_memory_gb": 2.137833794,
+     "final_val_nll": 0.027504475790518436,
+     "final_val_metrics": {
+      "examples": 597,
+      "supervised_units": 3290,
+      "nll": 0.027504475790518436,
+      "teacher_forced_action_exact": 0.9112227805695142,
+      "by_deliveries": {
+       "1": {
+        "examples": 298,
+        "supervised_units": 1613,
+        "nll": 0.017161050249775687,
+        "teacher_forced_action_exact": 0.9530201342281879
+       },
+       "2": {
+        "examples": 299,
+        "supervised_units": 1677,
+        "nll": 0.03745316117943797,
+        "teacher_forced_action_exact": 0.8695652173913043
+       }
+      }
+     }
+    }
+   },
+   "reward_collection": {
+    "attempted": 217,
+    "successes": 65,
+    "accepted_episodes": 65,
+    "accepted_steps": 502,
+    "accepted_illegal_actions": 3,
+    "accepted_failed_actions": 34
+   },
+   "suite_elapsed_s": 1691.6575846670312,
+   "mlp_selected_lr": 0.001,
+   "closed_loop": {
+    "mlp": {
+     "episodes": 80,
+     "steps": 1984,
+     "agreement_before_first_divergence": 0.9760869565217392,
+     "steps_before": 920,
+     "agreement_after_first_divergence": 0.02443609022556391,
+     "steps_after": 1064,
+     "never_diverged": 58,
+     "never_diverged_success": 1.0,
+     "diverged": 22,
+     "diverged_success": 0.09090909090909091,
+     "first_divergence_teacher_verb": {
+      "TAKE": 15,
+      "GO": 7
+     },
+     "first_divergence_split_verb_success": {
+      "long4/TAKE/fail": 6,
+      "long3/TAKE/fail": 4,
+      "long3/GO/fail": 3,
+      "order/TAKE/fail": 3,
+      "order/GO/fail": 2,
+      "long4/GO/fail": 2,
+      "long4/TAKE/success": 1,
+      "order/TAKE/success": 1
+     },
+     "first_divergence_action_valid": 0.6363636363636364,
+     "invalid_actions_by_verb": {
+      "TAKE": 902,
+      "SEND": 181
+     },
+     "max_repeat_run_median": 1.0,
+     "share_episodes_repeat_run_ge10": 0.25
+    },
+    "scratch": {
+     "episodes": 80,
+     "steps": 4409,
+     "agreement_before_first_divergence": 0.8927444794952681,
+     "steps_before": 634,
+     "agreement_after_first_divergence": 0.005562913907284768,
+     "steps_after": 3775,
+     "never_diverged": 12,
+     "never_diverged_success": 1.0,
+     "diverged": 68,
+     "diverged_success": 0.014705882352941176,
+     "first_divergence_teacher_verb": {
+      "GO": 42,
+      "SEND": 14,
+      "TAKE": 12
+     },
+     "first_divergence_split_verb_success": {
+      "long4/GO/fail": 11,
+      "long3/GO/fail": 10,
+      "order/GO/fail": 9,
+      "pairs/GO/fail": 7,
+      "seen/GO/fail": 5,
+      "pairs/TAKE/fail": 4,
+      "long3/SEND/fail": 3,
+      "seen/SEND/fail": 3,
+      "pairs/SEND/fail": 3,
+      "long4/TAKE/fail": 3,
+      "order/TAKE/fail": 2,
+      "long4/SEND/fail": 2,
+      "long3/TAKE/fail": 2,
+      "order/SEND/fail": 2,
+      "long3/SEND/success": 1,
+      "seen/TAKE/fail": 1
+     },
+     "first_divergence_action_valid": 0.6323529411764706,
+     "invalid_actions_by_verb": {
+      "TAKE": 1467,
+      "SEND": 1442,
+      "GO": 1
+     },
+     "max_repeat_run_median": 1.0,
+     "share_episodes_repeat_run_ge10": 0.45
+    },
+    "pretrained": {
+     "episodes": 80,
+     "steps": 4624,
+     "agreement_before_first_divergence": 0.8792517006802721,
+     "steps_before": 588,
+     "agreement_after_first_divergence": 0.004955401387512388,
+     "steps_after": 4036,
+     "never_diverged": 9,
+     "never_diverged_success": 1.0,
+     "diverged": 71,
+     "diverged_success": 0.0,
+     "first_divergence_teacher_verb": {
+      "GO": 45,
+      "SEND": 20,
+      "TAKE": 6
+     },
+     "first_divergence_split_verb_success": {
+      "order/GO/fail": 11,
+      "long3/GO/fail": 11,
+      "seen/GO/fail": 10,
+      "long4/GO/fail": 7,
+      "pairs/GO/fail": 6,
+      "long4/SEND/fail": 6,
+      "long3/SEND/fail": 4,
+      "pairs/SEND/fail": 4,
+      "order/SEND/fail": 3,
+      "long4/TAKE/fail": 3,
+      "seen/SEND/fail": 3,
+      "pairs/TAKE/fail": 1,
+      "order/TAKE/fail": 1,
+      "long3/TAKE/fail": 1
+     },
+     "first_divergence_action_valid": 0.7605633802816901,
+     "invalid_actions_by_verb": {
+      "SEND": 2178,
+      "TAKE": 1021,
+      "OPEN": 341
+     },
+     "max_repeat_run_median": 50.5,
+     "share_episodes_repeat_run_ge10": 0.625
+    },
+    "reward": {
+     "episodes": 80,
+     "steps": 4245,
+     "agreement_before_first_divergence": 0.9080779944289693,
+     "steps_before": 718,
+     "agreement_after_first_divergence": 0.005387014459880919,
+     "steps_after": 3527,
+     "never_diverged": 14,
+     "never_diverged_success": 1.0,
+     "diverged": 66,
+     "diverged_success": 0.030303030303030304,
+     "first_divergence_teacher_verb": {
+      "GO": 35,
+      "SEND": 22,
+      "TAKE": 9
+     },
+     "first_divergence_split_verb_success": {
+      "long4/GO/fail": 8,
+      "long3/GO/fail": 8,
+      "order/GO/fail": 7,
+      "seen/GO/fail": 6,
+      "pairs/GO/fail": 6,
+      "long4/SEND/fail": 6,
+      "long3/SEND/fail": 5,
+      "pairs/SEND/fail": 5,
+      "order/TAKE/fail": 3,
+      "order/SEND/fail": 3,
+      "long3/TAKE/fail": 3,
+      "long4/TAKE/fail": 2,
+      "seen/SEND/success": 2,
+      "pairs/TAKE/fail": 1,
+      "seen/SEND/fail": 1
+     },
+     "first_divergence_action_valid": 0.8787878787878788,
+     "invalid_actions_by_verb": {
+      "SEND": 2970,
+      "TAKE": 494,
+      "GO": 1
+     },
+     "max_repeat_run_median": 52.5,
+     "share_episodes_repeat_run_ge10": 0.775
+    },
+    "control": {
+     "episodes": 80,
+     "steps": 4500,
+     "agreement_before_first_divergence": 0.9045643153526971,
+     "steps_before": 723,
+     "agreement_after_first_divergence": 0.0021180831347630395,
+     "steps_after": 3777,
+     "never_diverged": 11,
+     "never_diverged_success": 1.0,
+     "diverged": 69,
+     "diverged_success": 0.0,
+     "first_divergence_teacher_verb": {
+      "GO": 42,
+      "SEND": 18,
+      "TAKE": 9
+     },
+     "first_divergence_split_verb_success": {
+      "order/GO/fail": 9,
+      "long3/GO/fail": 9,
+      "long4/GO/fail": 9,
+      "seen/GO/fail": 8,
+      "pairs/GO/fail": 7,
+      "long4/SEND/fail": 5,
+      "pairs/SEND/fail": 5,
+      "long3/TAKE/fail": 4,
+      "long3/SEND/fail": 3,
+      "seen/SEND/fail": 3,
+      "long4/TAKE/fail": 2,
+      "order/TAKE/fail": 2,
+      "order/SEND/fail": 2,
+      "pairs/TAKE/fail": 1
+     },
+     "first_divergence_action_valid": 0.7246376811594203,
+     "invalid_actions_by_verb": {
+      "SEND": 2646,
+      "TAKE": 912
+     },
+     "max_repeat_run_median": 51.0,
+     "share_episodes_repeat_run_ge10": 0.75
+    }
+   },
+   "teacher_forced_numpy_fp32": {
+    "pretrained": {
+     "rows": 597,
+     "all": 0.8760469011725294,
+     "one_delivery": 0.9060402684563759,
+     "two_deliveries": 0.8461538461538461,
+     "by_verb": {
+      "INSPECT": {
+       "n": 199,
+       "exact": 1.0
+      },
+      "GO": {
+       "n": 167,
+       "exact": 0.7844311377245509
+      },
+      "TAKE": {
+       "n": 107,
+       "exact": 0.9065420560747663
+      },
+      "OPEN": {
+       "n": 16,
+       "exact": 1.0
+      },
+      "SEND": {
+       "n": 107,
+       "exact": 0.7383177570093458
+      },
+      "DROP": {
+       "n": 1,
+       "exact": 1.0
+      }
+     }
+    },
+    "scratch": {
+     "rows": 597,
+     "all": 0.9128978224455612,
+     "one_delivery": 0.9429530201342282,
+     "two_deliveries": 0.882943143812709,
+     "by_verb": {
+      "INSPECT": {
+       "n": 199,
+       "exact": 1.0
+      },
+      "GO": {
+       "n": 167,
+       "exact": 0.874251497005988
+      },
+      "TAKE": {
+       "n": 107,
+       "exact": 0.8785046728971962
+      },
+      "OPEN": {
+       "n": 16,
+       "exact": 1.0
+      },
+      "SEND": {
+       "n": 107,
+       "exact": 0.8411214953271028
+      },
+      "DROP": {
+       "n": 1,
+       "exact": 0.0
+      }
+     }
+    },
+    "reward": {
+     "rows": 597,
+     "all": 0.914572864321608,
+     "one_delivery": 0.9530201342281879,
+     "two_deliveries": 0.8762541806020067,
+     "by_verb": {
+      "INSPECT": {
+       "n": 199,
+       "exact": 1.0
+      },
+      "GO": {
+       "n": 167,
+       "exact": 0.8622754491017964
+      },
+      "TAKE": {
+       "n": 107,
+       "exact": 0.9065420560747663
+      },
+      "OPEN": {
+       "n": 16,
+       "exact": 1.0
+      },
+      "SEND": {
+       "n": 107,
+       "exact": 0.8317757009345794
+      },
+      "DROP": {
+       "n": 1,
+       "exact": 1.0
+      }
+     }
+    },
+    "control": {
+     "rows": 597,
+     "all": 0.9128978224455612,
+     "one_delivery": 0.9530201342281879,
+     "two_deliveries": 0.8729096989966555,
+     "by_verb": {
+      "INSPECT": {
+       "n": 199,
+       "exact": 1.0
+      },
+      "GO": {
+       "n": 167,
+       "exact": 0.8263473053892215
+      },
+      "TAKE": {
+       "n": 107,
+       "exact": 0.9345794392523364
+      },
+      "OPEN": {
+       "n": 16,
+       "exact": 1.0
+      },
+      "SEND": {
+       "n": 107,
+       "exact": 0.8504672897196262
+      },
+      "DROP": {
+       "n": 1,
+       "exact": 1.0
+      }
+     }
+    }
+   }
+  }
+ },
+ "turn2_pooled_closed_loop": {
+  "mlp": {
+   "episodes": 240,
+   "steps": 7679,
+   "agreement_before_first_divergence": 0.9563246806757314,
+   "steps_before": 2427,
+   "agreement_after_first_divergence": 0.029512566641279513,
+   "steps_after": 5252,
+   "never_diverged": 134,
+   "never_diverged_success": 1.0,
+   "diverged": 106,
+   "diverged_success": 0.11320754716981132,
+   "first_divergence_teacher_verb": {
+    "TAKE": 79,
+    "GO": 19,
+    "SEND": 8
+   },
+   "first_divergence_split_verb_success": {
+    "long4/TAKE/fail": 26,
+    "long3/TAKE/fail": 21,
+    "order/TAKE/fail": 15,
+    "pairs/TAKE/fail": 8,
+    "long4/GO/fail": 7,
+    "long3/GO/fail": 6,
+    "order/GO/fail": 4,
+    "order/TAKE/success": 4,
+    "long4/TAKE/success": 3,
+    "pairs/TAKE/success": 2,
+    "long3/SEND/fail": 2,
+    "pairs/GO/fail": 2,
+    "order/SEND/success": 2,
+    "pairs/SEND/success": 1,
+    "pairs/SEND/fail": 1,
+    "long4/SEND/fail": 1,
+    "order/SEND/fail": 1
+   },
+   "first_divergence_action_valid": 0.660377358490566,
+   "invalid_actions_by_verb": {
+    "TAKE": 3351,
+    "SEND": 1675,
+    "GO": 3
+   },
+   "max_repeat_run_median": 1.0,
+   "share_episodes_repeat_run_ge10": 0.375
+  },
+  "scratch": {
+   "episodes": 240,
+   "steps": 12420,
+   "agreement_before_first_divergence": 0.9064922480620154,
+   "steps_before": 2064,
+   "agreement_after_first_divergence": 0.008594051757435304,
+   "steps_after": 10356,
+   "never_diverged": 47,
+   "never_diverged_success": 1.0,
+   "diverged": 193,
+   "diverged_success": 0.03626943005181347,
+   "first_divergence_teacher_verb": {
+    "GO": 109,
+    "SEND": 52,
+    "TAKE": 32
+   },
+   "first_divergence_split_verb_success": {
+    "long3/GO/fail": 32,
+    "long4/GO/fail": 22,
+    "order/GO/fail": 20,
+    "pairs/GO/fail": 19,
+    "long4/SEND/fail": 15,
+    "seen/GO/fail": 13,
+    "order/SEND/fail": 10,
+    "long4/TAKE/fail": 10,
+    "order/TAKE/fail": 9,
+    "pairs/SEND/fail": 9,
+    "seen/SEND/fail": 8,
+    "long3/TAKE/fail": 7,
+    "long3/SEND/fail": 6,
+    "pairs/TAKE/fail": 5,
+    "long3/SEND/success": 2,
+    "order/GO/success": 1,
+    "seen/SEND/success": 1,
+    "long3/GO/success": 1,
+    "pairs/GO/success": 1,
+    "pairs/SEND/success": 1,
+    "seen/TAKE/fail": 1
+   },
+   "first_divergence_action_valid": 0.6217616580310881,
+   "invalid_actions_by_verb": {
+    "SEND": 4932,
+    "TAKE": 3707,
+    "GO": 79
+   },
+   "max_repeat_run_median": 43.0,
+   "share_episodes_repeat_run_ge10": 0.5208333333333334
+  },
+  "pretrained": {
+   "episodes": 240,
+   "steps": 14079,
+   "agreement_before_first_divergence": 0.8812910284463895,
+   "steps_before": 1828,
+   "agreement_after_first_divergence": 0.006203575218349523,
+   "steps_after": 12251,
+   "never_diverged": 23,
+   "never_diverged_success": 1.0,
+   "diverged": 217,
+   "diverged_success": 0.004608294930875576,
+   "first_divergence_teacher_verb": {
+    "GO": 114,
+    "SEND": 88,
+    "TAKE": 15
+   },
+   "first_divergence_split_verb_success": {
+    "order/GO/fail": 27,
+    "long3/GO/fail": 26,
+    "long4/SEND/fail": 26,
+    "seen/GO/fail": 25,
+    "pairs/GO/fail": 18,
+    "long3/SEND/fail": 17,
+    "long4/GO/fail": 17,
+    "pairs/SEND/fail": 16,
+    "seen/SEND/fail": 15,
+    "order/SEND/fail": 14,
+    "long4/TAKE/fail": 5,
+    "order/TAKE/fail": 4,
+    "long3/TAKE/fail": 3,
+    "pairs/TAKE/fail": 2,
+    "seen/TAKE/fail": 1,
+    "pairs/GO/success": 1
+   },
+   "first_divergence_action_valid": 0.7511520737327189,
+   "invalid_actions_by_verb": {
+    "SEND": 8507,
+    "TAKE": 1764,
+    "OPEN": 341
+   },
+   "max_repeat_run_median": 52.0,
+   "share_episodes_repeat_run_ge10": 0.6541666666666667
+  },
+  "reward": {
+   "episodes": 240,
+   "steps": 13638,
+   "agreement_before_first_divergence": 0.8925831202046036,
+   "steps_before": 1955,
+   "agreement_after_first_divergence": 0.00641958401095609,
+   "steps_after": 11683,
+   "never_diverged": 30,
+   "never_diverged_success": 1.0,
+   "diverged": 210,
+   "diverged_success": 0.009523809523809525,
+   "first_divergence_teacher_verb": {
+    "GO": 106,
+    "SEND": 90,
+    "TAKE": 14
+   },
+   "first_divergence_split_verb_success": {
+    "long4/SEND/fail": 26,
+    "long3/GO/fail": 25,
+    "order/GO/fail": 22,
+    "seen/GO/fail": 20,
+    "pairs/GO/fail": 20,
+    "long4/GO/fail": 19,
+    "long3/SEND/fail": 17,
+    "pairs/SEND/fail": 16,
+    "order/SEND/fail": 15,
+    "seen/SEND/fail": 14,
+    "order/TAKE/fail": 5,
+    "long3/TAKE/fail": 4,
+    "long4/TAKE/fail": 3,
+    "pairs/TAKE/fail": 2,
+    "seen/SEND/success": 2
+   },
+   "first_divergence_action_valid": 0.8095238095238095,
+   "invalid_actions_by_verb": {
+    "SEND": 9570,
+    "TAKE": 969,
+    "GO": 1
+   },
+   "max_repeat_run_median": 53.0,
+   "share_episodes_repeat_run_ge10": 0.7
+  },
+  "control": {
+   "episodes": 240,
+   "steps": 13716,
+   "agreement_before_first_divergence": 0.896551724137931,
+   "steps_before": 2030,
+   "agreement_after_first_divergence": 0.005647783672770837,
+   "steps_after": 11686,
+   "never_diverged": 30,
+   "never_diverged_success": 1.0,
+   "diverged": 210,
+   "diverged_success": 0.0,
+   "first_divergence_teacher_verb": {
+    "GO": 104,
+    "SEND": 91,
+    "TAKE": 15
+   },
+   "first_divergence_split_verb_success": {
+    "long4/SEND/fail": 27,
+    "long3/GO/fail": 25,
+    "order/GO/fail": 24,
+    "seen/GO/fail": 19,
+    "pairs/SEND/fail": 19,
+    "long4/GO/fail": 18,
+    "pairs/GO/fail": 18,
+    "long3/SEND/fail": 16,
+    "seen/SEND/fail": 16,
+    "order/SEND/fail": 13,
+    "long3/TAKE/fail": 6,
+    "order/TAKE/fail": 5,
+    "long4/TAKE/fail": 3,
+    "pairs/TAKE/fail": 1
+   },
+   "first_divergence_action_valid": 0.7761904761904762,
+   "invalid_actions_by_verb": {
+    "SEND": 9770,
+    "TAKE": 1494
+   },
+   "max_repeat_run_median": 53.0,
+   "share_episodes_repeat_run_ge10": 0.8083333333333333
+  }
+ },
+ "turn2_pooled_recovery": {
+  "planner": {
+   "mean_steps": 12.7625,
+   "assigned": 180,
+   "exposed": 180,
+   "success_given_exposure": 1.0,
+   "recovery_rate": 1.0,
+   "recovery_steps_resolved_mean": 3.6333333333333333,
+   "unresolved": 0
+  },
+  "mlp": {
+   "mean_steps": 31.995833333333334,
+   "assigned": 180,
+   "exposed": 156,
+   "success_given_exposure": 0.6730769230769231,
+   "recovery_rate": 0.9551282051282052,
+   "recovery_steps_resolved_mean": 3.5906040268456376,
+   "unresolved": 7
+  },
+  "scratch": {
+   "mean_steps": 51.75,
+   "assigned": 180,
+   "exposed": 153,
+   "success_given_exposure": 0.23529411764705882,
+   "recovery_rate": 0.7254901960784313,
+   "recovery_steps_resolved_mean": 3.4864864864864864,
+   "unresolved": 42
+  },
+  "pretrained": {
+   "mean_steps": 58.6625,
+   "assigned": 180,
+   "exposed": 120,
+   "success_given_exposure": 0.13333333333333333,
+   "recovery_rate": 0.36666666666666664,
+   "recovery_steps_resolved_mean": 4.2272727272727275,
+   "unresolved": 76
+  },
+  "reward": {
+   "mean_steps": 56.825,
+   "assigned": 180,
+   "exposed": 136,
+   "success_given_exposure": 0.14705882352941177,
+   "recovery_rate": 0.39705882352941174,
+   "recovery_steps_resolved_mean": 3.814814814814815,
+   "unresolved": 82
+  },
+  "control": {
+   "mean_steps": 57.15,
+   "assigned": 180,
+   "exposed": 146,
+   "success_given_exposure": 0.1232876712328767,
+   "recovery_rate": 0.4452054794520548,
+   "recovery_steps_resolved_mean": 3.0615384615384613,
+   "unresolved": 81
+  }
+ },
+ "elapsed_s": 47.192793374997564
+}

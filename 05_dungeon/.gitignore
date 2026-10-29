@@ -1,0 +1,10 @@
+# Seed follow-up (pipeline3.sh): commit only the final (round-3) weights of each new seed chain.
+checkpoints/solver_cur1_r1[3-9]/
+checkpoints/solver_ctl1_r1[3-9]/
+checkpoints/solver_cur2_r*/
+checkpoints/solver_ctl2_r*/
+checkpoints/solver_cur3_r*/opt.safetensors
+checkpoints/solver_ctl3_r*/opt.safetensors
+# per-chain curriculum files are rebuilt from the designer npz files by make_curriculum.py
+results/curriculum_r2_r*.npz
+results/curriculum_r3_r*.npz

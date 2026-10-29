@@ -1,0 +1,6 @@
+{
+ "written": "2026-10-26, before any M5 training run",
+ "rule": "Evaluate every saved checkpoint closed-loop (through the frozen interface, with the chicken-head reflex if the demos used it) on the same 30 development episodes: instances-dev configs 0000-0009, episode k=0, each of the 3 tasks. Choose the checkpoint with the most successes; ties broken by the lower median sim time of successes, then by the earlier step. Imitation loss is reported but never used for selection (lessons file, item 6).",
+ "episodes": "instances-dev-0000..0009 x {go_and_return, set_lamp, find_ball}, k=0",
+ "applies_to": ["BC run", "DAgger run"]
+}

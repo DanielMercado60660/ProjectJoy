@@ -1,0 +1,885 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Physics Detective · Unknown actuator gain</title><style>body{font:16px system-ui;max-width:1200px;margin:35px auto;padding:0 24px;background:#f7f5ef;color:#20282d}h1{font-size:36px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px}.card{padding:18px;background:white;border-radius:10px}svg{width:100%;height:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:7px;text-align:right;border-bottom:1px solid #ddd}td:first-child,th:first-child{text-align:left}pre{white-space:pre-wrap;font-size:12px}</style>
+<h1>Can a detective learn its pusher is wrong?</h1>
+<p>TINY PIPELINE CHECK; no headline conclusions. 4 fresh paired worlds per family. The only model fix adds unknown actuator gain. Probe histories are reused unchanged; each probe still costs an attempt and a reset.</p>
+<p>Green: joint gain/friction Bayes. Blue: unit-gain Bayes on the same probes. Purple: equally validation-tuned joint MLE. Gold: original frozen LSQ.</p>
+<p>The gain-error family is now inside the adopted physics model. This is a test on fresh worlds, not a new unmodelled disturbance. MLE intervals shown below are diagnostic Bayesian intervals.</p>
+<h2>matched</h2><div class="grid">
+<div class="card"><b>Placement success</b><svg viewBox="0 0 570 230" role="img" aria-label="Placement success: matched"><path d="M45 15V190H545" fill="none" stroke="#889"/><path d="M45 190H545" stroke="#ddd"/><text x="12" y="194" font-size="12">0</text><path d="M45 105.0H545" stroke="#ddd"/><text x="12" y="109.0" font-size="12">0.5</text><path d="M45 20H545" stroke="#ddd"/><text x="12" y="24" font-size="12">1</text><text x="45" y="209" text-anchor="middle" font-size="12">0</text><text x="165" y="209" text-anchor="middle" font-size="12">1</text><text x="285" y="209" text-anchor="middle" font-size="12">2</text><text x="525" y="209" text-anchor="middle" font-size="12">4</text><polyline points="45,190.0 165,62.5 285,20.0 525,20.0" fill="none" stroke="#4269d0" stroke-width="2"/><path d="M45 106.71855780271846V190.0" stroke="#4269d0" opacity=".35"/><circle cx="45" cy="190.0" r="3" fill="#4269d0"/><path d="M165 27.749834337649105V138.8908867609917" stroke="#4269d0" opacity=".35"/><circle cx="165" cy="62.5" r="3" fill="#4269d0"/><path d="M285 20.0V103.28144219728154" stroke="#4269d0" opacity=".35"/><circle cx="285" cy="20.0" r="3" fill="#4269d0"/><path d="M525 20.0V103.28144219728154" stroke="#4269d0" opacity=".35"/><circle cx="525" cy="20.0" r="3" fill="#4269d0"/><polyline points="45,190.0 165,20.0 285,20.0 525,20.0" fill="none" stroke="#00876c" stroke-width="2"/><path d="M45 106.71855780271846V190.0" stroke="#00876c" opacity=".35"/><circle cx="45" cy="190.0" r="3" fill="#00876c"/><path d="M165 20.0V103.28144219728154" stroke="#00876c" opacity=".35"/><circle cx="165" cy="20.0" r="3" fill="#00876c"/><path d="M285 20.0V103.28144219728154" stroke="#00876c" opacity=".35"/><circle cx="285" cy="20.0" r="3" fill="#00876c"/><path d="M525 20.0V103.28144219728154" stroke="#00876c" opacity=".35"/><circle cx="525" cy="20.0" r="3" fill="#00876c"/><polyline points="45,190.0 165,62.5 285,20.0 525,20.0" fill="none" stroke="#b07800" stroke-width="2"/><path d="M45 106.71855780271846V190.0" stroke="#b07800" opacity=".35"/><circle cx="45" cy="190.0" r="3" fill="#b07800"/><path d="M165 27.749834337649105V138.8908867609917" stroke="#b07800" opacity=".35"/><circle cx="165" cy="62.5" r="3" fill="#b07800"/><path d="M285 20.0V103.28144219728154" stroke="#b07800" opacity=".35"/><circle cx="285" cy="20.0" r="3" fill="#b07800"/><path d="M525 20.0V103.28144219728154" stroke="#b07800" opacity=".35"/><circle cx="525" cy="20.0" r="3" fill="#b07800"/><polyline points="45,190.0 165,105.0 285,20.0 525,62.5" fill="none" stroke="#9254b7" stroke-width="2"/><path d="M45 106.71855780271846V190.0" stroke="#9254b7" opacity=".35"/><circle cx="45" cy="190.0" r="3" fill="#9254b7"/><path d="M165 45.50662815586543V164.49337184413457" stroke="#9254b7" opacity=".35"/><circle cx="165" cy="105.0" r="3" fill="#9254b7"/><path d="M285 20.0V103.28144219728154" stroke="#9254b7" opacity=".35"/><circle cx="285" cy="20.0" r="3" fill="#9254b7"/><path d="M525 27.749834337649105V138.8908867609917" stroke="#9254b7" opacity=".35"/><circle cx="525" cy="62.5" r="3" fill="#9254b7"/><text x="295" y="228" text-anchor="middle" font-size="12">preliminary probes (total attempts = probes + 1)</text></svg></div>
+<div class="card"><b>90% friction coverage</b><svg viewBox="0 0 570 230" role="img" aria-label="90% friction coverage: matched"><path d="M45 15V190H545" fill="none" stroke="#889"/><path d="M45 190H545" stroke="#ddd"/><text x="12" y="194" font-size="12">0</text><path d="M45 105.0H545" stroke="#ddd"/><text x="12" y="109.0" font-size="12">0.5</text><path d="M45 20H545" stroke="#ddd"/><text x="12" y="24" font-size="12">1</text><text x="45" y="209" text-anchor="middle" font-size="12">0</text><text x="165" y="209" text-anchor="middle" font-size="12">1</text><text x="285" y="209" text-anchor="middle" font-size="12">2</text><text x="525" y="209" text-anchor="middle" font-size="12">4</text><path d="M45 37H545" stroke="#666" stroke-dasharray="5 4"/><polyline points="45,20.0 165,20.0 285,20.0 525,62.5" fill="none" stroke="#4269d0" stroke-width="2"/><path d="M45 20.0V103.28144219728154" stroke="#4269d0" opacity=".35"/><circle cx="45" cy="20.0" r="3" fill="#4269d0"/><path d="M165 20.0V103.28144219728154" stroke="#4269d0" opacity=".35"/><circle cx="165" cy="20.0" r="3" fill="#4269d0"/><path d="M285 20.0V103.28144219728154" stroke="#4269d0" opacity=".35"/><circle cx="285" cy="20.0" r="3" fill="#4269d0"/><path d="M525 27.749834337649105V138.8908867609917" stroke="#4269d0" opacity=".35"/><circle cx="525" cy="62.5" r="3" fill="#4269d0"/><polyline points="45,20.0 165,20.0 285,20.0 525,20.0" fill="none" stroke="#00876c" stroke-width="2"/><path d="M45 20.0V103.28144219728154" stroke="#00876c" opacity=".35"/><circle cx="45" cy="20.0" r="3" fill="#00876c"/><path d="M165 20.0V103.28144219728154" stroke="#00876c" opacity=".35"/><circle cx="165" cy="20.0" r="3" fill="#00876c"/><path d="M285 20.0V103.28144219728154" stroke="#00876c" opacity=".35"/><circle cx="285" cy="20.0" r="3" fill="#00876c"/><path d="M525 20.0V103.28144219728154" stroke="#00876c" opacity=".35"/><circle cx="525" cy="20.0" r="3" fill="#00876c"/><polyline points="45,20.0 165,20.0 285,20.0 525,20.0" fill="none" stroke="#b07800" stroke-width="2"/><path d="M45 20.0V103.28144219728154" stroke="#b07800" opacity=".35"/><circle cx="45" cy="20.0" r="3" fill="#b07800"/><path d="M165 20.0V103.28144219728154" stroke="#b07800" opacity=".35"/><circle cx="165" cy="20.0" r="3" fill="#b07800"/><path d="M285 20.0V103.28144219728154" stroke="#b07800" opacity=".35"/><circle cx="285" cy="20.0" r="3" fill="#b07800"/><path d="M525 20.0V103.28144219728154" stroke="#b07800" opacity=".35"/><circle cx="525" cy="20.0" r="3" fill="#b07800"/><polyline points="45,20.0 165,20.0 285,20.0 525,20.0" fill="none" stroke="#9254b7" stroke-width="2"/><path d="M45 20.0V103.28144219728154" stroke="#9254b7" opacity=".35"/><circle cx="45" cy="20.0" r="3" fill="#9254b7"/><path d="M165 20.0V103.28144219728154" stroke="#9254b7" opacity=".35"/><circle cx="165" cy="20.0" r="3" fill="#9254b7"/><path d="M285 20.0V103.28144219728154" stroke="#9254b7" opacity=".35"/><circle cx="285" cy="20.0" r="3" fill="#9254b7"/><path d="M525 20.0V103.28144219728154" stroke="#9254b7" opacity=".35"/><circle cx="525" cy="20.0" r="3" fill="#9254b7"/><text x="295" y="228" text-anchor="middle" font-size="12">preliminary probes (total attempts = probes + 1)</text></svg></div>
+</div>
+<h2>gain_shift</h2><div class="grid">
+<div class="card"><b>Placement success</b><svg viewBox="0 0 570 230" role="img" aria-label="Placement success: gain_shift"><path d="M45 15V190H545" fill="none" stroke="#889"/><path d="M45 190H545" stroke="#ddd"/><text x="12" y="194" font-size="12">0</text><path d="M45 105.0H545" stroke="#ddd"/><text x="12" y="109.0" font-size="12">0.5</text><path d="M45 20H545" stroke="#ddd"/><text x="12" y="24" font-size="12">1</text><text x="45" y="209" text-anchor="middle" font-size="12">0</text><text x="165" y="209" text-anchor="middle" font-size="12">1</text><text x="285" y="209" text-anchor="middle" font-size="12">2</text><text x="525" y="209" text-anchor="middle" font-size="12">4</text><polyline points="45,190.0 165,105.0 285,147.5 525,147.5" fill="none" stroke="#4269d0" stroke-width="2"/><path d="M45 106.71855780271846V190.0" stroke="#4269d0" opacity=".35"/><circle cx="45" cy="190.0" r="3" fill="#4269d0"/><path d="M165 45.50662815586543V164.49337184413457" stroke="#4269d0" opacity=".35"/><circle cx="165" cy="105.0" r="3" fill="#4269d0"/><path d="M285 71.10911323900832V182.2501656623509" stroke="#4269d0" opacity=".35"/><circle cx="285" cy="147.5" r="3" fill="#4269d0"/><path d="M525 71.10911323900832V182.2501656623509" stroke="#4269d0" opacity=".35"/><circle cx="525" cy="147.5" r="3" fill="#4269d0"/><polyline points="45,147.5 165,105.0 285,20.0 525,20.0" fill="none" stroke="#00876c" stroke-width="2"/><path d="M45 71.10911323900832V182.2501656623509" stroke="#00876c" opacity=".35"/><circle cx="45" cy="147.5" r="3" fill="#00876c"/><path d="M165 45.50662815586543V164.49337184413457" stroke="#00876c" opacity=".35"/><circle cx="165" cy="105.0" r="3" fill="#00876c"/><path d="M285 20.0V103.28144219728154" stroke="#00876c" opacity=".35"/><circle cx="285" cy="20.0" r="3" fill="#00876c"/><path d="M525 20.0V103.28144219728154" stroke="#00876c" opacity=".35"/><circle cx="525" cy="20.0" r="3" fill="#00876c"/><polyline points="45,147.5 165,62.5 285,62.5 525,190.0" fill="none" stroke="#b07800" stroke-width="2"/><path d="M45 71.10911323900832V182.2501656623509" stroke="#b07800" opacity=".35"/><circle cx="45" cy="147.5" r="3" fill="#b07800"/><path d="M165 27.749834337649105V138.8908867609917" stroke="#b07800" opacity=".35"/><circle cx="165" cy="62.5" r="3" fill="#b07800"/><path d="M285 27.749834337649105V138.8908867609917" stroke="#b07800" opacity=".35"/><circle cx="285" cy="62.5" r="3" fill="#b07800"/><path d="M525 106.71855780271846V190.0" stroke="#b07800" opacity=".35"/><circle cx="525" cy="190.0" r="3" fill="#b07800"/><polyline points="45,147.5 165,62.5 285,20.0 525,62.5" fill="none" stroke="#9254b7" stroke-width="2"/><path d="M45 71.10911323900832V182.2501656623509" stroke="#9254b7" opacity=".35"/><circle cx="45" cy="147.5" r="3" fill="#9254b7"/><path d="M165 27.749834337649105V138.8908867609917" stroke="#9254b7" opacity=".35"/><circle cx="165" cy="62.5" r="3" fill="#9254b7"/><path d="M285 20.0V103.28144219728154" stroke="#9254b7" opacity=".35"/><circle cx="285" cy="20.0" r="3" fill="#9254b7"/><path d="M525 27.749834337649105V138.8908867609917" stroke="#9254b7" opacity=".35"/><circle cx="525" cy="62.5" r="3" fill="#9254b7"/><text x="295" y="228" text-anchor="middle" font-size="12">preliminary probes (total attempts = probes + 1)</text></svg></div>
+<div class="card"><b>90% friction coverage</b><svg viewBox="0 0 570 230" role="img" aria-label="90% friction coverage: gain_shift"><path d="M45 15V190H545" fill="none" stroke="#889"/><path d="M45 190H545" stroke="#ddd"/><text x="12" y="194" font-size="12">0</text><path d="M45 105.0H545" stroke="#ddd"/><text x="12" y="109.0" font-size="12">0.5</text><path d="M45 20H545" stroke="#ddd"/><text x="12" y="24" font-size="12">1</text><text x="45" y="209" text-anchor="middle" font-size="12">0</text><text x="165" y="209" text-anchor="middle" font-size="12">1</text><text x="285" y="209" text-anchor="middle" font-size="12">2</text><text x="525" y="209" text-anchor="middle" font-size="12">4</text><path d="M45 37H545" stroke="#666" stroke-dasharray="5 4"/><polyline points="45,20.0 165,190.0 285,190.0 525,190.0" fill="none" stroke="#4269d0" stroke-width="2"/><path d="M45 20.0V103.28144219728154" stroke="#4269d0" opacity=".35"/><circle cx="45" cy="20.0" r="3" fill="#4269d0"/><path d="M165 106.71855780271846V190.0" stroke="#4269d0" opacity=".35"/><circle cx="165" cy="190.0" r="3" fill="#4269d0"/><path d="M285 106.71855780271846V190.0" stroke="#4269d0" opacity=".35"/><circle cx="285" cy="190.0" r="3" fill="#4269d0"/><path d="M525 106.71855780271846V190.0" stroke="#4269d0" opacity=".35"/><circle cx="525" cy="190.0" r="3" fill="#4269d0"/><polyline points="45,20.0 165,20.0 285,20.0 525,62.5" fill="none" stroke="#00876c" stroke-width="2"/><path d="M45 20.0V103.28144219728154" stroke="#00876c" opacity=".35"/><circle cx="45" cy="20.0" r="3" fill="#00876c"/><path d="M165 20.0V103.28144219728154" stroke="#00876c" opacity=".35"/><circle cx="165" cy="20.0" r="3" fill="#00876c"/><path d="M285 20.0V103.28144219728154" stroke="#00876c" opacity=".35"/><circle cx="285" cy="20.0" r="3" fill="#00876c"/><path d="M525 27.749834337649105V138.8908867609917" stroke="#00876c" opacity=".35"/><circle cx="525" cy="62.5" r="3" fill="#00876c"/><polyline points="45,20.0 165,190.0 285,190.0 525,190.0" fill="none" stroke="#b07800" stroke-width="2"/><path d="M45 20.0V103.28144219728154" stroke="#b07800" opacity=".35"/><circle cx="45" cy="20.0" r="3" fill="#b07800"/><path d="M165 106.71855780271846V190.0" stroke="#b07800" opacity=".35"/><circle cx="165" cy="190.0" r="3" fill="#b07800"/><path d="M285 106.71855780271846V190.0" stroke="#b07800" opacity=".35"/><circle cx="285" cy="190.0" r="3" fill="#b07800"/><path d="M525 106.71855780271846V190.0" stroke="#b07800" opacity=".35"/><circle cx="525" cy="190.0" r="3" fill="#b07800"/><polyline points="45,20.0 165,20.0 285,20.0 525,62.5" fill="none" stroke="#9254b7" stroke-width="2"/><path d="M45 20.0V103.28144219728154" stroke="#9254b7" opacity=".35"/><circle cx="45" cy="20.0" r="3" fill="#9254b7"/><path d="M165 20.0V103.28144219728154" stroke="#9254b7" opacity=".35"/><circle cx="165" cy="20.0" r="3" fill="#9254b7"/><path d="M285 20.0V103.28144219728154" stroke="#9254b7" opacity=".35"/><circle cx="285" cy="20.0" r="3" fill="#9254b7"/><path d="M525 27.749834337649105V138.8908867609917" stroke="#9254b7" opacity=".35"/><circle cx="525" cy="62.5" r="3" fill="#9254b7"/><text x="295" y="228" text-anchor="middle" font-size="12">preliminary probes (total attempts = probes + 1)</text></svg></div>
+</div>
+<p>Vertical lines are Wilson 95% intervals across worlds; budgets are paired. No abstention. Total attempts = probes + 1.</p><h2>All methods</h2><table><tr><th>Family / method / probes</th><th>Success</th><th>Attempts</th><th>μ RMSE</th><th>μ cov90</th><th>gain cov90</th></tr>
+<tr><td>gain_shift / blind / 0</td><td>0.000</td><td>1</td><td>0.1869</td><td>1.000</td><td>—</td></tr>
+<tr><td>gain_shift / eig / 0</td><td>0.000</td><td>1</td><td>0.1869</td><td>1.000</td><td>—</td></tr>
+<tr><td>gain_shift / eig / 1</td><td>0.500</td><td>2</td><td>0.0748</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / eig / 2</td><td>0.250</td><td>3</td><td>0.0709</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / eig / 4</td><td>0.250</td><td>5</td><td>0.0718</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / lsq / 0</td><td>0.250</td><td>1</td><td>0.1869</td><td>1.000</td><td>—</td></tr>
+<tr><td>gain_shift / lsq / 1</td><td>0.750</td><td>2</td><td>0.0769</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / lsq / 2</td><td>0.750</td><td>3</td><td>0.0828</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / lsq / 4</td><td>0.000</td><td>5</td><td>0.0858</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / mu_oracle / 0</td><td>0.000</td><td>1</td><td>0.0000</td><td>—</td><td>—</td></tr>
+<tr><td>gain_shift / task_voi / 0</td><td>0.000</td><td>1</td><td>0.1869</td><td>1.000</td><td>—</td></tr>
+<tr><td>gain_shift / task_voi / 1</td><td>0.500</td><td>2</td><td>0.0756</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / task_voi / 2</td><td>0.250</td><td>3</td><td>0.0753</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / task_voi / 4</td><td>0.250</td><td>5</td><td>0.0752</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / tobit / 0</td><td>0.250</td><td>1</td><td>0.1869</td><td>1.000</td><td>—</td></tr>
+<tr><td>gain_shift / tobit / 1</td><td>0.250</td><td>2</td><td>0.0811</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / tobit / 2</td><td>0.250</td><td>3</td><td>0.0844</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / tobit / 4</td><td>0.250</td><td>5</td><td>0.0862</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / world_oracle / 0</td><td>1.000</td><td>1</td><td>0.0000</td><td>—</td><td>—</td></tr>
+<tr><td>matched / blind / 0</td><td>0.000</td><td>1</td><td>0.1869</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / eig / 0</td><td>0.000</td><td>1</td><td>0.1869</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / eig / 1</td><td>0.750</td><td>2</td><td>0.0056</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / eig / 2</td><td>1.000</td><td>3</td><td>0.0023</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / eig / 4</td><td>1.000</td><td>5</td><td>0.0017</td><td>0.750</td><td>—</td></tr>
+<tr><td>matched / lsq / 0</td><td>0.000</td><td>1</td><td>0.1869</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / lsq / 1</td><td>0.750</td><td>2</td><td>0.0165</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / lsq / 2</td><td>1.000</td><td>3</td><td>0.0031</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / lsq / 4</td><td>1.000</td><td>5</td><td>0.0026</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / mu_oracle / 0</td><td>1.000</td><td>1</td><td>0.0000</td><td>—</td><td>—</td></tr>
+<tr><td>matched / task_voi / 0</td><td>0.000</td><td>1</td><td>0.1869</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / task_voi / 1</td><td>0.750</td><td>2</td><td>0.0046</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / task_voi / 2</td><td>1.000</td><td>3</td><td>0.0024</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / task_voi / 4</td><td>1.000</td><td>5</td><td>0.0027</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / tobit / 0</td><td>0.000</td><td>1</td><td>0.1869</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / tobit / 1</td><td>0.750</td><td>2</td><td>0.0101</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / tobit / 2</td><td>1.000</td><td>3</td><td>0.0025</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / tobit / 4</td><td>1.000</td><td>5</td><td>0.0036</td><td>0.750</td><td>—</td></tr>
+<tr><td>matched / world_oracle / 0</td><td>1.000</td><td>1</td><td>0.0000</td><td>—</td><td>—</td></tr>
+<tr><td>gain_shift / gain_bayes / 0</td><td>0.250</td><td>1</td><td>0.1869</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>gain_shift / gain_bayes / 1</td><td>0.500</td><td>2</td><td>0.0708</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>gain_shift / gain_bayes / 2</td><td>1.000</td><td>3</td><td>0.0641</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>gain_shift / gain_bayes / 4</td><td>1.000</td><td>5</td><td>0.0780</td><td>0.750</td><td>0.750</td></tr>
+<tr><td>gain_shift / gain_mle / 0</td><td>0.250</td><td>1</td><td>0.1869</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>gain_shift / gain_mle / 1</td><td>0.750</td><td>2</td><td>0.0877</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>gain_shift / gain_mle / 2</td><td>1.000</td><td>3</td><td>0.1066</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>gain_shift / gain_mle / 4</td><td>0.750</td><td>5</td><td>0.1084</td><td>0.750</td><td>0.750</td></tr>
+<tr><td>gain_shift / same_probes_unit_bayes / 0</td><td>0.000</td><td>1</td><td>0.1869</td><td>1.000</td><td>—</td></tr>
+<tr><td>gain_shift / same_probes_unit_bayes / 1</td><td>0.500</td><td>2</td><td>0.0748</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / same_probes_unit_bayes / 2</td><td>0.250</td><td>3</td><td>0.0709</td><td>0.000</td><td>—</td></tr>
+<tr><td>gain_shift / same_probes_unit_bayes / 4</td><td>0.250</td><td>5</td><td>0.0718</td><td>0.000</td><td>—</td></tr>
+<tr><td>matched / gain_bayes / 0</td><td>0.000</td><td>1</td><td>0.1869</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>matched / gain_bayes / 1</td><td>1.000</td><td>2</td><td>0.0179</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>matched / gain_bayes / 2</td><td>1.000</td><td>3</td><td>0.0211</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>matched / gain_bayes / 4</td><td>1.000</td><td>5</td><td>0.0388</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>matched / gain_mle / 0</td><td>0.000</td><td>1</td><td>0.1869</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>matched / gain_mle / 1</td><td>0.500</td><td>2</td><td>0.0914</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>matched / gain_mle / 2</td><td>1.000</td><td>3</td><td>0.0291</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>matched / gain_mle / 4</td><td>0.750</td><td>5</td><td>0.0892</td><td>1.000</td><td>1.000</td></tr>
+<tr><td>matched / same_probes_unit_bayes / 0</td><td>0.000</td><td>1</td><td>0.1869</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / same_probes_unit_bayes / 1</td><td>0.750</td><td>2</td><td>0.0056</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / same_probes_unit_bayes / 2</td><td>1.000</td><td>3</td><td>0.0023</td><td>1.000</td><td>—</td></tr>
+<tr><td>matched / same_probes_unit_bayes / 4</td><td>1.000</td><td>5</td><td>0.0017</td><td>0.750</td><td>—</td></tr>
+</table>
+<h2>First recovered placement: world 0</h2><p>Deterministic first-by-world selection for illustration. All worlds contribute to the scores above.</p><div class="grid">
+<div class="card"><b>same_probes_unit_bayes: MISS</b><svg viewBox="0 0 570 86" role="img" aria-label="Final push: same_probes_unit_bayes"><rect x="395.41" y="8" width="25.50" height="47" fill="#8bd9ad"/><path d="M30 55H540" stroke="#889"/><circle cx="437.24" cy="37" r="6" fill="#c0392b" opacity=".35"/><circle cx="30" cy="37" r="6" fill="#c0392b"><animate attributeName="cx" values="30.00;30.83;33.33;37.50;43.33;50.83;59.99;70.83;83.32;97.49;113.32;130.81;149.98;170.81;193.30;216.58;238.74;259.74;279.55;298.20;315.68;331.98;347.10;361.06;373.84;385.45;395.89;405.15;413.24;420.16;425.90;430.47;433.87;436.09;437.15;437.24;437.24;437.24;437.24;437.24;437.24;437.24;437.24;437.24;437.24;437.24;437.24;437.24;437.24;437.24" dur="4s" repeatCount="indefinite"/></circle><text x="30" y="78" font-size="12">0 m</text><text x="540" y="78" text-anchor="end" font-size="12">1.00 m</text></svg><p>Probe owner: eig. μ truth=0.5629; estimate=0.4948; gain truth=1.114.</p><p>Predicted success=1.000; stop=0.799 m; target=0.741 m.</p><details><summary>Saved evidence</summary><pre>{
+  &quot;world&quot;: 0,
+  &quot;family&quot;: &quot;gain_shift&quot;,
+  &quot;method&quot;: &quot;same_probes_unit_bayes&quot;,
+  &quot;budget&quot;: 4,
+  &quot;attempts&quot;: 5,
+  &quot;resets&quot;: 4,
+  &quot;mu_true&quot;: 0.5629048251550444,
+  &quot;gain_true&quot;: 1.1139128094352597,
+  &quot;target&quot;: 0.7414950420991666,
+  &quot;action&quot;: [
+    12.0,
+    0.29000000000000004
+  ],
+  &quot;stop&quot;: 0.7985084530347248,
+  &quot;success&quot;: false,
+  &quot;placement_error&quot;: 0.05701341093555823,
+  &quot;mu_estimate&quot;: 0.4947761870113956,
+  &quot;mu_error&quot;: -0.06812863814364878,
+  &quot;predicted_success&quot;: 0.999999599299699,
+  &quot;selection_seconds&quot;: 0.12679316702997312,
+  &quot;history&quot;: [
+    {
+      &quot;action&quot;: [
+        8.0,
+        0.3
+      ],
+      &quot;y&quot;: [
+        0.03289845607771785,
+        0.029994664843567005,
+        0.10683468645594704,
+        0.3670404531560268,
+        0.2007837283550255,
+        0.30477562656057483,
+        0.3259747207768701,
+        0.11622101055989231,
+        0.2636531116008205,
+        0.16183182664514495,
+        0.24660682490620045,
+        0.26554167162459236,
+        0.2799514658026566,
+        0.23586412881903054,
+        0.2034352600891487,
+        0.2812392236051896,
+        0.2068773597674164,
+        0.3082519634534335,
+        0.1436264155653258,
+        0.19158198691344208
+      ],
+      &quot;cens&quot;: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      &quot;selected_score&quot;: 2.528817626725625
+    },
+    {
+      &quot;action&quot;: [
+        6.0,
+        1.0
+      ],
+      &quot;y&quot;: [
+        -0.14570002168589938,
+        0.12151729715609805,
+        0.13054035178648243,
+        0.06181541094008437,
+        0.156909895964641,
+        0.2363207942147058,
+        0.36932078206193236,
+        0.43110402673051096,
+        0.4703152023007634,
+        0.5329633624119299,
+        0.5975915167140263,
+        0.7450575037331357,
+        0.6444314332853639,
+        0.7294421082415662,
+        0.7150509749468746,
+        0.7065039640824298,
+        0.5817177904823319,
+        0.6956128680959337,
+        0.6757074523373617,
+        0.7566824060018377
+      ],
+      &quot;cens&quot;: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      &quot;selected_score&quot;: 1.5717493538355645
+    },
+    {
+      &quot;action&quot;: [
+        6.0,
+        1.0
+      ],
+      &quot;y&quot;: [
+        -0.013463533962033421,
+        0.05361649595042755,
+        0.0737379954309943,
+        0.12607225592253923,
+        0.07431585227515919,
+        0.1804213438134431,
+        0.25006238641081485,
+        0.21207814632211805,
+        0.4566474039815552,
+        0.4966216343591801,
+        0.636987618568987,
+        0.628888047370295,
+        0.7749992117409761,
+        0.7367796040710572,
+        0.6914195872187284,
+        0.6007163206611095,
+        0.7424318976401832,
+        0.6965955454967265,
+        0.6997523875766227,
+        0.7503418680476717
+      ],
+      &quot;cens&quot;: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      &quot;selected_score&quot;: 0.28018227012293734
+    },
+    {
+      &quot;action&quot;: [
+        6.0,
+        1.0
+      ],
+      &quot;y&quot;: [
+        -0.031937067129482626,
+        0.07626293760229778,
+        0.07153217504801448,
+        0.0994156946194997,
+        0.05426613819919841,
+        0.10206445252013249,
+        0.3445997659853618,
+        0.5230071716199542,
+        0.5045535530799783,
+        0.5700070623972726,
+        0.6135156403404555,
+        0.8060443855723609,
+        0.6714159362948698,
+        0.8183960696781694,
+        0.6675176959502165,
+        0.8139870196760165,
+        0.6706676372382021,
+        0.7011123450128763,
+        0.8719975891300803,
+        0.6590193276290086
+      ],
+      &quot;cens&quot;: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      &quot;selected_score&quot;: 0.1708806218992412
+    }
+  ],
+  &quot;posterior_mean&quot;: 0.4947761870113956,
+  &quot;posterior_sd&quot;: 0.0018812746581181761,
+  &quot;ci50&quot;: [
+    0.49350360186758135,
+    0.49604327244377305
+  ],
+  &quot;ci90&quot;: [
+    0.49168824753095935,
+    0.4978818131320952
+  ],
+  &quot;grid_step_over_sd&quot;: 0.06643323961176724,
+  &quot;probe_owner&quot;: &quot;eig&quot;
+}</pre></details></div>
+<div class="card"><b>gain_bayes: HIT</b><svg viewBox="0 0 570 86" role="img" aria-label="Final push: gain_bayes"><rect x="395.41" y="8" width="25.50" height="47" fill="#8bd9ad"/><path d="M30 55H540" stroke="#889"/><circle cx="420.05" cy="37" r="6" fill="#00876c" opacity=".35"/><circle cx="30" cy="37" r="6" fill="#00876c"><animate attributeName="cx" values="30.00;30.36;31.45;33.26;35.80;39.06;43.04;47.75;53.18;59.34;66.22;73.83;82.16;91.21;100.99;111.50;122.73;134.68;147.36;160.76;174.89;189.74;205.31;221.61;238.63;256.38;274.86;294.05;313.79;332.24;348.93;363.87;377.05;388.46;398.12;406.03;412.17;416.55;419.18;420.05;420.05;420.05;420.05;420.05;420.05;420.05;420.05;420.05;420.05;420.05" dur="4s" repeatCount="indefinite"/></circle><text x="30" y="78" font-size="12">0 m</text><text x="540" y="78" text-anchor="end" font-size="12">1.00 m</text></svg><p>Probe owner: eig. μ truth=0.5629; estimate=0.4964; gain truth=1.114.</p><p>Predicted success=0.697; stop=0.765 m; target=0.741 m.</p><details><summary>Saved evidence</summary><pre>{
+  &quot;world&quot;: 0,
+  &quot;family&quot;: &quot;gain_shift&quot;,
+  &quot;method&quot;: &quot;gain_bayes&quot;,
+  &quot;budget&quot;: 4,
+  &quot;attempts&quot;: 5,
+  &quot;resets&quot;: 4,
+  &quot;mu_true&quot;: 0.5629048251550444,
+  &quot;gain_true&quot;: 1.1139128094352597,
+  &quot;target&quot;: 0.7414950420991666,
+  &quot;action&quot;: [
+    7.0,
+    0.69
+  ],
+  &quot;stop&quot;: 0.7648052123736169,
+  &quot;success&quot;: true,
+  &quot;placement_error&quot;: 0.02331017027445026,
+  &quot;mu_estimate&quot;: 0.4963810313124285,
+  &quot;mu_error&quot;: -0.06652379384261586,
+  &quot;predicted_success&quot;: 0.697309223263761,
+  &quot;selection_seconds&quot;: 0.12679316702997312,
+  &quot;history&quot;: [
+    {
+      &quot;action&quot;: [
+        8.0,
+        0.3
+      ],
+      &quot;y&quot;: [
+        0.03289845607771785,
+        0.029994664843567005,
+        0.10683468645594704,
+        0.3670404531560268,
+        0.2007837283550255,
+        0.30477562656057483,
+        0.3259747207768701,
+        0.11622101055989231,
+        0.2636531116008205,
+        0.16183182664514495,
+        0.24660682490620045,
+        0.26554167162459236,
+        0.2799514658026566,
+        0.23586412881903054,
+        0.2034352600891487,
+        0.2812392236051896,
+        0.2068773597674164,
+        0.3082519634534335,
+        0.1436264155653258,
+        0.19158198691344208
+      ],
+      &quot;cens&quot;: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      &quot;selected_score&quot;: 2.528817626725625
+    },
+    {
+      &quot;action&quot;: [
+        6.0,
+        1.0
+      ],
+      &quot;y&quot;: [
+        -0.14570002168589938,
+        0.12151729715609805,
+        0.13054035178648243,
+        0.06181541094008437,
+        0.156909895964641,
+        0.2363207942147058,
+        0.36932078206193236,
+        0.43110402673051096,
+        0.4703152023007634,
+        0.5329633624119299,
+        0.5975915167140263,
+        0.7450575037331357,
+        0.6444314332853639,
+        0.7294421082415662,
+        0.7150509749468746,
+        0.7065039640824298,
+        0.5817177904823319,
+        0.6956128680959337,
+        0.6757074523373617,
+        0.7566824060018377
+      ],
+      &quot;cens&quot;: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      &quot;selected_score&quot;: 1.5717493538355645
+    },
+    {
+      &quot;action&quot;: [
+        6.0,
+        1.0
+      ],
+      &quot;y&quot;: [
+        -0.013463533962033421,
+        0.05361649595042755,
+        0.0737379954309943,
+        0.12607225592253923,
+        0.07431585227515919,
+        0.1804213438134431,
+        0.25006238641081485,
+        0.21207814632211805,
+        0.4566474039815552,
+        0.4966216343591801,
+        0.636987618568987,
+        0.628888047370295,
+        0.7749992117409761,
+        0.7367796040710572,
+        0.6914195872187284,
+        0.6007163206611095,
+        0.7424318976401832,
+        0.6965955454967265,
+        0.6997523875766227,
+        0.7503418680476717
+      ],
+      &quot;cens&quot;: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      &quot;selected_score&quot;: 0.28018227012293734
+    },
+    {
+      &quot;action&quot;: [
+        6.0,
+        1.0
+      ],
+      &quot;y&quot;: [
+        -0.031937067129482626,
+        0.07626293760229778,
+        0.07153217504801448,
+        0.0994156946194997,
+        0.05426613819919841,
+        0.10206445252013249,
+        0.3445997659853618,
+        0.5230071716199542,
+        0.5045535530799783,
+        0.5700070623972726,
+        0.6135156403404555,
+        0.8060443855723609,
+        0.6714159362948698,
+        0.8183960696781694,
+        0.6675176959502165,
+        0.8139870196760165,
+        0.6706676372382021,
+        0.7011123450128763,
+        0.8719975891300803,
+        0.6590193276290086
+      ],
+      &quot;cens&quot;: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      &quot;selected_score&quot;: 0.1708806218992412
+    }
+  ],
+  &quot;posterior_mean&quot;: 0.4963810313124285,
+  &quot;posterior_sd&quot;: 0.0473219096143173,
+  &quot;ci50&quot;: [
+    0.458190310690609,
+    0.5350507313388597
+  ],
+  &quot;ci90&quot;: [
+    0.41917952122319935,
+    0.5718205384350004
+  ],
+  &quot;grid_step_over_sd&quot;: 0.006600956057002366,
+  &quot;gain_posterior_mean&quot;: 1.002557981951147,
+  &quot;gain_posterior_sd&quot;: 0.07961867601115055,
+  &quot;gain_ci50&quot;: [
+    0.9383645650197695,
+    1.0676225121183056
+  ],
+  &quot;gain_ci90&quot;: [
+    0.8723602883566852,
+    1.1293661267577848
+  ],
+  &quot;gain_grid_step_over_sd&quot;: 0.02340347931691499,
+  &quot;mu_conditional_underresolved_mass&quot;: 0.0,
+  &quot;gain_conditional_underresolved_mass&quot;: 1.0,
+  &quot;joint_max_cell_mass&quot;: 0.0004939049918961739,
+  &quot;gain_estimate&quot;: 1.002557981951147,
+  &quot;gain_error&quot;: -0.11135482748411274,
+  &quot;probe_owner&quot;: &quot;eig&quot;,
+  &quot;gain_prior_half_width&quot;: 0.15,
+  &quot;correction_seconds&quot;: 0.3571606670739129
+}</pre></details></div>
+<div class="card"><b>gain_mle: MISS</b><svg viewBox="0 0 570 86" role="img" aria-label="Final push: gain_mle"><rect x="395.41" y="8" width="25.50" height="47" fill="#8bd9ad"/><path d="M30 55H540" stroke="#889"/><circle cx="429.19" cy="37" r="6" fill="#c0392b" opacity=".35"/><circle cx="30" cy="37" r="6" fill="#c0392b"><animate attributeName="cx" values="30.00;30.45;31.78;34.02;37.14;41.15;46.06;51.86;58.56;66.14;74.62;83.99;94.25;105.41;117.45;130.39;144.22;158.95;174.56;191.07;208.47;226.77;245.95;266.03;286.76;306.39;324.56;341.27;356.54;370.34;382.70;393.60;403.05;411.04;417.58;422.66;426.29;428.47;429.19;429.19;429.19;429.19;429.19;429.19;429.19;429.19;429.19;429.19;429.19;429.19" dur="4s" repeatCount="indefinite"/></circle><text x="30" y="78" font-size="12">0 m</text><text x="540" y="78" text-anchor="end" font-size="12">1.00 m</text></svg><p>Probe owner: eig. μ truth=0.5629; estimate=0.4959; gain truth=1.114.</p><p>Predicted success=0.526; stop=0.783 m; target=0.741 m.</p><details><summary>Saved evidence</summary><pre>{
+  &quot;world&quot;: 0,
+  &quot;family&quot;: &quot;gain_shift&quot;,
+  &quot;method&quot;: &quot;gain_mle&quot;,
+  &quot;budget&quot;: 4,
+  &quot;attempts&quot;: 5,
+  &quot;resets&quot;: 4,
+  &quot;mu_true&quot;: 0.5629048251550444,
+  &quot;gain_true&quot;: 1.1139128094352597,
+  &quot;target&quot;: 0.7414950420991666,
+  &quot;action&quot;: [
+    8.0,
+    0.535
+  ],
+  &quot;stop&quot;: 0.7827314054896914,
+  &quot;success&quot;: false,
+  &quot;placement_error&quot;: 0.04123636339052483,
+  &quot;mu_estimate&quot;: 0.4959079550187422,
+  &quot;mu_error&quot;: -0.06699687013630218,
+  &quot;predicted_success&quot;: 0.5258631764049309,
+  &quot;selection_seconds&quot;: 0.12679316702997312,
+  &quot;history&quot;: [
+    {
+      &quot;action&quot;: [
+        8.0,
+        0.3
+      ],
+      &quot;y&quot;: [
+        0.03289845607771785,
+        0.029994664843567005,
+        0.10683468645594704,
+        0.3670404531560268,
+        0.2007837283550255,
+        0.30477562656057483,
+        0.3259747207768701,
+        0.11622101055989231,
+        0.2636531116008205,
+        0.16183182664514495,
+        0.24660682490620045,
+        0.26554167162459236,
+        0.2799514658026566,
+        0.23586412881903054,
+        0.2034352600891487,
+        0.2812392236051896,
+        0.2068773597674164,
+        0.3082519634534335,
+        0.1436264155653258,
+        0.19158198691344208
+      ],
+      &quot;cens&quot;: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      &quot;selected_score&quot;: 2.528817626725625
+    },
+    {
+      &quot;action&quot;: [
+        6.0,
+        1.0
+      ],
+      &quot;y&quot;: [
+        -0.14570002168589938,
+        0.12151729715609805,
+        0.13054035178648243,
+        0.06181541094008437,
+        0.156909895964641,
+        0.2363207942147058,
+        0.36932078206193236,
+        0.43110402673051096,
+        0.4703152023007634,
+        0.5329633624119299,
+        0.5975915167140263,
+        0.7450575037331357,
+        0.6444314332853639,
+        0.7294421082415662,
+        0.7150509749468746,
+        0.7065039640824298,
+        0.5817177904823319,
+        0.6956128680959337,
+        0.6757074523373617,
+        0.7566824060018377
+      ],
+      &quot;cens&quot;: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      &quot;selected_score&quot;: 1.5717493538355645
+    },
+    {
+      &quot;action&quot;: [
+        6.0,
+        1.0
+      ],
+      &quot;y&quot;: [
+        -0.013463533962033421,
+        0.05361649595042755,
+        0.0737379954309943,
+        0.12607225592253923,
+        0.07431585227515919,
+        0.1804213438134431,
+        0.25006238641081485,
+        0.21207814632211805,
+        0.4566474039815552,
+        0.4966216343591801,
+        0.636987618568987,
+        0.628888047370295,
+        0.7749992117409761,
+        0.7367796040710572,
+        0.6914195872187284,
+        0.6007163206611095,
+        0.7424318976401832,
+        0.6965955454967265,
+        0.6997523875766227,
+        0.7503418680476717
+      ],
+      &quot;cens&quot;: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      &quot;selected_score&quot;: 0.28018227012293734
+    },
+    {
+      &quot;action&quot;: [
+        6.0,
+        1.0
+      ],
+      &quot;y&quot;: [
+        -0.031937067129482626,
+        0.07626293760229778,
+        0.07153217504801448,
+        0.0994156946194997,
+        0.05426613819919841,
+        0.10206445252013249,
+        0.3445997659853618,
+        0.5230071716199542,
+        0.5045535530799783,
+        0.5700070623972726,
+        0.6135156403404555,
+        0.8060443855723609,
+        0.6714159362948698,
+        0.8183960696781694,
+        0.6675176959502165,
+        0.8139870196760165,
+        0.6706676372382021,
+        0.7011123450128763,
+        0.8719975891300803,
+        0.6590193276290086
+      ],
+      &quot;cens&quot;: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      &quot;selected_score&quot;: 0.1708806218992412
+    }
+  ],
+  &quot;posterior_mean&quot;: 0.4963810313124285,
+  &quot;posterior_sd&quot;: 0.0473219096143173,
+  &quot;ci50&quot;: [
+    0.458190310690609,
+    0.5350507313388597
+  ],
+  &quot;ci90&quot;: [
+    0.41917952122319935,
+    0.5718205384350004
+  ],
+  &quot;grid_step_over_sd&quot;: 0.006600956057002366,
+  &quot;gain_posterior_mean&quot;: 1.002557981951147,
+  &quot;gain_posterior_sd&quot;: 0.07961867601115055,
+  &quot;gain_ci50&quot;: [
+    0.9383645650197695,
+    1.0676225121183056
+  ],
+  &quot;gain_ci90&quot;: [
+    0.8723602883566852,
+    1.1293661267577848
+  ],
+  &quot;gain_grid_step_over_sd&quot;: 0.02340347931691499,
+  &quot;mu_conditional_underresolved_mass&quot;: 0.0,
+  &quot;gain_conditional_underresolved_mass&quot;: 1.0,
+  &quot;joint_max_cell_mass&quot;: 0.0004939049918961739,
+  &quot;gain_estimate&quot;: 1.001863354037267,
+  &quot;gain_error&quot;: -0.11204945539799271,
+  &quot;probe_owner&quot;: &quot;eig&quot;,
+  &quot;gain_prior_half_width&quot;: 0.15,
+  &quot;correction_seconds&quot;: 0.3571606670739129
+}</pre></details></div>
+</div>
+<h2>Provenance</h2><pre>{
+  &quot;mode&quot;: &quot;turn2_evaluate&quot;,
+  &quot;seed&quot;: 73006,
+  &quot;worlds&quot;: 4,
+  &quot;source_sha256&quot;: &quot;ab028a75d135116972834dc78879a774c6c7999578f61dc7f958241e5a317f0f&quot;,
+  &quot;original_source_sha256&quot;: &quot;bf4c40b1b997ef173b9b67c2158c475790212369f3fad68623a4a0c62b4d2981&quot;,
+  &quot;planner&quot;: {
+    &quot;grid_size&quot;: 6001,
+    &quot;particles&quot;: 64,
+    &quot;fantasies&quot;: 16,
+    &quot;design_stride&quot;: 1
+  },
+  &quot;gain_grid&quot;: {
+    &quot;mu_size&quot;: 2401,
+    &quot;gain_size&quot;: 161
+  },
+  &quot;baseline_tuning&quot;: {
+    &quot;lsq&quot;: {
+      &quot;protocol&quot;: &quot;adaptive_10_65&quot;,
+      &quot;offset&quot;: 0.0
+    },
+    &quot;tobit&quot;: {
+      &quot;protocol&quot;: &quot;adaptive_10_90&quot;,
+      &quot;offset&quot;: 0.0
+    }
+  },
+  &quot;baseline_tuning_sha256&quot;: &quot;2d0322346cdedd5b2e9da5cee9dfd3f00de7560deb5a2a36c8d4a0a68a393a94&quot;,
+  &quot;output&quot;: &quot;/Users/danielmercado/ProjectJoy/11_physics_detective/results/r5/turn2_astra_pilot_summary.json&quot;,
+  &quot;owners&quot;: [
+    &quot;eig&quot;,
+    &quot;lsq&quot;
+  ],
+  &quot;half_widths&quot;: [
+    0.15,
+    0.25
+  ],
+  &quot;resolution_check&quot;: false,
+  &quot;selected&quot;: {
+    &quot;gain_bayes&quot;: {
+      &quot;owner&quot;: &quot;eig&quot;,
+      &quot;half_width&quot;: 0.15
+    },
+    &quot;gain_mle&quot;: {
+      &quot;owner&quot;: &quot;eig&quot;,
+      &quot;half_width&quot;: 0.15
+    }
+  },
+  &quot;tuning_sha256&quot;: &quot;e97be6b2530fb859a1d1ecc75665e8204972cd3d8976c1423aafbad578a53402&quot;
+}</pre></html>

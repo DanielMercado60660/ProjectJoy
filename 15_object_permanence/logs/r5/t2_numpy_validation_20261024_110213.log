@@ -1,0 +1,14 @@
+["/Users/danielmercado/ProjectJoy/.venv/bin/python", "r5_tune.py", "--turn2", "--tiny", "--screen-n", "2", "--confirm-n", "2", "--particles", "32", "--max-minutes", ".5", "--out", "results/r5/t2_numpy_validation_20261024_110213/tuning.json"]
+TUNE particle cfg={'q': 0.5, 'r': 1.0, 'miss': 0.35, 'particles': 32, 'bandwidth': 4.0} val_nll=28.4848
+TUNE kalman cfg={'q': 0.5, 'r': 7.0} val_nll=10.9464
+TUNE_DONE candidates=2 selected={'particle': {'q': 0.5, 'r': 1.0, 'miss': 0.35, 'particles': 32, 'bandwidth': 4.0}, 'kalman': {'q': 0.5, 'r': 7.0}} elapsed_s=0.1
+["/Users/danielmercado/ProjectJoy/.venv/bin/python", "r5_evaluate.py", "--tuning", "results/r5/t2_numpy_validation_20261024_110213/tuning.json", "--thresholds", "results/r5/t2_numpy_validation_20261024_110213/thresholds.json", "--calibrate", "--n", "2", "--max-minutes", ".5"]
+THRESHOLD kalman val_q75=61.8561
+THRESHOLD particle val_q75=42.2834
+["/Users/danielmercado/ProjectJoy/.venv/bin/python", "r5_evaluate.py", "--tuning", "results/r5/t2_numpy_validation_20261024_110213/tuning.json", "--thresholds", "results/r5/t2_numpy_validation_20261024_110213/thresholds.json", "--split", "smoke_fresh", "--n", "2", "--max-minutes", ".5", "--out", "results/r5/t2_numpy_validation_20261024_110213/fresh.json"]
+EVAL split=smoke_fresh complete_sequences=1/2 elapsed_s=0.1
+EVAL split=smoke_fresh complete_sequences=2/2 elapsed_s=0.2
+EVAL_DONE matched_n=2 requested_n=2 out=results/r5/t2_numpy_validation_20261024_110213/fresh.json
+["/Users/danielmercado/ProjectJoy/.venv/bin/python", "r5_demo.py", "--evaluation", "results/r5/t2_numpy_validation_20261024_110213/fresh.json", "--out", "media/r5_t2_numpy_validation_20261024_110213", "--max-minutes", ".25"]
+DEMO media/r5_t2_numpy_validation_20261024_110213_fixed_sequence0.png sequence=0 selection=fixed_sequence0
+DEMO media/r5_t2_numpy_validation_20261024_110213_least_helpful_look.png sequence=1 selection=least_helpful_look

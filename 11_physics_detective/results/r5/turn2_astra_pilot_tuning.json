@@ -1,0 +1,130 @@
+{
+  "status": "complete",
+  "source_sha256": "ab028a75d135116972834dc78879a774c6c7999578f61dc7f958241e5a317f0f",
+  "config": {
+    "mode": "turn2_tune",
+    "seed": 73005,
+    "worlds": 2,
+    "source_sha256": "ab028a75d135116972834dc78879a774c6c7999578f61dc7f958241e5a317f0f",
+    "original_source_sha256": "bf4c40b1b997ef173b9b67c2158c475790212369f3fad68623a4a0c62b4d2981",
+    "planner": {
+      "grid_size": 6001,
+      "particles": 64,
+      "fantasies": 16,
+      "design_stride": 1
+    },
+    "gain_grid": {
+      "mu_size": 2401,
+      "gain_size": 161
+    },
+    "baseline_tuning": {
+      "lsq": {
+        "protocol": "adaptive_10_65",
+        "offset": 0.0
+      },
+      "tobit": {
+        "protocol": "adaptive_10_90",
+        "offset": 0.0
+      }
+    },
+    "baseline_tuning_sha256": "2d0322346cdedd5b2e9da5cee9dfd3f00de7560deb5a2a36c8d4a0a68a393a94",
+    "output": "/Users/danielmercado/ProjectJoy/11_physics_detective/results/r5/turn2_astra_pilot_tuning.json",
+    "owners": [
+      "eig",
+      "lsq"
+    ],
+    "half_widths": [
+      0.15,
+      0.25
+    ],
+    "resolution_check": false
+  },
+  "seed": 73005,
+  "selected": {
+    "gain_bayes": {
+      "owner": "eig",
+      "half_width": 0.15
+    },
+    "gain_mle": {
+      "owner": "eig",
+      "half_width": 0.15
+    }
+  },
+  "candidates": [
+    {
+      "method": "gain_bayes",
+      "owner": "eig",
+      "half_width": 0.15,
+      "successes": 11,
+      "trials": 12,
+      "abs_error_sum": 0.12306008652055106,
+      "brier_sum": 0.8496061949799733
+    },
+    {
+      "method": "gain_mle",
+      "owner": "eig",
+      "half_width": 0.15,
+      "successes": 9,
+      "trials": 12,
+      "abs_error_sum": 0.23880782339788292,
+      "brier_sum": 0.8962738331770057
+    },
+    {
+      "method": "gain_bayes",
+      "owner": "eig",
+      "half_width": 0.25,
+      "successes": 10,
+      "trials": 12,
+      "abs_error_sum": 0.20548450900772175,
+      "brier_sum": 0.27592530205318455
+    },
+    {
+      "method": "gain_mle",
+      "owner": "eig",
+      "half_width": 0.25,
+      "successes": 9,
+      "trials": 12,
+      "abs_error_sum": 0.28311727318717383,
+      "brier_sum": 0.3686090070676736
+    },
+    {
+      "method": "gain_bayes",
+      "owner": "lsq",
+      "half_width": 0.15,
+      "successes": 10,
+      "trials": 12,
+      "abs_error_sum": 0.15940955240486815,
+      "brier_sum": 0.45158808885349416
+    },
+    {
+      "method": "gain_mle",
+      "owner": "lsq",
+      "half_width": 0.15,
+      "successes": 9,
+      "trials": 12,
+      "abs_error_sum": 0.3054139972322305,
+      "brier_sum": 1.1228943427672353
+    },
+    {
+      "method": "gain_bayes",
+      "owner": "lsq",
+      "half_width": 0.25,
+      "successes": 10,
+      "trials": 12,
+      "abs_error_sum": 0.1891886133676282,
+      "brier_sum": 0.36411048535269064
+    },
+    {
+      "method": "gain_mle",
+      "owner": "lsq",
+      "half_width": 0.25,
+      "successes": 7,
+      "trials": 12,
+      "abs_error_sum": 0.8406115702381888,
+      "brier_sum": 0.8529285365272653
+    }
+  ],
+  "selection_metric": "Balanced matched/gain_shift success over budgets 1,2,4; ties by MAE then enumeration",
+  "elapsed_seconds": 7.569293833046686,
+  "checkpoint": "/Users/danielmercado/ProjectJoy/11_physics_detective/checkpoints/r5_turn2_astra_pilot_tune.json"
+}

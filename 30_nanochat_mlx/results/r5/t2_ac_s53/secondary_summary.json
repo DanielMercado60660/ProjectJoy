@@ -1,0 +1,6703 @@
+{
+ "args": {
+  "command": "evaluate",
+  "methods": [
+   "pretrained=checkpoints/r5_t2_ac_s53/pretrained/selected",
+   "scratch=checkpoints/r5_t2_ac_s53/scratch/selected",
+   "mlp=checkpoints/r5_t2_ac_s53/mlp_trial1/selected",
+   "reward=checkpoints/r5_t2_ac_s53/reward/selected",
+   "control=checkpoints/r5_t2_ac_s53/control/selected"
+  ],
+  "data": "results/r5/t2_ac_s53/data",
+  "out": "results/r5/t2_ac_s53/secondary.json",
+  "demo": "media/r5_t2_ac_s53_secondary.html",
+  "max_minutes": 0.8,
+  "episodes": 4,
+  "secondary": true,
+  "seed_start": 81241000,
+  "smoke_one": false
+ },
+ "complete": false,
+ "source_sha256": {
+  "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+  "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+  "r5_eval.py": "18d8ff7a0518d6d1266d2407d6142a1d54a35caf5fae0f53bc1664db06dadccc"
+ },
+ "paired_scenarios": 31,
+ "expected_scenarios": 80,
+ "elapsed_s": 45.00359141698573,
+ "identities": {
+  "pretrained": {
+   "path": "checkpoints/r5_t2_ac_s53/pretrained/selected",
+   "sha256": "d2695307f3b269478ff7550c5d4fa9e82f45f694afefc1f30b0556d271d9277a",
+   "step": 9709,
+   "seed": 53,
+   "spec": {
+    "kind": "lm",
+    "model_config": {
+     "sequence_len": 1024,
+     "vocab_size": 8192,
+     "n_layer": 6,
+     "n_head": 3,
+     "n_kv_head": 3,
+     "n_embd": 384
+    },
+    "seed": 53,
+    "batch": 16,
+    "lr": 0.0003,
+    "train_sha256": "3b43ab51a38e40e0c6ea6a26255be7d3a7ef28c2dda7fce85bc5f80ee41ad762",
+    "val_sha256": "dc0cc35c9f8df9c0b0aac54101c67fb21b503b84a12cfebae5c5e1bd801371fd",
+    "replay_sha256": null,
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "b5d4715dbc9c875c321fdb767a2684270cf466d5f2fbc91dba00ba1d7e554aac",
+     "r5_train.py": "65816f53971b597788a2f7f1a934511a4b37f58c22446560ba3919034c69dc6a",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+     "r5_validation.py": "402178f1c3989b903c9f7c135a245510c487c9de725e7133ebd855f7e524c58d",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  },
+  "scratch": {
+   "path": "checkpoints/r5_t2_ac_s53/scratch/selected",
+   "sha256": "82d0863f69d5482a05834d87940a295d920fb037773259d7cec2d208c6e46e46",
+   "step": 10174,
+   "seed": 53,
+   "spec": {
+    "kind": "lm",
+    "model_config": {
+     "sequence_len": 1024,
+     "vocab_size": 8192,
+     "n_layer": 6,
+     "n_head": 3,
+     "n_kv_head": 3,
+     "n_embd": 384
+    },
+    "seed": 53,
+    "batch": 16,
+    "lr": 0.0003,
+    "train_sha256": "3b43ab51a38e40e0c6ea6a26255be7d3a7ef28c2dda7fce85bc5f80ee41ad762",
+    "val_sha256": "dc0cc35c9f8df9c0b0aac54101c67fb21b503b84a12cfebae5c5e1bd801371fd",
+    "replay_sha256": null,
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "b5d4715dbc9c875c321fdb767a2684270cf466d5f2fbc91dba00ba1d7e554aac",
+     "r5_train.py": "65816f53971b597788a2f7f1a934511a4b37f58c22446560ba3919034c69dc6a",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+     "r5_validation.py": "402178f1c3989b903c9f7c135a245510c487c9de725e7133ebd855f7e524c58d",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  },
+  "mlp": {
+   "path": "checkpoints/r5_t2_ac_s53/mlp_trial1/selected",
+   "sha256": "6d98a7990f4dc12e60a5f8449082ad06cea5ce05606de4babc916c67ce1f00b3",
+   "step": 1020859,
+   "seed": 53,
+   "spec": {
+    "kind": "mlp",
+    "model_config": {
+     "din": 130,
+     "hidden": 256
+    },
+    "seed": 53,
+    "batch": 256,
+    "lr": 0.001,
+    "train_sha256": "3b43ab51a38e40e0c6ea6a26255be7d3a7ef28c2dda7fce85bc5f80ee41ad762",
+    "val_sha256": "dc0cc35c9f8df9c0b0aac54101c67fb21b503b84a12cfebae5c5e1bd801371fd",
+    "replay_sha256": null,
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "b5d4715dbc9c875c321fdb767a2684270cf466d5f2fbc91dba00ba1d7e554aac",
+     "r5_train.py": "65816f53971b597788a2f7f1a934511a4b37f58c22446560ba3919034c69dc6a",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+     "r5_validation.py": "402178f1c3989b903c9f7c135a245510c487c9de725e7133ebd855f7e524c58d",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  },
+  "reward": {
+   "path": "checkpoints/r5_t2_ac_s53/reward/selected",
+   "sha256": "921b58b2d3b0c95e4dae0970d9444db38ef8ec5c7ff4985f88c068e2a59032c0",
+   "step": 1525,
+   "seed": 53,
+   "spec": {
+    "kind": "lm",
+    "model_config": {
+     "sequence_len": 1024,
+     "vocab_size": 8192,
+     "n_layer": 6,
+     "n_head": 3,
+     "n_kv_head": 3,
+     "n_embd": 384
+    },
+    "seed": 53,
+    "batch": 16,
+    "lr": 0.0001,
+    "train_sha256": "3b43ab51a38e40e0c6ea6a26255be7d3a7ef28c2dda7fce85bc5f80ee41ad762",
+    "val_sha256": "dc0cc35c9f8df9c0b0aac54101c67fb21b503b84a12cfebae5c5e1bd801371fd",
+    "replay_sha256": "be6f3442f457053d23e55d11efc8718382ceb35bbfa56119d76c53ab6200a32a",
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "b5d4715dbc9c875c321fdb767a2684270cf466d5f2fbc91dba00ba1d7e554aac",
+     "r5_train.py": "65816f53971b597788a2f7f1a934511a4b37f58c22446560ba3919034c69dc6a",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+     "r5_validation.py": "402178f1c3989b903c9f7c135a245510c487c9de725e7133ebd855f7e524c58d",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  },
+  "control": {
+   "path": "checkpoints/r5_t2_ac_s53/control/selected",
+   "sha256": "7de49b74451f4d4fb6f4d818877cc27a682b56534b00aa6707c03bec6f132133",
+   "step": 3148,
+   "seed": 53,
+   "spec": {
+    "kind": "lm",
+    "model_config": {
+     "sequence_len": 1024,
+     "vocab_size": 8192,
+     "n_layer": 6,
+     "n_head": 3,
+     "n_kv_head": 3,
+     "n_embd": 384
+    },
+    "seed": 53,
+    "batch": 16,
+    "lr": 0.0001,
+    "train_sha256": "3b43ab51a38e40e0c6ea6a26255be7d3a7ef28c2dda7fce85bc5f80ee41ad762",
+    "val_sha256": "dc0cc35c9f8df9c0b0aac54101c67fb21b503b84a12cfebae5c5e1bd801371fd",
+    "replay_sha256": null,
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "b5d4715dbc9c875c321fdb767a2684270cf466d5f2fbc91dba00ba1d7e554aac",
+     "r5_train.py": "65816f53971b597788a2f7f1a934511a4b37f58c22446560ba3919034c69dc6a",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+     "r5_validation.py": "402178f1c3989b903c9f7c135a245510c487c9de725e7133ebd855f7e524c58d",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  }
+ },
+ "summary": {
+  "planner": {
+   "seen/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 3.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.001194654032588005
+   },
+   "seen/locked": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.08333333333333333,
+    "mean_steps": 12.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.0006822592695243657
+   },
+   "seen/missing": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.07692307692307693,
+    "mean_steps": 13.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.0,
+    "decision_latency_ms_mean": 0.0006281412564791166
+   },
+   "seen/redirect": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 8.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.000833366357255727
+   },
+   "pairs/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.000833292558257069
+   },
+   "pairs/locked": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.1111111111111111,
+    "mean_steps": 9.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.0007174482258657614
+   },
+   "pairs/missing": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.06666666666666667,
+    "mean_steps": 15.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 0.0007557378661918587
+   },
+   "pairs/redirect": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 8.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 0.0008901888837239572
+   },
+   "order/none": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 10.5,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.0007512741087173874
+   },
+   "order/locked": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.08333333333333333,
+    "mean_steps": 12.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.0009308375107745329
+   },
+   "order/missing": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.058823529411764705,
+    "mean_steps": 17.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 6.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 6.5,
+    "decision_latency_ms_mean": 0.0005747681237099802
+   },
+   "order/redirect": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 9.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 3.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 3.0,
+    "decision_latency_ms_mean": 0.0007871098609434235
+   },
+   "long3/none": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 13.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.0007788789494392964
+   },
+   "long3/locked": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.06666666666666667,
+    "mean_steps": 15.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.001610997909059127
+   },
+   "long3/missing": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.05128205128205128,
+    "mean_steps": 19.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 8.0,
+    "decision_latency_ms_mean": 0.0006262818810922143
+   },
+   "long3/redirect": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 13.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 0.000702007737645245
+   },
+   "long4/none": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 19.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.0006385084513264399
+   },
+   "long4/locked": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.05405405405405406,
+    "mean_steps": 18.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.0009358906846123132
+   },
+   "long4/missing": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.05,
+    "mean_steps": 20.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 8.0,
+    "decision_latency_ms_mean": 0.000583200016990304
+   },
+   "long4/redirect": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 17.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 0.0006196148913457161
+   },
+   "all": {
+    "episodes": 31,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.03546099290780142,
+    "mean_steps": 13.64516129032258,
+    "disruption_assigned": 23,
+    "disruption_exposed": 23,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 3.782608695652174,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 3.782608695652174,
+    "decision_latency_ms_mean": 0.0007751570781571164
+   }
+  },
+  "pretrained": {
+   "seen/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 3.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.858430337160826
+   },
+   "seen/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.6484375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.652804056102468
+   },
+   "seen/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.0,
+    "decision_latency_ms_mean": 6.067555293157056
+   },
+   "seen/redirect": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.5,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.448738922699704
+   },
+   "pairs/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.85375598997676
+   },
+   "pairs/locked": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.1111111111111111,
+    "mean_steps": 9.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.127412017020915
+   },
+   "pairs/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8359375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 33.5,
+    "decision_latency_ms_mean": 7.100465758867358
+   },
+   "pairs/redirect": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7746478873239436,
+    "mean_steps": 35.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 6.395664884491582
+   },
+   "order/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8515625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.420155968044128
+   },
+   "order/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.908857422786241
+   },
+   "order/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.65625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 58.0,
+    "decision_latency_ms_mean": 5.906450829115784
+   },
+   "order/redirect": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.90625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 3.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 3.0,
+    "decision_latency_ms_mean": 6.554890012921533
+   },
+   "long3/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.65625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.961203146853222
+   },
+   "long3/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.453125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.47999146804068
+   },
+   "long3/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 34.0,
+    "decision_latency_ms_mean": 6.353865584515006
+   },
+   "long3/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 60.0,
+    "decision_latency_ms_mean": 5.954370469225978
+   },
+   "long4/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8984375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.863989590328856
+   },
+   "long4/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.7734375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.474456030446163
+   },
+   "long4/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.6875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 62.0,
+    "decision_latency_ms_mean": 5.985214777865622
+   },
+   "long4/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 30.0,
+    "decision_latency_ms_mean": 6.7490990168153076
+   },
+   "all": {
+    "episodes": 31,
+    "success_rate": 0.12903225806451613,
+    "invalid_action_rate": 0.7445838084378563,
+    "mean_steps": 56.58064516129032,
+    "disruption_assigned": 23,
+    "disruption_exposed": 19,
+    "exposure_coverage": 0.8260869565217391,
+    "success_given_disruption": 0.10526315789473684,
+    "recovery_rate": 0.631578947368421,
+    "recovery_steps_mean": 3.3333333333333335,
+    "recovery_unresolved": 7,
+    "recovery_steps_capped_mean": 24.105263157894736,
+    "decision_latency_ms_mean": 6.4177386100400335
+   }
+  },
+  "scratch": {
+   "seen/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 3.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.707041640765965
+   },
+   "seen/locked": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.40789473684210525,
+    "mean_steps": 38.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.985000860922204
+   },
+   "seen/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.0,
+    "decision_latency_ms_mean": 6.184992918861099
+   },
+   "seen/redirect": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 8.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.864317885425407
+   },
+   "pairs/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.837589269503951
+   },
+   "pairs/locked": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.1111111111111111,
+    "mean_steps": 9.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.0645973361614685
+   },
+   "pairs/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 6.67183426912743
+   },
+   "pairs/redirect": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.4507042253521127,
+    "mean_steps": 35.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.0,
+    "decision_latency_ms_mean": 5.943521094455459
+   },
+   "order/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.671875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.581856468528713
+   },
+   "order/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.782945341910818
+   },
+   "order/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8203125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 58.0,
+    "decision_latency_ms_mean": 6.678550511423964
+   },
+   "order/redirect": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 9.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 3.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 3.0,
+    "decision_latency_ms_mean": 6.344402894481188
+   },
+   "long3/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.6875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.1911569127914845
+   },
+   "long3/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 7.4225637972631375
+   },
+   "long3/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8359375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 34.0,
+    "decision_latency_ms_mean": 6.662152327407966
+   },
+   "long3/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.484375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.960959601907234
+   },
+   "long4/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8671875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.908596711582504
+   },
+   "long4/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.6640625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.387303071278438
+   },
+   "long4/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.421875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 8.0,
+    "decision_latency_ms_mean": 6.515632207083399
+   },
+   "long4/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8671875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 5.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 31.5,
+    "decision_latency_ms_mean": 7.465275768026913
+   },
+   "all": {
+    "episodes": 31,
+    "success_rate": 0.22580645161290322,
+    "invalid_action_rate": 0.6882463859208046,
+    "mean_steps": 51.32258064516129,
+    "disruption_assigned": 23,
+    "disruption_exposed": 19,
+    "exposure_coverage": 0.8260869565217391,
+    "success_given_disruption": 0.2631578947368421,
+    "recovery_rate": 0.7894736842105263,
+    "recovery_steps_mean": 4.066666666666666,
+    "recovery_unresolved": 4,
+    "recovery_steps_capped_mean": 15.526315789473685,
+    "decision_latency_ms_mean": 6.4708547898826145
+   }
+  },
+  "mlp": {
+   "seen/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 3.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.5183193328169485
+   },
+   "seen/locked": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.08333333333333333,
+    "mean_steps": 12.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.519480954001968
+   },
+   "seen/missing": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.07692307692307693,
+    "mean_steps": 13.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.0,
+    "decision_latency_ms_mean": 0.5763141402544883
+   },
+   "seen/redirect": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 8.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.5493386343005113
+   },
+   "pairs/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.6036251434125006
+   },
+   "pairs/locked": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.1111111111111111,
+    "mean_steps": 9.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.5231203394941986
+   },
+   "pairs/missing": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.06666666666666667,
+    "mean_steps": 15.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 0.5236285279741943
+   },
+   "pairs/redirect": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 8.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 0.5143311323731073
+   },
+   "order/none": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7432432432432432,
+    "mean_steps": 37.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.5495216509189049
+   },
+   "order/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.84375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.5569094846578082
+   },
+   "order/missing": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.6419753086419753,
+    "mean_steps": 40.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 6.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 6.5,
+    "decision_latency_ms_mean": 0.5765234441241773
+   },
+   "order/redirect": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 9.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 3.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 3.0,
+    "decision_latency_ms_mean": 0.7425093337790005
+   },
+   "long3/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.5791572580164939
+   },
+   "long3/locked": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.06666666666666667,
+    "mean_steps": 15.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.5464472691528499
+   },
+   "long3/missing": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.5833333333333334,
+    "mean_steps": 42.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 8.0,
+    "decision_latency_ms_mean": 0.5667317686857132
+   },
+   "long3/redirect": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.717948717948718,
+    "mean_steps": 39.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 0.5467535728322608
+   },
+   "long4/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.5275319608699647
+   },
+   "long4/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.75,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.5338378696251311
+   },
+   "long4/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.734375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 8.0,
+    "decision_latency_ms_mean": 0.5582740814134013
+   },
+   "long4/redirect": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.6829268292682927,
+    "mean_steps": 41.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 0.5917816058879706
+   },
+   "all": {
+    "episodes": 31,
+    "success_rate": 0.5806451612903226,
+    "invalid_action_rate": 0.6682600382409177,
+    "mean_steps": 33.74193548387097,
+    "disruption_assigned": 23,
+    "disruption_exposed": 23,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.6521739130434783,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 3.782608695652174,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 3.782608695652174,
+    "decision_latency_ms_mean": 0.5559166854806928
+   }
+  },
+  "reward": {
+   "seen/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 3.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.540763987383495
+   },
+   "seen/locked": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7105263157894737,
+    "mean_steps": 38.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.661540548520861
+   },
+   "seen/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.0,
+    "decision_latency_ms_mean": 6.229324202649877
+   },
+   "seen/redirect": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 8.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.871411252883263
+   },
+   "pairs/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.207184433670981
+   },
+   "pairs/locked": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.1111111111111111,
+    "mean_steps": 9.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.168004552212854
+   },
+   "pairs/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8359375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 33.5,
+    "decision_latency_ms_mean": 7.1184827629622305
+   },
+   "pairs/redirect": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.8028169014084507,
+    "mean_steps": 35.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 1.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 29.5,
+    "decision_latency_ms_mean": 6.2702193032626905
+   },
+   "order/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8671875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 7.246539363222837
+   },
+   "order/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.856285767753434
+   },
+   "order/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.78125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 58.0,
+    "decision_latency_ms_mean": 6.669104515367508
+   },
+   "order/redirect": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.1,
+    "mean_steps": 10.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 3.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 3.0,
+    "decision_latency_ms_mean": 6.449579197214916
+   },
+   "long3/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.734375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.918538343143155
+   },
+   "long3/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 7.578019550237514
+   },
+   "long3/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.84375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 60.0,
+    "decision_latency_ms_mean": 6.274556617427152
+   },
+   "long3/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.75,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 1.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 30.5,
+    "decision_latency_ms_mean": 6.289452836881537
+   },
+   "long4/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.9140625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.96572753804503
+   },
+   "long4/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8671875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.560128589171654
+   },
+   "long4/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.46875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 8.0,
+    "decision_latency_ms_mean": 6.162533281894866
+   },
+   "long4/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.640625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 30.0,
+    "decision_latency_ms_mean": 6.634261038925615
+   },
+   "all": {
+    "episodes": 31,
+    "success_rate": 0.22580645161290322,
+    "invalid_action_rate": 0.7738693467336684,
+    "mean_steps": 51.354838709677416,
+    "disruption_assigned": 23,
+    "disruption_exposed": 22,
+    "exposure_coverage": 0.9565217391304348,
+    "success_given_disruption": 0.22727272727272727,
+    "recovery_rate": 0.6363636363636364,
+    "recovery_steps_mean": 3.0714285714285716,
+    "recovery_unresolved": 8,
+    "recovery_steps_capped_mean": 23.40909090909091,
+    "decision_latency_ms_mean": 6.621942230314894
+   }
+  },
+  "control": {
+   "seen/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 3.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.405375005366902
+   },
+   "seen/locked": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7105263157894737,
+    "mean_steps": 38.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.747745629581914
+   },
+   "seen/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.0,
+    "decision_latency_ms_mean": 6.136857419733133
+   },
+   "seen/redirect": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 58.0,
+    "decision_latency_ms_mean": 7.233391981571913
+   },
+   "pairs/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.081404721563948
+   },
+   "pairs/locked": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.1111111111111111,
+    "mean_steps": 9.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.188592343177233
+   },
+   "pairs/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8359375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 33.5,
+    "decision_latency_ms_mean": 7.171110976742057
+   },
+   "pairs/redirect": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.8028169014084507,
+    "mean_steps": 35.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 1.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 29.5,
+    "decision_latency_ms_mean": 6.381228969335748
+   },
+   "order/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8671875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 7.221849914003542
+   },
+   "order/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.765625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.744611375324894
+   },
+   "order/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 58.0,
+    "decision_latency_ms_mean": 6.454362281147041
+   },
+   "order/redirect": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.4375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 3.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 3.0,
+    "decision_latency_ms_mean": 6.516229169392318
+   },
+   "long3/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.6484375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.721330699292594
+   },
+   "long3/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.84375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 7.227384126053948
+   },
+   "long3/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 34.0,
+    "decision_latency_ms_mean": 6.2581728611803555
+   },
+   "long3/redirect": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.717948717948718,
+    "mean_steps": 39.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 6.56496737571745
+   },
+   "long4/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.90625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.821128286446765
+   },
+   "long4/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.6640625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.264095068218012
+   },
+   "long4/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.453125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 62.0,
+    "decision_latency_ms_mean": 5.826748628351197
+   },
+   "long4/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.640625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 30.0,
+    "decision_latency_ms_mean": 6.668708315373806
+   },
+   "all": {
+    "episodes": 31,
+    "success_rate": 0.1935483870967742,
+    "invalid_action_rate": 0.7300242130750605,
+    "mean_steps": 53.29032258064516,
+    "disruption_assigned": 23,
+    "disruption_exposed": 22,
+    "exposure_coverage": 0.9565217391304348,
+    "success_given_disruption": 0.18181818181818182,
+    "recovery_rate": 0.6363636363636364,
+    "recovery_steps_mean": 3.0714285714285716,
+    "recovery_unresolved": 8,
+    "recovery_steps_capped_mean": 23.40909090909091,
+    "decision_latency_ms_mean": 6.6099998556327115
+   }
+  }
+ },
+ "excluded_partial_block": [
+  {
+   "method": "pretrained",
+   "seed": 81241105,
+   "split": "pairs",
+   "mode": "locked",
+   "success": false,
+   "steps": 64,
+   "invalid": 58,
+   "disruption": null,
+   "latency_ms": 5.526055341761094,
+   "trace": [
+    {
+     "observation": {
+      "room": 1,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       -1,
+       -1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       false,
+       false
+      ],
+      "feedback": "start",
+      "steps": 0
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       -1,
+       -1,
+       1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       true,
+       false
+      ],
+      "feedback": "seen",
+      "steps": 1
+     },
+     "action": "GO 0",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       -1,
+       -1,
+       1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 2
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       0,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "seen",
+      "steps": 3
+     },
+     "action": "TAKE gem",
+     "valid": true,
+     "feedback": "taken"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "taken",
+      "steps": 4
+     },
+     "action": "GO 2",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 5
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "seen",
+      "steps": 6
+     },
+     "action": "SEND gem red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 7
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 8
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 9
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 10
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 11
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 12
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 13
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 14
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 15
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 16
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 17
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 18
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 19
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 20
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 21
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 22
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 23
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 24
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 25
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 26
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 27
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 28
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 29
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 30
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 31
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 32
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 33
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 34
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 35
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 36
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 37
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 38
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 39
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 40
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 41
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 42
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 43
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 44
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 45
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 46
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 47
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 48
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 49
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 50
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 51
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 52
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 53
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 54
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 55
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 56
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 57
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 58
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 59
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 60
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 61
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 62
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 63
+     },
+     "action": "OPEN red",
+     "valid": false,
+     "feedback": "illegal"
+    }
+   ]
+  },
+  {
+   "method": "scratch",
+   "seed": 81241105,
+   "split": "pairs",
+   "mode": "locked",
+   "success": true,
+   "steps": 14,
+   "invalid": 2,
+   "disruption": {
+    "kind": "locked",
+    "step": 6,
+    "affected_cursor": 0,
+    "recovered_step": 9
+   },
+   "latency_ms": 6.381354140882779,
+   "trace": [
+    {
+     "observation": {
+      "room": 1,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       -1,
+       -1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       false,
+       false
+      ],
+      "feedback": "start",
+      "steps": 0
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       -1,
+       -1,
+       1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       true,
+       false
+      ],
+      "feedback": "seen",
+      "steps": 1
+     },
+     "action": "GO 0",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       -1,
+       -1,
+       1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 2
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       0,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "seen",
+      "steps": 3
+     },
+     "action": "TAKE gem",
+     "valid": true,
+     "feedback": "taken"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "taken",
+      "steps": 4
+     },
+     "action": "GO 1",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 5
+     },
+     "action": "SEND gem red",
+     "valid": false,
+     "feedback": "locked"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "locked",
+      "steps": 6
+     },
+     "action": "OPEN red",
+     "valid": true,
+     "feedback": "unlocked"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "unlocked",
+      "steps": 7
+     },
+     "action": "SEND gem blue",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "illegal",
+      "steps": 8
+     },
+     "action": "SEND gem red",
+     "valid": true,
+     "feedback": "delivered"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": -1,
+      "cursor": 1,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       4,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "delivered",
+      "steps": 9
+     },
+     "action": "GO 0",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": -1,
+      "cursor": 1,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       4,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 10
+     },
+     "action": "TAKE coin",
+     "valid": true,
+     "feedback": "taken"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": 3,
+      "cursor": 1,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       4,
+       0,
+       1,
+       3
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "taken",
+      "steps": 11
+     },
+     "action": "GO 2",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 3,
+      "cursor": 1,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       4,
+       0,
+       1,
+       3
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 12
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 3,
+      "cursor": 1,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       4,
+       0,
+       1,
+       3
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "seen",
+      "steps": 13
+     },
+     "action": "SEND coin blue",
+     "valid": true,
+     "feedback": "delivered"
+    }
+   ]
+  },
+  {
+   "method": "mlp",
+   "seed": 81241105,
+   "split": "pairs",
+   "mode": "locked",
+   "success": true,
+   "steps": 13,
+   "invalid": 1,
+   "disruption": {
+    "kind": "locked",
+    "step": 6,
+    "affected_cursor": 0,
+    "recovered_step": 8
+   },
+   "latency_ms": 0.5362499191855582,
+   "trace": [
+    {
+     "observation": {
+      "room": 1,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       -1,
+       -1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       false,
+       false
+      ],
+      "feedback": "start",
+      "steps": 0
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       -1,
+       -1,
+       1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       true,
+       false
+      ],
+      "feedback": "seen",
+      "steps": 1
+     },
+     "action": "GO 0",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       -1,
+       -1,
+       1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 2
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       0,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "seen",
+      "steps": 3
+     },
+     "action": "TAKE gem",
+     "valid": true,
+     "feedback": "taken"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "taken",
+      "steps": 4
+     },
+     "action": "GO 1",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 5
+     },
+     "action": "SEND gem red",
+     "valid": false,
+     "feedback": "locked"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "locked",
+      "steps": 6
+     },
+     "action": "OPEN red",
+     "valid": true,
+     "feedback": "unlocked"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 0,
+      "cursor": 0,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       3,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "unlocked",
+      "steps": 7
+     },
+     "action": "SEND gem red",
+     "valid": true,
+     "feedback": "delivered"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": -1,
+      "cursor": 1,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       4,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "delivered",
+      "steps": 8
+     },
+     "action": "GO 0",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": -1,
+      "cursor": 1,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       4,
+       0,
+       1,
+       0
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 9
+     },
+     "action": "TAKE coin",
+     "valid": true,
+     "feedback": "taken"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": 3,
+      "cursor": 1,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       4,
+       0,
+       1,
+       3
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "taken",
+      "steps": 10
+     },
+     "action": "GO 2",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 3,
+      "cursor": 1,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       4,
+       0,
+       1,
+       3
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 11
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 3,
+      "cursor": 1,
+      "orders": [
+       [
+        0,
+        0
+       ],
+       [
+        3,
+        1
+       ]
+      ],
+      "items": [
+       4,
+       0,
+       1,
+       3
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        2,
+        1,
+        -1
+       ],
+       [
+        0,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "seen",
+      "steps": 12
+     },
+     "action": "SEND coin blue",
+     "valid": true,
+     "feedback": "delivered"
+    }
+   ]
+  }
+ ],
+ "note": "Per-episode traces (key \"episodes\") are kept locally in the full secondary.json (gitignored for size)."
+}

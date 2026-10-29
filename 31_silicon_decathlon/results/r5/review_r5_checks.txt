@@ -1,0 +1,90 @@
+## 1. Tracker numerics vs latency (zero injected delay)
+### nominal
+numpy_cpu   n= 8  frame-boundary estimate error 1.5263 px | time-weighted tracking 0.9418 | pursuit 3.7623
+coreml_cpu  n= 8  frame-boundary estimate error 1.5254 px | time-weighted tracking 0.9206 | pursuit 3.7400
+coreml_ane  n= 8  frame-boundary estimate error 1.5311 px | time-weighted tracking 0.9373 | pursuit 3.7545
+mlx_gpu     n= 8  frame-boundary estimate error 1.5260 px | time-weighted tracking 1.0034 | pursuit 3.8159
+  |est numpy_cpu - coreml_cpu| = 0.0293 px (same frame in force 1.000)
+  |est numpy_cpu - coreml_ane| = 0.0282 px (same frame in force 1.000)
+  |est numpy_cpu - mlx_gpu| = 0.0040 px (same frame in force 1.000)
+  |est coreml_cpu - coreml_ane| = 0.0445 px (same frame in force 1.000)
+  |est coreml_cpu - mlx_gpu| = 0.0294 px (same frame in force 1.000)
+  |est coreml_ane - mlx_gpu| = 0.0284 px (same frame in force 1.000)
+### stress
+numpy_cpu   n=24  frame-boundary estimate error 2.2033 px | time-weighted tracking 1.4216 | pursuit 4.8025
+coreml_cpu  n=24  frame-boundary estimate error 2.2018 px | time-weighted tracking 1.3938 | pursuit 4.7731
+coreml_ane  n=24  frame-boundary estimate error 2.2156 px | time-weighted tracking 1.4117 | pursuit 4.7907
+mlx_gpu     n=24  frame-boundary estimate error 2.2035 px | time-weighted tracking 1.4904 | pursuit 4.8541
+  |est numpy_cpu - coreml_cpu| = 0.0363 px (same frame in force 1.000)
+  |est numpy_cpu - coreml_ane| = 0.0286 px (same frame in force 1.000)
+  |est numpy_cpu - mlx_gpu| = 0.0057 px (same frame in force 1.000)
+  |est coreml_cpu - coreml_ane| = 0.0459 px (same frame in force 1.000)
+  |est coreml_cpu - mlx_gpu| = 0.0364 px (same frame in force 1.000)
+  |est coreml_ane - mlx_gpu| = 0.0288 px (same frame in force 1.000)
+### old_secondary
+numpy_cpu   n= 4  frame-boundary estimate error 1.7752 px | time-weighted tracking 1.0658 | pursuit 4.1692
+coreml_cpu  n= 4  frame-boundary estimate error 1.7670 px | time-weighted tracking 1.0335 | pursuit 4.1358
+coreml_ane  n= 4  frame-boundary estimate error 1.7833 px | time-weighted tracking 1.0533 | pursuit 4.1585
+mlx_gpu     n= 4  frame-boundary estimate error 1.7742 px | time-weighted tracking 1.1306 | pursuit 4.2292
+  |est numpy_cpu - coreml_cpu| = 0.0343 px (same frame in force 1.000)
+  |est numpy_cpu - coreml_ane| = 0.0254 px (same frame in force 1.000)
+  |est numpy_cpu - mlx_gpu| = 0.0039 px (same frame in force 1.000)
+  |est coreml_cpu - coreml_ane| = 0.0516 px (same frame in force 1.000)
+  |est coreml_cpu - mlx_gpu| = 0.0339 px (same frame in force 1.000)
+  |est coreml_ane - mlx_gpu| = 0.0264 px (same frame in force 1.000)
+
+## 2. Lowest tracker pursuit error per matched condition
+nominal        conditions= 8 lowest={'coreml_ane': 2, 'coreml_cpu': 6} coreml_cpu beats={'numpy_cpu': 8, 'coreml_ane': 6, 'mlx_gpu': 8}
+stress 0 ms    conditions=24 lowest={'coreml_cpu': 22, 'coreml_ane': 2} coreml_cpu beats={'numpy_cpu': 24, 'coreml_ane': 22, 'mlx_gpu': 24}
+stress 50 ms   conditions=24 lowest={'coreml_cpu': 10, 'coreml_ane': 12, 'numpy_cpu': 1, 'mlx_gpu': 1} coreml_cpu beats={'numpy_cpu': 16, 'coreml_ane': 10, 'mlx_gpu': 16}
+old_secondary  conditions= 4 lowest={'coreml_cpu': 4} coreml_cpu beats={'numpy_cpu': 4, 'coreml_ane': 4, 'mlx_gpu': 4}
+
+## 3. Nominal age rankings vs round-3 isolated order, per matched condition (8 each)
+car     full   p50: exact R3 order 0/8, MLX GPU slowest 5/8, NumPy fastest 3/8, both Core ML < NumPy 2/8, Core ML CPU < CPU+NE 3/8
+car     full   p95: exact R3 order 0/8, MLX GPU slowest 5/8, NumPy fastest 2/8, both Core ML < NumPy 3/8, Core ML CPU < CPU+NE 3/8
+car     full   p99: exact R3 order 0/8, MLX GPU slowest 7/8, NumPy fastest 3/8, both Core ML < NumPy 3/8, Core ML CPU < CPU+NE 2/8
+car     active p50: exact R3 order 0/8, MLX GPU slowest 4/8, NumPy fastest 3/8, both Core ML < NumPy 3/8, Core ML CPU < CPU+NE 3/8
+car     active p95: exact R3 order 0/8, MLX GPU slowest 5/8, NumPy fastest 2/8, both Core ML < NumPy 1/8, Core ML CPU < CPU+NE 2/8
+car     active p99: exact R3 order 0/8, MLX GPU slowest 8/8, NumPy fastest 2/8, both Core ML < NumPy 3/8, Core ML CPU < CPU+NE 1/8
+  pooled active-only numpy_cpu   p50/p95/p99 1.321 / 1.485 / 1.555
+  pooled active-only coreml_cpu  p50/p95/p99 1.333 / 1.480 / 1.555
+  pooled active-only coreml_ane  p50/p95/p99 1.324 / 1.462 / 1.539
+  pooled active-only mlx_gpu     p50/p95/p99 1.850 / 2.282 / 2.810
+tracker full   p50: exact R3 order 4/8, MLX GPU slowest 8/8, NumPy fastest 0/8, both Core ML < NumPy 8/8, Core ML CPU < CPU+NE 4/8
+tracker full   p95: exact R3 order 6/8, MLX GPU slowest 8/8, NumPy fastest 0/8, both Core ML < NumPy 8/8, Core ML CPU < CPU+NE 6/8
+tracker full   p99: exact R3 order 5/8, MLX GPU slowest 7/8, NumPy fastest 0/8, both Core ML < NumPy 8/8, Core ML CPU < CPU+NE 5/8
+tracker active p50: exact R3 order 4/8, MLX GPU slowest 8/8, NumPy fastest 0/8, both Core ML < NumPy 8/8, Core ML CPU < CPU+NE 4/8
+tracker active p95: exact R3 order 6/8, MLX GPU slowest 8/8, NumPy fastest 0/8, both Core ML < NumPy 8/8, Core ML CPU < CPU+NE 6/8
+tracker active p99: exact R3 order 5/8, MLX GPU slowest 7/8, NumPy fastest 0/8, both Core ML < NumPy 8/8, Core ML CPU < CPU+NE 5/8
+  pooled active-only numpy_cpu   p50/p95/p99 2.517 / 3.013 / 3.772
+  pooled active-only coreml_cpu  p50/p95/p99 1.904 / 2.138 / 2.475
+  pooled active-only coreml_ane  p50/p95/p99 1.950 / 2.334 / 2.439
+  pooled active-only mlx_gpu     p50/p95/p99 3.298 / 3.713 / 4.148
+
+## 4. Stress: age regression vs design indicators (leave-one-seed-out R^2)
+pursuit_error_px: both delays age 0.925, delay x policy indicator only 0.937, indicator + age 0.937; between-cell variance share 0.956
+  50 ms only: age 0.840, policy indicator 0.835, policy + age 0.835
+  cell 0.0/latest   n=48 age 1.4-3.4 ms, within-cell LOSO R2 -0.435, seed-demeaned r 0.949
+  cell 0.0/queue    n=48 age 1.3-3.4 ms, within-cell LOSO R2 -0.437, seed-demeaned r 0.946
+  cell 50.0/latest  n=48 age 68.3-76.7 ms, within-cell LOSO R2 -0.435, seed-demeaned r 0.571
+  cell 50.0/queue   n=48 age 288.2-333.5 ms, within-cell LOSO R2 -0.426, seed-demeaned r 0.937
+tracking_error_px: both delays age 0.948, delay x policy indicator only 0.960, indicator + age 0.961; between-cell variance share 0.972
+  50 ms only: age 0.889, policy indicator 0.884, policy + age 0.886
+  cell 0.0/latest   n=48 age 1.4-3.4 ms, within-cell LOSO R2 -0.391, seed-demeaned r 0.938
+  cell 0.0/queue    n=48 age 1.3-3.4 ms, within-cell LOSO R2 -0.417, seed-demeaned r 0.939
+  cell 50.0/latest  n=48 age 68.3-76.7 ms, within-cell LOSO R2 -0.455, seed-demeaned r 0.654
+  cell 50.0/queue   n=48 age 288.2-333.5 ms, within-cell LOSO R2 -0.405, seed-demeaned r 0.932
+
+## 5. Load bookkeeping per condition
+nominal       ambient n= 32 1-min load before: mean 1.38 (0.67-2.90); background 1024^2 matmuls/s 0 (~0.00 TFLOP/s)
+nominal       loaded  n= 32 1-min load before: mean 1.23 (0.67-2.75); background 1024^2 matmuls/s 578 (~1.24 TFLOP/s)
+stress        ambient n= 96 1-min load before: mean 1.45 (1.14-1.81); background 1024^2 matmuls/s 0 (~0.00 TFLOP/s)
+stress        loaded  n= 96 1-min load before: mean 1.42 (1.14-1.81); background 1024^2 matmuls/s 566 (~1.22 TFLOP/s)
+old_secondary ambient n= 16 1-min load before: mean 1.18 (0.59-1.65); background 1024^2 matmuls/s 0 (~0.00 TFLOP/s)
+old_secondary loaded  n= 16 1-min load before: mean 1.09 (0.59-1.65); background 1024^2 matmuls/s 558 (~1.20 TFLOP/s)
+
+## 6. Coverage cost of dropping stale frames (stress tracker)
+ 0 ms queue : applied 1920/1920 (100.00%), dropped 0 (0.0%), stranded at horizon 0+0 (0.0%)
+ 0 ms latest: applied 1920/1920 (100.00%), dropped 0 (0.0%), stranded at horizon 0+0 (0.0%)
+50 ms queue : applied 1111/1920 (57.86%), dropped 0 (0.0%), stranded at horizon 761+48 (42.1%)
+50 ms latest: applied 1114/1920 (58.02%), dropped 741 (38.6%), stranded at horizon 17+48 (3.4%)

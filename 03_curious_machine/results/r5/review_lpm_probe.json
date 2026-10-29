@@ -1,0 +1,189 @@
+{
+ "kind": "NumPy forward pass of final LPM aux weights (no MLX, no training)",
+ "reward": "g(o,a) - log(MSE(f(o,a),phi(o')) + 1e-6); raw, before clip and adaptive scale",
+ "rooms": "'same' = rooms the checkpoint itself visited in its first fresh test episode (85400); 'other' = remaining rooms; transitions taken from saved first-episode replays of frontier and rnd_ep (training seed 610 receipts, .npz)",
+ "results": {
+  "lpm_plain_s610": {
+   "checkpoint": "checkpoints/r5_t2_ac/lpm_plain_s610.pkl",
+   "own_rooms": [
+    -1,
+    0,
+    1
+   ],
+   "own_reward": -0.1827079802751541,
+   "own_log_error": -13.547500610351562,
+   "own_expected": -13.73021125793457,
+   "on_frontier_s610_replay": {
+    "n_same_rooms": 104,
+    "n_other_rooms": 408,
+    "same_rooms_reward": -1.00236976146698,
+    "other_rooms_reward": 0.11746590584516525,
+    "other_rooms_frac_negative": 0.4583333333333333,
+    "same_rooms_log_error": -6.793078422546387,
+    "other_rooms_log_error": -6.184283256530762,
+    "other_rooms_expected_log_error": -6.066817283630371
+   },
+   "on_rnd_ep_s610_replay": {
+    "n_same_rooms": 188,
+    "n_other_rooms": 324,
+    "same_rooms_reward": -0.9849122166633606,
+    "other_rooms_reward": -0.48962441086769104,
+    "other_rooms_frac_negative": 0.6111111111111112,
+    "same_rooms_log_error": -6.73748254776001,
+    "other_rooms_log_error": -6.456805229187012,
+    "other_rooms_expected_log_error": -6.946430206298828
+   }
+  },
+  "lpm_plain_s611": {
+   "checkpoint": "checkpoints/r5_t2_ac/lpm_plain_s611.pkl",
+   "own_rooms": [
+    0
+   ],
+   "own_reward": -0.02475893311202526,
+   "own_log_error": -13.77513313293457,
+   "own_expected": -13.799891471862793,
+   "on_frontier_s610_replay": {
+    "n_same_rooms": 35,
+    "n_other_rooms": 477,
+    "same_rooms_reward": -1.0912398099899292,
+    "other_rooms_reward": -0.9950708746910095,
+    "other_rooms_frac_negative": 0.7714884696016772,
+    "same_rooms_log_error": -7.48193359375,
+    "other_rooms_log_error": -6.325736999511719,
+    "other_rooms_expected_log_error": -7.320807933807373
+   },
+   "on_rnd_ep_s610_replay": {
+    "n_same_rooms": 26,
+    "n_other_rooms": 486,
+    "same_rooms_reward": -1.0607115030288696,
+    "other_rooms_reward": -1.3414756059646606,
+    "other_rooms_frac_negative": 0.8683127572016461,
+    "same_rooms_log_error": -6.802789688110352,
+    "other_rooms_log_error": -6.579023361206055,
+    "other_rooms_expected_log_error": -7.920498371124268
+   }
+  },
+  "lpm_plain_s612": {
+   "checkpoint": "checkpoints/r5_t2_ac/lpm_plain_s612.pkl",
+   "own_rooms": [
+    -1,
+    0,
+    1
+   ],
+   "own_reward": 0.005211165174841881,
+   "own_log_error": -13.739248275756836,
+   "own_expected": -13.734036445617676,
+   "on_frontier_s610_replay": {
+    "n_same_rooms": 104,
+    "n_other_rooms": 408,
+    "same_rooms_reward": -1.3995156288146973,
+    "other_rooms_reward": -0.8660978674888611,
+    "other_rooms_frac_negative": 0.7573529411764706,
+    "same_rooms_log_error": -6.8151140213012695,
+    "other_rooms_log_error": -6.347989082336426,
+    "other_rooms_expected_log_error": -7.214086055755615
+   },
+   "on_rnd_ep_s610_replay": {
+    "n_same_rooms": 188,
+    "n_other_rooms": 324,
+    "same_rooms_reward": -1.2999316453933716,
+    "other_rooms_reward": -1.1631087064743042,
+    "other_rooms_frac_negative": 0.8333333333333334,
+    "same_rooms_log_error": -6.952904224395752,
+    "other_rooms_log_error": -6.597870349884033,
+    "other_rooms_expected_log_error": -7.760979652404785
+   }
+  },
+  "lpm_tv_s610": {
+   "checkpoint": "checkpoints/r5_t2_ac/lpm_tv_s610.pkl",
+   "own_rooms": [
+    0
+   ],
+   "own_reward": 0.0320378914475441,
+   "own_log_error": -13.754077911376953,
+   "own_expected": -13.722043991088867,
+   "on_frontier_s610_replay": {
+    "n_same_rooms": 37,
+    "n_other_rooms": 475,
+    "same_rooms_reward": -1.290003776550293,
+    "other_rooms_reward": -0.7996489405632019,
+    "other_rooms_frac_negative": 0.7073684210526315,
+    "same_rooms_log_error": -6.680278301239014,
+    "other_rooms_log_error": -6.218648433685303,
+    "other_rooms_expected_log_error": -7.01829719543457
+   },
+   "on_rnd_ep_s610_replay": {
+    "n_same_rooms": 2,
+    "n_other_rooms": 510,
+    "same_rooms_reward": 1.2129595279693604,
+    "other_rooms_reward": -2.7810540199279785,
+    "other_rooms_frac_negative": 0.9333333333333333,
+    "same_rooms_log_error": -6.689723014831543,
+    "other_rooms_log_error": -5.942091941833496,
+    "other_rooms_expected_log_error": -8.72314453125
+   }
+  },
+  "lpm_tv_s611": {
+   "checkpoint": "checkpoints/r5_t2_ac/lpm_tv_s611.pkl",
+   "own_rooms": [
+    -1,
+    0,
+    1
+   ],
+   "own_reward": -0.010123984888195992,
+   "own_log_error": -13.747736930847168,
+   "own_expected": -13.75786018371582,
+   "on_frontier_s610_replay": {
+    "n_same_rooms": 110,
+    "n_other_rooms": 402,
+    "same_rooms_reward": -3.4839370250701904,
+    "other_rooms_reward": -2.4109084606170654,
+    "other_rooms_frac_negative": 0.9975124378109452,
+    "same_rooms_log_error": -6.823465347290039,
+    "other_rooms_log_error": -6.061297416687012,
+    "other_rooms_expected_log_error": -8.47220516204834
+   },
+   "on_rnd_ep_s610_replay": {
+    "n_same_rooms": 9,
+    "n_other_rooms": 503,
+    "same_rooms_reward": 0.0017875565681606531,
+    "other_rooms_reward": -2.7135822772979736,
+    "other_rooms_frac_negative": 1.0,
+    "same_rooms_log_error": -9.002776145935059,
+    "other_rooms_log_error": -6.009537696838379,
+    "other_rooms_expected_log_error": -8.72312068939209
+   }
+  },
+  "lpm_tv_s612": {
+   "checkpoint": "checkpoints/r5_t2_ac/lpm_tv_s612.pkl",
+   "own_rooms": [
+    -1,
+    0,
+    3
+   ],
+   "own_reward": -0.012546485289931297,
+   "own_log_error": -13.653916358947754,
+   "own_expected": -13.666465759277344,
+   "on_frontier_s610_replay": {
+    "n_same_rooms": 97,
+    "n_other_rooms": 415,
+    "same_rooms_reward": -1.1206188201904297,
+    "other_rooms_reward": -0.5792040228843689,
+    "other_rooms_frac_negative": 0.6144578313253012,
+    "same_rooms_log_error": -6.79622745513916,
+    "other_rooms_log_error": -6.240845203399658,
+    "other_rooms_expected_log_error": -6.820050239562988
+   },
+   "on_rnd_ep_s610_replay": {
+    "n_same_rooms": 4,
+    "n_other_rooms": 508,
+    "same_rooms_reward": -1.2033238410949707,
+    "other_rooms_reward": -1.4082211256027222,
+    "other_rooms_frac_negative": 0.7874015748031497,
+    "same_rooms_log_error": -6.247292995452881,
+    "other_rooms_log_error": -6.2383832931518555,
+    "other_rooms_expected_log_error": -7.646605014801025
+   }
+  }
+ }
+}

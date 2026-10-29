@@ -1,0 +1,84 @@
+{
+  "profile": {
+    "base": 3145728,
+    "teacher": 2097152,
+    "student": 2097152,
+    "hidden": 128,
+    "rank": 8,
+    "envs": 16,
+    "rollout": 256,
+    "epochs": 10,
+    "minibatch": 1024,
+    "dagger_batches": 40,
+    "horizon": 600,
+    "switch_steps": 200,
+    "replay_capacity": 8192,
+    "cpg_iters": 32,
+    "cpg_pop": 16,
+    "cpg_restarts": 2,
+    "cpg_horizon": 500,
+    "eval_segment": 200,
+    "eval_seeds": 4,
+    "reward_scale": 0.1,
+    "dense_weight": 0.2,
+    "lr_final_fraction": 0.1,
+    "reset_std": -0.5,
+    "validation_every": 524288,
+    "validation_seeds": 3,
+    "teacher_min_tracking": 0.7,
+    "retention_min": 0.7,
+    "test_split": "test_t2",
+    "previous_test": true,
+    "adv_minibatch": true
+  },
+  "budget": {
+    "base": 3145728,
+    "teacher": 2097152,
+    "student": 2097152,
+    "addition": 6291456,
+    "final": 15728640
+  },
+  "unique_env_steps": 36700160,
+  "old_setting_component_extrapolation_s": {
+    "0": {
+      "base.pkl": 111.49685249989852,
+      "teacher_bwd.pkl": 72.07574244247128,
+      "teacher_slow.pkl": 77.14395844284445,
+      "adapter_s2.pkl": 253.20050450367853,
+      "adapter_s3.pkl": 303.8896230000537,
+      "dagger_s2.pkl": 97.0441946554929,
+      "dagger_s3.pkl": 100.6108373105526,
+      "joint_s2.pkl": 217.23274900834076,
+      "joint_s3.pkl": 215.8564049997367
+    },
+    "1": {
+      "base.pkl": 111.77392850420438,
+      "teacher_bwd.pkl": 71.73604755755514,
+      "teacher_slow.pkl": 77.77046910952777,
+      "adapter_s2.pkl": 254.72148499195464,
+      "adapter_s3.pkl": 302.25467300391756,
+      "dagger_s2.pkl": 96.38057599961758,
+      "dagger_s3.pkl": 101.59295734576881,
+      "joint_s2.pkl": 218.48494600737467,
+      "joint_s3.pkl": 222.3105100078974
+    },
+    "2": {
+      "base.pkl": 111.73198350006714,
+      "teacher_bwd.pkl": 71.0032293330878,
+      "teacher_slow.pkl": 75.98244577584167,
+      "adapter_s2.pkl": 254.0446705080103,
+      "adapter_s3.pkl": 297.2690165040549,
+      "dagger_s2.pkl": 95.77571999840438,
+      "dagger_s3.pkl": 100.9328053444624,
+      "joint_s2.pkl": 217.67405800824054,
+      "joint_s3.pkl": 219.22964849998243
+    }
+  },
+  "old_setting_total_minutes": {
+    "0": 24.142514447717822,
+    "1": 24.283759875463634,
+    "2": 24.060726291202524
+  },
+  "raw_25k_rate_minutes": 24.466773333333332,
+  "caveat": "new PPO batch/epochs/reward/validation settings are not timed; target 25-30 min, guard 40"
+}

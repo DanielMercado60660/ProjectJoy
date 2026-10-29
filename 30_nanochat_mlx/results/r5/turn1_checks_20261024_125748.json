@@ -1,0 +1,58 @@
+{
+  "timestamp": "2026-10-24T12:57:48.845777-05:00",
+  "checks": [
+    {
+      "command": [
+        "/Users/danielmercado/ProjectJoy/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_r5_numpy.py"
+      ],
+      "returncode": 0,
+      "elapsed_s": 0.6091687910375185,
+      "output": "....................                                                     [100%]\n20 passed in 0.31s\n"
+    },
+    {
+      "command": [
+        "/Users/danielmercado/ProjectJoy/.venv/bin/python",
+        "-m",
+        "py_compile",
+        "r5_checkpoint.py",
+        "r5_data.py",
+        "r5_eval.py",
+        "r5_smoke.py",
+        "r5_suite.py",
+        "r5_train.py",
+        "r5_world.py"
+      ],
+      "returncode": 0,
+      "elapsed_s": 0.03279566700803116,
+      "output": ""
+    },
+    {
+      "command": [
+        "sh",
+        "-n",
+        "smoke_r5.sh"
+      ],
+      "returncode": 0,
+      "elapsed_s": 0.005312666005920619,
+      "output": ""
+    }
+  ],
+  "mlx_executed": false,
+  "source_sha256": {
+    "r5_checkpoint.py": "0dd638719c0985bb162e7c23d64e717169f6087eaa837ff8512a32c6c4c98930",
+    "r5_data.py": "cd3893ab0c176ca33fb9cd478011f463cd61a7ea29b06e467c1ebb8103337150",
+    "r5_eval.py": "1f9bf8d4ea1c00d022f314af0eb949625cc24a9c55123e8bd3127575d8f49f08",
+    "r5_smoke.py": "837da137130c0dda0ceea2a714cf6bfe35d159641a74d7d3697cbc3bcb211c46",
+    "r5_suite.py": "515a58a4706d6598b712735f455b4d3c50b55381fa320a82c102a392a3b4387b",
+    "r5_train.py": "89805743fc3b9652ce89a72519b586f1c3065c7e949653de8a359bdc07f546be",
+    "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+    "tests/test_r5_numpy.py": "f4981860ed271072a2ce7ed856b5d9709191b8c2d053f92746d5a8142aff4628",
+    "smoke_r5.sh": "c36b95a362b9c6c5270250dea33bf96a92a7291a3569f3947bbd96602fc36786",
+    "RUNME_R5.md": "8aae1f98f0c643f3375d604b26a58f59709450027599204d39afb127f1998cea",
+    "DESIGN_R5.md": "e3d8b83b2814bbcd36816ddeb74fe2d9a908d983a099fa75505bccdf56a9e44a"
+  }
+}

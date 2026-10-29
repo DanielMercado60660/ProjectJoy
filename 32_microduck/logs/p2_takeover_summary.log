@@ -1,0 +1,209 @@
+{
+ "policy": "runs/p2_a2/ckpt_016000/weights.safetensors",
+ "configs": "train 0-99",
+ "k": 4,
+ "arms": {
+  "bot_alone": {
+   "press_needed": {
+    "episodes": 49,
+    "ended_before_takeover": 0,
+    "ended_by": {
+     "policy_done": 0,
+     "shadow_bot_done": 0,
+     "other": 0
+    },
+    "success": [
+     33,
+     49
+    ],
+    "said_done": 44,
+    "said_done_lamp_wrong": 11,
+    "pressed": 45,
+    "falls": 0,
+    "timeouts": 5
+   },
+   "no_press": {
+    "episodes": 51,
+    "ended_before_takeover": 0,
+    "ended_by": {
+     "policy_done": 0,
+     "shadow_bot_done": 0,
+     "other": 0
+    },
+    "success": [
+     51,
+     51
+    ],
+    "said_done": 51,
+    "said_done_lamp_wrong": 0,
+    "pressed": 3,
+    "falls": 0,
+    "timeouts": 0
+   }
+  },
+  "fresh_250": {
+   "press_needed": {
+    "episodes": 49,
+    "ended_before_takeover": 1,
+    "ended_by": {
+     "policy_done": 1,
+     "shadow_bot_done": 0,
+     "other": 0
+    },
+    "success": [
+     33,
+     48
+    ],
+    "said_done": 47,
+    "said_done_lamp_wrong": 14,
+    "pressed": 43,
+    "falls": 0,
+    "timeouts": 1
+   },
+   "no_press": {
+    "episodes": 51,
+    "ended_before_takeover": 23,
+    "ended_by": {
+     "policy_done": 23,
+     "shadow_bot_done": 0,
+     "other": 0
+    },
+    "success": [
+     26,
+     28
+    ],
+    "said_done": 28,
+    "said_done_lamp_wrong": 2,
+    "pressed": 3,
+    "falls": 0,
+    "timeouts": 0
+   }
+  },
+  "takeover_100": {
+   "press_needed": {
+    "episodes": 49,
+    "ended_before_takeover": 1,
+    "ended_by": {
+     "policy_done": 1,
+     "shadow_bot_done": 0,
+     "other": 0
+    },
+    "success": [
+     35,
+     48
+    ],
+    "said_done": 42,
+    "said_done_lamp_wrong": 7,
+    "pressed": 43,
+    "falls": 0,
+    "timeouts": 6
+   },
+   "no_press": {
+    "episodes": 51,
+    "ended_before_takeover": 3,
+    "ended_by": {
+     "policy_done": 3,
+     "shadow_bot_done": 0,
+     "other": 0
+    },
+    "success": [
+     46,
+     48
+    ],
+    "said_done": 48,
+    "said_done_lamp_wrong": 2,
+    "pressed": 4,
+    "falls": 0,
+    "timeouts": 0
+   }
+  },
+  "takeover_250": {
+   "press_needed": {
+    "episodes": 49,
+    "ended_before_takeover": 1,
+    "ended_by": {
+     "policy_done": 1,
+     "shadow_bot_done": 0,
+     "other": 0
+    },
+    "success": [
+     34,
+     48
+    ],
+    "said_done": 40,
+    "said_done_lamp_wrong": 6,
+    "pressed": 41,
+    "falls": 0,
+    "timeouts": 8
+   },
+   "no_press": {
+    "episodes": 51,
+    "ended_before_takeover": 35,
+    "ended_by": {
+     "policy_done": 9,
+     "shadow_bot_done": 26,
+     "other": 0
+    },
+    "success": [
+     15,
+     16
+    ],
+    "said_done": 16,
+    "said_done_lamp_wrong": 1,
+    "pressed": 3,
+    "falls": 0,
+    "timeouts": 0
+   }
+  },
+  "takeover_400": {
+   "press_needed": {
+    "episodes": 49,
+    "ended_before_takeover": 3,
+    "ended_by": {
+     "policy_done": 3,
+     "shadow_bot_done": 0,
+     "other": 0
+    },
+    "success": [
+     29,
+     46
+    ],
+    "said_done": 36,
+    "said_done_lamp_wrong": 7,
+    "pressed": 38,
+    "falls": 1,
+    "timeouts": 10
+   },
+   "no_press": {
+    "episodes": 51,
+    "ended_before_takeover": 35,
+    "ended_by": {
+     "policy_done": 9,
+     "shadow_bot_done": 26,
+     "other": 0
+    },
+    "success": [
+     14,
+     16
+    ],
+    "said_done": 14,
+    "said_done_lamp_wrong": 0,
+    "pressed": 4,
+    "falls": 0,
+    "timeouts": 2
+   }
+  }
+ },
+ "gate": {
+  "takeover_250": {
+   "press_needed_success_vs_bot_alone": 1.052,
+   "wrong_done_share": 0.125,
+   "passes": false
+  },
+  "fresh_250": {
+   "press_needed_success_vs_bot_alone": 1.021,
+   "wrong_done_share": 0.213,
+   "passes": false
+  }
+ }
+}

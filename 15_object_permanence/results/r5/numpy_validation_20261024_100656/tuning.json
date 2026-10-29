@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "split": "hard_val",
+  "screen_indices": [
+    0,
+    1
+  ],
+  "confirm_indices": [
+    64,
+    65
+  ],
+  "objective": "mean per-sequence all-frame pixel NLL",
+  "search_space": {
+    "kalman": [
+      {
+        "q": 0.5,
+        "r": 7.0
+      }
+    ],
+    "particle": [
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 32,
+        "bandwidth": 1.5
+      }
+    ]
+  },
+  "rows": [
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 32,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 88.4104765848216,
+      "confirm_nll": 24.187493411089996
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.5,
+        "r": 7.0
+      },
+      "screen_nll": 10.946369450206653,
+      "confirm_nll": 16.042315145886146
+    }
+  ],
+  "selected": {
+    "particle": {
+      "q": 0.15,
+      "r": 1.0,
+      "miss": 0.2,
+      "particles": 32,
+      "bandwidth": 1.5
+    },
+    "kalman": {
+      "q": 0.5,
+      "r": 7.0
+    }
+  },
+  "complete": true,
+  "elapsed_seconds": 0.12528962502256036,
+  "selection_stage": {
+    "particle": "confirm",
+    "kalman": "confirm"
+  },
+  "grid_complete": true
+}

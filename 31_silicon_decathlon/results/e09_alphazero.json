@@ -1,0 +1,447 @@
+{
+ "event": {
+  "id": "09_alphazero",
+  "project": "09_tiny_alphazero",
+  "model": "PVNet 5x64 ResNet (policy + value)",
+  "checkpoint": "../09_tiny_alphazero/checkpoints/main/gen_191",
+  "unit": "positions",
+  "params": 376224,
+  "notes": "Inputs are positions from random legal play (0-29 plies)."
+ },
+ "final": true,
+ "batches": {
+  "1": {
+   "agreement": {
+    "numpy_cpu": {
+     "policy_max_err": 1.1324882507324219e-06,
+     "value_max_err": 0.0
+    },
+    "mlx_cpu": {
+     "policy_max_err": 1.3113021850585938e-06,
+     "value_max_err": 0.0
+    },
+    "mlx_gpu": {
+     "policy_max_err": 0.0,
+     "value_max_err": 0.0
+    },
+    "mlx_gpu_fp16": {
+     "policy_max_err": 0.002819061279296875,
+     "value_max_err": 0.00020736455917358398
+    },
+    "mlx_gpu_compiled": {
+     "policy_max_err": 0.0,
+     "value_max_err": 0.0
+    },
+    "coreml_cpu": {
+     "policy_max_err": 0.005802750587463379,
+     "value_max_err": 0.00020736455917358398
+    },
+    "coreml_gpu": {
+     "policy_max_err": 0.005802750587463379,
+     "value_max_err": 0.00020736455917358398
+    },
+    "coreml_ane": {
+     "policy_max_err": 0.005802750587463379,
+     "value_max_err": 0.00020736455917358398
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 16282952,
+    "mlx_gpu": 15672948,
+    "mlx_gpu_fp16": 16446554,
+    "mlx_gpu_compiled": 16504486
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 0.3177920007146895,
+     "p90_ms": 0.326832989230752,
+     "min_ms": 0.2760839997790754,
+     "calls": 5521,
+     "rounds": 7,
+     "round_median_spread": 1.0094244268436052
+    },
+    "mlx_cpu": {
+     "median_ms": 0.39141699380706996,
+     "p90_ms": 0.4097920027561486,
+     "min_ms": 0.36462501157075167,
+     "calls": 4444,
+     "rounds": 7,
+     "round_median_spread": 1.0072102501004083
+    },
+    "mlx_gpu": {
+     "median_ms": 0.6919169973116368,
+     "p90_ms": 0.708332983776927,
+     "min_ms": 0.6512079853564501,
+     "calls": 2421,
+     "rounds": 7,
+     "round_median_spread": 1.0034089027351847
+    },
+    "mlx_gpu_fp16": {
+     "median_ms": 0.9177500032819808,
+     "p90_ms": 0.961166006163694,
+     "min_ms": 0.8441249956376851,
+     "calls": 1856,
+     "rounds": 7,
+     "round_median_spread": 1.006958610150049
+    },
+    "mlx_gpu_compiled": {
+     "median_ms": 0.5074579967185855,
+     "p90_ms": 0.553991599008441,
+     "min_ms": 0.45770799624733627,
+     "calls": 3287,
+     "rounds": 7,
+     "round_median_spread": 1.0020957902074277
+    },
+    "coreml_cpu": {
+     "median_ms": 0.05420797970145941,
+     "p90_ms": 0.0582499778829515,
+     "min_ms": 0.044917018385604024,
+     "calls": 14000,
+     "rounds": 7,
+     "round_median_spread": 1.0431612684421434
+    },
+    "coreml_gpu": {
+     "median_ms": 0.05562498699873686,
+     "p90_ms": 0.05900001269765198,
+     "min_ms": 0.04558300133794546,
+     "calls": 14000,
+     "rounds": 7,
+     "round_median_spread": 1.0352011022022132
+    },
+    "coreml_ane": {
+     "median_ms": 0.055665994295850396,
+     "p90_ms": 0.05933298962190747,
+     "min_ms": 0.045791995944455266,
+     "calls": 14000,
+     "rounds": 7,
+     "round_median_spread": 1.0413471504807583
+    }
+   },
+   "task": {
+    "numpy_cpu": null,
+    "mlx_cpu": null,
+    "mlx_gpu": null,
+    "mlx_gpu_fp16": null,
+    "mlx_gpu_compiled": null,
+    "coreml_cpu": null,
+    "coreml_gpu": null,
+    "coreml_ane": null
+   },
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e09_alphazero_b1_fp16.mlpackage",
+     "size_bytes": 773474,
+     "placement": {
+      "CPU": 43
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e09_alphazero_b1_fp16.mlpackage",
+     "size_bytes": 773474,
+     "placement": {
+      "CPU": 43
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e09_alphazero_b1_fp16.mlpackage",
+     "size_bytes": 773474,
+     "placement": {
+      "CPU": 43
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "policy err 1.13e-06 (tol 0.1), value err 0 (tol 0.05)"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "policy err 1.31e-06 (tol 0.1), value err 0 (tol 0.05)"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "policy err 0 (tol 0.1), value err 0 (tol 0.05)"
+    },
+    "mlx_gpu_fp16": {
+     "ok": true,
+     "reason": "policy err 0.00282 (tol 0.1), value err 0.000207 (tol 0.05)"
+    },
+    "mlx_gpu_compiled": {
+     "ok": true,
+     "reason": "policy err 0 (tol 0.1), value err 0 (tol 0.05)"
+    },
+    "coreml_cpu": {
+     "ok": true,
+     "reason": "policy err 0.0058 (tol 0.1), value err 0.000207 (tol 0.05)"
+    },
+    "coreml_gpu": {
+     "ok": true,
+     "reason": "policy err 0.0058 (tol 0.1), value err 0.000207 (tol 0.05)"
+    },
+    "coreml_ane": {
+     "ok": true,
+     "reason": "policy err 0.0058 (tol 0.1), value err 0.000207 (tol 0.05)"
+    }
+   }
+  },
+  "256": {
+   "agreement": {
+    "numpy_cpu": {
+     "policy_max_err": 8.344650268554688e-06,
+     "value_max_err": 3.1888484954833984e-06
+    },
+    "mlx_cpu": {
+     "policy_max_err": 6.67572021484375e-06,
+     "value_max_err": 4.291534423828125e-06
+    },
+    "mlx_gpu": {
+     "policy_max_err": 0.0,
+     "value_max_err": 0.0
+    },
+    "mlx_gpu_fp16": {
+     "policy_max_err": 0.014660358428955078,
+     "value_max_err": 0.015263259410858154
+    },
+    "mlx_gpu_compiled": {
+     "policy_max_err": 0.0,
+     "value_max_err": 0.0
+    },
+    "coreml_cpu": {
+     "policy_max_err": 0.04142189025878906,
+     "value_max_err": 0.022709518671035767
+    },
+    "coreml_gpu": {
+     "policy_max_err": 0.010045051574707031,
+     "value_max_err": 0.0032914280891418457
+    },
+    "coreml_ane": {
+     "policy_max_err": 0.010298728942871094,
+     "value_max_err": 0.0046117305755615234
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 183208314,
+    "mlx_gpu": 46985086,
+    "mlx_gpu_fp16": 32642334,
+    "mlx_gpu_compiled": 47832966
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 15.963749989168718,
+     "p90_ms": 16.246966386097483,
+     "min_ms": 15.701958007412031,
+     "calls": 112,
+     "rounds": 7,
+     "round_median_spread": 1.01231517171433
+    },
+    "mlx_cpu": {
+     "median_ms": 27.011854006559588,
+     "p90_ms": 27.405962499324232,
+     "min_ms": 26.768208015710115,
+     "calls": 70,
+     "rounds": 7,
+     "round_median_spread": 1.0173073081014472
+    },
+    "mlx_gpu": {
+     "median_ms": 1.4054999919608235,
+     "p90_ms": 1.4472920156549662,
+     "min_ms": 1.3626249856315553,
+     "calls": 1197,
+     "rounds": 7,
+     "round_median_spread": 1.00390526148503
+    },
+    "mlx_gpu_fp16": {
+     "median_ms": 1.6008749953471124,
+     "p90_ms": 1.6792537149740383,
+     "min_ms": 1.5317499928642064,
+     "calls": 1064,
+     "rounds": 7,
+     "round_median_spread": 1.0031547040712694
+    },
+    "mlx_gpu_compiled": {
+     "median_ms": 1.1579999991226941,
+     "p90_ms": 1.2191669957246631,
+     "min_ms": 1.088082994101569,
+     "calls": 1465,
+     "rounds": 7,
+     "round_median_spread": 1.0090317699648368
+    },
+    "coreml_cpu": {
+     "median_ms": 3.8012079894542694,
+     "p90_ms": 3.8323079992551357,
+     "min_ms": 3.748957999050617,
+     "calls": 463,
+     "rounds": 7,
+     "round_median_spread": 1.0101054867542867
+    },
+    "coreml_gpu": {
+     "median_ms": 0.511583493789658,
+     "p90_ms": 0.5367915000533685,
+     "min_ms": 0.46520799514837563,
+     "calls": 3236,
+     "rounds": 7,
+     "round_median_spread": 1.0188382872199946
+    },
+    "coreml_ane": {
+     "median_ms": 0.7947915000841022,
+     "p90_ms": 0.810333076515235,
+     "min_ms": 0.7598749944008887,
+     "calls": 2200,
+     "rounds": 7,
+     "round_median_spread": 1.0133044682704342
+    }
+   },
+   "task": {
+    "numpy_cpu": {
+     "best_move_agreement": 1.0,
+     "positions": 1792
+    },
+    "mlx_cpu": {
+     "best_move_agreement": 1.0,
+     "positions": 1792
+    },
+    "mlx_gpu": {
+     "best_move_agreement": 1.0,
+     "positions": 1792
+    },
+    "mlx_gpu_fp16": {
+     "best_move_agreement": 0.9994419642857143,
+     "positions": 1792
+    },
+    "mlx_gpu_compiled": {
+     "best_move_agreement": 1.0,
+     "positions": 1792
+    },
+    "coreml_cpu": {
+     "best_move_agreement": 0.9983258928571429,
+     "positions": 1792
+    },
+    "coreml_gpu": {
+     "best_move_agreement": 0.9994419642857143,
+     "positions": 1792
+    },
+    "coreml_ane": {
+     "best_move_agreement": 1.0,
+     "positions": 1792
+    }
+   },
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e09_alphazero_b256_fp16.mlpackage",
+     "size_bytes": 773525,
+     "placement": {
+      "CPU": 43
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e09_alphazero_b256_fp16.mlpackage",
+     "size_bytes": 773525,
+     "placement": {
+      "GPU": 43
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e09_alphazero_b256_fp16.mlpackage",
+     "size_bytes": 773525,
+     "placement": {
+      "NeuralEngine": 43
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "best-move agreement 1.0000 >= 0.99"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "best-move agreement 1.0000 >= 0.99"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "best-move agreement 1.0000 >= 0.99"
+    },
+    "mlx_gpu_fp16": {
+     "ok": true,
+     "reason": "best-move agreement 0.9994 >= 0.99"
+    },
+    "mlx_gpu_compiled": {
+     "ok": true,
+     "reason": "best-move agreement 1.0000 >= 0.99"
+    },
+    "coreml_cpu": {
+     "ok": true,
+     "reason": "best-move agreement 0.9983 >= 0.99"
+    },
+    "coreml_gpu": {
+     "ok": true,
+     "reason": "best-move agreement 0.9994 >= 0.99"
+    },
+    "coreml_ane": {
+     "ok": true,
+     "reason": "best-move agreement 1.0000 >= 0.99"
+    }
+   }
+  }
+ },
+ "skips": {
+  "mlx_gpu_q8": "conv-heavy net; MLX quantization covers Linear layers only",
+  "mlx_gpu_q4": "conv-heavy net; MLX quantization covers Linear layers only"
+ },
+ "task_checks": true,
+ "settings": {
+  "repeats": 7,
+  "budget_s": 0.25,
+  "only": null
+ },
+ "mlx_tf32": false,
+ "mlx_gpu_matmul_rel_err": 5.303472196546295e-07,
+ "mlx_tf32_env": "0",
+ "idle_wait": {
+  "waited_s": 0.0,
+  "load1": 2.35498046875
+ },
+ "env_before": {
+  "time": "2026-10-22 18:04:37",
+  "loadavg": [
+   2.35498046875,
+   1.8984375,
+   2.05517578125
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.17059750040061772,
+  "mlx_gpu_2048_matmul_ms": 1.6394979000324383
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.1704033400164917,
+  "mlx_gpu_2048_matmul_ms": 1.6068562501459382
+ },
+ "env_after": {
+  "time": "2026-10-22 18:05:05",
+  "loadavg": [
+   2.45361328125,
+   1.95703125,
+   2.06982421875
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

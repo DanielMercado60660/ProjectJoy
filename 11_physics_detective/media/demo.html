@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics Detective</title>
+<style>
+:root {
+  --bg: #f6f5f1; --surface: #fcfcfb; --ink: #0b0b0b; --ink2: #52514e; --muted: #8a887f; --line: #e4e3df;
+  --you: #eb6834; --det: #2a78d6; --net: #6250d6; --table: #b8b6ae; --block: #1d1c1a; --view: rgba(42,120,214,0.07);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121211; --surface: #1a1a19; --ink: #f0efec; --ink2: #c3c2b7; --muted: #8f8d84; --line: #2e2d2a;
+    --you: #d95926; --det: #3987e5; --net: #9085e9; --table: #5a5852; --block: #e8e6e0; --view: rgba(57,135,229,0.10);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121211; --surface: #1a1a19; --ink: #f0efec; --ink2: #c3c2b7; --muted: #8f8d84; --line: #2e2d2a;
+  --you: #d95926; --det: #3987e5; --net: #9085e9; --table: #5a5852; --block: #e8e6e0; --view: rgba(57,135,229,0.10);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 1100px; margin: 0 auto; padding: 20px 16px 40px; }
+h1 { font-size: 26px; margin: 0 0 2px; letter-spacing: -0.01em; }
+.sub { color: var(--ink2); margin: 0 0 16px; max-width: 760px; }
+.grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 14px; }
+@media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.card h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink2); margin: 0 0 8px; font-weight: 600; }
+canvas { width: 100%; display: block; }
+.controls { display: grid; grid-template-columns: auto 1fr auto; gap: 6px 10px; align-items: center; }
+.controls label { color: var(--ink2); font-size: 14px; }
+.controls output { font-variant-numeric: tabular-nums; min-width: 60px; text-align: right; }
+input[type=range] { width: 100%; accent-color: var(--you); }
+.buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+button { font: inherit; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); padding: 7px 13px; cursor: pointer; }
+button.primary { background: var(--you); color: #fff; border-color: transparent; font-weight: 600; }
+button.det { color: var(--det); border-color: var(--det); }
+button:disabled { opacity: 0.45; cursor: default; }
+.stat { font-variant-numeric: tabular-nums; font-size: 22px; font-weight: 650; }
+.statlabel { color: var(--ink2); font-size: 13px; }
+.stats { display: flex; gap: 22px; flex-wrap: wrap; margin-bottom: 6px; }
+#log { max-height: 210px; overflow: auto; font-size: 13px; font-variant-numeric: tabular-nums; margin: 0; padding-left: 20px; color: var(--ink2); }
+#log li { margin: 2px 0; }
+#log b { color: var(--ink); font-weight: 600; }
+.accuse { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+.accuse input { font: inherit; width: 90px; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+#verdict { margin-top: 8px; min-height: 1.4em; }
+.hint { color: var(--muted); font-size: 12.5px; margin: 6px 0 0; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink2); margin-top: 4px; }
+.sw { display: inline-block; width: 12px; height: 3px; vertical-align: middle; margin-right: 5px; border-radius: 2px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>The Physics Detective</h1>
+  <p class="sub">A block sits on a table. Its kinetic friction μ<sub>k</sub> is hidden somewhere between 0.05 and 0.8
+  (static friction is 1.2 × μ<sub>k</sub>). You choose how hard and how long to push; a noisy camera (±8 cm) films the
+  first metre of the table. Too gentle and nothing moves, too hard and the block slides out of view. Pin down μ<sub>k</sub>
+  with as few pushes as you can, then make your accusation.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h2>The table</h2>
+      <canvas id="table" height="120"></canvas>
+      <div class="controls" style="margin-top:10px">
+        <label for="F">Push force F</label><input id="F" type="range" min="1" max="15" step="1" value="6"><output id="Fv">6 N</output>
+        <label for="T">Duration T</label><input id="T" type="range" min="0.1" max="1.0" step="0.1" value="0.3"><output id="Tv">0.3 s</output>
+      </div>
+      <div class="buttons">
+        <button class="primary" id="push">Push!</button>
+        <button class="det" id="ask">Ask the detective for the best push</button>
+        <button id="newcase">New case</button>
+      </div>
+      <h2 style="margin-top:14px">Camera readings (latest push)</h2>
+      <canvas id="cam" height="190"></canvas>
+      <div class="legend"><span><span class="sw" style="background:var(--ink)"></span>reading</span><span><span class="sw" style="background:var(--muted)"></span>out of view (▲)</span><span><span class="sw" style="background:var(--you)"></span>what your current belief predicted</span></div>
+    </div>
+
+    <div class="card">
+      <h2>What you know about μ<sub>k</sub></h2>
+      <div class="stats">
+        <div><div class="stat" id="meanv">?</div><div class="statlabel">best guess</div></div>
+        <div><div class="stat" id="ci">0.05–0.80</div><div class="statlabel">90% credible interval</div></div>
+        <div><div class="stat" id="npush">0</div><div class="statlabel">pushes</div></div>
+      </div>
+      <canvas id="post" height="170"></canvas>
+      <p class="hint">Exact Bayesian posterior on a 1500-point grid, updated in your browser after every push. The inset zooms in once it gets sharp.</p>
+      <h2 style="margin-top:12px">Expected information of each possible push</h2>
+      <canvas id="eig" height="170"></canvas>
+      <div id="best" class="statlabel" style="margin-top:4px"></div>
+      <p class="hint">Click a cell to load that push. Darker = the detective expects to learn more (in bits). Computed by simulating the camera under your current belief.</p>
+    </div>
+
+    <div class="card">
+      <h2>Case notes</h2>
+      <ol id="log"></ol>
+    </div>
+    <div class="card">
+      <h2>Accusation</h2>
+      <div class="accuse"><label for="guess">μ<sub>k</sub> is</label><input id="guess" type="number" min="0.05" max="0.8" step="0.001" placeholder="0.???"><button class="primary" id="accuse">Accuse</button></div>
+      <div id="verdict"></div>
+      <p class="hint">You win if you're within 0.01 of the truth. For comparison, over 500 simulated cases the information-greedy detective (the one behind the button) was within 0.01 for good after a median of 1 push (90% by push 2, every case by push 4). Random pushing needed a median of 4, and 3% of cases still weren't solved after 15.</p>
+    </div>
+  </div>
+</main>
+<script>
+"use strict";
+// ---------- physics: identical to physics.py ----------
+const G = 9.81, SIGMA = 0.08, VIEW = 1.0, RATIO = 1.2, LO = 0.05, HI = 0.8, NT = 20;
+const TIMES = Array.from({length: NT}, (_, i) => +(0.1 * (i + 1)).toFixed(2));
+const FG = Array.from({length: 15}, (_, i) => i + 1), TG = Array.from({length: 10}, (_, i) => +(0.1 * (i + 1)).toFixed(1));
+function positions(F, T, mu, out) {
+  out = out || new Float64Array(NT);
+  const moves = F > RATIO * mu * G;
+  const a1 = moves ? F - mu * G : 0, a2 = mu * G, v1 = a1 * T, x1 = 0.5 * a1 * T * T, ts = v1 / a2;
+  for (let i = 0; i < NT; i++) {
+    const t = TIMES[i];
+    if (t <= T) out[i] = 0.5 * a1 * t * t;
+    else { const tau = Math.min(t - T, ts); out[i] = x1 + v1 * tau - 0.5 * a2 * tau * tau; }
+  }
+  return out;
+}
+function posAt(F, T, mu, t) { // continuous-time position for the animation
+  if (!(F > RATIO * mu * G)) return 0;
+  const a1 = F - mu * G, a2 = mu * G, v1 = a1 * T, x1 = 0.5 * a1 * T * T;
+  if (t <= T) return 0.5 * a1 * t * t;
+  const tau = Math.min(t - T, v1 / a2); return x1 + v1 * tau - 0.5 * a2 * tau * tau;
+}
+function erfc(x) { // Numerical Recipes erfcc, fractional error < 1.2e-7
+  const z = Math.abs(x), t = 1 / (1 + 0.5 * z);
+  const r = t * Math.exp(-z * z - 1.26551223 + t * (1.00002368 + t * (0.37409196 + t * (0.09678418 + t * (-0.18628806 + t * (0.27886807 + t * (-1.13520398 + t * (1.48851587 + t * (-0.82215223 + t * 0.17087277)))))))));
+  return x >= 0 ? r : 2 - r;
+}
+function logPhi(z) {
+  if (z < -8) return -0.5 * z * z - Math.log(-z) - 0.9189385332 + Math.log(1 - 1 / (z * z) + 3 / (z ** 4));
+  return Math.log(0.5 * erfc(-z / Math.SQRT2));
+}
+const LOGNORM = Math.log(SIGMA * Math.sqrt(2 * Math.PI));
+function loglik(y, cens, x) {
+  let s = 0;
+  for (let i = 0; i < NT; i++) {
+    if (cens[i]) s += logPhi((x[i] - VIEW) / SIGMA);
+    else { const r = (y[i] - x[i]) / SIGMA; s += -0.5 * r * r - LOGNORM; }
+  }
+  return s;
+}
+function randn() { let u = 0, v = 0; while (u === 0) u = Math.random(); while (v === 0) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+
+// ---------- exact grid posterior ----------
+const NG = 1500, GRID = Float64Array.from({length: NG}, (_, i) => LO + (HI - LO) * i / (NG - 1));
+let logp, mu, pushes, lastPush, eigMap, animating = false, history;
+function weights() { let m = -Infinity; for (const v of logp) m = Math.max(m, v); const w = logp.map(v => Math.exp(v - m)); const s = w.reduce((a, b) => a + b, 0); return w.map(v => v / s); }
+function stats(w) {
+  let m = 0; for (let i = 0; i < NG; i++) m += w[i] * GRID[i];
+  let v = 0; for (let i = 0; i < NG; i++) v += w[i] * (GRID[i] - m) ** 2;
+  const q = p => { let c = 0; for (let i = 0; i < NG; i++) { c += w[i]; if (c >= p) return GRID[i]; } return HI; };
+  let H = 0; for (const x of w) if (x > 0) H -= x * Math.log2(x);
+  return {mean: m, sd: Math.sqrt(v), lo: q(0.05), hi: q(0.95), H, q};
+}
+function update(F, T, y, cens) { const x = new Float64Array(NT); for (let i = 0; i < NG; i++) logp[i] += loglik(y, cens, positions(F, T, GRID[i], x)); }
+
+// ---------- expected information gain (nested Monte Carlo over posterior particles) ----------
+function computeEIG() {
+  const w = weights(), st = stats(w), K = 40, M = 2;
+  const parts = Array.from({length: K}, (_, k) => st.q((k + 0.5) / K));
+  const eps = Array.from({length: K * M}, () => Float64Array.from({length: NT}, randn));
+  const map = [];
+  const X = Array.from({length: K}, () => new Float64Array(NT)), y = new Float64Array(NT), c = new Uint8Array(NT), L = new Float64Array(K);
+  for (const F of FG) for (const T of TG) {
+    for (let k = 0; k < K; k++) positions(F, T, parts[k], X[k]);
+    let tot = 0;
+    for (let i = 0; i < K; i++) for (let m = 0; m < M; m++) {
+      const e = eps[i * M + m];
+      for (let t = 0; t < NT; t++) { y[t] = X[i][t] + SIGMA * e[t]; c[t] = y[t] > VIEW ? 1 : 0; }
+      let mx = -Infinity;
+      for (let j = 0; j < K; j++) { L[j] = loglik(y, c, X[j]); if (L[j] > mx) mx = L[j]; }
+      let s = 0; for (let j = 0; j < K; j++) s += Math.exp(L[j] - mx);
+      tot += L[i] - (mx + Math.log(s / K));
+    }
+    map.push({F, T, v: tot / (K * M) / Math.LN2});
+  }
+  return map;
+}
+
+// ---------- drawing ----------
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function prep(cv) { if (!cv.dataset.h) cv.dataset.h = cv.getAttribute("height"); const r = window.devicePixelRatio || 1, w = cv.clientWidth, h = +cv.dataset.h; cv.width = w * r; cv.height = h * r; cv.style.height = h + "px"; const g = cv.getContext("2d"); g.setTransform(r, 0, 0, r, 0, 0); return [g, w, h]; }
+function drawTable(x, pushing, F) {
+  const [g, w, h] = prep(document.getElementById("table"));
+  const X0 = 20, sx = (w - 40) / 2.0, base = h - 30;
+  g.fillStyle = css("--view"); g.fillRect(X0, 8, VIEW * sx, base - 8);
+  g.fillStyle = css("--table"); g.fillRect(0, base, w, 10);
+  g.strokeStyle = css("--muted"); g.setLineDash([3, 3]); g.beginPath(); g.moveTo(X0 + VIEW * sx, 8); g.lineTo(X0 + VIEW * sx, base); g.stroke(); g.setLineDash([]);
+  g.fillStyle = css("--ink2"); g.font = "12px sans-serif"; g.textAlign = "right"; g.fillText("camera sees up to here →", X0 + VIEW * sx - 6, 22); g.textAlign = "left";
+  for (let m = 0; m <= 2; m += 0.5) { g.fillText(m + " m", X0 + m * sx - 8, base + 24); }
+  const bx = X0 + Math.min(x, 2.05) * sx;
+  g.fillStyle = css("--block"); g.fillRect(bx - 16, base - 32, 32, 32);
+  if (pushing) { g.strokeStyle = css("--you"); g.lineWidth = 3; g.beginPath(); g.moveTo(bx - 20 - 3 * F, base - 16); g.lineTo(bx - 20, base - 16); g.stroke(); g.fillStyle = css("--you"); g.beginPath(); g.moveTo(bx - 18, base - 16); g.lineTo(bx - 26, base - 22); g.lineTo(bx - 26, base - 10); g.fill(); g.lineWidth = 1; }
+  if (x > 2.05) { g.fillStyle = css("--ink2"); g.fillText("… gone", w - 60, base - 40); }
+}
+function axes(g, w, h, xl, xr, yl, yr, pad) {
+  const px = v => pad.l + (v - xl) / (xr - xl) * (w - pad.l - pad.r), py = v => h - pad.b - (v - yl) / (yr - yl) * (h - pad.t - pad.b);
+  g.strokeStyle = css("--line"); g.lineWidth = 1; g.beginPath(); g.moveTo(pad.l, h - pad.b); g.lineTo(w - pad.r, h - pad.b); g.moveTo(pad.l, pad.t); g.lineTo(pad.l, h - pad.b); g.stroke();
+  return [px, py];
+}
+function drawCam(upto) {
+  const [g, w, h] = prep(document.getElementById("cam"));
+  const pad = {l: 40, r: 10, t: 10, b: 26}, [px, py] = axes(g, w, h, 0, 2.05, -0.25, 1.25, pad);
+  g.fillStyle = css("--ink2"); g.font = "11px sans-serif";
+  for (const v of [0, 0.5, 1]) { g.fillText(v.toFixed(1), 8, py(v) + 4); }
+  for (const t of [0, 0.5, 1, 1.5, 2]) g.fillText(t + "s", px(t) - 8, h - 8);
+  g.strokeStyle = css("--muted"); g.setLineDash([3, 3]); g.beginPath(); g.moveTo(px(0), py(VIEW)); g.lineTo(px(2.05), py(VIEW)); g.stroke(); g.setLineDash([]);
+  if (!lastPush) { g.fillStyle = css("--muted"); g.fillText("push the block to see what the camera records", px(0.25), py(0.5)); return; }
+  const {y, cens, pred} = lastPush;
+  if (pred) { g.strokeStyle = css("--you"); g.lineWidth = 2; g.globalAlpha = 0.65; g.beginPath(); pred.forEach((v, i) => { const Y = py(Math.min(v, 1.25)); i ? g.lineTo(px(TIMES[i]), Y) : g.moveTo(px(TIMES[i]), Y); }); g.stroke(); g.globalAlpha = 1; }
+  for (let i = 0; i < NT && TIMES[i] <= upto + 1e-9; i++) {
+    if (cens[i]) { g.fillStyle = css("--muted"); g.beginPath(); g.moveTo(px(TIMES[i]), py(1.17) - 5); g.lineTo(px(TIMES[i]) - 4, py(1.17) + 3); g.lineTo(px(TIMES[i]) + 4, py(1.17) + 3); g.fill(); }
+    else { g.fillStyle = css("--ink"); g.beginPath(); g.arc(px(TIMES[i]), py(y[i]), 3.5, 0, 7); g.fill(); }
+  }
+}
+function drawPost() {
+  const w8 = weights(), st = stats(w8);
+  const [g, w, h] = prep(document.getElementById("post"));
+  const pad = {l: 10, r: 10, t: 10, b: 24}, [px, py] = axes(g, w, h, LO, HI, 0, 1.1, pad);
+  let mx = 0; for (const v of w8) mx = Math.max(mx, v);
+  g.fillStyle = css("--ink2"); g.font = "11px sans-serif";
+  for (const v of [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]) g.fillText(v.toFixed(1), px(v) - 8, h - 6);
+  g.fillStyle = css("--you"); g.globalAlpha = 0.3; g.beginPath(); g.moveTo(px(LO), py(0));
+  for (let i = 0; i < NG; i++) g.lineTo(px(GRID[i]), py(w8[i] / mx)); g.lineTo(px(HI), py(0)); g.fill(); g.globalAlpha = 1;
+  g.strokeStyle = css("--you"); g.lineWidth = 2; g.beginPath(); for (let i = 0; i < NG; i++) { const X = px(GRID[i]), Y = py(w8[i] / mx); i ? g.lineTo(X, Y) : g.moveTo(X, Y); } g.stroke();
+  if (st.sd < 0.03 && pushes > 0) { // zoom inset
+    const iw = w * 0.42, ih = h * 0.52, ix = w - iw - 12, iy = 12, half = Math.max(5 * st.sd, 0.006);
+    g.fillStyle = css("--surface"); g.strokeStyle = css("--line"); g.fillRect(ix, iy, iw, ih); g.strokeRect(ix, iy, iw, ih);
+    const qx = v => ix + (v - st.mean + half) / (2 * half) * iw, qy = v => iy + ih - 14 - v * (ih - 22);
+    g.strokeStyle = css("--you"); g.lineWidth = 2; g.beginPath(); let first = true;
+    for (let i = 0; i < NG; i++) if (Math.abs(GRID[i] - st.mean) <= half) { const X = qx(GRID[i]), Y = qy(w8[i] / mx); first ? g.moveTo(X, Y) : g.lineTo(X, Y); first = false; }
+    g.stroke(); g.fillStyle = css("--ink2"); g.font = "10px sans-serif";
+    g.fillText((st.mean - half).toFixed(3), ix + 3, iy + ih - 3); g.fillText((st.mean + half).toFixed(3), ix + iw - 32, iy + ih - 3); g.fillText("zoom", ix + 4, iy + 11);
+  }
+  document.getElementById("meanv").textContent = pushes ? st.mean.toFixed(3) : "?";
+  document.getElementById("ci").textContent = st.lo.toFixed(3) + "–" + st.hi.toFixed(3);
+  document.getElementById("npush").textContent = pushes;
+  return st;
+}
+function drawEIG() {
+  const [g, w, h] = prep(document.getElementById("eig"));
+  const pad = {l: 34, r: 8, t: 6, b: 24}, cw = (w - pad.l - pad.r) / 15, ch = (h - pad.t - pad.b) / 10;
+  let mx = 1e-9; for (const e of eigMap) mx = Math.max(mx, e.v);
+  const det = css("--det"), F = +document.getElementById("F").value, T = +document.getElementById("T").value;
+  for (const e of eigMap) {
+    const i = e.F - 1, j = Math.round(e.T * 10) - 1, x = pad.l + i * cw, y = h - pad.b - (j + 1) * ch;
+    g.fillStyle = det; g.globalAlpha = 0.06 + 0.94 * Math.max(e.v, 0) / mx; g.fillRect(x + 1, y + 1, cw - 2, ch - 2); g.globalAlpha = 1;
+    if (e.F === F && Math.abs(e.T - T) < 1e-6) { g.strokeStyle = css("--you"); g.lineWidth = 2.5; g.strokeRect(x + 1, y + 1, cw - 2, ch - 2); g.lineWidth = 1; }
+  }
+  g.fillStyle = css("--ink2"); g.font = "11px sans-serif";
+  for (const f of [1, 5, 10, 15]) g.fillText(f + "N", pad.l + (f - 1) * cw + 2, h - 8);
+  for (const t of [0.1, 0.5, 1.0]) g.fillText(t + "s", 2, h - pad.b - (Math.round(t * 10) - 0.5) * ch + 4);
+  const best = eigMap.reduce((a, b) => (b.v > a.v ? b : a));
+  document.getElementById("best").textContent = `Best next push: ${best.F} N for ${best.T.toFixed(1)} s, expected to teach ${best.v.toFixed(2)} bits.`;
+}
+function refreshEIG() { eigMap = computeEIG(); drawEIG(); }
+
+// ---------- game flow ----------
+function newCase() {
+  mu = LO + (HI - LO) * Math.random(); logp = new Float64Array(NG); pushes = 0; lastPush = null; history = [];
+  document.getElementById("log").innerHTML = ""; document.getElementById("verdict").textContent = "";
+  document.getElementById("guess").value = ""; document.getElementById("push").disabled = false;
+  drawTable(0, false, 0); drawCam(0); drawPost(); refreshEIG();
+}
+function doPush() {
+  if (animating) return;
+  const F = +document.getElementById("F").value, T = +document.getElementById("T").value;
+  const before = stats(weights());
+  const pred = new Float64Array(NT); { const w8 = weights(), x = new Float64Array(NT); for (let i = 0; i < NG; i += 3) { positions(F, T, GRID[i], x); for (let t = 0; t < NT; t++) pred[t] += w8[i] * x[t]; } let s = 0; for (let i = 0; i < NG; i += 3) s += w8[i]; for (let t = 0; t < NT; t++) pred[t] /= s; }
+  const x = positions(F, T, mu), y = new Float64Array(NT), cens = new Uint8Array(NT);
+  for (let i = 0; i < NT; i++) { y[i] = x[i] + SIGMA * randn(); cens[i] = y[i] > VIEW ? 1 : 0; }
+  const expected = (eigMap.find(e => e.F === F && Math.abs(e.T - T) < 1e-6) || {v: NaN}).v;
+  lastPush = {y, cens, pred}; animating = true; document.getElementById("push").disabled = true;
+  const t0 = performance.now();
+  function frame(now) {
+    const t = Math.min((now - t0) / 1000, 2.0);
+    drawTable(posAt(F, T, mu, t), t <= T && x[NT - 1] > 0, F); drawCam(t);
+    if (t < 2.0) return requestAnimationFrame(frame);
+    update(F, T, y, cens); pushes++;
+    const st = drawPost();
+    const li = document.createElement("li");
+    const moved = x[NT - 1] > 0, nc = cens.reduce((a, b) => a + b, 0);
+    li.innerHTML = `<b>${F} N × ${T.toFixed(1)} s</b>: ${moved ? (nc ? `slid out of view (${nc}/20 frames lost)` : "slid and stopped in view") : "didn't budge"} · learned <b>${(before.H - st.H).toFixed(2)} bits</b> (expected ${expected.toFixed(2)}) · now ${st.lo.toFixed(3)}–${st.hi.toFixed(3)}`;
+    document.getElementById("log").appendChild(li);
+    animating = false; document.getElementById("push").disabled = false;
+    refreshEIG();
+  }
+  requestAnimationFrame(frame);
+}
+function accuse() {
+  const g = parseFloat(document.getElementById("guess").value);
+  if (!isFinite(g)) return;
+  const err = Math.abs(g - mu), win = err <= 0.01;
+  document.getElementById("verdict").innerHTML = `${win ? "✅ Case closed!" : "❌ Not quite."} The hidden μ<sub>k</sub> was <b>${mu.toFixed(4)}</b>; you were off by ${err.toFixed(4)} after ${pushes} push${pushes === 1 ? "" : "es"}. <button id="again">New case</button>`;
+  document.getElementById("again").onclick = newCase;
+  document.getElementById("push").disabled = true;
+}
+const Fi = document.getElementById("F"), Ti = document.getElementById("T");
+function syncLabels() { document.getElementById("Fv").textContent = Fi.value + " N"; document.getElementById("Tv").textContent = (+Ti.value).toFixed(1) + " s"; if (eigMap) drawEIG(); }
+Fi.oninput = syncLabels; Ti.oninput = syncLabels;
+document.getElementById("push").onclick = doPush;
+document.getElementById("newcase").onclick = newCase;
+document.getElementById("accuse").onclick = accuse;
+document.getElementById("ask").onclick = () => { const b = eigMap.reduce((a, c) => (c.v > a.v ? c : a)); Fi.value = b.F; Ti.value = b.T; syncLabels(); };
+document.getElementById("eig").onclick = ev => {
+  const cv = ev.currentTarget, r = cv.getBoundingClientRect(), w = cv.clientWidth, h = +cv.dataset.h;
+  const cw = (w - 42) / 15, ch = (h - 30) / 10, i = Math.floor((ev.clientX - r.left - 34) / cw), j = Math.floor((h - 24 - (ev.clientY - r.top)) / ch);
+  if (i >= 0 && i < 15 && j >= 0 && j < 10) { Fi.value = i + 1; Ti.value = ((j + 1) / 10).toFixed(1); syncLabels(); }
+};
+window.addEventListener("resize", () => { drawTable(0, false, 0); drawCam(2); drawPost(); drawEIG(); });
+newCase();
+</script>
+</body>
+</html>

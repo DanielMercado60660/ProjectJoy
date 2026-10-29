@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dungeon Editor</title>
+<style>
+:root {
+  --bg: #f6f3ec; --panel: #fffdf8; --ink: #1d1b18; --ink2: #5b5750; --line: #ddd6c8;
+  --wall: #2e2a26; --floor: #efe8da; --accent: #c2410c; --good: #15803d; --bad: #b91c1c;
+  --path: #2a78d6; --trail: #6250d6; --start: #1baf7a; --goal: #eda100;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161412; --panel: #201d1a; --ink: #f0ece4; --ink2: #b4ada1; --line: #3a352f;
+    --wall: #0d0c0b; --floor: #d9cfbd; --accent: #f97316; --good: #4ade80; --bad: #f87171;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 1060px; margin: 0 auto; padding: 20px 16px 40px; }
+h1 { font-size: 26px; margin: 0 0 2px; letter-spacing: -0.01em; }
+.sub { color: var(--ink2); margin: 0 0 18px; max-width: 760px; }
+.layout { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; } }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+canvas { width: 100%; height: auto; display: block; border-radius: 6px; touch-action: none; cursor: crosshair; }
+.row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 0; }
+button, select { font: inherit; font-size: 14px; padding: 6px 10px; border-radius: 7px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--ink); cursor: pointer; }
+button:hover { border-color: var(--ink2); }
+button.on { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.status { font-weight: 600; }
+.ok { color: var(--good); } .no { color: var(--bad); }
+label { color: var(--ink2); font-size: 13px; }
+h2 { font-size: 15px; margin: 0 0 6px; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--line); }
+th { color: var(--ink2); font-weight: 500; }
+.legend { color: var(--ink2); font-size: 12.5px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 4px 0 10px; vertical-align: -1px; }
+.note { color: var(--ink2); font-size: 13px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>The Dungeon That Hates You</h1>
+  <p class="sub">Draw a 13×13 dungeon, or load one that the evolutionary designer bred to beat the PPO-GRU navigator.
+    The editor checks with BFS that the exit is still reachable, then lets each solver have a go under the same 5×5 partial view.</p>
+  <div class="layout">
+    <div class="card">
+      <div class="row" role="toolbar" aria-label="drawing tool">
+        <button data-tool="wall" class="on">Wall</button><button data-tool="floor">Floor</button>
+        <button data-tool="start">Start</button><button data-tool="goal">Exit</button>
+        <span style="flex:1"></span>
+        <button id="clear">Clear</button><button id="random">Random maze</button>
+      </div>
+      <canvas id="cv" width="520" height="520" aria-label="dungeon grid"></canvas>
+      <div class="row"><span id="valid" class="status"></span></div>
+      <div class="legend"><i style="background:var(--start)"></i>start <i style="background:var(--goal)"></i>exit
+        <i style="background:var(--path)"></i>BFS path <i style="background:var(--trail)"></i>solver trail
+        <i style="background:var(--accent)"></i>solver's 5×5 view</div>
+    </div>
+    <div>
+      <div class="card">
+        <h2>Load a dungeon</h2>
+        <div class="row"><select id="preset" style="flex:1; min-width:0"></select></div>
+        <div class="note" id="presetNote"></div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h2>Send in a solver</h2>
+        <div class="row">
+          <select id="solver"></select>
+          <button id="score" class="primary">Run 64 attempts</button>
+          <button id="replay">Replay one</button>
+        </div>
+        <div class="row"><label><input type="checkbox" id="failfirst" checked> replay a failed attempt if there is one</label></div>
+        <div class="row"><label>speed <input type="range" id="speed" min="1" max="60" value="18"></label>
+          <label style="margin-left:10px"><input type="checkbox" id="showbfs" checked> show BFS path</label></div>
+        <div id="replayInfo" class="note"></div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h2>Scoreboard for this dungeon</h2>
+        <table><thead><tr><th>solver</th><th>escapes</th><th>mean steps</th><th>efficiency</th></tr></thead>
+          <tbody id="board"></tbody></table>
+        <div class="note">efficiency = BFS length ÷ steps, over successful attempts. Step limit 200.
+          Learned policies sample their actions, so each attempt differs.</div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+/*__CORE__*/
+</script>
+<script>
+const DATA = /*__DATA__*/;
+const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+let walls = new Uint8Array(S * S), start = [1, 1], goal = [11, 11], tool = 'wall';
+let trail = null, frame = 0, anim = null, view = null;
+const policies = {};
+for (const [k, spec] of Object.entries(DATA.policies)) policies[k] = makePolicy(spec);
+const SOLVERS = [...Object.keys(DATA.policies).map((k) => [k, DATA.policies[k].label]),
+  ['tremaux', 'Trémaux (DFS + memory)'], ['wall_follow', 'Wall follower'], ['random_walk', 'Random walk']];
+const solverSel = document.getElementById('solver');
+for (const [k, l] of SOLVERS) solverSel.add(new Option(l, k));
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+function border() { for (let i = 0; i < S; i++) { walls[i] = walls[(S - 1) * S + i] = walls[i * S] = walls[i * S + S - 1] = 1; } }
+function load(lv) {
+  walls = Uint8Array.from(lv.walls); start = lv.start.slice(); goal = lv.goal.slice();
+  stop(); trail = null; draw(); document.getElementById('board').innerHTML = '';
+}
+function stop() { if (anim) cancelAnimationFrame(anim); anim = null; }
+function validity() {
+  if (walls[start[0] * S + start[1]] || walls[goal[0] * S + goal[1]]) return { ok: false, msg: 'start or exit is inside a wall' };
+  if (start[0] === goal[0] && start[1] === goal[1]) return { ok: false, msg: 'start and exit coincide' };
+  const d = bfsDist(walls, start[0], start[1])[goal[0] * S + goal[1]];
+  if (d < 0) return { ok: false, msg: 'the exit is walled off. The designer can never produce this (hard BFS constraint).' };
+  return { ok: true, d };
+}
+function draw() {
+  const W = cv.width, c = W / S;
+  ctx.clearRect(0, 0, W, W);
+  for (let r = 0; r < S; r++) for (let q = 0; q < S; q++) {
+    ctx.fillStyle = walls[r * S + q] ? css('--wall') : css('--floor');
+    ctx.fillRect(q * c, r * c, c + 0.5, c + 0.5);
+  }
+  const v = validity();
+  const el = document.getElementById('valid');
+  el.className = 'status ' + (v.ok ? 'ok' : 'no');
+  el.textContent = v.ok ? `Valid: exit reachable, BFS shortest path ${v.d} steps` : `Invalid: ${v.msg}`;
+  if (v.ok && document.getElementById('showbfs').checked) {
+    const p = bfsPath(walls, start, goal);
+    ctx.strokeStyle = css('--path'); ctx.lineWidth = 2.5; ctx.setLineDash([4, 5]); ctx.beginPath();
+    p.forEach(([r, q], i) => (i ? ctx.lineTo : ctx.moveTo).call(ctx, (q + .5) * c, (r + .5) * c)); ctx.stroke(); ctx.setLineDash([]);
+  }
+  if (trail) {
+    const k = Math.min(frame, trail.length - 1);
+    ctx.strokeStyle = css('--trail'); ctx.lineWidth = 3; ctx.globalAlpha = 0.75; ctx.beginPath();
+    for (let i = 0; i <= k; i++) { const [r, q] = trail[i]; (i ? ctx.lineTo : ctx.moveTo).call(ctx, (q + .5) * c, (r + .5) * c); }
+    ctx.stroke(); ctx.globalAlpha = 1;
+    const [r, q] = trail[k];
+    ctx.strokeStyle = css('--accent'); ctx.lineWidth = 2; ctx.setLineDash([6, 4]);
+    ctx.strokeRect((q - 2) * c, (r - 2) * c, 5 * c, 5 * c); ctx.setLineDash([]);
+    ctx.fillStyle = css('--accent'); ctx.beginPath(); ctx.arc((q + .5) * c, (r + .5) * c, c * .3, 0, 7); ctx.fill();
+  }
+  ctx.fillStyle = css('--start'); ctx.beginPath(); ctx.arc((start[1] + .5) * c, (start[0] + .5) * c, c * .32, 0, 7); ctx.fill();
+  star((goal[1] + .5) * c, (goal[0] + .5) * c, c * .42);
+}
+function star(x, y, R) {
+  ctx.fillStyle = css('--goal'); ctx.strokeStyle = '#000'; ctx.lineWidth = 1; ctx.beginPath();
+  for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? R * .45 : R; ctx.lineTo(x + rr * Math.cos(a), y + rr * Math.sin(a)); }
+  ctx.closePath(); ctx.fill(); ctx.stroke();
+}
+function cellAt(ev) {
+  const b = cv.getBoundingClientRect();
+  return [Math.floor((ev.clientY - b.top) / b.height * S), Math.floor((ev.clientX - b.left) / b.width * S)];
+}
+let painting = false, paintVal = 1;
+function paint(ev) {
+  const [r, q] = cellAt(ev);
+  if (r <= 0 || q <= 0 || r >= S - 1 || q >= S - 1) return;
+  if (tool === 'start') { walls[r * S + q] = 0; start = [r, q]; }
+  else if (tool === 'goal') { walls[r * S + q] = 0; goal = [r, q]; }
+  else walls[r * S + q] = paintVal;
+  stop(); trail = null; draw(); document.getElementById('board').innerHTML = '';
+}
+cv.addEventListener('pointerdown', (e) => { painting = true; paintVal = tool === 'wall' ? 1 : 0; paint(e); });
+cv.addEventListener('pointermove', (e) => { if (painting && (tool === 'wall' || tool === 'floor')) paint(e); });
+addEventListener('pointerup', () => painting = false);
+document.querySelectorAll('[data-tool]').forEach((b) => b.onclick = () => {
+  tool = b.dataset.tool; document.querySelectorAll('[data-tool]').forEach((x) => x.classList.toggle('on', x === b));
+});
+document.getElementById('clear').onclick = () => { walls = new Uint8Array(S * S); border(); start = [1, 1]; goal = [11, 11]; stop(); trail = null; draw(); };
+document.getElementById('random').onclick = () => {
+  const rnd = mulberry32((Math.random() * 1e9) | 0);
+  walls = new Uint8Array(S * S).fill(1);
+  const st = [[1 + 2 * Math.floor(rnd() * 6), 1 + 2 * Math.floor(rnd() * 6)]]; walls[st[0][0] * S + st[0][1]] = 0;
+  while (st.length) {
+    const [r, q] = st[st.length - 1];
+    const nb = [[-2, 0], [0, 2], [2, 0], [0, -2]].filter(([a, b]) => r + a > 0 && r + a < S - 1 && q + b > 0 && q + b < S - 1 && walls[(r + a) * S + q + b]);
+    if (!nb.length) { st.pop(); continue; }
+    const [a, b] = nb[Math.floor(rnd() * nb.length)];
+    walls[(r + a / 2) * S + q + b / 2] = 0; walls[(r + a) * S + q + b] = 0; st.push([r + a, q + b]);
+  }
+  start = [1, 1]; goal = [11, 11]; stop(); trail = null; draw(); document.getElementById('board').innerHTML = '';
+};
+document.getElementById('showbfs').onchange = draw;
+const presetSel = document.getElementById('preset');
+DATA.presets.forEach((p, i) => presetSel.add(new Option(p.name, i)));
+presetSel.onchange = () => { const p = DATA.presets[+presetSel.value]; load(p); document.getElementById('presetNote').textContent = p.note || ''; };
+
+function attempt(kind, seed) {
+  if (policies[kind]) return runPolicy(policies[kind], walls, start, goal, seed, false);
+  return runScripted(kind, walls, start, goal, seed);
+}
+document.getElementById('score').onclick = () => {
+  const v = validity(); if (!v.ok) return;
+  const kind = solverSel.value, N = 64; let ok = 0, steps = 0, eff = 0;
+  for (let i = 0; i < N; i++) { const o = attempt(kind, 1000 + i); steps += o.steps; if (o.success) { ok++; eff += v.d / Math.max(o.steps, v.d); } }
+  const label = solverSel.options[solverSel.selectedIndex].text;
+  const row = document.getElementById('row-' + kind) || document.getElementById('board').insertRow();
+  row.id = 'row-' + kind;
+  row.innerHTML = `<td>${label}</td><td>${ok}/${N}</td><td>${(steps / N).toFixed(1)}</td><td>${ok ? (eff / ok).toFixed(2) : '–'}</td>`;
+};
+document.getElementById('replay').onclick = () => {
+  const v = validity(); if (!v.ok) return;
+  const kind = solverSel.value; let o = null;
+  const wantFail = document.getElementById('failfirst').checked;
+  for (let i = 0; i < 64; i++) { const x = attempt(kind, 1000 + i); if (!o) o = x; if (wantFail && !x.success) { o = x; break; } }
+  trail = o.traj; frame = 0; stop();
+  document.getElementById('replayInfo').textContent = o.success ? `Escaped in ${o.steps} steps (BFS: ${v.d}).` : `Failed: still lost after ${o.steps} steps (BFS: ${v.d}).`;
+  let acc = 0;
+  const tick = () => {
+    acc += +document.getElementById('speed').value / 60;
+    while (acc >= 1) { frame++; acc -= 1; }
+    draw();
+    if (frame < trail.length - 1) anim = requestAnimationFrame(tick); else anim = null;
+  };
+  tick();
+};
+load(DATA.presets[0]); document.getElementById('presetNote').textContent = DATA.presets[0].note || '';
+if (location.hash === '#selftest') { // headless check: score every solver on every preset
+  const out = [];
+  DATA.presets.slice(0, 3).forEach((p, i) => {
+    presetSel.value = i; presetSel.onchange();
+    for (const [k] of SOLVERS) { solverSel.value = k; document.getElementById('score').click(); }
+    out.push(p.name + ' | ' + [...document.querySelectorAll('#board tr')].map((r) => r.innerText.replace(/\t/g, ' ')).join(' | '));
+  });
+  document.getElementById('replay').click();
+  const pre = document.createElement('pre'); pre.id = 'selftest'; pre.textContent = out.join('\n'); document.body.append(pre);
+}
+</script>
+</body>
+</html>

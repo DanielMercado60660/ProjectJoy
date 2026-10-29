@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pocket Voice Foundry</title>
+<style>
+:root { --bg:#fafaf7; --fg:#1d1d1b; --muted:#6b6b66; --card:#ffffff; --line:#e3e2dc; --accent:#2f6f5e; --pick:#e9f3ef; }
+@media (prefers-color-scheme: dark) { :root { --bg:#161615; --fg:#ecebe6; --muted:#9a9993; --card:#1f1f1d; --line:#33332f; --accent:#7cc5ae; --pick:#22332d; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.5 -apple-system, system-ui, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 22px; margin: 0 0 4px; }
+p.lead { color: var(--muted); margin: 0 0 20px; }
+section { background: var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin:14px 0; }
+.kind { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+.text { margin:4px 0 10px; font-style: italic; }
+.opt { display:flex; align-items:center; gap:10px; padding:6px 8px; border-radius:8px; flex-wrap: wrap; }
+.opt.picked { background: var(--pick); }
+.opt b { width: 1.4em; }
+audio { height: 32px; max-width: 100%; flex: 1 1 260px; }
+.label { color: var(--accent); font-size: 13px; display:none; flex-basis:100%; padding-left: 2em; }
+.revealed .label { display:block; }
+button { font: inherit; font-size: 13px; padding: 4px 10px; border-radius: 6px; border:1px solid var(--line); background: var(--bg); color: var(--fg); cursor:pointer; }
+button.pick { padding: 2px 8px; }
+.row { display:flex; gap: 8px; margin-top: 8px; }
+footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
+</style>
+</head>
+<body>
+<main>
+<h1>Pocket Voice Foundry: blind listening</h1>
+<p class="lead">Each group plays the same sentence through different systems under shuffled letters. Listen, mark the one you
+prefer, then reveal. All clips are loudness-matched to -23 LUFS and embedded as 96 kbps MP3 (16 kHz source), so the page works offline.
+No listening preference has been recorded by anyone yet: in RESULTS.md, preference is "not measured".</p>
+<div id="groups"></div>
+<footer id="tally"></footer>
+</main>
+<script>
+const DATA = __DATA__;
+const picks = {};
+const root = document.getElementById('groups');
+DATA.forEach((g, gi) => {
+  const s = document.createElement('section');
+  s.innerHTML = `<div class="kind">${g.kind} · ${g.id}</div><div class="text">“${g.text}”</div>`;
+  g.opts.forEach((o, oi) => {
+    const d = document.createElement('div'); d.className = 'opt';
+    d.innerHTML = `<b>${o.letter}</b><audio controls preload="none" src="data:audio/mpeg;base64,${o.audio}"></audio>` +
+      `<button class="pick">prefer</button><span class="label"></span>`;
+    d.querySelector('button').onclick = () => {
+      s.querySelectorAll('.opt').forEach(x => x.classList.remove('picked'));
+      d.classList.add('picked'); picks[gi] = o.letter; tally();
+    };
+    s.appendChild(d);
+  });
+  const r = document.createElement('div'); r.className = 'row';
+  const b = document.createElement('button'); b.textContent = 'Reveal systems';
+  // labels are stored base64-encoded and only written into the page on reveal (reviewer fix: keeps them out of the DOM before)
+  b.onclick = () => { s.querySelectorAll('.opt').forEach((x, oi) => { x.querySelector('.label').textContent = atob(g.opts[oi].lab); });
+    s.classList.toggle('revealed'); b.textContent = s.classList.contains('revealed') ? 'Hide systems' : 'Reveal systems'; };
+  r.appendChild(b); s.appendChild(r); root.appendChild(s);
+});
+function tally() {
+  // letters only: showing the picked system's name here would unblind the pick before reveal (reviewer fix)
+  document.getElementById('tally').textContent = 'Your picks so far (only in this browser tab): ' +
+    Object.entries(picks).map(([g, l]) => `group ${+g + 1}: ${l}`).join(' · ');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+{
+  "complete": true,
+  "checkpoints": {
+    "adapter": {
+      "stage1": "base.pkl",
+      "stage2": "adapter_s2.pkl",
+      "stage3": "adapter_s3.pkl"
+    },
+    "dagger": {
+      "stage1": "base.pkl",
+      "stage2": "dagger_s2.pkl",
+      "stage3": "dagger_s3.pkl"
+    },
+    "joint": {
+      "stage1": "base.pkl",
+      "stage2": "joint_s2.pkl",
+      "stage3": "joint_s3.pkl"
+    }
+  },
+  "ledger": {
+    "adapter": [
+      {
+        "stage": 1,
+        "components": [
+          "base.pkl"
+        ],
+        "cost": {
+          "env_steps": 262144,
+          "teacher_queries": 0,
+          "gradient_steps": 2048,
+          "gradient_examples": 1048576,
+          "actor_forward_examples": 1572864,
+          "critic_forward_examples": 1313200,
+          "wall_s": 9.291404374991544,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 262144,
+        "expected_credits": 262144
+      },
+      {
+        "stage": 2,
+        "components": [
+          "base.pkl",
+          "adapter_s2.pkl"
+        ],
+        "cost": {
+          "env_steps": 786432,
+          "teacher_queries": 0,
+          "gradient_steps": 6144,
+          "gradient_examples": 3145728,
+          "actor_forward_examples": 4718592,
+          "critic_forward_examples": 3939608,
+          "wall_s": 30.391446416964754,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 786432,
+        "expected_credits": 786432
+      },
+      {
+        "stage": 3,
+        "components": [
+          "base.pkl",
+          "adapter_s2.pkl",
+          "adapter_s3.pkl"
+        ],
+        "cost": {
+          "env_steps": 1310720,
+          "teacher_queries": 0,
+          "gradient_steps": 10240,
+          "gradient_examples": 5242880,
+          "actor_forward_examples": 7864320,
+          "critic_forward_examples": 6566016,
+          "wall_s": 55.71558166696923,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 1310720,
+        "expected_credits": 1310720
+      }
+    ],
+    "dagger": [
+      {
+        "stage": 1,
+        "components": [
+          "base.pkl"
+        ],
+        "cost": {
+          "env_steps": 262144,
+          "teacher_queries": 0,
+          "gradient_steps": 2048,
+          "gradient_examples": 1048576,
+          "actor_forward_examples": 1572864,
+          "critic_forward_examples": 1313200,
+          "wall_s": 9.291404374991544,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 262144,
+        "expected_credits": 262144
+      },
+      {
+        "stage": 2,
+        "components": [
+          "base.pkl",
+          "dagger_s2.pkl",
+          "teacher_bwd.pkl"
+        ],
+        "cost": {
+          "env_steps": 720896,
+          "teacher_queries": 65536,
+          "gradient_steps": 6400,
+          "gradient_examples": 3276800,
+          "actor_forward_examples": 4653056,
+          "critic_forward_examples": 3283000,
+          "wall_s": 25.838237165939063,
+          "specialist_env_steps_included": 393216
+        },
+        "credits": 786432,
+        "expected_credits": 786432
+      },
+      {
+        "stage": 3,
+        "components": [
+          "base.pkl",
+          "dagger_s2.pkl",
+          "teacher_bwd.pkl",
+          "dagger_s3.pkl",
+          "teacher_slow.pkl"
+        ],
+        "cost": {
+          "env_steps": 1179648,
+          "teacher_queries": 131072,
+          "gradient_steps": 10752,
+          "gradient_examples": 5505024,
+          "actor_forward_examples": 7733248,
+          "critic_forward_examples": 5252800,
+          "wall_s": 43.446818039927166,
+          "specialist_env_steps_included": 786432
+        },
+        "credits": 1310720,
+        "expected_credits": 1310720
+      }
+    ],
+    "joint": [
+      {
+        "stage": 1,
+        "components": [
+          "base.pkl"
+        ],
+        "cost": {
+          "env_steps": 262144,
+          "teacher_queries": 0,
+          "gradient_steps": 2048,
+          "gradient_examples": 1048576,
+          "actor_forward_examples": 1572864,
+          "critic_forward_examples": 1313200,
+          "wall_s": 9.291404374991544,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 262144,
+        "expected_credits": 262144
+      },
+      {
+        "stage": 2,
+        "components": [
+          "base.pkl",
+          "joint_s2.pkl"
+        ],
+        "cost": {
+          "env_steps": 786432,
+          "teacher_queries": 0,
+          "gradient_steps": 6144,
+          "gradient_examples": 3145728,
+          "actor_forward_examples": 4718592,
+          "critic_forward_examples": 3939608,
+          "wall_s": 27.39413345901994,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 786432,
+        "expected_credits": 786432
+      },
+      {
+        "stage": 3,
+        "components": [
+          "base.pkl",
+          "joint_s2.pkl",
+          "joint_s3.pkl"
+        ],
+        "cost": {
+          "env_steps": 1310720,
+          "teacher_queries": 0,
+          "gradient_steps": 10240,
+          "gradient_examples": 5242880,
+          "actor_forward_examples": 7864320,
+          "critic_forward_examples": 6566016,
+          "wall_s": 45.382167208998,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 1310720,
+        "expected_credits": 1310720
+      }
+    ]
+  }
+}

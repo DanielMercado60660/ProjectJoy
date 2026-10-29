@@ -1,0 +1,831 @@
+{
+  "datasets": {
+    "79eae6f72008e264372a1aa637e030bcfce3a03bda156247392306e339b194fd": {
+      "source": "results/r5/battery_s51/data/train.npz",
+      "examples": 40169,
+      "serialized_examples_checked": 512,
+      "delivery_counts": {
+        "2": 24969,
+        "1": 15200
+      },
+      "first32_delivery_counts": {
+        "2": 22,
+        "1": 10
+      },
+      "illegal_feedback_examples": 661
+    },
+    "5bd4f65f5db3d71f844089b977bb60c724bd2a93578bdf2ca82d01d283175c95": {
+      "source": "results/r5/battery_s51/data/val.npz",
+      "examples": 597,
+      "serialized_examples_checked": 597,
+      "delivery_counts": {
+        "1": 298,
+        "2": 299
+      },
+      "first32_delivery_counts": {
+        "1": 32
+      },
+      "illegal_feedback_examples": 12
+    }
+  },
+  "runs": {
+    "battery_s51": {
+      "evaluations": {
+        "eval.json": {
+          "complete": true,
+          "paired_scenarios": 80,
+          "methods": {
+            "planner": {
+              "episodes": 80,
+              "success_rate": 1.0,
+              "invalid_action_rate": 0.039100684261974585,
+              "mean_steps": 12.7875,
+              "disruption_assigned": 60,
+              "disruption_exposed": 60,
+              "exposure_coverage": 1.0,
+              "success_given_disruption": 1.0,
+              "recovery_rate": 1.0,
+              "recovery_steps_mean": 3.683333333333333,
+              "recovery_unresolved": 0,
+              "recovery_steps_capped_mean": 3.683333333333333,
+              "decision_latency_ms_mean": 0.0005480947208553198
+            },
+            "pretrained": {
+              "episodes": 80,
+              "success_rate": 0.0875,
+              "invalid_action_rate": 0.7648425945489119,
+              "mean_steps": 59.1625,
+              "disruption_assigned": 60,
+              "disruption_exposed": 47,
+              "exposure_coverage": 0.7833333333333333,
+              "success_given_disruption": 0.0851063829787234,
+              "recovery_rate": 0.5106382978723404,
+              "recovery_steps_mean": 4.375,
+              "recovery_unresolved": 23,
+              "recovery_steps_capped_mean": 31.680851063829788,
+              "decision_latency_ms_mean": 5.117426568408023
+            },
+            "scratch": {
+              "episodes": 80,
+              "success_rate": 0.075,
+              "invalid_action_rate": 0.8215403882279274,
+              "mean_steps": 59.8875,
+              "disruption_assigned": 60,
+              "disruption_exposed": 45,
+              "exposure_coverage": 0.75,
+              "success_given_disruption": 0.1111111111111111,
+              "recovery_rate": 0.28888888888888886,
+              "recovery_steps_mean": 5.538461538461538,
+              "recovery_unresolved": 32,
+              "recovery_steps_capped_mean": 44.06666666666667,
+              "decision_latency_ms_mean": 5.18081343311937
+            },
+            "mlp": {
+              "episodes": 80,
+              "success_rate": 0.6,
+              "invalid_action_rate": 0.6770592763664357,
+              "mean_steps": 32.475,
+              "disruption_assigned": 60,
+              "disruption_exposed": 58,
+              "exposure_coverage": 0.9666666666666667,
+              "success_given_disruption": 0.6724137931034483,
+              "recovery_rate": 0.9827586206896551,
+              "recovery_steps_mean": 3.736842105263158,
+              "recovery_unresolved": 1,
+              "recovery_steps_capped_mean": 4.741379310344827,
+              "decision_latency_ms_mean": 0.5254282615362579
+            },
+            "reward": {
+              "episodes": 80,
+              "success_rate": 0.1,
+              "invalid_action_rate": 0.7131252672082087,
+              "mean_steps": 58.475,
+              "disruption_assigned": 60,
+              "disruption_exposed": 50,
+              "exposure_coverage": 0.8333333333333334,
+              "success_given_disruption": 0.12,
+              "recovery_rate": 0.44,
+              "recovery_steps_mean": 3.909090909090909,
+              "recovery_unresolved": 28,
+              "recovery_steps_capped_mean": 35.28,
+              "decision_latency_ms_mean": 5.058206266964539
+            },
+            "control": {
+              "episodes": 80,
+              "success_rate": 0.075,
+              "invalid_action_rate": 0.8289473684210527,
+              "mean_steps": 59.85,
+              "disruption_assigned": 60,
+              "disruption_exposed": 48,
+              "exposure_coverage": 0.8,
+              "success_given_disruption": 0.10416666666666667,
+              "recovery_rate": 0.4583333333333333,
+              "recovery_steps_mean": 3.4545454545454546,
+              "recovery_unresolved": 26,
+              "recovery_steps_capped_mean": 34.25,
+              "decision_latency_ms_mean": 5.170891765616295
+            }
+          },
+          "verified_episode_receipts": 480
+        },
+        "secondary.json": {
+          "complete": true,
+          "paired_scenarios": 20,
+          "methods": {
+            "planner": {
+              "episodes": 20,
+              "success_rate": 1.0,
+              "invalid_action_rate": 0.03937007874015748,
+              "mean_steps": 12.7,
+              "disruption_assigned": 15,
+              "disruption_exposed": 15,
+              "exposure_coverage": 1.0,
+              "success_given_disruption": 1.0,
+              "recovery_rate": 1.0,
+              "recovery_steps_mean": 3.2,
+              "recovery_unresolved": 0,
+              "recovery_steps_capped_mean": 3.2,
+              "decision_latency_ms_mean": 0.0005671152223902757
+            },
+            "pretrained": {
+              "episodes": 20,
+              "success_rate": 0.1,
+              "invalid_action_rate": 0.7892491467576792,
+              "mean_steps": 58.6,
+              "disruption_assigned": 15,
+              "disruption_exposed": 11,
+              "exposure_coverage": 0.7333333333333333,
+              "success_given_disruption": 0.09090909090909091,
+              "recovery_rate": 0.36363636363636365,
+              "recovery_steps_mean": 3.5,
+              "recovery_unresolved": 7,
+              "recovery_steps_capped_mean": 39.45454545454545,
+              "decision_latency_ms_mean": 5.21908541560541
+            },
+            "scratch": {
+              "episodes": 20,
+              "success_rate": 0.2,
+              "invalid_action_rate": 0.8019047619047619,
+              "mean_steps": 52.5,
+              "disruption_assigned": 15,
+              "disruption_exposed": 11,
+              "exposure_coverage": 0.7333333333333333,
+              "success_given_disruption": 0.18181818181818182,
+              "recovery_rate": 0.45454545454545453,
+              "recovery_steps_mean": 3.0,
+              "recovery_unresolved": 6,
+              "recovery_steps_capped_mean": 33.90909090909091,
+              "decision_latency_ms_mean": 5.173063455880159
+            },
+            "mlp": {
+              "episodes": 20,
+              "success_rate": 0.6,
+              "invalid_action_rate": 0.6804281345565749,
+              "mean_steps": 32.7,
+              "disruption_assigned": 15,
+              "disruption_exposed": 15,
+              "exposure_coverage": 1.0,
+              "success_given_disruption": 0.6,
+              "recovery_rate": 0.9333333333333333,
+              "recovery_steps_mean": 3.0714285714285716,
+              "recovery_unresolved": 1,
+              "recovery_steps_capped_mean": 6.733333333333333,
+              "decision_latency_ms_mean": 0.5259424982012377
+            },
+            "reward": {
+              "episodes": 20,
+              "success_rate": 0.1,
+              "invalid_action_rate": 0.6341045415595544,
+              "mean_steps": 58.35,
+              "disruption_assigned": 15,
+              "disruption_exposed": 12,
+              "exposure_coverage": 0.8,
+              "success_given_disruption": 0.16666666666666666,
+              "recovery_rate": 0.3333333333333333,
+              "recovery_steps_mean": 1.5,
+              "recovery_unresolved": 8,
+              "recovery_steps_capped_mean": 39.666666666666664,
+              "decision_latency_ms_mean": 4.982619013180738
+            },
+            "control": {
+              "episodes": 20,
+              "success_rate": 0.0,
+              "invalid_action_rate": 0.846875,
+              "mean_steps": 64.0,
+              "disruption_assigned": 15,
+              "disruption_exposed": 11,
+              "exposure_coverage": 0.7333333333333333,
+              "success_given_disruption": 0.0,
+              "recovery_rate": 0.36363636363636365,
+              "recovery_steps_mean": 3.5,
+              "recovery_unresolved": 7,
+              "recovery_steps_capped_mean": 39.45454545454545,
+              "decision_latency_ms_mean": 5.225282580522617
+            }
+          },
+          "verified_episode_receipts": 120
+        }
+      },
+      "reward": {
+        "attempted": 263,
+        "verified_successes": 58,
+        "verified_transitions": 523,
+        "failed_actions": 63,
+        "illegal_actions": 32
+      },
+      "training": {
+        "pretrained": {
+          "initial_val_loss": 8.590516090393066,
+          "final": {
+            "step": 8898,
+            "session_start_step": 0,
+            "elapsed_s": 412.12190595798893,
+            "event": "done",
+            "loss": 0.030579939484596252,
+            "val_loss": 0.02703743241727352,
+            "stop_reason": "wall_guard",
+            "wall_utilization": 0.9812426206356447,
+            "peak_memory_gb": 2.137833786
+          },
+          "last_rate": {
+            "step": 8876,
+            "session_start_step": 0,
+            "elapsed_s": 411.1087248749682,
+            "event": "train",
+            "loss": 0.04447418823838234,
+            "val_loss": 0.07500098645687103,
+            "rate_warmed": true,
+            "measured_steps_per_s": 21.60851015328841,
+            "measured_units_per_s": 132762.686381804,
+            "projected_remaining_steps": 19
+          }
+        },
+        "scratch": {
+          "initial_val_loss": 9.005931854248047,
+          "final": {
+            "step": 11064,
+            "session_start_step": 0,
+            "elapsed_s": 412.1071544160368,
+            "event": "done",
+            "loss": 0.08071120828390121,
+            "val_loss": 0.03737977519631386,
+            "stop_reason": "wall_guard",
+            "wall_utilization": 0.9812074999000677,
+            "peak_memory_gb": 2.137833794
+          },
+          "last_rate": {
+            "step": 11030,
+            "session_start_step": 0,
+            "elapsed_s": 410.8517290830496,
+            "event": "train",
+            "loss": 0.11361796408891678,
+            "val_loss": 0.05738042667508125,
+            "rate_warmed": true,
+            "measured_steps_per_s": 26.93050052046849,
+            "measured_units_per_s": 165460.99519775843,
+            "projected_remaining_steps": 30
+          }
+        }
+      },
+      "finished": {
+        "elapsed_s": 1655.294229208026,
+        "evaluation_complete": true,
+        "power_end": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+        "selected": "results/r5/battery_s51/selected.json"
+      }
+    },
+    "ac_s52": {
+      "evaluations": {
+        "eval.json": {
+          "complete": true,
+          "paired_scenarios": 80,
+          "methods": {
+            "planner": {
+              "episodes": 80,
+              "success_rate": 1.0,
+              "invalid_action_rate": 0.039100684261974585,
+              "mean_steps": 12.7875,
+              "disruption_assigned": 60,
+              "disruption_exposed": 60,
+              "exposure_coverage": 1.0,
+              "success_given_disruption": 1.0,
+              "recovery_rate": 1.0,
+              "recovery_steps_mean": 3.683333333333333,
+              "recovery_unresolved": 0,
+              "recovery_steps_capped_mean": 3.683333333333333,
+              "decision_latency_ms_mean": 0.0005452301257196793
+            },
+            "pretrained": {
+              "episodes": 80,
+              "success_rate": 0.0375,
+              "invalid_action_rate": 0.6847738287560582,
+              "mean_steps": 61.9,
+              "disruption_assigned": 60,
+              "disruption_exposed": 42,
+              "exposure_coverage": 0.7,
+              "success_given_disruption": 0.023809523809523808,
+              "recovery_rate": 0.11904761904761904,
+              "recovery_steps_mean": 5.0,
+              "recovery_unresolved": 37,
+              "recovery_steps_capped_mean": 53.333333333333336,
+              "decision_latency_ms_mean": 5.042127527843922
+            },
+            "scratch": {
+              "episodes": 80,
+              "success_rate": 0.2,
+              "invalid_action_rate": 0.8285377358490567,
+              "mean_steps": 53.0,
+              "disruption_assigned": 60,
+              "disruption_exposed": 52,
+              "exposure_coverage": 0.8666666666666667,
+              "success_given_disruption": 0.25,
+              "recovery_rate": 0.6538461538461539,
+              "recovery_steps_mean": 3.9411764705882355,
+              "recovery_unresolved": 18,
+              "recovery_steps_capped_mean": 23.153846153846153,
+              "decision_latency_ms_mean": 5.11463170851804
+            },
+            "mlp": {
+              "episodes": 80,
+              "success_rate": 0.5625,
+              "invalid_action_rate": 0.6937590711175616,
+              "mean_steps": 34.45,
+              "disruption_assigned": 60,
+              "disruption_exposed": 56,
+              "exposure_coverage": 0.9333333333333333,
+              "success_given_disruption": 0.6428571428571429,
+              "recovery_rate": 0.9107142857142857,
+              "recovery_steps_mean": 3.7058823529411766,
+              "recovery_unresolved": 5,
+              "recovery_steps_capped_mean": 8.642857142857142,
+              "decision_latency_ms_mean": 0.5264177536245922
+            },
+            "reward": {
+              "episodes": 80,
+              "success_rate": 0.0,
+              "invalid_action_rate": 0.620703125,
+              "mean_steps": 64.0,
+              "disruption_assigned": 60,
+              "disruption_exposed": 41,
+              "exposure_coverage": 0.6833333333333333,
+              "success_given_disruption": 0.0,
+              "recovery_rate": 0.0975609756097561,
+              "recovery_steps_mean": 4.25,
+              "recovery_unresolved": 37,
+              "recovery_steps_capped_mean": 54.53658536585366,
+              "decision_latency_ms_mean": 4.967555709060889
+            },
+            "control": {
+              "episodes": 80,
+              "success_rate": 0.0625,
+              "invalid_action_rate": 0.6869977333608077,
+              "mean_steps": 60.6625,
+              "disruption_assigned": 60,
+              "disruption_exposed": 45,
+              "exposure_coverage": 0.75,
+              "success_given_disruption": 0.08888888888888889,
+              "recovery_rate": 0.3333333333333333,
+              "recovery_steps_mean": 3.7333333333333334,
+              "recovery_unresolved": 30,
+              "recovery_steps_capped_mean": 41.46666666666667,
+              "decision_latency_ms_mean": 4.987671678345295
+            }
+          },
+          "verified_episode_receipts": 480
+        },
+        "secondary.json": {
+          "complete": true,
+          "paired_scenarios": 20,
+          "methods": {
+            "planner": {
+              "episodes": 20,
+              "success_rate": 1.0,
+              "invalid_action_rate": 0.03937007874015748,
+              "mean_steps": 12.7,
+              "disruption_assigned": 15,
+              "disruption_exposed": 15,
+              "exposure_coverage": 1.0,
+              "success_given_disruption": 1.0,
+              "recovery_rate": 1.0,
+              "recovery_steps_mean": 3.2,
+              "recovery_unresolved": 0,
+              "recovery_steps_capped_mean": 3.2,
+              "decision_latency_ms_mean": 0.0005578385379010153
+            },
+            "pretrained": {
+              "episodes": 20,
+              "success_rate": 0.0,
+              "invalid_action_rate": 0.640625,
+              "mean_steps": 64.0,
+              "disruption_assigned": 15,
+              "disruption_exposed": 9,
+              "exposure_coverage": 0.6,
+              "success_given_disruption": 0.0,
+              "recovery_rate": 0.0,
+              "recovery_steps_mean": null,
+              "recovery_unresolved": 9,
+              "recovery_steps_capped_mean": 59.55555555555556,
+              "decision_latency_ms_mean": 5.015803190099177
+            },
+            "scratch": {
+              "episodes": 20,
+              "success_rate": 0.15,
+              "invalid_action_rate": 0.8445040214477212,
+              "mean_steps": 55.95,
+              "disruption_assigned": 15,
+              "disruption_exposed": 13,
+              "exposure_coverage": 0.8666666666666667,
+              "success_given_disruption": 0.23076923076923078,
+              "recovery_rate": 0.5384615384615384,
+              "recovery_steps_mean": 1.7142857142857142,
+              "recovery_unresolved": 6,
+              "recovery_steps_capped_mean": 28.153846153846153,
+              "decision_latency_ms_mean": 5.184980466390496
+            },
+            "mlp": {
+              "episodes": 20,
+              "success_rate": 0.65,
+              "invalid_action_rate": 0.6222961730449251,
+              "mean_steps": 30.05,
+              "disruption_assigned": 15,
+              "disruption_exposed": 15,
+              "exposure_coverage": 1.0,
+              "success_given_disruption": 0.6666666666666666,
+              "recovery_rate": 1.0,
+              "recovery_steps_mean": 3.2,
+              "recovery_unresolved": 0,
+              "recovery_steps_capped_mean": 3.2,
+              "decision_latency_ms_mean": 0.5319389075890955
+            },
+            "reward": {
+              "episodes": 20,
+              "success_rate": 0.0,
+              "invalid_action_rate": 0.61875,
+              "mean_steps": 64.0,
+              "disruption_assigned": 15,
+              "disruption_exposed": 10,
+              "exposure_coverage": 0.6666666666666666,
+              "success_given_disruption": 0.0,
+              "recovery_rate": 0.0,
+              "recovery_steps_mean": null,
+              "recovery_unresolved": 10,
+              "recovery_steps_capped_mean": 59.4,
+              "decision_latency_ms_mean": 4.97574756841459
+            },
+            "control": {
+              "episodes": 20,
+              "success_rate": 0.1,
+              "invalid_action_rate": 0.5754716981132075,
+              "mean_steps": 58.3,
+              "disruption_assigned": 15,
+              "disruption_exposed": 11,
+              "exposure_coverage": 0.7333333333333333,
+              "success_given_disruption": 0.09090909090909091,
+              "recovery_rate": 0.36363636363636365,
+              "recovery_steps_mean": 2.0,
+              "recovery_unresolved": 7,
+              "recovery_steps_capped_mean": 38.90909090909091,
+              "decision_latency_ms_mean": 4.894725303180772
+            }
+          },
+          "verified_episode_receipts": 120
+        }
+      },
+      "reward": {
+        "attempted": 265,
+        "verified_successes": 59,
+        "verified_transitions": 904,
+        "failed_actions": 265,
+        "illegal_actions": 223
+      },
+      "training": {
+        "pretrained": {
+          "initial_val_loss": 8.590516090393066,
+          "final": {
+            "step": 11874,
+            "session_start_step": 0,
+            "elapsed_s": 412.0838993329671,
+            "event": "done",
+            "loss": 0.034830525517463684,
+            "val_loss": 0.06050044670701027,
+            "stop_reason": "wall_guard",
+            "wall_utilization": 0.9811521324403917,
+            "peak_memory_gb": 2.137833786
+          },
+          "last_rate": {
+            "step": 11837,
+            "session_start_step": 0,
+            "elapsed_s": 410.69889987498755,
+            "event": "train",
+            "loss": 0.16402362287044525,
+            "val_loss": 0.04968995973467827,
+            "rate_warmed": true,
+            "measured_steps_per_s": 28.826469903114095,
+            "measured_units_per_s": 177109.831084733,
+            "projected_remaining_steps": 37
+          }
+        },
+        "scratch": {
+          "initial_val_loss": 9.007181167602539,
+          "final": {
+            "step": 11829,
+            "session_start_step": 0,
+            "elapsed_s": 412.07962116698036,
+            "event": "done",
+            "loss": 0.031896814703941345,
+            "val_loss": 0.009751464240252972,
+            "stop_reason": "wall_guard",
+            "wall_utilization": 0.9811419458333624,
+            "peak_memory_gb": 2.137833794
+          },
+          "last_rate": {
+            "step": 11794,
+            "session_start_step": 0,
+            "elapsed_s": 410.81600783299655,
+            "event": "train",
+            "loss": 0.04231245070695877,
+            "val_loss": 0.012022482231259346,
+            "rate_warmed": true,
+            "measured_steps_per_s": 28.71445802541381,
+            "measured_units_per_s": 176421.63010814245,
+            "projected_remaining_steps": 33
+          }
+        }
+      },
+      "finished": {
+        "elapsed_s": 1649.8419341249974,
+        "evaluation_complete": true,
+        "power_end": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+        "selected": "results/r5/ac_s52/selected.json"
+      }
+    },
+    "ac_s53": {
+      "evaluations": {
+        "eval.json": {
+          "complete": true,
+          "paired_scenarios": 80,
+          "methods": {
+            "planner": {
+              "episodes": 80,
+              "success_rate": 1.0,
+              "invalid_action_rate": 0.039100684261974585,
+              "mean_steps": 12.7875,
+              "disruption_assigned": 60,
+              "disruption_exposed": 60,
+              "exposure_coverage": 1.0,
+              "success_given_disruption": 1.0,
+              "recovery_rate": 1.0,
+              "recovery_steps_mean": 3.683333333333333,
+              "recovery_unresolved": 0,
+              "recovery_steps_capped_mean": 3.683333333333333,
+              "decision_latency_ms_mean": 0.0005431034744822536
+            },
+            "pretrained": {
+              "episodes": 80,
+              "success_rate": 0.225,
+              "invalid_action_rate": 0.7681300024254184,
+              "mean_steps": 51.5375,
+              "disruption_assigned": 60,
+              "disruption_exposed": 55,
+              "exposure_coverage": 0.9166666666666666,
+              "success_given_disruption": 0.2545454545454545,
+              "recovery_rate": 0.7090909090909091,
+              "recovery_steps_mean": 3.4615384615384617,
+              "recovery_unresolved": 16,
+              "recovery_steps_capped_mean": 19.727272727272727,
+              "decision_latency_ms_mean": 4.872454384860039
+            },
+            "scratch": {
+              "episodes": 80,
+              "success_rate": 0.3875,
+              "invalid_action_rate": 0.5706851691240243,
+              "mean_steps": 43.2375,
+              "disruption_assigned": 60,
+              "disruption_exposed": 60,
+              "exposure_coverage": 1.0,
+              "success_given_disruption": 0.4,
+              "recovery_rate": 0.9666666666666667,
+              "recovery_steps_mean": 3.586206896551724,
+              "recovery_unresolved": 2,
+              "recovery_steps_capped_mean": 5.5,
+              "decision_latency_ms_mean": 4.881864543609159
+            },
+            "mlp": {
+              "episodes": 80,
+              "success_rate": 0.6875,
+              "invalid_action_rate": 0.6100937918713711,
+              "mean_steps": 27.9875,
+              "disruption_assigned": 60,
+              "disruption_exposed": 59,
+              "exposure_coverage": 0.9833333333333333,
+              "success_given_disruption": 0.7457627118644068,
+              "recovery_rate": 0.9830508474576272,
+              "recovery_steps_mean": 3.7586206896551726,
+              "recovery_unresolved": 1,
+              "recovery_steps_capped_mean": 4.661016949152542,
+              "decision_latency_ms_mean": 0.5265181839396547
+            },
+            "reward": {
+              "episodes": 80,
+              "success_rate": 0.1625,
+              "invalid_action_rate": 0.8483812129502964,
+              "mean_steps": 54.825,
+              "disruption_assigned": 60,
+              "disruption_exposed": 54,
+              "exposure_coverage": 0.9,
+              "success_given_disruption": 0.14814814814814814,
+              "recovery_rate": 0.7037037037037037,
+              "recovery_steps_mean": 3.8157894736842106,
+              "recovery_unresolved": 16,
+              "recovery_steps_capped_mean": 20.27777777777778,
+              "decision_latency_ms_mean": 5.158104335677651
+            },
+            "control": {
+              "episodes": 80,
+              "success_rate": 0.425,
+              "invalid_action_rate": 0.5211515863689776,
+              "mean_steps": 42.55,
+              "disruption_assigned": 60,
+              "disruption_exposed": 57,
+              "exposure_coverage": 0.95,
+              "success_given_disruption": 0.43859649122807015,
+              "recovery_rate": 0.8070175438596491,
+              "recovery_steps_mean": 3.9565217391304346,
+              "recovery_unresolved": 11,
+              "recovery_steps_capped_mean": 14.701754385964913,
+              "decision_latency_ms_mean": 4.826031024318413
+            }
+          },
+          "verified_episode_receipts": 480
+        },
+        "secondary.json": {
+          "complete": true,
+          "paired_scenarios": 20,
+          "methods": {
+            "planner": {
+              "episodes": 20,
+              "success_rate": 1.0,
+              "invalid_action_rate": 0.03937007874015748,
+              "mean_steps": 12.7,
+              "disruption_assigned": 15,
+              "disruption_exposed": 15,
+              "exposure_coverage": 1.0,
+              "success_given_disruption": 1.0,
+              "recovery_rate": 1.0,
+              "recovery_steps_mean": 3.2,
+              "recovery_unresolved": 0,
+              "recovery_steps_capped_mean": 3.2,
+              "decision_latency_ms_mean": 0.0005432247400536919
+            },
+            "pretrained": {
+              "episodes": 20,
+              "success_rate": 0.1,
+              "invalid_action_rate": 0.8039552880481513,
+              "mean_steps": 58.15,
+              "disruption_assigned": 15,
+              "disruption_exposed": 13,
+              "exposure_coverage": 0.8666666666666667,
+              "success_given_disruption": 0.07692307692307693,
+              "recovery_rate": 0.5384615384615384,
+              "recovery_steps_mean": 1.7142857142857142,
+              "recovery_unresolved": 6,
+              "recovery_steps_capped_mean": 28.153846153846153,
+              "decision_latency_ms_mean": 4.9479360365967295
+            },
+            "scratch": {
+              "episodes": 20,
+              "success_rate": 0.4,
+              "invalid_action_rate": 0.5604265402843602,
+              "mean_steps": 42.2,
+              "disruption_assigned": 15,
+              "disruption_exposed": 14,
+              "exposure_coverage": 0.9333333333333333,
+              "success_given_disruption": 0.42857142857142855,
+              "recovery_rate": 0.9285714285714286,
+              "recovery_steps_mean": 3.1538461538461537,
+              "recovery_unresolved": 1,
+              "recovery_steps_capped_mean": 7.071428571428571,
+              "decision_latency_ms_mean": 4.869503477039972
+            },
+            "mlp": {
+              "episodes": 20,
+              "success_rate": 0.65,
+              "invalid_action_rate": 0.6473509933774835,
+              "mean_steps": 30.2,
+              "disruption_assigned": 15,
+              "disruption_exposed": 15,
+              "exposure_coverage": 1.0,
+              "success_given_disruption": 0.6,
+              "recovery_rate": 0.9333333333333333,
+              "recovery_steps_mean": 3.142857142857143,
+              "recovery_unresolved": 1,
+              "recovery_steps_capped_mean": 6.933333333333334,
+              "decision_latency_ms_mean": 0.5248892309372144
+            },
+            "reward": {
+              "episodes": 20,
+              "success_rate": 0.2,
+              "invalid_action_rate": 0.8267045454545454,
+              "mean_steps": 52.8,
+              "disruption_assigned": 15,
+              "disruption_exposed": 12,
+              "exposure_coverage": 0.8,
+              "success_given_disruption": 0.25,
+              "recovery_rate": 0.5,
+              "recovery_steps_mean": 3.1666666666666665,
+              "recovery_unresolved": 6,
+              "recovery_steps_capped_mean": 30.916666666666668,
+              "decision_latency_ms_mean": 5.146562570862443
+            },
+            "control": {
+              "episodes": 20,
+              "success_rate": 0.4,
+              "invalid_action_rate": 0.5977653631284916,
+              "mean_steps": 44.75,
+              "disruption_assigned": 15,
+              "disruption_exposed": 14,
+              "exposure_coverage": 0.9333333333333333,
+              "success_given_disruption": 0.5,
+              "recovery_rate": 0.7142857142857143,
+              "recovery_steps_mean": 4.4,
+              "recovery_unresolved": 4,
+              "recovery_steps_capped_mean": 19.857142857142858,
+              "decision_latency_ms_mean": 4.883089690199503
+            }
+          },
+          "verified_episode_receipts": 120
+        }
+      },
+      "reward": {
+        "attempted": 365,
+        "verified_successes": 164,
+        "verified_transitions": 1625,
+        "failed_actions": 317,
+        "illegal_actions": 243
+      },
+      "training": {
+        "pretrained": {
+          "initial_val_loss": 8.590516090393066,
+          "final": {
+            "step": 12343,
+            "session_start_step": 0,
+            "elapsed_s": 412.09846462501446,
+            "event": "done",
+            "loss": 0.03345084935426712,
+            "val_loss": 0.01137747336179018,
+            "stop_reason": "wall_guard",
+            "wall_utilization": 0.981186811704815,
+            "peak_memory_gb": 2.137833786
+          },
+          "last_rate": {
+            "step": 12305,
+            "session_start_step": 0,
+            "elapsed_s": 410.71661420800956,
+            "event": "train",
+            "loss": 3.617863330873661e-05,
+            "val_loss": 0.013740095309913158,
+            "rate_warmed": true,
+            "measured_steps_per_s": 29.965178793476394,
+            "measured_units_per_s": 184106.05850711896,
+            "projected_remaining_steps": 38
+          }
+        },
+        "scratch": {
+          "initial_val_loss": 9.008279800415039,
+          "final": {
+            "step": 12122,
+            "session_start_step": 0,
+            "elapsed_s": 412.10455612500664,
+            "event": "done",
+            "loss": 0.04048371687531471,
+            "val_loss": 0.0005198380094952881,
+            "stop_reason": "wall_guard",
+            "wall_utilization": 0.9812013141880189,
+            "peak_memory_gb": 2.137833794
+          },
+          "last_rate": {
+            "step": 12085,
+            "session_start_step": 0,
+            "elapsed_s": 410.7902733340161,
+            "event": "train",
+            "loss": 0.044347818940877914,
+            "val_loss": 0.00042974139796569943,
+            "rate_warmed": true,
+            "measured_steps_per_s": 29.42432263632768,
+            "measured_units_per_s": 180783.03827759728,
+            "projected_remaining_steps": 35
+          }
+        }
+      },
+      "finished": {
+        "elapsed_s": 1625.3992320419638,
+        "evaluation_complete": true,
+        "power_end": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+        "selected": "results/r5/ac_s53/selected.json"
+      }
+    }
+  },
+  "elapsed_s": 5.041269125009421,
+  "mlx_imported": false,
+  "audit_source_sha256": "ee7aa9da8de51a0c5095a6efffab90fa9f5ed1ca5754d16df6aee60504a0200f"
+}

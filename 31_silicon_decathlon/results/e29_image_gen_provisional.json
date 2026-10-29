@@ -1,0 +1,694 @@
+{
+ "event": {
+  "id": "29_image_gen",
+  "project": "29_image_gen",
+  "model": "Flow-matching U-Net 64x[1,2,2], attention at 8x8 (EMA)",
+  "checkpoint": "../29_image_gen/checkpoints/flow",
+  "unit": "U-Net evaluations (one 32x32 image, one Euler step)",
+  "params": 6469123,
+  "notes": "Timed call = one U-Net forward; a full sample = 8 calls (Euler-8). Inputs: Gaussian x, t from the Euler-8 grid (fixed seed). Core ML packages are fp16."
+ },
+ "final": false,
+ "batches": {
+  "1": {
+   "agreement": {
+    "numpy_cpu": {
+     "v_max_err": 0.0008717775344848633,
+     "v_mean_err": 0.00010100354120368138
+    },
+    "mlx_cpu": {
+     "v_max_err": 0.0008713006973266602,
+     "v_mean_err": 0.00010097043559653684
+    },
+    "mlx_gpu": {
+     "v_max_err": 0.0,
+     "v_mean_err": 0.0
+    },
+    "mlx_gpu_fp16": {
+     "v_max_err": 0.0047588348388671875,
+     "v_mean_err": 0.0006669929134659469
+    },
+    "mlx_gpu_compiled": {
+     "v_max_err": 0.0,
+     "v_mean_err": 0.0
+    },
+    "coreml_cpu": {
+     "v_max_err": 0.046267032623291016,
+     "v_mean_err": 0.004359982442110777
+    },
+    "coreml_gpu": {
+     "v_max_err": 0.046267032623291016,
+     "v_mean_err": 0.004359982442110777
+    },
+    "coreml_ane": {
+     "v_max_err": 0.034759387373924255,
+     "v_mean_err": 0.006759537383913994
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 62248734,
+    "mlx_gpu": 60970110,
+    "mlx_gpu_fp16": 48490276,
+    "mlx_gpu_compiled": 58855762
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 16.918437511776574,
+     "p90_ms": 17.174470602185465,
+     "min_ms": 16.684000001987442,
+     "calls": 18,
+     "rounds": 3,
+     "round_median_spread": 1.008314757559284
+    },
+    "mlx_cpu": {
+     "median_ms": 13.091874512610957,
+     "p90_ms": 13.315975017030723,
+     "min_ms": 12.978665996342897,
+     "calls": 24,
+     "rounds": 3,
+     "round_median_spread": 1.0109877787256536
+    },
+    "mlx_gpu": {
+     "median_ms": 3.6580834857886657,
+     "p90_ms": 4.341699997894466,
+     "min_ms": 3.5969580058008432,
+     "calls": 78,
+     "rounds": 3,
+     "round_median_spread": 1.0060079614831694
+    },
+    "mlx_gpu_fp16": {
+     "median_ms": 3.045249992283061,
+     "p90_ms": 3.0857752077281475,
+     "min_ms": 2.9875420150347054,
+     "calls": 93,
+     "rounds": 3,
+     "round_median_spread": 1.0033640685287872
+    },
+    "mlx_gpu_compiled": {
+     "median_ms": 3.246125008445233,
+     "p90_ms": 3.3706040121614933,
+     "min_ms": 3.202082996722311,
+     "calls": 86,
+     "rounds": 3,
+     "round_median_spread": 1.004066507538537
+    },
+    "coreml_cpu": {
+     "median_ms": 1.8295000190846622,
+     "p90_ms": 1.8655498046427965,
+     "min_ms": 1.779082987923175,
+     "calls": 165,
+     "rounds": 3,
+     "round_median_spread": 1.0085851662190113
+    },
+    "coreml_gpu": {
+     "median_ms": 1.8329580198042095,
+     "p90_ms": 1.8598499882500619,
+     "min_ms": 1.7800000205170363,
+     "calls": 165,
+     "rounds": 3,
+     "round_median_spread": 1.006886243065823
+    },
+    "coreml_ane": {
+     "median_ms": 0.503167015267536,
+     "p90_ms": 0.5190412048250437,
+     "min_ms": 0.4674170049838722,
+     "calls": 599,
+     "rounds": 3,
+     "round_median_spread": 1.039969162036181
+    }
+   },
+   "task": {
+    "numpy_cpu": {
+     "samples": 16,
+     "steps": 8,
+     "attr_agreement": 1.0,
+     "recipe_agreement": 1.0,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 1.0,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.029893428087234497,
+     "pixel_mean_err": 0.00013826625945512205,
+     "sample8_ms_per_call_batch": 135.70191662438447,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "mlx_cpu": {
+     "samples": 16,
+     "steps": 8,
+     "attr_agreement": 1.0,
+     "recipe_agreement": 1.0,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 1.0,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.02988886833190918,
+     "pixel_mean_err": 0.00013820377353113145,
+     "sample8_ms_per_call_batch": 105.9110911864991,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "mlx_gpu": {
+     "samples": 16,
+     "steps": 8,
+     "attr_agreement": 1.0,
+     "recipe_agreement": 1.0,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 1.0,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.0,
+     "pixel_mean_err": 0.0,
+     "sample8_ms_per_call_batch": 30.87686981234583,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "mlx_gpu_fp16": {
+     "samples": 16,
+     "steps": 8,
+     "attr_agreement": 1.0,
+     "recipe_agreement": 1.0,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 1.0,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.051467329263687134,
+     "pixel_mean_err": 0.0004334819968789816,
+     "sample8_ms_per_call_batch": 26.711192687798757,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "mlx_gpu_compiled": {
+     "samples": 16,
+     "steps": 8,
+     "attr_agreement": 1.0,
+     "recipe_agreement": 1.0,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 1.0,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.0,
+     "pixel_mean_err": 0.0,
+     "sample8_ms_per_call_batch": 27.038953125156695,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "coreml_cpu": {
+     "samples": 16,
+     "steps": 8,
+     "attr_agreement": 1.0,
+     "recipe_agreement": 1.0,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 1.0,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.14002195000648499,
+     "pixel_mean_err": 0.001372433383949101,
+     "sample8_ms_per_call_batch": 14.792476562433876,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "coreml_gpu": {
+     "samples": 16,
+     "steps": 8,
+     "attr_agreement": 1.0,
+     "recipe_agreement": 1.0,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 1.0,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.14002195000648499,
+     "pixel_mean_err": 0.001372433383949101,
+     "sample8_ms_per_call_batch": 14.742994813786936,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "coreml_ane": {
+     "samples": 16,
+     "steps": 8,
+     "attr_agreement": 1.0,
+     "recipe_agreement": 1.0,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 1.0,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.5506055951118469,
+     "pixel_mean_err": 0.00304770446382463,
+     "sample8_ms_per_call_batch": 5.195830750380992,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    }
+   },
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e29_image_gen_b1_fp16.mlpackage",
+     "size_bytes": 13233843,
+     "placement": {
+      "CPU": 730
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e29_image_gen_b1_fp16.mlpackage",
+     "size_bytes": 13233843,
+     "placement": {
+      "CPU": 730
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e29_image_gen_b1_fp16.mlpackage",
+     "size_bytes": 13233843,
+     "placement": {
+      "NeuralEngine": 730
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "attribute labels agree 100.0% (recipe 100%) on 16 Euler-8 samples; pixel mean err 0.000138"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "attribute labels agree 100.0% (recipe 100%) on 16 Euler-8 samples; pixel mean err 0.000138"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "attribute labels agree 100.0% (recipe 100%) on 16 Euler-8 samples; pixel mean err 0"
+    },
+    "mlx_gpu_fp16": {
+     "ok": true,
+     "reason": "attribute labels agree 100.0% (recipe 100%) on 16 Euler-8 samples; pixel mean err 0.000433"
+    },
+    "mlx_gpu_compiled": {
+     "ok": true,
+     "reason": "attribute labels agree 100.0% (recipe 100%) on 16 Euler-8 samples; pixel mean err 0"
+    },
+    "coreml_cpu": {
+     "ok": true,
+     "reason": "attribute labels agree 100.0% (recipe 100%) on 16 Euler-8 samples; pixel mean err 0.00137"
+    },
+    "coreml_gpu": {
+     "ok": true,
+     "reason": "attribute labels agree 100.0% (recipe 100%) on 16 Euler-8 samples; pixel mean err 0.00137"
+    },
+    "coreml_ane": {
+     "ok": true,
+     "reason": "attribute labels agree 100.0% (recipe 100%) on 16 Euler-8 samples; pixel mean err 0.00305"
+    }
+   }
+  },
+  "64": {
+   "agreement": {
+    "numpy_cpu": {
+     "v_max_err": 0.011131197214126587,
+     "v_mean_err": 0.0009036369738169014
+    },
+    "mlx_cpu": {
+     "v_max_err": 0.011130571365356445,
+     "v_mean_err": 0.0009036467527039349
+    },
+    "mlx_gpu": {
+     "v_max_err": 0.0,
+     "v_mean_err": 0.0
+    },
+    "mlx_gpu_fp16": {
+     "v_max_err": 0.018710076808929443,
+     "v_mean_err": 0.001338906935416162
+    },
+    "mlx_gpu_compiled": {
+     "v_max_err": 0.0,
+     "v_mean_err": 0.0
+    },
+    "coreml_cpu": {
+     "v_max_err": 0.05253267288208008,
+     "v_mean_err": 0.003610580926761031
+    },
+    "coreml_gpu": {
+     "v_max_err": 0.012247949838638306,
+     "v_mean_err": 0.0009996989974752069
+    },
+    "coreml_ane": {
+     "v_max_err": 0.05550122261047363,
+     "v_mean_err": 0.005523068364709616
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 1529814338,
+    "mlx_gpu": 2435137006,
+    "mlx_gpu_fp16": 1239326054,
+    "mlx_gpu_compiled": 2487041338
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 1222.6372919976711,
+     "p90_ms": 1228.8102494028863,
+     "min_ms": 1200.331333995564,
+     "calls": 9,
+     "rounds": 3,
+     "round_median_spread": 1.0205987861852133
+    },
+    "mlx_cpu": {
+     "median_ms": 694.8097500135191,
+     "p90_ms": 744.0423170046415,
+     "min_ms": 686.2341660016682,
+     "calls": 9,
+     "rounds": 3,
+     "round_median_spread": 1.0188309107269273
+    },
+    "mlx_gpu": {
+     "median_ms": 22.87612497457303,
+     "p90_ms": 30.70757539826446,
+     "min_ms": 22.572125017177314,
+     "calls": 13,
+     "rounds": 3,
+     "round_median_spread": 1.052287176738646
+    },
+    "mlx_gpu_fp16": {
+     "median_ms": 15.066208987263963,
+     "p90_ms": 18.689341400749974,
+     "min_ms": 14.867124991724268,
+     "calls": 19,
+     "rounds": 3,
+     "round_median_spread": 1.0485706401444337
+    },
+    "mlx_gpu_compiled": {
+     "median_ms": 21.44962499733083,
+     "p90_ms": 27.60688320267945,
+     "min_ms": 20.749124989379197,
+     "calls": 15,
+     "rounds": 3,
+     "round_median_spread": 1.0351517347238142
+    },
+    "coreml_cpu": {
+     "median_ms": 74.17737497598864,
+     "p90_ms": 76.56450838549063,
+     "min_ms": 72.88441702257842,
+     "calls": 9,
+     "rounds": 3,
+     "round_median_spread": 1.038394154355935
+    },
+    "coreml_gpu": {
+     "median_ms": 21.237917011603713,
+     "p90_ms": 22.408966784132645,
+     "min_ms": 21.047458023531362,
+     "calls": 15,
+     "rounds": 3,
+     "round_median_spread": 1.0527943367652834
+    },
+    "coreml_ane": {
+     "median_ms": 28.763020498445258,
+     "p90_ms": 46.67670799244661,
+     "min_ms": 28.635082999244332,
+     "calls": 10,
+     "rounds": 3,
+     "round_median_spread": 1.0138616625985708
+    }
+   },
+   "task": {
+    "numpy_cpu": {
+     "samples": 64,
+     "steps": 8,
+     "attr_agreement": 0.9973958333333334,
+     "recipe_agreement": 0.984375,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 0.984375,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.07442747056484222,
+     "pixel_mean_err": 0.0005189731600694358,
+     "sample8_ms_per_call_batch": 9701.863249996677,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "mlx_cpu": {
+     "samples": 64,
+     "steps": 8,
+     "attr_agreement": 0.9973958333333334,
+     "recipe_agreement": 0.984375,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 0.984375,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.07442151010036469,
+     "pixel_mean_err": 0.0005189714138396084,
+     "sample8_ms_per_call_batch": 5518.405333015835,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "mlx_gpu": {
+     "samples": 64,
+     "steps": 8,
+     "attr_agreement": 1.0,
+     "recipe_agreement": 1.0,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 1.0,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.0,
+     "pixel_mean_err": 0.0,
+     "sample8_ms_per_call_batch": 208.71829200768843,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "mlx_gpu_fp16": {
+     "samples": 64,
+     "steps": 8,
+     "attr_agreement": 0.9973958333333334,
+     "recipe_agreement": 0.984375,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 0.984375,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.17703509330749512,
+     "pixel_mean_err": 0.0006529645179398358,
+     "sample8_ms_per_call_batch": 133.91404200228862,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "mlx_gpu_compiled": {
+     "samples": 64,
+     "steps": 8,
+     "attr_agreement": 1.0,
+     "recipe_agreement": 1.0,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 1.0,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.0,
+     "pixel_mean_err": 0.0,
+     "sample8_ms_per_call_batch": 167.38533301395364,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "coreml_cpu": {
+     "samples": 64,
+     "steps": 8,
+     "attr_agreement": 0.9973958333333334,
+     "recipe_agreement": 0.984375,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 0.984375,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.1275024712085724,
+     "pixel_mean_err": 0.001190279028378427,
+     "sample8_ms_per_call_batch": 588.9397090068087,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "coreml_gpu": {
+     "samples": 64,
+     "steps": 8,
+     "attr_agreement": 0.9973958333333334,
+     "recipe_agreement": 0.984375,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 0.984375,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.09060680866241455,
+     "pixel_mean_err": 0.0006004719180054963,
+     "sample8_ms_per_call_batch": 180.44900000677444,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    },
+    "coreml_ane": {
+     "samples": 64,
+     "steps": 8,
+     "attr_agreement": 0.9947916666666666,
+     "recipe_agreement": 0.96875,
+     "per_attr_agreement": {
+      "shape": 1.0,
+      "color": 0.96875,
+      "eyes": 1.0,
+      "horns": 1.0,
+      "mouth": 1.0,
+      "pattern": 1.0
+     },
+     "pixel_max_err": 0.5463181138038635,
+     "pixel_mean_err": 0.0029552702326327562,
+     "sample8_ms_per_call_batch": 254.11375000840053,
+     "sample8_note": "wall time of one full 8-step sample of this batch, host to host per step; single shot, not raced"
+    }
+   },
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e29_image_gen_b64_fp16.mlpackage",
+     "size_bytes": 13233843,
+     "placement": {
+      "CPU": 730
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e29_image_gen_b64_fp16.mlpackage",
+     "size_bytes": 13233843,
+     "placement": {
+      "GPU": 730
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e29_image_gen_b64_fp16.mlpackage",
+     "size_bytes": 13233843,
+     "placement": {
+      "NeuralEngine": 730
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "attribute labels agree 99.7% (recipe 98%) on 64 Euler-8 samples; pixel mean err 0.000519"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "attribute labels agree 99.7% (recipe 98%) on 64 Euler-8 samples; pixel mean err 0.000519"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "attribute labels agree 100.0% (recipe 100%) on 64 Euler-8 samples; pixel mean err 0"
+    },
+    "mlx_gpu_fp16": {
+     "ok": true,
+     "reason": "attribute labels agree 99.7% (recipe 98%) on 64 Euler-8 samples; pixel mean err 0.000653"
+    },
+    "mlx_gpu_compiled": {
+     "ok": true,
+     "reason": "attribute labels agree 100.0% (recipe 100%) on 64 Euler-8 samples; pixel mean err 0"
+    },
+    "coreml_cpu": {
+     "ok": true,
+     "reason": "attribute labels agree 99.7% (recipe 98%) on 64 Euler-8 samples; pixel mean err 0.00119"
+    },
+    "coreml_gpu": {
+     "ok": true,
+     "reason": "attribute labels agree 99.7% (recipe 98%) on 64 Euler-8 samples; pixel mean err 0.0006"
+    },
+    "coreml_ane": {
+     "ok": true,
+     "reason": "attribute labels agree 99.5% (recipe 97%) on 64 Euler-8 samples; pixel mean err 0.00296"
+    }
+   }
+  }
+ },
+ "skips": {
+  "mlx_gpu_q8": "conv-dominated U-Net; MLX quantization covers Linear layers only",
+  "mlx_gpu_q4": "conv-dominated U-Net; MLX quantization covers Linear layers only"
+ },
+ "task_checks": true,
+ "settings": {
+  "repeats": 3,
+  "budget_s": 0.1,
+  "only": null
+ },
+ "env_before": {
+  "time": "2026-10-22 17:47:51",
+  "loadavg": [
+   2.1650390625,
+   2.4755859375,
+   2.609375
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; finishing charge; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 404,
+    "cpu": 26.9,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.17229332006536424,
+  "mlx_gpu_2048_matmul_ms": 1.171058349427767
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.16894000000320375,
+  "mlx_gpu_2048_matmul_ms": 1.2801020493498072
+ },
+ "env_after": {
+  "time": "2026-10-22 17:49:13",
+  "loadavg": [
+   2.8974609375,
+   2.638671875,
+   2.65771484375
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; finishing charge; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

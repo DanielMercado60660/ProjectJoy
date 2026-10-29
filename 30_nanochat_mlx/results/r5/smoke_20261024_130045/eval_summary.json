@@ -1,0 +1,719 @@
+{
+ "args": {
+  "command": "evaluate",
+  "methods": [
+   "pretrained=checkpoints/r5_smoke_20261024_130045/pretrained/selected",
+   "scratch=checkpoints/r5_smoke_20261024_130045/full/selected",
+   "mlp=checkpoints/r5_smoke_20261024_130045/mlp/selected",
+   "replay_fixture=checkpoints/r5_smoke_20261024_130045/replay_fixture/selected",
+   "control=checkpoints/r5_smoke_20261024_130045/control/selected"
+  ],
+  "data": "results/r5/smoke_20261024_130045/data",
+  "out": "results/r5/smoke_20261024_130045/eval.json",
+  "demo": "media/r5_smoke_20261024_130045.html",
+  "max_minutes": 0.5,
+  "episodes": 4,
+  "secondary": false,
+  "smoke_one": true
+ },
+ "complete": true,
+ "paired_scenarios": 1,
+ "expected_scenarios": 1,
+ "elapsed_s": 1.8278534580022097,
+ "identities": {
+  "pretrained": {
+   "path": "checkpoints/r5_smoke_20261024_130045/pretrained/selected",
+   "sha256": "e8baa5c0456826c89cf01df53b53cc3683dbb0f40e75b86593f8c4258055bc91",
+   "step": 1,
+   "seed": 91,
+   "spec": {
+    "kind": "lm",
+    "model_config": {
+     "sequence_len": 1024,
+     "vocab_size": 8192,
+     "n_layer": 6,
+     "n_head": 3,
+     "n_kv_head": 3,
+     "n_embd": 384
+    },
+    "seed": 91,
+    "batch": 2,
+    "lr": 0.0003,
+    "train_sha256": "dae1c686f787cb3a5abe51a8c74e98e0fb21799a962f7f1f452057d4abdabe50",
+    "val_sha256": "82f31db033eea4e2e3ba74b0af575f7eb9188c38fcb30b090491ca18b9b08fb0",
+    "replay_sha256": null,
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "cd3893ab0c176ca33fb9cd478011f463cd61a7ea29b06e467c1ebb8103337150",
+     "r5_train.py": "89805743fc3b9652ce89a72519b586f1c3065c7e949653de8a359bdc07f546be",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  },
+  "scratch": {
+   "path": "checkpoints/r5_smoke_20261024_130045/full/selected",
+   "sha256": "4c941ca88bde620ceb6395c0d14ac5014eebce84341a32f58fddd1955d42f123",
+   "step": 4,
+   "seed": 91,
+   "spec": {
+    "kind": "lm",
+    "model_config": {
+     "sequence_len": 1024,
+     "vocab_size": 8192,
+     "n_layer": 1,
+     "n_head": 1,
+     "n_kv_head": 1,
+     "n_embd": 64
+    },
+    "seed": 91,
+    "batch": 2,
+    "lr": 0.0003,
+    "train_sha256": "dae1c686f787cb3a5abe51a8c74e98e0fb21799a962f7f1f452057d4abdabe50",
+    "val_sha256": "82f31db033eea4e2e3ba74b0af575f7eb9188c38fcb30b090491ca18b9b08fb0",
+    "replay_sha256": null,
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "cd3893ab0c176ca33fb9cd478011f463cd61a7ea29b06e467c1ebb8103337150",
+     "r5_train.py": "89805743fc3b9652ce89a72519b586f1c3065c7e949653de8a359bdc07f546be",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  },
+  "mlp": {
+   "path": "checkpoints/r5_smoke_20261024_130045/mlp/selected",
+   "sha256": "5d369d4e2a37a35933f3a9eb682e90c9efdfd032f6353873e2cb5739faa86c97",
+   "step": 4,
+   "seed": 91,
+   "spec": {
+    "kind": "mlp",
+    "model_config": {
+     "din": 130,
+     "hidden": 256
+    },
+    "seed": 91,
+    "batch": 2,
+    "lr": 0.001,
+    "train_sha256": "dae1c686f787cb3a5abe51a8c74e98e0fb21799a962f7f1f452057d4abdabe50",
+    "val_sha256": "82f31db033eea4e2e3ba74b0af575f7eb9188c38fcb30b090491ca18b9b08fb0",
+    "replay_sha256": null,
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "cd3893ab0c176ca33fb9cd478011f463cd61a7ea29b06e467c1ebb8103337150",
+     "r5_train.py": "89805743fc3b9652ce89a72519b586f1c3065c7e949653de8a359bdc07f546be",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  },
+  "replay_fixture": {
+   "path": "checkpoints/r5_smoke_20261024_130045/replay_fixture/selected",
+   "sha256": "1abeb633787e7e6e527de176798a1e4cf8bde910c7baf0321d98f6d32983d109",
+   "step": 2,
+   "seed": 91,
+   "spec": {
+    "kind": "lm",
+    "model_config": {
+     "sequence_len": 1024,
+     "vocab_size": 8192,
+     "n_layer": 1,
+     "n_head": 1,
+     "n_kv_head": 1,
+     "n_embd": 64
+    },
+    "seed": 91,
+    "batch": 2,
+    "lr": 0.0003,
+    "train_sha256": "dae1c686f787cb3a5abe51a8c74e98e0fb21799a962f7f1f452057d4abdabe50",
+    "val_sha256": "82f31db033eea4e2e3ba74b0af575f7eb9188c38fcb30b090491ca18b9b08fb0",
+    "replay_sha256": "dae1c686f787cb3a5abe51a8c74e98e0fb21799a962f7f1f452057d4abdabe50",
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "cd3893ab0c176ca33fb9cd478011f463cd61a7ea29b06e467c1ebb8103337150",
+     "r5_train.py": "89805743fc3b9652ce89a72519b586f1c3065c7e949653de8a359bdc07f546be",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  },
+  "control": {
+   "path": "checkpoints/r5_smoke_20261024_130045/control/selected",
+   "sha256": "43a6c6a6bce19bbf85db635dbc1539decdca4214a6ea3a757dd4edd2bb78a3db",
+   "step": 2,
+   "seed": 91,
+   "spec": {
+    "kind": "lm",
+    "model_config": {
+     "sequence_len": 1024,
+     "vocab_size": 8192,
+     "n_layer": 1,
+     "n_head": 1,
+     "n_kv_head": 1,
+     "n_embd": 64
+    },
+    "seed": 91,
+    "batch": 2,
+    "lr": 0.0003,
+    "train_sha256": "dae1c686f787cb3a5abe51a8c74e98e0fb21799a962f7f1f452057d4abdabe50",
+    "val_sha256": "82f31db033eea4e2e3ba74b0af575f7eb9188c38fcb30b090491ca18b9b08fb0",
+    "replay_sha256": null,
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "cd3893ab0c176ca33fb9cd478011f463cd61a7ea29b06e467c1ebb8103337150",
+     "r5_train.py": "89805743fc3b9652ce89a72519b586f1c3065c7e949653de8a359bdc07f546be",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  }
+ },
+ "summary": {
+  "planner": {
+   "seen/none": {
+    "episodes": 0
+   },
+   "seen/locked": {
+    "episodes": 0
+   },
+   "seen/missing": {
+    "episodes": 0
+   },
+   "seen/redirect": {
+    "episodes": 0
+   },
+   "pairs/none": {
+    "episodes": 0
+   },
+   "pairs/locked": {
+    "episodes": 0
+   },
+   "pairs/missing": {
+    "episodes": 0
+   },
+   "pairs/redirect": {
+    "episodes": 0
+   },
+   "order/none": {
+    "episodes": 0
+   },
+   "order/locked": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.08333333333333333,
+    "mean_steps": 12.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.0015105858134726684
+   },
+   "order/missing": {
+    "episodes": 0
+   },
+   "order/redirect": {
+    "episodes": 0
+   },
+   "long3/none": {
+    "episodes": 0
+   },
+   "long3/locked": {
+    "episodes": 0
+   },
+   "long3/missing": {
+    "episodes": 0
+   },
+   "long3/redirect": {
+    "episodes": 0
+   },
+   "long4/none": {
+    "episodes": 0
+   },
+   "long4/locked": {
+    "episodes": 0
+   },
+   "long4/missing": {
+    "episodes": 0
+   },
+   "long4/redirect": {
+    "episodes": 0
+   },
+   "all": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.08333333333333333,
+    "mean_steps": 12.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.0015105858134726684
+   }
+  },
+  "pretrained": {
+   "seen/none": {
+    "episodes": 0
+   },
+   "seen/locked": {
+    "episodes": 0
+   },
+   "seen/missing": {
+    "episodes": 0
+   },
+   "seen/redirect": {
+    "episodes": 0
+   },
+   "pairs/none": {
+    "episodes": 0
+   },
+   "pairs/locked": {
+    "episodes": 0
+   },
+   "pairs/missing": {
+    "episodes": 0
+   },
+   "pairs/redirect": {
+    "episodes": 0
+   },
+   "order/none": {
+    "episodes": 0
+   },
+   "order/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 1.0,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 14.164643185722525
+   },
+   "order/missing": {
+    "episodes": 0
+   },
+   "order/redirect": {
+    "episodes": 0
+   },
+   "long3/none": {
+    "episodes": 0
+   },
+   "long3/locked": {
+    "episodes": 0
+   },
+   "long3/missing": {
+    "episodes": 0
+   },
+   "long3/redirect": {
+    "episodes": 0
+   },
+   "long4/none": {
+    "episodes": 0
+   },
+   "long4/locked": {
+    "episodes": 0
+   },
+   "long4/missing": {
+    "episodes": 0
+   },
+   "long4/redirect": {
+    "episodes": 0
+   },
+   "all": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 1.0,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 14.164643185722525
+   }
+  },
+  "scratch": {
+   "seen/none": {
+    "episodes": 0
+   },
+   "seen/locked": {
+    "episodes": 0
+   },
+   "seen/missing": {
+    "episodes": 0
+   },
+   "seen/redirect": {
+    "episodes": 0
+   },
+   "pairs/none": {
+    "episodes": 0
+   },
+   "pairs/locked": {
+    "episodes": 0
+   },
+   "pairs/missing": {
+    "episodes": 0
+   },
+   "pairs/redirect": {
+    "episodes": 0
+   },
+   "order/none": {
+    "episodes": 0
+   },
+   "order/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 1.0,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 3.0138932625050074
+   },
+   "order/missing": {
+    "episodes": 0
+   },
+   "order/redirect": {
+    "episodes": 0
+   },
+   "long3/none": {
+    "episodes": 0
+   },
+   "long3/locked": {
+    "episodes": 0
+   },
+   "long3/missing": {
+    "episodes": 0
+   },
+   "long3/redirect": {
+    "episodes": 0
+   },
+   "long4/none": {
+    "episodes": 0
+   },
+   "long4/locked": {
+    "episodes": 0
+   },
+   "long4/missing": {
+    "episodes": 0
+   },
+   "long4/redirect": {
+    "episodes": 0
+   },
+   "all": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 1.0,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 3.0138932625050074
+   }
+  },
+  "mlp": {
+   "seen/none": {
+    "episodes": 0
+   },
+   "seen/locked": {
+    "episodes": 0
+   },
+   "seen/missing": {
+    "episodes": 0
+   },
+   "seen/redirect": {
+    "episodes": 0
+   },
+   "pairs/none": {
+    "episodes": 0
+   },
+   "pairs/locked": {
+    "episodes": 0
+   },
+   "pairs/missing": {
+    "episodes": 0
+   },
+   "pairs/redirect": {
+    "episodes": 0
+   },
+   "order/none": {
+    "episodes": 0
+   },
+   "order/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 1.0829205621121218
+   },
+   "order/missing": {
+    "episodes": 0
+   },
+   "order/redirect": {
+    "episodes": 0
+   },
+   "long3/none": {
+    "episodes": 0
+   },
+   "long3/locked": {
+    "episodes": 0
+   },
+   "long3/missing": {
+    "episodes": 0
+   },
+   "long3/redirect": {
+    "episodes": 0
+   },
+   "long4/none": {
+    "episodes": 0
+   },
+   "long4/locked": {
+    "episodes": 0
+   },
+   "long4/missing": {
+    "episodes": 0
+   },
+   "long4/redirect": {
+    "episodes": 0
+   },
+   "all": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 1.0829205621121218
+   }
+  },
+  "replay_fixture": {
+   "seen/none": {
+    "episodes": 0
+   },
+   "seen/locked": {
+    "episodes": 0
+   },
+   "seen/missing": {
+    "episodes": 0
+   },
+   "seen/redirect": {
+    "episodes": 0
+   },
+   "pairs/none": {
+    "episodes": 0
+   },
+   "pairs/locked": {
+    "episodes": 0
+   },
+   "pairs/missing": {
+    "episodes": 0
+   },
+   "pairs/redirect": {
+    "episodes": 0
+   },
+   "order/none": {
+    "episodes": 0
+   },
+   "order/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 1.0,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 3.8458535782410763
+   },
+   "order/missing": {
+    "episodes": 0
+   },
+   "order/redirect": {
+    "episodes": 0
+   },
+   "long3/none": {
+    "episodes": 0
+   },
+   "long3/locked": {
+    "episodes": 0
+   },
+   "long3/missing": {
+    "episodes": 0
+   },
+   "long3/redirect": {
+    "episodes": 0
+   },
+   "long4/none": {
+    "episodes": 0
+   },
+   "long4/locked": {
+    "episodes": 0
+   },
+   "long4/missing": {
+    "episodes": 0
+   },
+   "long4/redirect": {
+    "episodes": 0
+   },
+   "all": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 1.0,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 3.8458535782410763
+   }
+  },
+  "control": {
+   "seen/none": {
+    "episodes": 0
+   },
+   "seen/locked": {
+    "episodes": 0
+   },
+   "seen/missing": {
+    "episodes": 0
+   },
+   "seen/redirect": {
+    "episodes": 0
+   },
+   "pairs/none": {
+    "episodes": 0
+   },
+   "pairs/locked": {
+    "episodes": 0
+   },
+   "pairs/missing": {
+    "episodes": 0
+   },
+   "pairs/redirect": {
+    "episodes": 0
+   },
+   "order/none": {
+    "episodes": 0
+   },
+   "order/locked": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 1.0,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 2.876892627682537
+   },
+   "order/missing": {
+    "episodes": 0
+   },
+   "order/redirect": {
+    "episodes": 0
+   },
+   "long3/none": {
+    "episodes": 0
+   },
+   "long3/locked": {
+    "episodes": 0
+   },
+   "long3/missing": {
+    "episodes": 0
+   },
+   "long3/redirect": {
+    "episodes": 0
+   },
+   "long4/none": {
+    "episodes": 0
+   },
+   "long4/locked": {
+    "episodes": 0
+   },
+   "long4/missing": {
+    "episodes": 0
+   },
+   "long4/redirect": {
+    "episodes": 0
+   },
+   "all": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 1.0,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 2.876892627682537
+   }
+  }
+ },
+ "excluded_partial_block": [],
+ "note": "Per-episode traces (key \"episodes\") are kept locally in the full eval.json (gitignored for size)."
+}

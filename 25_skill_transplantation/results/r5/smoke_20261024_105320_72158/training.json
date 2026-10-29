@@ -1,0 +1,202 @@
+{
+  "complete": true,
+  "checkpoints": {
+    "adapter": {
+      "stage1": "base.pkl",
+      "stage2": "adapter_s2.pkl",
+      "stage3": "adapter_s3.pkl"
+    },
+    "dagger": {
+      "stage1": "base.pkl",
+      "stage2": "dagger_s2.pkl",
+      "stage3": "dagger_s3.pkl"
+    },
+    "joint": {
+      "stage1": "base.pkl",
+      "stage2": "joint_s2.pkl",
+      "stage3": "joint_s3.pkl"
+    }
+  },
+  "ledger": {
+    "adapter": [
+      {
+        "stage": 1,
+        "components": [
+          "base.pkl"
+        ],
+        "cost": {
+          "env_steps": 64,
+          "teacher_queries": 0,
+          "gradient_steps": 2,
+          "gradient_examples": 64,
+          "actor_forward_examples": 192,
+          "critic_forward_examples": 132,
+          "wall_s": 0.017455957946367562,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 64,
+        "expected_credits": 64
+      },
+      {
+        "stage": 2,
+        "components": [
+          "base.pkl",
+          "adapter_s2.pkl"
+        ],
+        "cost": {
+          "env_steps": 256,
+          "teacher_queries": 0,
+          "gradient_steps": 8,
+          "gradient_examples": 256,
+          "actor_forward_examples": 768,
+          "critic_forward_examples": 532,
+          "wall_s": 0.08596295799361542,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 256,
+        "expected_credits": 256
+      },
+      {
+        "stage": 3,
+        "components": [
+          "base.pkl",
+          "adapter_s2.pkl",
+          "adapter_s3.pkl"
+        ],
+        "cost": {
+          "env_steps": 448,
+          "teacher_queries": 0,
+          "gradient_steps": 14,
+          "gradient_examples": 448,
+          "actor_forward_examples": 1344,
+          "critic_forward_examples": 932,
+          "wall_s": 0.11476620798930526,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 448,
+        "expected_credits": 448
+      }
+    ],
+    "dagger": [
+      {
+        "stage": 1,
+        "components": [
+          "base.pkl"
+        ],
+        "cost": {
+          "env_steps": 64,
+          "teacher_queries": 0,
+          "gradient_steps": 2,
+          "gradient_examples": 64,
+          "actor_forward_examples": 192,
+          "critic_forward_examples": 132,
+          "wall_s": 0.017455957946367562,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 64,
+        "expected_credits": 64
+      },
+      {
+        "stage": 2,
+        "components": [
+          "base.pkl",
+          "dagger_s2.pkl",
+          "teacher_bwd.pkl"
+        ],
+        "cost": {
+          "env_steps": 192,
+          "teacher_queries": 64,
+          "gradient_steps": 8,
+          "gradient_examples": 256,
+          "actor_forward_examples": 576,
+          "critic_forward_examples": 264,
+          "wall_s": 0.03215795790310949,
+          "specialist_env_steps_included": 64
+        },
+        "credits": 256,
+        "expected_credits": 256
+      },
+      {
+        "stage": 3,
+        "components": [
+          "base.pkl",
+          "dagger_s2.pkl",
+          "teacher_bwd.pkl",
+          "dagger_s3.pkl",
+          "teacher_slow.pkl"
+        ],
+        "cost": {
+          "env_steps": 320,
+          "teacher_queries": 128,
+          "gradient_steps": 14,
+          "gradient_examples": 448,
+          "actor_forward_examples": 960,
+          "critic_forward_examples": 396,
+          "wall_s": 0.04484674986451864,
+          "specialist_env_steps_included": 128
+        },
+        "credits": 448,
+        "expected_credits": 448
+      }
+    ],
+    "joint": [
+      {
+        "stage": 1,
+        "components": [
+          "base.pkl"
+        ],
+        "cost": {
+          "env_steps": 64,
+          "teacher_queries": 0,
+          "gradient_steps": 2,
+          "gradient_examples": 64,
+          "actor_forward_examples": 192,
+          "critic_forward_examples": 132,
+          "wall_s": 0.017455957946367562,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 64,
+        "expected_credits": 64
+      },
+      {
+        "stage": 2,
+        "components": [
+          "base.pkl",
+          "joint_s2.pkl"
+        ],
+        "cost": {
+          "env_steps": 256,
+          "teacher_queries": 0,
+          "gradient_steps": 8,
+          "gradient_examples": 256,
+          "actor_forward_examples": 768,
+          "critic_forward_examples": 532,
+          "wall_s": 0.037020707968622446,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 256,
+        "expected_credits": 256
+      },
+      {
+        "stage": 3,
+        "components": [
+          "base.pkl",
+          "joint_s2.pkl",
+          "joint_s3.pkl"
+        ],
+        "cost": {
+          "env_steps": 448,
+          "teacher_queries": 0,
+          "gradient_steps": 14,
+          "gradient_examples": 448,
+          "actor_forward_examples": 1344,
+          "critic_forward_examples": 932,
+          "wall_s": 0.055463498982135206,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 448,
+        "expected_credits": 448
+      }
+    ]
+  }
+}

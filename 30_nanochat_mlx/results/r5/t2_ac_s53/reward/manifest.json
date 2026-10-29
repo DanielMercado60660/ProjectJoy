@@ -1,0 +1,2843 @@
+{
+  "args": {
+    "command": "collect",
+    "checkpoint": "checkpoints/r5_t2_ac_s53/pretrained/selected",
+    "out": "results/r5/t2_ac_s53/reward",
+    "max_minutes": 1.25,
+    "seed": 53,
+    "temperature": 0.7,
+    "seq_len": 384,
+    "episodes": 0
+  },
+  "attempted": 217,
+  "successes": 65,
+  "accepted_episodes": 65,
+  "accepted_steps": 502,
+  "replay": "results/r5/t2_ac_s53/reward/replay.npz",
+  "policy_sha256": "d2695307f3b269478ff7550c5d4fa9e82f45f694afefc1f30b0556d271d9277a",
+  "accepted_trace_sha256": "3845d643d2304f647a3d37eefd00b22d38be7297dbaf8814e7b8009c32ecaa55",
+  "replay_sha256": "be6f3442f457053d23e55d11efc8718382ceb35bbfa56119d76c53ab6200a32a",
+  "accepted_illegal_actions": 3,
+  "accepted_failed_actions": 34,
+  "receipts": [
+    {
+      "seed": 6000000,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 5.917158221564023
+    },
+    {
+      "seed": 6000001,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 42,
+      "disruption": {
+        "kind": "locked",
+        "step": 7,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.947512484657636
+    },
+    {
+      "seed": 6000002,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 52,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.328950479655759
+    },
+    {
+      "seed": 6000003,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "redirect",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.659184202362667
+    },
+    {
+      "seed": 6000004,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 55,
+      "disruption": null,
+      "latency_ms": 7.097325502400054
+    },
+    {
+      "seed": 6000005,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 8.089915952950832
+    },
+    {
+      "seed": 6000006,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 52,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.78792643975612
+    },
+    {
+      "seed": 6000007,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 30,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.375926482178329
+    },
+    {
+      "seed": 6000008,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 8,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 6.195057118020486
+    },
+    {
+      "seed": 6000009,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 6.745447922185122
+    },
+    {
+      "seed": 6000010,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 31,
+      "disruption": {
+        "kind": "missing",
+        "step": 44,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.809841780523129
+    },
+    {
+      "seed": 6000011,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 7,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 5.881631006819329
+    },
+    {
+      "seed": 6000012,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 30,
+      "disruption": null,
+      "latency_ms": 6.7253085881020525
+    },
+    {
+      "seed": 6000013,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 55,
+      "disruption": {
+        "kind": "locked",
+        "step": 7,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 7.840482457140752
+    },
+    {
+      "seed": 6000014,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 53,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 13
+      },
+      "latency_ms": 7.167221971030813
+    },
+    {
+      "seed": 6000015,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 53,
+      "disruption": {
+        "kind": "redirect",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": 8
+      },
+      "latency_ms": 7.594184268782556
+    },
+    {
+      "seed": 6000016,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 9,
+      "invalid": 1,
+      "disruption": null,
+      "latency_ms": 6.316476896043039
+    },
+    {
+      "seed": 6000017,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.695268214571115
+    },
+    {
+      "seed": 6000018,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 53,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.490871107416751
+    },
+    {
+      "seed": 6000019,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.235225235286634
+    },
+    {
+      "seed": 6000020,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 5,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 5.8759915991686285
+    },
+    {
+      "seed": 6000021,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 7.049425175864599
+    },
+    {
+      "seed": 6000022,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 51,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": 13
+      },
+      "latency_ms": 7.327174500460387
+    },
+    {
+      "seed": 6000023,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 59,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 6.773686205633567
+    },
+    {
+      "seed": 6000024,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 6.566761810063326
+    },
+    {
+      "seed": 6000025,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 5,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 3,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 6.735699996352196
+    },
+    {
+      "seed": 6000026,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 53,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.0117076436654315
+    },
+    {
+      "seed": 6000027,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "redirect",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.601326111194794
+    },
+    {
+      "seed": 6000028,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 5,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 5.979966802988201
+    },
+    {
+      "seed": 6000029,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 6.611630915358546
+    },
+    {
+      "seed": 6000030,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 54,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.47761195179919
+    },
+    {
+      "seed": 6000031,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.761464138435258
+    },
+    {
+      "seed": 6000032,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 8,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 6.197020753461402
+    },
+    {
+      "seed": 6000033,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 6.810945313191041
+    },
+    {
+      "seed": 6000034,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 52,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.383479316558805
+    },
+    {
+      "seed": 6000035,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "redirect",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.510249358143483
+    },
+    {
+      "seed": 6000036,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 55,
+      "disruption": null,
+      "latency_ms": 6.7413359583952115
+    },
+    {
+      "seed": 6000037,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 5,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 3,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 6.977949815336615
+    },
+    {
+      "seed": 6000038,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 31,
+      "disruption": {
+        "kind": "missing",
+        "step": 8,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.71047328523855
+    },
+    {
+      "seed": 6000039,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 55,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 7.621830095558835
+    },
+    {
+      "seed": 6000040,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 7.527889347329619
+    },
+    {
+      "seed": 6000041,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 5.800242235636688
+    },
+    {
+      "seed": 6000042,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 52,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.4972636302845785
+    },
+    {
+      "seed": 6000043,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 5,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 6.11479178769514
+    },
+    {
+      "seed": 6000044,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 6.632797551901604
+    },
+    {
+      "seed": 6000045,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 7.659537722247478
+    },
+    {
+      "seed": 6000046,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 55,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.221815800017794
+    },
+    {
+      "seed": 6000047,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 3,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 3
+      },
+      "latency_ms": 6.846291323502858
+    },
+    {
+      "seed": 6000048,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 6.725190798533731
+    },
+    {
+      "seed": 6000049,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 6.276129500292882
+    },
+    {
+      "seed": 6000050,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 55,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 10
+      },
+      "latency_ms": 7.47863465858245
+    },
+    {
+      "seed": 6000051,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "redirect",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.3113977666944265
+    },
+    {
+      "seed": 6000052,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 5.812541701743612
+    },
+    {
+      "seed": 6000053,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 7.724904220594908
+    },
+    {
+      "seed": 6000054,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 56,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.54188158953184
+    },
+    {
+      "seed": 6000055,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.699943937041098
+    },
+    {
+      "seed": 6000056,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 6.577007158739434
+    },
+    {
+      "seed": 6000057,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 42,
+      "disruption": {
+        "kind": "locked",
+        "step": 8,
+        "affected_cursor": 0,
+        "recovered_step": 10
+      },
+      "latency_ms": 7.029055916973448
+    },
+    {
+      "seed": 6000058,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 54,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.562718818007852
+    },
+    {
+      "seed": 6000059,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 34,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.39765160940442
+    },
+    {
+      "seed": 6000060,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 56,
+      "disruption": null,
+      "latency_ms": 7.5733632629635395
+    },
+    {
+      "seed": 6000061,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 30,
+      "disruption": null,
+      "latency_ms": 6.330787138722371
+    },
+    {
+      "seed": 6000062,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.827863232501841
+    },
+    {
+      "seed": 6000063,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 42,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 6
+      },
+      "latency_ms": 7.155681733820529
+    },
+    {
+      "seed": 6000064,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 3,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 7.234777673147619
+    },
+    {
+      "seed": 6000065,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 54,
+      "disruption": {
+        "kind": "locked",
+        "step": 5,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 7.514875650485919
+    },
+    {
+      "seed": 6000066,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 54,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.557221361617849
+    },
+    {
+      "seed": 6000067,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.825130220022402
+    },
+    {
+      "seed": 6000068,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 54,
+      "disruption": null,
+      "latency_ms": 5.906726546527352
+    },
+    {
+      "seed": 6000069,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 9,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 7,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.138588107811908
+    },
+    {
+      "seed": 6000070,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.385310593032045
+    },
+    {
+      "seed": 6000071,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 7,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 6.747362860811076
+    },
+    {
+      "seed": 6000072,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.735623644090083
+    },
+    {
+      "seed": 6000073,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 6.6776731073332485
+    },
+    {
+      "seed": 6000074,
+      "split": "train",
+      "mode": "missing",
+      "success": true,
+      "steps": 9,
+      "invalid": 1,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 5.899856662532936
+    },
+    {
+      "seed": 6000075,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 5,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 6.717925006523728
+    },
+    {
+      "seed": 6000076,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 7.778726591823215
+    },
+    {
+      "seed": 6000077,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 7.586430358969665
+    },
+    {
+      "seed": 6000078,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 55,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.202479891726398
+    },
+    {
+      "seed": 6000079,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 7,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 5.860143008508852
+    },
+    {
+      "seed": 6000080,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.7229654823677265
+    },
+    {
+      "seed": 6000081,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 7,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 3,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 7.037369143550417
+    },
+    {
+      "seed": 6000082,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 30,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.214931623617304
+    },
+    {
+      "seed": 6000083,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.807363840380276
+    },
+    {
+      "seed": 6000084,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 7.53179109597113
+    },
+    {
+      "seed": 6000085,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 10,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 8,
+        "affected_cursor": 0,
+        "recovered_step": 10
+      },
+      "latency_ms": 6.572537700412795
+    },
+    {
+      "seed": 6000086,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 54,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.692962952001835
+    },
+    {
+      "seed": 6000087,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 55,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 7.534319656770094
+    },
+    {
+      "seed": 6000088,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.836383426161774
+    },
+    {
+      "seed": 6000089,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 9,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 7,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.810685095842928
+    },
+    {
+      "seed": 6000090,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 54,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 7.634877541931928
+    },
+    {
+      "seed": 6000091,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 55,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 7.604841871398094
+    },
+    {
+      "seed": 6000092,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.887868550620624
+    },
+    {
+      "seed": 6000093,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 6.658216735559108
+    },
+    {
+      "seed": 6000094,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 56,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.736706359333766
+    },
+    {
+      "seed": 6000095,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 10,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 6.659291789401323
+    },
+    {
+      "seed": 6000096,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 3,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 6.8735136883333325
+    },
+    {
+      "seed": 6000097,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.767033220967278
+    },
+    {
+      "seed": 6000098,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 56,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.460656151830335
+    },
+    {
+      "seed": 6000099,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 7,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 6.226595299917141
+    },
+    {
+      "seed": 6000100,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.83977214339393
+    },
+    {
+      "seed": 6000101,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 5,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 3,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 6.313358398620039
+    },
+    {
+      "seed": 6000102,
+      "split": "train",
+      "mode": "missing",
+      "success": true,
+      "steps": 9,
+      "invalid": 1,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.207435333635658
+    },
+    {
+      "seed": 6000103,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "redirect",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.8464615617122035
+    },
+    {
+      "seed": 6000104,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 8.207551307350514
+    },
+    {
+      "seed": 6000105,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 7.116787717677653
+    },
+    {
+      "seed": 6000106,
+      "split": "train",
+      "mode": "missing",
+      "success": true,
+      "steps": 12,
+      "invalid": 1,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 12
+      },
+      "latency_ms": 6.214367909706198
+    },
+    {
+      "seed": 6000107,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 3,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 3
+      },
+      "latency_ms": 8.468305323428163
+    },
+    {
+      "seed": 6000108,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 6.940179085177078
+    },
+    {
+      "seed": 6000109,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 10,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 8,
+        "affected_cursor": 0,
+        "recovered_step": 10
+      },
+      "latency_ms": 6.58504159655422
+    },
+    {
+      "seed": 6000110,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 28,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": 13
+      },
+      "latency_ms": 6.867999958558357
+    },
+    {
+      "seed": 6000111,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 53,
+      "disruption": {
+        "kind": "redirect",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": 8
+      },
+      "latency_ms": 7.879502602918365
+    },
+    {
+      "seed": 6000112,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 53,
+      "disruption": null,
+      "latency_ms": 6.076204405871977
+    },
+    {
+      "seed": 6000113,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 5,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 3,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 7.159925403539091
+    },
+    {
+      "seed": 6000114,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 30,
+      "disruption": {
+        "kind": "missing",
+        "step": 22,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.564100846844667
+    },
+    {
+      "seed": 6000115,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 5,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 6.150208623148501
+    },
+    {
+      "seed": 6000116,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 31,
+      "disruption": null,
+      "latency_ms": 6.800670701522904
+    },
+    {
+      "seed": 6000117,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 31,
+      "disruption": null,
+      "latency_ms": 6.6953509058294
+    },
+    {
+      "seed": 6000118,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 49,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.62915951670584
+    },
+    {
+      "seed": 6000119,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 7,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 6.069244151668889
+    },
+    {
+      "seed": 6000120,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 6.631329437368549
+    },
+    {
+      "seed": 6000121,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 9,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 7,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.199745331994361
+    },
+    {
+      "seed": 6000122,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 52,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.364282002323307
+    },
+    {
+      "seed": 6000123,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 3,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 3
+      },
+      "latency_ms": 8.19473599161332
+    },
+    {
+      "seed": 6000124,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 5,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 6.769108411390334
+    },
+    {
+      "seed": 6000125,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 13,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 8,
+        "affected_cursor": 0,
+        "recovered_step": 10
+      },
+      "latency_ms": 6.1711378511972725
+    },
+    {
+      "seed": 6000126,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 52,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.570612624273053
+    },
+    {
+      "seed": 6000127,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 55,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 8
+      },
+      "latency_ms": 7.571425765490858
+    },
+    {
+      "seed": 6000128,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 6.751463545697334
+    },
+    {
+      "seed": 6000129,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 7,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 5,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 6.563089280721864
+    },
+    {
+      "seed": 6000130,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.357083281727682
+    },
+    {
+      "seed": 6000131,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 56,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 7.7039030020387145
+    },
+    {
+      "seed": 6000132,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 5,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 7.530725002288818
+    },
+    {
+      "seed": 6000133,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 7,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 5,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 6.261309716917042
+    },
+    {
+      "seed": 6000134,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 53,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.65997131181939
+    },
+    {
+      "seed": 6000135,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 28,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 6.325422531517688
+    },
+    {
+      "seed": 6000136,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 6.711913424624072
+    },
+    {
+      "seed": 6000137,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 7,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 5,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 6.860601291659155
+    },
+    {
+      "seed": 6000138,
+      "split": "train",
+      "mode": "missing",
+      "success": true,
+      "steps": 14,
+      "invalid": 2,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 10
+      },
+      "latency_ms": 6.186458219807329
+    },
+    {
+      "seed": 6000139,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 5,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 5
+      },
+      "latency_ms": 6.49833339266479
+    },
+    {
+      "seed": 6000140,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 31,
+      "disruption": null,
+      "latency_ms": 6.804913981795835
+    },
+    {
+      "seed": 6000141,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 9,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 7,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.513921556890839
+    },
+    {
+      "seed": 6000142,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 52,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.58817252881272
+    },
+    {
+      "seed": 6000143,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 55,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 7.768102183035808
+    },
+    {
+      "seed": 6000144,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 7.833795531951182
+    },
+    {
+      "seed": 6000145,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 9,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 7,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 5.7750973436567525
+    },
+    {
+      "seed": 6000146,
+      "split": "train",
+      "mode": "missing",
+      "success": true,
+      "steps": 13,
+      "invalid": 1,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": 13
+      },
+      "latency_ms": 5.9618813057358455
+    },
+    {
+      "seed": 6000147,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 7,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 5.871845143181937
+    },
+    {
+      "seed": 6000148,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 7,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 6.227285717613995
+    },
+    {
+      "seed": 6000149,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 39,
+      "disruption": null,
+      "latency_ms": 6.844085906777764
+    },
+    {
+      "seed": 6000150,
+      "split": "train",
+      "mode": "missing",
+      "success": true,
+      "steps": 9,
+      "invalid": 1,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.365671107131575
+    },
+    {
+      "seed": 6000151,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 7,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 6.698452418537012
+    },
+    {
+      "seed": 6000152,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 10,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 6.489908194635063
+    },
+    {
+      "seed": 6000153,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 41,
+      "disruption": {
+        "kind": "locked",
+        "step": 5,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 7.051593813230284
+    },
+    {
+      "seed": 6000154,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.600485766284692
+    },
+    {
+      "seed": 6000155,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 30,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 3
+      },
+      "latency_ms": 6.8626210932052345
+    },
+    {
+      "seed": 6000156,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 55,
+      "disruption": null,
+      "latency_ms": 6.813690794842842
+    },
+    {
+      "seed": 6000157,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 7.624137332641112
+    },
+    {
+      "seed": 6000158,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 52,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": 13
+      },
+      "latency_ms": 6.673815190879395
+    },
+    {
+      "seed": 6000159,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.786005157868203
+    },
+    {
+      "seed": 6000160,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 53,
+      "disruption": null,
+      "latency_ms": 7.607570941218
+    },
+    {
+      "seed": 6000161,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 6.633052756114921
+    },
+    {
+      "seed": 6000162,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.955621156521374
+    },
+    {
+      "seed": 6000163,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.750378181095584
+    },
+    {
+      "seed": 6000164,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 8,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 6.148968743218575
+    },
+    {
+      "seed": 6000165,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 6.8083938567724545
+    },
+    {
+      "seed": 6000166,
+      "split": "train",
+      "mode": "missing",
+      "success": true,
+      "steps": 13,
+      "invalid": 2,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.584214762999461
+    },
+    {
+      "seed": 6000167,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 11,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 6.510973553469574
+    },
+    {
+      "seed": 6000168,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 8.243744141509524
+    },
+    {
+      "seed": 6000169,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 12,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 7,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.902781417011283
+    },
+    {
+      "seed": 6000170,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 7.427908264617145
+    },
+    {
+      "seed": 6000171,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 7.324686765059596
+    },
+    {
+      "seed": 6000172,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 8,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 6.0224271364859305
+    },
+    {
+      "seed": 6000173,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": {
+        "kind": "locked",
+        "step": 5,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 7.268827498592145
+    },
+    {
+      "seed": 6000174,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 11
+      },
+      "latency_ms": 6.893305949233763
+    },
+    {
+      "seed": 6000175,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "redirect",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.047252591291908
+    },
+    {
+      "seed": 6000176,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 7.0926933349255705
+    },
+    {
+      "seed": 6000177,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 35,
+      "disruption": null,
+      "latency_ms": 7.475045593309915
+    },
+    {
+      "seed": 6000178,
+      "split": "train",
+      "mode": "missing",
+      "success": true,
+      "steps": 9,
+      "invalid": 1,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.706430447391337
+    },
+    {
+      "seed": 6000179,
+      "split": "train",
+      "mode": "redirect",
+      "success": true,
+      "steps": 3,
+      "invalid": 0,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 3
+      },
+      "latency_ms": 7.358041359111667
+    },
+    {
+      "seed": 6000180,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 7.064825582347112
+    },
+    {
+      "seed": 6000181,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 52,
+      "disruption": {
+        "kind": "locked",
+        "step": 5,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 8.206264985346934
+    },
+    {
+      "seed": 6000182,
+      "split": "train",
+      "mode": "missing",
+      "success": true,
+      "steps": 11,
+      "invalid": 1,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": 11
+      },
+      "latency_ms": 6.622810821599242
+    },
+    {
+      "seed": 6000183,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "redirect",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 8.238210358285869
+    },
+    {
+      "seed": 6000184,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 7.538537749496754
+    },
+    {
+      "seed": 6000185,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 10,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 8,
+        "affected_cursor": 0,
+        "recovered_step": 10
+      },
+      "latency_ms": 6.71285399585031
+    },
+    {
+      "seed": 6000186,
+      "split": "train",
+      "mode": "missing",
+      "success": true,
+      "steps": 7,
+      "invalid": 1,
+      "disruption": {
+        "kind": "missing",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 7.314059559056269
+    },
+    {
+      "seed": 6000187,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.18309888998192
+    },
+    {
+      "seed": 6000188,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": null,
+      "latency_ms": 7.023537737950392
+    },
+    {
+      "seed": 6000189,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 7.803606788002071
+    },
+    {
+      "seed": 6000190,
+      "split": "train",
+      "mode": "missing",
+      "success": true,
+      "steps": 18,
+      "invalid": 1,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": 13
+      },
+      "latency_ms": 6.038867839379236
+    },
+    {
+      "seed": 6000191,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 52,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 10
+      },
+      "latency_ms": 6.921670495103172
+    },
+    {
+      "seed": 6000192,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 53,
+      "disruption": null,
+      "latency_ms": 8.357391187928442
+    },
+    {
+      "seed": 6000193,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 7.933567017971654
+    },
+    {
+      "seed": 6000194,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 30,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.756953077456274
+    },
+    {
+      "seed": 6000195,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 50,
+      "disruption": {
+        "kind": "redirect",
+        "step": 2,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 7.554371061814891
+    },
+    {
+      "seed": 6000196,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 7,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 5.937642850247877
+    },
+    {
+      "seed": 6000197,
+      "split": "train",
+      "mode": "locked",
+      "success": true,
+      "steps": 9,
+      "invalid": 1,
+      "disruption": {
+        "kind": "locked",
+        "step": 7,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.28764810325164
+    },
+    {
+      "seed": 6000198,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 31,
+      "disruption": {
+        "kind": "missing",
+        "step": 37,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.668396409622801
+    },
+    {
+      "seed": 6000199,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "redirect",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.554781265753263
+    },
+    {
+      "seed": 6000200,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 3,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 7.018624998939534
+    },
+    {
+      "seed": 6000201,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 30,
+      "disruption": {
+        "kind": "locked",
+        "step": 7,
+        "affected_cursor": 0,
+        "recovered_step": 9
+      },
+      "latency_ms": 6.214472689862305
+    },
+    {
+      "seed": 6000202,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.785921875234635
+    },
+    {
+      "seed": 6000203,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 56,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 7
+      },
+      "latency_ms": 6.751851530680142
+    },
+    {
+      "seed": 6000204,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 7,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 6.571041702825044
+    },
+    {
+      "seed": 6000205,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 52,
+      "disruption": {
+        "kind": "locked",
+        "step": 8,
+        "affected_cursor": 0,
+        "recovered_step": 10
+      },
+      "latency_ms": 7.4114415128860855
+    },
+    {
+      "seed": 6000206,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 53,
+      "disruption": {
+        "kind": "missing",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.774680910893949
+    },
+    {
+      "seed": 6000207,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": {
+        "kind": "redirect",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.66530731561943
+    },
+    {
+      "seed": 6000208,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 6.7753281464320025
+    },
+    {
+      "seed": 6000209,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 58,
+      "disruption": null,
+      "latency_ms": 6.634951839259884
+    },
+    {
+      "seed": 6000210,
+      "split": "train",
+      "mode": "missing",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.773913390134112
+    },
+    {
+      "seed": 6000211,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "redirect",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 6.712412170600146
+    },
+    {
+      "seed": 6000212,
+      "split": "train",
+      "mode": "none",
+      "success": false,
+      "steps": 64,
+      "invalid": 35,
+      "disruption": null,
+      "latency_ms": 6.278411503444659
+    },
+    {
+      "seed": 6000213,
+      "split": "train",
+      "mode": "locked",
+      "success": false,
+      "steps": 64,
+      "invalid": 32,
+      "disruption": null,
+      "latency_ms": 6.764281300092989
+    },
+    {
+      "seed": 6000214,
+      "split": "train",
+      "mode": "missing",
+      "success": true,
+      "steps": 11,
+      "invalid": 1,
+      "disruption": {
+        "kind": "missing",
+        "step": 4,
+        "affected_cursor": 0,
+        "recovered_step": 11
+      },
+      "latency_ms": 6.24044326832518
+    },
+    {
+      "seed": 6000215,
+      "split": "train",
+      "mode": "redirect",
+      "success": false,
+      "steps": 64,
+      "invalid": 57,
+      "disruption": {
+        "kind": "redirect",
+        "step": 6,
+        "affected_cursor": 0,
+        "recovered_step": null
+      },
+      "latency_ms": 7.548720065642556
+    },
+    {
+      "seed": 6000216,
+      "split": "train",
+      "mode": "none",
+      "success": true,
+      "steps": 7,
+      "invalid": 0,
+      "disruption": null,
+      "latency_ms": 6.383613284145083
+    }
+  ],
+  "elapsed_s": 72.11536016699392,
+  "rng_state": {
+    "bit_generator": "PCG64",
+    "state": {
+      "state": 219060144798846673665235701093258346465,
+      "inc": 225642193180116550529615695599510342417
+    },
+    "has_uint32": 0,
+    "uinteger": 0
+  },
+  "policy_rng": {
+    "bit_generator": "PCG64",
+    "state": {
+      "state": 203467732720999547835848770429362265514,
+      "inc": 225642193180116550529615695599510342417
+    },
+    "has_uint32": 0,
+    "uinteger": 0
+  }
+}

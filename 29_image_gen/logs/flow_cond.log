@@ -1,0 +1,16 @@
+
+=== 07:25:34 /Users/danielmercado/ProjectJoy/.venv/bin/python train_gen.py --model flow --run runs/flow_cond --session_min 7.9 --cond --budget_pflop 2.5 --budget_min 40 --batch 64
+{"loss": 0.12910561367869378, "gnorm": 0.662030901312828, "step": 500, "pflop": 0.277610496, "min": 2.93919259707133}
+{"loss": 0.09176596119999886, "gnorm": 0.4731417113542557, "step": 1000, "pflop": 0.555220992, "min": 5.179066057999929}
+{"loss": 0.08422555968165397, "gnorm": 0.48323271214962005, "step": 1500, "pflop": 0.832831488, "min": 7.21868132352829}
+stopped: step=1501 pflop=0.833 train_min=7.2 done=False reason=None
+
+=== 07:44:42 /Users/danielmercado/ProjectJoy/.venv/bin/python train_gen.py --model flow --run runs/flow_cond --session_min 30.7 --resume
+resumed at step 1501, 0.833 PFLOP, 7.2 min
+{"loss": 0.07423795096576213, "gnorm": 0.4213621509075165, "step": 2000, "pflop": 1.110441984, "min": 10.92671111424764}
+{"loss": 0.06975853480398655, "gnorm": 0.4104987743496895, "step": 2500, "pflop": 1.38805248, "min": 14.366771213213603}
+{"loss": 0.06576105542480945, "gnorm": 0.35635444819927214, "step": 3000, "pflop": 1.665662976, "min": 18.20324874718984}
+{"loss": 0.06202550150454044, "gnorm": 0.36600500106811523, "step": 3500, "pflop": 1.943273472, "min": 22.609424551328022}
+{"loss": 0.061165062487125395, "gnorm": 0.3830184897780418, "step": 4000, "pflop": 2.220883968, "min": 26.93243175347646}
+{"loss": 0.06067807674407959, "gnorm": 0.3683052179217339, "step": 4500, "pflop": 2.498494464, "min": 30.77087109486262}
+stopped: step=4503 pflop=2.500 train_min=30.8 done=True reason=flop_budget

@@ -1,0 +1,10 @@
+# Round 5: fixed selected exports are the review/commit artifacts.
+# Preserve local resume state and smoke evidence without checkpoint churn.
+/checkpoints/r5_*_state.npz
+/checkpoints/r5_smoke_*
+/results/r5/pytest_tmp/
+/results/r5/pycache/
+/results/r5/mpl_cache/
+# Reviewer: keep seed 0's 364 KB final rolling state so analyze_r5.py's
+# final-weight validation audit can be rerun from a fresh checkout.
+!/checkpoints/r5_seed0_state.npz

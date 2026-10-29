@@ -1,0 +1,21 @@
+Torch version 2.14.1 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+  n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+== 10_nca  (provisional)
+  b=    1 numpy_cpu             0.659 ms (p90 0.697)  state_max_err=0.00903, rgba_max_err=0.000636, alive_cells_diff=0  [Q]
+  b=    1 mlx_cpu               0.742 ms (p90 0.786)  state_max_err=0.00903, rgba_max_err=0.000636, alive_cells_diff=0  [Q]
+  b=    1 mlx_gpu               0.292 ms (p90 0.332)  state_max_err=0, rgba_max_err=0, alive_cells_diff=0  [Q]
+  b=    1 mlx_gpu_fp16          0.419 ms (p90 0.476)  state_max_err=0.0474, rgba_max_err=0.00158, alive_cells_diff=0  [Q]
+  b=    1 mlx_gpu_compiled      0.228 ms (p90 0.266)  state_max_err=0, rgba_max_err=0, alive_cells_diff=0  [Q]
+  b=    1 coreml_cpu            0.176 ms (p90 0.183)  state_max_err=0.0474, rgba_max_err=0.00145, alive_cells_diff=0  [Q]
+  b=    1 coreml_gpu            0.178 ms (p90 0.184)  state_max_err=0.0474, rgba_max_err=0.00145, alive_cells_diff=0  [Q]
+  b=    1 coreml_ane            0.164 ms (p90 0.184)  state_max_err=0.0474, rgba_max_err=0.00158, alive_cells_diff=0  [Q]
+  b=   32 numpy_cpu            20.043 ms (p90 20.588)  state_max_err=0.019, rgba_max_err=0.000924, alive_cells_diff=0  [Q]
+  b=   32 mlx_cpu              22.096 ms (p90 22.883)  state_max_err=0.019, rgba_max_err=0.000924, alive_cells_diff=0  [Q]
+  b=   32 mlx_gpu               1.760 ms (p90 1.808)  state_max_err=0, rgba_max_err=0, alive_cells_diff=0  [Q]
+  b=   32 mlx_gpu_fp16          1.397 ms (p90 1.485)  state_max_err=0.068, rgba_max_err=0.00158, alive_cells_diff=0  [Q]
+  b=   32 mlx_gpu_compiled      1.687 ms (p90 2.997)  state_max_err=0, rgba_max_err=0, alive_cells_diff=0  [Q]
+  b=   32 coreml_cpu            5.509 ms (p90 5.675)  state_max_err=0.068, rgba_max_err=0.00296, alive_cells_diff=0  [Q]
+  b=   32 coreml_gpu            1.637 ms (p90 2.425)  state_max_err=0.068, rgba_max_err=0.00158, alive_cells_diff=0  [Q]
+  b=   32 coreml_ane            1.487 ms (p90 1.532)  state_max_err=0.068, rgba_max_err=0.00189, alive_cells_diff=0  [Q]
+wrote results/e10_nca_provisional.json

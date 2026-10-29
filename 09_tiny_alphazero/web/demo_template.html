@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Tiny AlphaZero</title>
+<style>
+:root { --bg:#f6f3ea; --fg:#1d1d1f; --muted:#6b6b6b; --card:#ffffff; --board:#1f4fa8; --hole:#f6f3ea;
+        --red:#d8342c; --yel:#f2c21b; --accent:#1f4fa8; --bar:#8a8a8a; --prior:#c9c4b5; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#15171c; --fg:#ece9e1; --muted:#9a978f; --card:#20232a; --board:#2a5bc0; --hole:#15171c; --bar:#b5b5b5; --prior:#4d4a42; } }
+:root[data-theme="dark"] { --bg:#15171c; --fg:#ece9e1; --muted:#9a978f; --card:#20232a; --board:#2a5bc0; --hole:#15171c; --bar:#b5b5b5; --prior:#4d4a42; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; -webkit-tap-highlight-color: transparent; }
+main { max-width: 720px; margin: 0 auto; padding: 16px; }
+h1 { font-size: 22px; margin: 4px 0 2px; letter-spacing: -0.01em; }
+.sub { color: var(--muted); margin: 0 0 14px; font-size: 14px; }
+.controls { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:12px; }
+.seg { display:inline-flex; background:var(--card); border-radius:10px; padding:3px; gap:2px; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.seg button { border:0; background:transparent; color:var(--fg); padding:7px 11px; border-radius:8px; font:inherit; font-size:14px; cursor:pointer; }
+.seg button.on { background:var(--accent); color:#fff; }
+.btn { border:0; background:var(--fg); color:var(--bg); padding:9px 14px; border-radius:10px; font:inherit; font-size:14px; cursor:pointer; }
+.label { color:var(--muted); font-size:13px; }
+#boardwrap { position:relative; width:100%; }
+svg#board { width:100%; height:auto; max-height:64vh; display:block; margin:0 auto; touch-action: manipulation; user-select:none; }
+#status { font-size:16px; font-weight:600; margin:10px 0 6px; min-height: 24px; }
+.panel { background:var(--card); border-radius:12px; padding:12px 14px; margin-top:12px; box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+.panel h2 { font-size:14px; margin:0 0 8px; font-weight:600; }
+#think { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; align-items:end; height:110px; }
+.col { display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; font-size:11px; color:var(--muted); }
+.bars { display:flex; gap:3px; align-items:flex-end; height:76px; }
+.bars div { width:12px; border-radius:3px 3px 0 0; }
+.legend { display:flex; gap:14px; font-size:12px; color:var(--muted); margin-top:6px; flex-wrap:wrap; }
+.sw { display:inline-block; width:10px; height:10px; border-radius:2px; vertical-align:middle; margin-right:4px; }
+#meter { height:10px; border-radius:5px; background:var(--prior); overflow:hidden; margin:6px 0 2px; }
+#meter div { height:100%; background:var(--accent); width:50%; transition: width .3s; }
+.small { font-size:12px; color:var(--muted); }
+details { margin-top: 12px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Tiny AlphaZero — Connect Four</h1>
+  <p class="sub" id="subtitle">A small policy/value network trained only by self-play, searching with MCTS right here in your browser. No network connection needed.</p>
+  <div class="controls">
+    <span class="label">You play</span>
+    <div class="seg" id="side"><button data-v="1" class="on">Red · first</button><button data-v="2">Yellow · second</button></div>
+    <span class="label">AI thinks</span>
+    <div class="seg" id="budget"><button data-v="0">policy only</button><button data-v="32">32</button><button data-v="100" class="on">100</button><button data-v="400">400 sims</button></div>
+    <button class="btn" id="newgame">New game</button>
+  </div>
+  <div id="status">Your move.</div>
+  <div id="boardwrap"><svg id="board" viewBox="0 0 700 620"></svg></div>
+  <div class="panel">
+    <h2>What the AI was thinking (its last move)</h2>
+    <div id="think"></div>
+    <div class="legend"><span><span class="sw" style="background:var(--prior)"></span>network prior (gut feeling)</span><span><span class="sw" style="background:var(--bar)"></span>share of search visits (what it chose from)</span></div>
+    <div style="margin-top:10px" class="small">AI's estimated chance of winning (search Q mapped to 0–100%)</div>
+    <div id="meter"><div></div></div>
+    <div class="small" id="qtext">–</div>
+  </div>
+  <details><summary>How this works</summary>
+    <p>The network sees the board as two 6×7 planes (its stones, your stones) and outputs a probability for each column (the <i>prior</i>) plus a value in [−1, 1] (who is winning). Monte Carlo tree search uses the prior to decide which moves to explore and the value instead of random playouts; the move played is the most-visited column. "policy only" skips search and just plays the network's top prior. Weights were exported from the MLX checkpoint with BatchNorm folded into the convolutions.</p>
+    <p id="meta"></p>
+  </details>
+</main>
+<script>
+/*AZ_JS*/
+</script>
+<script>
+const SPEC = /*WEIGHTS*/;
+(function () {
+  const { W, H, Game, Net, Search, bestMove } = AZ;
+  const net = new Net(SPEC);
+  const svg = document.getElementById("board");
+  const statusEl = document.getElementById("status");
+  let game = new Game(), human = 1, budget = 100, busy = false, token = 0;
+  const m = SPEC.meta || {};
+  document.getElementById("meta").textContent = `Checkpoint: ${m.source || "?"} (generation ${m.gen}); network ${m.config ? m.config.channels + " channels × " + m.config.blocks + " residual blocks" : ""}.${m.note ? " " + m.note : ""}`;
+
+  const CELL = 100, R = 40, TOP = 20;
+  function draw(hl) {
+    let s = `<rect x="0" y="${TOP}" width="700" height="${H * CELL}" rx="18" fill="var(--board)"/>`;
+    const win = new Set(game.winningCells().map(([r, c]) => r * W + c));
+    for (let r = 0; r < H; r++) for (let c = 0; c < W; c++) {
+      const v = game.cells[r * W + c], cx = c * CELL + 50, cy = TOP + (H - 1 - r) * CELL + 50;
+      const fill = v === 1 ? "var(--red)" : v === 2 ? "var(--yel)" : "var(--hole)";
+      s += `<circle cx="${cx}" cy="${cy}" r="${R}" fill="${fill}"${win.has(r * W + c) ? ' stroke="var(--fg)" stroke-width="7"' : ""}/>`;
+    }
+    if (game.moves.length) {
+      const c = game.moves[game.moves.length - 1], r = game.h[c] - 1;
+      s += `<circle cx="${c * CELL + 50}" cy="${TOP + (H - 1 - r) * CELL + 50}" r="7" fill="#fff" opacity=".9"/>`;
+    }
+    if (hl !== undefined && hl >= 0 && game.legal(hl)) {
+      const r = game.h[hl];
+      s += `<circle cx="${hl * CELL + 50}" cy="${TOP + (H - 1 - r) * CELL + 50}" r="${R}" fill="${human === 1 ? "var(--red)" : "var(--yel)"}" opacity=".35"/>`;
+    }
+    for (let c = 0; c < W; c++) s += `<rect data-c="${c}" x="${c * CELL}" y="0" width="${CELL}" height="620" fill="transparent" style="cursor:pointer"/>`;
+    svg.innerHTML = s;
+  }
+  function think(res) {
+    const el = document.getElementById("think");
+    let html = "";
+    const tot = res ? res.visits.reduce((a, b) => a + b, 0) : 0;
+    const mp = res ? Math.max(...res.prior) : 1, mv = res && tot ? Math.max(...res.visits) / tot : 1;
+    for (let c = 0; c < W; c++) {
+      const p = res ? res.prior[c] : 0, v = res && tot ? res.visits[c] / tot : 0;
+      html += `<div class="col"><div class="bars"><div style="height:${Math.round(76 * p / mp)}px;background:var(--prior)"></div><div style="height:${Math.round(76 * v / mv)}px;background:var(--bar)"></div></div><div>${c + 1}</div><div>${res && tot ? Math.round(100 * v) + "%" : ""}</div></div>`;
+    }
+    el.innerHTML = html;
+    if (res) {
+      const q = res.sims > 0 ? res.rootQ : res.rootValue;
+      const pct = Math.round(50 * (q + 1));
+      document.querySelector("#meter div").style.width = pct + "%";
+      document.getElementById("qtext").textContent = `${pct}% (value ${q >= 0 ? "+" : ""}${q.toFixed(2)}; raw value head ${res.rootValue >= 0 ? "+" : ""}${res.rootValue.toFixed(2)}; ${res.sims} simulations)`;
+    }
+  }
+  function finish() {
+    if (game.winner) statusEl.textContent = game.winner === human ? "You win! 🎉" : "The AI wins.";
+    else statusEl.textContent = "Draw.";
+  }
+  function aiMove() {
+    if (game.over) return finish();
+    busy = true;
+    const my = ++token;
+    statusEl.textContent = "AI is thinking…";
+    const srch = new Search(net, game);
+    const step = () => {
+      if (my !== token) return;
+      const res = budget > 0 ? srch.run(Math.min(8, budget - srch.sims)) : srch.result();
+      if (budget > 0 && srch.sims < budget) { statusEl.textContent = `AI is thinking… ${srch.sims}/${budget}`; think(res); setTimeout(step, 0); return; }
+      let mv;
+      if (budget > 0) mv = bestMove(res);
+      else { mv = -1; let bp = -1; for (let c = 0; c < W; c++) if (game.legal(c) && res.prior[c] > bp) { bp = res.prior[c]; mv = c; } }
+      think(res);
+      game.play(mv);
+      busy = false;
+      draw();
+      if (game.over) finish(); else statusEl.textContent = "Your move.";
+    };
+    setTimeout(step, 30);
+  }
+  svg.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-c]"); if (!t || busy || game.over || game.toMove() !== human) return;
+    const c = +t.dataset.c; if (!game.legal(c)) return;
+    game.play(c); draw();
+    if (game.over) return finish();
+    aiMove();
+  });
+  svg.addEventListener("mousemove", (e) => { const t = e.target.closest("[data-c]"); if (t && !busy && !game.over) draw(+t.dataset.c); });
+  function seg(id, cb) {
+    const el = document.getElementById(id);
+    el.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; el.querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); cb(+b.dataset.v); });
+  }
+  seg("side", (v) => { human = v; newGame(); });
+  seg("budget", (v) => { budget = v; });
+  function newGame() { token++; busy = false; game = new Game(); draw(); think(null); statusEl.textContent = "Your move."; if (human === 2) aiMove(); }
+  document.getElementById("newgame").addEventListener("click", newGame);
+  newGame();
+})();
+</script>
+</body>
+</html>

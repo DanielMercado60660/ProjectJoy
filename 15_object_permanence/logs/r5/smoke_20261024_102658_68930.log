@@ -1,0 +1,36 @@
+............                                                             [100%]
+12 passed in 0.75s
+MLX_CHECK_OK warm-start + NLL parity + causal GRU + renderer + real checkpoint
+PAIR_START step=0 warm_sha256=None cfg={'architecture': {'enc_dim': 32, 'hid': 16, 'layers': 1}, 'steps': 4, 'batch': 1, 'seed': 51024, 'lr': 0.0002, 'tiny': True, 'warm_sha256': None, 'version': 1, 'training_split': 'hard_train', 'peek_probability': 0.6666666666666666, 'cue_sigma_px': 0.25, 'beta': 0.5, 'aux_fraction': 0.25, 'source_sha256': {'r5_train.py': 'd9984ee99f0194590a542620643eddacb8e757909a6af07e42e3d01044fc1476', 'r5_model.py': 'ddac980b8bd76c676529192e715d95535f8a93a5271302dd5c59852bf0138bca', 'r5_data.py': 'd47eab500840ce08f73b300959cbc072be3510cee32d3e308587638a378f3566', 'model.py': 'c10967a6fbe90d99706111ac647ba202db56cf444f15a6d473e42051dd066922', 'train.py': '478645fec274ed7eafec3eb6df0b743642536add0e0cc8729cb8810e60c8d47b', 'sim.py': 'c8bdd2a4f8f0a7624c7ef6ff9dc0208f48e247c21912149b87fa93668e0c043e'}}
+PAIR step=1 loss={'gaussian': 46.23421859741211, 'mixture': 46.23431396484375} elapsed_s=0.8
+PAIR step=2 loss={'gaussian': 2.1066787242889404, 'mixture': 2.106840133666992} elapsed_s=0.8
+SAVED checkpoints/r5_smoke_20261024_102658_68930/resumed/last.pkl paired_step=2
+PAUSED_FOR_KILL_TEST step=2
+RESUMED paired_step=2 optimizer_steps=[2, 2]
+PAIR_START step=2 warm_sha256=None cfg={'architecture': {'enc_dim': 32, 'hid': 16, 'layers': 1}, 'steps': 4, 'batch': 1, 'seed': 51024, 'lr': 0.0002, 'tiny': True, 'warm_sha256': None, 'version': 1, 'training_split': 'hard_train', 'peek_probability': 0.6666666666666666, 'cue_sigma_px': 0.25, 'beta': 0.5, 'aux_fraction': 0.25, 'source_sha256': {'r5_train.py': 'd9984ee99f0194590a542620643eddacb8e757909a6af07e42e3d01044fc1476', 'r5_model.py': 'ddac980b8bd76c676529192e715d95535f8a93a5271302dd5c59852bf0138bca', 'r5_data.py': 'd47eab500840ce08f73b300959cbc072be3510cee32d3e308587638a378f3566', 'model.py': 'c10967a6fbe90d99706111ac647ba202db56cf444f15a6d473e42051dd066922', 'train.py': '478645fec274ed7eafec3eb6df0b743642536add0e0cc8729cb8810e60c8d47b', 'sim.py': 'c8bdd2a4f8f0a7624c7ef6ff9dc0208f48e247c21912149b87fa93668e0c043e'}}
+SAVED checkpoints/r5_smoke_20261024_102658_68930/resumed/last.pkl paired_step=4
+SAVED checkpoints/r5_smoke_20261024_102658_68930/resumed/last.pkl paired_step=4
+PAIR_DONE paired_step=4 elapsed_s=0.2
+PAIR_START step=0 warm_sha256=None cfg={'architecture': {'enc_dim': 32, 'hid': 16, 'layers': 1}, 'steps': 4, 'batch': 1, 'seed': 51024, 'lr': 0.0002, 'tiny': True, 'warm_sha256': None, 'version': 1, 'training_split': 'hard_train', 'peek_probability': 0.6666666666666666, 'cue_sigma_px': 0.25, 'beta': 0.5, 'aux_fraction': 0.25, 'source_sha256': {'r5_train.py': 'd9984ee99f0194590a542620643eddacb8e757909a6af07e42e3d01044fc1476', 'r5_model.py': 'ddac980b8bd76c676529192e715d95535f8a93a5271302dd5c59852bf0138bca', 'r5_data.py': 'd47eab500840ce08f73b300959cbc072be3510cee32d3e308587638a378f3566', 'model.py': 'c10967a6fbe90d99706111ac647ba202db56cf444f15a6d473e42051dd066922', 'train.py': '478645fec274ed7eafec3eb6df0b743642536add0e0cc8729cb8810e60c8d47b', 'sim.py': 'c8bdd2a4f8f0a7624c7ef6ff9dc0208f48e247c21912149b87fa93668e0c043e'}}
+PAIR step=1 loss={'gaussian': 46.23421859741211, 'mixture': 46.23431396484375} elapsed_s=0.2
+PAIR step=2 loss={'gaussian': 2.1066787242889404, 'mixture': 2.106840133666992} elapsed_s=0.2
+SAVED checkpoints/r5_smoke_20261024_102658_68930/continuous/last.pkl paired_step=2
+SAVED checkpoints/r5_smoke_20261024_102658_68930/continuous/last.pkl paired_step=4
+SAVED checkpoints/r5_smoke_20261024_102658_68930/continuous/last.pkl paired_step=4
+PAIR_DONE paired_step=4 elapsed_s=0.2
+RESUME_OK actual_SIGKILL step2 -> step4; weights/Adam/RNG match continuous; max_abs=0
+TUNE particle cfg={'q': 0.15, 'r': 1.0, 'miss': 0.2, 'particles': 16, 'bandwidth': 1.5} val_nll=57.9655
+TUNE kalman cfg={'q': 0.5, 'r': 7.0} val_nll=4.9744
+TUNE_DONE candidates=2 selected={'particle': {'q': 0.15, 'r': 1.0, 'miss': 0.2, 'particles': 16, 'bandwidth': 1.5}, 'kalman': {'q': 0.5, 'r': 7.0}} elapsed_s=0.1
+THRESHOLD gaussian val_q75=514.4979
+THRESHOLD mixture val_q75=515.8284
+THRESHOLD kalman val_q75=39.1028
+THRESHOLD particle val_q75=4.7593
+EVAL split=smoke_fresh complete_sequences=1/1 elapsed_s=0.3
+EVAL_DONE matched_n=1 requested_n=1 out=results/r5/smoke_20261024_102658_68930/fresh.json
+EVAL split=hard_test complete_sequences=1/1 elapsed_s=0.2
+EVAL_DONE matched_n=1 requested_n=1 out=results/r5/smoke_20261024_102658_68930/legacy.json
+DEMO media/r5_smoke_20261024_102658_68930_fixed_sequence0.png sequence=0 selection=fixed_sequence0
+DEMO media/r5_smoke_20261024_102658_68930_least_helpful_look.png sequence=0 selection=least_helpful_look
+SMOKE_ARTIFACTS_OK all four trackers / three policies / both splits
+SMOKE_R5_OK elapsed=7s artifacts=results/r5/smoke_20261024_102658_68930 checkpoint=checkpoints/r5_smoke_20261024_102658_68930/resumed/last.pkl

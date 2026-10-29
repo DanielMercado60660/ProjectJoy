@@ -1,0 +1,178 @@
+{
+ "event": {
+  "id": "29_image_gen",
+  "project": "29_image_gen",
+  "model": "Flow-matching U-Net 64x[1,2,2], attention at 8x8 (EMA)",
+  "checkpoint": "../29_image_gen/checkpoints/flow",
+  "unit": "U-Net evaluations (one 32x32 image, one Euler step)",
+  "params": 6469123,
+  "notes": "Timed call = one U-Net forward; a full sample = 8 calls (Euler-8). Inputs: Gaussian x, t from the Euler-8 grid (fixed seed). Core ML packages are fp16."
+ },
+ "final": false,
+ "batches": {
+  "64": {
+   "agreement": {
+    "numpy_cpu": {
+     "v_max_err": 1.0192394256591797e-05,
+     "v_mean_err": 7.829641504031315e-07
+    },
+    "mlx_cpu": {
+     "v_max_err": 1.0728836059570312e-05,
+     "v_mean_err": 7.575317795271985e-07
+    },
+    "mlx_gpu": {
+     "v_max_err": 0.0,
+     "v_mean_err": 0.0
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 1525168542,
+    "mlx_gpu": 2437339722
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 1203.7915419787169,
+     "p90_ms": 1211.6916246188339,
+     "min_ms": 1201.0578750050627,
+     "calls": 9,
+     "rounds": 3,
+     "round_median_spread": 1.0006994017343953
+    },
+    "mlx_cpu": {
+     "median_ms": 686.7819170001894,
+     "p90_ms": 737.5318168022204,
+     "min_ms": 677.0190410024952,
+     "calls": 9,
+     "rounds": 3,
+     "round_median_spread": 1.0228403565563124
+    },
+    "mlx_gpu": {
+     "median_ms": 23.416583018843085,
+     "p90_ms": 23.63042480428703,
+     "min_ms": 23.246374999871477,
+     "calls": 63,
+     "rounds": 3,
+     "round_median_spread": 1.0027451836769061
+    }
+   },
+   "task": {},
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e29_image_gen_b64_fp16.mlpackage",
+     "size_bytes": 13233843,
+     "placement": {
+      "CPU": 730
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e29_image_gen_b64_fp16.mlpackage",
+     "size_bytes": 13233843,
+     "placement": {
+      "GPU": 730
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e29_image_gen_b64_fp16.mlpackage",
+     "size_bytes": 13233843,
+     "placement": {
+      "NeuralEngine": 730
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "velocity max err 1e-05 (tolerance 0.05)"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "velocity max err 1.1e-05 (tolerance 0.05)"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "velocity max err 0 (tolerance 0.05)"
+    }
+   }
+  }
+ },
+ "skips": {
+  "mlx_gpu_q8": "conv-dominated U-Net; MLX quantization covers Linear layers only",
+  "mlx_gpu_q4": "conv-dominated U-Net; MLX quantization covers Linear layers only"
+ },
+ "task_checks": false,
+ "settings": {
+  "repeats": 3,
+  "budget_s": 0.5,
+  "only": [
+   "numpy_cpu",
+   "mlx_cpu"
+  ]
+ },
+ "mlx_tf32": false,
+ "mlx_gpu_matmul_rel_err": 5.303472196546295e-07,
+ "mlx_tf32_env": "0",
+ "env_before": {
+  "time": "2026-10-22 18:17:04",
+  "loadavg": [
+   2.72900390625,
+   2.2724609375,
+   2.21630859375
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 54675,
+    "cpu": 20.2,
+    "comm": "Claude"
+   },
+   {
+    "pid": 404,
+    "cpu": 20.1,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.17199833993799984,
+  "mlx_gpu_2048_matmul_ms": 1.7928250003024004
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.1705674995901063,
+  "mlx_gpu_2048_matmul_ms": 2.088554149668198
+ },
+ "env_after": {
+  "time": "2026-10-22 18:17:44",
+  "loadavg": [
+   2.7373046875,
+   2.330078125,
+   2.23974609375
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 16934,
+    "cpu": 78.4,
+    "comm": "ANECompilerService"
+   },
+   {
+    "pid": 404,
+    "cpu": 20.9,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

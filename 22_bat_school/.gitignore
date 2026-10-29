@@ -1,0 +1,16 @@
+checkpoints/smoke*
+results/smoke_eval.json
+media/smoke_demo*
+__pycache__/
+.pytest_cache/
+tests/__pycache__/
+tests_r5/__pycache__/
+# R5: retain logs/metrics but commit only the selected checkpoint generation.
+logs/r5/**/latest.npz
+logs/r5/smoke_*/
+checkpoints/r5_smoke*.npz
+results/r5/smoke_*
+media/r5_smoke*
+
+# Round 5: t2 *_stdout.txt files duplicate train.jsonl line for line
+logs/r5/t2_*_stdout.txt

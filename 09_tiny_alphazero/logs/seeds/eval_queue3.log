@@ -1,0 +1,31 @@
+[gpu_run] acquired gpu2: ../.venv/bin/python seeds_eval.py h2h --pairs main/170:main/136
+         main/g170@100 vs main/g136@100          score 0.740  (W64 D17 L17; first 0.80 second 0.68)  3.9 ms/move  [13s]
+done in 13s
+[gpu_run] acquired gpu0: ../.venv/bin/python seeds_eval.py suite --runs seed1,seed2 --gens 191
+        seed1/g191@100 vs random                 score 1.000  (W98 D0 L0; first 1.00 second 1.00)  2.7 ms/move  [2s]
+        seed1/g191@100 vs greedy                 score 1.000  (W98 D0 L0; first 1.00 second 1.00)  1.8 ms/move  [2s]
+        seed1/g191@100 vs uct200                 score 0.969  (W94 D2 L2; first 0.96 second 0.98)  1.6 ms/move  [2s]
+        seed1/g191@100 vs uct1000                score 0.959  (W93 D2 L3; first 0.99 second 0.93)  1.4 ms/move  [3s]
+        seed1/g191@100 vs uct5000                score 0.862  (W83 D3 L12; first 0.87 second 0.86)  1.6 ms/move  [5s]
+        seed1/g191@100 vs ab2                    score 0.934  (W87 D9 L2; first 0.92 second 0.95)  1.3 ms/move  [2s]
+        seed1/g191@100 vs ab4                    score 0.939  (W91 D2 L5; first 0.92 second 0.96)  1.4 ms/move  [2s]
+        seed1/g191@100 vs ab6                    score 0.913  (W88 D3 L7; first 0.89 second 0.94)  1.3 ms/move  [2s]
+        seed1/g191@100 vs ab8                    score 0.934  (W90 D3 L5; first 0.96 second 0.91)  1.4 ms/move  [4s]
+        seed2/g191@100 vs random                 score 1.000  (W98 D0 L0; first 1.00 second 1.00)  2.5 ms/move  [1s]
+        seed2/g191@100 vs greedy                 score 1.000  (W98 D0 L0; first 1.00 second 1.00)  1.9 ms/move  [2s]
+        seed2/g191@100 vs uct200                 score 1.000  (W98 D0 L0; first 1.00 second 1.00)  1.7 ms/move  [2s]
+        seed2/g191@100 vs uct1000                score 0.939  (W91 D2 L5; first 0.93 second 0.95)  1.5 ms/move  [3s]
+        seed2/g191@100 vs uct5000                score 0.954  (W93 D1 L4; first 0.95 second 0.96)  1.6 ms/move  [5s]
+        seed2/g191@100 vs ab2                    score 0.944  (W90 D5 L3; first 0.94 second 0.95)  1.4 ms/move  [2s]
+        seed2/g191@100 vs ab4                    score 0.969  (W95 D0 L3; first 0.94 second 1.00)  1.3 ms/move  [2s]
+        seed2/g191@100 vs ab6                    score 0.908  (W86 D6 L6; first 0.89 second 0.93)  1.3 ms/move  [2s]
+        seed2/g191@100 vs ab8                    score 0.898  (W86 D4 L8; first 0.90 second 0.90)  1.4 ms/move  [4s]
+done in 48s
+[gpu_run] acquired gpu0: ../.venv/bin/python seeds_eval.py h2h --pairs seed1/191:seed1/136,seed2/191:seed2/136,seed1/191:main/191,seed2/191:main/191,seed1/191:seed2/191
+        seed1/g191@100 vs seed1/g136@100         score 0.740  (W66 D13 L19; first 0.83 second 0.65)  1.4 ms/move  [5s]
+        seed2/g191@100 vs seed2/g136@100         score 0.821  (W74 D13 L11; first 0.87 second 0.78)  1.4 ms/move  [5s]
+        seed1/g191@100 vs main/g191@100          score 0.520  (W40 D22 L36; first 0.64 second 0.40)  1.4 ms/move  [5s]
+        seed2/g191@100 vs main/g191@100          score 0.526  (W41 D21 L36; first 0.65 second 0.40)  1.4 ms/move  [5s]
+        seed1/g191@100 vs seed2/g191@100         score 0.485  (W36 D23 L39; first 0.60 second 0.37)  1.4 ms/move  [5s]
+done in 23s
+queue3 done 12:49

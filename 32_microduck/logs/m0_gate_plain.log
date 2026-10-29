@@ -1,0 +1,33 @@
+body allcollisions  wall 9.0 s
+pad: 16/16 reached, median 16.1 s, falls 0
+runs[chosen]: 1200 s sim, falls 0 (0.00/100 s)
+   vx: {"segments": 140, "median_rel_err": 0.6248820046340482, "frac_within_25pct": 0.0, "median_achieved_over_cmd": 0.3751179953659518, "ratio_p10_p90": [0.35, 0.428]}
+   wz: {"segments": 69, "median_rel_err": 0.1999953146728445, "frac_within_25pct": 0.5942028985507246, "median_achieved_over_cmd": 1.0794662773750776, "ratio_p10_p90": [0.944, 1.377]}
+   vx_by_kind: {"back": {"segments": 38, "median_achieved_over_cmd": 0.4242, "ratio_p10_p90": [0.382, 0.462], "ratio_min": -0.0002, "frac_within_25pct": 0.0}, "fwd": {"segments": 70, "median_achieved_over_cmd": 0.3663, "ratio_p10_p90": [0.351, 0.383], "ratio_min": 0.2609, "frac_within_25pct": 0.0}, "fwd_turn": {"segments": 32, "median_achieved_over_cmd": 0.3782, "ratio_p10_p90": [0.348, 0.39], "ratio_min": 0.3182, "frac_within_25pct": 0.0}}
+   wz_by_kind: {"fwd_turn": {"segments": 32, "median_achieved_over_cmd": 1.2083, "ratio_p10_p90": [0.998, 1.503], "ratio_min": 0.9356, "frac_within_25pct": 0.5625}, "turn": {"segments": 37, "median_achieved_over_cmd": 1.0278, "ratio_p10_p90": [0.585, 1.348], "ratio_min": 0.0045, "frac_within_25pct": 0.6216}}
+   head_still: {"segments": 132, "mean_abs_err_rad_per_joint": [0.0845, 0.0602, 0.0789, 0.0297], "names": ["neck_pitch", "head_pitch", "head_yaw", "head_roll"]}
+   head_commanded: {"segments": 73, "mean_abs_err_rad_per_joint": [0.2182, 0.0759, 0.0742, 0.0429], "names": ["neck_pitch", "head_pitch", "head_yaw", "head_roll"]}
+runs[training]: 1200 s sim, falls 0 (0.00/100 s)
+   vx: {"segments": 118, "median_rel_err": 0.6035176148916198, "frac_within_25pct": 0.00847457627118644, "median_achieved_over_cmd": 0.39648238510838024, "ratio_p10_p90": [0.317, 0.467]}
+   wz: {"segments": 61, "median_rel_err": 0.20485382209743608, "frac_within_25pct": 0.5901639344262295, "median_achieved_over_cmd": 1.1336626420431113, "ratio_p10_p90": [0.602, 1.334]}
+   vx_by_kind: {"back": {"segments": 36, "median_achieved_over_cmd": 0.4652, "ratio_p10_p90": [0.452, 0.468], "ratio_min": 0.4159, "frac_within_25pct": 0.0}, "fwd": {"segments": 45, "median_achieved_over_cmd": 0.3627, "ratio_p10_p90": [0.0, 0.404], "ratio_min": -0.0005, "frac_within_25pct": 0.0}, "fwd_turn": {"segments": 37, "median_achieved_over_cmd": 0.387, "ratio_p10_p90": [0.335, 0.484], "ratio_min": -0.0009, "frac_within_25pct": 0.027}}
+   wz_by_kind: {"fwd_turn": {"segments": 37, "median_achieved_over_cmd": 1.1189, "ratio_p10_p90": [0.737, 1.375], "ratio_min": 0.0259, "frac_within_25pct": 0.5946}, "turn": {"segments": 24, "median_achieved_over_cmd": 1.172, "ratio_p10_p90": [0.218, 1.321], "ratio_min": -0.0473, "frac_within_25pct": 0.5833}}
+   head_still: {"segments": 143, "mean_abs_err_rad_per_joint": [0.0836, 0.0607, 0.0756, 0.0285], "names": ["neck_pitch", "head_pitch", "head_yaw", "head_roll"]}
+   head_commanded: {"segments": 65, "mean_abs_err_rad_per_joint": [0.2043, 0.0703, 0.0706, 0.041], "names": ["neck_pitch", "head_pitch", "head_yaw", "head_roll"]}
+push 0.25 N walking=False fall 0.00 recovered 1.00 upright after 0.02
+push 0.25 N walking=True  fall 0.00 recovered 1.00 upright after 0.02
+push 0.50 N walking=False fall 0.00 recovered 1.00 upright after 0.02
+push 0.50 N walking=True  fall 0.00 recovered 1.00 upright after 0.02
+push 0.75 N walking=False fall 0.00 recovered 1.00 upright after 0.02
+push 0.75 N walking=True  fall 0.00 recovered 1.00 upright after 0.02
+push 1.00 N walking=False fall 0.00 recovered 1.00 upright after 0.02
+push 1.00 N walking=True  fall 0.50 recovered 1.00 upright after 0.15000000000000002
+push 1.50 N walking=False fall 0.00 recovered 1.00 upright after 0.02
+push 1.50 N walking=True  fall 0.67 recovered 1.00 upright after 0.26
+push 2.00 N walking=False fall 0.00 recovered 1.00 upright after 0.02
+push 2.00 N walking=True  fall 0.83 recovered 1.00 upright after 0.47000000000000003
+push 3.00 N walking=False fall 1.00 recovered 1.00 upright after 0.35
+push 3.00 N walking=True  fall 1.00 recovered 1.00 upright after 0.45999999999999996
+push 4.00 N walking=False fall 1.00 recovered 1.00 upright after 0.39
+push 4.00 N walking=True  fall 1.00 recovered 1.00 upright after 0.77
+GATE: {'falls_per_100s_chosen': 0.0, 'pad_reached': '16/16', 'pass': True}

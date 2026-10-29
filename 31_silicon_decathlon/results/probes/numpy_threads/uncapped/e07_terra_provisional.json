@@ -1,0 +1,162 @@
+{
+ "event": {
+  "id": "07_terra",
+  "project": "07_terra",
+  "model": "HNet U-Net heuristic (base 32, GroupNorm, 4 downsamplings)",
+  "checkpoint": "../07_terra/checkpoints/hnet",
+  "unit": "heuristic fields (one 96x96 map + goal)",
+  "params": 1968417,
+  "notes": "Queries from ../07_terra/data/val.npz (generated, gitignored there; regenerable with its make_dataset.py). Core ML packages are fp16."
+ },
+ "final": false,
+ "batches": {
+  "16": {
+   "agreement": {
+    "numpy_cpu": {
+     "r_max_err": 6.318092346191406e-06,
+     "h_max_rel_err": 6.318092346191406e-06
+    },
+    "mlx_cpu": {
+     "r_max_err": 5.900859832763672e-06,
+     "h_max_rel_err": 5.900859832763672e-06
+    },
+    "mlx_gpu": {
+     "r_max_err": 0.0,
+     "h_max_rel_err": 0.0
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 1267988234,
+    "mlx_gpu": 805777274
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 415.7373330090195,
+     "p90_ms": 422.1314082155004,
+     "min_ms": 412.06641698954627,
+     "calls": 9,
+     "rounds": 3,
+     "round_median_spread": 1.0033440973429095
+    },
+    "mlx_cpu": {
+     "median_ms": 227.81716601457447,
+     "p90_ms": 237.48722500167787,
+     "min_ms": 224.44195800926536,
+     "calls": 9,
+     "rounds": 3,
+     "round_median_spread": 1.0323486447895995
+    },
+    "mlx_gpu": {
+     "median_ms": 7.578999997349456,
+     "p90_ms": 7.709354514372535,
+     "min_ms": 7.412249979097396,
+     "calls": 194,
+     "rounds": 3,
+     "round_median_spread": 1.01019370081285
+    }
+   },
+   "task": {},
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e07_terra_b16_fp16.mlpackage",
+     "size_bytes": 4043657,
+     "placement": {
+      "CPU": 237
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e07_terra_b16_fp16.mlpackage",
+     "size_bytes": 4043657,
+     "placement": {
+      "GPU": 237
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e07_terra_b16_fp16.mlpackage",
+     "size_bytes": 4043657,
+     "placement": {
+      "NeuralEngine": 237
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "r max err 6.3e-06 (tolerance 0.05)"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "r max err 5.9e-06 (tolerance 0.05)"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "r max err 0 (tolerance 0.05)"
+    }
+   }
+  }
+ },
+ "skips": {
+  "mlx_gpu_q8": "conv net; MLX quantization covers Linear layers only (one 128x128 Linear here)",
+  "mlx_gpu_q4": "conv net; MLX quantization covers Linear layers only (one 128x128 Linear here)"
+ },
+ "task_checks": false,
+ "settings": {
+  "repeats": 3,
+  "budget_s": 0.5,
+  "only": [
+   "numpy_cpu",
+   "mlx_cpu"
+  ]
+ },
+ "mlx_tf32": false,
+ "mlx_gpu_matmul_rel_err": 5.303472196546295e-07,
+ "mlx_tf32_env": "0",
+ "env_before": {
+  "time": "2026-10-22 18:15:29",
+  "loadavg": [
+   1.4873046875,
+   2.07666015625,
+   2.15576171875
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.17185582022648305,
+  "mlx_gpu_2048_matmul_ms": 1.6189874993870035
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.1715175004210323,
+  "mlx_gpu_2048_matmul_ms": 1.5871604002313688
+ },
+ "env_after": {
+  "time": "2026-10-22 18:15:44",
+  "loadavg": [
+   1.37890625,
+   2.0234375,
+   2.13525390625
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 16934,
+    "cpu": 68.1,
+    "comm": "ANECompilerService"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

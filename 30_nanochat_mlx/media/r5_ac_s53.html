@@ -1,0 +1,3949 @@
+<!doctype html><meta charset='utf-8'><title>R5 Courier: revise the plan</title>
+<style>body{max-width:1100px;margin:35px auto;font:16px system-ui;background:#f4f3ee;color:#18242a}pre{white-space:pre-wrap;background:white;padding:18px;border-radius:8px}summary{cursor:pointer;padding:12px}</style>
+<h1>Courier: revise the plan</h1><p>Same observation notebook for every policy. Commands are grammar constrained, not legality constrained. First successes and failures retained. Provisional if the paired evaluation is incomplete.</p>
+<pre>{
+  &quot;complete&quot;: true,
+  &quot;paired_scenarios&quot;: 80,
+  &quot;metrics&quot;: {
+    &quot;planner&quot;: {
+      &quot;episodes&quot;: 80,
+      &quot;success_rate&quot;: 1.0,
+      &quot;invalid_action_rate&quot;: 0.039100684261974585,
+      &quot;mean_steps&quot;: 12.7875,
+      &quot;disruption_assigned&quot;: 60,
+      &quot;disruption_exposed&quot;: 60,
+      &quot;exposure_coverage&quot;: 1.0,
+      &quot;success_given_disruption&quot;: 1.0,
+      &quot;recovery_rate&quot;: 1.0,
+      &quot;recovery_steps_mean&quot;: 3.683333333333333,
+      &quot;recovery_unresolved&quot;: 0,
+      &quot;recovery_steps_capped_mean&quot;: 3.683333333333333,
+      &quot;decision_latency_ms_mean&quot;: 0.0005431034744822536
+    },
+    &quot;pretrained&quot;: {
+      &quot;episodes&quot;: 80,
+      &quot;success_rate&quot;: 0.225,
+      &quot;invalid_action_rate&quot;: 0.7681300024254184,
+      &quot;mean_steps&quot;: 51.5375,
+      &quot;disruption_assigned&quot;: 60,
+      &quot;disruption_exposed&quot;: 55,
+      &quot;exposure_coverage&quot;: 0.9166666666666666,
+      &quot;success_given_disruption&quot;: 0.2545454545454545,
+      &quot;recovery_rate&quot;: 0.7090909090909091,
+      &quot;recovery_steps_mean&quot;: 3.4615384615384617,
+      &quot;recovery_unresolved&quot;: 16,
+      &quot;recovery_steps_capped_mean&quot;: 19.727272727272727,
+      &quot;decision_latency_ms_mean&quot;: 4.872454384860039
+    },
+    &quot;scratch&quot;: {
+      &quot;episodes&quot;: 80,
+      &quot;success_rate&quot;: 0.3875,
+      &quot;invalid_action_rate&quot;: 0.5706851691240243,
+      &quot;mean_steps&quot;: 43.2375,
+      &quot;disruption_assigned&quot;: 60,
+      &quot;disruption_exposed&quot;: 60,
+      &quot;exposure_coverage&quot;: 1.0,
+      &quot;success_given_disruption&quot;: 0.4,
+      &quot;recovery_rate&quot;: 0.9666666666666667,
+      &quot;recovery_steps_mean&quot;: 3.586206896551724,
+      &quot;recovery_unresolved&quot;: 2,
+      &quot;recovery_steps_capped_mean&quot;: 5.5,
+      &quot;decision_latency_ms_mean&quot;: 4.881864543609159
+    },
+    &quot;mlp&quot;: {
+      &quot;episodes&quot;: 80,
+      &quot;success_rate&quot;: 0.6875,
+      &quot;invalid_action_rate&quot;: 0.6100937918713711,
+      &quot;mean_steps&quot;: 27.9875,
+      &quot;disruption_assigned&quot;: 60,
+      &quot;disruption_exposed&quot;: 59,
+      &quot;exposure_coverage&quot;: 0.9833333333333333,
+      &quot;success_given_disruption&quot;: 0.7457627118644068,
+      &quot;recovery_rate&quot;: 0.9830508474576272,
+      &quot;recovery_steps_mean&quot;: 3.7586206896551726,
+      &quot;recovery_unresolved&quot;: 1,
+      &quot;recovery_steps_capped_mean&quot;: 4.661016949152542,
+      &quot;decision_latency_ms_mean&quot;: 0.5265181839396547
+    },
+    &quot;reward&quot;: {
+      &quot;episodes&quot;: 80,
+      &quot;success_rate&quot;: 0.1625,
+      &quot;invalid_action_rate&quot;: 0.8483812129502964,
+      &quot;mean_steps&quot;: 54.825,
+      &quot;disruption_assigned&quot;: 60,
+      &quot;disruption_exposed&quot;: 54,
+      &quot;exposure_coverage&quot;: 0.9,
+      &quot;success_given_disruption&quot;: 0.14814814814814814,
+      &quot;recovery_rate&quot;: 0.7037037037037037,
+      &quot;recovery_steps_mean&quot;: 3.8157894736842106,
+      &quot;recovery_unresolved&quot;: 16,
+      &quot;recovery_steps_capped_mean&quot;: 20.27777777777778,
+      &quot;decision_latency_ms_mean&quot;: 5.158104335677651
+    },
+    &quot;control&quot;: {
+      &quot;episodes&quot;: 80,
+      &quot;success_rate&quot;: 0.425,
+      &quot;invalid_action_rate&quot;: 0.5211515863689776,
+      &quot;mean_steps&quot;: 42.55,
+      &quot;disruption_assigned&quot;: 60,
+      &quot;disruption_exposed&quot;: 57,
+      &quot;exposure_coverage&quot;: 0.95,
+      &quot;success_given_disruption&quot;: 0.43859649122807015,
+      &quot;recovery_rate&quot;: 0.8070175438596491,
+      &quot;recovery_steps_mean&quot;: 3.9565217391304346,
+      &quot;recovery_unresolved&quot;: 11,
+      &quot;recovery_steps_capped_mean&quot;: 14.701754385964913,
+      &quot;decision_latency_ms_mean&quot;: 4.826031024318413
+    }
+  }
+}</pre>
+<details><summary>planner: success; order/locked; seed 81241009</summary><pre>Step 1
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 1; hand empty; clock 0
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,0; feedback start
+&gt; INSPECT
+valid: seen
+
+Step 2
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 1; hand empty; clock 1
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 0,1,0; feedback seen
+&gt; GO 0
+valid: moved
+
+Step 3
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand empty; clock 2
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 0,1,0; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 4
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand empty; clock 3
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:0;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback seen
+&gt; TAKE cup
+valid: taken
+
+Step 5
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand cup; clock 4
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:3;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback taken
+&gt; GO 2
+valid: moved
+
+Step 6
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 5
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:3;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 7
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 6
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,-1
+surveyed 1,1,1; feedback seen
+&gt; SEND cup green
+FAILED: locked
+
+Step 8
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 7
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,1
+surveyed 1,1,1; feedback locked
+&gt; OPEN green
+valid: unlocked
+
+Step 9
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 8
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback unlocked
+&gt; SEND cup green
+valid: delivered
+
+Step 10
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 9
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback delivered
+&gt; GO 0
+valid: moved
+
+Step 11
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand empty; clock 10
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+valid: taken
+
+Step 12
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand gem; clock 11
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback taken
+&gt; SEND gem red
+valid: delivered
+</pre></details>
+<details><summary>pretrained: failure; order/locked; seed 81241009</summary><pre>Step 1
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 1; hand empty; clock 0
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,0; feedback start
+&gt; INSPECT
+valid: seen
+
+Step 2
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 1; hand empty; clock 1
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 0,1,0; feedback seen
+&gt; GO 0
+valid: moved
+
+Step 3
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand empty; clock 2
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 0,1,0; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 4
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand empty; clock 3
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:0;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback seen
+&gt; TAKE cup
+valid: taken
+
+Step 5
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand cup; clock 4
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:3;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback taken
+&gt; GO 2
+valid: moved
+
+Step 6
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 5
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:3;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 7
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 6
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,-1
+surveyed 1,1,1; feedback seen
+&gt; SEND cup green
+FAILED: locked
+
+Step 8
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 7
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,1
+surveyed 1,1,1; feedback locked
+&gt; OPEN green
+valid: unlocked
+
+Step 9
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 8
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback unlocked
+&gt; SEND cup green
+valid: delivered
+
+Step 10
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 9
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback delivered
+&gt; GO 1
+valid: moved
+
+Step 11
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 10
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 12
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 11
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 13
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 12
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 14
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 13
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 15
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 14
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 16
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 15
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 17
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 16
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 18
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 17
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 19
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 18
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 20
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 19
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 21
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 20
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 22
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 21
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 23
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 22
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 24
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 23
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 25
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 24
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 26
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 25
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 27
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 26
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 28
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 27
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 29
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 28
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 30
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 29
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 31
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 30
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 32
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 31
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 33
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 32
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 34
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 33
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 35
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 34
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 36
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 35
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 37
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 36
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 38
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 37
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 39
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 38
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 40
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 39
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 41
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 40
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 42
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 41
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 43
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 42
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 44
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 43
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 45
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 44
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 46
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 45
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 47
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 46
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 48
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 47
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 49
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 48
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 50
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 49
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 51
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 50
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 52
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 51
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 53
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 52
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 54
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 53
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 55
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 54
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 56
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 55
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 57
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 56
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 58
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 57
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 59
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 58
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 60
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 59
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 61
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 60
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 62
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 61
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 63
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 62
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 64
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 63
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+</pre></details>
+<details><summary>scratch: failure; order/locked; seed 81241009</summary><pre>Step 1
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 1; hand empty; clock 0
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,0; feedback start
+&gt; INSPECT
+valid: seen
+
+Step 2
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 1; hand empty; clock 1
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 0,1,0; feedback seen
+&gt; GO 0
+valid: moved
+
+Step 3
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand empty; clock 2
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 0,1,0; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 4
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand empty; clock 3
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:0;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback seen
+&gt; TAKE cup
+valid: taken
+
+Step 5
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand cup; clock 4
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:3;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback taken
+&gt; GO 2
+valid: moved
+
+Step 6
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 5
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:3;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 7
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 6
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,-1
+surveyed 1,1,1; feedback seen
+&gt; SEND cup green
+FAILED: locked
+
+Step 8
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 7
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,1
+surveyed 1,1,1; feedback locked
+&gt; OPEN green
+valid: unlocked
+
+Step 9
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 8
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback unlocked
+&gt; SEND cup green
+valid: delivered
+
+Step 10
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 9
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback delivered
+&gt; GO 1
+valid: moved
+
+Step 11
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 10
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 12
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 11
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 13
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 12
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 14
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 13
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 15
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 14
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 16
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 15
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 17
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 16
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 18
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 17
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 19
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 18
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 20
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 19
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 21
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 20
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 22
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 21
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 23
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 22
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 24
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 23
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 25
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 24
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 26
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 25
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 27
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 26
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 28
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 27
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 29
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 28
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 30
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 29
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 31
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 30
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 32
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 31
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 33
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 32
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 34
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 33
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 35
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 34
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 36
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 35
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 37
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 36
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 38
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 37
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 39
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 38
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 40
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 39
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 41
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 40
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 42
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 41
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 43
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 42
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 44
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 43
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 45
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 44
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 46
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 45
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 47
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 46
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 48
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 47
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 49
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 48
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 50
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 49
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 51
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 50
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 52
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 51
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 53
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 52
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 54
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 53
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 55
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 54
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 56
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 55
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 57
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 56
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 58
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 57
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 59
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 58
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 60
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 59
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 61
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 60
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 62
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 61
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 63
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 62
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+
+Step 64
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 63
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; TAKE gem
+FAILED: illegal
+</pre></details>
+<details><summary>mlp: failure; order/locked; seed 81241009</summary><pre>Step 1
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 1; hand empty; clock 0
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,0; feedback start
+&gt; INSPECT
+valid: seen
+
+Step 2
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 1; hand empty; clock 1
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 0,1,0; feedback seen
+&gt; GO 0
+valid: moved
+
+Step 3
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand empty; clock 2
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 0,1,0; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 4
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand empty; clock 3
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:0;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback seen
+&gt; TAKE cup
+valid: taken
+
+Step 5
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand cup; clock 4
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:3;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback taken
+&gt; GO 2
+valid: moved
+
+Step 6
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 5
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:3;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 7
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 6
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,-1
+surveyed 1,1,1; feedback seen
+&gt; SEND cup green
+FAILED: locked
+
+Step 8
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 7
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,1
+surveyed 1,1,1; feedback locked
+&gt; OPEN green
+valid: unlocked
+
+Step 9
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 8
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback unlocked
+&gt; SEND cup green
+valid: delivered
+
+Step 10
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 9
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback delivered
+&gt; TAKE coin
+valid: taken
+
+Step 11
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand coin; clock 10
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback taken
+&gt; GO 0
+valid: moved
+
+Step 12
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 11
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; SEND coin red
+FAILED: illegal
+
+Step 13
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 12
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 14
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 13
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 15
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 14
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 16
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 15
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 17
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 16
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 18
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 17
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 19
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 18
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 20
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 19
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 21
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 20
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 22
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 21
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 23
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 22
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 24
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 23
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 25
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 24
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 26
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 25
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 27
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 26
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 28
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 27
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 29
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 28
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 30
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 29
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 31
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 30
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 32
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 31
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 33
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 32
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 34
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 33
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 35
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 34
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 36
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 35
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 37
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 36
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 38
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 37
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 39
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 38
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 40
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 39
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 41
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 40
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 42
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 41
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 43
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 42
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 44
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 43
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 45
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 44
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 46
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 45
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 47
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 46
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 48
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 47
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 49
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 48
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 50
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 49
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 51
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 50
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 52
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 51
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 53
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 52
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 54
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 53
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 55
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 54
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 56
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 55
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 57
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 56
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 58
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 57
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 59
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 58
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 60
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 59
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 61
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 60
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 62
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 61
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 63
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 62
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+
+Step 64
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand coin; clock 63
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND coin red
+FAILED: illegal
+</pre></details>
+<details><summary>reward: failure; order/locked; seed 81241009</summary><pre>Step 1
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 1; hand empty; clock 0
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,0; feedback start
+&gt; INSPECT
+valid: seen
+
+Step 2
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 1; hand empty; clock 1
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 0,1,0; feedback seen
+&gt; GO 0
+valid: moved
+
+Step 3
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand empty; clock 2
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 0,1,0; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 4
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand empty; clock 3
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:0;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback seen
+&gt; TAKE cup
+valid: taken
+
+Step 5
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand cup; clock 4
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:3;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback taken
+&gt; GO 2
+valid: moved
+
+Step 6
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 5
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:3;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 7
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 6
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,-1
+surveyed 1,1,1; feedback seen
+&gt; SEND cup green
+FAILED: locked
+
+Step 8
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 7
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,1
+surveyed 1,1,1; feedback locked
+&gt; OPEN green
+valid: unlocked
+
+Step 9
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 8
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback unlocked
+&gt; SEND cup green
+valid: delivered
+
+Step 10
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 9
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback delivered
+&gt; GO 0
+valid: moved
+
+Step 11
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand empty; clock 10
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+valid: taken
+
+Step 12
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 0; hand gem; clock 11
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback taken
+&gt; GO 1
+valid: moved
+
+Step 13
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 12
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; SEND gem red
+FAILED: illegal
+
+Step 14
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 13
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 15
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 14
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 16
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 15
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 17
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 16
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 18
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 17
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 19
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 18
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 20
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 19
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 21
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 20
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 22
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 21
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 23
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 22
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 24
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 23
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 25
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 24
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 26
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 25
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 27
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 26
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 28
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 27
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 29
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 28
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 30
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 29
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 31
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 30
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 32
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 31
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 33
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 32
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 34
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 33
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 35
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 34
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 36
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 35
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 37
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 36
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 38
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 37
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 39
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 38
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 40
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 39
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 41
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 40
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 42
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 41
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 43
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 42
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 44
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 43
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 45
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 44
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 46
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 45
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 47
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 46
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 48
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 47
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 49
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 48
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 50
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 49
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 51
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 50
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 52
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 51
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 53
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 52
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 54
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 53
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 55
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 54
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 56
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 55
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 57
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 56
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 58
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 57
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 59
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 58
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 60
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 59
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 61
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 60
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 62
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 61
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 63
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 62
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+
+Step 64
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand gem; clock 63
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; SEND gem red
+FAILED: illegal
+</pre></details>
+<details><summary>control: failure; order/locked; seed 81241009</summary><pre>Step 1
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 1; hand empty; clock 0
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,0; feedback start
+&gt; INSPECT
+valid: seen
+
+Step 2
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 1; hand empty; clock 1
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 0,1,0; feedback seen
+&gt; GO 0
+valid: moved
+
+Step 3
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand empty; clock 2
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 0,1,0; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 4
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand empty; clock 3
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:0;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback seen
+&gt; TAKE cup
+valid: taken
+
+Step 5
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 0; hand cup; clock 4
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:3;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback taken
+&gt; GO 2
+valid: moved
+
+Step 6
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 5
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:3;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:-1,?,-1
+surveyed 1,1,0; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 7
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 6
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,-1
+surveyed 1,1,1; feedback seen
+&gt; SEND cup green
+FAILED: locked
+
+Step 8
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 7
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,1
+surveyed 1,1,1; feedback locked
+&gt; OPEN green
+valid: unlocked
+
+Step 9
+ordered requests cup:moon;gem:star
+current request cup:moon
+completed 0; room 2; hand cup; clock 8
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:3;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback unlocked
+&gt; SEND cup green
+valid: delivered
+
+Step 10
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 9
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback delivered
+&gt; GO 1
+valid: moved
+
+Step 11
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 10
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 12
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 11
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 13
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 12
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 14
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 13
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 15
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 14
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 16
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 15
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 17
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 16
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 18
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 17
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 19
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 18
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 20
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 19
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 21
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 20
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 22
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 21
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 23
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 22
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 24
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 23
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 25
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 24
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 26
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 25
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 27
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 26
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 28
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 27
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 29
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 28
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 30
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 29
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 31
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 30
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 32
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 31
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 33
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 32
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 34
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 33
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 35
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 34
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 36
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 35
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 37
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 36
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 38
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 37
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 39
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 38
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 40
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 39
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 41
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 40
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 42
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 41
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 43
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 42
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 44
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 43
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 45
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 44
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 46
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 45
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 47
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 46
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 48
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 47
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 49
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 48
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 50
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 49
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 51
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 50
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 52
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 51
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 53
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 52
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 54
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 53
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 55
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 54
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 56
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 55
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 57
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 56
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 58
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 57
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 59
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 58
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 60
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 59
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 61
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 60
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 62
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 2; hand empty; clock 61
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 1
+valid: moved
+
+Step 63
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 62
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback moved
+&gt; TAKE gem
+FAILED: illegal
+
+Step 64
+ordered requests cup:moon;gem:star
+current request gem:star
+completed 1; room 1; hand empty; clock 63
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:2;cup:4;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:0,star,-1;blue:1,sun,-1;green:2,moon,0
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+</pre></details>
+<details><summary>scratch: success; seen/locked; seed 81241001</summary><pre>Step 1
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 2; hand empty; clock 0
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,0; feedback start
+&gt; INSPECT
+valid: seen
+
+Step 2
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 2; hand empty; clock 1
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:2;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,1; feedback seen
+&gt; TAKE book
+valid: taken
+
+Step 3
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 2; hand book; clock 2
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,1; feedback taken
+&gt; GO 0
+valid: moved
+
+Step 4
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 0; hand book; clock 3
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,1; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 5
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 0; hand book; clock 4
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:0,moon,-1
+surveyed 1,0,1; feedback seen
+&gt; GO 1
+valid: moved
+
+Step 6
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 1; hand book; clock 5
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:0,moon,-1
+surveyed 1,0,1; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 7
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 1; hand book; clock 6
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,-1;green:0,moon,-1
+surveyed 1,1,1; feedback seen
+&gt; SEND book blue
+FAILED: locked
+
+Step 8
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 1; hand book; clock 7
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,1;green:0,moon,-1
+surveyed 1,1,1; feedback locked
+&gt; OPEN blue
+valid: unlocked
+
+Step 9
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 1; hand book; clock 8
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback unlocked
+&gt; SEND book blue
+valid: delivered
+
+Step 10
+ordered requests book:sun;coin:star
+current request coin:star
+completed 1; room 1; hand empty; clock 9
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:4;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback delivered
+&gt; GO 2
+valid: moved
+
+Step 11
+ordered requests book:sun;coin:star
+current request coin:star
+completed 1; room 2; hand empty; clock 10
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:4;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback moved
+&gt; TAKE coin
+valid: taken
+
+Step 12
+ordered requests book:sun;coin:star
+current request coin:star
+completed 1; room 2; hand coin; clock 11
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:4;cup:2;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback taken
+&gt; SEND coin red
+valid: delivered
+</pre></details>
+<details><summary>mlp: success; seen/locked; seed 81241001</summary><pre>Step 1
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 2; hand empty; clock 0
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,0; feedback start
+&gt; INSPECT
+valid: seen
+
+Step 2
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 2; hand empty; clock 1
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:2;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,1; feedback seen
+&gt; TAKE book
+valid: taken
+
+Step 3
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 2; hand book; clock 2
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,1; feedback taken
+&gt; GO 0
+valid: moved
+
+Step 4
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 0; hand book; clock 3
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,1; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 5
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 0; hand book; clock 4
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:0,moon,-1
+surveyed 1,0,1; feedback seen
+&gt; GO 1
+valid: moved
+
+Step 6
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 1; hand book; clock 5
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:0,moon,-1
+surveyed 1,0,1; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 7
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 1; hand book; clock 6
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,-1;green:0,moon,-1
+surveyed 1,1,1; feedback seen
+&gt; SEND book blue
+FAILED: locked
+
+Step 8
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 1; hand book; clock 7
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,1;green:0,moon,-1
+surveyed 1,1,1; feedback locked
+&gt; OPEN blue
+valid: unlocked
+
+Step 9
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 1; hand book; clock 8
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback unlocked
+&gt; SEND book blue
+valid: delivered
+
+Step 10
+ordered requests book:sun;coin:star
+current request coin:star
+completed 1; room 1; hand empty; clock 9
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:4;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback delivered
+&gt; GO 2
+valid: moved
+
+Step 11
+ordered requests book:sun;coin:star
+current request coin:star
+completed 1; room 2; hand empty; clock 10
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:4;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback moved
+&gt; TAKE coin
+valid: taken
+
+Step 12
+ordered requests book:sun;coin:star
+current request coin:star
+completed 1; room 2; hand coin; clock 11
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:4;cup:2;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback taken
+&gt; SEND coin red
+valid: delivered
+</pre></details>
+<details><summary>control: success; seen/locked; seed 81241001</summary><pre>Step 1
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 2; hand empty; clock 0
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,0; feedback start
+&gt; INSPECT
+valid: seen
+
+Step 2
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 2; hand empty; clock 1
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:2;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,1; feedback seen
+&gt; TAKE book
+valid: taken
+
+Step 3
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 2; hand book; clock 2
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,1; feedback taken
+&gt; GO 0
+valid: moved
+
+Step 4
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 0; hand book; clock 3
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,1; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 5
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 0; hand book; clock 4
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:0,moon,-1
+surveyed 1,0,1; feedback seen
+&gt; GO 1
+valid: moved
+
+Step 6
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 1; hand book; clock 5
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:-1,?,-1;green:0,moon,-1
+surveyed 1,0,1; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 7
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 1; hand book; clock 6
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,-1;green:0,moon,-1
+surveyed 1,1,1; feedback seen
+&gt; SEND book blue
+FAILED: locked
+
+Step 8
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 1; hand book; clock 7
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,1;green:0,moon,-1
+surveyed 1,1,1; feedback locked
+&gt; OPEN blue
+valid: unlocked
+
+Step 9
+ordered requests book:sun;coin:star
+current request book:sun
+completed 0; room 1; hand book; clock 8
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:3;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback unlocked
+&gt; SEND book blue
+valid: delivered
+
+Step 10
+ordered requests book:sun;coin:star
+current request coin:star
+completed 1; room 1; hand empty; clock 9
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:4;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback delivered
+&gt; GO 2
+valid: moved
+
+Step 11
+ordered requests book:sun;coin:star
+current request coin:star
+completed 1; room 2; hand empty; clock 10
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:4;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback moved
+&gt; TAKE coin
+valid: taken
+
+Step 12
+ordered requests book:sun;coin:star
+current request coin:star
+completed 1; room 2; hand coin; clock 11
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:4;cup:2;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback taken
+&gt; GO 1
+valid: moved
+
+Step 13
+ordered requests book:sun;coin:star
+current request coin:star
+completed 1; room 1; hand coin; clock 12
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:4;cup:2;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback moved
+&gt; SEND coin red
+FAILED: illegal
+
+Step 14
+ordered requests book:sun;coin:star
+current request coin:star
+completed 1; room 1; hand coin; clock 13
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:4;cup:2;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback illegal
+&gt; GO 2
+valid: moved
+
+Step 15
+ordered requests book:sun;coin:star
+current request coin:star
+completed 1; room 2; hand coin; clock 14
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:4;cup:2;coin:3
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:2,star,-1;blue:1,sun,0;green:0,moon,-1
+surveyed 1,1,1; feedback moved
+&gt; SEND coin red
+valid: delivered
+</pre></details>
+<details><summary>reward: success; pairs/none; seed 81241004</summary><pre>Step 1
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 2; hand empty; clock 0
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,0; feedback start
+&gt; INSPECT
+valid: seen
+
+Step 2
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 2; hand empty; clock 1
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:2,moon,-1
+surveyed 0,0,1; feedback seen
+&gt; GO 0
+valid: moved
+
+Step 3
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 0; hand empty; clock 2
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:2,moon,-1
+surveyed 0,0,1; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 4
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 0; hand empty; clock 3
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:0,star,-1;green:2,moon,-1
+surveyed 1,0,1; feedback seen
+&gt; TAKE gem
+valid: taken
+
+Step 5
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 0; hand gem; clock 4
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:-1;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:0,star,-1;green:2,moon,-1
+surveyed 1,0,1; feedback taken
+&gt; GO 1
+valid: moved
+
+Step 6
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 1; hand gem; clock 5
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:-1;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:0,star,-1;green:2,moon,-1
+surveyed 1,0,1; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 7
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 1; hand gem; clock 6
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:1;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:1,sun,-1;blue:0,star,-1;green:2,moon,-1
+surveyed 1,1,1; feedback seen
+&gt; SEND gem red
+valid: delivered
+</pre></details>
+<details><summary>pretrained: success; pairs/none; seed 81241004</summary><pre>Step 1
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 2; hand empty; clock 0
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:-1;coin:-1
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:-1,?,-1
+surveyed 0,0,0; feedback start
+&gt; INSPECT
+valid: seen
+
+Step 2
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 2; hand empty; clock 1
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:2,moon,-1
+surveyed 0,0,1; feedback seen
+&gt; GO 0
+valid: moved
+
+Step 3
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 0; hand empty; clock 2
+parcel locations (-1 unknown,3 carried,4 finished) gem:-1;book:-1;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:-1,?,-1;green:2,moon,-1
+surveyed 0,0,1; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 4
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 0; hand empty; clock 3
+parcel locations (-1 unknown,3 carried,4 finished) gem:0;book:-1;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:0,star,-1;green:2,moon,-1
+surveyed 1,0,1; feedback seen
+&gt; TAKE gem
+valid: taken
+
+Step 5
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 0; hand gem; clock 4
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:-1;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:0,star,-1;green:2,moon,-1
+surveyed 1,0,1; feedback taken
+&gt; GO 1
+valid: moved
+
+Step 6
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 1; hand gem; clock 5
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:-1;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:-1,?,-1;blue:0,star,-1;green:2,moon,-1
+surveyed 1,0,1; feedback moved
+&gt; INSPECT
+valid: seen
+
+Step 7
+ordered requests gem:sun
+current request gem:sun
+completed 0; room 1; hand gem; clock 6
+parcel locations (-1 unknown,3 carried,4 finished) gem:3;book:1;cup:2;coin:2
+receptacles (room,label,lock: -1 unknown/0 open/1 shut) red:1,sun,-1;blue:0,star,-1;green:2,moon,-1
+surveyed 1,1,1; feedback seen
+&gt; SEND gem red
+valid: delivered
+</pre></details>

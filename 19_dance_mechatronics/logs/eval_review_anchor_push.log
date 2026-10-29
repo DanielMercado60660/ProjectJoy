@@ -1,0 +1,16 @@
+[gpu_run] acquired gpu1: ../.venv/bin/python eval.py --seeds 16 --loops 10 --controllers baseline_anchor_push --ckpt baseline_anchor_push=results/baseline_tuned_anchor_push8.json --conditions nominal push40 push50 push60 push70 push80 push100 push120 tempo0.9 tempo1.1 friction0.3 mass1.3 --out results/eval_review_anchor_push.json
+| controller | condition | falls_per_loop | joint_rmse_deg | foot_pos_err_cm | root_x_err_cm | mean_reward | contact_agreement | slip_cm_per_loop | touchdown_err_ms | beat_kick_mean_abs_ms | beat_dip_mean_abs_ms |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| baseline_anchor_push | nominal | 0 | 0.558 | 0.994 | 0.952 | 0.992 | 0.971 | 2.15 | 32.4 | 7.53 | 5.16 |
+| baseline_anchor_push | push40 | 0.0438 | 1.01 | 1.84 | 7.78 | 0.972 | 0.976 | 6.24 | 27.3 | 11.8 | 10.6 |
+| baseline_anchor_push | push50 | 0.181 | 1.67 | 3.76 | 20.8 | 0.937 | 0.968 | 10.3 | 30.1 | 15.9 | 22.3 |
+| baseline_anchor_push | push60 | 0.362 | 2.21 | 4.36 | 25.3 | 0.907 | 0.964 | 13.5 | 32.7 | 19.2 | 40.3 |
+| baseline_anchor_push | push70 | 0.55 | 2.73 | 7.69 | 37.3 | 0.858 | 0.946 | 17.6 | 34.1 | 22.3 | 68.6 |
+| baseline_anchor_push | push80 | 0.731 | 2.99 | 10.8 | 42.7 | 0.843 | 0.944 | 20.3 | 39.1 | 17.5 | 69.6 |
+| baseline_anchor_push | push100 | 0.881 | 3.04 | 7.38 | 38.7 | 0.861 | 0.941 | 22.6 | 35.6 | 25.6 | 92 |
+| baseline_anchor_push | push120 | 0.956 | 3 | 6.49 | 37.2 | 0.874 | 0.94 | 23.2 | 38 | 25.5 | 85 |
+| baseline_anchor_push | tempo0.9 | 0 | 0.508 | 1.18 | 1.03 | 0.992 | 0.972 | 2.19 | 39.9 | 9.82 | 5.31 |
+| baseline_anchor_push | tempo1.1 | 0 | 0.654 | 1.14 | 1.25 | 0.991 | 0.977 | 2.81 | 20.3 | 7.63 | 5.42 |
+| baseline_anchor_push | friction0.3 | 0 | 0.958 | 7.89 | 9.67 | 0.866 | 0.919 | 4.04 | 62.1 | 6.98 | 6.11 |
+| baseline_anchor_push | mass1.3 | 0 | 0.714 | 1.14 | 1.8 | 0.989 | 0.992 | 4.02 | 4.06 | 12.3 | 5.52 |
+wall 16s

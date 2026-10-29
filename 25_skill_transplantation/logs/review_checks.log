@@ -1,0 +1,18 @@
+[gpu_run] acquired gpu2: ../.venv/bin/python review_checks.py
+[single-spec fwd_bwd pre] summed-val-return pick ['bwd', 'bwd', 'bwd', 'fwd'] -> 50% ± 7 (gain 17%);  val-mean-retained pick ['fwd', 'fwd', 'fwd', 'fwd'] -> 56% ± 7 (gain -11%)
+[single-spec fwd_bwd init] summed-val-return pick ['bwd', 'bwd', 'bwd', 'bwd'] -> -5% ± 7 (gain -5%);  val-mean-retained pick ['bwd', 'fwd', 'fwd', 'fwd'] -> 17% ± 9 (gain 17%)
+[zero-grad] unused label column exactly unchanged in all specialists: True
+[seeds] training/val/eval overlap: [] []
+[90% both] pre_ft_theta0: [None, None, None, None]
+[90% both] pre_ft_average: [None, None, None, None]
+[90% both] pre_ft_task_arith: [None, None, None, None]
+[90% both] pre_distill_theta0: [53248, 28672, 102400, 53248]
+[90% both] pre_distill_average: [53248, 28672, 28672, 28672]
+[90% both] init_ft_theta0: [None, None, None, None]
+[90% both] init_ft_average: [None, None, None, None]
+[90% both] init_ft_task_arith: [None, None, None, None]
+[90% both] init_distill_theta0: [200704, 102400, 53248, 53248]
+[90% both] init_distill_average: [28672, None, 28672, 28672]
+[90% both] multitask_scratch: [4001792, None, None, 2002944]
+[demo] TIES rebuild == saved npz: True; average a=0.5 | fwd: -267 vs -267; average a=0.5 | bwd: 5049 vs 5049; best merge: ties l=0.3 | fwd: 1383 vs 1383; best merge: ties l=0.3 | bwd: 4880 vs 4880
+wrote /Users/danielmercado/ProjectJoy/25_skill_transplantation/results/review_checks.json

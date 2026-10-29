@@ -1,0 +1,533 @@
+I would turn this into a Joy Lab experiment where Physics Detective gets a body—and then test whether what it learns can improve its language model.
+That gives your idea a concrete shape:
+A small agent enters an unfamiliar world, performs experiments, learns how things behave, retains useful discoveries, and eventually uses that knowledge in situations it has never encountered.
+There are several distinct research questions inside that idea. Separating them will help you discover which part works:
+1. Does interacting with the world improve its predictions and control?
+2. Can it keep learning without losing earlier capabilities?
+3. Does any of that learning transfer into the language model itself?
+4. Does choosing its own experiences help compared with learning from recorded experiences?
+My starting choice would be LFM2.5-VL-450M as the pretrained foundation, a much smaller trainable dynamics model, and a simple MuJoCo body. I would make a small LeWorldModel-style learner the alternative branch for exploring learning from scratch.
+JEPA is a reasonable candidate for this. I would treat its value as something the experiment measures, though, rather than a prerequisite for “real learning.”
+1. What the models you linked actually give you
+The names conceal some significant differences.
+Model	What it accepts and produces	How I would consider using it
+LFM2.5-230M / 350M	Text in, text out. Both are text-only models.	A small language component attached to a separately developed sensory learner. They do not supply vision or audio themselves.
+LFM2.5-VL-450M	Images and text in, text out. Approximately 450M total, including its 350M language backbone, 86M SigLIP2 vision tower, and projection layers.	My first choice from your list: it already connects visual representations to language.
+d1-omni-600M	Text/JSON with images or speech, producing typed choices, ratings, and probabilities. Its published total is 587M parameters.	An interesting decision component or feature extractor, especially for comparing discrete action selection.
+Gemma 4 E2B	Text, image, and audio input, with video handled through frame sequences; text output. About 2.3B effective parameters, but roughly 5.1B including embeddings.	A larger comparison model once the experiment works and you want to test stronger pretrained priors.
+Those distinctions come from the authors’ model cards. Hugging Face
+Two details particularly affect your proposal.
+First, d1’s “omni” does not mean that its supplied interface fuses simultaneous video, audio, and language. A request can contain images or audio; providing both raises an error. Its audio training also focuses on English spoken requests and their intent, rather than establishing general understanding of environmental sounds. It is a decision model, not a small conversational model with speech generation. Hugging Face Hugging Face
+Second, 450M is a reasonable size to consider for this experiment. At two bytes per parameter, its weights alone are approximately 0.9 GB. Training requires additional memory for activations, gradients, and optimizer state, but you would initially train only a small fraction of the overall system. I would not reject it on parameter count alone given the machines you have described.
+There is also a smaller visual option worth knowing: SmolVLM2-256M-Video-Instruct supports images, multiple images, video, and text, producing text. It is a useful smaller baseline, although it does not provide the audio pathway you were considering. Hugging Face
+For this project, I would choose according to which sensory features and training paths you need, rather than trying to find the smallest model carrying the “omni” label. None of these checkpoints supplies your robot’s proprioception, action semantics, persistent memory, or continual learning procedure automatically.
+2. A correction about Gemma’s “nested” design
+There are three ideas here that are easy to connect too closely:
+* Gemma 4 E2B’s per-layer embeddings: additional token embeddings supplied to individual decoder layers, contributing to the difference between its effective and total parameter counts.
+* Gemma 3n’s MatFormer architecture: smaller usable subnetworks contained within a larger network.
+* Nested Learning: optimization and memory processes operating at different update frequencies.
+Google’s Gemma 4 report documents per-layer embeddings inherited from Gemma 3n. The explicit nested-submodel/MatFormer description belongs to Gemma 3n’s documentation. Neither feature, by itself, implements the continual learning mechanism you are proposing. arxiv.org
+Nested Learning is closer to your idea of components changing at different speeds. Its framework explicitly considers multiple interacting learning processes and memory timescales. But you can test your slow/fast learning hypothesis with ordinary neural networks and a carefully designed update procedure; you do not need a particular Gemma architecture first. arxiv.org
+That is useful experimentally: the interesting question becomes which information should change quickly, and which should remain stable?
+3. What the embodied-intelligence paper establishes
+The paper you linked, Has GPT-6-Astra Achieved Embodied Intelligence?, is relevant to the “piloting” question.
+Its main evaluation keeps model weights fixed. Training demonstrations are used to prepare task-specific knowledge packages, which are frozen before testing. Interaction history persists within an episode, but information does not transfer between test episodes. Some conditions allow up to ten times the action-step budget. The observation and control interfaces also vary across benchmarks, including robot state and different forms of controller assistance. arxiv.org
+My reading is that this supports the usefulness of existing pretrained knowledge for embodied control. It does not establish that deployment experience improves the model’s persistent weights, or that learning carries forward into later episodes.
+Your proposed experiment asks that additional question.
+A frozen LM controlling a robot is therefore a useful baseline. The more interesting comparison for you is what happens when selected parts of the system can actually retain experience.
+4. The first world: Physics Detective learns to test the floor
+I would begin with a small wheeled body or planar pusher in MuJoCo. It can move, turn, make contact with an object, push, and stop.
+Give it one simple task:
+Move the object into the target region without overshooting.
+Then make one property uncertain: friction.
+A short push followed by coasting can reveal something about the surface. The agent can discover that taking a small exploratory action improves its later decisions.
+That already contains much of the behavior you are imagining: observation, intervention, surprise, hypothesis revision, and increasingly competent action.
+What it should receive
+For the initial version, I would use:
+* A small RGB observation.
+* Recent action history, including durations.
+* Body feedback such as wheel or joint motion.
+* A short history of observations.
+* A goal, initially a target image or simple target specification.
+The evaluator can inspect simulator state, including friction and object position. The agent should not receive hidden physical parameters directly.
+I would start with friction alone. If you simultaneously vary mass, actuator strength, friction, and delay, several different causes can produce similar observations. You could then mistake an identification problem for a failure to learn.
+What “roaming” means here
+Initially, give it a small, contact-rich world where ordinary exploration produces informative events. A huge empty room is liable to generate a lot of motion and very little useful interaction.
+Later, you can let it select among objects and experiments:
+* Push gently or strongly.
+* Push and release.
+* Approach from another direction.
+* Inspect an object after it disappears behind a barrier.
+* Repeat an action because its previous prediction was wrong.
+The first satisfying behavior to look for is simple:
+It makes a small test movement before committing to a large movement on an unfamiliar surface.
+That is a more interpretable milestone than an agent wandering around while narrating interesting thoughts.
+5. How I would connect the pretrained and new networks
+The initial architecture could look like this:
+This has two learning paths that you can investigate separately.
+The first path: experience improves the world model
+Use the pretrained vision encoder to extract spatial features. Feed those features, body observations, and action history into a small recurrent model or temporal transformer.
+Its job is to predict:
+Given what I currently know and the action I am considering, what observations should follow?
+A simplified training target is:
+\[ \hat z_{t+1} = F_\phi(z_{\leq t},\,p_{\leq t},\,a_{\leq t}) \]
+where:
+* \(z\) represents visual features.
+* \(p\) represents body observations.
+* \(a\) represents actions.
+* \(F_\phi\) is the trainable dynamics model.
+You train its prediction against the features extracted from the next actual observation. You can extend that to several future steps and add prediction targets for observed body motion.
+You do not need to turn every frame into a caption first. The LFM2-VL implementation exposes image features and intermediate hidden states, so the new learner can consume tensors directly. That avoids making a generated description the only information available to the dynamics model. Hugging Face
+I would retain spatial information rather than immediately pooling the whole image into one vector. A robot needs distinctions such as which side of an object it is approaching and where contact occurs.
+There is a useful precedent in DINO-WM: it learns dynamics over pretrained spatial visual features and uses predicted outcomes for planning. Your continual learning extension would be an additional experiment, not something that approach automatically provides. arxiv.org
+Where JEPA fits
+With a fixed pretrained encoder, you can start by learning predictions in its feature space. That provides a comparatively stable target while you debug action conditioning and memory.
+If you want the sensory representation itself to develop through experience, then train the encoder and predictor together. At that point, avoiding representation collapse becomes part of the problem.
+LeWorldModel is particularly relevant: it jointly trains an encoder and an action-conditioned predictor using embedding prediction plus a regularizer intended to prevent collapse. Its reported model is around 15M parameters. Its experiments, however, rely on offline interaction datasets and primarily short-horizon planning; they do not establish a complete lifelong learner. arxiv.org
+That gives you two meaningful branches:
+* Pretrained features plus a plastic dynamics model: how useful are inherited visual priors?
+* A small jointly learned encoder and dynamics model: what can develop from the simulated experience itself?
+Neither branch requires a newly trained general-purpose LM.
+What chooses actions?
+Prediction does not supply a goal or an exploration strategy by itself.
+For the first version, I would use a short-horizon planner: propose several action sequences, predict their outcomes, select a promising one, execute part of it, and observe again.
+Later you can train a smaller action policy from successful behavior. Keep this distinction visible: the world model learns consequences; the planner or policy decides which consequences to pursue.
+6. Your novelty gate is promising—with one important change
+Your suggestion was approximately:
+Familiar situations receive more influence from the pretrained prior; novel situations receive more influence from the newer network.
+I would modify that to:
+Use each component according to demonstrated competence, and use uncertainty to decide when to investigate.
+Novelty does not imply that the new network already knows more.
+Imagine four cases:
+Situation	Reasonable response
+Familiar conditions; stable model predicts well	Use the established model.
+Familiar-looking scene; dynamics suddenly change	Gather evidence and adapt the dynamics model.
+Strange appearance; familiar dynamics	Preserve the useful physical model while resolving perception.
+Both models are uncertain	Choose an informative action and delay strong commitment.
+Also, the thing you gate must be comparable. A language model’s verbal suggestion and a JEPA’s latent prediction are not interchangeable outputs.
+An implementable first experiment would use:
+1. A dynamics model trained during an initial period and then frozen.
+2. A plastic copy or residual predictor.
+3. A gate that compares their recent predictive reliability in similar situations.
+Both models predict in the same representation space. You can then test whether routing between them helps.
+Initially, let the gate change which prediction the planner trusts, while keeping data collection and training rules the same. If it also changes which experiences get trained on, you have changed two mechanisms at once.
+Keep different kinds of learning separate
+Recognizing an object as a cup may remain useful after the floor becomes slippery. The friction estimate needs revision; the object vocabulary may not.
+That is why I would avoid a single global “trust the prior less” knob. Let the system revise the part contradicted by experience.
+For retention, give the plastic learner a mixture of recent and older experience. Then periodically train slower components from that broader mixture. Your slow/fast intuition has a close relative in Progress & Compress, which alternates an actively learning component with consolidation into a stable knowledge base. proceedings.mlr.press
+A smaller learning rate can slow damage, but it also slows adaptation. The useful question is whether replay, context, and selective updates preserve old competence while allowing new learning.
+Finally, distinguish learnable surprise from persistent noise. Raw prediction error can reward an agent for staring at an unpredictable distraction—the established “noisy TV” problem. A curiosity mechanism should be evaluated on whether its investigations produce useful learning, rather than simply high error. arxiv.org
+7. How to make the language model actually learn from its body
+This is the part I would make explicit from the beginning, even if you implement it second.
+If the LM remains frozen while the world model improves, the whole agent has learned, but that does not demonstrate persistent improvement inside the LM.
+There are several ways to send learning into it.
+A. Train LM adapters on future consequences
+Give the LM a direct input path for recent observations and actions. Attach a prediction head to its hidden states and ask it to predict a future visual representation or an observed outcome.
+Then allow the prediction loss to update adapters inside the LM.
+Now the gradient path is:
+Experience → prediction error → LM adapters.
+The original dense weights can remain frozen while the effective language model changes through its adapters. That is a legitimate form of parameter learning, and it gives you an easy way to isolate the changes.
+The important condition is that the loss actually reaches those adapters. Training an independent prediction head while stopping gradients before the LM would not test this hypothesis.
+B. Train on grounded language tasks
+Turn recorded interactions into questions with verifiable answers:
+* Which push moved the object farther?
+* Which surface required earlier braking?
+* What observation would distinguish slipping from weak actuation?
+* Is there enough information to know what happened behind the screen?
+* What should change if the same object is pushed with greater force?
+Some targets can come from measured outcomes and simple programmatic comparisons. If you provide hidden physical labels or generated explanations, record that as additional supervision.
+This distinction matters. Otherwise, you might attribute a gain to exploratory experience when it actually came from receiving excellent explanatory text.
+C. Combine the two
+My preferred second-stage experiment would combine future-outcome prediction with grounded language training, while retaining some ordinary language training data to monitor and reduce degradation.
+The hypothesis would be:
+Predicting consequences helps organize useful representations; grounded language training helps the model express and apply those representations.
+That is a hypothesis worth testing. It is not guaranteed that a better latent predictor will automatically become a better verbal reasoner.
+The decisive evaluation
+After training, compare the adapted LM against its starting checkpoint on held-out questions and predictions.
+For the cleanest comparison:
+* Give both identical fresh observation histories.
+* Clear previous conversation context, retrieval, and episodic memory.
+* Preserve the same working sensory interface.
+* Disable external world-model calls for this particular evaluation.
+* Test new objects, wording, action combinations, and situations.
+There is one subtlety: if training taught the LM to depend on world-model-produced tokens, removing those tokens at evaluation changes its input distribution. Failure would then be ambiguous. Keep a direct observation/history path available throughout training.
+For the first attribution experiment, I would also freeze the sensory projector before adapting the LM. Otherwise, improved performance could partly reside in the projector, and switching LM adapters off could break a jointly adapted interface.
+Improved held-out performance through the same sensory interface, without stored episodes or world-model assistance, would be evidence that the LM absorbed useful experience.
+You can then ask the stronger question: does that help with text-only reasoning about the learned mechanisms, provided the question supplies enough information to identify the situation?
+8. How to test whether embodiment itself helps
+This deserves a careful comparison because it is central to your intuition.
+Compare active experience with recorded experience
+Create two learners:
+* Actor: chooses its experiments and receives their consequences.
+* Observer: receives the actor’s exact recorded observations, actions, body feedback, and learning targets.
+Give them the same training procedure and update budget.
+If they receive the same information and learning computation, being the actor does not add a mysterious extra signal. The observer can learn from those interventions too.
+The possible advantages of active embodiment become more concrete:
+* Selecting an action that resolves the learner’s current uncertainty.
+* Adjusting the next experiment immediately after an unexpected outcome.
+* Moving the camera to see something previously hidden.
+* Collecting experience in situations where the current model performs poorly.
+* Practicing with the action interface that will later be used for control.
+So I would also compare actively selected experience against random or fixed exploration at the same interaction budget.
+These answer different questions:
+Comparison	Question answered
+Active learner vs observer receiving identical trajectories	Does anything beyond the recorded information and training procedure matter?
+Active exploration vs random exploration	Does choosing experiments produce better training data?
+Recorded video with actions vs the same video without actions	How useful is knowing what intervention occurred?
+Learning enabled vs learning disabled	Does persistent parameter updating improve on inference-time adaptation?
+The frozen baseline should still have history, recurrent state, and the ability to replan. Otherwise, an apparent learning benefit might simply be a memory benefit.
+Test learning with interventions
+For a held-out initial scene, reset the simulator and try several different actions. Ask the model to predict the consequences before executing each one.
+This helps distinguish a model that knows “objects tend to continue moving” from one that models the difference between a gentle push, a strong push, and no push.
+Also compare against trivial predictors such as copying the last observation. A low prediction loss in a mostly static world can look impressive while revealing little about action understanding.
+Test persistence and forgetting
+Use a sequence such as:
+1. Learn on a high-friction surface.
+2. Encounter a low-friction surface with similar appearance.
+3. Change appearance while preserving the low-friction dynamics.
+4. Return to the original physical regime.
+5. Test an unseen combination of object shape and dynamics.
+Measure:
+* Task success and overshoot.
+* Interactions required to adapt.
+* Prediction quality over multiple steps.
+* Performance when returning to earlier conditions.
+* Generalization to the unseen combination.
+* Cost of exploratory actions.
+If two physical regimes initially look identical, some diagnostic interaction may be unavoidable. Do not score the agent as forgetful simply because it needs to determine which regime it is currently in.
+9. Procedural worlds are a good fit—if you control what changes
+Yes, I would use procedural generation. MuJoCo supports programmatic model construction and editing, so you can generate variations of the same small world. MuJoCo Documentation
+The important design decision is to separate variation into categories:
+Variation	What it tests
+Colors, textures, lighting	Robustness to appearance changes
+Friction, mass, actuator delay	Adaptation to dynamics
+Occluders and camera positions	Memory and active sensing
+Object arrangement and shape	Spatial and compositional generalization
+New goals using familiar mechanisms	Reuse of learned knowledge
+Do not randomize everything at once at the start. Keep each episode or learning period coherent long enough for the agent to infer something useful.
+Also, split training and evaluation by more than random seed. Hold out combinations or mechanisms deliberately. New seeds from the same narrow generator may test interpolation while looking like broad generalization.
+For existing infrastructure, stable-worldmodel is worth inspecting. Its repository includes data collection, planning solvers, LeWM and DINO-WM-related training examples, and environments with controllable visual and physical variation. I would borrow useful pieces rather than making your Joy Lab depend on adopting its entire framework. GitHub
+The next toy: Object Permanence Olympics
+Once Physics Detective works, your Object Permanence idea becomes a natural second experiment.
+An object moves behind a screen. The agent can reposition its camera or body. Sometimes its history is enough to predict where the object will emerge; sometimes it needs to look.
+This tests a different skill: recognizing that the world may be familiar while the current state is uncertain.
+That distinction will put your novelty gate under useful pressure. It should learn when to update its physical model, when to recall history, and when to obtain another observation.
+10. Where audio and training from scratch belong
+Audio should earn its place in the experiment
+I would add audio when it provides information vision cannot easily supply:
+* A collision happens behind an occluder.
+* A rolling object continues moving out of view.
+* Different materials produce distinguishable contact sounds.
+* A mechanical event is audible before it becomes visible.
+You can synthesize the audio from contact events and physical parameters, then train a small audio encoder alongside the visual system.
+Make sure the sound represents something consistent about the simulated event. A unique tone attached to every hidden object identity might solve the task through an accidental lookup table.
+For this reason, I would initially favor vision, body feedback, and actions over immediately assembling every modality. Once you have a task where sound matters, its contribution becomes measurable.
+Training your own 100–300M LM is a separate scientific choice
+It would give you control over the architecture and training history. But it would also make language acquisition, multimodal alignment, control, exploration, and continual learning simultaneous problems.
+The pretrained head start is substantial: Liquid’s cards report training budgets of 19T tokens for the 230M model and 28T for the 350M model. Matching parameter count does not match that training history. Hugging Face
+I would use scratch training in two narrower ways:
+* A small world learner: learn sensory dynamics from your simulated experience, without requiring general language.
+* A deliberately restricted language experiment: a tiny vocabulary and controlled compositional instructions, if you want to study how symbols become associated with actions and consequences.
+Both can be rewarding Joy Lab projects. Neither needs to imitate the competence of a general pretrained assistant to produce an informative result.
+The build order I would choose
+I would keep this to a sequence of small experiments:
+1. Build one MuJoCo world and a simple body. Verify that the task is solvable and that action, observation, and timing records are correct.
+2. Train a small predictor from recorded interaction. Compare it with a frozen predictor and a trivial persistence baseline.
+3. Let it collect new experience and update with replay. Test adaptation and return to earlier physical regimes.
+4. Add your competence-based gate. Determine whether it helps beyond simply updating the learner.
+5. Train LM adapters from the same experiences. Evaluate whether learning transfers into fresh predictions and grounded language tasks.
+6. Add active sensing or audio as a separate toy. Give the new capability a task that genuinely requires it.
+For the pretrained branch, I would start with LFM2.5-VL-450M, using its visual features frequently and invoking the language component when useful. For the scratch branch, I would explore a small LeWM-style encoder and predictor. Gemma and d1 would be later comparisons with specific purposes.
+The result I would most want to see is this:
+The little agent enters a room, makes a short exploratory push, changes its prediction, completes the task, and later uses that discovery in a new situation—even after its immediate interaction history has been cleared.
+That would give you concrete evidence about learning, retention, and transfer. If its language model can then reason more accurately about those experiences through the controlled evaluation above, you will have tested the central part of your idea: whether living through an action–observation loop can improve what the model itself knows how to do.
+
+
+————
+
+
+Joy Lab II — The Little Minds Project
+World Models · Embodied Intelligence · Continual Learning · Artificial Curiosity · Robotics
+I think this deserves its own collection, separate from the original Joy Lab. Rather than building one enormous experimental AI, I'd create a collection of small creatures, environments, and learning experiments, each investigating a different question about intelligence.
+Some will use pretrained vision-language models. Others will learn entirely from experience. Some will use JEPA-style predictive representations, others reinforcement learning, generative action policies, memory, or combinations of these.
+And occasionally we'll give Claude the controls and discover what happens when a sophisticated language model is put in charge of a robot that barely knows how to walk.
+The central theme: What can an artificial agent learn by having a body, interacting with the world, and retaining what happened?
+I'd organize the collection around five research areas:
+Area	Central question
+World models	Can an agent learn how its environment works?
+Learning to learn	Can experience improve future learning without destroying existing knowledge?
+Embodiment	What does acting in the world teach that passive observation doesn't?
+Action and control	How should predictions, decisions, and motor skills work together?
+Grounded intelligence	Can embodied experience improve a language model's understanding and reasoning?
+The projects should have one important property: you can actually watch the learning happen. A chart may show improvement, but a little robot discovering that the floor is slippery is much more entertaining.
+The methods worth putting in the toolbox
+Before the individual experiments, here's how I'd categorize the approaches. They're not all competitors; some solve different layers of the same problem.
+Approach	What it contributes	Good reference
+JEPA / latent dynamics	Learning representations and predicting how the world changes	LeWorldModel
+Model-based RL	Learning a world model and improving actions through predicted futures	DreamerV3
+Latent-space planning	Choosing actions by simulating candidate trajectories	TD-MPC2
+Actor–critic RL	Learning a policy directly from experience	PPO / SAC
+Imitation learning	Learning to act from demonstrations	ACT
+Diffusion / flow-matching policies	Generating smooth, potentially multimodal action sequences	π₀
+Curiosity and skill discovery	Finding useful experiences and behaviors before specific goals are known	Plan2Explore / DIAYN
+Continual learning	Integrating new knowledge while protecting earlier competence	Progress & Compress
+Three concrete model families are particularly relevant.
+￼
+
+
+
+LeWorldModel — ~15M parameters
+A compact, trainable, action-conditioned JEPA-style world model. Very interesting for learning visual dynamics without pretraining a large language model.
+Best role: learning and predictive planning.
+
+￼
+
+
+
+SmolVLA — 450M parameters
+A pretrained vision-language-action architecture combining SmolVLM2 with a flow-matching action expert. Unlike a general-purpose VLM, it already has a motor-policy learning recipe.
+￼
+huggingface.co
+
+Best role: pretrained robotics-policy baseline and fine-tuning experiments.
+
+￼
+
+
+
+LFM2.5-VL-450M — 450M parameters
+A compact general-purpose vision-language model with image understanding and text generation, but not a pretrained continuous robot-action policy.
+￼
+Hugging Face
+
+Best role: experiments on physical understanding, language grounding, and updating the LM itself.
+One particularly interesting new development relates directly to your mention of action-to-action learning: Action-to-Action Flow Matching (February 2026) initializes action generation from historical actions rather than uninformed Gaussian noise. The even newer Δ-Flow Matching (October 2026) develops a related history-to-future approach. Neither should be confused with continual learning by itself: they improve how actions are generated, not necessarily how the agent accumulates knowledge across its lifetime.
+That gives us plenty of ingredients without needing to force every technique into one neural network.
+00. The Test Chamber — Shared Experimental World
+Before the individual projects, I'd build a small reusable MuJoCo environment. Not a grand platform—just enough shared infrastructure to make comparisons meaningful.
+Home: M5 Max development; M4 Pro batch simulation; Legion Go S interactive control; iPad observation and world editing.
+Build: A procedural room containing a simple mobile robot, movable objects, surfaces with different physical properties, obstacles, sensors, and goals.
+Every experiment should be able to use the same observation, action, and recording interface.
+Shared experimental loop
+MuJoCo world
+Physics · Objects · Camera · Sensors
+Perception
+RGB · Audio · Body state
+Learning
+Dynamics · Memory · RL
+Control
+Policy · Planner · LM
+Actions and consequences
+Executed action · Next observation · Outcome
+Repeat, record, learn, evaluate
+Use existing environments rather than making everything yourself. Gymnasium-Robotics already supplies MuJoCo tasks such as FetchPush, FetchSlide, and FetchPickAndPlace. Meta-World offers a much larger manipulation benchmark.
+￼
+robotics.farama.org
++1
+
+Keep simulator ground truth separate from what the agent observes. Record seeds, executed actions, timestamps, checkpoints, and training state, so experiments can be replayed and fairly compared.
+This shared environment becomes the playground for the following projects.
+
+Part A — Learning how the world works
+01. Little Newton — The Baby Physics Laboratory
+Scope: Expandable Home: M5 Max prototype; M4 Pro overnight world-model training; Legion observation
+Build: Give a little wheeled robot a body and a room filled with objects. Let it push, collide, coast, and investigate objects with different masses and friction.
+Tinker with: JEPA, LeWorldModel, frozen SigLIP/DINO representations, trainable visual encoders, action-conditioned transformers, and latent-space MPC. Compare against a compact MLP trained using privileged simulator state.
+First satisfying version: The robot discovers that the same push produces different results on carpet and ice, and begins testing the surface before committing to an action.
+Go deeper: Add different materials, deformable objects, uncertainty estimation, and prediction across multiple future steps. Eventually compare pretrained features with visual representations learned entirely from interaction.
+Measure: Prediction accuracy, physical-property identification, held-out dynamics generalization, and task success using learned predictions.
+Research foundation: LeWorldModel and V-JEPA 2.
+￼
+GitHub
++1
+
+
+02. Two Brains, One Wheel — Instincts Versus Experience
+Scope: Deep Home: M5 Max experiments; M4 Pro continual-learning runs
+Build: Give an agent a stable pretrained dynamics network and a smaller plastic network. Both predict consequences, but the newer network adapts to recently encountered conditions.
+Tinker with: Frozen priors, residual adapters, online SGD, predictive uncertainty, ensemble disagreement, mixture-of-experts routing, and learned confidence gating.
+First satisfying version: A robot familiar with normal floors encounters slippery terrain. It initially relies on its old model, tests the surface, and learns when its new model is more reliable.
+Go deeper: Introduce several changing environments. Compare always trusting the prior, always trusting the plastic model, and choosing according to calibrated predictive reliability.
+Measure: Adaptation sample efficiency, prediction calibration, task success, inappropriate model switching, and performance when old conditions return.
+A particularly useful reference here is Rapid Motor Adaptation (RMA). It uses a base control policy and an adaptation module to handle changing conditions. Its fast adaptation mechanism does not require updating the base policy's weights at deployment, making it a useful comparison against your proposed online learning.
+￼
+arxiv.org
+
+
+03. The Sleeping Robot — Learning While Dreaming
+Scope: Deep Home: M4 Pro sustained runs; M5 Max evaluation
+Build: The robot learns during its simulated day. At intervals, it stops interacting and consolidates recent experience with older memories.
+Tinker with: Experience replay, reservoir sampling, EWC, knowledge distillation, fast/slow networks, adapter merging, and Progress & Compress.
+First satisfying version: It learns to navigate an unfamiliar environment, then retains that knowledge while learning a second environment.
+Go deeper: Compare consolidation every episode, every fixed number of updates, and only when prediction errors or interference exceed a threshold. Experiment with selective forgetting of obsolete behavior.
+Measure: Backward transfer, catastrophic forgetting, adaptation speed, performance after consolidation, and plasticity after many learning cycles.
+Research foundation: Progress & Compress.
+￼
+proceedings.mlr.press
+
+This project isolates a question from your original idea: can the agent update itself repeatedly without gradually destroying its foundations?
+
+04. Curiosity Killed the Robot — The Exploration Laboratory
+Scope: Expandable Home: M4 Pro colony-style runs; Legion playable world
+Build: Release a creature into a world with no task reward initially. It can inspect objects, open passages, trigger mechanisms, and manipulate its environment.
+Give different agents different reasons to explore.
+Tinker with: Random exploration, Random Network Distillation, information gain, learning-progress rewards, disagreement ensembles, Plan2Explore, and intrinsic motivation.
+First satisfying version: A creature investigates an unfamiliar mechanical switch, discovers that it opens a door, and later uses that knowledge when a goal appears.
+Go deeper: Introduce a noisy television or another unpredictable object. Determine whether the curiosity mechanisms pursue useful discoveries or become fixated on meaningless randomness.
+Measure: Distinct states explored, learning progress, downstream task success, wasted actions, and transfer to previously unknown goals.
+Research foundation: Plan2Explore.
+￼
+proceedings.mlr.press
+
+I particularly like this one because you might get fascinatingly stupid behavior before you get anything intelligent.
+
+Part B — Learning to act
+05. Dream Before You Leap — World Model Versus Reinforcement Learning
+Scope: Deep Home: M5 Max experimentation; M4 Pro training
+Build: Put multiple agents into the same obstacle course. One learns a direct policy; another learns a world model and plans; another improves its policy using trajectories generated inside its learned world model.
+Tinker with: PPO, SAC, DreamerV3, TD-MPC2, trajectory optimization, short-horizon MPC, and imagined-rollout policy learning.
+First satisfying version: Three agents solve the same course using distinctly different learning strategies, with their prediction and decision processes visible.
+Go deeper: Change the physics or introduce unfamiliar obstacles. See whether the model-based agents can adapt more efficiently, and whether inaccurate imagined trajectories lead them astray.
+Measure: Success rate, environment steps, training wall-clock time, model error, planning latency, and robustness after distribution shifts.
+Research foundation: DreamerV3 and TD-MPC2.
+￼
+Nature
++1
+
+A neat extension would be to watch the imagined future alongside the real trajectory. You could literally see when the agent's expectations diverge from reality.
+
+06. Action Chunk Fight Club — The Policy Architecture Tournament
+Scope: Expandable Home: M5 Max training; Legion Go S teleoperation
+Build: Create a manipulation course with objects to push, position, and stack. Use your Legion's controls to collect demonstrations, then train several policies using the same recordings.
+Tinker with: Direct MLP/GRU action prediction, behavioral cloning, ACT, Diffusion Policy, flow matching, and Action-to-Action Flow Matching.
+First satisfying version: Three policies learn to move an object into a target location from your demonstrations, with noticeably different motion smoothness and recovery behavior.
+Go deeper: Compare autoregressive single actions with generated action chunks. Use historical actions as a starting point for new flow-matched trajectories. Test asynchronous chunk generation against synchronous execution.
+Measure: Manipulation success, action jerk, inference latency, error recovery, demonstration requirements, and latency-induced failures.
+Research foundation: Action-to-Action Flow Matching and SmolVLA.
+￼
+arxiv.org
++1
+
+This one has a wonderful advantage: it doesn't require a sophisticated general intelligence to produce useful results. You're comparing motor-learning architectures on their own terms.
+
+07. The Skill Garden — Skills Without Instructions
+Scope: Expandable Home: M4 Pro autonomous runs; M5 Max interactive evaluation
+Build: Place an articulated creature in an environment without a conventional task reward. Give it a mechanism that encourages discovering distinguishable behaviors.
+Tinker with: DIAYN, unsupervised skill discovery, hierarchical RL, latent-conditioned policies, option learning, and skill composition.
+First satisfying version: Several latent skill codes produce visibly different repeatable behaviors—turning, hopping, circling, pushing, or balancing.
+Go deeper: Ask a planner or language model to accomplish a new goal by selecting and combining already learned skills. Compare against a policy trained from scratch specifically for the goal.
+Measure: Behavioral diversity, repeatability, transfer to new goals, skill composition success, and reduction in downstream training data.
+Research foundation: Diversity Is All You Need (DIAYN).
+￼
+arxiv.org
+
+I would eventually love to see a small creature develop a genuinely useful maneuver nobody explicitly demonstrated.
+
+08. Peekaboo Physics — Active Perception and Sensor Fusion
+Scope: Expandable Home: M5 Max; iPad visualization
+Build: Give a robot a movable camera and a world containing occluded objects. Later add audio generated by collisions and movement.
+Tinker with: Temporal JEPA, recurrent belief states, object-centric representations, visual tracking, audiovisual correspondence, and active information gathering.
+First satisfying version: A ball rolls behind a wall. The robot maintains a plausible belief about its location and moves its camera when additional information is needed.
+Go deeper: Make objects collide behind obstacles. Compare vision-only, audio-only, and combined perception. Have the agent choose an observation action specifically to resolve ambiguity.
+Measure: Object-location prediction, belief calibration, tracking through occlusion, observations needed to resolve uncertainty, and goal completion.
+This is where “having a body” becomes important beyond motor control. The agent's movements change what it can know.
+
+09. The Body Shop — One Mind, Several Bodies
+Scope: Deep Home: M5 Max prototypes; M4 Pro parallel experiments
+Build: Start with multiple versions of a small mobile robot: different wheelbases, masses, actuator strengths, and sensor layouts. Eventually introduce a legged body or manipulator.
+Tinker with: Body-conditioned policies, proprioceptive encoders, motor adapters, system identification, morphology embeddings, and cross-embodiment transfer.
+First satisfying version: A controller trained on one wheeled body adapts to another with different turning dynamics using a short history of interaction.
+Go deeper: Transfer a higher-level learned skill such as reaching a target to a substantially different embodiment, while learning an appropriate embodiment-specific action interface.
+Measure: Adaptation time, zero-shot performance, retained task competence, control error, and number of demonstrations needed for a new body.
+This distinguishes what the agent knows about the world from what it knows about the body it currently occupies.
+
+Part C — Does embodiment make a language model more knowledgeable?
+10. The Grounded Parrot — Embodied Language Learning
+Scope: Research-heavy Home: M5 Max training; M4 Pro controlled evaluations
+Build: Start with LFM2.5-VL-450M and a world that can generate physical experiments. Let the agent interact, observe outcomes, and accumulate recordings.
+Compare three systems: a frozen VLM, a frozen VLM using retrieved experiences, and a VLM whose adapters are updated from experience.
+Tinker with: Grounded language supervision, future-latent prediction, multimodal LoRA, action-conditioned reasoning, causal prediction, replay, and representation transfer.
+First satisfying version: After training, the adapted model more accurately predicts what happens when an object is pushed across an unfamiliar surface, using fresh observations rather than memorized conversation history.
+Go deeper: Investigate whether improvements transfer from visual action prediction into text-only questions about the same physical principles. Compare active exploration data with an equal amount of passively supplied experience.
+Measure: Held-out physical reasoning, counterfactual accuracy, language competence retention, causal generalization, and improvement attributable specifically to LM parameter updates.
+This is the project that most directly addresses your larger hypothesis.
+It could produce a negative result—perhaps the separate world model improves considerably while the LM gains little. That would still tell you something important about where experience should be represented.
+
+11. Claude, Take the Wheel — The API Wildcard
+Scope: Compact initially; expandable Home: M5 Max simulation; Legion spectator and manual override
+Build: Give Claude access to a MuJoCo robot through a restricted set of actions, plus visual observations and available body-state information.
+Compare it with a local VLM using the same interface, a small learned policy, and a scripted baseline.
+Tinker with: Vision-language planning, action abstraction, tool-use policies, programmatic action schemas, memory, hierarchical control, and policy distillation.
+First satisfying version: Claude navigates a simple room, discovers an object, and manipulates it toward a goal using nothing except the available observations and actions.
+Go deeper: Let the model generate demonstrations, then train a small local policy from successful and failed trajectories. Try different control abstractions—single action, short trajectory, or named learned skill.
+Measure: Completion rate, simulator actions used, number of model calls, latency, token/API cost, replanning frequency, and distilled-policy performance.
+I would give Claude high-level control rather than raw motor control initially.
+For example, it can request that the robot approach an object, rotate, inspect, or attempt a push. The motor controller carries out the action, then reports what happened.
+Later, compare that against letting the model issue low-level commands. Keep the information budget and action affordances comparable to avoid mistaking a better interface for a better model.
+A fun experiment would be to disable the original Claude controller after collecting demonstrations and see whether its small local apprentice can finish the task.
+
+Part D — Worlds that keep changing
+12. The Infinite Dollhouse — Procedural Intelligence Testing
+Scope: Highly expandable Home: M5 Max world generation; M4 Pro batches; iPad world editor
+Build: A procedural world generator that varies room structure, materials, obstacles, objects, physical properties, and goals.
+Each generated world should be replayable from its complete initial configuration.
+Tinker with: Procedural curricula, domain randomization, out-of-distribution testing, adversarial environment generation, task sequencing, and controlled counterfactuals.
+First satisfying version: Generate ten visually distinct rooms using the same physical rules. Then introduce an eleventh room with an unseen combination of physical properties and geometry.
+Go deeper: Generate worlds that target known weaknesses of a particular agent. Allow a separate environment-design agent to search for difficult but solvable conditions.
+Measure: Generalization across worlds, learning curves under curriculum changes, coverage of environment configurations, and transfer to unseen combinations.
+I would also make forking a world a central feature.
+Pause immediately before an action, copy the entire simulator state, then run different interventions from precisely the same starting conditions. That gives you a useful experimental mechanism for testing counterfactual predictions.
+This one is as much a tool for the other eleven projects as it is an independent Joy Lab toy.
+
+How I would prioritize them
+There is a natural dependency structure. The projects do not need to be completed in order, but some create reusable pieces for others.
+The first experiments to build
+My suggested order
+01
+Little Newton
+Establish learned perception and dynamics
+Foundation
+02
+Two Brains, One Wheel
+Test stable priors against online adaptation
+Learning
+06
+Action Chunk Fight Club
+Compare different ways to generate movements
+Control
+10
+The Grounded Parrot
+Test whether physical experience improves the LM
+Core hypothesis
+11
+Claude, Take the Wheel
+Bring in an external LM as pilot and teacher
+Wildcard
+The others become valuable branches as you find interesting results. For example, if online adaptation works but retention deteriorates, build The Sleeping Robot. If the dynamics learner works but the agent explores badly, build Curiosity Killed the Robot.
+A few experimental rules I'd keep across the collection
+Compare like with like. When testing policies, give them the same demonstrations where possible. When testing exploration, use the same interaction budget. When testing pretrained versus scratch representations, record the total training data and compute used.
+Separate learning from retrieval. An agent remembering that a floor is slippery is not the same as one developing a general model of friction. Both are valuable, but evaluate them independently.
+Separate policy improvement from world-model improvement. An action-conditioned world model might make excellent predictions and still be used by a poor planner. Likewise, a successful policy does not necessarily contain an accurate, inspectable model of the environment.
+Let the simulator know more than the learner. Hidden physical properties and future outcomes can provide evaluation labels, but should not silently leak into observations or training targets when the experiment is meant to study discovery.
+Keep a tiny baseline. A small MLP, GRU, or classical estimator may perform much better than expected. If a 450M VLM cannot outperform a simple state estimator on a friction-identification task, that is a useful result, not a reason to make the VLM bigger.
+Where your hardware fits
+Machine	Best use in Joy Lab II
+M5 Max, 128 GB	Experiment development, VLM inference, adapter training, visual world models, action-policy training
+M4 Pro, 64 GB	Overnight rollout collection, repeated seeds, smaller model training, continual-learning experiments
+Legion Go S	Teleoperation, demonstrations, policy tournaments, live evaluation, handheld experiment arcade
+iPad	Environment editing, inspection of agent predictions, manual interventions, watching colonies and creatures
+I would start with native MuJoCo Python on macOS and validate individual training backends. MJX-JAX is documented for accelerator platforms including Apple Silicon, but actual backend support and performance still warrant testing on your particular setup.
+￼
+GitHub
+
+And I would avoid tying the first implementation to a single model-serving engine. Your strength in kernels and inference performance can come into play after the learning experiments expose a worthwhile bottleneck.
+
+One larger question tying all twelve together
+There are two competing possibilities worth keeping open.
+Hypothesis A: General pretrained representations are an enormous advantage. Most useful new knowledge can live in small, continually updated world models, memories, and policies attached to them.
+Hypothesis B: If you want an agent's understanding to improve substantially through embodiment, some of that learning must eventually alter deeper representations in the pretrained network.
+Both could be true under different conditions.
+Your Joy Lab II could directly investigate when a separate learner is sufficient, and when modifying the foundation actually helps.
+I would resist building a complete “baby intelligence” architecture immediately. I'd begin with a little creature, one simple body, and a world where you can tell precisely when it has learned something. Then gradually give it more ways to sense, act, remember, plan, and update itself.
+And perhaps eventually one of these absurd little digital animals figures something out that none of its developers explicitly taught it.
+That would make for a pretty wonderful Joy Lab experiment.

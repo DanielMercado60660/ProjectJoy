@@ -1,0 +1,104 @@
+{
+  "numpy_only": true,
+  "mlx_executed": false,
+  "records": [
+    {
+      "command": [
+        "-m",
+        "pytest",
+        "-q",
+        "test_r5_numpy.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.9758905409835279
+    },
+    {
+      "command": [
+        "r5_tune.py",
+        "--out",
+        "results/r5/numpy_validation_20261024_101819/tuning.json",
+        "--tiny",
+        "--screen-n",
+        "2",
+        "--confirm-n",
+        "2",
+        "--particles",
+        "32",
+        "--max-minutes",
+        ".5"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5091406669816934
+    },
+    {
+      "command": [
+        "r5_evaluate.py",
+        "--tuning",
+        "results/r5/numpy_validation_20261024_101819/tuning.json",
+        "--thresholds",
+        "results/r5/numpy_validation_20261024_101819/thresholds.json",
+        "--calibrate",
+        "--n",
+        "2",
+        "--max-minutes",
+        ".5"
+      ],
+      "exit_code": 0,
+      "seconds": 0.44640291697578505
+    },
+    {
+      "command": [
+        "r5_evaluate.py",
+        "--tuning",
+        "results/r5/numpy_validation_20261024_101819/tuning.json",
+        "--thresholds",
+        "results/r5/numpy_validation_20261024_101819/thresholds.json",
+        "--split",
+        "smoke_fresh",
+        "--n",
+        "2",
+        "--out",
+        "results/r5/numpy_validation_20261024_101819/smoke_fresh.json",
+        "--max-minutes",
+        ".5"
+      ],
+      "exit_code": 0,
+      "seconds": 0.6017404589802027
+    },
+    {
+      "command": [
+        "r5_evaluate.py",
+        "--tuning",
+        "results/r5/numpy_validation_20261024_101819/tuning.json",
+        "--thresholds",
+        "results/r5/numpy_validation_20261024_101819/thresholds.json",
+        "--split",
+        "hard_test",
+        "--n",
+        "2",
+        "--out",
+        "results/r5/numpy_validation_20261024_101819/legacy.json",
+        "--max-minutes",
+        ".5"
+      ],
+      "exit_code": 0,
+      "seconds": 0.6221539170364849
+    },
+    {
+      "command": [
+        "r5_demo.py",
+        "--evaluation",
+        "results/r5/numpy_validation_20261024_101819/smoke_fresh.json",
+        "--out",
+        "media/r5_numpy_validation_20261024_101819",
+        "--max-minutes",
+        ".25"
+      ],
+      "exit_code": 0,
+      "seconds": 0.376937958993949
+    }
+  ],
+  "ast_files": 11,
+  "elapsed_seconds": 3.543849457986653,
+  "log": "logs/r5/numpy_validation_20261024_101819.log"
+}

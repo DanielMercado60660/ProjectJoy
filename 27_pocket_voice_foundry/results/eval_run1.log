@@ -1,0 +1,28 @@
+[gpu_run] acquired gpu1: ../.venv/bin/python eval.py --n 100
+1/100 1s
+11/100 10s
+21/100 19s
+31/100 28s
+41/100 38s
+51/100 46s
+61/100 58s
+71/100 69s
+81/100 78s
+91/100 90s
+gt/mel           CER   7.0%  WER  30.5%  
+gt/neural        CER   7.1%  WER  31.2%  L1 0.143  MCD 0.63 dB
+gt/gl            CER   6.8%  WER  30.8%  L1 0.101  MCD 0.75 dB
+tts/mel          CER   6.3%  WER  25.9%  L1 0.723  MCD 4.36 dB
+tts/neural       CER   6.8%  WER  28.7%  L1 0.827  MCD 4.57 dB
+tts/gl           CER   6.4%  WER  26.6%  L1 0.729  MCD 4.39 dB
+baseline/mel     CER  16.8%  WER  51.5%  L1 0.839  MCD 5.05 dB
+baseline/neural  CER  18.4%  WER  51.5%  L1 0.983  MCD 5.10 dB
+baseline/gl      CER  17.1%  WER  51.3%  L1 0.837  MCD 5.03 dB
+tts {'len_ratio_geomean': 0.9741349607642565, 'abs_log_len_ratio_mean': 0.05941485753509844, 'abs_len_err_pct_mean': 5.768830225412839, 'char_dur_mae_frames': 1.7019519283150635, 'char_dur_mae_ms': 27.231230853041016, 'char_dur_corr_mean': 0.5372551851573827}
+baseline {'len_ratio_geomean': 0.9479795151128931, 'abs_log_len_ratio_mean': 0.07001863649164043, 'abs_len_err_pct_mean': 6.70510482220354, 'char_dur_mae_frames': 2.6996878592713163, 'char_dur_mae_ms': 43.19500574834106, 'char_dur_corr_mean': 0.060810986357332474}
+probe {'gt_time_smoothed_sigma1_frames/mel': 0.08511500658628027, 'gt_time_smoothed_sigma2_frames/mel': 0.24480697132434898, 'gt_time_smoothed_sigma3_frames/mel': 0.4759347451616172} gv {'tts': 0.9053560495376587, 'baseline': 0.7397847771644592}
+paired vs gt {'gt/neural': 0.0015, 'gt/gl': -0.0009, 'tts/mel': -0.0043, 'tts/neural': 0.002, 'tts/gl': -0.0028, 'baseline/mel': 0.1013, 'baseline/neural': 0.1139, 'baseline/gl': 0.1025}
+hard tts/mel {'hard_word_failures': 17, 'hard_words': 53, 'sentence_cer_mean': 0.17050894181776596}
+hard tts/neural {'hard_word_failures': 17, 'hard_words': 53, 'sentence_cer_mean': 0.16621174683725298}
+hard baseline/mel {'hard_word_failures': 20, 'hard_words': 53, 'sentence_cer_mean': 0.26626846449824126}
+hard baseline/neural {'hard_word_failures': 20, 'hard_words': 53, 'sentence_cer_mean': 0.26719712979478627}

@@ -1,0 +1,3668 @@
+{
+  "status": "complete",
+  "config": {
+    "mode": "turn2_evaluate",
+    "seed": 8202612,
+    "worlds": 128,
+    "source_sha256": "0824de49868daea18b0bcd5053716b684b3dc838f340ad1b4504a34f2c328e5b",
+    "original_source_sha256": "bf4c40b1b997ef173b9b67c2158c475790212369f3fad68623a4a0c62b4d2981",
+    "planner": {
+      "grid_size": 6001,
+      "particles": 64,
+      "fantasies": 16,
+      "design_stride": 1
+    },
+    "gain_grid": {
+      "mu_size": 2401,
+      "gain_size": 641
+    },
+    "baseline_tuning": {
+      "lsq": {
+        "protocol": "adaptive_10_65",
+        "offset": 0.0
+      },
+      "tobit": {
+        "protocol": "adaptive_10_90",
+        "offset": 0.0
+      }
+    },
+    "baseline_tuning_sha256": "2d0322346cdedd5b2e9da5cee9dfd3f00de7560deb5a2a36c8d4a0a68a393a94",
+    "output": "/Users/danielmercado/ProjectJoy/11_physics_detective/results/r5/turn2_main_summary.json",
+    "owners": [
+      "eig",
+      "lsq"
+    ],
+    "half_widths": [
+      0.15,
+      0.25
+    ],
+    "resolution_check": false,
+    "selected": {
+      "gain_bayes": {
+        "owner": "eig",
+        "half_width": 0.15
+      },
+      "gain_mle": {
+        "owner": "eig",
+        "half_width": 0.15
+      }
+    },
+    "tuning_sha256": "1722dae22d815554fb740ebb32e1c4325d53110b43a4b0693b0a3baec11b9135"
+  },
+  "elapsed_seconds": 1104.8401594999596,
+  "groups": [
+    {
+      "family": "gain_shift",
+      "method": "blind",
+      "budget": 0,
+      "n": 128,
+      "successes": 2,
+      "success_rate": 0.015625,
+      "success_wilson95": [
+        0.004295449710144079,
+        0.055180976679817195
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.015625,
+      "placement_mae_cm": 185.20702764664335,
+      "placement_p90_cm": 506.6030714774241,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008309,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "posterior_mean_width90": 0.6749999999999657,
+      "posterior_mu_rmse": 0.21775324920273229,
+      "posterior_mu_bias": 0.011400722786008309,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0005772540681943416,
+      "success_brier": 0.017266141869305602,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.0
+    },
+    {
+      "family": "gain_shift",
+      "method": "eig",
+      "budget": 0,
+      "n": 128,
+      "successes": 2,
+      "success_rate": 0.015625,
+      "success_wilson95": [
+        0.004295449710144079,
+        0.055180976679817195
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.015625,
+      "placement_mae_cm": 185.20702764664335,
+      "placement_p90_cm": 506.6030714774241,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008309,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "posterior_mean_width90": 0.6749999999999657,
+      "posterior_mu_rmse": 0.21775324920273229,
+      "posterior_mu_bias": 0.011400722786008309,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0005772540681943416,
+      "success_brier": 0.017266141869305602,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.0
+    },
+    {
+      "family": "gain_shift",
+      "method": "eig",
+      "budget": 1,
+      "n": 128,
+      "successes": 71,
+      "success_rate": 0.5546875,
+      "success_wilson95": [
+        0.4682433949005831,
+        0.637944750507002
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.27734375,
+      "placement_mae_cm": 5.375593962870264,
+      "placement_p90_cm": 13.099496962170132,
+      "mu_rmse": 0.06085501544874071,
+      "mu_bias": 0.0013432046311481973,
+      "mean_selection_seconds": 0.07762983917700694,
+      "posterior_coverage50": 0.0390625,
+      "posterior_coverage50_wilson95": [
+        0.016798610797803697,
+        0.08818702076683688
+      ],
+      "posterior_coverage90": 0.1171875,
+      "posterior_coverage90_wilson95": [
+        0.07231682349355734,
+        0.18436615865334754
+      ],
+      "posterior_mean_width90": 0.05562236257230687,
+      "posterior_mu_rmse": 0.06085501544874071,
+      "posterior_mu_bias": 0.0013432046311481973,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.02675530696399882,
+      "success_brier": 0.13905295534265844,
+      "confident_failure_joint_rate": 0.03125,
+      "confidence90_fraction": 0.2578125
+    },
+    {
+      "family": "gain_shift",
+      "method": "eig",
+      "budget": 2,
+      "n": 128,
+      "successes": 68,
+      "success_rate": 0.53125,
+      "success_wilson95": [
+        0.44515370795994524,
+        0.6155252322729605
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.17708333333333334,
+      "placement_mae_cm": 2.9912099416310496,
+      "placement_p90_cm": 5.244170044575261,
+      "mu_rmse": 0.05002618160810691,
+      "mu_bias": 0.00362143161407547,
+      "mean_selection_seconds": 0.1539645081229537,
+      "posterior_coverage50": 0.0078125,
+      "posterior_coverage50_wilson95": [
+        0.0013804318928742412,
+        0.04292625943886061
+      ],
+      "posterior_coverage90": 0.0234375,
+      "posterior_coverage90_wilson95": [
+        0.008002416396755477,
+        0.06664374505143224
+      ],
+      "posterior_mean_width90": 0.012126705976572621,
+      "posterior_mu_rmse": 0.05002618160810691,
+      "posterior_mu_bias": 0.00362143161407547,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.3730790181639445,
+      "success_brier": 0.4361041775162545,
+      "confident_failure_joint_rate": 0.40625,
+      "confidence90_fraction": 0.875
+    },
+    {
+      "family": "gain_shift",
+      "method": "eig",
+      "budget": 4,
+      "n": 128,
+      "successes": 59,
+      "success_rate": 0.4609375,
+      "success_wilson95": [
+        0.3769811559809195,
+        0.5471701687279483
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.0921875,
+      "placement_mae_cm": 3.0686406211136186,
+      "placement_p90_cm": 5.091296996118019,
+      "mu_rmse": 0.049819739088189936,
+      "mu_bias": 0.0028698850060514727,
+      "mean_selection_seconds": 0.3064153424111282,
+      "posterior_coverage50": 0.0,
+      "posterior_coverage50_wilson95": [
+        0.0,
+        0.029136956273508416
+      ],
+      "posterior_coverage90": 0.0,
+      "posterior_coverage90_wilson95": [
+        0.0,
+        0.029136956273508416
+      ],
+      "posterior_mean_width90": 0.005510884592851957,
+      "posterior_mu_rmse": 0.049819739088189936,
+      "posterior_mu_bias": 0.0028698850060514727,
+      "posterior_underresolved_fraction": 0.0234375,
+      "max_grid_step_over_sd": 1.267669185492673,
+      "success_brier": 0.5364653144441309,
+      "confident_failure_joint_rate": 0.53125,
+      "confidence90_fraction": 0.9921875
+    },
+    {
+      "family": "gain_shift",
+      "method": "lsq",
+      "budget": 0,
+      "n": 128,
+      "successes": 8,
+      "success_rate": 0.0625,
+      "success_wilson95": [
+        0.03200692569506118,
+        0.11848791104425867
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.0625,
+      "placement_mae_cm": 92.42668514957795,
+      "placement_p90_cm": 264.6022223038453,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008254,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "posterior_mean_width90": 0.6749999999999657,
+      "posterior_mu_rmse": 0.21775324920273229,
+      "posterior_mu_bias": 0.011400722786008309,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0005772540681943416,
+      "success_brier": 0.05908900853388,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.0
+    },
+    {
+      "family": "gain_shift",
+      "method": "lsq",
+      "budget": 1,
+      "n": 128,
+      "successes": 41,
+      "success_rate": 0.3203125,
+      "success_wilson95": [
+        0.2457302061060092,
+        0.4053658875547829
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.16015625,
+      "placement_mae_cm": 14.035693998747432,
+      "placement_p90_cm": 35.6254117174373,
+      "mu_rmse": 0.07658360187148393,
+      "mu_bias": 0.010217326268761154,
+      "mean_selection_seconds": 0.00011903353060915833,
+      "posterior_coverage50": 0.03125,
+      "posterior_coverage50_wilson95": [
+        0.01221826524505338,
+        0.07759763126136077
+      ],
+      "posterior_coverage90": 0.1484375,
+      "posterior_coverage90_wilson95": [
+        0.09713463115350009,
+        0.22022729122631057
+      ],
+      "posterior_mean_width90": 0.06126952058569066,
+      "posterior_mu_rmse": 0.0694358368351687,
+      "posterior_mu_bias": 0.0015025555012053654,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.02347339719797831,
+      "success_brier": 0.13103747429759963,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.046875
+    },
+    {
+      "family": "gain_shift",
+      "method": "lsq",
+      "budget": 2,
+      "n": 128,
+      "successes": 69,
+      "success_rate": 0.5390625,
+      "success_wilson95": [
+        0.45282983127205173,
+        0.6230188440190805
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.1796875,
+      "placement_mae_cm": 5.979065129700159,
+      "placement_p90_cm": 13.27957459093235,
+      "mu_rmse": 0.06082849666124767,
+      "mu_bias": 0.005790329726518194,
+      "mean_selection_seconds": 0.00021049284578111838,
+      "posterior_coverage50": 0.0,
+      "posterior_coverage50_wilson95": [
+        0.0,
+        0.029136956273508416
+      ],
+      "posterior_coverage90": 0.0234375,
+      "posterior_coverage90_wilson95": [
+        0.008002416396755477,
+        0.06664374505143224
+      ],
+      "posterior_mean_width90": 0.0202765278510312,
+      "posterior_mu_rmse": 0.05933023267522989,
+      "posterior_mu_bias": 0.0034595579535180937,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.2561058821506436,
+      "success_brier": 0.22675771554799828,
+      "confident_failure_joint_rate": 0.078125,
+      "confidence90_fraction": 0.390625
+    },
+    {
+      "family": "gain_shift",
+      "method": "lsq",
+      "budget": 4,
+      "n": 128,
+      "successes": 76,
+      "success_rate": 0.59375,
+      "success_wilson95": [
+        0.5071398426419342,
+        0.6748969780567828
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.11875,
+      "placement_mae_cm": 4.2108224210601115,
+      "placement_p90_cm": 9.701966615420195,
+      "mu_rmse": 0.059067504663959776,
+      "mu_bias": 0.004073818936649836,
+      "mean_selection_seconds": 0.0004391042330098571,
+      "posterior_coverage50": 0.0,
+      "posterior_coverage50_wilson95": [
+        0.0,
+        0.029136956273508416
+      ],
+      "posterior_coverage90": 0.0,
+      "posterior_coverage90_wilson95": [
+        0.0,
+        0.029136956273508416
+      ],
+      "posterior_mean_width90": 0.01188017826805737,
+      "posterior_mu_rmse": 0.058671897263892506,
+      "posterior_mu_bias": 0.0027183055561050802,
+      "posterior_underresolved_fraction": 0.015625,
+      "max_grid_step_over_sd": 0.7174238784309589,
+      "success_brier": 0.2533454441041195,
+      "confident_failure_joint_rate": 0.140625,
+      "confidence90_fraction": 0.6328125
+    },
+    {
+      "family": "gain_shift",
+      "method": "mu_oracle",
+      "budget": 0,
+      "n": 128,
+      "successes": 0,
+      "success_rate": 0.0,
+      "success_wilson95": [
+        0.0,
+        0.029136956273508416
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.0,
+      "placement_mae_cm": 17.12676786298544,
+      "placement_p90_cm": 27.98464458056291,
+      "mu_rmse": 0.0,
+      "mu_bias": 0.0,
+      "mean_selection_seconds": 0.0
+    },
+    {
+      "family": "gain_shift",
+      "method": "task_voi",
+      "budget": 0,
+      "n": 128,
+      "successes": 2,
+      "success_rate": 0.015625,
+      "success_wilson95": [
+        0.004295449710144079,
+        0.055180976679817195
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.015625,
+      "placement_mae_cm": 185.20702764664335,
+      "placement_p90_cm": 506.6030714774241,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008309,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "posterior_mean_width90": 0.6749999999999657,
+      "posterior_mu_rmse": 0.21775324920273229,
+      "posterior_mu_bias": 0.011400722786008309,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0005772540681943416,
+      "success_brier": 0.017266141869305602,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.0
+    },
+    {
+      "family": "gain_shift",
+      "method": "task_voi",
+      "budget": 1,
+      "n": 128,
+      "successes": 67,
+      "success_rate": 0.5234375,
+      "success_wilson95": [
+        0.43749793124049374,
+        0.6080112739341855
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.26171875,
+      "placement_mae_cm": 7.065208996954637,
+      "placement_p90_cm": 18.864936843481736,
+      "mu_rmse": 0.0678086953411474,
+      "mu_bias": 0.0007603264932379179,
+      "mean_selection_seconds": 0.07717115751074743,
+      "posterior_coverage50": 0.0234375,
+      "posterior_coverage50_wilson95": [
+        0.008002416396755477,
+        0.06664374505143224
+      ],
+      "posterior_coverage90": 0.140625,
+      "posterior_coverage90_wilson95": [
+        0.09083969494262253,
+        0.21135249237896167
+      ],
+      "posterior_mean_width90": 0.06209179836071965,
+      "posterior_mu_rmse": 0.0678086953411474,
+      "posterior_mu_bias": 0.0007603264932379179,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.02675530696399882,
+      "success_brier": 0.14617510182011384,
+      "confident_failure_joint_rate": 0.0390625,
+      "confidence90_fraction": 0.265625
+    },
+    {
+      "family": "gain_shift",
+      "method": "task_voi",
+      "budget": 2,
+      "n": 128,
+      "successes": 74,
+      "success_rate": 0.578125,
+      "success_wilson95": [
+        0.4915184739711009,
+        0.6601788766111635
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.19270833333333334,
+      "placement_mae_cm": 2.8532122350674394,
+      "placement_p90_cm": 5.4686503289073745,
+      "mu_rmse": 0.05313278676342905,
+      "mu_bias": 0.0037122552035412926,
+      "mean_selection_seconds": 0.15424438369336713,
+      "posterior_coverage50": 0.015625,
+      "posterior_coverage50_wilson95": [
+        0.004295449710144079,
+        0.055180976679817195
+      ],
+      "posterior_coverage90": 0.046875,
+      "posterior_coverage90_wilson95": [
+        0.02165784417192377,
+        0.09849752245094323
+      ],
+      "posterior_mean_width90": 0.014975949545102292,
+      "posterior_mu_rmse": 0.05313278676342905,
+      "posterior_mu_bias": 0.0037122552035412926,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.3730790181639445,
+      "success_brier": 0.3724410907273866,
+      "confident_failure_joint_rate": 0.3125,
+      "confidence90_fraction": 0.8125
+    },
+    {
+      "family": "gain_shift",
+      "method": "task_voi",
+      "budget": 4,
+      "n": 128,
+      "successes": 69,
+      "success_rate": 0.5390625,
+      "success_wilson95": [
+        0.45282983127205173,
+        0.6230188440190805
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.1078125,
+      "placement_mae_cm": 2.8080485587472808,
+      "placement_p90_cm": 5.241114249155096,
+      "mu_rmse": 0.05130841916791504,
+      "mu_bias": 0.0030927871974112597,
+      "mean_selection_seconds": 0.30779536615273173,
+      "posterior_coverage50": 0.0,
+      "posterior_coverage50_wilson95": [
+        0.0,
+        0.029136956273508416
+      ],
+      "posterior_coverage90": 0.0,
+      "posterior_coverage90_wilson95": [
+        0.0,
+        0.029136956273508416
+      ],
+      "posterior_mean_width90": 0.007161077385882149,
+      "posterior_mu_rmse": 0.05130841916791504,
+      "posterior_mu_bias": 0.0030927871974112597,
+      "posterior_underresolved_fraction": 0.0234375,
+      "max_grid_step_over_sd": 1.2104588399950122,
+      "success_brier": 0.45788649721944413,
+      "confident_failure_joint_rate": 0.453125,
+      "confidence90_fraction": 0.9921875
+    },
+    {
+      "family": "gain_shift",
+      "method": "tobit",
+      "budget": 0,
+      "n": 128,
+      "successes": 8,
+      "success_rate": 0.0625,
+      "success_wilson95": [
+        0.03200692569506118,
+        0.11848791104425867
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.0625,
+      "placement_mae_cm": 92.42668514957795,
+      "placement_p90_cm": 264.6022223038453,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008254,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "posterior_mean_width90": 0.6749999999999657,
+      "posterior_mu_rmse": 0.21775324920273229,
+      "posterior_mu_bias": 0.011400722786008309,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0005772540681943416,
+      "success_brier": 0.05908900853388,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.0
+    },
+    {
+      "family": "gain_shift",
+      "method": "tobit",
+      "budget": 1,
+      "n": 128,
+      "successes": 43,
+      "success_rate": 0.3359375,
+      "success_wilson95": [
+        0.2599537727882833,
+        0.4214817909889617
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.16796875,
+      "placement_mae_cm": 16.14629080472184,
+      "placement_p90_cm": 40.55078310418391,
+      "mu_rmse": 0.08625758857918753,
+      "mu_bias": 0.003093513570877471,
+      "mean_selection_seconds": 0.00010622978425089968,
+      "posterior_coverage50": 0.0625,
+      "posterior_coverage50_wilson95": [
+        0.03200692569506118,
+        0.11848791104425867
+      ],
+      "posterior_coverage90": 0.203125,
+      "posterior_coverage90_wilson95": [
+        0.1425573819359227,
+        0.2809926858514729
+      ],
+      "posterior_mean_width90": 0.08206851101195253,
+      "posterior_mu_rmse": 0.08179070597228967,
+      "posterior_mu_bias": 0.005228603120385601,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.041369319168502255,
+      "success_brier": 0.12941478776134163,
+      "confident_failure_joint_rate": 0.03125,
+      "confidence90_fraction": 0.1796875
+    },
+    {
+      "family": "gain_shift",
+      "method": "tobit",
+      "budget": 2,
+      "n": 128,
+      "successes": 72,
+      "success_rate": 0.5625,
+      "success_wilson95": [
+        0.4759810117363419,
+        0.6453768687294696
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.1875,
+      "placement_mae_cm": 6.438745559309245,
+      "placement_p90_cm": 16.663760757203335,
+      "mu_rmse": 0.06205854418487751,
+      "mu_bias": 0.00486567914744804,
+      "mean_selection_seconds": 0.00019799380697804736,
+      "posterior_coverage50": 0.0,
+      "posterior_coverage50_wilson95": [
+        0.0,
+        0.029136956273508416
+      ],
+      "posterior_coverage90": 0.0390625,
+      "posterior_coverage90_wilson95": [
+        0.016798610797803697,
+        0.08818702076683688
+      ],
+      "posterior_mean_width90": 0.022155140943972966,
+      "posterior_mu_rmse": 0.061590537489359276,
+      "posterior_mu_bias": 0.0044942338545546105,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.4095936564948127,
+      "success_brier": 0.20252597318605775,
+      "confident_failure_joint_rate": 0.078125,
+      "confidence90_fraction": 0.4375
+    },
+    {
+      "family": "gain_shift",
+      "method": "tobit",
+      "budget": 4,
+      "n": 128,
+      "successes": 81,
+      "success_rate": 0.6328125,
+      "success_wilson95": [
+        0.5465700424986025,
+        0.7113154534912468
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.1265625,
+      "placement_mae_cm": 4.0185511874224105,
+      "placement_p90_cm": 9.180805728311633,
+      "mu_rmse": 0.06009797227263877,
+      "mu_bias": 0.004138261321252406,
+      "mean_selection_seconds": 0.00041962216528190766,
+      "posterior_coverage50": 0.0,
+      "posterior_coverage50_wilson95": [
+        0.0,
+        0.029136956273508416
+      ],
+      "posterior_coverage90": 0.0,
+      "posterior_coverage90_wilson95": [
+        0.0,
+        0.029136956273508416
+      ],
+      "posterior_mean_width90": 0.011750811143671883,
+      "posterior_mu_rmse": 0.059954391995506076,
+      "posterior_mu_bias": 0.004012873177086183,
+      "posterior_underresolved_fraction": 0.0234375,
+      "max_grid_step_over_sd": 1.161610698409537,
+      "success_brier": 0.24931087724124976,
+      "confident_failure_joint_rate": 0.1484375,
+      "confidence90_fraction": 0.734375
+    },
+    {
+      "family": "gain_shift",
+      "method": "world_oracle",
+      "budget": 0,
+      "n": 128,
+      "successes": 128,
+      "success_rate": 1.0,
+      "success_wilson95": [
+        0.9708630437264916,
+        1.0
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 1.0,
+      "placement_mae_cm": 0.09172383060428776,
+      "placement_p90_cm": 0.21544253834436478,
+      "mu_rmse": 0.0,
+      "mu_bias": 0.0,
+      "mean_selection_seconds": 0.0
+    },
+    {
+      "family": "matched",
+      "method": "blind",
+      "budget": 0,
+      "n": 128,
+      "successes": 7,
+      "success_rate": 0.0546875,
+      "success_wilson95": [
+        0.02674020138134635,
+        0.10858490029974709
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.0546875,
+      "placement_mae_cm": 193.6030037125534,
+      "placement_p90_cm": 520.3687128379047,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008309,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "posterior_mean_width90": 0.6749999999999657,
+      "posterior_mu_rmse": 0.21775324920273229,
+      "posterior_mu_bias": 0.011400722786008309,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0005772540681943416,
+      "success_brier": 0.051439113865481015,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.0
+    },
+    {
+      "family": "matched",
+      "method": "eig",
+      "budget": 0,
+      "n": 128,
+      "successes": 7,
+      "success_rate": 0.0546875,
+      "success_wilson95": [
+        0.02674020138134635,
+        0.10858490029974709
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.0546875,
+      "placement_mae_cm": 193.6030037125534,
+      "placement_p90_cm": 520.3687128379047,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008309,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "posterior_mean_width90": 0.6749999999999657,
+      "posterior_mu_rmse": 0.21775324920273229,
+      "posterior_mu_bias": 0.011400722786008309,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0005772540681943416,
+      "success_brier": 0.051439113865481015,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.0
+    },
+    {
+      "family": "matched",
+      "method": "eig",
+      "budget": 1,
+      "n": 128,
+      "successes": 83,
+      "success_rate": 0.6484375,
+      "success_wilson95": [
+        0.5624978389203745,
+        0.7257271271859276
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.32421875,
+      "placement_mae_cm": 3.497577657628708,
+      "placement_p90_cm": 10.192224365049066,
+      "mu_rmse": 0.017591044448338786,
+      "mu_bias": 0.0016102478159537833,
+      "mean_selection_seconds": 0.07698996456701934,
+      "posterior_coverage50": 0.625,
+      "posterior_coverage50_wilson95": [
+        0.5386400519080884,
+        0.7040757090235344
+      ],
+      "posterior_coverage90": 0.9296875,
+      "posterior_coverage90_wilson95": [
+        0.8717651965063937,
+        0.96257023169606
+      ],
+      "posterior_mean_width90": 0.05557715189472842,
+      "posterior_mu_rmse": 0.017591044448338786,
+      "posterior_mu_bias": 0.0016102478159537833,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.030083464568530786,
+      "success_brier": 0.1023969737042465,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.2578125
+    },
+    {
+      "family": "matched",
+      "method": "eig",
+      "budget": 2,
+      "n": 128,
+      "successes": 124,
+      "success_rate": 0.96875,
+      "success_wilson95": [
+        0.9224023687386392,
+        0.9877817347549466
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.3229166666666667,
+      "placement_mae_cm": 0.8266466851851004,
+      "placement_p90_cm": 1.9039763680766728,
+      "mu_rmse": 0.0033546079542182998,
+      "mu_bias": 0.0005124641941703578,
+      "mean_selection_seconds": 0.15283693880155624,
+      "posterior_coverage50": 0.4296875,
+      "posterior_coverage50_wilson95": [
+        0.3472117133263662,
+        0.516260671149596
+      ],
+      "posterior_coverage90": 0.9453125,
+      "posterior_coverage90_wilson95": [
+        0.8914150997002529,
+        0.9732597986186536
+      ],
+      "posterior_mean_width90": 0.011040330330766797,
+      "posterior_mu_rmse": 0.0033546079542182998,
+      "posterior_mu_bias": 0.0005124641941703578,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.06570964350864235,
+      "success_brier": 0.015646566545954727,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.90625
+    },
+    {
+      "family": "matched",
+      "method": "eig",
+      "budget": 4,
+      "n": 128,
+      "successes": 128,
+      "success_rate": 1.0,
+      "success_wilson95": [
+        0.9708630437264916,
+        1.0
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.2,
+      "placement_mae_cm": 0.5409738893781352,
+      "placement_p90_cm": 1.1962725407803354,
+      "mu_rmse": 0.001954541448736909,
+      "mu_bias": 0.0003108262959496969,
+      "mean_selection_seconds": 0.3043384176771724,
+      "posterior_coverage50": 0.5,
+      "posterior_coverage50_wilson95": [
+        0.41465224626050723,
+        0.5853477537394928
+      ],
+      "posterior_coverage90": 0.8828125,
+      "posterior_coverage90_wilson95": [
+        0.8156338413466524,
+        0.9276831765064426
+      ],
+      "posterior_mean_width90": 0.006027819767052674,
+      "posterior_mu_rmse": 0.001954541448736909,
+      "posterior_mu_bias": 0.0003108262959496969,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.11073169918991736,
+      "success_brier": 0.00010316179257794994,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.9921875
+    },
+    {
+      "family": "matched",
+      "method": "lsq",
+      "budget": 0,
+      "n": 128,
+      "successes": 5,
+      "success_rate": 0.0390625,
+      "success_wilson95": [
+        0.016798610797803697,
+        0.08818702076683688
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.0390625,
+      "placement_mae_cm": 97.63712419258826,
+      "placement_p90_cm": 273.983312188114,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008254,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "posterior_mean_width90": 0.6749999999999657,
+      "posterior_mu_rmse": 0.21775324920273229,
+      "posterior_mu_bias": 0.011400722786008309,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0005772540681943416,
+      "success_brier": 0.03652826535883849,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.0
+    },
+    {
+      "family": "matched",
+      "method": "lsq",
+      "budget": 1,
+      "n": 128,
+      "successes": 60,
+      "success_rate": 0.46875,
+      "success_wilson95": [
+        0.3844747677270395,
+        0.5548462920400548
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.234375,
+      "placement_mae_cm": 8.379860196220635,
+      "placement_p90_cm": 25.94147030415097,
+      "mu_rmse": 0.02580128424903827,
+      "mu_bias": 0.00639862678117575,
+      "mean_selection_seconds": 0.0001232633667314076,
+      "posterior_coverage50": 0.5546875,
+      "posterior_coverage50_wilson95": [
+        0.4682433949005831,
+        0.637944750507002
+      ],
+      "posterior_coverage90": 0.953125,
+      "posterior_coverage90_wilson95": [
+        0.9015024775490568,
+        0.9783421558280763
+      ],
+      "posterior_mean_width90": 0.0673649339630992,
+      "posterior_mu_rmse": 0.02119038117492005,
+      "posterior_mu_bias": -0.0014117426550520858,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0219374507818136,
+      "success_brier": 0.14010066167531515,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.1015625
+    },
+    {
+      "family": "matched",
+      "method": "lsq",
+      "budget": 2,
+      "n": 128,
+      "successes": 94,
+      "success_rate": 0.734375,
+      "success_wilson95": [
+        0.6518470619103658,
+        0.8032449898364271
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.24479166666666666,
+      "placement_mae_cm": 2.386355070708632,
+      "placement_p90_cm": 5.151237841113096,
+      "mu_rmse": 0.008223920149438192,
+      "mu_bias": 0.0022459985733770515,
+      "mean_selection_seconds": 0.00021559544393312535,
+      "posterior_coverage50": 0.46875,
+      "posterior_coverage50_wilson95": [
+        0.3844747677270395,
+        0.5548462920400548
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "posterior_mean_width90": 0.02027412344214644,
+      "posterior_mu_rmse": 0.005805651488692246,
+      "posterior_mu_bias": 0.0006849992001712184,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.05979582115557339,
+      "success_brier": 0.10551375850142275,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.4375
+    },
+    {
+      "family": "matched",
+      "method": "lsq",
+      "budget": 4,
+      "n": 128,
+      "successes": 110,
+      "success_rate": 0.859375,
+      "success_wilson95": [
+        0.7886475076210383,
+        0.9091603050573774
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.171875,
+      "placement_mae_cm": 1.4111884023627235,
+      "placement_p90_cm": 2.9056943953697347,
+      "mu_rmse": 0.0052378597046201176,
+      "mu_bias": 0.001434610367244737,
+      "mean_selection_seconds": 0.0004404831452120561,
+      "posterior_coverage50": 0.4296875,
+      "posterior_coverage50_wilson95": [
+        0.3472117133263662,
+        0.516260671149596
+      ],
+      "posterior_coverage90": 0.8984375,
+      "posterior_coverage90_wilson95": [
+        0.8339751366963888,
+        0.9396813512731592
+      ],
+      "posterior_mean_width90": 0.01215861337341881,
+      "posterior_mu_rmse": 0.003894193297668254,
+      "posterior_mu_bias": 0.00047552427459832407,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.10263916693633059,
+      "success_brier": 0.07145980428932669,
+      "confident_failure_joint_rate": 0.0078125,
+      "confidence90_fraction": 0.6875
+    },
+    {
+      "family": "matched",
+      "method": "mu_oracle",
+      "budget": 0,
+      "n": 128,
+      "successes": 128,
+      "success_rate": 1.0,
+      "success_wilson95": [
+        0.9708630437264916,
+        1.0
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 1.0,
+      "placement_mae_cm": 0.0729189848872647,
+      "placement_p90_cm": 0.20283763776030697,
+      "mu_rmse": 0.0,
+      "mu_bias": 0.0,
+      "mean_selection_seconds": 0.0
+    },
+    {
+      "family": "matched",
+      "method": "task_voi",
+      "budget": 0,
+      "n": 128,
+      "successes": 7,
+      "success_rate": 0.0546875,
+      "success_wilson95": [
+        0.02674020138134635,
+        0.10858490029974709
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.0546875,
+      "placement_mae_cm": 193.6030037125534,
+      "placement_p90_cm": 520.3687128379047,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008309,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "posterior_mean_width90": 0.6749999999999657,
+      "posterior_mu_rmse": 0.21775324920273229,
+      "posterior_mu_bias": 0.011400722786008309,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0005772540681943416,
+      "success_brier": 0.051439113865481015,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.0
+    },
+    {
+      "family": "matched",
+      "method": "task_voi",
+      "budget": 1,
+      "n": 128,
+      "successes": 86,
+      "success_rate": 0.671875,
+      "success_wilson95": [
+        0.5865640159976144,
+        0.7471701552833669
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.3359375,
+      "placement_mae_cm": 4.178379162931253,
+      "placement_p90_cm": 13.467998198782126,
+      "mu_rmse": 0.019965158952338847,
+      "mu_bias": 7.743431981582479e-05,
+      "mean_selection_seconds": 0.076940677120092,
+      "posterior_coverage50": 0.640625,
+      "posterior_coverage50_wilson95": [
+        0.5545225368033344,
+        0.7185326942447414
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "posterior_mean_width90": 0.062449640061116446,
+      "posterior_mu_rmse": 0.019965158952338847,
+      "posterior_mu_bias": 7.743431981582479e-05,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.02633917190494709,
+      "success_brier": 0.10760579170554524,
+      "confident_failure_joint_rate": 0.0078125,
+      "confidence90_fraction": 0.28125
+    },
+    {
+      "family": "matched",
+      "method": "task_voi",
+      "budget": 2,
+      "n": 128,
+      "successes": 125,
+      "success_rate": 0.9765625,
+      "success_wilson95": [
+        0.9333562549485678,
+        0.9919975836032445
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.3255208333333333,
+      "placement_mae_cm": 0.7829688241728929,
+      "placement_p90_cm": 1.5146055566042271,
+      "mu_rmse": 0.004329931128725008,
+      "mu_bias": 0.0008686024597437842,
+      "mean_selection_seconds": 0.15345696326039615,
+      "posterior_coverage50": 0.4765625,
+      "posterior_coverage50_wilson95": [
+        0.3919887260658145,
+        0.5625020687595063
+      ],
+      "posterior_coverage90": 0.8984375,
+      "posterior_coverage90_wilson95": [
+        0.8339751366963888,
+        0.9396813512731592
+      ],
+      "posterior_mean_width90": 0.013407963712066331,
+      "posterior_mu_rmse": 0.004329931128725008,
+      "posterior_mu_bias": 0.0008686024597437842,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.06357027222110324,
+      "success_brier": 0.02106294546228892,
+      "confident_failure_joint_rate": 0.0078125,
+      "confidence90_fraction": 0.859375
+    },
+    {
+      "family": "matched",
+      "method": "task_voi",
+      "budget": 4,
+      "n": 128,
+      "successes": 128,
+      "success_rate": 1.0,
+      "success_wilson95": [
+        0.9708630437264916,
+        1.0
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.2,
+      "placement_mae_cm": 0.6191361839470588,
+      "placement_p90_cm": 1.3852829718598776,
+      "mu_rmse": 0.0024575919014153363,
+      "mu_bias": 0.0005356554547157808,
+      "mean_selection_seconds": 0.3063688787215142,
+      "posterior_coverage50": 0.453125,
+      "posterior_coverage50_wilson95": [
+        0.36950795637281275,
+        0.5394736332778287
+      ],
+      "posterior_coverage90": 0.8671875,
+      "posterior_coverage90_wilson95": [
+        0.7975798330550461,
+        0.9153977146815961
+      ],
+      "posterior_mean_width90": 0.007785712969176637,
+      "posterior_mu_rmse": 0.0024575919014153363,
+      "posterior_mu_bias": 0.0005356554547157808,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.10764208306563622,
+      "success_brier": 0.0001696976192474296,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.9921875
+    },
+    {
+      "family": "matched",
+      "method": "tobit",
+      "budget": 0,
+      "n": 128,
+      "successes": 5,
+      "success_rate": 0.0390625,
+      "success_wilson95": [
+        0.016798610797803697,
+        0.08818702076683688
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.0390625,
+      "placement_mae_cm": 97.63712419258826,
+      "placement_p90_cm": 273.983312188114,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008254,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "posterior_mean_width90": 0.6749999999999657,
+      "posterior_mu_rmse": 0.21775324920273229,
+      "posterior_mu_bias": 0.011400722786008309,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0005772540681943416,
+      "success_brier": 0.03652826535883849,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.0
+    },
+    {
+      "family": "matched",
+      "method": "tobit",
+      "budget": 1,
+      "n": 128,
+      "successes": 59,
+      "success_rate": 0.4609375,
+      "success_wilson95": [
+        0.3769811559809195,
+        0.5471701687279483
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.23046875,
+      "placement_mae_cm": 11.288013800557781,
+      "placement_p90_cm": 35.78853799875018,
+      "mu_rmse": 0.036343972144568054,
+      "mu_bias": -0.0015170461275061382,
+      "mean_selection_seconds": 0.00010891345164054655,
+      "posterior_coverage50": 0.5546875,
+      "posterior_coverage50_wilson95": [
+        0.4682433949005831,
+        0.637944750507002
+      ],
+      "posterior_coverage90": 0.9375,
+      "posterior_coverage90_wilson95": [
+        0.8815120889557413,
+        0.9679930743049387
+      ],
+      "posterior_mean_width90": 0.08642170948237816,
+      "posterior_mu_rmse": 0.03165289168772062,
+      "posterior_mu_bias": 0.001155857203845984,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.021028781211495297,
+      "success_brier": 0.11631798465561867,
+      "confident_failure_joint_rate": 0.0078125,
+      "confidence90_fraction": 0.1875
+    },
+    {
+      "family": "matched",
+      "method": "tobit",
+      "budget": 2,
+      "n": 128,
+      "successes": 103,
+      "success_rate": 0.8046875,
+      "success_wilson95": [
+        0.7275592800992087,
+        0.864060387171622
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.2682291666666667,
+      "placement_mae_cm": 2.0154028918985074,
+      "placement_p90_cm": 4.522210953430466,
+      "mu_rmse": 0.006515291369927891,
+      "mu_bias": 0.00044942300263883935,
+      "mean_selection_seconds": 0.000198493170501024,
+      "posterior_coverage50": 0.546875,
+      "posterior_coverage50_wilson95": [
+        0.4605263667221713,
+        0.6304920436271872
+      ],
+      "posterior_coverage90": 0.953125,
+      "posterior_coverage90_wilson95": [
+        0.9015024775490568,
+        0.9783421558280763
+      ],
+      "posterior_mean_width90": 0.022461483814403334,
+      "posterior_mu_rmse": 0.006627318088151775,
+      "posterior_mu_bias": 0.0003582765619958609,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.05968923221009403,
+      "success_brier": 0.10149190032683901,
+      "confident_failure_joint_rate": 0.0,
+      "confidence90_fraction": 0.515625
+    },
+    {
+      "family": "matched",
+      "method": "tobit",
+      "budget": 4,
+      "n": 128,
+      "successes": 114,
+      "success_rate": 0.890625,
+      "success_wilson95": [
+        0.8247655486183226,
+        0.9337212042929989
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.178125,
+      "placement_mae_cm": 1.151411124020299,
+      "placement_p90_cm": 2.529500396001013,
+      "mu_rmse": 0.0036789831335083795,
+      "mu_bias": 0.00020434666119574697,
+      "mean_selection_seconds": 0.0004177831838205748,
+      "posterior_coverage50": 0.3984375,
+      "posterior_coverage50_wilson95": [
+        0.3177758511189852,
+        0.4850175931240712
+      ],
+      "posterior_coverage90": 0.9140625,
+      "posterior_coverage90_wilson95": [
+        0.852659089457387,
+        0.9513368686286138
+      ],
+      "posterior_mean_width90": 0.011557136810361638,
+      "posterior_mu_rmse": 0.003745677285625504,
+      "posterior_mu_bias": 0.0001731178458939651,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.10258046738772289,
+      "success_brier": 0.06901255549164884,
+      "confident_failure_joint_rate": 0.015625,
+      "confidence90_fraction": 0.71875
+    },
+    {
+      "family": "matched",
+      "method": "world_oracle",
+      "budget": 0,
+      "n": 128,
+      "successes": 128,
+      "success_rate": 1.0,
+      "success_wilson95": [
+        0.9708630437264916,
+        1.0
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 1.0,
+      "placement_mae_cm": 0.0729189848872647,
+      "placement_p90_cm": 0.20283763776030697,
+      "mu_rmse": 0.0,
+      "mu_bias": 0.0,
+      "mean_selection_seconds": 0.0
+    },
+    {
+      "family": "gain_shift",
+      "method": "gain_bayes",
+      "budget": 0,
+      "n": 128,
+      "successes": 11,
+      "success_rate": 0.0859375,
+      "success_wilson95": [
+        0.04866313137138619,
+        0.14734091054261295
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.0859375,
+      "placement_mae_cm": 118.14922745587451,
+      "placement_p90_cm": 337.20353890944534,
+      "mu_rmse": 0.217753249202732,
+      "mu_bias": 0.01140072278600309,
+      "posterior_mean_width90": 0.6749999999999853,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0014427746420619285,
+      "success_brier": 0.07884004681544675,
+      "confidence90_fraction": 0.0,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "gain_rmse": 0.08921036479428557,
+      "gain_mean_width90": 0.27000000000000224,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 0.09262892515107524,
+      "mean_mu_conditional_underresolved_mass": 0.0,
+      "mean_gain_conditional_underresolved_mass": 0.0,
+      "max_joint_cell_mass": 6.497552696776759e-07,
+      "gain_coverage50": 0.2890625,
+      "gain_coverage90": 1.0
+    },
+    {
+      "family": "gain_shift",
+      "method": "gain_bayes",
+      "budget": 1,
+      "n": 128,
+      "successes": 76,
+      "success_rate": 0.59375,
+      "success_wilson95": [
+        0.5071398426419342,
+        0.6748969780567828
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.296875,
+      "placement_mae_cm": 5.359123215571185,
+      "placement_p90_cm": 12.092861388857372,
+      "mu_rmse": 0.057882194386022615,
+      "mu_bias": -0.0003765917857302863,
+      "posterior_mean_width90": 0.17121976669486783,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.017830083589380076,
+      "success_brier": 0.13863765167861714,
+      "confidence90_fraction": 0.1796875,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.07762983917700694,
+      "posterior_coverage50": 0.4140625,
+      "posterior_coverage50_wilson95": [
+        0.33245150577514415,
+        0.5006814085843652
+      ],
+      "posterior_coverage90": 0.953125,
+      "posterior_coverage90_wilson95": [
+        0.9015024775490568,
+        0.9783421558280763
+      ],
+      "gain_rmse": 0.08108201715491078,
+      "gain_mean_width90": 0.2446332207577793,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 0.9207843633607808,
+      "mean_mu_conditional_underresolved_mass": 4.106958841507016e-06,
+      "mean_gain_conditional_underresolved_mass": 1.3061707733725412e-05,
+      "max_joint_cell_mass": 0.0002472751047008073,
+      "gain_coverage50": 0.3984375,
+      "gain_coverage90": 0.9765625
+    },
+    {
+      "family": "gain_shift",
+      "method": "gain_bayes",
+      "budget": 2,
+      "n": 128,
+      "successes": 113,
+      "success_rate": 0.8828125,
+      "success_wilson95": [
+        0.8156338413466524,
+        0.9276831765064426
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.2942708333333333,
+      "placement_mae_cm": 1.1674341913223396,
+      "placement_p90_cm": 2.695667335710572,
+      "mu_rmse": 0.04198017552568318,
+      "mu_bias": 0.0017015997259547356,
+      "posterior_mean_width90": 0.10266998797752319,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.04334695509420529,
+      "success_brier": 0.07936329165487069,
+      "confidence90_fraction": 0.5625,
+      "confident_failure_joint_rate": 0.015625,
+      "mean_selection_seconds": 0.1539645081229537,
+      "posterior_coverage50": 0.484375,
+      "posterior_coverage50_wilson95": [
+        0.39952298025969557,
+        0.5701375496238515
+      ],
+      "posterior_coverage90": 0.9609375,
+      "posterior_coverage90_wilson95": [
+        0.9118129792331631,
+        0.9832013892021962
+      ],
+      "gain_rmse": 0.059207816046729186,
+      "gain_mean_width90": 0.17483302380100085,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 1.7412595229207,
+      "mean_mu_conditional_underresolved_mass": 3.873058652252307e-06,
+      "mean_gain_conditional_underresolved_mass": 6.53055994747597e-05,
+      "max_joint_cell_mass": 0.0008212983735360705,
+      "gain_coverage50": 0.5078125,
+      "gain_coverage90": 0.9609375
+    },
+    {
+      "family": "gain_shift",
+      "method": "gain_bayes",
+      "budget": 4,
+      "n": 128,
+      "successes": 125,
+      "success_rate": 0.9765625,
+      "success_wilson95": [
+        0.9333562549485678,
+        0.9919975836032445
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.1953125,
+      "placement_mae_cm": 0.7604863631765326,
+      "placement_p90_cm": 1.6379941895796417,
+      "mu_rmse": 0.03590696930546925,
+      "mu_bias": 0.0006984711144440686,
+      "posterior_mean_width90": 0.08571670751672236,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.08807410638988206,
+      "success_brier": 0.017225316532441776,
+      "confidence90_fraction": 0.96875,
+      "confident_failure_joint_rate": 0.0078125,
+      "mean_selection_seconds": 0.3064153424111282,
+      "posterior_coverage50": 0.5625,
+      "posterior_coverage50_wilson95": [
+        0.4759810117363419,
+        0.6453768687294696
+      ],
+      "posterior_coverage90": 0.9296875,
+      "posterior_coverage90_wilson95": [
+        0.8717651965063937,
+        0.96257023169606
+      ],
+      "gain_rmse": 0.05000335990629246,
+      "gain_mean_width90": 0.14902825060087072,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 3.298373069063018,
+      "mean_mu_conditional_underresolved_mass": 2.635492116928186e-05,
+      "mean_gain_conditional_underresolved_mass": 0.00014526159112317945,
+      "max_joint_cell_mass": 0.0014858034641887711,
+      "gain_coverage50": 0.5390625,
+      "gain_coverage90": 0.9453125
+    },
+    {
+      "family": "gain_shift",
+      "method": "gain_mle",
+      "budget": 0,
+      "n": 128,
+      "successes": 8,
+      "success_rate": 0.0625,
+      "success_wilson95": [
+        0.03200692569506118,
+        0.11848791104425867
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.0625,
+      "placement_mae_cm": 92.42668514957795,
+      "placement_p90_cm": 264.6022223038453,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008254,
+      "posterior_mean_width90": 0.6749999999999853,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0014427746420619285,
+      "success_brier": 0.059092520827359975,
+      "confidence90_fraction": 0.0,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "gain_rmse": 0.08921036479428557,
+      "gain_mean_width90": 0.27000000000000224,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 0.09262892515107524,
+      "mean_mu_conditional_underresolved_mass": 0.0,
+      "mean_gain_conditional_underresolved_mass": 0.0,
+      "max_joint_cell_mass": 6.497552696776759e-07,
+      "gain_coverage50": 0.2890625,
+      "gain_coverage90": 1.0
+    },
+    {
+      "family": "gain_shift",
+      "method": "gain_mle",
+      "budget": 1,
+      "n": 128,
+      "successes": 44,
+      "success_rate": 0.34375,
+      "success_wilson95": [
+        0.2671015766811227,
+        0.4295037221543487
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.171875,
+      "placement_mae_cm": 12.378367863772004,
+      "placement_p90_cm": 35.49723900891203,
+      "mu_rmse": 0.09845143697408681,
+      "mu_bias": -0.019033373684212464,
+      "posterior_mean_width90": 0.17121976669486783,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.017830083589380076,
+      "success_brier": 0.14243223028898322,
+      "confidence90_fraction": 0.0625,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.07762983917700694,
+      "posterior_coverage50": 0.4140625,
+      "posterior_coverage50_wilson95": [
+        0.33245150577514415,
+        0.5006814085843652
+      ],
+      "posterior_coverage90": 0.953125,
+      "posterior_coverage90_wilson95": [
+        0.9015024775490568,
+        0.9783421558280763
+      ],
+      "gain_rmse": 0.13501458182339,
+      "gain_mean_width90": 0.2446332207577793,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 0.9207843633607808,
+      "mean_mu_conditional_underresolved_mass": 4.106958841507016e-06,
+      "mean_gain_conditional_underresolved_mass": 1.3061707733725412e-05,
+      "max_joint_cell_mass": 0.0002472751047008073,
+      "gain_coverage50": 0.3984375,
+      "gain_coverage90": 0.9765625
+    },
+    {
+      "family": "gain_shift",
+      "method": "gain_mle",
+      "budget": 2,
+      "n": 128,
+      "successes": 93,
+      "success_rate": 0.7265625,
+      "success_wilson95": [
+        0.6435923144931466,
+        0.7963300021954198
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.2421875,
+      "placement_mae_cm": 3.0326810313005432,
+      "placement_p90_cm": 6.134351992321705,
+      "mu_rmse": 0.06501505300503312,
+      "mu_bias": -0.00012767683914790585,
+      "posterior_mean_width90": 0.10266998797752319,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.04334695509420529,
+      "success_brier": 0.11243137766324854,
+      "confidence90_fraction": 0.359375,
+      "confident_failure_joint_rate": 0.0078125,
+      "mean_selection_seconds": 0.1539645081229537,
+      "posterior_coverage50": 0.484375,
+      "posterior_coverage50_wilson95": [
+        0.39952298025969557,
+        0.5701375496238515
+      ],
+      "posterior_coverage90": 0.9609375,
+      "posterior_coverage90_wilson95": [
+        0.9118129792331631,
+        0.9832013892021962
+      ],
+      "gain_rmse": 0.0877971679031392,
+      "gain_mean_width90": 0.17483302380100085,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 1.7412595229207,
+      "mean_mu_conditional_underresolved_mass": 3.873058652252307e-06,
+      "mean_gain_conditional_underresolved_mass": 6.53055994747597e-05,
+      "max_joint_cell_mass": 0.0008212983735360705,
+      "gain_coverage50": 0.5078125,
+      "gain_coverage90": 0.9609375
+    },
+    {
+      "family": "gain_shift",
+      "method": "gain_mle",
+      "budget": 4,
+      "n": 128,
+      "successes": 118,
+      "success_rate": 0.921875,
+      "success_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.184375,
+      "placement_mae_cm": 1.1146080614117946,
+      "placement_p90_cm": 2.397669788361234,
+      "mu_rmse": 0.050194203492547336,
+      "mu_bias": 0.0008948463282823344,
+      "posterior_mean_width90": 0.08571670751672236,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.08807410638988206,
+      "success_brier": 0.05383123817042125,
+      "confidence90_fraction": 0.671875,
+      "confident_failure_joint_rate": 0.0078125,
+      "mean_selection_seconds": 0.3064153424111282,
+      "posterior_coverage50": 0.5625,
+      "posterior_coverage50_wilson95": [
+        0.4759810117363419,
+        0.6453768687294696
+      ],
+      "posterior_coverage90": 0.9296875,
+      "posterior_coverage90_wilson95": [
+        0.8717651965063937,
+        0.96257023169606
+      ],
+      "gain_rmse": 0.06761736831420055,
+      "gain_mean_width90": 0.14902825060087072,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 3.298373069063018,
+      "mean_mu_conditional_underresolved_mass": 2.635492116928186e-05,
+      "mean_gain_conditional_underresolved_mass": 0.00014526159112317945,
+      "max_joint_cell_mass": 0.0014858034641887711,
+      "gain_coverage50": 0.5390625,
+      "gain_coverage90": 0.9453125
+    },
+    {
+      "family": "gain_shift",
+      "method": "same_probes_unit_bayes",
+      "budget": 0,
+      "n": 128,
+      "successes": 2,
+      "success_rate": 0.015625,
+      "success_wilson95": [
+        0.004295449710144079,
+        0.055180976679817195
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.015625,
+      "placement_mae_cm": 185.20702764664335,
+      "placement_p90_cm": 506.6030714774241,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008309,
+      "posterior_mean_width90": 0.6749999999999657,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0005772540681943416,
+      "success_brier": 0.017266141869305602,
+      "confidence90_fraction": 0.0,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "method": "same_probes_unit_bayes",
+      "budget": 1,
+      "n": 128,
+      "successes": 71,
+      "success_rate": 0.5546875,
+      "success_wilson95": [
+        0.4682433949005831,
+        0.637944750507002
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.27734375,
+      "placement_mae_cm": 5.375593962870264,
+      "placement_p90_cm": 13.099496962170132,
+      "mu_rmse": 0.06085501544874071,
+      "mu_bias": 0.0013432046311481973,
+      "posterior_mean_width90": 0.05562236257230687,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.02675530696399882,
+      "success_brier": 0.13905295534265844,
+      "confidence90_fraction": 0.2578125,
+      "confident_failure_joint_rate": 0.03125,
+      "mean_selection_seconds": 0.07762983917700694,
+      "posterior_coverage50": 0.0390625,
+      "posterior_coverage50_wilson95": [
+        0.016798610797803697,
+        0.08818702076683688
+      ],
+      "posterior_coverage90": 0.1171875,
+      "posterior_coverage90_wilson95": [
+        0.07231682349355734,
+        0.18436615865334754
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "method": "same_probes_unit_bayes",
+      "budget": 2,
+      "n": 128,
+      "successes": 68,
+      "success_rate": 0.53125,
+      "success_wilson95": [
+        0.44515370795994524,
+        0.6155252322729605
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.17708333333333334,
+      "placement_mae_cm": 2.9912099416310496,
+      "placement_p90_cm": 5.244170044575261,
+      "mu_rmse": 0.05002618160810691,
+      "mu_bias": 0.00362143161407547,
+      "posterior_mean_width90": 0.012126705976572621,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.3730790181639445,
+      "success_brier": 0.4361041775162545,
+      "confidence90_fraction": 0.875,
+      "confident_failure_joint_rate": 0.40625,
+      "mean_selection_seconds": 0.1539645081229537,
+      "posterior_coverage50": 0.0078125,
+      "posterior_coverage50_wilson95": [
+        0.0013804318928742412,
+        0.04292625943886061
+      ],
+      "posterior_coverage90": 0.0234375,
+      "posterior_coverage90_wilson95": [
+        0.008002416396755477,
+        0.06664374505143224
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "method": "same_probes_unit_bayes",
+      "budget": 4,
+      "n": 128,
+      "successes": 59,
+      "success_rate": 0.4609375,
+      "success_wilson95": [
+        0.3769811559809195,
+        0.5471701687279483
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.0921875,
+      "placement_mae_cm": 3.0686406211136186,
+      "placement_p90_cm": 5.091296996118019,
+      "mu_rmse": 0.049819739088189936,
+      "mu_bias": 0.0028698850060514727,
+      "posterior_mean_width90": 0.005510884592851957,
+      "posterior_underresolved_fraction": 0.0234375,
+      "max_grid_step_over_sd": 1.267669185492673,
+      "success_brier": 0.5364653144441309,
+      "confidence90_fraction": 0.9921875,
+      "confident_failure_joint_rate": 0.53125,
+      "mean_selection_seconds": 0.3064153424111282,
+      "posterior_coverage50": 0.0,
+      "posterior_coverage50_wilson95": [
+        0.0,
+        0.029136956273508416
+      ],
+      "posterior_coverage90": 0.0,
+      "posterior_coverage90_wilson95": [
+        0.0,
+        0.029136956273508416
+      ]
+    },
+    {
+      "family": "matched",
+      "method": "gain_bayes",
+      "budget": 0,
+      "n": 128,
+      "successes": 4,
+      "success_rate": 0.03125,
+      "success_wilson95": [
+        0.01221826524505338,
+        0.07759763126136077
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.03125,
+      "placement_mae_cm": 124.6038434378785,
+      "placement_p90_cm": 337.7507753851541,
+      "mu_rmse": 0.217753249202732,
+      "mu_bias": 0.01140072278600309,
+      "posterior_mean_width90": 0.6749999999999853,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0014427746420619285,
+      "success_brier": 0.0315341210703793,
+      "confidence90_fraction": 0.0,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "gain_rmse": 0.0,
+      "gain_mean_width90": 0.27000000000000224,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 0.09213651496793318,
+      "mean_mu_conditional_underresolved_mass": 0.0,
+      "mean_gain_conditional_underresolved_mass": 0.0,
+      "max_joint_cell_mass": 6.497552696776759e-07,
+      "gain_coverage50": 1.0,
+      "gain_coverage90": 1.0
+    },
+    {
+      "family": "matched",
+      "method": "gain_bayes",
+      "budget": 1,
+      "n": 128,
+      "successes": 78,
+      "success_rate": 0.609375,
+      "success_wilson95": [
+        0.5228464818201277,
+        0.6895298089950423
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.3046875,
+      "placement_mae_cm": 4.38912229174121,
+      "placement_p90_cm": 11.058570731186135,
+      "mu_rmse": 0.025971691586495843,
+      "mu_bias": -0.00025769811229729906,
+      "posterior_mean_width90": 0.16607391324339424,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.016205745604794396,
+      "success_brier": 0.15335974380208917,
+      "confidence90_fraction": 0.171875,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.07698996456701934,
+      "posterior_coverage50": 0.7734375,
+      "posterior_coverage50_wilson95": [
+        0.6935732116243923,
+        0.8373675154135328
+      ],
+      "posterior_coverage90": 0.9921875,
+      "posterior_coverage90_wilson95": [
+        0.9570737405611394,
+        0.9986195681071257
+      ],
+      "gain_rmse": 0.0375947475698789,
+      "gain_mean_width90": 0.24042136761369398,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 0.9239751152249482,
+      "mean_mu_conditional_underresolved_mass": 4.109096224581799e-06,
+      "mean_gain_conditional_underresolved_mass": 3.3210207323996516e-06,
+      "max_joint_cell_mass": 0.00021309480652459918,
+      "gain_coverage50": 0.8203125,
+      "gain_coverage90": 1.0
+    },
+    {
+      "family": "matched",
+      "method": "gain_bayes",
+      "budget": 2,
+      "n": 128,
+      "successes": 114,
+      "success_rate": 0.890625,
+      "success_wilson95": [
+        0.8247655486183226,
+        0.9337212042929989
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.296875,
+      "placement_mae_cm": 1.0924624641965777,
+      "placement_p90_cm": 2.6334312311658947,
+      "mu_rmse": 0.024328249267985217,
+      "mu_bias": -0.003231226763085597,
+      "posterior_mean_width90": 0.10601543572154733,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.05191187816623858,
+      "success_brier": 0.07243243399430924,
+      "confidence90_fraction": 0.625,
+      "confident_failure_joint_rate": 0.0078125,
+      "mean_selection_seconds": 0.15283693880155624,
+      "posterior_coverage50": 0.6015625,
+      "posterior_coverage50_wilson95": [
+        0.5149824068759288,
+        0.6822241488810148
+      ],
+      "posterior_coverage90": 0.9453125,
+      "posterior_coverage90_wilson95": [
+        0.8914150997002529,
+        0.9732597986186536
+      ],
+      "gain_rmse": 0.04263795341561258,
+      "gain_mean_width90": 0.18917256786200293,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 1.7552921083242836,
+      "mean_mu_conditional_underresolved_mass": 4.765639639284611e-07,
+      "mean_gain_conditional_underresolved_mass": 5.2182197601366594e-05,
+      "max_joint_cell_mass": 0.00033754309605526394,
+      "gain_coverage50": 0.6015625,
+      "gain_coverage90": 0.9375
+    },
+    {
+      "family": "matched",
+      "method": "gain_bayes",
+      "budget": 4,
+      "n": 128,
+      "successes": 128,
+      "success_rate": 1.0,
+      "success_wilson95": [
+        0.9708630437264916,
+        1.0
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.2,
+      "placement_mae_cm": 0.6570214125379074,
+      "placement_p90_cm": 1.428891680509434,
+      "mu_rmse": 0.025092669791853435,
+      "mu_bias": -0.001819222667660427,
+      "posterior_mean_width90": 0.09487298852199652,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0629670105039491,
+      "success_brier": 0.002172875209843419,
+      "confidence90_fraction": 0.9453125,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.3043384176771724,
+      "posterior_coverage50": 0.5703125,
+      "posterior_coverage50_wilson95": [
+        0.48373932885040405,
+        0.6527882866736338
+      ],
+      "posterior_coverage90": 0.9296875,
+      "posterior_coverage90_wilson95": [
+        0.8717651965063937,
+        0.96257023169606
+      ],
+      "gain_rmse": 0.042735569341619456,
+      "gain_mean_width90": 0.17059214976256504,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 3.3358308951428626,
+      "mean_mu_conditional_underresolved_mass": 0.00015555809507540174,
+      "mean_gain_conditional_underresolved_mass": 0.0001469975601241012,
+      "max_joint_cell_mass": 0.0007919987088548946,
+      "gain_coverage50": 0.5625,
+      "gain_coverage90": 0.9453125
+    },
+    {
+      "family": "matched",
+      "method": "gain_mle",
+      "budget": 0,
+      "n": 128,
+      "successes": 5,
+      "success_rate": 0.0390625,
+      "success_wilson95": [
+        0.016798610797803697,
+        0.08818702076683688
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.0390625,
+      "placement_mae_cm": 97.63712419258826,
+      "placement_p90_cm": 273.983312188114,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008254,
+      "posterior_mean_width90": 0.6749999999999853,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0014427746420619285,
+      "success_brier": 0.036529654243475006,
+      "confidence90_fraction": 0.0,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ],
+      "gain_rmse": 0.0,
+      "gain_mean_width90": 0.27000000000000224,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 0.09213651496793318,
+      "mean_mu_conditional_underresolved_mass": 0.0,
+      "mean_gain_conditional_underresolved_mass": 0.0,
+      "max_joint_cell_mass": 6.497552696776759e-07,
+      "gain_coverage50": 1.0,
+      "gain_coverage90": 1.0
+    },
+    {
+      "family": "matched",
+      "method": "gain_mle",
+      "budget": 1,
+      "n": 128,
+      "successes": 40,
+      "success_rate": 0.3125,
+      "success_wilson95": [
+        0.238655302785362,
+        0.3972710558172036
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.15625,
+      "placement_mae_cm": 11.941265102243559,
+      "placement_p90_cm": 32.64095171657239,
+      "mu_rmse": 0.08693991376684669,
+      "mu_bias": -0.021346862855391134,
+      "posterior_mean_width90": 0.16607391324339424,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.016205745604794396,
+      "success_brier": 0.14038189386837946,
+      "confidence90_fraction": 0.0625,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.07698996456701934,
+      "posterior_coverage50": 0.7734375,
+      "posterior_coverage50_wilson95": [
+        0.6935732116243923,
+        0.8373675154135328
+      ],
+      "posterior_coverage90": 0.9921875,
+      "posterior_coverage90_wilson95": [
+        0.9570737405611394,
+        0.9986195681071257
+      ],
+      "gain_rmse": 0.11935158453081687,
+      "gain_mean_width90": 0.24042136761369398,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 0.9239751152249482,
+      "mean_mu_conditional_underresolved_mass": 4.109096224581799e-06,
+      "mean_gain_conditional_underresolved_mass": 3.3210207323996516e-06,
+      "max_joint_cell_mass": 0.00021309480652459918,
+      "gain_coverage50": 0.8203125,
+      "gain_coverage90": 1.0
+    },
+    {
+      "family": "matched",
+      "method": "gain_mle",
+      "budget": 2,
+      "n": 128,
+      "successes": 104,
+      "success_rate": 0.8125,
+      "success_wilson95": [
+        0.7361508192928257,
+        0.8706385830362315
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.2708333333333333,
+      "placement_mae_cm": 2.071508355890573,
+      "placement_p90_cm": 3.477317532361182,
+      "mu_rmse": 0.04947319350648685,
+      "mu_bias": -0.004527698965345328,
+      "posterior_mean_width90": 0.10601543572154733,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.05191187816623858,
+      "success_brier": 0.11936524323620581,
+      "confidence90_fraction": 0.421875,
+      "confident_failure_joint_rate": 0.015625,
+      "mean_selection_seconds": 0.15283693880155624,
+      "posterior_coverage50": 0.6015625,
+      "posterior_coverage50_wilson95": [
+        0.5149824068759288,
+        0.6822241488810148
+      ],
+      "posterior_coverage90": 0.9453125,
+      "posterior_coverage90_wilson95": [
+        0.8914150997002529,
+        0.9732597986186536
+      ],
+      "gain_rmse": 0.07223138017551492,
+      "gain_mean_width90": 0.18917256786200293,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 1.7552921083242836,
+      "mean_mu_conditional_underresolved_mass": 4.765639639284611e-07,
+      "mean_gain_conditional_underresolved_mass": 5.2182197601366594e-05,
+      "max_joint_cell_mass": 0.00033754309605526394,
+      "gain_coverage50": 0.6015625,
+      "gain_coverage90": 0.9375
+    },
+    {
+      "family": "matched",
+      "method": "gain_mle",
+      "budget": 4,
+      "n": 128,
+      "successes": 111,
+      "success_rate": 0.8671875,
+      "success_wilson95": [
+        0.7975798330550461,
+        0.9153977146815961
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.1734375,
+      "placement_mae_cm": 1.1979580139674417,
+      "placement_p90_cm": 2.901691045282797,
+      "mu_rmse": 0.04867352564815142,
+      "mu_bias": -0.00161387399658231,
+      "posterior_mean_width90": 0.09487298852199652,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0629670105039491,
+      "success_brier": 0.07656490719173001,
+      "confidence90_fraction": 0.6953125,
+      "confident_failure_joint_rate": 0.03125,
+      "mean_selection_seconds": 0.3043384176771724,
+      "posterior_coverage50": 0.5703125,
+      "posterior_coverage50_wilson95": [
+        0.48373932885040405,
+        0.6527882866736338
+      ],
+      "posterior_coverage90": 0.9296875,
+      "posterior_coverage90_wilson95": [
+        0.8717651965063937,
+        0.96257023169606
+      ],
+      "gain_rmse": 0.07021274061951219,
+      "gain_mean_width90": 0.17059214976256504,
+      "gain_underresolved_fraction": 0.0,
+      "mean_correction_seconds": 3.3358308951428626,
+      "mean_mu_conditional_underresolved_mass": 0.00015555809507540174,
+      "mean_gain_conditional_underresolved_mass": 0.0001469975601241012,
+      "max_joint_cell_mass": 0.0007919987088548946,
+      "gain_coverage50": 0.5625,
+      "gain_coverage90": 0.9453125
+    },
+    {
+      "family": "matched",
+      "method": "same_probes_unit_bayes",
+      "budget": 0,
+      "n": 128,
+      "successes": 7,
+      "success_rate": 0.0546875,
+      "success_wilson95": [
+        0.02674020138134635,
+        0.10858490029974709
+      ],
+      "mean_attempts": 1.0,
+      "success_per_attempt": 0.0546875,
+      "placement_mae_cm": 193.6030037125534,
+      "placement_p90_cm": 520.3687128379047,
+      "mu_rmse": 0.21775324920273229,
+      "mu_bias": 0.011400722786008309,
+      "posterior_mean_width90": 0.6749999999999657,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.0005772540681943416,
+      "success_brier": 0.051439113865481015,
+      "confidence90_fraction": 0.0,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.0,
+      "posterior_coverage50": 0.4921875,
+      "posterior_coverage50_wilson95": [
+        0.4070774941965585,
+        0.5777527707452151
+      ],
+      "posterior_coverage90": 0.921875,
+      "posterior_coverage90_wilson95": [
+        0.8621530681952095,
+        0.9570126249490177
+      ]
+    },
+    {
+      "family": "matched",
+      "method": "same_probes_unit_bayes",
+      "budget": 1,
+      "n": 128,
+      "successes": 83,
+      "success_rate": 0.6484375,
+      "success_wilson95": [
+        0.5624978389203745,
+        0.7257271271859276
+      ],
+      "mean_attempts": 2.0,
+      "success_per_attempt": 0.32421875,
+      "placement_mae_cm": 3.497577657628708,
+      "placement_p90_cm": 10.192224365049066,
+      "mu_rmse": 0.017591044448338786,
+      "mu_bias": 0.0016102478159537833,
+      "posterior_mean_width90": 0.05557715189472842,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.030083464568530786,
+      "success_brier": 0.1023969737042465,
+      "confidence90_fraction": 0.2578125,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.07698996456701934,
+      "posterior_coverage50": 0.625,
+      "posterior_coverage50_wilson95": [
+        0.5386400519080884,
+        0.7040757090235344
+      ],
+      "posterior_coverage90": 0.9296875,
+      "posterior_coverage90_wilson95": [
+        0.8717651965063937,
+        0.96257023169606
+      ]
+    },
+    {
+      "family": "matched",
+      "method": "same_probes_unit_bayes",
+      "budget": 2,
+      "n": 128,
+      "successes": 124,
+      "success_rate": 0.96875,
+      "success_wilson95": [
+        0.9224023687386392,
+        0.9877817347549466
+      ],
+      "mean_attempts": 3.0,
+      "success_per_attempt": 0.3229166666666667,
+      "placement_mae_cm": 0.8266466851851004,
+      "placement_p90_cm": 1.9039763680766728,
+      "mu_rmse": 0.0033546079542182998,
+      "mu_bias": 0.0005124641941703578,
+      "posterior_mean_width90": 0.011040330330766797,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.06570964350864235,
+      "success_brier": 0.015646566545954727,
+      "confidence90_fraction": 0.90625,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.15283693880155624,
+      "posterior_coverage50": 0.4296875,
+      "posterior_coverage50_wilson95": [
+        0.3472117133263662,
+        0.516260671149596
+      ],
+      "posterior_coverage90": 0.9453125,
+      "posterior_coverage90_wilson95": [
+        0.8914150997002529,
+        0.9732597986186536
+      ]
+    },
+    {
+      "family": "matched",
+      "method": "same_probes_unit_bayes",
+      "budget": 4,
+      "n": 128,
+      "successes": 128,
+      "success_rate": 1.0,
+      "success_wilson95": [
+        0.9708630437264916,
+        1.0
+      ],
+      "mean_attempts": 5.0,
+      "success_per_attempt": 0.2,
+      "placement_mae_cm": 0.5409738893781352,
+      "placement_p90_cm": 1.1962725407803354,
+      "mu_rmse": 0.001954541448736909,
+      "mu_bias": 0.0003108262959496969,
+      "posterior_mean_width90": 0.006027819767052674,
+      "posterior_underresolved_fraction": 0.0,
+      "max_grid_step_over_sd": 0.11073169918991736,
+      "success_brier": 0.00010316179257794994,
+      "confidence90_fraction": 0.9921875,
+      "confident_failure_joint_rate": 0.0,
+      "mean_selection_seconds": 0.3043384176771724,
+      "posterior_coverage50": 0.5,
+      "posterior_coverage50_wilson95": [
+        0.41465224626050723,
+        0.5853477537394928
+      ],
+      "posterior_coverage90": 0.8828125,
+      "posterior_coverage90_wilson95": [
+        0.8156338413466524,
+        0.9276831765064426
+      ]
+    }
+  ],
+  "paired_success_differences": [
+    {
+      "family": "matched",
+      "budget": 0,
+      "comparison": "task_voi - eig",
+      "n": 128,
+      "difference": 0.0,
+      "paired_se": 0.0,
+      "a_only_successes": 0,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 0,
+      "comparison": "task_voi - lsq",
+      "n": 128,
+      "difference": 0.015625,
+      "paired_se": 0.02713423316130324,
+      "a_only_successes": 7,
+      "b_only_successes": 5,
+      "normal_95_interval": [
+        -0.037558096996154346,
+        0.06880809699615434
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 0,
+      "comparison": "task_voi - tobit",
+      "n": 128,
+      "difference": 0.015625,
+      "paired_se": 0.02713423316130324,
+      "a_only_successes": 7,
+      "b_only_successes": 5,
+      "normal_95_interval": [
+        -0.037558096996154346,
+        0.06880809699615434
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 1,
+      "comparison": "task_voi - eig",
+      "n": 128,
+      "difference": 0.0234375,
+      "paired_se": 0.032271386559953825,
+      "a_only_successes": 10,
+      "b_only_successes": 7,
+      "normal_95_interval": [
+        -0.039814417657509496,
+        0.0866894176575095
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 1,
+      "comparison": "task_voi - lsq",
+      "n": 128,
+      "difference": 0.203125,
+      "paired_se": 0.04203159988365334,
+      "a_only_successes": 30,
+      "b_only_successes": 4,
+      "normal_95_interval": [
+        0.12074306422803946,
+        0.2855069357719605
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 1,
+      "comparison": "task_voi - tobit",
+      "n": 128,
+      "difference": 0.2109375,
+      "paired_se": 0.045263260648319585,
+      "a_only_successes": 33,
+      "b_only_successes": 6,
+      "normal_95_interval": [
+        0.12222150912929361,
+        0.29965349087070636
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 2,
+      "comparison": "task_voi - eig",
+      "n": 128,
+      "difference": 0.0078125,
+      "paired_se": 0.017524216055960513,
+      "a_only_successes": 3,
+      "b_only_successes": 2,
+      "normal_95_interval": [
+        -0.026534963469682607,
+        0.04215996346968261
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 2,
+      "comparison": "task_voi - lsq",
+      "n": 128,
+      "difference": 0.2421875,
+      "paired_se": 0.038014990292760314,
+      "a_only_successes": 31,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.1676781190261898,
+        0.3166968809738102
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 2,
+      "comparison": "task_voi - tobit",
+      "n": 128,
+      "difference": 0.171875,
+      "paired_se": 0.03347745561491821,
+      "a_only_successes": 22,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.10625918699476031,
+        0.2374908130052397
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 4,
+      "comparison": "task_voi - eig",
+      "n": 128,
+      "difference": 0.0,
+      "paired_se": 0.0,
+      "a_only_successes": 0,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 4,
+      "comparison": "task_voi - lsq",
+      "n": 128,
+      "difference": 0.140625,
+      "paired_se": 0.030847556262404395,
+      "a_only_successes": 18,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.08016378972568738,
+        0.20108621027431262
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 4,
+      "comparison": "task_voi - tobit",
+      "n": 128,
+      "difference": 0.109375,
+      "paired_se": 0.02769520686450485,
+      "a_only_successes": 14,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.055092394545570494,
+        0.1636576054544295
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 0,
+      "comparison": "task_voi - eig",
+      "n": 128,
+      "difference": 0.0,
+      "paired_se": 0.0,
+      "a_only_successes": 0,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 0,
+      "comparison": "task_voi - lsq",
+      "n": 128,
+      "difference": -0.046875,
+      "paired_se": 0.024451097647776518,
+      "a_only_successes": 2,
+      "b_only_successes": 8,
+      "normal_95_interval": [
+        -0.09479915138964198,
+        0.0010491513896419766
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 0,
+      "comparison": "task_voi - tobit",
+      "n": 128,
+      "difference": -0.046875,
+      "paired_se": 0.024451097647776518,
+      "a_only_successes": 2,
+      "b_only_successes": 8,
+      "normal_95_interval": [
+        -0.09479915138964198,
+        0.0010491513896419766
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 1,
+      "comparison": "task_voi - eig",
+      "n": 128,
+      "difference": -0.03125,
+      "paired_se": 0.03668319762764659,
+      "a_only_successes": 9,
+      "b_only_successes": 13,
+      "normal_95_interval": [
+        -0.1031490673501873,
+        0.04064906735018731
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 1,
+      "comparison": "task_voi - lsq",
+      "n": 128,
+      "difference": 0.203125,
+      "paired_se": 0.044863330024704044,
+      "a_only_successes": 32,
+      "b_only_successes": 6,
+      "normal_95_interval": [
+        0.11519287315158007,
+        0.29105712684841994
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 1,
+      "comparison": "task_voi - tobit",
+      "n": 128,
+      "difference": 0.1875,
+      "paired_se": 0.04929373233225594,
+      "a_only_successes": 34,
+      "b_only_successes": 10,
+      "normal_95_interval": [
+        0.09088428462877836,
+        0.28411571537122166
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 2,
+      "comparison": "task_voi - eig",
+      "n": 128,
+      "difference": 0.046875,
+      "paired_se": 0.03819786183311897,
+      "a_only_successes": 15,
+      "b_only_successes": 9,
+      "normal_95_interval": [
+        -0.02799280919291318,
+        0.12174280919291318
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 2,
+      "comparison": "task_voi - lsq",
+      "n": 128,
+      "difference": 0.0390625,
+      "paired_se": 0.060144944420299086,
+      "a_only_successes": 32,
+      "b_only_successes": 27,
+      "normal_95_interval": [
+        -0.07882159106378621,
+        0.15694659106378622
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 2,
+      "comparison": "task_voi - tobit",
+      "n": 128,
+      "difference": 0.015625,
+      "paired_se": 0.06174183355575676,
+      "a_only_successes": 32,
+      "b_only_successes": 30,
+      "normal_95_interval": [
+        -0.10538899376928325,
+        0.13663899376928323
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 4,
+      "comparison": "task_voi - eig",
+      "n": 128,
+      "difference": 0.078125,
+      "paired_se": 0.034383946580930976,
+      "a_only_successes": 15,
+      "b_only_successes": 5,
+      "normal_95_interval": [
+        0.010732464701375288,
+        0.1455175352986247
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 4,
+      "comparison": "task_voi - lsq",
+      "n": 128,
+      "difference": -0.0546875,
+      "paired_se": 0.06004898114510321,
+      "a_only_successes": 26,
+      "b_only_successes": 33,
+      "normal_95_interval": [
+        -0.17238350304440228,
+        0.06300850304440228
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 4,
+      "comparison": "task_voi - tobit",
+      "n": 128,
+      "difference": -0.09375,
+      "paired_se": 0.05914987886117214,
+      "a_only_successes": 23,
+      "b_only_successes": 35,
+      "normal_95_interval": [
+        -0.2096837625678974,
+        0.02218376256789739
+      ]
+    }
+  ],
+  "success_degradation": [
+    {
+      "method": "blind",
+      "budget": 0,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.0390625,
+      "paired_se": 0.02327287987650138,
+      "a_only_successes": 2,
+      "b_only_successes": 7,
+      "normal_95_interval": [
+        -0.08467734455794271,
+        0.0065523445579427075
+      ]
+    },
+    {
+      "method": "eig",
+      "budget": 0,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.0390625,
+      "paired_se": 0.02327287987650138,
+      "a_only_successes": 2,
+      "b_only_successes": 7,
+      "normal_95_interval": [
+        -0.08467734455794271,
+        0.0065523445579427075
+      ]
+    },
+    {
+      "method": "eig",
+      "budget": 1,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.09375,
+      "paired_se": 0.047627651723147306,
+      "a_only_successes": 13,
+      "b_only_successes": 25,
+      "normal_95_interval": [
+        -0.18710019737736872,
+        -0.0003998026226312845
+      ]
+    },
+    {
+      "method": "eig",
+      "budget": 2,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.4375,
+      "paired_se": 0.04539578789992655,
+      "a_only_successes": 1,
+      "b_only_successes": 57,
+      "normal_95_interval": [
+        -0.526475744283856,
+        -0.348524255716144
+      ]
+    },
+    {
+      "method": "eig",
+      "budget": 4,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.5390625,
+      "paired_se": 0.044232218376094055,
+      "a_only_successes": 0,
+      "b_only_successes": 69,
+      "normal_95_interval": [
+        -0.6257576480171443,
+        -0.45236735198285566
+      ]
+    },
+    {
+      "method": "lsq",
+      "budget": 0,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": 0.0234375,
+      "paired_se": 0.025929672236898637,
+      "a_only_successes": 7,
+      "b_only_successes": 4,
+      "normal_95_interval": [
+        -0.027384657584321327,
+        0.07425965758432132
+      ]
+    },
+    {
+      "method": "lsq",
+      "budget": 1,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.1484375,
+      "paired_se": 0.04585399703455823,
+      "a_only_successes": 9,
+      "b_only_successes": 28,
+      "normal_95_interval": [
+        -0.23831133418773415,
+        -0.05856366581226587
+      ]
+    },
+    {
+      "method": "lsq",
+      "budget": 2,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.1953125,
+      "paired_se": 0.050900592275977256,
+      "a_only_successes": 11,
+      "b_only_successes": 36,
+      "normal_95_interval": [
+        -0.2950776608609154,
+        -0.09554733913908459
+      ]
+    },
+    {
+      "method": "lsq",
+      "budget": 4,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.265625,
+      "paired_se": 0.05141259377067399,
+      "a_only_successes": 9,
+      "b_only_successes": 43,
+      "normal_95_interval": [
+        -0.366393683790521,
+        -0.164856316209479
+      ]
+    },
+    {
+      "method": "mu_oracle",
+      "budget": 0,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -1.0,
+      "paired_se": 0.0,
+      "a_only_successes": 0,
+      "b_only_successes": 128,
+      "normal_95_interval": [
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "method": "task_voi",
+      "budget": 0,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.0390625,
+      "paired_se": 0.02327287987650138,
+      "a_only_successes": 2,
+      "b_only_successes": 7,
+      "normal_95_interval": [
+        -0.08467734455794271,
+        0.0065523445579427075
+      ]
+    },
+    {
+      "method": "task_voi",
+      "budget": 1,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.1484375,
+      "paired_se": 0.04449221895997415,
+      "a_only_successes": 8,
+      "b_only_successes": 27,
+      "normal_95_interval": [
+        -0.23564224916154933,
+        -0.06123275083845067
+      ]
+    },
+    {
+      "method": "task_voi",
+      "budget": 2,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.3984375,
+      "paired_se": 0.04483654114668115,
+      "a_only_successes": 1,
+      "b_only_successes": 52,
+      "normal_95_interval": [
+        -0.48631712064749505,
+        -0.31055787935250495
+      ]
+    },
+    {
+      "method": "task_voi",
+      "budget": 4,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.4609375,
+      "paired_se": 0.044232218376094055,
+      "a_only_successes": 0,
+      "b_only_successes": 59,
+      "normal_95_interval": [
+        -0.5476326480171443,
+        -0.37424235198285566
+      ]
+    },
+    {
+      "method": "tobit",
+      "budget": 0,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": 0.0234375,
+      "paired_se": 0.025929672236898637,
+      "a_only_successes": 7,
+      "b_only_successes": 4,
+      "normal_95_interval": [
+        -0.027384657584321327,
+        0.07425965758432132
+      ]
+    },
+    {
+      "method": "tobit",
+      "budget": 1,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.125,
+      "paired_se": 0.045733307698775365,
+      "a_only_successes": 10,
+      "b_only_successes": 26,
+      "normal_95_interval": [
+        -0.21463728308959973,
+        -0.035362716910400285
+      ]
+    },
+    {
+      "method": "tobit",
+      "budget": 2,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.2421875,
+      "paired_se": 0.04672610045078247,
+      "a_only_successes": 6,
+      "b_only_successes": 37,
+      "normal_95_interval": [
+        -0.33377065688353363,
+        -0.15060434311646637
+      ]
+    },
+    {
+      "method": "tobit",
+      "budget": 4,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": -0.2578125,
+      "paired_se": 0.05112669263268539,
+      "a_only_successes": 9,
+      "b_only_successes": 42,
+      "normal_95_interval": [
+        -0.3580208175600634,
+        -0.15760418243993662
+      ]
+    },
+    {
+      "method": "world_oracle",
+      "budget": 0,
+      "comparison": "gain_shift - matched",
+      "n": 128,
+      "difference": 0.0,
+      "paired_se": 0.0,
+      "a_only_successes": 0,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "caveats": [
+    "No neural component; exact grid inference and approximate myopic planning.",
+    "LSQ/Tobit coverage belongs to a diagnostic Bayesian posterior, not a fitter confidence interval.",
+    "World is the sampling unit; budgets and methods are paired, never pooled as independent trials.",
+    "Paired normal intervals are approximate; n<2 gives no interval; inspect discordant counts at small n.",
+    "Selection time includes both scores for both planners to match planning compute; timing is not a speed contest.",
+    "gain_shift is held out of tuning. mu_oracle does not know gain; world_oracle is privileged.",
+    "Turn 2 adds a physical gain assumption learned from the earlier failure; gain_shift is now within model support.",
+    "This tests fresh worlds, not a structurally unseen mismatch family. The uniform gain prior differs from the test family's mixture.",
+    "Original LSQ/Tobit protocols remain frozen; gain-MLE and gain-Bayes each received all four NEW validation candidates.",
+    "same_probes_unit_bayes follows gain_bayes's selected probe owner, isolating the model change on identical observations.",
+    "Gain MLE intervals are a diagnostic joint Bayesian posterior, not MLE confidence intervals.",
+    "Conditional grid-resolution diagnostics can expose thin ridges hidden by well-resolved marginals."
+  ],
+  "gain_fix_paired_differences": [
+    {
+      "family": "matched",
+      "budget": 0,
+      "comparison": "gain_bayes - same_probes_unit_bayes",
+      "n": 128,
+      "difference": -0.0234375,
+      "paired_se": 0.025929672236898637,
+      "a_only_successes": 4,
+      "b_only_successes": 7,
+      "normal_95_interval": [
+        -0.07425965758432132,
+        0.027384657584321327
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 0,
+      "comparison": "gain_bayes - gain_mle",
+      "n": 128,
+      "difference": -0.0078125,
+      "paired_se": 0.023519377978636433,
+      "a_only_successes": 4,
+      "b_only_successes": 5,
+      "normal_95_interval": [
+        -0.05391048083812741,
+        0.03828548083812741
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 0,
+      "comparison": "gain_bayes - eig",
+      "n": 128,
+      "difference": -0.0234375,
+      "paired_se": 0.025929672236898637,
+      "a_only_successes": 4,
+      "b_only_successes": 7,
+      "normal_95_interval": [
+        -0.07425965758432132,
+        0.027384657584321327
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 0,
+      "comparison": "gain_bayes - task_voi",
+      "n": 128,
+      "difference": -0.0234375,
+      "paired_se": 0.025929672236898637,
+      "a_only_successes": 4,
+      "b_only_successes": 7,
+      "normal_95_interval": [
+        -0.07425965758432132,
+        0.027384657584321327
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 0,
+      "comparison": "gain_bayes - lsq",
+      "n": 128,
+      "difference": -0.0078125,
+      "paired_se": 0.023519377978636433,
+      "a_only_successes": 4,
+      "b_only_successes": 5,
+      "normal_95_interval": [
+        -0.05391048083812741,
+        0.03828548083812741
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 0,
+      "comparison": "gain_bayes - tobit",
+      "n": 128,
+      "difference": -0.0078125,
+      "paired_se": 0.023519377978636433,
+      "a_only_successes": 4,
+      "b_only_successes": 5,
+      "normal_95_interval": [
+        -0.05391048083812741,
+        0.03828548083812741
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 1,
+      "comparison": "gain_bayes - same_probes_unit_bayes",
+      "n": 128,
+      "difference": -0.0390625,
+      "paired_se": 0.0390625,
+      "a_only_successes": 10,
+      "b_only_successes": 15,
+      "normal_95_interval": [
+        -0.115625,
+        0.037500000000000006
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 1,
+      "comparison": "gain_bayes - gain_mle",
+      "n": 128,
+      "difference": 0.296875,
+      "paired_se": 0.05360913031701276,
+      "a_only_successes": 48,
+      "b_only_successes": 10,
+      "normal_95_interval": [
+        0.19180110457865499,
+        0.40194889542134504
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 1,
+      "comparison": "gain_bayes - eig",
+      "n": 128,
+      "difference": -0.0390625,
+      "paired_se": 0.0390625,
+      "a_only_successes": 10,
+      "b_only_successes": 15,
+      "normal_95_interval": [
+        -0.115625,
+        0.037500000000000006
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 1,
+      "comparison": "gain_bayes - task_voi",
+      "n": 128,
+      "difference": -0.0625,
+      "paired_se": 0.0440198371531759,
+      "a_only_successes": 12,
+      "b_only_successes": 20,
+      "normal_95_interval": [
+        -0.14877888082022478,
+        0.023778880820224765
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 1,
+      "comparison": "gain_bayes - lsq",
+      "n": 128,
+      "difference": 0.140625,
+      "paired_se": 0.050507238849308536,
+      "a_only_successes": 31,
+      "b_only_successes": 13,
+      "normal_95_interval": [
+        0.041630811855355276,
+        0.23961918814464472
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 1,
+      "comparison": "gain_bayes - tobit",
+      "n": 128,
+      "difference": 0.1484375,
+      "paired_se": 0.04971602892663744,
+      "a_only_successes": 31,
+      "b_only_successes": 12,
+      "normal_95_interval": [
+        0.05099408330379061,
+        0.24588091669620937
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 2,
+      "comparison": "gain_bayes - same_probes_unit_bayes",
+      "n": 128,
+      "difference": -0.078125,
+      "paired_se": 0.026270321623998942,
+      "a_only_successes": 1,
+      "b_only_successes": 11,
+      "normal_95_interval": [
+        -0.12961483038303792,
+        -0.026635169616962072
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 2,
+      "comparison": "gain_bayes - gain_mle",
+      "n": 128,
+      "difference": 0.078125,
+      "paired_se": 0.030597267694262024,
+      "a_only_successes": 13,
+      "b_only_successes": 3,
+      "normal_95_interval": [
+        0.018154355319246432,
+        0.13809564468075358
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 2,
+      "comparison": "gain_bayes - eig",
+      "n": 128,
+      "difference": -0.078125,
+      "paired_se": 0.026270321623998942,
+      "a_only_successes": 1,
+      "b_only_successes": 11,
+      "normal_95_interval": [
+        -0.12961483038303792,
+        -0.026635169616962072
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 2,
+      "comparison": "gain_bayes - task_voi",
+      "n": 128,
+      "difference": -0.0859375,
+      "paired_se": 0.029403819733351263,
+      "a_only_successes": 2,
+      "b_only_successes": 13,
+      "normal_95_interval": [
+        -0.14356898667736848,
+        -0.028306013322631524
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 2,
+      "comparison": "gain_bayes - lsq",
+      "n": 128,
+      "difference": 0.15625,
+      "paired_se": 0.0421457853694702,
+      "a_only_successes": 26,
+      "b_only_successes": 6,
+      "normal_95_interval": [
+        0.0736442606758384,
+        0.2388557393241616
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 2,
+      "comparison": "gain_bayes - tobit",
+      "n": 128,
+      "difference": 0.0859375,
+      "paired_se": 0.042998099765168156,
+      "a_only_successes": 21,
+      "b_only_successes": 10,
+      "normal_95_interval": [
+        0.0016612244602704218,
+        0.17021377553972958
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 4,
+      "comparison": "gain_bayes - same_probes_unit_bayes",
+      "n": 128,
+      "difference": 0.0,
+      "paired_se": 0.0,
+      "a_only_successes": 0,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 4,
+      "comparison": "gain_bayes - gain_mle",
+      "n": 128,
+      "difference": 0.1328125,
+      "paired_se": 0.030114393430435732,
+      "a_only_successes": 17,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.07378828887634598,
+        0.19183671112365402
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 4,
+      "comparison": "gain_bayes - eig",
+      "n": 128,
+      "difference": 0.0,
+      "paired_se": 0.0,
+      "a_only_successes": 0,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 4,
+      "comparison": "gain_bayes - task_voi",
+      "n": 128,
+      "difference": 0.0,
+      "paired_se": 0.0,
+      "a_only_successes": 0,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 4,
+      "comparison": "gain_bayes - lsq",
+      "n": 128,
+      "difference": 0.140625,
+      "paired_se": 0.030847556262404395,
+      "a_only_successes": 18,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.08016378972568738,
+        0.20108621027431262
+      ]
+    },
+    {
+      "family": "matched",
+      "budget": 4,
+      "comparison": "gain_bayes - tobit",
+      "n": 128,
+      "difference": 0.109375,
+      "paired_se": 0.02769520686450485,
+      "a_only_successes": 14,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.055092394545570494,
+        0.1636576054544295
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 0,
+      "comparison": "gain_bayes - same_probes_unit_bayes",
+      "n": 128,
+      "difference": 0.0703125,
+      "paired_se": 0.02758218247543634,
+      "a_only_successes": 11,
+      "b_only_successes": 2,
+      "normal_95_interval": [
+        0.01625142234814478,
+        0.12437357765185522
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 0,
+      "comparison": "gain_bayes - gain_mle",
+      "n": 128,
+      "difference": 0.0234375,
+      "paired_se": 0.03412438844235835,
+      "a_only_successes": 11,
+      "b_only_successes": 8,
+      "normal_95_interval": [
+        -0.04344630134702236,
+        0.09032130134702236
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 0,
+      "comparison": "gain_bayes - eig",
+      "n": 128,
+      "difference": 0.0703125,
+      "paired_se": 0.02758218247543634,
+      "a_only_successes": 11,
+      "b_only_successes": 2,
+      "normal_95_interval": [
+        0.01625142234814478,
+        0.12437357765185522
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 0,
+      "comparison": "gain_bayes - task_voi",
+      "n": 128,
+      "difference": 0.0703125,
+      "paired_se": 0.02758218247543634,
+      "a_only_successes": 11,
+      "b_only_successes": 2,
+      "normal_95_interval": [
+        0.01625142234814478,
+        0.12437357765185522
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 0,
+      "comparison": "gain_bayes - lsq",
+      "n": 128,
+      "difference": 0.0234375,
+      "paired_se": 0.03412438844235835,
+      "a_only_successes": 11,
+      "b_only_successes": 8,
+      "normal_95_interval": [
+        -0.04344630134702236,
+        0.09032130134702236
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 0,
+      "comparison": "gain_bayes - tobit",
+      "n": 128,
+      "difference": 0.0234375,
+      "paired_se": 0.03412438844235835,
+      "a_only_successes": 11,
+      "b_only_successes": 8,
+      "normal_95_interval": [
+        -0.04344630134702236,
+        0.09032130134702236
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 1,
+      "comparison": "gain_bayes - same_probes_unit_bayes",
+      "n": 128,
+      "difference": 0.0390625,
+      "paired_se": 0.030178161407465483,
+      "a_only_successes": 10,
+      "b_only_successes": 5,
+      "normal_95_interval": [
+        -0.020086696358632347,
+        0.09821169635863235
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 1,
+      "comparison": "gain_bayes - gain_mle",
+      "n": 128,
+      "difference": 0.25,
+      "paired_se": 0.042958962288966916,
+      "a_only_successes": 35,
+      "b_only_successes": 3,
+      "normal_95_interval": [
+        0.16580043391362484,
+        0.33419956608637513
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 1,
+      "comparison": "gain_bayes - eig",
+      "n": 128,
+      "difference": 0.0390625,
+      "paired_se": 0.030178161407465483,
+      "a_only_successes": 10,
+      "b_only_successes": 5,
+      "normal_95_interval": [
+        -0.020086696358632347,
+        0.09821169635863235
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 1,
+      "comparison": "gain_bayes - task_voi",
+      "n": 128,
+      "difference": 0.0703125,
+      "paired_se": 0.03539636668304017,
+      "a_only_successes": 15,
+      "b_only_successes": 6,
+      "normal_95_interval": [
+        0.0009356213012412656,
+        0.13968937869875875
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 1,
+      "comparison": "gain_bayes - lsq",
+      "n": 128,
+      "difference": 0.2734375,
+      "paired_se": 0.04924983980898445,
+      "a_only_successes": 42,
+      "b_only_successes": 7,
+      "normal_95_interval": [
+        0.17690781397439048,
+        0.3699671860256095
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 1,
+      "comparison": "gain_bayes - tobit",
+      "n": 128,
+      "difference": 0.2578125,
+      "paired_se": 0.055732079485777804,
+      "a_only_successes": 46,
+      "b_only_successes": 13,
+      "normal_95_interval": [
+        0.1485776242078755,
+        0.3670473757921245
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 2,
+      "comparison": "gain_bayes - same_probes_unit_bayes",
+      "n": 128,
+      "difference": 0.3515625,
+      "paired_se": 0.045178239186734345,
+      "a_only_successes": 47,
+      "b_only_successes": 2,
+      "normal_95_interval": [
+        0.2630131511940007,
+        0.4401118488059993
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 2,
+      "comparison": "gain_bayes - gain_mle",
+      "n": 128,
+      "difference": 0.15625,
+      "paired_se": 0.0421457853694702,
+      "a_only_successes": 26,
+      "b_only_successes": 6,
+      "normal_95_interval": [
+        0.0736442606758384,
+        0.2388557393241616
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 2,
+      "comparison": "gain_bayes - eig",
+      "n": 128,
+      "difference": 0.3515625,
+      "paired_se": 0.045178239186734345,
+      "a_only_successes": 47,
+      "b_only_successes": 2,
+      "normal_95_interval": [
+        0.2630131511940007,
+        0.4401118488059993
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 2,
+      "comparison": "gain_bayes - task_voi",
+      "n": 128,
+      "difference": 0.3046875,
+      "paired_se": 0.04647859784701775,
+      "a_only_successes": 43,
+      "b_only_successes": 4,
+      "normal_95_interval": [
+        0.2135894482198452,
+        0.3957855517801548
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 2,
+      "comparison": "gain_bayes - lsq",
+      "n": 128,
+      "difference": 0.34375,
+      "paired_se": 0.05014435362817434,
+      "a_only_successes": 50,
+      "b_only_successes": 6,
+      "normal_95_interval": [
+        0.24546706688877828,
+        0.4420329331112217
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 2,
+      "comparison": "gain_bayes - tobit",
+      "n": 128,
+      "difference": 0.3203125,
+      "paired_se": 0.04952231679732289,
+      "a_only_successes": 47,
+      "b_only_successes": 6,
+      "normal_95_interval": [
+        0.22324875907724712,
+        0.4173762409227529
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 4,
+      "comparison": "gain_bayes - same_probes_unit_bayes",
+      "n": 128,
+      "difference": 0.515625,
+      "paired_se": 0.04571228572216534,
+      "a_only_successes": 67,
+      "b_only_successes": 1,
+      "normal_95_interval": [
+        0.42602891998455594,
+        0.6052210800154441
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 4,
+      "comparison": "gain_bayes - gain_mle",
+      "n": 128,
+      "difference": 0.0546875,
+      "paired_se": 0.020175758695205624,
+      "a_only_successes": 7,
+      "b_only_successes": 0,
+      "normal_95_interval": [
+        0.015143012957396979,
+        0.09423198704260302
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 4,
+      "comparison": "gain_bayes - eig",
+      "n": 128,
+      "difference": 0.515625,
+      "paired_se": 0.04571228572216534,
+      "a_only_successes": 67,
+      "b_only_successes": 1,
+      "normal_95_interval": [
+        0.42602891998455594,
+        0.6052210800154441
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 4,
+      "comparison": "gain_bayes - task_voi",
+      "n": 128,
+      "difference": 0.4375,
+      "paired_se": 0.04539578789992655,
+      "a_only_successes": 57,
+      "b_only_successes": 1,
+      "normal_95_interval": [
+        0.348524255716144,
+        0.526475744283856
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 4,
+      "comparison": "gain_bayes - lsq",
+      "n": 128,
+      "difference": 0.3828125,
+      "paired_se": 0.04589590154139303,
+      "a_only_successes": 51,
+      "b_only_successes": 2,
+      "normal_95_interval": [
+        0.29285653297886965,
+        0.47276846702113035
+      ]
+    },
+    {
+      "family": "gain_shift",
+      "budget": 4,
+      "comparison": "gain_bayes - tobit",
+      "n": 128,
+      "difference": 0.34375,
+      "paired_se": 0.04358094446512651,
+      "a_only_successes": 45,
+      "b_only_successes": 1,
+      "normal_95_interval": [
+        0.25833134884835207,
+        0.42916865115164793
+      ]
+    }
+  ],
+  "checkpoint": "/Users/danielmercado/ProjectJoy/11_physics_detective/checkpoints/r5_turn2_main.json"
+}

@@ -1,0 +1,932 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Physics Detective · Probe to place</title><style>
+body{font:16px system-ui,sans-serif;background:#f7f5ef;color:#20282d;max-width:1200px;margin:36px auto;padding:0 24px}
+h1{font-size:38px}h2{margin-top:34px}small{color:#59636b}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+.card{background:white;padding:18px;border:1px solid #e1dfd8;border-radius:10px}svg{width:100%;height:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{text-align:right;padding:7px;border-bottom:1px solid #ddd}
+td:first-child,th:first-child{text-align:left}pre{white-space:pre-wrap;font-size:12px}.tag{font-weight:650;margin-right:20px}
+</style><h1>The Physics Detective: probe to place</h1>
+<p>512 paired worlds per family. Target band: 5 cm; one scored push; every probe costs one reset and one extra attempt.</p>
+<p>Blue: information gain. Green: task value of information. Gold: least squares. Purple: censoring-aware Tobit fit. All inference assumes unit actuator gain.</p>
+<p>The gain-shift family has a hidden ±6–12% actuator error. It was excluded from tuning. No neural network is used in this round.</p>
+<h2>matched</h2><div class="grid">
+<div class="card"><b>Placement success</b><svg viewBox="0 0 570 230" role="img" aria-label="Placement success: matched"><path d="M45 15V190H545" fill="none" stroke="#889"/><path d="M45 190H545" stroke="#ddd"/><text x="12" y="194" font-size="12">0</text><path d="M45 105.0H545" stroke="#ddd"/><text x="12" y="109.0" font-size="12">0.5</text><path d="M45 20H545" stroke="#ddd"/><text x="12" y="24" font-size="12">1</text><text x="45" y="209" text-anchor="middle" font-size="12">0</text><text x="165" y="209" text-anchor="middle" font-size="12">1</text><text x="285" y="209" text-anchor="middle" font-size="12">2</text><text x="525" y="209" text-anchor="middle" font-size="12">4</text><polyline points="45,179.04296875 165,92.71484375 285,27.63671875 525,20.6640625" fill="none" stroke="#4269d0" stroke-width="2"/><path d="M45 174.8472034180062V182.135941700531" stroke="#4269d0" opacity=".35"/><circle cx="45" cy="179.04296875" r="3" fill="#4269d0"/><path d="M165 85.54762353391399V100.06503848677713" stroke="#4269d0" opacity=".35"/><circle cx="165" cy="92.71484375" r="3" fill="#4269d0"/><path d="M285 25.120012189034156V31.305670265588446" stroke="#4269d0" opacity=".35"/><circle cx="285" cy="27.63671875" r="3" fill="#4269d0"/><path d="M525 20.182221143666908V22.4019992145912" stroke="#4269d0" opacity=".35"/><circle cx="525" cy="20.6640625" r="3" fill="#4269d0"/><polyline points="45,179.04296875 165,87.40234375 285,29.296875 525,20.99609375" fill="none" stroke="#00876c" stroke-width="2"/><path d="M45 174.8472034180062V182.135941700531" stroke="#00876c" opacity=".35"/><circle cx="45" cy="179.04296875" r="3" fill="#00876c"/><path d="M165 80.35596925134148V94.71081688640531" stroke="#00876c" opacity=".35"/><circle cx="165" cy="87.40234375" r="3" fill="#00876c"/><path d="M285 26.47775377875658V33.24351488928613" stroke="#00876c" opacity=".35"/><circle cx="285" cy="29.296875" r="3" fill="#00876c"/><path d="M525 20.339094884671624V22.90424271627049" stroke="#00876c" opacity=".35"/><circle cx="525" cy="20.99609375" r="3" fill="#00876c"/><polyline points="45,185.68359375 165,123.92578125 285,70.80078125 525,39.58984375" fill="none" stroke="#b07800" stroke-width="2"/><path d="M45 182.69804767535607V187.46744229686158" stroke="#b07800" opacity=".35"/><circle cx="45" cy="185.68359375" r="3" fill="#b07800"/><path d="M165 116.63243852123192V130.9372443117574" stroke="#b07800" opacity=".35"/><circle cx="165" cy="123.92578125" r="3" fill="#b07800"/><path d="M285 64.33538914935085V77.77553485419477" stroke="#b07800" opacity=".35"/><circle cx="285" cy="70.80078125" r="3" fill="#b07800"/><path d="M525 35.3674003050815V44.78650288616592" stroke="#b07800" opacity=".35"/><circle cx="525" cy="39.58984375" r="3" fill="#b07800"/><polyline points="45,185.68359375 165,116.953125 285,63.1640625 525,36.26953125" fill="none" stroke="#9254b7" stroke-width="2"/><path d="M45 182.69804767535607V187.46744229686158" stroke="#9254b7" opacity=".35"/><circle cx="45" cy="185.68359375" r="3" fill="#9254b7"/><path d="M165 109.60130648943122V124.12691424719361" stroke="#9254b7" opacity=".35"/><circle cx="165" cy="116.953125" r="3" fill="#9254b7"/><path d="M285 57.082850085735515V69.86837733607757" stroke="#9254b7" opacity=".35"/><circle cx="285" cy="63.1640625" r="3" fill="#9254b7"/><path d="M525 32.4353587153756V41.12737204903161" stroke="#9254b7" opacity=".35"/><circle cx="525" cy="36.26953125" r="3" fill="#9254b7"/><text x="295" y="228" text-anchor="middle" font-size="12">preliminary probes (total attempts = probes + 1)</text></svg></div>
+<div class="card"><b>90% posterior coverage</b><svg viewBox="0 0 570 230" role="img" aria-label="90% posterior coverage: matched"><path d="M45 15V190H545" fill="none" stroke="#889"/><path d="M45 190H545" stroke="#ddd"/><text x="12" y="194" font-size="12">0</text><path d="M45 105.0H545" stroke="#ddd"/><text x="12" y="109.0" font-size="12">0.5</text><path d="M45 20H545" stroke="#ddd"/><text x="12" y="24" font-size="12">1</text><text x="45" y="209" text-anchor="middle" font-size="12">0</text><text x="165" y="209" text-anchor="middle" font-size="12">1</text><text x="285" y="209" text-anchor="middle" font-size="12">2</text><text x="525" y="209" text-anchor="middle" font-size="12">4</text><path d="M45 37H545" stroke="#666" stroke-dasharray="5 4"/><polyline points="45,37.59765625 165,37.265625 285,40.25390625 525,36.93359375" fill="none" stroke="#4269d0" stroke-width="2"/><path d="M45 33.60247070127389V42.596729033869394" stroke="#4269d0" opacity=".35"/><circle cx="45" cy="37.59765625" r="3" fill="#4269d0"/><path d="M165 33.30993853787439V42.23014395458486" stroke="#4269d0" opacity=".35"/><circle cx="165" cy="37.265625" r="3" fill="#4269d0"/><path d="M285 35.959172752555446V45.51296492406007" stroke="#4269d0" opacity=".35"/><circle cx="285" cy="40.25390625" r="3" fill="#4269d0"/><path d="M525 33.01790059087105V41.86306465890422" stroke="#4269d0" opacity=".35"/><circle cx="525" cy="36.93359375" r="3" fill="#4269d0"/><polyline points="45,37.59765625 165,36.6015625 285,37.59765625 525,37.265625" fill="none" stroke="#00876c" stroke-width="2"/><path d="M45 33.60247070127389V42.596729033869394" stroke="#00876c" opacity=".35"/><circle cx="45" cy="37.59765625" r="3" fill="#00876c"/><path d="M165 32.72636954796505V41.49547845912619" stroke="#00876c" opacity=".35"/><circle cx="165" cy="36.6015625" r="3" fill="#00876c"/><path d="M285 33.60247070127389V42.596729033869394" stroke="#00876c" opacity=".35"/><circle cx="285" cy="37.59765625" r="3" fill="#00876c"/><path d="M525 33.30993853787439V42.23014395458486" stroke="#00876c" opacity=".35"/><circle cx="525" cy="37.265625" r="3" fill="#00876c"/><polyline points="45,37.59765625 165,37.59765625 285,38.26171875 525,36.6015625" fill="none" stroke="#b07800" stroke-width="2"/><path d="M45 33.60247070127389V42.596729033869394" stroke="#b07800" opacity=".35"/><circle cx="45" cy="37.59765625" r="3" fill="#b07800"/><path d="M165 33.60247070127389V42.596729033869394" stroke="#b07800" opacity=".35"/><circle cx="165" cy="37.59765625" r="3" fill="#b07800"/><path d="M285 34.18896978459392V43.328464435917425" stroke="#b07800" opacity=".35"/><circle cx="285" cy="38.26171875" r="3" fill="#b07800"/><path d="M525 32.72636954796505V41.49547845912619" stroke="#b07800" opacity=".35"/><circle cx="525" cy="36.6015625" r="3" fill="#b07800"/><polyline points="45,37.59765625 165,36.26953125 285,40.5859375 525,38.59375" fill="none" stroke="#9254b7" stroke-width="2"/><path d="M45 33.60247070127389V42.596729033869394" stroke="#9254b7" opacity=".35"/><circle cx="45" cy="37.59765625" r="3" fill="#9254b7"/><path d="M165 32.4353587153756V41.12737204903161" stroke="#9254b7" opacity=".35"/><circle cx="165" cy="36.26953125" r="3" fill="#9254b7"/><path d="M285 36.255666647572895V45.8755882717266" stroke="#9254b7" opacity=".35"/><circle cx="285" cy="40.5859375" r="3" fill="#9254b7"/><path d="M525 34.48291408096358V43.6936373822318" stroke="#9254b7" opacity=".35"/><circle cx="525" cy="38.59375" r="3" fill="#9254b7"/><text x="295" y="228" text-anchor="middle" font-size="12">preliminary probes (total attempts = probes + 1)</text></svg></div>
+</div>
+<h2>gain_shift</h2><div class="grid">
+<div class="card"><b>Placement success</b><svg viewBox="0 0 570 230" role="img" aria-label="Placement success: gain_shift"><path d="M45 15V190H545" fill="none" stroke="#889"/><path d="M45 190H545" stroke="#ddd"/><text x="12" y="194" font-size="12">0</text><path d="M45 105.0H545" stroke="#ddd"/><text x="12" y="109.0" font-size="12">0.5</text><path d="M45 20H545" stroke="#ddd"/><text x="12" y="24" font-size="12">1</text><text x="45" y="209" text-anchor="middle" font-size="12">0</text><text x="165" y="209" text-anchor="middle" font-size="12">1</text><text x="285" y="209" text-anchor="middle" font-size="12">2</text><text x="525" y="209" text-anchor="middle" font-size="12">4</text><polyline points="45,187.01171875 165,118.9453125 285,117.6171875 525,115.29296875" fill="none" stroke="#4269d0" stroke-width="2"/><path d="M45 184.37869756127213V188.4232613816816" stroke="#4269d0" opacity=".35"/><circle cx="45" cy="187.01171875" r="3" fill="#4269d0"/><path d="M165 111.60496030529066V126.0779638874383" stroke="#4269d0" opacity=".35"/><circle cx="165" cy="118.9453125" r="3" fill="#4269d0"/><path d="M285 110.26873117626492V124.77772404572796" stroke="#4269d0" opacity=".35"/><circle cx="285" cy="117.6171875" r="3" fill="#4269d0"/><path d="M525 107.9347443769995V122.49789014620521" stroke="#4269d0" opacity=".35"/><circle cx="525" cy="115.29296875" r="3" fill="#4269d0"/><polyline points="45,187.01171875 165,123.92578125 285,114.62890625 525,105.99609375" fill="none" stroke="#00876c" stroke-width="2"/><path d="M45 184.37869756127213V188.4232613816816" stroke="#00876c" opacity=".35"/><circle cx="45" cy="187.01171875" r="3" fill="#00876c"/><path d="M165 116.63243852123192V130.9372443117574" stroke="#00876c" opacity=".35"/><circle cx="165" cy="123.92578125" r="3" fill="#00876c"/><path d="M285 107.26891566628927V121.84548437154739" stroke="#00876c" opacity=".35"/><circle cx="285" cy="114.62890625" r="3" fill="#00876c"/><path d="M525 98.65402756209613V113.32332416595594" stroke="#00876c" opacity=".35"/><circle cx="525" cy="105.99609375" r="3" fill="#00876c"/><polyline points="45,186.015625 165,138.53515625 285,102.34375 525,89.39453125" fill="none" stroke="#b07800" stroke-width="2"/><path d="M45 183.1123173885152V187.71228982638644" stroke="#b07800" opacity=".35"/><circle cx="45" cy="186.015625" r="3" fill="#b07800"/><path d="M165 131.54065622390542V145.03018528718093" stroke="#b07800" opacity=".35"/><circle cx="165" cy="138.53515625" r="3" fill="#b07800"/><path d="M285 95.03193860142368V109.69512345710415" stroke="#b07800" opacity=".35"/><circle cx="285" cy="102.34375" r="3" fill="#b07800"/><path d="M525 82.29934144449503V96.7221481493559" stroke="#b07800" opacity=".35"/><circle cx="525" cy="89.39453125" r="3" fill="#b07800"/><polyline points="45,186.015625 165,142.1875 285,102.01171875 525,92.71484375" fill="none" stroke="#9254b7" stroke-width="2"/><path d="M45 183.1123173885152V187.71228982638644" stroke="#9254b7" opacity=".35"/><circle cx="45" cy="186.015625" r="3" fill="#9254b7"/><path d="M165 135.30885415276282V148.51227702784777" stroke="#9254b7" opacity=".35"/><circle cx="165" cy="142.1875" r="3" fill="#9254b7"/><path d="M285 94.70332478070596V109.36462003513785" stroke="#9254b7" opacity=".35"/><circle cx="285" cy="102.01171875" r="3" fill="#9254b7"/><path d="M525 85.54762353391399V100.06503848677713" stroke="#9254b7" opacity=".35"/><circle cx="525" cy="92.71484375" r="3" fill="#9254b7"/><text x="295" y="228" text-anchor="middle" font-size="12">preliminary probes (total attempts = probes + 1)</text></svg></div>
+<div class="card"><b>90% posterior coverage</b><svg viewBox="0 0 570 230" role="img" aria-label="90% posterior coverage: gain_shift"><path d="M45 15V190H545" fill="none" stroke="#889"/><path d="M45 190H545" stroke="#ddd"/><text x="12" y="194" font-size="12">0</text><path d="M45 105.0H545" stroke="#ddd"/><text x="12" y="109.0" font-size="12">0.5</text><path d="M45 20H545" stroke="#ddd"/><text x="12" y="24" font-size="12">1</text><text x="45" y="209" text-anchor="middle" font-size="12">0</text><text x="165" y="209" text-anchor="middle" font-size="12">1</text><text x="285" y="209" text-anchor="middle" font-size="12">2</text><text x="525" y="209" text-anchor="middle" font-size="12">4</text><path d="M45 37H545" stroke="#666" stroke-dasharray="5 4"/><polyline points="45,37.59765625 165,157.12890625 285,187.67578125 525,190.0" fill="none" stroke="#4269d0" stroke-width="2"/><path d="M45 33.60247070127389V42.596729033869394" stroke="#4269d0" opacity=".35"/><circle cx="45" cy="37.59765625" r="3" fill="#4269d0"/><path d="M165 150.93393863246894V162.5474684689227" stroke="#4269d0" opacity=".35"/><circle cx="165" cy="157.12890625" r="3" fill="#4269d0"/><path d="M285 185.24866991700432V188.87152351131743" stroke="#4269d0" opacity=".35"/><circle cx="285" cy="187.67578125" r="3" fill="#4269d0"/><path d="M525 188.73401412710993V190.0" stroke="#4269d0" opacity=".35"/><circle cx="525" cy="190.0" r="3" fill="#4269d0"/><polyline points="45,37.59765625 165,158.45703125 285,186.015625 525,190.0" fill="none" stroke="#00876c" stroke-width="2"/><path d="M45 33.60247070127389V42.596729033869394" stroke="#00876c" opacity=".35"/><circle cx="45" cy="37.59765625" r="3" fill="#00876c"/><path d="M165 152.34212105219837V163.77575501992936" stroke="#00876c" opacity=".35"/><circle cx="165" cy="158.45703125" r="3" fill="#00876c"/><path d="M285 183.1123173885152V187.71228982638644" stroke="#00876c" opacity=".35"/><circle cx="285" cy="186.015625" r="3" fill="#00876c"/><path d="M525 188.73401412710993V190.0" stroke="#00876c" opacity=".35"/><circle cx="525" cy="190.0" r="3" fill="#00876c"/><polyline points="45,37.59765625 165,160.44921875 285,187.01171875 525,190.0" fill="none" stroke="#b07800" stroke-width="2"/><path d="M45 33.60247070127389V42.596729033869394" stroke="#b07800" opacity=".35"/><circle cx="45" cy="37.59765625" r="3" fill="#b07800"/><path d="M165 154.46149646940896V165.6110830588229" stroke="#b07800" opacity=".35"/><circle cx="165" cy="160.44921875" r="3" fill="#b07800"/><path d="M285 184.37869756127213V188.4232613816816" stroke="#b07800" opacity=".35"/><circle cx="285" cy="187.01171875" r="3" fill="#b07800"/><path d="M525 188.73401412710993V190.0" stroke="#b07800" opacity=".35"/><circle cx="525" cy="190.0" r="3" fill="#b07800"/><polyline points="45,37.59765625 165,148.1640625 285,186.34765625 525,190.0" fill="none" stroke="#9254b7" stroke-width="2"/><path d="M45 33.60247070127389V42.596729033869394" stroke="#9254b7" opacity=".35"/><circle cx="45" cy="37.59765625" r="3" fill="#9254b7"/><path d="M165 141.51545761475924V154.16978393416377" stroke="#9254b7" opacity=".35"/><circle cx="165" cy="148.1640625" r="3" fill="#9254b7"/><path d="M285 183.53019720024696V187.95352725733872" stroke="#9254b7" opacity=".35"/><circle cx="285" cy="186.34765625" r="3" fill="#9254b7"/><path d="M525 188.73401412710993V190.0" stroke="#9254b7" opacity=".35"/><circle cx="525" cy="190.0" r="3" fill="#9254b7"/><text x="295" y="228" text-anchor="middle" font-size="12">preliminary probes (total attempts = probes + 1)</text></svg></div>
+</div>
+<p><small>Vertical lines: Wilson 95% intervals across worlds. Budgets are correlated. LSQ/Tobit coverage is from a diagnostic Bayesian posterior on their probes; their controllers use point fits.</small></p>
+<h2>Attempts, error and uncertainty</h2><table><tr><th>Family / method / probes</th><th>Success</th><th>Attempts</th><th>MAE cm</th><th>μ RMSE</th><th>90% width</th></tr>
+<tr><td>gain_shift / blind / 0</td><td>0.018</td><td>1</td><td>230.37</td><td>0.2254</td><td>0.6750</td></tr>
+<tr><td>gain_shift / eig / 0</td><td>0.018</td><td>1</td><td>230.37</td><td>0.2254</td><td>0.6750</td></tr>
+<tr><td>gain_shift / eig / 1</td><td>0.418</td><td>2</td><td>7.35</td><td>0.0612</td><td>0.0564</td></tr>
+<tr><td>gain_shift / eig / 2</td><td>0.426</td><td>3</td><td>4.36</td><td>0.0507</td><td>0.0119</td></tr>
+<tr><td>gain_shift / eig / 4</td><td>0.439</td><td>5</td><td>4.29</td><td>0.0503</td><td>0.0053</td></tr>
+<tr><td>gain_shift / lsq / 0</td><td>0.023</td><td>1</td><td>116.72</td><td>0.2254</td><td>0.6750</td></tr>
+<tr><td>gain_shift / lsq / 1</td><td>0.303</td><td>2</td><td>16.32</td><td>0.0741</td><td>0.0588</td></tr>
+<tr><td>gain_shift / lsq / 2</td><td>0.516</td><td>3</td><td>5.60</td><td>0.0601</td><td>0.0194</td></tr>
+<tr><td>gain_shift / lsq / 4</td><td>0.592</td><td>5</td><td>3.61</td><td>0.0585</td><td>0.0114</td></tr>
+<tr><td>gain_shift / mu_oracle / 0</td><td>0.000</td><td>1</td><td>18.39</td><td>0.0000</td><td>—</td></tr>
+<tr><td>gain_shift / task_voi / 0</td><td>0.018</td><td>1</td><td>230.37</td><td>0.2254</td><td>0.6750</td></tr>
+<tr><td>gain_shift / task_voi / 1</td><td>0.389</td><td>2</td><td>8.57</td><td>0.0667</td><td>0.0590</td></tr>
+<tr><td>gain_shift / task_voi / 2</td><td>0.443</td><td>3</td><td>4.33</td><td>0.0527</td><td>0.0138</td></tr>
+<tr><td>gain_shift / task_voi / 4</td><td>0.494</td><td>5</td><td>4.12</td><td>0.0515</td><td>0.0065</td></tr>
+<tr><td>gain_shift / tobit / 0</td><td>0.023</td><td>1</td><td>116.72</td><td>0.2254</td><td>0.6750</td></tr>
+<tr><td>gain_shift / tobit / 1</td><td>0.281</td><td>2</td><td>17.77</td><td>0.0830</td><td>0.0790</td></tr>
+<tr><td>gain_shift / tobit / 2</td><td>0.518</td><td>3</td><td>6.23</td><td>0.0605</td><td>0.0196</td></tr>
+<tr><td>gain_shift / tobit / 4</td><td>0.572</td><td>5</td><td>4.34</td><td>0.0593</td><td>0.0106</td></tr>
+<tr><td>gain_shift / world_oracle / 0</td><td>1.000</td><td>1</td><td>0.08</td><td>0.0000</td><td>—</td></tr>
+<tr><td>matched / blind / 0</td><td>0.064</td><td>1</td><td>222.21</td><td>0.2254</td><td>0.6750</td></tr>
+<tr><td>matched / eig / 0</td><td>0.064</td><td>1</td><td>222.21</td><td>0.2254</td><td>0.6750</td></tr>
+<tr><td>matched / eig / 1</td><td>0.572</td><td>2</td><td>4.90</td><td>0.0205</td><td>0.0606</td></tr>
+<tr><td>matched / eig / 2</td><td>0.955</td><td>3</td><td>0.86</td><td>0.0040</td><td>0.0118</td></tr>
+<tr><td>matched / eig / 4</td><td>0.996</td><td>5</td><td>0.56</td><td>0.0019</td><td>0.0060</td></tr>
+<tr><td>matched / lsq / 0</td><td>0.025</td><td>1</td><td>112.58</td><td>0.2254</td><td>0.6750</td></tr>
+<tr><td>matched / lsq / 1</td><td>0.389</td><td>2</td><td>11.47</td><td>0.0281</td><td>0.0644</td></tr>
+<tr><td>matched / lsq / 2</td><td>0.701</td><td>3</td><td>2.85</td><td>0.0089</td><td>0.0204</td></tr>
+<tr><td>matched / lsq / 4</td><td>0.885</td><td>5</td><td>1.37</td><td>0.0046</td><td>0.0121</td></tr>
+<tr><td>matched / mu_oracle / 0</td><td>1.000</td><td>1</td><td>0.08</td><td>0.0000</td><td>—</td></tr>
+<tr><td>matched / task_voi / 0</td><td>0.064</td><td>1</td><td>222.21</td><td>0.2254</td><td>0.6750</td></tr>
+<tr><td>matched / task_voi / 1</td><td>0.604</td><td>2</td><td>5.73</td><td>0.0212</td><td>0.0628</td></tr>
+<tr><td>matched / task_voi / 2</td><td>0.945</td><td>3</td><td>0.91</td><td>0.0043</td><td>0.0130</td></tr>
+<tr><td>matched / task_voi / 4</td><td>0.994</td><td>5</td><td>0.57</td><td>0.0024</td><td>0.0075</td></tr>
+<tr><td>matched / tobit / 0</td><td>0.025</td><td>1</td><td>112.58</td><td>0.2254</td><td>0.6750</td></tr>
+<tr><td>matched / tobit / 1</td><td>0.430</td><td>2</td><td>12.12</td><td>0.0327</td><td>0.0839</td></tr>
+<tr><td>matched / tobit / 2</td><td>0.746</td><td>3</td><td>2.24</td><td>0.0070</td><td>0.0202</td></tr>
+<tr><td>matched / tobit / 4</td><td>0.904</td><td>5</td><td>1.17</td><td>0.0036</td><td>0.0110</td></tr>
+<tr><td>matched / world_oracle / 0</td><td>1.000</td><td>1</td><td>0.08</td><td>0.0000</td><td>—</td></tr>
+</table>
+<h2>Saved consequence: world 0</h2><p>Selection rule: first task-VOI failure at four probes in gain_shift; if none, the first such world. This is an illustration, not a representative success estimate.</p><div class="grid">
+<div class="card"><b>eig: HIT</b><svg viewBox="0 0 570 86" role="img" aria-label="Final push: eig"><rect x="368.10" y="8" width="25.50" height="47" fill="#8bd9ad"/><path d="M30 55H540" stroke="#889"/><circle cx="383.38" cy="37" r="6" fill="#00876c" opacity=".35"/><circle cx="30" cy="37" r="6" fill="#00876c"><animate attributeName="cx" values="30.00;31.04;34.16;39.35;46.62;55.97;67.40;80.90;96.49;114.15;132.56;150.33;167.44;183.90;199.70;214.85;229.36;243.21;256.40;268.95;280.84;292.08;302.67;312.60;321.88;330.52;338.49;345.82;352.49;358.51;363.88;368.60;372.66;376.08;378.84;380.94;382.40;383.20;383.38;383.38;383.38;383.38;383.38;383.38;383.38;383.38;383.38;383.38;383.38;383.38" dur="4s" repeatCount="indefinite"/></circle><text x="30" y="78" font-size="12">0 m</text><text x="540" y="78" text-anchor="end" font-size="12">1.00 m</text></svg><p>True μ=0.2649; gain=1.088; target=0.688 m; stop=0.693 m.</p><p>Predicted success=1.000; 90% interval=[0.2276, 0.2327].</p><details><summary>Saved probes and camera readings</summary><pre>[
+  {
+    &quot;action&quot;: [
+      8.0,
+      0.3
+    ],
+    &quot;y&quot;: [
+      0.13882047644673845,
+      0.11775517421156328,
+      0.39381795107083256,
+      0.5341643533571363,
+      0.5456898949731082,
+      0.6429284451416185,
+      0.9814335201188544,
+      0.7714902713693715,
+      0.7289657265272498,
+      0.8246485154931975,
+      0.8697943227429497,
+      0.944829885325146,
+      0.9921532374309403,
+      0.778473633115366,
+      0.8749978481212514,
+      0.9854112120375679,
+      null,
+      0.8714420803343199,
+      0.9972324194137174,
+      0.8608703435196076
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    &quot;selected_score&quot;: 2.548351486459244
+  },
+  {
+    &quot;action&quot;: [
+      4.0,
+      0.8
+    ],
+    &quot;y&quot;: [
+      0.018663175839660838,
+      0.11152459450310462,
+      -0.021407302754371693,
+      0.0698215870934209,
+      0.1536525833041926,
+      0.24261610948929674,
+      0.33048178138630985,
+      0.6913661758345196,
+      0.743788907588306,
+      0.8637718915451855,
+      0.7975638096449056,
+      0.9797959873062737,
+      null,
+      null,
+      null,
+      null,
+      0.7996139062089216,
+      null,
+      null,
+      0.971269495921374
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      false
+    ],
+    &quot;selected_score&quot;: 0.5347240190456188
+  },
+  {
+    &quot;action&quot;: [
+      4.0,
+      0.8
+    ],
+    &quot;y&quot;: [
+      0.09531088109213881,
+      0.06052334412239724,
+      -0.05428106199702891,
+      0.07603841673958105,
+      0.25800910097064444,
+      0.2566310922390906,
+      0.4005313068826568,
+      0.5404994544458024,
+      0.5040443895529119,
+      0.8348904389005701,
+      0.8613288120398307,
+      0.9574730431693652,
+      null,
+      0.9107340880407259,
+      0.911161225080177,
+      0.9035451287614741,
+      0.9429936432728071,
+      null,
+      0.9460484907502218,
+      0.8366339809278772
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    &quot;selected_score&quot;: 0.2796834920769038
+  },
+  {
+    &quot;action&quot;: [
+      4.0,
+      0.8
+    ],
+    &quot;y&quot;: [
+      0.011062470651956799,
+      0.1033041472739252,
+      0.10755914823426628,
+      0.22192836542694044,
+      0.14051524344214128,
+      0.19573392104094148,
+      0.2514778388770515,
+      0.4644729749593076,
+      0.7292202527380844,
+      0.8502573146488481,
+      0.8750550078615872,
+      0.9511881335758033,
+      null,
+      0.822959518806105,
+      null,
+      null,
+      0.9968532900499643,
+      0.9874987594601297,
+      null,
+      null
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
+      true,
+      false,
+      false,
+      true,
+      true
+    ],
+    &quot;selected_score&quot;: 0.1269063753014167
+  }
+]</pre></details></div>
+<div class="card"><b>task_voi: MISS</b><svg viewBox="0 0 570 86" role="img" aria-label="Final push: task_voi"><rect x="368.10" y="8" width="25.50" height="47" fill="#8bd9ad"/><path d="M30 55H540" stroke="#889"/><circle cx="394.47" cy="37" r="6" fill="#c0392b" opacity=".35"/><circle cx="30" cy="37" r="6" fill="#c0392b"><animate attributeName="cx" values="30.00;31.29;35.17;41.63;50.67;62.29;76.50;93.30;112.26;130.98;149.06;166.49;183.28;199.43;214.94;229.81;244.03;257.61;270.55;282.84;294.50;305.51;315.88;325.60;334.69;343.13;350.93;358.09;364.60;370.47;375.71;380.29;384.24;387.54;390.20;392.22;393.60;394.33;394.47;394.47;394.47;394.47;394.47;394.47;394.47;394.47;394.47;394.47;394.47;394.47" dur="4s" repeatCount="indefinite"/></circle><text x="30" y="78" font-size="12">0 m</text><text x="540" y="78" text-anchor="end" font-size="12">1.00 m</text></svg><p>True μ=0.2649; gain=1.088; target=0.688 m; stop=0.715 m.</p><p>Predicted success=0.999; 90% interval=[0.2317, 0.2384].</p><details><summary>Saved probes and camera readings</summary><pre>[
+  {
+    &quot;action&quot;: [
+      9.0,
+      0.4
+    ],
+    &quot;y&quot;: [
+      0.14425890704250593,
+      0.1395088965946333,
+      0.44276382643274015,
+      0.6646866876555565,
+      0.8067345635699483,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    &quot;selected_score&quot;: 0.4215556563636385
+  },
+  {
+    &quot;action&quot;: [
+      3.0,
+      0.6
+    ],
+    &quot;y&quot;: [
+      0.01322474524389333,
+      0.0897708721200346,
+      -0.07035317811627922,
+      -0.017193302438859193,
+      0.017691818410004972,
+      0.04683260804166661,
+      0.04768339040639967,
+      0.2808754507999215,
+      0.2061450015022395,
+      0.2249637899461979,
+      0.08358049807154416,
+      0.21662645129708585,
+      0.36734044076417094,
+      0.26425853150221945,
+      0.3142567352877256,
+      0.21805510924802374,
+      0.011244436191517132,
+      0.23332156387665032,
+      0.30156475640210423,
+      0.1829000259039695
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    &quot;selected_score&quot;: 0.63534605485735
+  },
+  {
+    &quot;action&quot;: [
+      3.0,
+      1.0
+    ],
+    &quot;y&quot;: [
+      0.0898724504963713,
+      0.038769621739327215,
+      -0.10322693735893644,
+      -0.010976472792699046,
+      0.12204833607645679,
+      0.060847590791460425,
+      0.1340482076900491,
+      0.19243989631668199,
+      0.08528523367881391,
+      0.3780622688560996,
+      0.3827469196122901,
+      0.45713742835875465,
+      0.5013104925399399,
+      0.3892090095759791,
+      0.3896361466154302,
+      0.38202005029672725,
+      0.42146856480806033,
+      0.5348371144036719,
+      0.424523412285475,
+      0.3151089024631304
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    &quot;selected_score&quot;: 0.2643423561600823
+  },
+  {
+    &quot;action&quot;: [
+      3.0,
+      1.0
+    ],
+    &quot;y&quot;: [
+      0.005624040056189292,
+      0.08155042489085518,
+      0.05861327287235875,
+      0.13491347589466035,
+      0.004554478547953669,
+      -4.958040668866237e-05,
+      -0.015005260315556213,
+      0.11641341683018722,
+      0.31046109686398643,
+      0.39342914460437767,
+      0.39647311543404656,
+      0.4508525187651927,
+      0.5804616871813167,
+      0.30143444034135813,
+      0.508427286813544,
+      0.5267838316640114,
+      0.47532821158521743,
+      0.4659736809953829,
+      0.48901430095605847,
+      0.47959378789123347
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    &quot;selected_score&quot;: 0.01382427679828846
+  }
+]</pre></details></div>
+<div class="card"><b>lsq: MISS</b><svg viewBox="0 0 570 86" role="img" aria-label="Final push: lsq"><rect x="368.10" y="8" width="25.50" height="47" fill="#8bd9ad"/><path d="M30 55H540" stroke="#889"/><circle cx="364.26" cy="37" r="6" fill="#c0392b" opacity=".35"/><circle cx="30" cy="37" r="6" fill="#c0392b"><animate attributeName="cx" values="30.00;30.89;33.55;38.00;44.22;52.21;61.99;73.54;86.87;101.97;118.85;136.29;153.08;169.23;184.74;199.60;213.82;227.40;240.34;252.64;264.29;275.30;285.67;295.40;304.48;312.92;320.72;327.88;334.40;340.27;345.50;350.09;354.03;357.34;360.00;362.02;363.40;364.13;364.26;364.26;364.26;364.26;364.26;364.26;364.26;364.26;364.26;364.26;364.26;364.26" dur="4s" repeatCount="indefinite"/></circle><text x="30" y="78" font-size="12">0 m</text><text x="540" y="78" text-anchor="end" font-size="12">1.00 m</text></svg><p>True μ=0.2649; gain=1.088; target=0.688 m; stop=0.655 m.</p><p>Predicted success=0.953; 90% interval=[0.2158, 0.2259].</p><details><summary>Saved probes and camera readings</summary><pre>[
+  {
+    &quot;action&quot;: [
+      10.0,
+      0.3
+    ],
+    &quot;y&quot;: [
+      0.14969733763827345,
+      0.16126261897770333,
+      0.4917097017946477,
+      0.6973172712301615,
+      0.7741039799953433,
+      0.936603697313064,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    &quot;selected_score&quot;: null
+  },
+  {
+    &quot;action&quot;: [
+      10.0,
+      0.2
+    ],
+    &quot;y&quot;: [
+      0.051293759414265866,
+      0.24204692880152476,
+      0.21788364345939853,
+      0.37437370045640117,
+      0.47995841905024283,
+      0.5471682228522771,
+      0.5697727276000801,
+      0.8218885101329398,
+      0.7489404921037379,
+      0.7677592805476963,
+      0.6263759886730426,
+      0.7594219418985843,
+      0.9101359313656694,
+      0.8070540221037179,
+      0.8570522258892239,
+      0.7608505998495222,
+      0.5540399267930156,
+      0.7761170544781487,
+      0.8443602470036027,
+      0.7256955165054679
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    &quot;selected_score&quot;: null
+  },
+  {
+    &quot;action&quot;: [
+      10.0,
+      0.2
+    ],
+    &quot;y&quot;: [
+      0.12794146466674383,
+      0.19104567842081738,
+      0.18500988421674133,
+      0.3805905301025613,
+      0.5843149367166947,
+      0.5611832056020709,
+      0.6398222530964272,
+      0.6710217887442226,
+      0.5091959740683438,
+      0.738877827903081,
+      0.6901409910679677,
+      0.7370989977616758,
+      0.7772615915887806,
+      0.6651601086248198,
+      0.665587245664271,
+      0.657971149345568,
+      0.697419663856901,
+      0.8107882134525125,
+      0.7004745113343157,
+      0.5910600015119711
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    &quot;selected_score&quot;: null
+  },
+  {
+    &quot;action&quot;: [
+      10.0,
+      0.2
+    ],
+    &quot;y&quot;: [
+      0.043693054226561834,
+      0.23382648157234534,
+      0.3468500944480365,
+      0.5264804787899207,
+      0.46682107918819155,
+      0.5002860344039218,
+      0.4907687850908218,
+      0.5949953092577278,
+      0.7343718372535164,
+      0.754244703651359,
+      0.7038671868897242,
+      0.7308140881681139,
+      0.8564127862301575,
+      0.5773855393901989,
+      0.7843783858623847,
+      0.8027349307128522,
+      0.7512793106340582,
+      0.7419247800442236,
+      0.7649654000048991,
+      0.7555448869400742
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    &quot;selected_score&quot;: null
+  }
+]</pre></details></div>
+<div class="card"><b>tobit: MISS</b><svg viewBox="0 0 570 86" role="img" aria-label="Final push: tobit"><rect x="368.10" y="8" width="25.50" height="47" fill="#8bd9ad"/><path d="M30 55H540" stroke="#889"/><circle cx="364.26" cy="37" r="6" fill="#c0392b" opacity=".35"/><circle cx="30" cy="37" r="6" fill="#c0392b"><animate attributeName="cx" values="30.00;30.89;33.55;38.00;44.22;52.21;61.99;73.54;86.87;101.97;118.85;136.29;153.08;169.23;184.74;199.60;213.82;227.40;240.34;252.64;264.29;275.30;285.67;295.40;304.48;312.92;320.72;327.88;334.40;340.27;345.50;350.09;354.03;357.34;360.00;362.02;363.40;364.13;364.26;364.26;364.26;364.26;364.26;364.26;364.26;364.26;364.26;364.26;364.26;364.26" dur="4s" repeatCount="indefinite"/></circle><text x="30" y="78" font-size="12">0 m</text><text x="540" y="78" text-anchor="end" font-size="12">1.00 m</text></svg><p>True μ=0.2649; gain=1.088; target=0.688 m; stop=0.655 m.</p><p>Predicted success=0.952; 90% interval=[0.2157, 0.2258].</p><details><summary>Saved probes and camera readings</summary><pre>[
+  {
+    &quot;action&quot;: [
+      10.0,
+      0.4
+    ],
+    &quot;y&quot;: [
+      0.14969733763827345,
+      0.16126261897770333,
+      0.4917097017946477,
+      0.7517015771878366,
+      0.9372568978683684,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    &quot;selected_score&quot;: null
+  },
+  {
+    &quot;action&quot;: [
+      10.0,
+      0.2
+    ],
+    &quot;y&quot;: [
+      0.051293759414265866,
+      0.24204692880152476,
+      0.21788364345939853,
+      0.37437370045640117,
+      0.47995841905024283,
+      0.5471682228522771,
+      0.5697727276000801,
+      0.8218885101329398,
+      0.7489404921037379,
+      0.7677592805476963,
+      0.6263759886730426,
+      0.7594219418985843,
+      0.9101359313656694,
+      0.8070540221037179,
+      0.8570522258892239,
+      0.7608505998495222,
+      0.5540399267930156,
+      0.7761170544781487,
+      0.8443602470036027,
+      0.7256955165054679
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    &quot;selected_score&quot;: null
+  },
+  {
+    &quot;action&quot;: [
+      10.0,
+      0.2
+    ],
+    &quot;y&quot;: [
+      0.12794146466674383,
+      0.19104567842081738,
+      0.18500988421674133,
+      0.3805905301025613,
+      0.5843149367166947,
+      0.5611832056020709,
+      0.6398222530964272,
+      0.6710217887442226,
+      0.5091959740683438,
+      0.738877827903081,
+      0.6901409910679677,
+      0.7370989977616758,
+      0.7772615915887806,
+      0.6651601086248198,
+      0.665587245664271,
+      0.657971149345568,
+      0.697419663856901,
+      0.8107882134525125,
+      0.7004745113343157,
+      0.5910600015119711
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    &quot;selected_score&quot;: null
+  },
+  {
+    &quot;action&quot;: [
+      10.0,
+      0.2
+    ],
+    &quot;y&quot;: [
+      0.043693054226561834,
+      0.23382648157234534,
+      0.3468500944480365,
+      0.5264804787899207,
+      0.46682107918819155,
+      0.5002860344039218,
+      0.4907687850908218,
+      0.5949953092577278,
+      0.7343718372535164,
+      0.754244703651359,
+      0.7038671868897242,
+      0.7308140881681139,
+      0.8564127862301575,
+      0.5773855393901989,
+      0.7843783858623847,
+      0.8027349307128522,
+      0.7512793106340582,
+      0.7419247800442236,
+      0.7649654000048991,
+      0.7555448869400742
+    ],
+    &quot;cens&quot;: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    &quot;selected_score&quot;: null
+  }
+]</pre></details></div>
+</div><h2>Provenance</h2><p>No external assets or network calls. Rebuilt from the saved checkpoint, including the failure trajectory.</p>
+<pre>{
+  &quot;checkpoint&quot;: &quot;/Users/danielmercado/ProjectJoy/11_physics_detective/checkpoints/r5_main.json&quot;,
+  &quot;config&quot;: {
+    &quot;mode&quot;: &quot;evaluate&quot;,
+    &quot;seed&quot;: 6202612,
+    &quot;worlds&quot;: 512,
+    &quot;planner&quot;: {
+      &quot;grid_size&quot;: 6001,
+      &quot;particles&quot;: 64,
+      &quot;fantasies&quot;: 16,
+      &quot;design_stride&quot;: 1
+    },
+    &quot;source_sha256&quot;: &quot;bf4c40b1b997ef173b9b67c2158c475790212369f3fad68623a4a0c62b4d2981&quot;,
+    &quot;legacy_mu&quot;: false,
+    &quot;budgets&quot;: [
+      0,
+      1,
+      2,
+      4
+    ],
+    &quot;families&quot;: [
+      &quot;matched&quot;,
+      &quot;gain_shift&quot;
+    ],
+    &quot;methods&quot;: [
+      &quot;eig&quot;,
+      &quot;task_voi&quot;,
+      &quot;lsq&quot;,
+      &quot;tobit&quot;
+    ],
+    &quot;output&quot;: &quot;/Users/danielmercado/ProjectJoy/11_physics_detective/results/r5/main_summary.json&quot;,
+    &quot;tuning_sha256&quot;: &quot;2d0322346cdedd5b2e9da5cee9dfd3f00de7560deb5a2a36c8d4a0a68a393a94&quot;,
+    &quot;tuning&quot;: {
+      &quot;lsq&quot;: {
+        &quot;protocol&quot;: &quot;adaptive_10_65&quot;,
+        &quot;offset&quot;: 0.0
+      },
+      &quot;tobit&quot;: {
+        &quot;protocol&quot;: &quot;adaptive_10_90&quot;,
+        &quot;offset&quot;: 0.0
+      }
+    },
+    &quot;tuning_path&quot;: &quot;/Users/danielmercado/ProjectJoy/11_physics_detective/results/r5/tuning_main.json&quot;
+  }
+}</pre></html>

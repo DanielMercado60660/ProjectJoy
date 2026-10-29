@@ -1,0 +1,167 @@
+{
+ "event": {
+  "id": "09_alphazero",
+  "project": "09_tiny_alphazero",
+  "model": "PVNet 5x64 ResNet (policy + value)",
+  "checkpoint": "../09_tiny_alphazero/checkpoints/main/gen_191",
+  "unit": "positions",
+  "params": 376224,
+  "notes": "Inputs are positions from random legal play (0-29 plies)."
+ },
+ "final": false,
+ "batches": {
+  "256": {
+   "agreement": {
+    "numpy_cpu": {
+     "policy_max_err": 8.344650268554688e-06,
+     "value_max_err": 3.1888484954833984e-06
+    },
+    "mlx_cpu": {
+     "policy_max_err": 6.67572021484375e-06,
+     "value_max_err": 4.291534423828125e-06
+    },
+    "mlx_gpu": {
+     "policy_max_err": 0.0,
+     "value_max_err": 0.0
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 168328148,
+    "mlx_gpu": 32104920
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 16.31777099100873,
+     "p90_ms": 16.965733692632057,
+     "min_ms": 15.394666988868266,
+     "calls": 94,
+     "rounds": 3,
+     "round_median_spread": 1.077629094031195
+    },
+    "mlx_cpu": {
+     "median_ms": 27.302416012389585,
+     "p90_ms": 27.557982981670648,
+     "min_ms": 26.545125001575798,
+     "calls": 57,
+     "rounds": 3,
+     "round_median_spread": 1.0075635283355302
+    },
+    "mlx_gpu": {
+     "median_ms": 1.4027500001247972,
+     "p90_ms": 1.4617534907301888,
+     "min_ms": 1.3560419902205467,
+     "calls": 1034,
+     "rounds": 3,
+     "round_median_spread": 1.003929743168951
+    }
+   },
+   "task": {},
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e09_alphazero_b256_fp16.mlpackage",
+     "size_bytes": 773525,
+     "placement": {
+      "CPU": 43
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e09_alphazero_b256_fp16.mlpackage",
+     "size_bytes": 773525,
+     "placement": {
+      "GPU": 43
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e09_alphazero_b256_fp16.mlpackage",
+     "size_bytes": 773525,
+     "placement": {
+      "NeuralEngine": 43
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "policy err 8.34e-06 (tol 0.1), value err 3.19e-06 (tol 0.05)"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "policy err 6.68e-06 (tol 0.1), value err 4.29e-06 (tol 0.05)"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "policy err 0 (tol 0.1), value err 0 (tol 0.05)"
+    }
+   }
+  }
+ },
+ "skips": {
+  "mlx_gpu_q8": "conv-heavy net; MLX quantization covers Linear layers only",
+  "mlx_gpu_q4": "conv-heavy net; MLX quantization covers Linear layers only"
+ },
+ "task_checks": false,
+ "settings": {
+  "repeats": 3,
+  "budget_s": 0.5,
+  "only": [
+   "numpy_cpu",
+   "mlx_cpu"
+  ]
+ },
+ "mlx_tf32": false,
+ "mlx_gpu_matmul_rel_err": 5.303472196546295e-07,
+ "mlx_tf32_env": "0",
+ "env_before": {
+  "time": "2026-10-22 18:15:55",
+  "loadavg": [
+   1.76220703125,
+   2.07177734375,
+   2.14990234375
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.17066999978851527,
+  "mlx_gpu_2048_matmul_ms": 1.494843749969732
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.17178165959194303,
+  "mlx_gpu_2048_matmul_ms": 1.596506249916274
+ },
+ "env_after": {
+  "time": "2026-10-22 18:16:01",
+  "loadavg": [
+   1.78076171875,
+   2.0703125,
+   2.14892578125
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 404,
+    "cpu": 34.3,
+    "comm": "WindowServer"
+   },
+   {
+    "pid": 16934,
+    "cpu": 27.3,
+    "comm": "ANECompilerService"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

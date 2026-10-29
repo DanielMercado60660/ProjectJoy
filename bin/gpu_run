@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+"""Run a command while holding one of N shared GPU slots.
+
+Usage: ../bin/gpu_run <command> [args...]
+Blocks until a slot is free, so at most N heavy training jobs share the GPU.
+Lock files are opened read-only, so this works inside sandboxes too.
+"""
+import fcntl, os, subprocess, sys, time
+
+LOCK_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".locks")
+DEFAULT_SLOTS = 8
+
+def slots():
+    # Fresh clones have no lock dir (.locks/ is gitignored): create it with default slots.
+    if not os.path.isdir(LOCK_DIR) or not any(f.startswith("gpu") for f in os.listdir(LOCK_DIR)):
+        os.makedirs(LOCK_DIR, exist_ok=True)
+        for i in range(DEFAULT_SLOTS):
+            open(os.path.join(LOCK_DIR, f"gpu{i}"), "a").close()
+    return sorted(f for f in os.listdir(LOCK_DIR) if f.startswith("gpu"))
+
+def acquire():
+    # GPU_SLOT=<name> waits for one specific lock file (e.g. a reserved slot).
+    reserved = os.environ.get("GPU_SLOT")
+    if reserved:
+        os.makedirs(LOCK_DIR, exist_ok=True)
+        open(os.path.join(LOCK_DIR, reserved), "a").close()
+        fd = os.open(os.path.join(LOCK_DIR, reserved), os.O_RDONLY)
+        fcntl.flock(fd, fcntl.LOCK_EX)
+        return fd, reserved
+    waited = 0
+    while True:
+        for name in slots():
+            fd = os.open(os.path.join(LOCK_DIR, name), os.O_RDONLY)
+            try:
+                fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                return fd, name
+            except BlockingIOError:
+                os.close(fd)
+        if waited % 60 == 0:
+            print(f"[gpu_run] all {len(slots())} GPU slots busy, waiting ({waited}s)...", file=sys.stderr, flush=True)
+        time.sleep(5)
+        waited += 5
+
+if len(sys.argv) < 2:
+    sys.exit(__doc__)
+fd, name = acquire()
+print(f"[gpu_run] acquired {name}: {' '.join(sys.argv[1:])}", file=sys.stderr, flush=True)
+sys.exit(subprocess.call(sys.argv[1:]))

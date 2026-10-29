@@ -1,0 +1,58 @@
+[gpu_run] acquired gpu0: results/probes/numpy_threads/run_probe.sh
+== e07_terra b=16 capped (VECLIB_MAXIMUM_THREADS=4)
+Torch version 2.14.1 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+  n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+  b=   16 numpy_cpu           410.064 ms (p90 416.836)  r_max_err=6.32e-06, h_max_rel_err=6.32e-06  [Q]
+  b=   16 mlx_cpu             223.913 ms (p90 234.190)  r_max_err=5.9e-06, h_max_rel_err=5.9e-06  [Q]
+wrote results/probes/numpy_threads/capped/e07_terra_provisional.json
+== e07_terra b=16 uncapped
+Torch version 2.14.1 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+  n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+  b=   16 numpy_cpu           415.737 ms (p90 422.131)  r_max_err=6.32e-06, h_max_rel_err=6.32e-06  [Q]
+  b=   16 mlx_cpu             227.817 ms (p90 237.487)  r_max_err=5.9e-06, h_max_rel_err=5.9e-06  [Q]
+wrote results/probes/numpy_threads/uncapped/e07_terra_provisional.json
+== e09_alphazero b=256 capped (VECLIB_MAXIMUM_THREADS=4)
+Torch version 2.14.1 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+  n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+  b=  256 numpy_cpu            15.416 ms (p90 15.599)  policy_max_err=8.34e-06, value_max_err=3.19e-06  [Q]
+  b=  256 mlx_cpu              26.338 ms (p90 26.534)  policy_max_err=6.68e-06, value_max_err=4.29e-06  [Q]
+wrote results/probes/numpy_threads/capped/e09_alphazero_provisional.json
+== e09_alphazero b=256 uncapped
+Torch version 2.14.1 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+  n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+  b=  256 numpy_cpu            16.318 ms (p90 16.966)  policy_max_err=8.34e-06, value_max_err=3.19e-06  [Q]
+  b=  256 mlx_cpu              27.302 ms (p90 27.558)  policy_max_err=6.68e-06, value_max_err=4.29e-06  [Q]
+wrote results/probes/numpy_threads/uncapped/e09_alphazero_provisional.json
+== e11_physics_detective b=1000 capped (VECLIB_MAXIMUM_THREADS=4)
+Torch version 2.14.1 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+  n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+  b= 1000 numpy_cpu            36.275 ms (p90 36.954)  weight_max_err=2.08e-05, loc_max_err=0.000125, scale_max_err=2.15e-05, post_mean_max_err=3.21e-06  [Q]
+  b= 1000 mlx_cpu              19.335 ms (p90 19.706)  weight_max_err=2.21e-05, loc_max_err=0.000134, scale_max_err=2.29e-05, post_mean_max_err=3.76e-06  [Q]
+wrote results/probes/numpy_threads/capped/e11_physics_detective_provisional.json
+== e11_physics_detective b=1000 uncapped
+Torch version 2.14.1 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+  n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+  b= 1000 numpy_cpu            36.093 ms (p90 36.952)  weight_max_err=2.08e-05, loc_max_err=0.000125, scale_max_err=2.15e-05, post_mean_max_err=3.21e-06  [Q]
+  b= 1000 mlx_cpu              19.697 ms (p90 20.372)  weight_max_err=2.21e-05, loc_max_err=0.000134, scale_max_err=2.29e-05, post_mean_max_err=3.76e-06  [Q]
+wrote results/probes/numpy_threads/uncapped/e11_physics_detective_provisional.json
+== e29_image_gen b=64 capped (VECLIB_MAXIMUM_THREADS=4)
+Torch version 2.14.1 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+  n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+  b=   64 numpy_cpu          1213.056 ms (p90 1229.824)  v_max_err=1.02e-05, v_mean_err=7.83e-07  [Q]
+  b=   64 mlx_cpu             684.663 ms (p90 731.083)  v_max_err=1.07e-05, v_mean_err=7.58e-07  [Q]
+wrote results/probes/numpy_threads/capped/e29_image_gen_provisional.json
+== e29_image_gen b=64 uncapped
+Torch version 2.14.1 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+  n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+  b=   64 numpy_cpu          1203.792 ms (p90 1211.692)  v_max_err=1.02e-05, v_mean_err=7.83e-07  [Q]
+  b=   64 mlx_cpu             686.782 ms (p90 737.532)  v_max_err=1.07e-05, v_mean_err=7.58e-07  [Q]
+wrote results/probes/numpy_threads/uncapped/e29_image_gen_provisional.json
+../bin/gpu_run results/probes/numpy_threads/run_probe.sh  129.60s user 7.00s system 87% cpu 2:35.59 total

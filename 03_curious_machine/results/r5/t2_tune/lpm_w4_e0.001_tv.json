@@ -1,0 +1,848 @@
+{
+  "method": "lpm",
+  "world": "tv",
+  "checkpoint": "checkpoints/r5_t2_tune_w4_e0.001/lpm_tv_s619.pkl",
+  "seeds": [
+    64600,
+    64601,
+    64602,
+    64603
+  ],
+  "policy_rng_seed": 83619,
+  "explore_steps": 512,
+  "task_steps": 128,
+  "planner_type": "replay",
+  "knowledge_stats": null,
+  "max_expansions": 4096,
+  "transferred": "one fresh episode of action/observation replay",
+  "pretrain_steps": 1048576,
+  "frontier_cfg": null,
+  "exploration": {
+    "rooms": 2.0,
+    "interactions": 0.5,
+    "coverage": 21.5,
+    "unproductive": 491.0,
+    "tv_steps": 0.75,
+    "repeat_interactions": 1.75
+  },
+  "episodes": [
+    {
+      "seed": 64600,
+      "rooms": 2,
+      "interactions": 1,
+      "coverage": 26,
+      "tv_steps": 3,
+      "unproductive": 486,
+      "repeat_interactions": 3,
+      "inter_t": [
+        -1,
+        160,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "seed": 64601,
+      "rooms": 2,
+      "interactions": 1,
+      "coverage": 30,
+      "tv_steps": 0,
+      "unproductive": 482,
+      "repeat_interactions": 4,
+      "inter_t": [
+        45,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "seed": 64602,
+      "rooms": 2,
+      "interactions": 0,
+      "coverage": 19,
+      "tv_steps": 0,
+      "unproductive": 494,
+      "repeat_interactions": 0,
+      "inter_t": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "seed": 64603,
+      "rooms": 2,
+      "interactions": 0,
+      "coverage": 11,
+      "tv_steps": 0,
+      "unproductive": 502,
+      "repeat_interactions": 0,
+      "inter_t": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ]
+    }
+  ],
+  "transfer": {
+    "success_rate": 0.07142857142857142,
+    "capped_steps": 120.64285714285714,
+    "success_steps": 25.0,
+    "plan_coverage": 0.03571428571428571,
+    "trials": 28
+  },
+  "tasks": [
+    {
+      "seed": 64600,
+      "task": [
+        "lamp",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 56
+    },
+    {
+      "seed": 64600,
+      "task": [
+        "lamp",
+        4
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 56
+    },
+    {
+      "seed": 64600,
+      "task": [
+        "lamp",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 56
+    },
+    {
+      "seed": 64600,
+      "task": [
+        "key_room",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 56
+    },
+    {
+      "seed": 64600,
+      "task": [
+        "key_room",
+        3
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 56
+    },
+    {
+      "seed": 64600,
+      "task": [
+        "reach",
+        6
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 56
+    },
+    {
+      "seed": 64600,
+      "task": [
+        "reach",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 56
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "lamp",
+        0
+      ],
+      "success": true,
+      "steps": 14,
+      "planned": true,
+      "plan_length": 15,
+      "expansions": 23
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "lamp",
+        4
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 105
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "lamp",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 105
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "key_room",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 105
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "key_room",
+        3
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 105
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "reach",
+        6
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 105
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "reach",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 105
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "lamp",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 35
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "lamp",
+        4
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 35
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "lamp",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 35
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "key_room",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 35
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "key_room",
+        3
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 35
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "reach",
+        6
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 35
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "reach",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 35
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "lamp",
+        0
+      ],
+      "success": true,
+      "steps": 36,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 15
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "lamp",
+        4
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 15
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "lamp",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 15
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "key_room",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 15
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "key_room",
+        3
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 15
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "reach",
+        6
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 15
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "reach",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 15
+    }
+  ],
+  "empty_replay": {
+    "success_rate": 0.03571428571428571,
+    "capped_steps": 124.71428571428571,
+    "success_steps": 36.0,
+    "plan_coverage": 0.0,
+    "trials": 28
+  },
+  "empty_tasks": [
+    {
+      "seed": 64600,
+      "task": [
+        "lamp",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64600,
+      "task": [
+        "lamp",
+        4
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64600,
+      "task": [
+        "lamp",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64600,
+      "task": [
+        "key_room",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64600,
+      "task": [
+        "key_room",
+        3
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64600,
+      "task": [
+        "reach",
+        6
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64600,
+      "task": [
+        "reach",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "lamp",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "lamp",
+        4
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "lamp",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "key_room",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "key_room",
+        3
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "reach",
+        6
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64601,
+      "task": [
+        "reach",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "lamp",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "lamp",
+        4
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "lamp",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "key_room",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "key_room",
+        3
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "reach",
+        6
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64602,
+      "task": [
+        "reach",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "lamp",
+        0
+      ],
+      "success": true,
+      "steps": 36,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "lamp",
+        4
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "lamp",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "key_room",
+        0
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "key_room",
+        3
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "reach",
+        6
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    },
+    {
+      "seed": 64603,
+      "task": [
+        "reach",
+        8
+      ],
+      "success": false,
+      "steps": 128,
+      "planned": false,
+      "plan_length": null,
+      "expansions": 0
+    }
+  ],
+  "per_task": {
+    "lamp_0": {
+      "success_rate": 0.5,
+      "capped_steps": 76.5,
+      "success_steps": 25.0,
+      "plan_coverage": 0.25,
+      "trials": 4
+    },
+    "lamp_4": {
+      "success_rate": 0.0,
+      "capped_steps": 128.0,
+      "success_steps": null,
+      "plan_coverage": 0.0,
+      "trials": 4
+    },
+    "lamp_8": {
+      "success_rate": 0.0,
+      "capped_steps": 128.0,
+      "success_steps": null,
+      "plan_coverage": 0.0,
+      "trials": 4
+    },
+    "key_room_0": {
+      "success_rate": 0.0,
+      "capped_steps": 128.0,
+      "success_steps": null,
+      "plan_coverage": 0.0,
+      "trials": 4
+    },
+    "key_room_3": {
+      "success_rate": 0.0,
+      "capped_steps": 128.0,
+      "success_steps": null,
+      "plan_coverage": 0.0,
+      "trials": 4
+    },
+    "reach_6": {
+      "success_rate": 0.0,
+      "capped_steps": 128.0,
+      "success_steps": null,
+      "plan_coverage": 0.0,
+      "trials": 4
+    },
+    "reach_8": {
+      "success_rate": 0.0,
+      "capped_steps": 128.0,
+      "success_steps": null,
+      "plan_coverage": 0.0,
+      "trials": 4
+    }
+  },
+  "elapsed_seconds": 0.4231686660205014
+}

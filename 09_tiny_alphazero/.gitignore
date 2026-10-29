@@ -1,0 +1,63 @@
+# Checkpoints: ~370 MB on disk. Only a representative subset is committed; every other
+# generation (and the resumable training state) stays local. See README "Checkpoints in git".
+#
+# Ignore the generation FILES (not the directory), so the !-exceptions below can re-include some.
+checkpoints/main/gen_*
+# kept: the generation round-robin set (RESULTS §3.3, final_eval.sh), which also covers the
+# demo/GIF/search-tree commands (gen 5, 100, 191), plus 150 and 170 from phase C.
+!checkpoints/main/gen_000.*
+!checkpoints/main/gen_002.*
+!checkpoints/main/gen_005.*
+!checkpoints/main/gen_010.*
+!checkpoints/main/gen_020.*
+!checkpoints/main/gen_040.*
+!checkpoints/main/gen_070.*
+!checkpoints/main/gen_100.*
+!checkpoints/main/gen_136.*
+!checkpoints/main/gen_150.*
+!checkpoints/main/gen_170.*
+!checkpoints/main/gen_191.*
+# resumable training state (weights + optimizer + 11 MB replay buffer): local only
+checkpoints/main/state/
+checkpoints/main/state_tmp/
+# no-flip ablation run: its numbers live in logs/noflip*.jsonl
+checkpoints/noflip/
+# left behind only if the end-to-end test crashes
+checkpoints/pytest_tiny/
+.pytest_cache/
+__pycache__/
+*.tmp
+media/*.weights.json
+web/weights.json
+# seed-replication follow-up (RESULTS "Seeds"): every generation + resumable state stay local;
+# only each new seed's final checkpoint is committed (see RESULTS "Seeds")
+checkpoints/seed1/*
+checkpoints/seed2/*
+checkpoints/noflip_seed1/*
+checkpoints/noflip_seed2/*
+!checkpoints/seed1/config.json
+!checkpoints/seed2/config.json
+!checkpoints/noflip_seed1/config.json
+!checkpoints/noflip_seed2/config.json
+!checkpoints/seed1/gen_191.*
+!checkpoints/seed2/gen_191.*
+!checkpoints/noflip_seed1/gen_040.*
+!checkpoints/noflip_seed2/gen_040.*
+
+# Round 5: only the selected head + normalizer + baseline/config need committing.
+# Full resume (six models/optimizers/RNG and two alternating snapshots) stays local.
+checkpoints/r5_*/resume/
+checkpoints/r5_*/resume_check/
+checkpoints/r5_*/selected/head_next.safetensors
+checkpoints/r5_smoke_*/
+results/r5/smoke_*/
+logs/r5/smoke_*
+media/r5_smoke_*
+results/r5/mpl_cache/
+results/r5/turn2_floor_smoke/
+media/r5_turn2_floor_smoke.html
+
+# Round 5: regenerable datasets and duplicated per-block records
+results/r5/turn2_floor/blocks/
+results/r5/*/data/
+results/r5/*/train.npz

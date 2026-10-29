@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-10-24T15:20:01.631960-05:00",
+  "checks": [
+    {
+      "command": [
+        "/Users/danielmercado/ProjectJoy/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_r5_numpy.py"
+      ],
+      "returncode": 0,
+      "elapsed_s": 0.5211301670060493,
+      "output": ".........................                                                [100%]\n25 passed in 0.28s\n"
+    },
+    {
+      "command": [
+        "/Users/danielmercado/ProjectJoy/.venv/bin/python",
+        "-m",
+        "py_compile",
+        "r5_audit.py",
+        "r5_checkpoint.py",
+        "r5_data.py",
+        "r5_decode_check.py",
+        "r5_eval.py",
+        "r5_numpy_reference.py",
+        "r5_protocol.py",
+        "r5_smoke.py",
+        "r5_suite.py",
+        "r5_train.py",
+        "r5_validation.py",
+        "r5_world.py"
+      ],
+      "returncode": 0,
+      "elapsed_s": 0.030744124960619956,
+      "output": ""
+    },
+    {
+      "command": [
+        "sh",
+        "-n",
+        "smoke_r5.sh"
+      ],
+      "returncode": 0,
+      "elapsed_s": 0.003951874969061464,
+      "output": ""
+    }
+  ],
+  "mlx_executed": false,
+  "source_sha256": {
+    "r5_audit.py": "ee7aa9da8de51a0c5095a6efffab90fa9f5ed1ca5754d16df6aee60504a0200f",
+    "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+    "r5_data.py": "b5d4715dbc9c875c321fdb767a2684270cf466d5f2fbc91dba00ba1d7e554aac",
+    "r5_decode_check.py": "46b636a65fe0d29373c386553336c6f848406b0a32c68468c656b40e56020202",
+    "r5_eval.py": "18d8ff7a0518d6d1266d2407d6142a1d54a35caf5fae0f53bc1664db06dadccc",
+    "r5_numpy_reference.py": "a53b99063a550bd50e527beeb3ed6699911c2130d8b21d59aa6b9940622e02a8",
+    "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+    "r5_smoke.py": "928923b2e270dce824c1433eca755fa386be05fcad5c797d14501f5f7248ba4c",
+    "r5_suite.py": "cff0e52149e031966db9c1e7015edc2ef6076ae4bdeb03f714041aed049b4cc2",
+    "r5_train.py": "65816f53971b597788a2f7f1a934511a4b37f58c22446560ba3919034c69dc6a",
+    "r5_validation.py": "402178f1c3989b903c9f7c135a245510c487c9de725e7133ebd855f7e524c58d",
+    "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+    "tests/test_r5_numpy.py": "222079483685fc5ee5d83b0147a74e3741a62b3200d32111e5389cabcf93b7aa",
+    "smoke_r5.sh": "c36b95a362b9c6c5270250dea33bf96a92a7291a3569f3947bbd96602fc36786",
+    "RUNME_R5.md": "b8866bf96b7c7ea0222d47172660f5ca84e56fec72412bb4e599ae09ce3cf50a",
+    "DESIGN_R5.md": "1fe16dde44f0f32d5585045cd4620962be96eaf6d311ab00c3654551a8ad7e94"
+  },
+  "diagnosis": "Validation coverage bug confirmed; serialization/rollout evaluation bug not confirmed; actual NumPy checkpoint probe reproduces wrong action.",
+  "evidence": [
+    "results/r5/turn2_audit.json",
+    "results/r5/turn2_reference_s51.json",
+    "results/r5/turn2_pooled_turn1.json"
+  ]
+}

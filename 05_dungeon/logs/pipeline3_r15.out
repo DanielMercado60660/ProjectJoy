@@ -1,0 +1,183 @@
+[gpu_run] acquired gpu1: bash pipeline3.sh 15
+=== [11:40:27 +0m] train solver_cur1_r15 --init checkpoints/solver_v1 --extra results/curriculum_r1.npz --extra-prob 0.5 --steps 6000000 --seed 15
+initialised weights from checkpoints/solver_v1
+mixing 8729 extra levels with p=0.5
+{"update": 10, "env_steps": 327680, "train_success": 0.9574, "train_ep_len": 39.4144, "rew_per_step": 0.025, "loss": 0.0032, "pg": -0.0006, "vloss": 0.0081, "entropy": 0.0245, "kl": 0.0007, "grad_norm": 0.1333, "sps": 69893.6588, "wall": 4.6883}
+{"update": 20, "env_steps": 655360, "train_success": 0.9767, "train_ep_len": 31.6725, "rew_per_step": 0.0343, "loss": 0.0031, "pg": -0.0003, "vloss": 0.0073, "entropy": 0.023, "kl": 0.0013, "grad_norm": 0.144, "sps": 72806.2094, "wall": 9.0014}
+{"update": 30, "env_steps": 983040, "train_success": 0.9804, "train_ep_len": 30.0697, "rew_per_step": 0.0356, "loss": 0.0032, "pg": -0.0004, "vloss": 0.0077, "entropy": 0.0216, "kl": 0.0008, "grad_norm": 0.1555, "sps": 76022.0735, "wall": 12.931}
+{"update": 40, "env_steps": 1310720, "train_success": 0.9817, "train_ep_len": 29.6613, "rew_per_step": 0.0364, "loss": 0.0036, "pg": 0.0002, "vloss": 0.0072, "entropy": 0.0219, "kl": 0.001, "grad_norm": 0.2099, "sps": 76245.9298, "wall": 17.1907}
+{"update": 50, "env_steps": 1638400, "train_success": 0.982, "train_ep_len": 30.1043, "rew_per_step": 0.0357, "loss": 0.0032, "pg": -0.0002, "vloss": 0.0072, "entropy": 0.0253, "kl": 0.0009, "grad_norm": 0.205, "sps": 74818.8696, "wall": 21.8982}
+EVAL {"dfs": [0.96, 0.591], "braid": [0.935, 0.55], "rooms": [0.99, 0.608], "caves": [0.995, 0.58], "spiral": [0.965, 0.539]}
+{"update": 60, "env_steps": 1966080, "train_success": 0.9833, "train_ep_len": 29.5773, "rew_per_step": 0.0368, "loss": 0.002, "pg": -0.0006, "vloss": 0.0056, "entropy": 0.023, "kl": 0.0006, "grad_norm": 0.148, "sps": 69605.4274, "wall": 28.2461}
+{"update": 70, "env_steps": 2293760, "train_success": 0.9868, "train_ep_len": 28.7234, "rew_per_step": 0.0377, "loss": 0.0021, "pg": -0.0005, "vloss": 0.0058, "entropy": 0.0228, "kl": 0.0004, "grad_norm": 0.1409, "sps": 69831.0945, "wall": 32.8473}
+{"update": 80, "env_steps": 2621440, "train_success": 0.9877, "train_ep_len": 27.8058, "rew_per_step": 0.0391, "loss": 0.0027, "pg": -0.0004, "vloss": 0.0066, "entropy": 0.0232, "kl": 0.0006, "grad_norm": 0.1683, "sps": 68988.5013, "wall": 37.9982}
+{"update": 90, "env_steps": 2949120, "train_success": 0.9901, "train_ep_len": 28.0296, "rew_per_step": 0.0387, "loss": 0.0022, "pg": -0.0004, "vloss": 0.0058, "entropy": 0.0236, "kl": 0.0006, "grad_norm": 0.1425, "sps": 69227.8209, "wall": 42.6002}
+{"update": 100, "env_steps": 3276800, "train_success": 0.9885, "train_ep_len": 28.1287, "rew_per_step": 0.0385, "loss": 0.0024, "pg": -0.0003, "vloss": 0.0061, "entropy": 0.0258, "kl": 0.0008, "grad_norm": 0.1802, "sps": 69001.2, "wall": 47.489}
+EVAL {"dfs": [0.97, 0.615], "braid": [0.985, 0.568], "rooms": [0.995, 0.643], "caves": [1.0, 0.615], "spiral": [0.965, 0.564]}
+{"update": 110, "env_steps": 3604480, "train_success": 0.9906, "train_ep_len": 28.16, "rew_per_step": 0.0386, "loss": 0.0022, "pg": -0.0002, "vloss": 0.0053, "entropy": 0.0259, "kl": 0.0009, "grad_norm": 0.2055, "sps": 68361.6801, "wall": 52.7266}
+{"update": 120, "env_steps": 3932160, "train_success": 0.9909, "train_ep_len": 27.5414, "rew_per_step": 0.0395, "loss": 0.002, "pg": -0.0002, "vloss": 0.0048, "entropy": 0.0229, "kl": 0.0008, "grad_norm": 0.1834, "sps": 69069.484, "wall": 56.9305}
+{"update": 130, "env_steps": 4259840, "train_success": 0.9906, "train_ep_len": 28.1774, "rew_per_step": 0.0383, "loss": 0.0017, "pg": -0.0004, "vloss": 0.0046, "entropy": 0.0225, "kl": 0.0004, "grad_norm": 0.1692, "sps": 69984.6416, "wall": 60.8682}
+{"update": 140, "env_steps": 4587520, "train_success": 0.9892, "train_ep_len": 28.1807, "rew_per_step": 0.0387, "loss": 0.0021, "pg": -0.0002, "vloss": 0.005, "entropy": 0.0227, "kl": 0.0006, "grad_norm": 0.19, "sps": 70948.0817, "wall": 64.6602}
+{"update": 150, "env_steps": 4915200, "train_success": 0.9887, "train_ep_len": 28.0203, "rew_per_step": 0.0388, "loss": 0.002, "pg": -0.0005, "vloss": 0.0054, "entropy": 0.0243, "kl": 0.0005, "grad_norm": 0.1323, "sps": 72007.8355, "wall": 68.2592}
+EVAL {"dfs": [0.975, 0.602], "braid": [0.98, 0.587], "rooms": [1.0, 0.647], "caves": [1.0, 0.616], "spiral": [0.99, 0.567]}
+{"update": 160, "env_steps": 5242880, "train_success": 0.9916, "train_ep_len": 27.3677, "rew_per_step": 0.0396, "loss": 0.0021, "pg": -0.0004, "vloss": 0.0055, "entropy": 0.0214, "kl": 0.0004, "grad_norm": 0.1653, "sps": 71203.3029, "wall": 73.6325}
+{"update": 170, "env_steps": 5570560, "train_success": 0.9906, "train_ep_len": 27.4699, "rew_per_step": 0.0395, "loss": 0.0021, "pg": -0.0003, "vloss": 0.0052, "entropy": 0.0219, "kl": 0.0008, "grad_norm": 0.1598, "sps": 71615.285, "wall": 77.7845}
+{"update": 180, "env_steps": 5898240, "train_success": 0.9916, "train_ep_len": 27.8298, "rew_per_step": 0.0388, "loss": 0.0023, "pg": -0.0004, "vloss": 0.006, "entropy": 0.0224, "kl": 0.0007, "grad_norm": 0.1577, "sps": 71698.9892, "wall": 82.2639}
+EVAL {"dfs": [0.985, 0.628], "braid": [0.975, 0.576], "rooms": [0.995, 0.647], "caves": [1.0, 0.616], "spiral": [0.985, 0.555]}
+done in 85s
+=== [11:41:52 +1m] train solver_ctl1_r15 --init checkpoints/solver_v1 --steps 6000000 --seed 15
+initialised weights from checkpoints/solver_v1
+{"update": 10, "env_steps": 327680, "train_success": 0.9721, "train_ep_len": 47.3916, "rew_per_step": 0.0225, "loss": 0.0033, "pg": 0.0005, "vloss": 0.0059, "entropy": 0.0139, "kl": 0.0025, "grad_norm": 0.1356, "sps": 60128.9814, "wall": 5.4496}
+{"update": 20, "env_steps": 655360, "train_success": 0.9743, "train_ep_len": 47.2119, "rew_per_step": 0.0237, "loss": 0.0033, "pg": 0.0005, "vloss": 0.006, "entropy": 0.0199, "kl": 0.0025, "grad_norm": 0.2, "sps": 63080.9034, "wall": 10.3892}
+{"update": 30, "env_steps": 983040, "train_success": 0.9715, "train_ep_len": 47.9577, "rew_per_step": 0.0233, "loss": 0.003, "pg": -0.0003, "vloss": 0.007, "entropy": 0.0188, "kl": 0.0009, "grad_norm": 0.1513, "sps": 64671.6288, "wall": 15.2005}
+{"update": 40, "env_steps": 1310720, "train_success": 0.9727, "train_ep_len": 47.0611, "rew_per_step": 0.0239, "loss": 0.0028, "pg": -0.0003, "vloss": 0.0066, "entropy": 0.0197, "kl": 0.0009, "grad_norm": 0.1492, "sps": 65077.4475, "wall": 20.1409}
+{"update": 50, "env_steps": 1638400, "train_success": 0.9817, "train_ep_len": 45.9327, "rew_per_step": 0.0246, "loss": 0.0025, "pg": 0.0, "vloss": 0.0053, "entropy": 0.0174, "kl": 0.001, "grad_norm": 0.1662, "sps": 65789.4753, "wall": 24.9037}
+EVAL {"dfs": [0.975, 0.621], "braid": [0.97, 0.629], "rooms": [0.99, 0.602], "caves": [1.0, 0.595], "spiral": [0.935, 0.533]}
+{"update": 60, "env_steps": 1966080, "train_success": 0.9795, "train_ep_len": 45.788, "rew_per_step": 0.0246, "loss": 0.0029, "pg": -0.0003, "vloss": 0.0068, "entropy": 0.0177, "kl": 0.0007, "grad_norm": 0.1187, "sps": 61697.8639, "wall": 31.8663}
+{"update": 70, "env_steps": 2293760, "train_success": 0.981, "train_ep_len": 45.6341, "rew_per_step": 0.0248, "loss": 0.0026, "pg": -0.0002, "vloss": 0.0061, "entropy": 0.0185, "kl": 0.0009, "grad_norm": 0.149, "sps": 62589.7671, "wall": 36.6475}
+{"update": 80, "env_steps": 2621440, "train_success": 0.9774, "train_ep_len": 45.7783, "rew_per_step": 0.0247, "loss": 0.0027, "pg": -0.0003, "vloss": 0.0063, "entropy": 0.0176, "kl": 0.0005, "grad_norm": 0.1155, "sps": 62855.3374, "wall": 41.7059}
+{"update": 90, "env_steps": 2949120, "train_success": 0.9807, "train_ep_len": 45.974, "rew_per_step": 0.0245, "loss": 0.003, "pg": -0.0001, "vloss": 0.0067, "entropy": 0.0178, "kl": 0.0006, "grad_norm": 0.193, "sps": 63842.6775, "wall": 46.1936}
+{"update": 100, "env_steps": 3276800, "train_success": 0.9857, "train_ep_len": 45.0004, "rew_per_step": 0.0252, "loss": 0.0025, "pg": -0.0002, "vloss": 0.0058, "entropy": 0.0149, "kl": 0.0004, "grad_norm": 0.1201, "sps": 65089.2908, "wall": 50.3432}
+EVAL {"dfs": [0.995, 0.624], "braid": [0.975, 0.643], "rooms": [1.0, 0.614], "caves": [1.0, 0.605], "spiral": [0.95, 0.528]}
+{"update": 110, "env_steps": 3604480, "train_success": 0.9886, "train_ep_len": 44.66, "rew_per_step": 0.0255, "loss": 0.0025, "pg": -0.0004, "vloss": 0.006, "entropy": 0.0159, "kl": 0.0005, "grad_norm": 0.0979, "sps": 64680.3168, "wall": 55.7276}
+{"update": 120, "env_steps": 3932160, "train_success": 0.9861, "train_ep_len": 44.4335, "rew_per_step": 0.0254, "loss": 0.0025, "pg": -0.0003, "vloss": 0.0059, "entropy": 0.0173, "kl": 0.0004, "grad_norm": 0.1261, "sps": 65611.0697, "wall": 59.9314}
+{"update": 130, "env_steps": 4259840, "train_success": 0.9844, "train_ep_len": 45.0734, "rew_per_step": 0.0251, "loss": 0.0023, "pg": -0.0004, "vloss": 0.0056, "entropy": 0.0176, "kl": 0.0004, "grad_norm": 0.1269, "sps": 66607.341, "wall": 63.9545}
+{"update": 140, "env_steps": 4587520, "train_success": 0.9843, "train_ep_len": 44.7075, "rew_per_step": 0.0254, "loss": 0.0025, "pg": -0.0002, "vloss": 0.006, "entropy": 0.0186, "kl": 0.0006, "grad_norm": 0.151, "sps": 67121.6951, "wall": 68.3463}
+{"update": 150, "env_steps": 4915200, "train_success": 0.9839, "train_ep_len": 45.3659, "rew_per_step": 0.0249, "loss": 0.0021, "pg": -0.0003, "vloss": 0.0051, "entropy": 0.0152, "kl": 0.0005, "grad_norm": 0.1417, "sps": 66718.0606, "wall": 73.6712}
+EVAL {"dfs": [0.97, 0.614], "braid": [0.985, 0.658], "rooms": [0.995, 0.599], "caves": [1.0, 0.602], "spiral": [0.955, 0.531]}
+{"update": 160, "env_steps": 5242880, "train_success": 0.9831, "train_ep_len": 45.0512, "rew_per_step": 0.0251, "loss": 0.002, "pg": -0.0005, "vloss": 0.0053, "entropy": 0.0168, "kl": 0.0004, "grad_norm": 0.12, "sps": 65749.7704, "wall": 79.7399}
+{"update": 170, "env_steps": 5570560, "train_success": 0.9858, "train_ep_len": 44.7908, "rew_per_step": 0.0253, "loss": 0.0021, "pg": -0.0003, "vloss": 0.0052, "entropy": 0.017, "kl": 0.0005, "grad_norm": 0.1272, "sps": 66123.4852, "wall": 84.2448}
+{"update": 180, "env_steps": 5898240, "train_success": 0.9853, "train_ep_len": 45.3786, "rew_per_step": 0.0249, "loss": 0.0024, "pg": -0.0002, "vloss": 0.0056, "entropy": 0.0175, "kl": 0.001, "grad_norm": 0.1356, "sps": 66279.5475, "wall": 88.9904}
+EVAL {"dfs": [0.965, 0.62], "braid": [0.955, 0.629], "rooms": [1.0, 0.608], "caves": [1.0, 0.604], "spiral": [0.945, 0.551]}
+done in 91s
+=== [11:43:24 +2m] designer vs solver_cur1_r15 -> cur1_r15_s3 (seed 3) 
+gen=0 fit_mean=0.111 fit_max=0.849 fail_mean=0.012 solvable=1.000 valid_proposal_rate=0.000 archive=2 wall=0.628 path_len=21.977 dead_ends=2.875 loops=5.867 open2x2=4.852 floor=63.938
+gen=10 fit_mean=0.618 fit_max=0.973 fail_mean=0.573 solvable=1.000 valid_proposal_rate=0.831 archive=434 wall=4.424 path_len=12.844 dead_ends=6.164 loops=9.203 open2x2=5.297 floor=76.000
+gen=20 fit_mean=0.636 fit_max=0.973 fail_mean=0.590 solvable=1.000 valid_proposal_rate=0.854 archive=1113 wall=8.034 path_len=7.320 dead_ends=8.945 loops=9.531 open2x2=4.984 floor=73.383
+gen=30 fit_mean=0.654 fit_max=0.973 fail_mean=0.619 solvable=1.000 valid_proposal_rate=0.854 archive=1793 wall=11.272 path_len=7.977 dead_ends=9.734 loops=9.258 open2x2=5.523 floor=73.633
+gen=40 fit_mean=0.665 fit_max=0.973 fail_mean=0.619 solvable=1.000 valid_proposal_rate=0.853 archive=2498 wall=14.030 path_len=7.695 dead_ends=11.312 loops=9.445 open2x2=6.047 floor=73.297
+gen=50 fit_mean=0.734 fit_max=0.973 fail_mean=0.719 solvable=1.000 valid_proposal_rate=0.853 archive=3232 wall=18.060 path_len=7.117 dead_ends=11.961 loops=9.047 open2x2=6.836 floor=71.195
+gen=60 fit_mean=0.869 fit_max=0.973 fail_mean=0.884 solvable=1.000 valid_proposal_rate=0.833 archive=4107 wall=21.210 path_len=6.156 dead_ends=17.820 loops=5.766 open2x2=5.156 floor=66.508
+gen=70 fit_mean=0.866 fit_max=0.973 fail_mean=0.876 solvable=1.000 valid_proposal_rate=0.806 archive=5081 wall=24.167 path_len=6.211 dead_ends=18.484 loops=5.328 open2x2=4.977 floor=64.945
+gen=80 fit_mean=0.868 fit_max=0.973 fail_mean=0.877 solvable=1.000 valid_proposal_rate=0.784 archive=6018 wall=27.102 path_len=6.234 dead_ends=19.469 loops=3.867 open2x2=3.734 floor=62.180
+gen=90 fit_mean=0.827 fit_max=0.973 fail_mean=0.832 solvable=1.000 valid_proposal_rate=0.768 archive=6976 wall=29.773 path_len=6.484 dead_ends=19.359 loops=3.398 open2x2=3.312 floor=60.703
+gen=100 fit_mean=0.873 fit_max=0.973 fail_mean=0.892 solvable=1.000 valid_proposal_rate=0.759 archive=7929 wall=33.171 path_len=6.367 dead_ends=19.758 loops=3.258 open2x2=3.078 floor=60.836
+{"proposals": 14756, "valid_proposals": 11200, "valid_proposal_rate": 0.7590132827324478, "final_solvable": 1.0, "final_fit_selected": 0.8733554687500003, "final_fit_fresh": 0.8743428955078126, "final_fail_fresh": 0.891357421875, "archive": 7929}
+curriculum levels: 16658 (archive 16658)
+=== [11:44:00 +3m] train solver_cur2_r15 --init checkpoints/solver_cur1_r15 --extra results/curriculum_r2_r15.npz --extra-prob 0.5 --steps 6000000 --seed 152
+initialised weights from checkpoints/solver_cur1_r15
+mixing 16658 extra levels with p=0.5
+{"update": 10, "env_steps": 327680, "train_success": 0.9387, "train_ep_len": 37.8994, "rew_per_step": 0.0257, "loss": 0.0036, "pg": -0.0, "vloss": 0.0076, "entropy": 0.0187, "kl": 0.0024, "grad_norm": 0.1875, "sps": 72750.8794, "wall": 4.5041}
+{"update": 20, "env_steps": 655360, "train_success": 0.9705, "train_ep_len": 32.419, "rew_per_step": 0.0335, "loss": 0.0027, "pg": -0.0002, "vloss": 0.0064, "entropy": 0.024, "kl": 0.0016, "grad_norm": 0.1961, "sps": 71038.6636, "wall": 9.2254}
+{"update": 30, "env_steps": 983040, "train_success": 0.9795, "train_ep_len": 30.9259, "rew_per_step": 0.0346, "loss": 0.0023, "pg": -0.0005, "vloss": 0.006, "entropy": 0.0237, "kl": 0.0012, "grad_norm": 0.2033, "sps": 68994.7058, "wall": 14.2481}
+{"update": 40, "env_steps": 1310720, "train_success": 0.9799, "train_ep_len": 30.5686, "rew_per_step": 0.0355, "loss": 0.0026, "pg": -0.0004, "vloss": 0.0066, "entropy": 0.0266, "kl": 0.0009, "grad_norm": 0.1771, "sps": 67292.2889, "wall": 19.478}
+{"update": 50, "env_steps": 1638400, "train_success": 0.9847, "train_ep_len": 29.4175, "rew_per_step": 0.0368, "loss": 0.0027, "pg": -0.0005, "vloss": 0.007, "entropy": 0.0243, "kl": 0.0009, "grad_norm": 0.1483, "sps": 67312.3629, "wall": 24.3403}
+EVAL {"dfs": [0.98, 0.595], "braid": [0.96, 0.602], "rooms": [0.995, 0.646], "caves": [1.0, 0.616], "spiral": [0.985, 0.557]}
+{"update": 60, "env_steps": 1966080, "train_success": 0.9906, "train_ep_len": 28.9223, "rew_per_step": 0.0378, "loss": 0.0025, "pg": -0.0005, "vloss": 0.0066, "entropy": 0.0272, "kl": 0.0007, "grad_norm": 0.158, "sps": 63824.3175, "wall": 30.8046}
+{"update": 70, "env_steps": 2293760, "train_success": 0.991, "train_ep_len": 28.0801, "rew_per_step": 0.0385, "loss": 0.0025, "pg": -0.0003, "vloss": 0.0061, "entropy": 0.0248, "kl": 0.0009, "grad_norm": 0.1636, "sps": 64756.6487, "wall": 35.4212}
+{"update": 80, "env_steps": 2621440, "train_success": 0.9931, "train_ep_len": 27.3455, "rew_per_step": 0.0398, "loss": 0.002, "pg": -0.0006, "vloss": 0.0057, "entropy": 0.0253, "kl": 0.0006, "grad_norm": 0.1525, "sps": 64305.4483, "wall": 40.7654}
+{"update": 90, "env_steps": 2949120, "train_success": 0.9914, "train_ep_len": 27.5165, "rew_per_step": 0.0394, "loss": 0.002, "pg": -0.0005, "vloss": 0.0055, "entropy": 0.0243, "kl": 0.0007, "grad_norm": 0.1732, "sps": 65433.1987, "wall": 45.0707}
+{"update": 100, "env_steps": 3276800, "train_success": 0.9925, "train_ep_len": 27.716, "rew_per_step": 0.0392, "loss": 0.0022, "pg": -0.0004, "vloss": 0.0057, "entropy": 0.0237, "kl": 0.0005, "grad_norm": 0.1968, "sps": 66650.5238, "wall": 49.1639}
+EVAL {"dfs": [0.985, 0.616], "braid": [0.985, 0.63], "rooms": [1.0, 0.647], "caves": [1.0, 0.619], "spiral": [0.985, 0.532]}
+{"update": 110, "env_steps": 3604480, "train_success": 0.9921, "train_ep_len": 28.2721, "rew_per_step": 0.0385, "loss": 0.0022, "pg": -0.0003, "vloss": 0.0055, "entropy": 0.0249, "kl": 0.0014, "grad_norm": 0.2093, "sps": 66087.1213, "wall": 54.5413}
+{"update": 120, "env_steps": 3932160, "train_success": 0.9946, "train_ep_len": 26.8356, "rew_per_step": 0.0404, "loss": 0.0017, "pg": -0.0006, "vloss": 0.0051, "entropy": 0.0254, "kl": 0.0005, "grad_norm": 0.1083, "sps": 66585.7051, "wall": 59.0541}
+{"update": 130, "env_steps": 4259840, "train_success": 0.9924, "train_ep_len": 27.3461, "rew_per_step": 0.0398, "loss": 0.002, "pg": -0.0005, "vloss": 0.0055, "entropy": 0.0241, "kl": 0.0005, "grad_norm": 0.1539, "sps": 67052.1231, "wall": 63.5303}
+{"update": 140, "env_steps": 4587520, "train_success": 0.9931, "train_ep_len": 27.4362, "rew_per_step": 0.0396, "loss": 0.002, "pg": -0.0003, "vloss": 0.0051, "entropy": 0.023, "kl": 0.0008, "grad_norm": 0.203, "sps": 67431.9111, "wall": 68.0319}
+{"update": 150, "env_steps": 4915200, "train_success": 0.9934, "train_ep_len": 27.0419, "rew_per_step": 0.0403, "loss": 0.0023, "pg": -0.0005, "vloss": 0.006, "entropy": 0.0234, "kl": 0.0011, "grad_norm": 0.182, "sps": 67057.7543, "wall": 73.298}
+EVAL {"dfs": [0.99, 0.624], "braid": [0.985, 0.647], "rooms": [1.0, 0.665], "caves": [1.0, 0.608], "spiral": [0.995, 0.558]}
+{"update": 160, "env_steps": 5242880, "train_success": 0.9946, "train_ep_len": 26.9281, "rew_per_step": 0.0402, "loss": 0.0019, "pg": -0.0006, "vloss": 0.0055, "entropy": 0.0242, "kl": 0.0007, "grad_norm": 0.1664, "sps": 66405.4502, "wall": 78.9526}
+{"update": 170, "env_steps": 5570560, "train_success": 0.9933, "train_ep_len": 27.0558, "rew_per_step": 0.0403, "loss": 0.0018, "pg": -0.0005, "vloss": 0.005, "entropy": 0.0222, "kl": 0.0006, "grad_norm": 0.1563, "sps": 66333.5369, "wall": 83.978}
+{"update": 180, "env_steps": 5898240, "train_success": 0.9924, "train_ep_len": 27.1681, "rew_per_step": 0.0399, "loss": 0.0027, "pg": -0.0004, "vloss": 0.0066, "entropy": 0.0229, "kl": 0.0007, "grad_norm": 0.1603, "sps": 66163.1014, "wall": 89.147}
+EVAL {"dfs": [0.995, 0.66], "braid": [0.98, 0.645], "rooms": [1.0, 0.653], "caves": [1.0, 0.634], "spiral": [0.99, 0.566]}
+done in 91s
+=== [11:45:32 +5m] train solver_ctl2_r15 --init checkpoints/solver_ctl1_r15 --steps 6000000 --seed 152
+initialised weights from checkpoints/solver_ctl1_r15
+{"update": 10, "env_steps": 327680, "train_success": 0.9771, "train_ep_len": 45.2554, "rew_per_step": 0.0238, "loss": 0.0035, "pg": 0.0005, "vloss": 0.0062, "entropy": 0.0139, "kl": 0.0029, "grad_norm": 0.2064, "sps": 59647.4798, "wall": 5.4936}
+{"update": 20, "env_steps": 655360, "train_success": 0.9836, "train_ep_len": 45.5517, "rew_per_step": 0.0249, "loss": 0.0027, "pg": -0.0002, "vloss": 0.0061, "entropy": 0.0158, "kl": 0.0012, "grad_norm": 0.1383, "sps": 61970.3565, "wall": 10.5754}
+{"update": 30, "env_steps": 983040, "train_success": 0.9853, "train_ep_len": 45.1998, "rew_per_step": 0.0252, "loss": 0.0021, "pg": -0.0006, "vloss": 0.0057, "entropy": 0.019, "kl": 0.0013, "grad_norm": 0.1296, "sps": 63614.4657, "wall": 15.4531}
+{"update": 40, "env_steps": 1310720, "train_success": 0.9881, "train_ep_len": 44.2817, "rew_per_step": 0.0254, "loss": 0.0037, "pg": 0.0009, "vloss": 0.006, "entropy": 0.0151, "kl": 0.0047, "grad_norm": 0.1869, "sps": 64384.3128, "wall": 20.3578}
+{"update": 50, "env_steps": 1638400, "train_success": 0.9871, "train_ep_len": 44.6152, "rew_per_step": 0.0256, "loss": 0.0019, "pg": -0.0004, "vloss": 0.0049, "entropy": 0.0165, "kl": 0.0008, "grad_norm": 0.1106, "sps": 67632.4268, "wall": 24.2251}
+EVAL {"dfs": [0.965, 0.595], "braid": [0.965, 0.622], "rooms": [1.0, 0.622], "caves": [1.0, 0.58], "spiral": [0.98, 0.574]}
+{"update": 60, "env_steps": 1966080, "train_success": 0.9886, "train_ep_len": 43.8565, "rew_per_step": 0.0259, "loss": 0.0021, "pg": -0.0004, "vloss": 0.0054, "entropy": 0.0172, "kl": 0.0004, "grad_norm": 0.1139, "sps": 66848.4374, "wall": 29.411}
+{"update": 70, "env_steps": 2293760, "train_success": 0.9886, "train_ep_len": 43.4405, "rew_per_step": 0.0262, "loss": 0.0016, "pg": -0.0005, "vloss": 0.0043, "entropy": 0.0155, "kl": 0.0003, "grad_norm": 0.1039, "sps": 69033.9857, "wall": 33.2265}
+{"update": 80, "env_steps": 2621440, "train_success": 0.9887, "train_ep_len": 44.0174, "rew_per_step": 0.0258, "loss": 0.0022, "pg": -0.0001, "vloss": 0.0048, "entropy": 0.0156, "kl": 0.0007, "grad_norm": 0.121, "sps": 71124.4643, "wall": 36.8571}
+{"update": 90, "env_steps": 2949120, "train_success": 0.9866, "train_ep_len": 44.9753, "rew_per_step": 0.0253, "loss": 0.0023, "pg": -0.0003, "vloss": 0.0054, "entropy": 0.0164, "kl": 0.001, "grad_norm": 0.1488, "sps": 73037.4978, "wall": 40.3782}
+{"update": 100, "env_steps": 3276800, "train_success": 0.9893, "train_ep_len": 44.4784, "rew_per_step": 0.0255, "loss": 0.0029, "pg": -0.0002, "vloss": 0.0064, "entropy": 0.0176, "kl": 0.0009, "grad_norm": 0.1642, "sps": 73853.2709, "wall": 44.3691}
+EVAL {"dfs": [0.975, 0.607], "braid": [0.995, 0.654], "rooms": [1.0, 0.619], "caves": [1.0, 0.59], "spiral": [0.98, 0.529]}
+{"update": 110, "env_steps": 3604480, "train_success": 0.9879, "train_ep_len": 44.5412, "rew_per_step": 0.0255, "loss": 0.0025, "pg": -0.0002, "vloss": 0.0056, "entropy": 0.0154, "kl": 0.0009, "grad_norm": 0.117, "sps": 72416.7224, "wall": 49.7741}
+{"update": 120, "env_steps": 3932160, "train_success": 0.9902, "train_ep_len": 43.6556, "rew_per_step": 0.0261, "loss": 0.0026, "pg": -0.0003, "vloss": 0.0061, "entropy": 0.0169, "kl": 0.0006, "grad_norm": 0.1379, "sps": 71676.0097, "wall": 54.8602}
+{"update": 130, "env_steps": 4259840, "train_success": 0.9921, "train_ep_len": 43.1863, "rew_per_step": 0.0264, "loss": 0.0023, "pg": -0.0002, "vloss": 0.0052, "entropy": 0.0172, "kl": 0.0006, "grad_norm": 0.1352, "sps": 71602.9656, "wall": 59.4925}
+{"update": 140, "env_steps": 4587520, "train_success": 0.9882, "train_ep_len": 44.1178, "rew_per_step": 0.0256, "loss": 0.0022, "pg": -0.0003, "vloss": 0.0053, "entropy": 0.0157, "kl": 0.0005, "grad_norm": 0.1281, "sps": 70812.8927, "wall": 64.7837}
+{"update": 150, "env_steps": 4915200, "train_success": 0.9906, "train_ep_len": 43.8814, "rew_per_step": 0.0259, "loss": 0.0021, "pg": -0.0002, "vloss": 0.005, "entropy": 0.0166, "kl": 0.0004, "grad_norm": 0.1023, "sps": 71023.0649, "wall": 69.2057}
+EVAL {"dfs": [0.97, 0.6], "braid": [0.985, 0.623], "rooms": [1.0, 0.626], "caves": [0.995, 0.583], "spiral": [0.96, 0.538]}
+{"update": 160, "env_steps": 5242880, "train_success": 0.9868, "train_ep_len": 44.2175, "rew_per_step": 0.0257, "loss": 0.0023, "pg": -0.0004, "vloss": 0.0056, "entropy": 0.0175, "kl": 0.0006, "grad_norm": 0.1098, "sps": 69603.4915, "wall": 75.325}
+{"update": 170, "env_steps": 5570560, "train_success": 0.9912, "train_ep_len": 43.0734, "rew_per_step": 0.0264, "loss": 0.002, "pg": -0.0002, "vloss": 0.0049, "entropy": 0.0166, "kl": 0.0007, "grad_norm": 0.1183, "sps": 70101.285, "wall": 79.4645}
+{"update": 180, "env_steps": 5898240, "train_success": 0.9897, "train_ep_len": 43.8123, "rew_per_step": 0.0258, "loss": 0.0018, "pg": -0.0005, "vloss": 0.005, "entropy": 0.016, "kl": 0.0004, "grad_norm": 0.1053, "sps": 70296.3374, "wall": 83.9054}
+EVAL {"dfs": [0.985, 0.623], "braid": [0.975, 0.64], "rooms": [1.0, 0.632], "caves": [1.0, 0.59], "spiral": [0.975, 0.534]}
+done in 86s
+=== [11:46:58 +6m] designer vs solver_cur2_r15 -> cur2_r15_s5 (seed 5) 
+gen=0 fit_mean=0.108 fit_max=0.844 fail_mean=0.017 solvable=1.000 valid_proposal_rate=0.000 archive=3 wall=0.593 path_len=21.352 dead_ends=2.781 loops=6.547 open2x2=5.469 floor=62.844
+gen=10 fit_mean=0.536 fit_max=0.973 fail_mean=0.499 solvable=1.000 valid_proposal_rate=0.816 archive=442 wall=3.540 path_len=8.586 dead_ends=9.156 loops=4.062 open2x2=1.312 floor=72.406
+gen=20 fit_mean=0.597 fit_max=0.973 fail_mean=0.553 solvable=1.000 valid_proposal_rate=0.825 archive=1034 wall=7.002 path_len=7.750 dead_ends=11.266 loops=5.305 open2x2=3.375 floor=70.531
+gen=30 fit_mean=0.615 fit_max=0.973 fail_mean=0.559 solvable=1.000 valid_proposal_rate=0.828 archive=1662 wall=10.182 path_len=7.438 dead_ends=13.453 loops=4.461 open2x2=2.789 floor=68.797
+gen=40 fit_mean=0.667 fit_max=0.973 fail_mean=0.616 solvable=1.000 valid_proposal_rate=0.831 archive=2330 wall=13.296 path_len=7.227 dead_ends=13.258 loops=6.828 open2x2=4.672 floor=69.805
+gen=50 fit_mean=0.683 fit_max=0.973 fail_mean=0.635 solvable=1.000 valid_proposal_rate=0.830 archive=2988 wall=16.491 path_len=7.164 dead_ends=13.680 loops=7.164 open2x2=5.883 floor=68.109
+gen=60 fit_mean=0.682 fit_max=0.973 fail_mean=0.637 solvable=1.000 valid_proposal_rate=0.827 archive=3676 wall=19.623 path_len=7.250 dead_ends=13.102 loops=7.531 open2x2=5.945 floor=68.914
+gen=70 fit_mean=0.648 fit_max=0.973 fail_mean=0.620 solvable=1.000 valid_proposal_rate=0.822 archive=4351 wall=23.114 path_len=6.953 dead_ends=13.453 loops=7.445 open2x2=5.820 floor=68.539
+gen=80 fit_mean=0.762 fit_max=0.973 fail_mean=0.733 solvable=1.000 valid_proposal_rate=0.819 archive=5059 wall=26.863 path_len=6.672 dead_ends=12.883 loops=8.203 open2x2=6.531 floor=68.500
+gen=90 fit_mean=0.737 fit_max=0.973 fail_mean=0.700 solvable=1.000 valid_proposal_rate=0.818 archive=5802 wall=30.234 path_len=7.102 dead_ends=13.016 loops=8.453 open2x2=6.953 floor=68.422
+gen=100 fit_mean=0.762 fit_max=0.973 fail_mean=0.733 solvable=1.000 valid_proposal_rate=0.816 archive=6546 wall=33.755 path_len=6.469 dead_ends=12.273 loops=9.508 open2x2=7.984 floor=69.789
+{"proposals": 13733, "valid_proposals": 11200, "valid_proposal_rate": 0.8155537755770771, "final_solvable": 1.0, "final_fit_selected": 0.7623012695312501, "final_fit_fresh": 0.754384765625, "final_fail_fresh": 0.724853515625, "archive": 6546}
+curriculum levels: 23204 (archive 23204)
+=== [11:47:35 +7m] train solver_cur3_r15 --init checkpoints/solver_cur2_r15 --extra results/curriculum_r3_r15.npz --extra-prob 0.5 --steps 6000000 --seed 153
+initialised weights from checkpoints/solver_cur2_r15
+mixing 23204 extra levels with p=0.5
+{"update": 10, "env_steps": 327680, "train_success": 0.9541, "train_ep_len": 37.0585, "rew_per_step": 0.0269, "loss": 0.0026, "pg": -0.0008, "vloss": 0.0073, "entropy": 0.027, "kl": 0.0037, "grad_norm": 0.1993, "sps": 61653.6674, "wall": 5.3149}
+{"update": 20, "env_steps": 655360, "train_success": 0.9801, "train_ep_len": 31.4384, "rew_per_step": 0.0342, "loss": 0.002, "pg": -0.0004, "vloss": 0.0054, "entropy": 0.0277, "kl": 0.0021, "grad_norm": 0.198, "sps": 64800.5073, "wall": 10.1135}
+{"update": 30, "env_steps": 983040, "train_success": 0.9771, "train_ep_len": 30.1139, "rew_per_step": 0.0356, "loss": 0.0024, "pg": -0.0006, "vloss": 0.0065, "entropy": 0.0269, "kl": 0.0015, "grad_norm": 0.1527, "sps": 65595.1972, "wall": 14.9865}
+{"update": 40, "env_steps": 1310720, "train_success": 0.9739, "train_ep_len": 30.968, "rew_per_step": 0.035, "loss": 0.003, "pg": -0.0003, "vloss": 0.007, "entropy": 0.0257, "kl": 0.0013, "grad_norm": 0.1847, "sps": 66721.3718, "wall": 19.6447}
+{"update": 50, "env_steps": 1638400, "train_success": 0.9884, "train_ep_len": 28.975, "rew_per_step": 0.0376, "loss": 0.0019, "pg": -0.0005, "vloss": 0.0054, "entropy": 0.022, "kl": 0.0008, "grad_norm": 0.1501, "sps": 66912.6609, "wall": 24.4857}
+EVAL {"dfs": [0.97, 0.604], "braid": [0.995, 0.64], "rooms": [0.995, 0.663], "caves": [1.0, 0.616], "spiral": [0.99, 0.566]}
+{"update": 60, "env_steps": 1966080, "train_success": 0.991, "train_ep_len": 27.5692, "rew_per_step": 0.0395, "loss": 0.0016, "pg": -0.0007, "vloss": 0.0051, "entropy": 0.0231, "kl": 0.0008, "grad_norm": 0.15, "sps": 66033.4585, "wall": 29.774}
+{"update": 70, "env_steps": 2293760, "train_success": 0.9928, "train_ep_len": 28.0361, "rew_per_step": 0.0386, "loss": 0.0022, "pg": -0.0006, "vloss": 0.0062, "entropy": 0.0245, "kl": 0.0007, "grad_norm": 0.1325, "sps": 66981.9291, "wall": 34.2445}
+{"update": 80, "env_steps": 2621440, "train_success": 0.9925, "train_ep_len": 27.6747, "rew_per_step": 0.0391, "loss": 0.0019, "pg": -0.0006, "vloss": 0.0056, "entropy": 0.0259, "kl": 0.0007, "grad_norm": 0.1448, "sps": 68299.7453, "wall": 38.3814}
+{"update": 90, "env_steps": 2949120, "train_success": 0.9909, "train_ep_len": 27.9559, "rew_per_step": 0.039, "loss": 0.0022, "pg": -0.0006, "vloss": 0.0061, "entropy": 0.0225, "kl": 0.0008, "grad_norm": 0.1425, "sps": 70136.419, "wall": 42.0483}
+{"update": 100, "env_steps": 3276800, "train_success": 0.9941, "train_ep_len": 27.1384, "rew_per_step": 0.0402, "loss": 0.0014, "pg": -0.0006, "vloss": 0.0045, "entropy": 0.0229, "kl": 0.0007, "grad_norm": 0.1347, "sps": 71762.9844, "wall": 45.6614}
+EVAL {"dfs": [0.955, 0.591], "braid": [0.985, 0.633], "rooms": [1.0, 0.647], "caves": [1.0, 0.641], "spiral": [0.975, 0.539]}
+{"update": 110, "env_steps": 3604480, "train_success": 0.9937, "train_ep_len": 27.5365, "rew_per_step": 0.0393, "loss": 0.0026, "pg": -0.0004, "vloss": 0.0063, "entropy": 0.023, "kl": 0.0009, "grad_norm": 0.1828, "sps": 70930.5157, "wall": 50.8171}
+{"update": 120, "env_steps": 3932160, "train_success": 0.9938, "train_ep_len": 27.2395, "rew_per_step": 0.0399, "loss": 0.0022, "pg": -0.0007, "vloss": 0.0061, "entropy": 0.0225, "kl": 0.0007, "grad_norm": 0.1461, "sps": 71148.7015, "wall": 55.2668}
+{"update": 130, "env_steps": 4259840, "train_success": 0.9937, "train_ep_len": 26.9834, "rew_per_step": 0.0404, "loss": 0.0018, "pg": -0.0005, "vloss": 0.0051, "entropy": 0.0237, "kl": 0.0006, "grad_norm": 0.184, "sps": 70893.9555, "wall": 60.0875}
+{"update": 140, "env_steps": 4587520, "train_success": 0.9947, "train_ep_len": 26.7663, "rew_per_step": 0.0408, "loss": 0.0017, "pg": -0.0007, "vloss": 0.0054, "entropy": 0.0236, "kl": 0.0007, "grad_norm": 0.1596, "sps": 70466.0147, "wall": 65.1026}
+{"update": 150, "env_steps": 4915200, "train_success": 0.994, "train_ep_len": 27.3669, "rew_per_step": 0.0396, "loss": 0.0022, "pg": -0.0004, "vloss": 0.0056, "entropy": 0.0218, "kl": 0.0009, "grad_norm": 0.156, "sps": 69954.9108, "wall": 70.2624}
+EVAL {"dfs": [0.995, 0.649], "braid": [0.99, 0.652], "rooms": [1.0, 0.652], "caves": [1.0, 0.639], "spiral": [0.99, 0.562]}
+{"update": 160, "env_steps": 5242880, "train_success": 0.9936, "train_ep_len": 26.9791, "rew_per_step": 0.0403, "loss": 0.0019, "pg": -0.0007, "vloss": 0.0056, "entropy": 0.024, "kl": 0.0005, "grad_norm": 0.1274, "sps": 69810.0737, "wall": 75.1021}
+{"update": 170, "env_steps": 5570560, "train_success": 0.9947, "train_ep_len": 27.1414, "rew_per_step": 0.0402, "loss": 0.0022, "pg": -0.0005, "vloss": 0.0058, "entropy": 0.0218, "kl": 0.0005, "grad_norm": 0.1398, "sps": 69856.1842, "wall": 79.7433}
+{"update": 180, "env_steps": 5898240, "train_success": 0.9936, "train_ep_len": 27.484, "rew_per_step": 0.0397, "loss": 0.0021, "pg": -0.0004, "vloss": 0.0056, "entropy": 0.0225, "kl": 0.0008, "grad_norm": 0.1527, "sps": 70213.5919, "wall": 84.0043}
+EVAL {"dfs": [0.98, 0.609], "braid": [0.98, 0.667], "rooms": [1.0, 0.64], "caves": [1.0, 0.639], "spiral": [0.975, 0.574]}
+done in 86s
+=== [11:49:02 +8m] train solver_ctl3_r15 --init checkpoints/solver_ctl2_r15 --steps 6000000 --seed 153
+initialised weights from checkpoints/solver_ctl2_r15
+{"update": 10, "env_steps": 327680, "train_success": 0.9818, "train_ep_len": 44.6761, "rew_per_step": 0.0242, "loss": 0.002, "pg": -0.0003, "vloss": 0.005, "entropy": 0.016, "kl": 0.0013, "grad_norm": 0.1002, "sps": 70938.9471, "wall": 4.6192}
+{"update": 20, "env_steps": 655360, "train_success": 0.9866, "train_ep_len": 44.9149, "rew_per_step": 0.0253, "loss": 0.0029, "pg": 0.0006, "vloss": 0.005, "entropy": 0.015, "kl": 0.0033, "grad_norm": 0.1339, "sps": 76931.3007, "wall": 8.5188}
+{"update": 30, "env_steps": 983040, "train_success": 0.9899, "train_ep_len": 43.8242, "rew_per_step": 0.0259, "loss": 0.0023, "pg": -0.0002, "vloss": 0.0054, "entropy": 0.0174, "kl": 0.0012, "grad_norm": 0.1336, "sps": 72043.5493, "wall": 13.6451}
+{"update": 40, "env_steps": 1310720, "train_success": 0.9882, "train_ep_len": 44.2408, "rew_per_step": 0.0257, "loss": 0.0023, "pg": -0.0002, "vloss": 0.0054, "entropy": 0.0171, "kl": 0.0011, "grad_norm": 0.109, "sps": 70792.7814, "wall": 18.5149}
+{"update": 50, "env_steps": 1638400, "train_success": 0.988, "train_ep_len": 43.6853, "rew_per_step": 0.026, "loss": 0.0025, "pg": -0.0, "vloss": 0.0053, "entropy": 0.0159, "kl": 0.001, "grad_norm": 0.1619, "sps": 69032.1433, "wall": 23.7339}
+EVAL {"dfs": [0.975, 0.628], "braid": [1.0, 0.655], "rooms": [1.0, 0.63], "caves": [1.0, 0.582], "spiral": [0.965, 0.545]}
+{"update": 60, "env_steps": 1966080, "train_success": 0.9906, "train_ep_len": 43.2818, "rew_per_step": 0.0262, "loss": 0.0019, "pg": -0.0004, "vloss": 0.005, "entropy": 0.0167, "kl": 0.0015, "grad_norm": 0.0933, "sps": 65385.5151, "wall": 30.069}
+{"update": 70, "env_steps": 2293760, "train_success": 0.9899, "train_ep_len": 43.5072, "rew_per_step": 0.0261, "loss": 0.0023, "pg": -0.0001, "vloss": 0.0052, "entropy": 0.016, "kl": 0.0014, "grad_norm": 0.1619, "sps": 66103.1363, "wall": 34.6997}
+{"update": 80, "env_steps": 2621440, "train_success": 0.9889, "train_ep_len": 43.7906, "rew_per_step": 0.026, "loss": 0.0022, "pg": -0.0005, "vloss": 0.0055, "entropy": 0.0156, "kl": 0.0005, "grad_norm": 0.1024, "sps": 65846.9753, "wall": 39.8111}
+{"update": 90, "env_steps": 2949120, "train_success": 0.9896, "train_ep_len": 43.4535, "rew_per_step": 0.0262, "loss": 0.0017, "pg": -0.0004, "vloss": 0.0045, "entropy": 0.0145, "kl": 0.0006, "grad_norm": 0.0938, "sps": 65094.4884, "wall": 45.3052}
+{"update": 100, "env_steps": 3276800, "train_success": 0.9911, "train_ep_len": 43.1117, "rew_per_step": 0.0264, "loss": 0.002, "pg": -0.0003, "vloss": 0.005, "entropy": 0.0156, "kl": 0.0007, "grad_norm": 0.1142, "sps": 65015.9799, "wall": 50.3999}
+EVAL {"dfs": [0.985, 0.627], "braid": [0.985, 0.656], "rooms": [0.995, 0.633], "caves": [1.0, 0.595], "spiral": [0.975, 0.569]}
+{"update": 110, "env_steps": 3604480, "train_success": 0.9909, "train_ep_len": 42.9455, "rew_per_step": 0.0263, "loss": 0.0021, "pg": -0.0004, "vloss": 0.0054, "entropy": 0.0153, "kl": 0.0006, "grad_norm": 0.102, "sps": 63432.8001, "wall": 56.8236}
+{"update": 120, "env_steps": 3932160, "train_success": 0.9935, "train_ep_len": 42.4243, "rew_per_step": 0.0269, "loss": 0.0017, "pg": -0.0003, "vloss": 0.0043, "entropy": 0.0143, "kl": 0.0004, "grad_norm": 0.1078, "sps": 63824.2256, "wall": 61.6092}
+{"update": 130, "env_steps": 4259840, "train_success": 0.99, "train_ep_len": 43.068, "rew_per_step": 0.0264, "loss": 0.0021, "pg": -0.0004, "vloss": 0.0053, "entropy": 0.015, "kl": 0.0014, "grad_norm": 0.1314, "sps": 64138.0875, "wall": 66.4167}
+{"update": 140, "env_steps": 4587520, "train_success": 0.9922, "train_ep_len": 42.5104, "rew_per_step": 0.0268, "loss": 0.0018, "pg": -0.0004, "vloss": 0.0047, "entropy": 0.0144, "kl": 0.0009, "grad_norm": 0.0816, "sps": 63930.862, "wall": 71.7575}
+{"update": 150, "env_steps": 4915200, "train_success": 0.9918, "train_ep_len": 43.3173, "rew_per_step": 0.0262, "loss": 0.0021, "pg": -0.0003, "vloss": 0.005, "entropy": 0.0143, "kl": 0.0008, "grad_norm": 0.13, "sps": 63806.0253, "wall": 77.0335}
+EVAL {"dfs": [0.985, 0.632], "braid": [0.985, 0.658], "rooms": [1.0, 0.627], "caves": [1.0, 0.595], "spiral": [0.985, 0.58]}
+{"update": 160, "env_steps": 5242880, "train_success": 0.9932, "train_ep_len": 42.2293, "rew_per_step": 0.027, "loss": 0.0019, "pg": -0.0004, "vloss": 0.0049, "entropy": 0.0155, "kl": 0.0014, "grad_norm": 0.1034, "sps": 63773.5398, "wall": 82.2109}
+{"update": 170, "env_steps": 5570560, "train_success": 0.9913, "train_ep_len": 42.7214, "rew_per_step": 0.0267, "loss": 0.002, "pg": -0.0004, "vloss": 0.005, "entropy": 0.0162, "kl": 0.0006, "grad_norm": 0.1002, "sps": 64203.6155, "wall": 86.764}
+{"update": 180, "env_steps": 5898240, "train_success": 0.9931, "train_ep_len": 42.4018, "rew_per_step": 0.0268, "loss": 0.0018, "pg": -0.0004, "vloss": 0.0048, "entropy": 0.0163, "kl": 0.0012, "grad_norm": 0.1333, "sps": 64690.19, "wall": 91.1767}
+EVAL {"dfs": [0.98, 0.628], "braid": [1.0, 0.666], "rooms": [1.0, 0.636], "caves": [1.0, 0.595], "spiral": [0.965, 0.565]}
+done in 93s
+=== [11:50:36 +10m] pipeline3 seed 15 done

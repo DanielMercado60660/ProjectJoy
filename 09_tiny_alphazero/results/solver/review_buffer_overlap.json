@@ -1,0 +1,89 @@
+{
+ "note": "Reviewer check: held-out positions found (up to mirror) in the final replay buffer checkpoints/main/state/replay.npz (250k positions, last ~16 generations of self-play; earlier buffers not saved, so this is a lower bound on training overlap). Accuracy on won+drawn positions, split by membership.",
+ "in_buffer_all": {
+  "random": 3,
+  "net": 134
+ },
+ "accuracy": {
+  "random/in_buffer": {
+   "n": 0,
+   "policy": [
+    NaN,
+    null
+   ],
+   "mcts100": [
+    NaN,
+    null
+   ],
+   "mcts800": [
+    NaN,
+    null
+   ],
+   "ab8": [
+    NaN,
+    null
+   ],
+   "median_ply": null
+  },
+  "random/not_in_buffer": {
+   "n": 357,
+   "policy": [
+    0.871,
+    0.018
+   ],
+   "mcts100": [
+    0.975,
+    0.008
+   ],
+   "mcts800": [
+    0.986,
+    0.006
+   ],
+   "ab8": [
+    0.964,
+    0.01
+   ],
+   "median_ply": 16.0
+  },
+  "net/in_buffer": {
+   "n": 75,
+   "policy": [
+    0.933,
+    0.029
+   ],
+   "mcts100": [
+    0.96,
+    0.023
+   ],
+   "mcts800": [
+    0.973,
+    0.019
+   ],
+   "ab8": [
+    0.827,
+    0.044
+   ],
+   "median_ply": 10.0
+  },
+  "net/not_in_buffer": {
+   "n": 216,
+   "policy": [
+    0.921,
+    0.018
+   ],
+   "mcts100": [
+    0.968,
+    0.012
+   ],
+   "mcts800": [
+    0.986,
+    0.008
+   ],
+   "ab8": [
+    0.921,
+    0.018
+   ],
+   "median_ply": 19.0
+  }
+ }
+}

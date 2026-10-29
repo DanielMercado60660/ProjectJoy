@@ -1,0 +1,433 @@
+{
+  "ckpt": "checkpoints/bat_seed1",
+  "train_cfg": {
+    "minutes": 5.0,
+    "iters": 100000,
+    "envs": 256,
+    "T": 64,
+    "epochs": 4,
+    "minibatches": 4,
+    "hidden": 128,
+    "lr": 0.0003,
+    "pulse_cost": 0.02,
+    "pool": 3000,
+    "sizes": "4,5,6",
+    "ent": 0.02,
+    "collision_cost": 0.05,
+    "new_cell_bonus": 0.1,
+    "goal_reward": 2.0,
+    "out": "checkpoints/bat_seed1",
+    "seed": 1,
+    "smoke": false,
+    "obs_dim": 199,
+    "train_seed": 1000,
+    "iters_done": 926,
+    "steps_done": 15171584,
+    "wall_sec": 300.27107524871826
+  },
+  "n_mazes_per_size": 200,
+  "tables": {
+    "size5": {
+      "random_walk": {
+        "n": 200,
+        "success": 0.095,
+        "success_se": 0.02073342711661533,
+        "steps": 144.81,
+        "steps_on_success": 95.36842105263158,
+        "pulses_per_ep": 0.0,
+        "pulses_per_step": 0.0,
+        "collisions_per_ep": 30.89,
+        "collision_rate": 0.21261753535161015
+      },
+      "wallfollow_k1": {
+        "n": 200,
+        "success": 0.995,
+        "success_se": 0.004987484335815002,
+        "steps": 35.605,
+        "steps_on_success": 35.030150753768844,
+        "pulses_per_ep": 35.605,
+        "pulses_per_step": 1.0,
+        "collisions_per_ep": 0.18,
+        "collision_rate": 0.0037492427105363744
+      },
+      "wallfollow_k2": {
+        "n": 200,
+        "success": 0.8,
+        "success_se": 0.0282842712474619,
+        "steps": 58.565,
+        "steps_on_success": 35.70625,
+        "pulses_per_ep": 29.19,
+        "pulses_per_step": 0.4954589648057204,
+        "collisions_per_ep": 5.715,
+        "collision_rate": 0.09524268146680129
+      },
+      "wallfollow_k3": {
+        "n": 200,
+        "success": 0.435,
+        "success_se": 0.035055313434627845,
+        "steps": 100.175,
+        "steps_on_success": 35.45977011494253,
+        "pulses_per_ep": 33.175,
+        "pulses_per_step": 0.32292846190386826,
+        "collisions_per_ep": 15.285,
+        "collision_rate": 0.15817551157890022
+      },
+      "wallfollow_k4": {
+        "n": 200,
+        "success": 0.09,
+        "success_se": 0.02023610634484806,
+        "steps": 139.785,
+        "steps_on_success": 36.5,
+        "pulses_per_ep": 34.455,
+        "pulses_per_step": 0.24534955248388676,
+        "collisions_per_ep": 32.945,
+        "collision_rate": 0.23167657795057844
+      },
+      "bat_learned": {
+        "n": 200,
+        "success": 1.0,
+        "success_se": 0.0,
+        "steps": 31.475,
+        "steps_on_success": 31.475,
+        "pulses_per_ep": 20.1,
+        "pulses_per_step": 0.6416971888689114,
+        "collisions_per_ep": 0.01,
+        "collision_rate": 0.00012838468720821662
+      },
+      "bat_learned_greedy": {
+        "n": 200,
+        "success": 1.0,
+        "success_se": 0.0,
+        "steps": 31.03,
+        "steps_on_success": 31.03,
+        "pulses_per_ep": 19.64,
+        "pulses_per_step": 0.6341257205997407,
+        "collisions_per_ep": 0.005,
+        "collision_rate": 0.00014285714285714284
+      },
+      "bat_no_memory": {
+        "n": 200,
+        "success": 0.605,
+        "success_se": 0.03456696399743547,
+        "steps": 74.92,
+        "steps_on_success": 25.90082644628099,
+        "pulses_per_ep": 52.315,
+        "pulses_per_step": 0.6696404048877134,
+        "collisions_per_ep": 0.24,
+        "collision_rate": 0.0019751149751149753
+      },
+      "bat_no_memory_forced_k1": {
+        "n": 200,
+        "success": 0.585,
+        "success_se": 0.03484070894801081,
+        "steps": 80.175,
+        "steps_on_success": 30.641025641025642,
+        "pulses_per_ep": 80.175,
+        "pulses_per_step": 1.0,
+        "collisions_per_ep": 0.04,
+        "collision_rate": 0.0002666666666666666
+      },
+      "bat_forced_k1": {
+        "n": 200,
+        "success": 1.0,
+        "success_se": 0.0,
+        "steps": 31.005,
+        "steps_on_success": 31.005,
+        "pulses_per_ep": 31.005,
+        "pulses_per_step": 1.0,
+        "collisions_per_ep": 0.0,
+        "collision_rate": 0.0
+      },
+      "bat_forced_k2": {
+        "n": 200,
+        "success": 0.54,
+        "success_se": 0.03524202037341219,
+        "steps": 87.58,
+        "steps_on_success": 34.407407407407405,
+        "pulses_per_ep": 43.715,
+        "pulses_per_step": 0.4959154669001342,
+        "collisions_per_ep": 4.71,
+        "collision_rate": 0.06532603274260002
+      },
+      "bat_forced_k4": {
+        "n": 200,
+        "success": 0.49,
+        "success_se": 0.03534826728426727,
+        "steps": 107.525,
+        "steps_on_success": 63.316326530612244,
+        "pulses_per_ep": 26.425,
+        "pulses_per_step": 0.24221720808223082,
+        "collisions_per_ep": 26.77,
+        "collision_rate": 0.23767644652093253
+      }
+    },
+    "size6": {
+      "random_walk": {
+        "n": 200,
+        "success": 0.075,
+        "success_se": 0.018624580532189173,
+        "steps": 210.15,
+        "steps_on_success": 138.0,
+        "pulses_per_ep": 0.0,
+        "pulses_per_step": 0.0,
+        "collisions_per_ep": 44.395,
+        "collision_rate": 0.21005115374446684
+      },
+      "wallfollow_k1": {
+        "n": 200,
+        "success": 0.99,
+        "success_se": 0.007035623639735144,
+        "steps": 53.34,
+        "steps_on_success": 51.696969696969695,
+        "pulses_per_ep": 53.34,
+        "pulses_per_step": 1.0,
+        "collisions_per_ep": 0.32,
+        "collision_rate": 0.004824913489992368
+      },
+      "wallfollow_k2": {
+        "n": 200,
+        "success": 0.695,
+        "success_se": 0.03255572146336185,
+        "steps": 98.89,
+        "steps_on_success": 47.49640287769784,
+        "pulses_per_ep": 49.37,
+        "pulses_per_step": 0.49742670169672026,
+        "collisions_per_ep": 9.49,
+        "collision_rate": 0.09422709323183913
+      },
+      "wallfollow_k3": {
+        "n": 200,
+        "success": 0.29,
+        "success_se": 0.03208582241426889,
+        "steps": 167.305,
+        "steps_on_success": 48.08620689655172,
+        "pulses_per_ep": 55.63,
+        "pulses_per_step": 0.32820236580930706,
+        "collisions_per_ep": 24.92,
+        "collision_rate": 0.15284260302062272
+      },
+      "wallfollow_k4": {
+        "n": 200,
+        "success": 0.065,
+        "success_se": 0.017432010784760317,
+        "steps": 207.47,
+        "steps_on_success": 84.76923076923077,
+        "pulses_per_ep": 51.85,
+        "pulses_per_step": 0.2495551083480098,
+        "collisions_per_ep": 47.965,
+        "collision_rate": 0.22950918685003174
+      },
+      "bat_learned": {
+        "n": 200,
+        "success": 1.0,
+        "success_se": 0.0,
+        "steps": 44.975,
+        "steps_on_success": 44.975,
+        "pulses_per_ep": 29.155,
+        "pulses_per_step": 0.6482374853164771,
+        "collisions_per_ep": 0.015,
+        "collision_rate": 0.0003441697191697192
+      },
+      "bat_learned_greedy": {
+        "n": 200,
+        "success": 1.0,
+        "success_se": 0.0,
+        "steps": 44.355,
+        "steps_on_success": 44.355,
+        "pulses_per_ep": 28.385,
+        "pulses_per_step": 0.6400612471214785,
+        "collisions_per_ep": 0.005,
+        "collision_rate": 6.329113924050633e-05
+      },
+      "bat_no_memory": {
+        "n": 200,
+        "success": 0.52,
+        "success_se": 0.03532704346531139,
+        "steps": 122.115,
+        "steps_on_success": 35.45192307692308,
+        "pulses_per_ep": 85.765,
+        "pulses_per_step": 0.6843485341396157,
+        "collisions_per_ep": 0.41,
+        "collision_rate": 0.0024719498146719547
+      },
+      "bat_no_memory_forced_k1": {
+        "n": 200,
+        "success": 0.5,
+        "success_se": 0.035355339059327376,
+        "steps": 128.355,
+        "steps_on_success": 40.71,
+        "pulses_per_ep": 128.355,
+        "pulses_per_step": 1.0,
+        "collisions_per_ep": 0.09,
+        "collision_rate": 0.0005781625781625782
+      },
+      "bat_forced_k1": {
+        "n": 200,
+        "success": 1.0,
+        "success_se": 0.0,
+        "steps": 44.125,
+        "steps_on_success": 44.125,
+        "pulses_per_ep": 44.125,
+        "pulses_per_step": 1.0,
+        "collisions_per_ep": 0.005,
+        "collision_rate": 7.042253521126761e-05
+      },
+      "bat_forced_k2": {
+        "n": 200,
+        "success": 0.52,
+        "success_se": 0.03532704346531139,
+        "steps": 132.32,
+        "steps_on_success": 55.07692307692308,
+        "pulses_per_ep": 66.065,
+        "pulses_per_step": 0.49759118274482034,
+        "collisions_per_ep": 6.005,
+        "collision_rate": 0.05842069070754324
+      },
+      "bat_forced_k4": {
+        "n": 200,
+        "success": 0.405,
+        "success_se": 0.0347113093962184,
+        "steps": 166.29,
+        "steps_on_success": 93.25925925925925,
+        "pulses_per_ep": 41.41,
+        "pulses_per_step": 0.24668113301850808,
+        "collisions_per_ep": 40.925,
+        "collision_rate": 0.23727514709922803
+      }
+    },
+    "size7": {
+      "random_walk": {
+        "n": 200,
+        "success": 0.05,
+        "success_se": 0.015411035007422438,
+        "steps": 286.68,
+        "steps_on_success": 147.6,
+        "pulses_per_ep": 0.0,
+        "pulses_per_step": 0.0,
+        "collisions_per_ep": 60.82,
+        "collision_rate": 0.2105985101422368
+      },
+      "wallfollow_k1": {
+        "n": 200,
+        "success": 0.985,
+        "success_se": 0.008595056718835542,
+        "steps": 81.565,
+        "steps_on_success": 78.32994923857868,
+        "pulses_per_ep": 81.565,
+        "pulses_per_step": 1.0,
+        "collisions_per_ep": 0.38,
+        "collision_rate": 0.004447826933346451
+      },
+      "wallfollow_k2": {
+        "n": 200,
+        "success": 0.635,
+        "success_se": 0.0340422531569225,
+        "steps": 150.29,
+        "steps_on_success": 67.68503937007874,
+        "pulses_per_ep": 75.055,
+        "pulses_per_step": 0.49797853487153587,
+        "collisions_per_ep": 13.435,
+        "collision_rate": 0.08989138460952112
+      },
+      "wallfollow_k3": {
+        "n": 200,
+        "success": 0.24,
+        "success_se": 0.030199337741082997,
+        "steps": 242.29,
+        "steps_on_success": 78.54166666666667,
+        "pulses_per_ep": 80.655,
+        "pulses_per_step": 0.3300239536454454,
+        "collisions_per_ep": 36.9,
+        "collision_rate": 0.1567337671296289
+      },
+      "wallfollow_k4": {
+        "n": 200,
+        "success": 0.055,
+        "success_se": 0.01612063894515351,
+        "steps": 282.42,
+        "steps_on_success": 83.45454545454545,
+        "pulses_per_ep": 70.11,
+        "pulses_per_step": 0.24779610087293946,
+        "collisions_per_ep": 66.075,
+        "collision_rate": 0.23166083645961577
+      },
+      "bat_learned": {
+        "n": 200,
+        "success": 1.0,
+        "success_se": 0.0,
+        "steps": 63.935,
+        "steps_on_success": 63.935,
+        "pulses_per_ep": 41.74,
+        "pulses_per_step": 0.6543593690556697,
+        "collisions_per_ep": 0.015,
+        "collision_rate": 0.00022408774895461305
+      },
+      "bat_learned_greedy": {
+        "n": 200,
+        "success": 1.0,
+        "success_se": 0.0,
+        "steps": 62.66,
+        "steps_on_success": 62.66,
+        "pulses_per_ep": 40.375,
+        "pulses_per_step": 0.6445550149882551,
+        "collisions_per_ep": 0.01,
+        "collision_rate": 0.00013963210702341137
+      },
+      "bat_no_memory": {
+        "n": 200,
+        "success": 0.41,
+        "success_se": 0.0347778665245584,
+        "steps": 191.905,
+        "steps_on_success": 44.98780487804878,
+        "pulses_per_ep": 133.88,
+        "pulses_per_step": 0.6798876660304956,
+        "collisions_per_ep": 0.715,
+        "collision_rate": 0.0027672644815501957
+      },
+      "bat_no_memory_forced_k1": {
+        "n": 200,
+        "success": 0.415,
+        "success_se": 0.03484070894801081,
+        "steps": 197.07,
+        "steps_on_success": 60.433734939759034,
+        "pulses_per_ep": 197.07,
+        "pulses_per_step": 1.0,
+        "collisions_per_ep": 0.165,
+        "collision_rate": 0.0007050130619034653
+      },
+      "bat_forced_k1": {
+        "n": 200,
+        "success": 1.0,
+        "success_se": 0.0,
+        "steps": 63.195,
+        "steps_on_success": 63.195,
+        "pulses_per_ep": 63.195,
+        "pulses_per_step": 1.0,
+        "collisions_per_ep": 0.015,
+        "collision_rate": 0.00019706945894728701
+      },
+      "bat_forced_k2": {
+        "n": 200,
+        "success": 0.405,
+        "success_se": 0.0347113093962184,
+        "steps": 201.605,
+        "steps_on_success": 65.8641975308642,
+        "pulses_per_ep": 100.74,
+        "pulses_per_step": 0.4984263224415287,
+        "collisions_per_ep": 9.165,
+        "collision_rate": 0.05339936560907496
+      },
+      "bat_forced_k4": {
+        "n": 200,
+        "success": 0.325,
+        "success_se": 0.03311910324872942,
+        "steps": 241.835,
+        "steps_on_success": 133.4923076923077,
+        "pulses_per_ep": 59.98,
+        "pulses_per_step": 0.246704002885636,
+        "collisions_per_ep": 59.685,
+        "collision_rate": 0.23935092535829952
+      }
+    }
+  }
+}

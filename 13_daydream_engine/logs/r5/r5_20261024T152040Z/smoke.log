@@ -1,0 +1,13 @@
+[gpu_run] acquired gpu1: bash smoke_r5.sh
+SMOKE numpy
+SMOKE prepare
+SMOKE fit
+SMOKE killed
+Traceback (most recent call last):
+  File "/Users/danielmercado/ProjectJoy/13_daydream_engine/smoke_driver_r5.py", line 112, in <module>
+    main()
+  File "/Users/danielmercado/ProjectJoy/13_daydream_engine/smoke_driver_r5.py", line 78, in main
+    run("killed", train + ["--out", ckpt / "resumed", "--steps", 100000, "--checkpoint-every", 2], True)
+  File "/Users/danielmercado/ProjectJoy/13_daydream_engine/smoke_driver_r5.py", line 57, in run
+    raise RuntimeError(f"trainer never reached kill checkpoint; inspect {path}")
+RuntimeError: trainer never reached kill checkpoint; inspect logs/r5/smoke_20261024T152040Z_67494/killed.log

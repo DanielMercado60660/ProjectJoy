@@ -1,0 +1,36 @@
+[gpu_run] acquired gpu0: ./smoke_r5.sh
+..............                                                           [100%]
+14 passed in 1.45s
+{"update": 1, "steps": 32, "elapsed_seconds": 0.12824416701914743, "ppo_loss": -0.0014475358766503632, "aux_loss": 0.007226313464343548, "reward_mean": 0.0, "reward_std": 0.0, "progress_old": 0.007813210599124432, "progress_new": 0.007813210599124432, "progress_positive": 0.0, "progress_negative": 0.0}
+{"status": "complete", "steps": 128, "target_steps": 128, "update": 4, "invocation_seconds": 0.15554816700750962, "new_steps": 128}
+RESUME update=2 steps=64
+{"status": "complete", "steps": 128, "target_steps": 128, "update": 4, "invocation_seconds": 0.03272087499499321, "new_steps": 64}
+DEMO media/r5_smoke_20261024_105303_72097_lp.gif frames=14
+SMOKE_METHOD_OK lp: finite, save/stop/resume matches uninterrupted
+{"update": 1, "steps": 32, "elapsed_seconds": 0.010074709018226713, "ppo_loss": 1.8611772656440735, "aux_loss": 0.002278101979754865, "reward_mean": 0.9289867238780664, "reward_std": 0.19532052025775146}
+{"status": "complete", "steps": 128, "target_steps": 128, "update": 4, "invocation_seconds": 0.039833375019952655, "new_steps": 128}
+{"update": 1, "steps": 32, "elapsed_seconds": 0.008045499969739467, "ppo_loss": 1.8611772656440735, "aux_loss": 0.002278101979754865, "reward_mean": 0.9289867238780664, "reward_std": 0.19532052025775146}
+{"status": "partial_test_stop", "steps": 64, "target_steps": 128, "update": 2, "invocation_seconds": 0.01985270797740668, "new_steps": 64}
+RESUME update=2 steps=64
+{"status": "complete", "steps": 128, "target_steps": 128, "update": 4, "invocation_seconds": 0.020350957987830043, "new_steps": 64}
+SMOKE_METHOD_OK rnd_ep: finite, save/stop/resume matches uninterrupted
+{"update": 1, "steps": 32, "elapsed_seconds": 0.012343792011961341, "ppo_loss": 1.533916175365448, "aux_loss": 0.006222366821020842, "reward_mean": 0.0016128347488120198, "reward_std": 3.3023701689671725e-05}
+{"status": "complete", "steps": 128, "target_steps": 128, "update": 4, "invocation_seconds": 0.0685620839940384, "new_steps": 128}
+{"update": 1, "steps": 32, "elapsed_seconds": 0.011630166962277144, "ppo_loss": 1.533916175365448, "aux_loss": 0.006222366821020842, "reward_mean": 0.0016128347488120198, "reward_std": 3.3023701689671725e-05}
+{"status": "partial_test_stop", "steps": 64, "target_steps": 128, "update": 2, "invocation_seconds": 0.03635154198855162, "new_steps": 64}
+RESUME update=2 steps=64
+{"status": "complete", "steps": 128, "target_steps": 128, "update": 4, "invocation_seconds": 0.04239308298565447, "new_steps": 64}
+SMOKE_METHOD_OK disagree: finite, save/stop/resume matches uninterrupted
+{"update": 1, "steps": 32, "elapsed_seconds": 0.012032500002533197, "ppo_loss": 1.851625680923462, "aux_loss": 1.6050695180892944, "reward_mean": 0.8763420875769241, "reward_std": 0.18619929001575383}
+{"status": "complete", "steps": 128, "target_steps": 128, "update": 4, "invocation_seconds": 0.055321707972325385, "new_steps": 128}
+{"update": 1, "steps": 32, "elapsed_seconds": 0.01047220901818946, "ppo_loss": 1.851625680923462, "aux_loss": 1.6050695180892944, "reward_mean": 0.8763420875769241, "reward_std": 0.18619929001575383}
+{"status": "partial_test_stop", "steps": 64, "target_steps": 128, "update": 2, "invocation_seconds": 0.027157166972756386, "new_steps": 64}
+RESUME update=2 steps=64
+{"status": "complete", "steps": 128, "target_steps": 128, "update": 4, "invocation_seconds": 0.028322792029939592, "new_steps": 64}
+SMOKE_METHOD_OK ngu: finite, save/stop/resume matches uninterrupted
+{"status": "complete", "steps": 32, "target_steps": 32, "invocation_seconds": 0.003823750012088567, "totals": {"episodes": 2, "rooms": 4, "interactions": 2, "tv_steps": 4}, "cfg": {"method": "frontier", "seed": 510, "tv": true, "n_envs": 2, "episode_steps": 16, "frontier_cfg": {}}}
+{"status": "complete", "steps": 64, "target_steps": 64, "invocation_seconds": 0.0036193340201862156, "totals": {"episodes": 4, "rooms": 6, "interactions": 4, "tv_steps": 4}, "cfg": {"method": "frontier", "seed": 510, "tv": true, "n_envs": 2, "episode_steps": 16, "frontier_cfg": {}}}
+DEMO media/r5_smoke_20261024_105303_72097_frontier.gif frames=14
+{"status": "complete", "steps": 32, "target_steps": 32, "invocation_seconds": 0.0008600829751230776, "totals": {"episodes": 2, "rooms": 2, "interactions": 1, "tv_steps": 0}, "cfg": {"method": "random", "seed": 510, "tv": true, "n_envs": 2, "episode_steps": 16, "frontier_cfg": {}}}
+{"status": "complete", "steps": 64, "target_steps": 64, "invocation_seconds": 0.0008693750132806599, "totals": {"episodes": 4, "rooms": 4, "interactions": 1, "tv_steps": 0}, "cfg": {"method": "random", "seed": 510, "tv": true, "n_envs": 2, "episode_steps": 16, "frontier_cfg": {}}}
+SMOKE_R5_OK tag=smoke_20261024_105303_72097

@@ -1,0 +1,143 @@
+{
+  "complete": true,
+  "family": "finite_spring_damper_v1",
+  "oracle": false,
+  "contains_exact_hard_law": false,
+  "ranges": {
+    "stiffness": [
+      80.0,
+      32000.0
+    ],
+    "damping_ratio": [
+      0.0,
+      1.2
+    ],
+    "contact_radius": [
+      0.04,
+      0.09
+    ]
+  },
+  "selected": {
+    "parameters": {
+      "stiffness": 80.0,
+      "damping_ratio": 0.15,
+      "contact_radius": 0.08
+    },
+    "stage": "coarse_or_random",
+    "train_loss": 0.23937100328331817,
+    "val_mean_error": 0.004409771411709098,
+    "val_final_mean_error": 0.008240454691717919
+  },
+  "trials": [
+    {
+      "parameters": {
+        "stiffness": 80.0,
+        "damping_ratio": 0.0,
+        "contact_radius": 0.045
+      },
+      "stage": "coarse_or_random",
+      "train_loss": 0.29168611229384034
+    },
+    {
+      "parameters": {
+        "stiffness": 80.0,
+        "damping_ratio": 0.0,
+        "contact_radius": 0.06
+      },
+      "stage": "coarse_or_random",
+      "train_loss": 0.2861763963505239
+    },
+    {
+      "parameters": {
+        "stiffness": 80.0,
+        "damping_ratio": 0.0,
+        "contact_radius": 0.08
+      },
+      "stage": "coarse_or_random",
+      "train_loss": 0.26647098616141635,
+      "val_mean_error": 0.004694982529997866,
+      "val_final_mean_error": 0.008862373205339454
+    },
+    {
+      "parameters": {
+        "stiffness": 80.0,
+        "damping_ratio": 0.15,
+        "contact_radius": 0.045
+      },
+      "stage": "coarse_or_random",
+      "train_loss": 0.28651033468974973
+    },
+    {
+      "parameters": {
+        "stiffness": 80.0,
+        "damping_ratio": 0.15,
+        "contact_radius": 0.06
+      },
+      "stage": "coarse_or_random",
+      "train_loss": 0.2713008753583396
+    },
+    {
+      "parameters": {
+        "stiffness": 80.0,
+        "damping_ratio": 0.15,
+        "contact_radius": 0.08
+      },
+      "stage": "coarse_or_random",
+      "train_loss": 0.23937100328331817,
+      "val_mean_error": 0.004409771411709098,
+      "val_final_mean_error": 0.008240454691717919
+    },
+    {
+      "parameters": {
+        "stiffness": 80.0,
+        "damping_ratio": 0.5,
+        "contact_radius": 0.045
+      },
+      "stage": "coarse_or_random",
+      "train_loss": 0.27592890389501235
+    },
+    {
+      "parameters": {
+        "stiffness": 80.0,
+        "damping_ratio": 0.5,
+        "contact_radius": 0.06
+      },
+      "stage": "coarse_or_random",
+      "train_loss": 0.24220137179389878,
+      "val_mean_error": 0.0044906138792544245,
+      "val_final_mean_error": 0.00845882516690421
+    },
+    {
+      "parameters": {
+        "stiffness": 92.00668074703916,
+        "damping_ratio": 0.00023810490246214955,
+        "contact_radius": 0.07950528629599066
+      },
+      "stage": "local_refinement",
+      "train_loss": 0.26330953494491505,
+      "val_mean_error": 0.004664241870320536,
+      "val_final_mean_error": 0.008789626918939655
+    },
+    {
+      "parameters": {
+        "stiffness": 85.77947561991154,
+        "damping_ratio": 0.4901929699289844,
+        "contact_radius": 0.05661153281896789
+      },
+      "stage": "local_refinement",
+      "train_loss": 0.2508960951410673,
+      "val_mean_error": 0.004549423604935656,
+      "val_final_mean_error": 0.008572222809795181
+    }
+  ],
+  "train_sha256": "4977a8ddac92207094ef719841c861e5e1639ffa44d241bf7198b535603febc7",
+  "val_sha256": "7b5ee3a2be466b7b93638200c30baff45a901203e4f0f37e2b1ec0a509540e05",
+  "requested_trials": 10,
+  "shortlist": 5,
+  "train_samples": 32,
+  "fit_horizon": 2,
+  "val_scenes": 8,
+  "horizon": 3,
+  "validation_objective": "mean per-ball position error over frames 1..horizon, natural validation scenes",
+  "seconds": 0.03355783299775794
+}

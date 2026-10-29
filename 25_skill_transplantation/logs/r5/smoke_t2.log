@@ -1,0 +1,24 @@
+[gpu_run] acquired gpu4: ./smoke_r5.sh
+....................                                                     [100%]
+20 passed in 0.21s
+WARNING: compiler attribute 'settotalmass' is deprecated and will be removed in a future release: scale the masses and densities in the model, or call mj_setTotalmass and mj_setConst on the compiled model
+
+WARNING: compiler attribute 'settotalmass' is deprecated and will be removed in a future release: scale the masses and densities in the model, or call mj_setTotalmass and mj_setConst on the compiled model
+
+WARNING: compiler attribute 'settotalmass' is deprecated and will be removed in a future release: scale the masses and densities in the model, or call mj_setTotalmass and mj_setConst on the compiled model
+
+R5_CPU_SIM_OK state roundtrip max observation error=0; continuous 60-step switch schedule; no MLX imported
+R5_GPU_ALGEBRA_OK finite zero gradients; fixed-batch MSE 0.039965 -> 0.020715
+WARNING: compiler attribute 'settotalmass' is deprecated and will be removed in a future release: scale the masses and densities in the model, or call mj_setTotalmass and mj_setConst on the compiled model
+
+WARNING: compiler attribute 'settotalmass' is deprecated and will be removed in a future release: scale the masses and densities in the model, or call mj_setTotalmass and mj_setConst on the compiled model
+
+WARNING: compiler attribute 'settotalmass' is deprecated and will be removed in a future release: scale the masses and densities in the model, or call mj_setTotalmass and mj_setConst on the compiled model
+
+[r5 validation] resume_reference.pkl step=32 score=(0.0, 0.0, -3.0009534885506843) selected_step=32
+[r5 train] resume_reference.pkl {'update': 1, 'env_steps': 32, 'loss': 0.1210131123661995, 'reward_mean': -0.06220484524965286, 'kl': 0.0, 'evaluation_reward_mean': -0.030798554133013016, 'training_reward_unscaled_mean': -0.6220484554177471, 'value_loss': 0.24202623963356018, 'lr': 0.0003, 'entropy_coefficient': 0.0, 'action_saturation': 0.07812499999999999, 'phase_wall_s': 0.012803332996554673, 'env_steps_per_s': 2499.1295933391143, 'action_std': 0.6065306663513184, 'replay_counts': None}
+WARNING: compiler attribute 'settotalmass' is deprecated and will be removed in a future release: scale the masses and densities in the model, or call mj_setTotalmass and mj_setConst on the compiled model
+
+[r5 validation] resume_reference.pkl step=64 score=(0.0, 0.0, -3.0009593002580224) selected_step=32
+[r5 train] resume_reference.pkl {'update': 2, 'env_steps': 64, 'loss': 0.3101772964000702, 'reward_mean': -0.06606773287057877, 'kl': 0.0, 'evaluation_reward_mean': -0.0384025274876802, 'training_reward_unscaled_mean': -0.6606773011572185, 'value_loss': 0.6203547120094299, 'lr': 2.999999999999999e-05, 'entropy_coefficient': 0.0, 'action_saturation': 0.078125, 'phase_wall_s': 0.03300383302848786, 'env_steps_per_s': 1939.1050109987536, 'action_std': 0.6067226529121399, 'replay_counts': None}
+R5_SMOKE_OK {'status': 'pass', 'tag': 'smoke_20261024_112123_77974', 'wall_s': 27.28729858394945, 'sigkill_resume_max_weight_error': 0.0, 'fixed_batch_mse_before': 0.0399651825428009, 'fixed_batch_mse_after': 0.020714962854981422, 'replay_counts': [48, 64, 16], 'checks': ['MLX/NumPy parity', 'finite zero gradients', 'frozen old route', 'SIGKILL resume', 'optimizer continuity', 'all three methods/stages', 'CPG', 'held-out switching', 'parameter/cost reporting', 'offline demo', 'checkpoint demo reload', 'validation-selected deployment/resume', 'LR annealing', 'CPG unchanged reuse', 'fresh/previous/legacy test separation']}; logs=logs/r5/smoke_20261024_112123_77974

@@ -1,0 +1,13 @@
+[gpu_run] acquired gpu1: sh smoke_r5.sh
+....................                                                     [100%]
+20 passed in 0.46s
+Traceback (most recent call last):
+  File "/Users/danielmercado/ProjectJoy/30_nanochat_mlx/r5_smoke.py", line 109, in <module>
+    main()
+  File "/Users/danielmercado/ProjectJoy/30_nanochat_mlx/r5_smoke.py", line 57, in main
+    run("resumed", "r5_train.py", tiny + ["--out", ck / "split", "--resume"])
+  File "/Users/danielmercado/ProjectJoy/30_nanochat_mlx/r5_smoke.py", line 36, in run
+    wait(launch(name, script, flags))
+  File "/Users/danielmercado/ProjectJoy/30_nanochat_mlx/r5_smoke.py", line 33, in wait
+    raise RuntimeError(f"smoke subprocess rc={rc}; see {logs}")
+RuntimeError: smoke subprocess rc=1; see logs/r5/smoke_20261024_125955

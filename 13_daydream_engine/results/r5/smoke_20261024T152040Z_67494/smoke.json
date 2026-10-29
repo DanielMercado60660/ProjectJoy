@@ -1,0 +1,86 @@
+{
+  "ok": false,
+  "seconds": 5.888299917045515,
+  "commands": [
+    {
+      "label": "numpy",
+      "argv": [
+        "/Users/danielmercado/ProjectJoy/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_r5_numpy.py",
+        "--basetemp=results/r5/smoke_20261024T152040Z_67494/pytest",
+        "-o",
+        "cache_dir=results/r5/smoke_20261024T152040Z_67494/pytest_cache"
+      ]
+    },
+    {
+      "label": "prepare",
+      "argv": [
+        "/Users/danielmercado/ProjectJoy/.venv/bin/python",
+        "experiment_r5.py",
+        "prepare",
+        "--out",
+        "results/r5/smoke_20261024T152040Z_67494/data",
+        "--scenes",
+        "64",
+        "--val-scenes",
+        "24",
+        "--frames",
+        "8",
+        "--max-minutes",
+        "0.2"
+      ]
+    },
+    {
+      "label": "fit",
+      "argv": [
+        "/Users/danielmercado/ProjectJoy/.venv/bin/python",
+        "experiment_r5.py",
+        "fit",
+        "--data",
+        "results/r5/smoke_20261024T152040Z_67494/data",
+        "--out",
+        "results/r5/smoke_20261024T152040Z_67494/fit.json",
+        "--samples",
+        "64",
+        "--candidates",
+        "20",
+        "--refine",
+        "1",
+        "--horizon",
+        "2",
+        "--max-minutes",
+        "0.2"
+      ]
+    },
+    {
+      "label": "killed",
+      "argv": [
+        "/Users/danielmercado/ProjectJoy/.venv/bin/python",
+        "train_r5.py",
+        "--data",
+        "results/r5/smoke_20261024T152040Z_67494/data",
+        "--members",
+        "2",
+        "--hidden",
+        "8",
+        "--batch",
+        "8",
+        "--unroll",
+        "2",
+        "--max-minutes",
+        "0.3",
+        "--out",
+        "checkpoints/r5_smoke_20261024T152040Z_67494/resumed",
+        "--steps",
+        "100000",
+        "--checkpoint-every",
+        "2"
+      ]
+    }
+  ],
+  "logs": "logs/r5/smoke_20261024T152040Z_67494",
+  "error": "trainer never reached kill checkpoint; inspect logs/r5/smoke_20261024T152040Z_67494/killed.log"
+}

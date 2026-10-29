@@ -1,0 +1,465 @@
+{
+  "complete": true,
+  "checkpoints": {
+    "adapter": {
+      "stage1": "base.pkl",
+      "stage2": "adapter_s2.pkl",
+      "stage3": "adapter_s3.pkl"
+    },
+    "dagger": {
+      "stage1": "base.pkl",
+      "stage2": "dagger_s2.pkl",
+      "stage3": "dagger_s3.pkl"
+    },
+    "joint": {
+      "stage1": "base.pkl",
+      "stage2": "joint_s2.pkl",
+      "stage3": "joint_s3.pkl"
+    }
+  },
+  "ledger": {
+    "adapter": [
+      {
+        "stage": 1,
+        "components": [
+          "base.pkl"
+        ],
+        "cost": {
+          "env_steps": 3145728,
+          "teacher_queries": 0,
+          "gradient_steps": 30720,
+          "gradient_examples": 31457280,
+          "actor_forward_examples": 37759536,
+          "critic_forward_examples": 34620528,
+          "validation_env_steps": 10800,
+          "wall_s": 315.3007628329797,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 3145728,
+        "expected_credits": 3145728
+      },
+      {
+        "stage": 2,
+        "components": [
+          "base.pkl",
+          "adapter_s2.pkl"
+        ],
+        "cost": {
+          "env_steps": 9437184,
+          "teacher_queries": 0,
+          "gradient_steps": 92160,
+          "gradient_examples": 94371840,
+          "actor_forward_examples": 113278608,
+          "critic_forward_examples": 103861600,
+          "validation_env_steps": 32400,
+          "wall_s": 1015.6255797909689,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 9437184,
+        "expected_credits": 9437184
+      },
+      {
+        "stage": 3,
+        "components": [
+          "base.pkl",
+          "adapter_s2.pkl",
+          "adapter_s3.pkl"
+        ],
+        "cost": {
+          "env_steps": 15728640,
+          "teacher_queries": 0,
+          "gradient_steps": 153600,
+          "gradient_examples": 157286400,
+          "actor_forward_examples": 188797680,
+          "critic_forward_examples": 173102672,
+          "validation_env_steps": 54000,
+          "wall_s": 1659.1316319169127,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 15728640,
+        "expected_credits": 15728640
+      }
+    ],
+    "dagger": [
+      {
+        "stage": 1,
+        "components": [
+          "base.pkl"
+        ],
+        "cost": {
+          "env_steps": 3145728,
+          "teacher_queries": 0,
+          "gradient_steps": 30720,
+          "gradient_examples": 31457280,
+          "actor_forward_examples": 37759536,
+          "critic_forward_examples": 34620528,
+          "validation_env_steps": 10800,
+          "wall_s": 315.3007628329797,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 3145728,
+        "expected_credits": 3145728
+      },
+      {
+        "stage": 2,
+        "components": [
+          "base.pkl",
+          "dagger_s2.pkl",
+          "teacher_bwd.pkl"
+        ],
+        "cost": {
+          "env_steps": 7340032,
+          "teacher_queries": 2097152,
+          "gradient_steps": 71680,
+          "gradient_examples": 73400320,
+          "actor_forward_examples": 86015632,
+          "critic_forward_examples": 57700880,
+          "validation_env_steps": 32400,
+          "wall_s": 715.1871285410016,
+          "specialist_env_steps_included": 2097152
+        },
+        "credits": 9437184,
+        "expected_credits": 9437184
+      },
+      {
+        "stage": 3,
+        "components": [
+          "base.pkl",
+          "dagger_s2.pkl",
+          "teacher_bwd.pkl",
+          "dagger_s3.pkl",
+          "teacher_slow.pkl"
+        ],
+        "cost": {
+          "env_steps": 11534336,
+          "teacher_queries": 4194304,
+          "gradient_steps": 112640,
+          "gradient_examples": 115343360,
+          "actor_forward_examples": 134278928,
+          "critic_forward_examples": 80781232,
+          "validation_env_steps": 61200,
+          "wall_s": 1087.3601510409499,
+          "specialist_env_steps_included": 4194304
+        },
+        "credits": 15728640,
+        "expected_credits": 15728640
+      }
+    ],
+    "joint": [
+      {
+        "stage": 1,
+        "components": [
+          "base.pkl"
+        ],
+        "cost": {
+          "env_steps": 3145728,
+          "teacher_queries": 0,
+          "gradient_steps": 30720,
+          "gradient_examples": 31457280,
+          "actor_forward_examples": 37759536,
+          "critic_forward_examples": 34620528,
+          "validation_env_steps": 10800,
+          "wall_s": 315.3007628329797,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 3145728,
+        "expected_credits": 3145728
+      },
+      {
+        "stage": 2,
+        "components": [
+          "base.pkl",
+          "joint_s2.pkl"
+        ],
+        "cost": {
+          "env_steps": 9437184,
+          "teacher_queries": 0,
+          "gradient_steps": 92160,
+          "gradient_examples": 94371840,
+          "actor_forward_examples": 113300208,
+          "critic_forward_examples": 103861600,
+          "validation_env_steps": 54000,
+          "wall_s": 859.2502037499798,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 9437184,
+        "expected_credits": 9437184
+      },
+      {
+        "stage": 3,
+        "components": [
+          "base.pkl",
+          "joint_s2.pkl",
+          "joint_s3.pkl"
+        ],
+        "cost": {
+          "env_steps": 15728640,
+          "teacher_queries": 0,
+          "gradient_steps": 153600,
+          "gradient_examples": 157286400,
+          "actor_forward_examples": 188862480,
+          "critic_forward_examples": 173102672,
+          "validation_env_steps": 118800,
+          "wall_s": 1310.9098799999338,
+          "specialist_env_steps_included": 0
+        },
+        "credits": 15728640,
+        "expected_credits": 15728640
+      }
+    ]
+  },
+  "deployment_selection": {
+    "adapter": {
+      "stage1": {
+        "step": 2097152,
+        "validation": {
+          "score": [
+            0.9716666666666667,
+            0.9716666666666667,
+            -0.11957675581971376
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.9716666666666667,
+              "mae": 0.11957675581971376,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000,
+            5000001,
+            5000002
+          ],
+          "env_steps": 1800
+        },
+        "full_budget_step": 3145728
+      },
+      "stage2": {
+        "step": 5767168,
+        "validation": {
+          "score": [
+            0.9716666666666667,
+            0.9716666666666667,
+            -0.06122384651723345
+          ],
+          "tasks": {
+            "bwd": {
+              "tracking": 0.9716666666666667,
+              "mae": 0.06122384651723345,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000,
+            5000001,
+            5000002
+          ],
+          "env_steps": 1800
+        },
+        "full_budget_step": 6291456
+      },
+      "stage3": {
+        "step": 2621440,
+        "validation": {
+          "score": [
+            0.9988888888888888,
+            0.9988888888888888,
+            -0.008497250559369911
+          ],
+          "tasks": {
+            "slow": {
+              "tracking": 0.9988888888888888,
+              "mae": 0.008497250559369911,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000,
+            5000001,
+            5000002
+          ],
+          "env_steps": 1800
+        },
+        "full_budget_step": 6291456
+      }
+    },
+    "dagger": {
+      "stage1": {
+        "step": 2097152,
+        "validation": {
+          "score": [
+            0.9716666666666667,
+            0.9716666666666667,
+            -0.11957675581971376
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.9716666666666667,
+              "mae": 0.11957675581971376,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000,
+            5000001,
+            5000002
+          ],
+          "env_steps": 1800
+        },
+        "full_budget_step": 3145728
+      },
+      "stage2": {
+        "step": 1048576,
+        "validation": {
+          "score": [
+            0.9716666666666667,
+            0.9722222222222223,
+            -0.09571501749825115
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.9716666666666667,
+              "mae": 0.12483298752184062,
+              "fall_proxy": 0.0
+            },
+            "bwd": {
+              "tracking": 0.9727777777777779,
+              "mae": 0.06659704747466168,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000,
+            5000001,
+            5000002
+          ],
+          "env_steps": 3600
+        },
+        "full_budget_step": 2097152
+      },
+      "stage3": {
+        "step": 1048576,
+        "validation": {
+          "score": [
+            0.9722222222222222,
+            0.9816666666666666,
+            -0.06560629167612879
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.9722222222222222,
+              "mae": 0.11739373050090718,
+              "fall_proxy": 0.0
+            },
+            "bwd": {
+              "tracking": 0.9738888888888889,
+              "mae": 0.06797044911132172,
+              "fall_proxy": 0.0
+            },
+            "slow": {
+              "tracking": 0.9988888888888888,
+              "mae": 0.011454695416157477,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000,
+            5000001,
+            5000002
+          ],
+          "env_steps": 5400
+        },
+        "full_budget_step": 2097152
+      }
+    },
+    "joint": {
+      "stage1": {
+        "step": 2097152,
+        "validation": {
+          "score": [
+            0.9716666666666667,
+            0.9716666666666667,
+            -0.11957675581971376
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.9716666666666667,
+              "mae": 0.11957675581971376,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000,
+            5000001,
+            5000002
+          ],
+          "env_steps": 1800
+        },
+        "full_budget_step": 3145728
+      },
+      "stage2": {
+        "step": 6291456,
+        "validation": {
+          "score": [
+            0.9094444444444444,
+            0.9352777777777778,
+            -0.2408176735947356
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.9094444444444444,
+              "mae": 0.2638584689416287,
+              "fall_proxy": 0.0
+            },
+            "bwd": {
+              "tracking": 0.9611111111111111,
+              "mae": 0.2177768782478425,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000,
+            5000001,
+            5000002
+          ],
+          "env_steps": 3600
+        },
+        "full_budget_step": 6291456
+      },
+      "stage3": {
+        "step": 6291456,
+        "validation": {
+          "score": [
+            0.9466666666666667,
+            0.962037037037037,
+            -0.1864828369711552
+          ],
+          "tasks": {
+            "fwd": {
+              "tracking": 0.9466666666666667,
+              "mae": 0.20812792307685346,
+              "fall_proxy": 0.0
+            },
+            "bwd": {
+              "tracking": 0.951111111111111,
+              "mae": 0.20569331876614594,
+              "fall_proxy": 0.0
+            },
+            "slow": {
+              "tracking": 0.9883333333333333,
+              "mae": 0.14562726907046622,
+              "fall_proxy": 0.0
+            }
+          },
+          "seeds": [
+            5000000,
+            5000001,
+            5000002
+          ],
+          "env_steps": 5400
+        },
+        "full_budget_step": 6291456
+      }
+    }
+  }
+}

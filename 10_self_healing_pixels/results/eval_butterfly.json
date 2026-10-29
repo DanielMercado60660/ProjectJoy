@@ -1,0 +1,146 @@
+{
+ "blank_canvas_mse": 0.0764562264084816,
+ "protocol": {
+  "grow_steps": 200,
+  "regen_steps": 400,
+  "tau": "pre + 0.2*(post_damage - pre), per trial",
+  "trials": 16,
+  "seed": 123,
+  "train_damage": [
+   "circle"
+  ],
+  "heldout_damage": [
+   "half",
+   "stripes",
+   "blobs"
+  ],
+  "repeated": "after 200 growth steps, 10 rounds of (random held-out damage, 150 steps)"
+ },
+ "results": {
+  "butterfly_regen": {
+   "circle": {
+    "grown_frac": 0.6875,
+    "grown_only": {
+     "pre": 0.00469883068383269,
+     "post": 0.02073717935796001,
+     "mse@400": 0.005579131523178493,
+     "recovered_frac": 0.9090909090909091,
+     "recovered_and_stable_frac": 0.9090909090909091
+    },
+    "pre_mse_mean": 0.027123019115001402,
+    "post_damage_mse_mean": 0.03814938382846393,
+    "frac_body_erased": 0.17962485681557847,
+    "mse@50_mean": 0.028121977700207815,
+    "mse@100_mean": 0.027749078182944132,
+    "mse@200_mean": 0.02772794368186906,
+    "mse@400_mean": 0.02772822594205164,
+    "mse@100_std": 0.03288114293904137,
+    "mse@400_std": 0.032895317644507586,
+    "recovered_frac": 0.9375,
+    "recovered_and_stable_frac": 0.9375,
+    "recovery_steps_median": 16.0,
+    "recovery_steps_mean": 17.466666666666665
+   },
+   "half": {
+    "grown_frac": 0.6875,
+    "grown_only": {
+     "pre": 0.004230452140788255,
+     "post": 0.04018748471302618,
+     "mse@400": 0.009001888601364456,
+     "recovered_frac": 0.8181818181818182,
+     "recovered_and_stable_frac": 0.8181818181818182
+    },
+    "pre_mse_mean": 0.026801008866658354,
+    "post_damage_mse_mean": 0.05152146876007193,
+    "frac_body_erased": 0.5000715922107675,
+    "mse@50_mean": 0.03334972638589073,
+    "mse@100_mean": 0.03008655727830514,
+    "mse@200_mean": 0.03007061668472898,
+    "mse@400_mean": 0.03008137143330449,
+    "mse@100_std": 0.031509135909948464,
+    "mse@400_std": 0.031524327629320295,
+    "recovered_frac": 0.875,
+    "recovered_and_stable_frac": 0.875,
+    "recovery_steps_median": 42.5,
+    "recovery_steps_mean": 34.857142857142854
+   },
+   "stripes": {
+    "grown_frac": 0.625,
+    "grown_only": {
+     "pre": 0.004894983905889424,
+     "post": 0.031151624660179532,
+     "mse@400": 0.008047778391408114,
+     "recovered_frac": 1.0,
+     "recovered_and_stable_frac": 0.9
+    },
+    "pre_mse_mean": 0.031730452565020606,
+    "post_damage_mse_mean": 0.048140853036451915,
+    "frac_body_erased": 0.373926116838488,
+    "mse@50_mean": 0.03364084973534588,
+    "mse@100_mean": 0.03371258005702674,
+    "mse@200_mean": 0.033697699727773714,
+    "mse@400_mean": 0.033700949118469783,
+    "mse@100_std": 0.03337466764527378,
+    "mse@400_std": 0.0333858554328518,
+    "recovered_frac": 1.0,
+    "recovered_and_stable_frac": 0.9375,
+    "recovery_steps_median": 16.5,
+    "recovery_steps_mean": 12.9375
+   },
+   "blobs": {
+    "grown_frac": 0.8125,
+    "grown_only": {
+     "pre": 0.0041337037170557445,
+     "post": 0.029264027320187395,
+     "mse@400": 0.005730553491913911,
+     "recovered_frac": 1.0,
+     "recovered_and_stable_frac": 1.0
+    },
+    "pre_mse_mean": 0.01769417808202765,
+    "post_damage_mse_mean": 0.038112566009572114,
+    "frac_body_erased": 0.3384879725085911,
+    "mse@50_mean": 0.019509942769661517,
+    "mse@100_mean": 0.01902343795329751,
+    "mse@200_mean": 0.018950292945335696,
+    "mse@400_mean": 0.018991618524099908,
+    "mse@100_std": 0.027618740046811065,
+    "mse@400_std": 0.027635244586019906,
+    "recovered_frac": 1.0,
+    "recovered_and_stable_frac": 1.0,
+    "recovery_steps_median": 19.0,
+    "recovery_steps_mean": 17.8125
+   },
+   "long": {
+    "mse@100_mean": 0.004561520182543723,
+    "mse@200_mean": 0.004620377859022897,
+    "mse@500_mean": 0.004697036614336932,
+    "mse@1000_mean": 0.004707211435343023,
+    "mse@2000_mean": 0.004709415099758946,
+    "mse@100_max": 0.006585065757894663,
+    "mse@200_max": 0.00726596053092125,
+    "mse@500_max": 0.007360873086017551,
+    "mse@1000_max": 0.007370746221069433,
+    "mse@2000_max": 0.007393401952566807,
+    "max_over_run": 0.10306763343586853,
+    "grown_frac@200": 1.0
+   },
+   "repeated": {
+    "mse_after_each_heal_mean": [
+     0.02413362483012432,
+     0.027194672567308873,
+     0.028783930768627883,
+     0.030536071158849775,
+     0.03000910613730923,
+     0.030669444413935005,
+     0.034422855057794716,
+     0.03582647690558659,
+     0.03609362321828483,
+     0.03806954113689069
+    ],
+    "final_mse_mean": 0.03806954113689069,
+    "final_mse_max": 0.07645623366357257,
+    "frac_trials_final_mse_below_0.01": 0.0
+   }
+  }
+ }
+}

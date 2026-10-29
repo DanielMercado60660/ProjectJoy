@@ -1,0 +1,22 @@
+upstream/
+data/
+__pycache__/
+.pytest_cache/
+# large weights stay on disk only (see README: Checkpoints) ...
+checkpoints/**/*.safetensors
+# ... except the small MLP baseline and the two weight files the demo/evals reload:
+# the final pilot pretrain weights (67 MB) and the SFT demo/eval model (67 MB).
+# pilot/last/optim.safetensors (93 MB, resume-only) and all intermediate/seed checkpoints stay ignored.
+!checkpoints/baseline_mlp/*.safetensors
+!checkpoints/pilot/last/model.safetensors
+!checkpoints/sft/last/model.safetensors
+# Round 5: reproducible token arrays and rotating scratch generations stay local.
+# The orchestrator selects final paths from results/r5/<tag>/selected.json.
+results/r5/**/data/*.npz
+checkpoints/r5_*/**/resume_a/
+checkpoints/r5_*/**/resume_b/
+checkpoints/r5_*/**/selected.tmp/
+
+# Round 5: full per-episode traces are large; *_summary.json copies (everything but the traces) are committed
+results/r5/*/eval.json
+results/r5/*/secondary.json

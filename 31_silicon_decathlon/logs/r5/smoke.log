@@ -1,0 +1,30 @@
+[gpu_run] acquired gpu1: ./smoke_r5.sh
+...............                                                          [100%]
+15 passed in 1.58s
+READY car numpy_cpu parity=0 wall=1.000s applied/s=10.00
+READY car mlx_cpu parity=2.38419e-07 wall=1.000s applied/s=10.00
+READY car mlx_gpu parity=2.68221e-07 wall=1.000s applied/s=10.00
+READY car mlx_gpu_compiled parity=2.68221e-07 wall=1.000s applied/s=10.00
+Torch version 2.14.1 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+  n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+READY car coreml_cpu parity=0.00235116 wall=1.000s applied/s=10.00
+READY car coreml_gpu parity=0.00235116 wall=1.000s applied/s=10.00
+READY car coreml_ane parity=0.00235116 wall=1.000s applied/s=10.00
+READY tracker numpy_cpu parity=0 wall=1.334s applied/s=30.00
+READY tracker mlx_cpu parity=4.26496e-06 wall=1.334s applied/s=29.99
+READY tracker mlx_gpu parity=7.76235e-06 wall=1.333s applied/s=30.00
+READY tracker mlx_gpu_compiled parity=7.76235e-06 wall=1.334s applied/s=29.99
+READY tracker coreml_cpu parity=0.167275 wall=1.334s applied/s=30.00
+READY tracker coreml_gpu parity=0.167275 wall=1.334s applied/s=29.99
+READY tracker coreml_ane parity=0.206674 wall=1.333s applied/s=30.00
+CALIBRATION results/r5/pilot.json wall=24.56s
+START episode_00000
+DONE episode_00000 tracker numpy_cpu queue ambient seed=850041 age_p95=2.1416917792521417 coverage=1.000 task={'pursuit_error_px': 18.43172502644934, 'tracking_error_px': 1.4014228750998992, 'hidden_tracking_error_px': None, 'within_5px_fraction': 0.0, 'horizon_s': 0.15}
+START episode_00001
+START episode_00001
+DONE episode_00001 tracker mlx_gpu latest loaded seed=850042 age_p95=82.61816248705144 coverage=0.556 task={'pursuit_error_px': 12.003756398273957, 'tracking_error_px': 7.932382447195868, 'hidden_tracking_error_px': 7.644235142679321, 'within_5px_fraction': 0.21861548611195766, 'horizon_s': 0.6}
+RUN COMPLETE 2/2
+RESUME OK: save / kill / restart; completed receipt byte-identical
+REPORT media/r5_smoke_4386.html: 2 episode traces (raw failures retained)
+SMOKE R5 OK: pure tests, all engine paths attempted, recurrent parity, queue/latest, concurrent load, kill/resume, offline report

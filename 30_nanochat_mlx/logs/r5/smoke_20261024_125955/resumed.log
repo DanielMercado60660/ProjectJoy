@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/danielmercado/ProjectJoy/30_nanochat_mlx/r5_train.py", line 254, in <module>
+    main()
+  File "/Users/danielmercado/ProjectJoy/30_nanochat_mlx/r5_train.py", line 152, in main
+    old = ckpt.restore(resume_path, model, opt, rng)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/danielmercado/ProjectJoy/30_nanochat_mlx/r5_checkpoint.py", line 54, in restore
+    mx.random.state[:] = [state[str(k)] for k in range(len(state))]
+    ~~~~~~~~~~~~~~~^^^
+TypeError: 'mlx.core.random._RandomState' object does not support item assignment

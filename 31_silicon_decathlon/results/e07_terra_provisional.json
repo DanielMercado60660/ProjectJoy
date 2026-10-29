@@ -1,0 +1,572 @@
+{
+ "event": {
+  "id": "07_terra",
+  "project": "07_terra",
+  "model": "HNet U-Net heuristic (base 32, GroupNorm, 4 downsamplings)",
+  "checkpoint": "../07_terra/checkpoints/hnet",
+  "unit": "heuristic fields (one 96x96 map + goal)",
+  "params": 1968417,
+  "notes": "Queries from ../07_terra/data/val.npz (generated, gitignored there; regenerable with its make_dataset.py). Core ML packages are fp16."
+ },
+ "final": false,
+ "batches": {
+  "1": {
+   "agreement": {
+    "numpy_cpu": {
+     "r_max_err": 2.6226043701171875e-06,
+     "h_max_rel_err": 2.6226043701171875e-06
+    },
+    "mlx_cpu": {
+     "r_max_err": 2.0265579223632812e-06,
+     "h_max_rel_err": 2.0265579223632812e-06
+    },
+    "mlx_gpu": {
+     "r_max_err": 0.0,
+     "h_max_rel_err": 0.0
+    },
+    "mlx_gpu_fp16": {
+     "r_max_err": 0.0018687248229980469,
+     "h_max_rel_err": 0.0018669962882995605
+    },
+    "mlx_gpu_compiled": {
+     "r_max_err": 0.0,
+     "h_max_rel_err": 0.0
+    },
+    "coreml_cpu": {
+     "r_max_err": 0.012235879898071289,
+     "h_max_rel_err": 0.012161314487457275
+    },
+    "coreml_gpu": {
+     "r_max_err": 0.0014537572860717773,
+     "h_max_rel_err": 0.0014548301696777344
+    },
+    "coreml_ane": {
+     "r_max_err": 0.028033912181854248,
+     "h_max_rel_err": 0.028430581092834473
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 90484618,
+    "mlx_gpu": 49410922,
+    "mlx_gpu_fp16": 31044892,
+    "mlx_gpu_compiled": 49410786
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 24.357124988455325,
+     "p90_ms": 24.81765021220781,
+     "min_ms": 23.811332997865975,
+     "calls": 15,
+     "rounds": 3,
+     "round_median_spread": 1.0238004809925534
+    },
+    "mlx_cpu": {
+     "median_ms": 15.41675001499243,
+     "p90_ms": 15.48366597853601,
+     "min_ms": 15.241708984831348,
+     "calls": 21,
+     "rounds": 3,
+     "round_median_spread": 1.00623514672229
+    },
+    "mlx_gpu": {
+     "median_ms": 1.66245800210163,
+     "p90_ms": 1.9922172941733152,
+     "min_ms": 1.616458990611136,
+     "calls": 160,
+     "rounds": 3,
+     "round_median_spread": 1.003560923241105
+    },
+    "mlx_gpu_fp16": {
+     "median_ms": 1.5982910117600113,
+     "p90_ms": 2.0502497965935618,
+     "min_ms": 1.5196250169537961,
+     "calls": 175,
+     "rounds": 3,
+     "round_median_spread": 1.0171547055653731
+    },
+    "mlx_gpu_compiled": {
+     "median_ms": 1.5182920033112168,
+     "p90_ms": 1.8496753938961774,
+     "min_ms": 1.4732499839738011,
+     "calls": 179,
+     "rounds": 3,
+     "round_median_spread": 1.0219915006088323
+    },
+    "coreml_cpu": {
+     "median_ms": 2.8550834977068007,
+     "p90_ms": 2.896792007959448,
+     "min_ms": 2.7978750003967434,
+     "calls": 106,
+     "rounds": 3,
+     "round_median_spread": 1.0063517953788979
+    },
+    "coreml_gpu": {
+     "median_ms": 1.0539374925429001,
+     "p90_ms": 1.427037484245375,
+     "min_ms": 1.007374987239018,
+     "calls": 258,
+     "rounds": 3,
+     "round_median_spread": 1.0215741182602118
+    },
+    "coreml_ane": {
+     "median_ms": 0.5361250077839941,
+     "p90_ms": 0.5617249204078689,
+     "min_ms": 0.5004589911550283,
+     "calls": 558,
+     "rounds": 3,
+     "round_median_spread": 1.014322984869827
+    }
+   },
+   "task": {
+    "numpy_cpu": {
+     "queries": 32,
+     "same_path_cost_frac": 1.0,
+     "same_expansions_frac": 1.0,
+     "cost_above_opt_pct": 3.7473556629972893,
+     "ref_cost_above_opt_pct": 3.7473556629972893,
+     "expanded_vs_ref": 1.0,
+     "val_abs_logratio_err": 0.10748263262212276,
+     "ref_val_abs_logratio_err": 0.10748260910622776
+    },
+    "mlx_cpu": {
+     "queries": 32,
+     "same_path_cost_frac": 1.0,
+     "same_expansions_frac": 1.0,
+     "cost_above_opt_pct": 3.7473556629972893,
+     "ref_cost_above_opt_pct": 3.7473556629972893,
+     "expanded_vs_ref": 1.0,
+     "val_abs_logratio_err": 0.1074826295953244,
+     "ref_val_abs_logratio_err": 0.10748260910622776
+    },
+    "mlx_gpu": {
+     "queries": 32,
+     "same_path_cost_frac": 1.0,
+     "same_expansions_frac": 1.0,
+     "cost_above_opt_pct": 3.7473556629972893,
+     "ref_cost_above_opt_pct": 3.7473556629972893,
+     "expanded_vs_ref": 1.0,
+     "val_abs_logratio_err": 0.10748260910622776,
+     "ref_val_abs_logratio_err": 0.10748260910622776
+    },
+    "mlx_gpu_fp16": {
+     "queries": 32,
+     "same_path_cost_frac": 0.78125,
+     "same_expansions_frac": 0.28125,
+     "cost_above_opt_pct": 3.729557661411416,
+     "ref_cost_above_opt_pct": 3.7473556629972893,
+     "expanded_vs_ref": 0.9999661062906724,
+     "val_abs_logratio_err": 0.10744354757480323,
+     "ref_val_abs_logratio_err": 0.10748260910622776
+    },
+    "mlx_gpu_compiled": {
+     "queries": 32,
+     "same_path_cost_frac": 1.0,
+     "same_expansions_frac": 1.0,
+     "cost_above_opt_pct": 3.7473556629972893,
+     "ref_cost_above_opt_pct": 3.7473556629972893,
+     "expanded_vs_ref": 1.0,
+     "val_abs_logratio_err": 0.10748260910622776,
+     "ref_val_abs_logratio_err": 0.10748260910622776
+    },
+    "coreml_cpu": {
+     "queries": 32,
+     "same_path_cost_frac": 0.375,
+     "same_expansions_frac": 0.0625,
+     "cost_above_opt_pct": 4.082871055551899,
+     "ref_cost_above_opt_pct": 3.7473556629972893,
+     "expanded_vs_ref": 1.0071854663774404,
+     "val_abs_logratio_err": 0.10760808107443154,
+     "ref_val_abs_logratio_err": 0.10748260910622776
+    },
+    "coreml_gpu": {
+     "queries": 32,
+     "same_path_cost_frac": 0.78125,
+     "same_expansions_frac": 0.28125,
+     "cost_above_opt_pct": 3.748982347439261,
+     "ref_cost_above_opt_pct": 3.7473556629972893,
+     "expanded_vs_ref": 0.9977291214750542,
+     "val_abs_logratio_err": 0.10746864438988268,
+     "ref_val_abs_logratio_err": 0.10748260910622776
+    },
+    "coreml_ane": {
+     "queries": 32,
+     "same_path_cost_frac": 0.40625,
+     "same_expansions_frac": 0.03125,
+     "cost_above_opt_pct": 3.8733759083605546,
+     "ref_cost_above_opt_pct": 3.7473556629972893,
+     "expanded_vs_ref": 1.0016268980477223,
+     "val_abs_logratio_err": 0.10731044062413275,
+     "ref_val_abs_logratio_err": 0.10748260910622776
+    }
+   },
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e07_terra_b1_fp16.mlpackage",
+     "size_bytes": 4043657,
+     "placement": {
+      "CPU": 237
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e07_terra_b1_fp16.mlpackage",
+     "size_bytes": 4043657,
+     "placement": {
+      "GPU": 237
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e07_terra_b1_fp16.mlpackage",
+     "size_bytes": 4043657,
+     "placement": {
+      "NeuralEngine": 237
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "A* cost above opt 3.75% vs ref 3.75%, expansions x1.000, same path cost 100%, label err 0.1075 vs 0.1075"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "A* cost above opt 3.75% vs ref 3.75%, expansions x1.000, same path cost 100%, label err 0.1075 vs 0.1075"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "A* cost above opt 3.75% vs ref 3.75%, expansions x1.000, same path cost 100%, label err 0.1075 vs 0.1075"
+    },
+    "mlx_gpu_fp16": {
+     "ok": true,
+     "reason": "A* cost above opt 3.73% vs ref 3.75%, expansions x1.000, same path cost 78%, label err 0.1074 vs 0.1075"
+    },
+    "mlx_gpu_compiled": {
+     "ok": true,
+     "reason": "A* cost above opt 3.75% vs ref 3.75%, expansions x1.000, same path cost 100%, label err 0.1075 vs 0.1075"
+    },
+    "coreml_cpu": {
+     "ok": true,
+     "reason": "A* cost above opt 4.08% vs ref 3.75%, expansions x1.007, same path cost 38%, label err 0.1076 vs 0.1075"
+    },
+    "coreml_gpu": {
+     "ok": true,
+     "reason": "A* cost above opt 3.75% vs ref 3.75%, expansions x0.998, same path cost 78%, label err 0.1075 vs 0.1075"
+    },
+    "coreml_ane": {
+     "ok": true,
+     "reason": "A* cost above opt 3.87% vs ref 3.75%, expansions x1.002, same path cost 41%, label err 0.1073 vs 0.1075"
+    }
+   }
+  },
+  "16": {
+   "agreement": {
+    "numpy_cpu": {
+     "r_max_err": 0.004658222198486328,
+     "h_max_rel_err": 0.004647374153137207
+    },
+    "mlx_cpu": {
+     "r_max_err": 0.004659891128540039,
+     "h_max_rel_err": 0.004649043083190918
+    },
+    "mlx_gpu": {
+     "r_max_err": 0.0,
+     "h_max_rel_err": 0.0
+    },
+    "mlx_gpu_fp16": {
+     "r_max_err": 0.01307058334350586,
+     "h_max_rel_err": 0.012985527515411377
+    },
+    "mlx_gpu_compiled": {
+     "r_max_err": 0.0,
+     "h_max_rel_err": 0.0
+    },
+    "coreml_cpu": {
+     "r_max_err": 0.023839712142944336,
+     "h_max_rel_err": 0.02355778217315674
+    },
+    "coreml_gpu": {
+     "r_max_err": 0.0051996707916259766,
+     "h_max_rel_err": 0.005186200141906738
+    },
+    "coreml_ane": {
+     "r_max_err": 0.04621529579162598,
+     "h_max_rel_err": 0.045163631439208984
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 1258534678,
+    "mlx_gpu": 805744518,
+    "mlx_gpu_fp16": 413561648,
+    "mlx_gpu_compiled": 805744382
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 427.2851670102682,
+     "p90_ms": 430.2385668095667,
+     "min_ms": 423.63525001564994,
+     "calls": 9,
+     "rounds": 3,
+     "round_median_spread": 1.008904389615848
+    },
+    "mlx_cpu": {
+     "median_ms": 230.3154160035774,
+     "p90_ms": 251.47583280922845,
+     "min_ms": 229.0552500053309,
+     "calls": 9,
+     "rounds": 3,
+     "round_median_spread": 1.0036525905841203
+    },
+    "mlx_gpu": {
+     "median_ms": 7.8787704987917095,
+     "p90_ms": 8.171195513568819,
+     "min_ms": 7.517582998843864,
+     "calls": 38,
+     "rounds": 3,
+     "round_median_spread": 1.0297268198103022
+    },
+    "mlx_gpu_fp16": {
+     "median_ms": 6.144833023427054,
+     "p90_ms": 6.474391790106893,
+     "min_ms": 5.791582982055843,
+     "calls": 47,
+     "rounds": 3,
+     "round_median_spread": 1.0136227327343603
+    },
+    "mlx_gpu_compiled": {
+     "median_ms": 7.257687509991229,
+     "p90_ms": 7.517549701151438,
+     "min_ms": 6.892167002661154,
+     "calls": 40,
+     "rounds": 3,
+     "round_median_spread": 1.042933866165129
+    },
+    "coreml_cpu": {
+     "median_ms": 37.29062501224689,
+     "p90_ms": 37.635441788006574,
+     "min_ms": 37.029792001703754,
+     "calls": 9,
+     "rounds": 3,
+     "round_median_spread": 1.011087652927803
+    },
+    "coreml_gpu": {
+     "median_ms": 5.74020849307999,
+     "p90_ms": 5.9107668057549745,
+     "min_ms": 5.378083005780354,
+     "calls": 54,
+     "rounds": 3,
+     "round_median_spread": 1.0031906755693543
+    },
+    "coreml_ane": {
+     "median_ms": 6.41752099909354,
+     "p90_ms": 6.510504492325708,
+     "min_ms": 6.293457990977913,
+     "calls": 48,
+     "rounds": 3,
+     "round_median_spread": 1.0022132859935502
+    }
+   },
+   "task": {
+    "numpy_cpu": {
+     "queries": 32,
+     "same_path_cost_frac": 0.9375,
+     "same_expansions_frac": 0.5625,
+     "cost_above_opt_pct": 3.7473556629972893,
+     "ref_cost_above_opt_pct": 3.75319768771191,
+     "expanded_vs_ref": 0.999593440845643,
+     "val_abs_logratio_err": 0.1074826312251389,
+     "ref_val_abs_logratio_err": 0.10748771787621081
+    },
+    "mlx_cpu": {
+     "queries": 32,
+     "same_path_cost_frac": 0.9375,
+     "same_expansions_frac": 0.5625,
+     "cost_above_opt_pct": 3.7473556629972893,
+     "ref_cost_above_opt_pct": 3.75319768771191,
+     "expanded_vs_ref": 0.999593440845643,
+     "val_abs_logratio_err": 0.10748262656852603,
+     "ref_val_abs_logratio_err": 0.10748771787621081
+    },
+    "mlx_gpu": {
+     "queries": 32,
+     "same_path_cost_frac": 1.0,
+     "same_expansions_frac": 1.0,
+     "cost_above_opt_pct": 3.75319768771191,
+     "ref_cost_above_opt_pct": 3.75319768771191,
+     "expanded_vs_ref": 1.0,
+     "val_abs_logratio_err": 0.10748771787621081,
+     "ref_val_abs_logratio_err": 0.10748771787621081
+    },
+    "mlx_gpu_fp16": {
+     "queries": 32,
+     "same_path_cost_frac": 0.8125,
+     "same_expansions_frac": 0.15625,
+     "cost_above_opt_pct": 3.803748440093291,
+     "ref_cost_above_opt_pct": 3.75319768771191,
+     "expanded_vs_ref": 1.0023377151375525,
+     "val_abs_logratio_err": 0.10744693456217647,
+     "ref_val_abs_logratio_err": 0.10748771787621081
+    },
+    "mlx_gpu_compiled": {
+     "queries": 32,
+     "same_path_cost_frac": 1.0,
+     "same_expansions_frac": 1.0,
+     "cost_above_opt_pct": 3.75319768771191,
+     "ref_cost_above_opt_pct": 3.75319768771191,
+     "expanded_vs_ref": 1.0,
+     "val_abs_logratio_err": 0.10748771787621081,
+     "ref_val_abs_logratio_err": 0.10748771787621081
+    },
+    "coreml_cpu": {
+     "queries": 32,
+     "same_path_cost_frac": 0.375,
+     "same_expansions_frac": 0.0625,
+     "cost_above_opt_pct": 4.127785276070868,
+     "ref_cost_above_opt_pct": 3.75319768771191,
+     "expanded_vs_ref": 1.0033879929529748,
+     "val_abs_logratio_err": 0.1076181516982615,
+     "ref_val_abs_logratio_err": 0.10748771787621081
+    },
+    "coreml_gpu": {
+     "queries": 32,
+     "same_path_cost_frac": 0.8125,
+     "same_expansions_frac": 0.25,
+     "cost_above_opt_pct": 3.724888583987344,
+     "ref_cost_above_opt_pct": 3.75319768771191,
+     "expanded_vs_ref": 0.997052446130912,
+     "val_abs_logratio_err": 0.10747288446873426,
+     "ref_val_abs_logratio_err": 0.10748771787621081
+    },
+    "coreml_ane": {
+     "queries": 32,
+     "same_path_cost_frac": 0.40625,
+     "same_expansions_frac": 0.0,
+     "cost_above_opt_pct": 3.8733759083605546,
+     "ref_cost_above_opt_pct": 3.75319768771191,
+     "expanded_vs_ref": 1.0012196774630708,
+     "val_abs_logratio_err": 0.10731044062413275,
+     "ref_val_abs_logratio_err": 0.10748771787621081
+    }
+   },
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e07_terra_b16_fp16.mlpackage",
+     "size_bytes": 4043657,
+     "placement": {
+      "CPU": 237
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e07_terra_b16_fp16.mlpackage",
+     "size_bytes": 4043657,
+     "placement": {
+      "GPU": 237
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e07_terra_b16_fp16.mlpackage",
+     "size_bytes": 4043657,
+     "placement": {
+      "NeuralEngine": 237
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "A* cost above opt 3.75% vs ref 3.75%, expansions x1.000, same path cost 94%, label err 0.1075 vs 0.1075"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "A* cost above opt 3.75% vs ref 3.75%, expansions x1.000, same path cost 94%, label err 0.1075 vs 0.1075"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "A* cost above opt 3.75% vs ref 3.75%, expansions x1.000, same path cost 100%, label err 0.1075 vs 0.1075"
+    },
+    "mlx_gpu_fp16": {
+     "ok": true,
+     "reason": "A* cost above opt 3.80% vs ref 3.75%, expansions x1.002, same path cost 81%, label err 0.1074 vs 0.1075"
+    },
+    "mlx_gpu_compiled": {
+     "ok": true,
+     "reason": "A* cost above opt 3.75% vs ref 3.75%, expansions x1.000, same path cost 100%, label err 0.1075 vs 0.1075"
+    },
+    "coreml_cpu": {
+     "ok": true,
+     "reason": "A* cost above opt 4.13% vs ref 3.75%, expansions x1.003, same path cost 38%, label err 0.1076 vs 0.1075"
+    },
+    "coreml_gpu": {
+     "ok": true,
+     "reason": "A* cost above opt 3.72% vs ref 3.75%, expansions x0.997, same path cost 81%, label err 0.1075 vs 0.1075"
+    },
+    "coreml_ane": {
+     "ok": true,
+     "reason": "A* cost above opt 3.87% vs ref 3.75%, expansions x1.001, same path cost 41%, label err 0.1073 vs 0.1075"
+    }
+   }
+  }
+ },
+ "skips": {
+  "mlx_gpu_q8": "conv net; MLX quantization covers Linear layers only (one 128x128 Linear here)",
+  "mlx_gpu_q4": "conv net; MLX quantization covers Linear layers only (one 128x128 Linear here)"
+ },
+ "task_checks": true,
+ "settings": {
+  "repeats": 3,
+  "budget_s": 0.1,
+  "only": null
+ },
+ "env_before": {
+  "time": "2026-10-22 17:44:05",
+  "loadavg": [
+   2.85986328125,
+   2.61328125,
+   2.68212890625
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; finishing charge; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 404,
+    "cpu": 33.3,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.16948500007856637,
+  "mlx_gpu_2048_matmul_ms": 1.2917437488795258
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.1715808396693319,
+  "mlx_gpu_2048_matmul_ms": 0.8665770990774035
+ },
+ "env_after": {
+  "time": "2026-10-22 17:44:37",
+  "loadavg": [
+   2.82421875,
+   2.6318359375,
+   2.68505859375
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; finishing charge; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 404,
+    "cpu": 40.2,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

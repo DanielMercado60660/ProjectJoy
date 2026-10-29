@@ -1,0 +1,86 @@
+{
+  "job": {
+    "event": "tracker",
+    "engine": "numpy_cpu",
+    "policy": "latest",
+    "load": "ambient",
+    "delay_ms": 0,
+    "seed": 3
+  },
+  "metrics": {
+    "scheduled": 1,
+    "on_time": 1,
+    "applied": 1,
+    "horizon_s": 1
+  },
+  "task": {
+    "pursuit_error_px": 3,
+    "tracking_error_px": 2,
+    "within_5px_fraction": 0.8
+  },
+  "actions": [
+    {
+      "age_ms": 2
+    }
+  ],
+  "geometry": {
+    "occ": [
+      [
+        20,
+        30
+      ]
+    ],
+    "present": [
+      true,
+      true,
+      false
+    ]
+  },
+  "trace": [
+    [
+      0.1,
+      [
+        [
+          10,
+          20
+        ],
+        [
+          30,
+          40
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          11,
+          20
+        ],
+        [
+          31,
+          40
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          12,
+          20
+        ],
+        [
+          32,
+          40
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    ]
+  ]
+}

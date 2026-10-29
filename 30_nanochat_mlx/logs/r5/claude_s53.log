@@ -1,0 +1,26 @@
+[gpu_run] acquired gpu0: ../.venv/bin/python r5_suite.py --ac --tag ac_s53 --seed 53 --max-minutes 32.5
+START prepare: /Users/danielmercado/ProjectJoy/.venv/bin/python r5_data.py --out results/r5/ac_s53/data --max-minutes 2
+END prepare: 4.0s, rc=0
+START pretrained: /Users/danielmercado/ProjectJoy/.venv/bin/python r5_train.py --data results/r5/ac_s53/data --seed 53 --kind lm --init pretrained --out checkpoints/r5_ac_s53/pretrained --max-minutes 7
+END pretrained: 412.4s, rc=0
+START scratch: /Users/danielmercado/ProjectJoy/.venv/bin/python r5_train.py --data results/r5/ac_s53/data --seed 53 --kind lm --init scratch --out checkpoints/r5_ac_s53/scratch --max-minutes 7
+END scratch: 412.3s, rc=0
+START mlp_trial0: /Users/danielmercado/ProjectJoy/.venv/bin/python r5_train.py --data results/r5/ac_s53/data --seed 53 --kind mlp --init scratch --lr 0.0003 --out checkpoints/r5_ac_s53/mlp_trial0 --max-minutes 0.3333333333333333
+END mlp_trial0: 18.2s, rc=0
+START mlp_trial1: /Users/danielmercado/ProjectJoy/.venv/bin/python r5_train.py --data results/r5/ac_s53/data --seed 53 --kind mlp --init scratch --lr 0.001 --out checkpoints/r5_ac_s53/mlp_trial1 --max-minutes 0.3333333333333333
+END mlp_trial1: 18.2s, rc=0
+START mlp_trial2: /Users/danielmercado/ProjectJoy/.venv/bin/python r5_train.py --data results/r5/ac_s53/data --seed 53 --kind mlp --init scratch --lr 0.003 --out checkpoints/r5_ac_s53/mlp_trial2 --max-minutes 0.3333333333333333
+END mlp_trial2: 18.2s, rc=0
+START mlp_final: /Users/danielmercado/ProjectJoy/.venv/bin/python r5_train.py --data results/r5/ac_s53/data --seed 53 --kind mlp --init scratch --lr 0.001 --out checkpoints/r5_ac_s53/mlp_trial1 --resume --max-minutes 6.091224807632777
+END mlp_final: 357.7s, rc=0
+START reward_collect: /Users/danielmercado/ProjectJoy/.venv/bin/python r5_eval.py collect --checkpoint checkpoints/r5_ac_s53/pretrained/selected --out results/r5/ac_s53/reward --seed 53 --max-minutes 1.25
+END reward_collect: 72.3s, rc=0
+START reward_fit: /Users/danielmercado/ProjectJoy/.venv/bin/python r5_train.py --data results/r5/ac_s53/data --seed 53 --kind lm --from-checkpoint checkpoints/r5_ac_s53/pretrained/selected --replay results/r5/ac_s53/reward/replay.npz --lr 0.0001 --out checkpoints/r5_ac_s53/reward --max-minutes 1.295742218750335
+END reward_fit: 70.4s, rc=0
+START sft_control: /Users/danielmercado/ProjectJoy/.venv/bin/python r5_train.py --data results/r5/ac_s53/data --seed 53 --kind lm --from-checkpoint checkpoints/r5_ac_s53/pretrained/selected --lr 0.0001 --out checkpoints/r5_ac_s53/control --max-minutes 2.5
+END sft_control: 142.3s, rc=0
+START evaluate: /Users/danielmercado/ProjectJoy/.venv/bin/python r5_eval.py evaluate --data results/r5/ac_s53/data --methods pretrained=checkpoints/r5_ac_s53/pretrained/selected scratch=checkpoints/r5_ac_s53/scratch/selected mlp=checkpoints/r5_ac_s53/mlp_trial1/selected reward=checkpoints/r5_ac_s53/reward/selected control=checkpoints/r5_ac_s53/control/selected --out results/r5/ac_s53/eval.json --demo media/r5_ac_s53.html --episodes 4 --max-minutes 3.2
+END evaluate: 78.9s, rc=0
+START secondary: /Users/danielmercado/ProjectJoy/.venv/bin/python r5_eval.py evaluate --data results/r5/ac_s53/data --methods pretrained=checkpoints/r5_ac_s53/pretrained/selected scratch=checkpoints/r5_ac_s53/scratch/selected mlp=checkpoints/r5_ac_s53/mlp_trial1/selected reward=checkpoints/r5_ac_s53/reward/selected control=checkpoints/r5_ac_s53/control/selected --out results/r5/ac_s53/secondary.json --demo media/r5_ac_s53_secondary.html --episodes 1 --secondary --max-minutes 0.8
+END secondary: 20.6s, rc=0
+SUITE FINISHED results/r5/ac_s53 evaluation_complete True

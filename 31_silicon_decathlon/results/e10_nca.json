@@ -1,0 +1,599 @@
+{
+ "event": {
+  "id": "10_nca",
+  "project": "10_self_healing_pixels",
+  "model": "NCA lizard_regen (perceive 3x3 + MLP 48-128-16)",
+  "checkpoint": "../10_self_healing_pixels/checkpoints/lizard_regen/model.safetensors",
+  "unit": "NCA steps of one 72x72 creature",
+  "params": 8320,
+  "notes": "Fire mask is an input (fixed seed). Inputs are creatures grown 200 steps (MLX CPU, fixed masks). Core ML packages are fp16."
+ },
+ "final": true,
+ "batches": {
+  "1": {
+   "agreement": {
+    "numpy_cpu": {
+     "state_max_err": 3.814697265625e-06,
+     "rgba_max_err": 1.1920928955078125e-07,
+     "alive_cells_diff": 0
+    },
+    "mlx_cpu": {
+     "state_max_err": 3.814697265625e-06,
+     "rgba_max_err": 1.1920928955078125e-07,
+     "alive_cells_diff": 0
+    },
+    "mlx_gpu": {
+     "state_max_err": 0.0,
+     "rgba_max_err": 0.0,
+     "alive_cells_diff": 0
+    },
+    "mlx_gpu_fp16": {
+     "state_max_err": 0.04843902587890625,
+     "rgba_max_err": 0.0010396242141723633,
+     "alive_cells_diff": 0
+    },
+    "mlx_gpu_compiled": {
+     "state_max_err": 0.0,
+     "rgba_max_err": 0.0,
+     "alive_cells_diff": 0
+    },
+    "coreml_cpu": {
+     "state_max_err": 0.04843902587890625,
+     "rgba_max_err": 0.0014518499374389648,
+     "alive_cells_diff": 0
+    },
+    "coreml_gpu": {
+     "state_max_err": 0.04843902587890625,
+     "rgba_max_err": 0.0014518499374389648,
+     "alive_cells_diff": 0
+    },
+    "coreml_ane": {
+     "state_max_err": 0.04843902587890625,
+     "rgba_max_err": 0.0010396242141723633,
+     "alive_cells_diff": 0
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 25633050,
+    "mlx_gpu": 22274326,
+    "mlx_gpu_fp16": 20221598,
+    "mlx_gpu_compiled": 22170834
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 0.6651250005234033,
+     "p90_ms": 0.6908749928697944,
+     "min_ms": 0.6325000140350312,
+     "calls": 2617,
+     "rounds": 7,
+     "round_median_spread": 1.009117735801657
+    },
+    "mlx_cpu": {
+     "median_ms": 0.7499170023947954,
+     "p90_ms": 0.7764086010865867,
+     "min_ms": 0.7279999845195562,
+     "calls": 2323,
+     "rounds": 7,
+     "round_median_spread": 1.0083128390432217
+    },
+    "mlx_gpu": {
+     "median_ms": 0.29904198891017586,
+     "p90_ms": 0.30754099134355783,
+     "min_ms": 0.24129200028255582,
+     "calls": 5668,
+     "rounds": 7,
+     "round_median_spread": 1.0450381101395585
+    },
+    "mlx_gpu_fp16": {
+     "median_ms": 0.42472948553040624,
+     "p90_ms": 0.4627952090231702,
+     "min_ms": 0.3468749928288162,
+     "calls": 4030,
+     "rounds": 7,
+     "round_median_spread": 1.0464177882334087
+    },
+    "mlx_gpu_compiled": {
+     "median_ms": 0.23437500931322575,
+     "p90_ms": 0.25777050177566707,
+     "min_ms": 0.17579097766429186,
+     "calls": 7326,
+     "rounds": 7,
+     "round_median_spread": 1.195608401658362
+    },
+    "coreml_cpu": {
+     "median_ms": 0.17904199194163084,
+     "p90_ms": 0.1847083098255098,
+     "min_ms": 0.1612920023035258,
+     "calls": 9778,
+     "rounds": 7,
+     "round_median_spread": 1.0072459412078725
+    },
+    "coreml_gpu": {
+     "median_ms": 0.1788749941624701,
+     "p90_ms": 0.1836662064306438,
+     "min_ms": 0.16145900008268654,
+     "calls": 9819,
+     "rounds": 7,
+     "round_median_spread": 1.0074888412145586
+    },
+    "coreml_ane": {
+     "median_ms": 0.162874988745898,
+     "p90_ms": 0.17704098718240857,
+     "min_ms": 0.13433300773613155,
+     "calls": 10651,
+     "rounds": 7,
+     "round_median_spread": 1.0243165952844935
+    }
+   },
+   "task": {
+    "numpy_cpu": {
+     "trials": 1,
+     "steps": 100,
+     "mse_post_damage": 0.010970481247330048,
+     "mse_final": 0.004637766115349229,
+     "ref_mse_final": 0.004637765800581978,
+     "mse_final_rel_diff": 6.787044988057225e-08,
+     "recovered_frac": 0.0,
+     "ref_recovered_frac": 0.0,
+     "max_curve_diff": 6.156467315110437e-10
+    },
+    "mlx_cpu": {
+     "trials": 1,
+     "steps": 100,
+     "mse_post_damage": 0.010970481247330048,
+     "mse_final": 0.0046377661145159624,
+     "ref_mse_final": 0.004637765800581978,
+     "mse_final_rel_diff": 6.769078004572953e-08,
+     "recovered_frac": 0.0,
+     "ref_recovered_frac": 0.0,
+     "max_curve_diff": 9.464015682247862e-10
+    },
+    "mlx_gpu": {
+     "trials": 1,
+     "steps": 100,
+     "mse_post_damage": 0.010970481247330048,
+     "mse_final": 0.004637765800581978,
+     "ref_mse_final": 0.004637765800581978,
+     "mse_final_rel_diff": 0.0,
+     "recovered_frac": 0.0,
+     "ref_recovered_frac": 0.0,
+     "max_curve_diff": 0.0
+    },
+    "mlx_gpu_fp16": {
+     "trials": 1,
+     "steps": 100,
+     "mse_post_damage": 0.010970481247330048,
+     "mse_final": 0.004635645915795825,
+     "ref_mse_final": 0.004637765800581978,
+     "mse_final_rel_diff": 0.00045709181474545184,
+     "recovered_frac": 0.0,
+     "ref_recovered_frac": 0.0,
+     "max_curve_diff": 1.5792810074400504e-05
+    },
+    "mlx_gpu_compiled": {
+     "trials": 1,
+     "steps": 100,
+     "mse_post_damage": 0.010970481247330048,
+     "mse_final": 0.004637765800581978,
+     "ref_mse_final": 0.004637765800581978,
+     "mse_final_rel_diff": 0.0,
+     "recovered_frac": 0.0,
+     "ref_recovered_frac": 0.0,
+     "max_curve_diff": 0.0
+    },
+    "coreml_cpu": {
+     "trials": 1,
+     "steps": 100,
+     "mse_post_damage": 0.010970481247330048,
+     "mse_final": 0.004638786410258435,
+     "ref_mse_final": 0.004637765800581978,
+     "mse_final_rel_diff": 0.0002200649451356147,
+     "recovered_frac": 0.0,
+     "ref_recovered_frac": 0.0,
+     "max_curve_diff": 4.1358333152774485e-05
+    },
+    "coreml_gpu": {
+     "trials": 1,
+     "steps": 100,
+     "mse_post_damage": 0.010970481247330048,
+     "mse_final": 0.004638786410258435,
+     "ref_mse_final": 0.004637765800581978,
+     "mse_final_rel_diff": 0.0002200649451356147,
+     "recovered_frac": 0.0,
+     "ref_recovered_frac": 0.0,
+     "max_curve_diff": 4.1358333152774485e-05
+    },
+    "coreml_ane": {
+     "trials": 1,
+     "steps": 100,
+     "mse_post_damage": 0.010970481247330048,
+     "mse_final": 0.004645231518353045,
+     "ref_mse_final": 0.004637765800581978,
+     "mse_final_rel_diff": 0.0016097660149485046,
+     "recovered_frac": 0.0,
+     "ref_recovered_frac": 0.0,
+     "max_curve_diff": 1.0034480340100072e-05
+    }
+   },
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e10_nca_b1_fp16.mlpackage",
+     "size_bytes": 41079,
+     "placement": {
+      "CPU": 21
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e10_nca_b1_fp16.mlpackage",
+     "size_bytes": 41079,
+     "placement": {
+      "CPU": 21
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e10_nca_b1_fp16.mlpackage",
+     "size_bytes": 41079,
+     "placement": {
+      "NeuralEngine": 21
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "regrowth MSE 0.004638 vs ref 0.004638 (0.0%), recovered 0.00 vs 0.00"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "regrowth MSE 0.004638 vs ref 0.004638 (0.0%), recovered 0.00 vs 0.00"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "regrowth MSE 0.004638 vs ref 0.004638 (0.0%), recovered 0.00 vs 0.00"
+    },
+    "mlx_gpu_fp16": {
+     "ok": true,
+     "reason": "regrowth MSE 0.004636 vs ref 0.004638 (0.0%), recovered 0.00 vs 0.00"
+    },
+    "mlx_gpu_compiled": {
+     "ok": true,
+     "reason": "regrowth MSE 0.004638 vs ref 0.004638 (0.0%), recovered 0.00 vs 0.00"
+    },
+    "coreml_cpu": {
+     "ok": true,
+     "reason": "regrowth MSE 0.004639 vs ref 0.004638 (0.0%), recovered 0.00 vs 0.00"
+    },
+    "coreml_gpu": {
+     "ok": true,
+     "reason": "regrowth MSE 0.004639 vs ref 0.004638 (0.0%), recovered 0.00 vs 0.00"
+    },
+    "coreml_ane": {
+     "ok": true,
+     "reason": "regrowth MSE 0.004645 vs ref 0.004638 (0.2%), recovered 0.00 vs 0.00"
+    }
+   }
+  },
+  "32": {
+   "agreement": {
+    "numpy_cpu": {
+     "state_max_err": 7.62939453125e-06,
+     "rgba_max_err": 3.3527612686157227e-07,
+     "alive_cells_diff": 0
+    },
+    "mlx_cpu": {
+     "state_max_err": 7.62939453125e-06,
+     "rgba_max_err": 2.384185791015625e-07,
+     "alive_cells_diff": 0
+    },
+    "mlx_gpu": {
+     "state_max_err": 0.0,
+     "rgba_max_err": 0.0,
+     "alive_cells_diff": 0
+    },
+    "mlx_gpu_fp16": {
+     "state_max_err": 0.069610595703125,
+     "rgba_max_err": 0.0010676383972167969,
+     "alive_cells_diff": 0
+    },
+    "mlx_gpu_compiled": {
+     "state_max_err": 0.0,
+     "rgba_max_err": 0.0,
+     "alive_cells_diff": 0
+    },
+    "coreml_cpu": {
+     "state_max_err": 0.069610595703125,
+     "rgba_max_err": 0.002420365810394287,
+     "alive_cells_diff": 0
+    },
+    "coreml_gpu": {
+     "state_max_err": 0.069610595703125,
+     "rgba_max_err": 0.0010676383972167969,
+     "alive_cells_diff": 0
+    },
+    "coreml_ane": {
+     "state_max_err": 0.069610595703125,
+     "rgba_max_err": 0.001400291919708252,
+     "alive_cells_diff": 0
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 277248166,
+    "mlx_gpu": 170473634,
+    "mlx_gpu_fp16": 105459354,
+    "mlx_gpu_compiled": 168278174
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 20.352457999251783,
+     "p90_ms": 21.29839201224968,
+     "min_ms": 19.875917001627386,
+     "calls": 89,
+     "rounds": 7,
+     "round_median_spread": 1.0543171639854685
+    },
+    "mlx_cpu": {
+     "median_ms": 22.78379100607708,
+     "p90_ms": 23.13424999010749,
+     "min_ms": 21.11216599587351,
+     "calls": 81,
+     "rounds": 7,
+     "round_median_spread": 1.052326547869
+    },
+    "mlx_gpu": {
+     "median_ms": 1.784103995305486,
+     "p90_ms": 1.8288080958882347,
+     "min_ms": 1.6854590212460607,
+     "calls": 954,
+     "rounds": 7,
+     "round_median_spread": 1.006508625867441
+    },
+    "mlx_gpu_fp16": {
+     "median_ms": 1.3724169984925538,
+     "p90_ms": 1.4453749870881438,
+     "min_ms": 1.2540419993456453,
+     "calls": 1235,
+     "rounds": 7,
+     "round_median_spread": 1.0138028451491012
+    },
+    "mlx_gpu_compiled": {
+     "median_ms": 1.6886249941308051,
+     "p90_ms": 1.743300596717745,
+     "min_ms": 1.5930829977151006,
+     "calls": 1013,
+     "rounds": 7,
+     "round_median_spread": 1.0088519849983428
+    },
+    "coreml_cpu": {
+     "median_ms": 5.38108401815407,
+     "p90_ms": 5.9145836101379246,
+     "min_ms": 5.184459005249664,
+     "calls": 323,
+     "rounds": 7,
+     "round_median_spread": 1.1190305052335021
+    },
+    "coreml_gpu": {
+     "median_ms": 1.6447295056423172,
+     "p90_ms": 1.7488960147602484,
+     "min_ms": 1.5436660032719374,
+     "calls": 1026,
+     "rounds": 7,
+     "round_median_spread": 1.0447151042442797
+    },
+    "coreml_ane": {
+     "median_ms": 1.4723339991178364,
+     "p90_ms": 1.5172919956967235,
+     "min_ms": 1.350542006548494,
+     "calls": 1191,
+     "rounds": 7,
+     "round_median_spread": 1.0135990845004328
+    }
+   },
+   "task": {
+    "numpy_cpu": {
+     "trials": 32,
+     "steps": 100,
+     "mse_post_damage": 0.010882839973115576,
+     "mse_final": 0.0037295396459715562,
+     "ref_mse_final": 0.003729539780484992,
+     "mse_final_rel_diff": 3.606703344040908e-08,
+     "recovered_frac": 0.75,
+     "ref_recovered_frac": 0.75,
+     "max_curve_diff": 3.293757131622721e-09
+    },
+    "mlx_cpu": {
+     "trials": 32,
+     "steps": 100,
+     "mse_post_damage": 0.010882839973115576,
+     "mse_final": 0.003729539805141161,
+     "ref_mse_final": 0.003729539780484992,
+     "mse_final_rel_diff": 6.611048561241454e-09,
+     "recovered_frac": 0.75,
+     "ref_recovered_frac": 0.75,
+     "max_curve_diff": 4.337167687495924e-09
+    },
+    "mlx_gpu": {
+     "trials": 32,
+     "steps": 100,
+     "mse_post_damage": 0.010882839973115576,
+     "mse_final": 0.003729539780484992,
+     "ref_mse_final": 0.003729539780484992,
+     "mse_final_rel_diff": 0.0,
+     "recovered_frac": 0.75,
+     "ref_recovered_frac": 0.75,
+     "max_curve_diff": 0.0
+    },
+    "mlx_gpu_fp16": {
+     "trials": 32,
+     "steps": 100,
+     "mse_post_damage": 0.010882839973115576,
+     "mse_final": 0.0037276175976255887,
+     "ref_mse_final": 0.003729539780484992,
+     "mse_final_rel_diff": 0.0005153941163093211,
+     "recovered_frac": 0.75,
+     "ref_recovered_frac": 0.75,
+     "max_curve_diff": 6.968349803978613e-05
+    },
+    "mlx_gpu_compiled": {
+     "trials": 32,
+     "steps": 100,
+     "mse_post_damage": 0.010882839973115576,
+     "mse_final": 0.003729539780484992,
+     "ref_mse_final": 0.003729539780484992,
+     "mse_final_rel_diff": 0.0,
+     "recovered_frac": 0.75,
+     "ref_recovered_frac": 0.75,
+     "max_curve_diff": 0.0
+    },
+    "coreml_cpu": {
+     "trials": 32,
+     "steps": 100,
+     "mse_post_damage": 0.010882839973115576,
+     "mse_final": 0.0037288896039739906,
+     "ref_mse_final": 0.003729539780484992,
+     "mse_final_rel_diff": 0.00017433156616365546,
+     "recovered_frac": 0.75,
+     "ref_recovered_frac": 0.75,
+     "max_curve_diff": 7.066992729166943e-05
+    },
+    "coreml_gpu": {
+     "trials": 32,
+     "steps": 100,
+     "mse_post_damage": 0.010882839973115576,
+     "mse_final": 0.0037270440728796594,
+     "ref_mse_final": 0.003729539780484992,
+     "mse_final_rel_diff": 0.0006691730755606042,
+     "recovered_frac": 0.75,
+     "ref_recovered_frac": 0.75,
+     "max_curve_diff": 7.072358234721035e-05
+    },
+    "coreml_ane": {
+     "trials": 32,
+     "steps": 100,
+     "mse_post_damage": 0.010882839973115576,
+     "mse_final": 0.003730654876430156,
+     "ref_mse_final": 0.003729539780484992,
+     "mse_final_rel_diff": 0.00029899022689029524,
+     "recovered_frac": 0.75,
+     "ref_recovered_frac": 0.75,
+     "max_curve_diff": 3.6563580886729216e-05
+    }
+   },
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e10_nca_b32_fp16.mlpackage",
+     "size_bytes": 41079,
+     "placement": {
+      "CPU": 21
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e10_nca_b32_fp16.mlpackage",
+     "size_bytes": 41079,
+     "placement": {
+      "GPU": 21
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e10_nca_b32_fp16.mlpackage",
+     "size_bytes": 41079,
+     "placement": {
+      "NeuralEngine": 21
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "regrowth MSE 0.00373 vs ref 0.00373 (0.0%), recovered 0.75 vs 0.75"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "regrowth MSE 0.00373 vs ref 0.00373 (0.0%), recovered 0.75 vs 0.75"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "regrowth MSE 0.00373 vs ref 0.00373 (0.0%), recovered 0.75 vs 0.75"
+    },
+    "mlx_gpu_fp16": {
+     "ok": true,
+     "reason": "regrowth MSE 0.003728 vs ref 0.00373 (0.1%), recovered 0.75 vs 0.75"
+    },
+    "mlx_gpu_compiled": {
+     "ok": true,
+     "reason": "regrowth MSE 0.00373 vs ref 0.00373 (0.0%), recovered 0.75 vs 0.75"
+    },
+    "coreml_cpu": {
+     "ok": true,
+     "reason": "regrowth MSE 0.003729 vs ref 0.00373 (0.0%), recovered 0.75 vs 0.75"
+    },
+    "coreml_gpu": {
+     "ok": true,
+     "reason": "regrowth MSE 0.003727 vs ref 0.00373 (0.1%), recovered 0.75 vs 0.75"
+    },
+    "coreml_ane": {
+     "ok": true,
+     "reason": "regrowth MSE 0.003731 vs ref 0.00373 (0.0%), recovered 0.75 vs 0.75"
+    }
+   }
+  }
+ },
+ "skips": {
+  "mlx_gpu_q8": "fc1 input dim 48 is not a multiple of any MLX quantization group size (32/64/128); the whole net is 8k params",
+  "mlx_gpu_q4": "same as q8"
+ },
+ "task_checks": true,
+ "settings": {
+  "repeats": 7,
+  "budget_s": 0.25,
+  "only": null
+ },
+ "mlx_tf32": false,
+ "mlx_gpu_matmul_rel_err": 5.303472196546295e-07,
+ "mlx_tf32_env": "0",
+ "idle_wait": {
+  "waited_s": 0.0,
+  "load1": 2.45361328125
+ },
+ "env_before": {
+  "time": "2026-10-22 18:05:06",
+  "loadavg": [
+   2.45361328125,
+   1.95703125,
+   2.06982421875
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.1707958400947973,
+  "mlx_gpu_2048_matmul_ms": 1.6575125002418645
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.18434918019920588,
+  "mlx_gpu_2048_matmul_ms": 1.5687937499023974
+ },
+ "env_after": {
+  "time": "2026-10-22 18:05:49",
+  "loadavg": [
+   2.21484375,
+   1.97314453125,
+   2.0703125
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

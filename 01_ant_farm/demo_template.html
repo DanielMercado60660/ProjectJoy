@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ant Farm Terrarium</title>
+<style>
+:root {
+  --bg: #121010; --panel: #1d1a18; --ink: #ece6df; --muted: #a39a90; --line: #3a332e;
+  --accent: #f2b33d; --accent-ink: #1b1305; --wall: #6e6e76;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+main { max-width: 1060px; margin: 0 auto; padding: 18px 16px 40px; }
+h1 { font-size: 22px; margin: 0 0 2px; letter-spacing: .2px; }
+.sub { color: var(--muted); margin: 0 0 14px; max-width: 760px; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+.group { display: flex; gap: 4px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 4px; }
+button, select { font: inherit; color: var(--ink); background: transparent; border: 0; border-radius: 7px; padding: 6px 11px; cursor: pointer; min-height: 34px; }
+button:hover, select:hover { background: #2b2623; }
+button.on { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+select { background: var(--panel); border: 1px solid var(--line); }
+label.chk { display: flex; gap: 6px; align-items: center; color: var(--muted); padding: 0 6px; }
+.panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px; }
+.phead { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; }
+canvas { width: 100%; aspect-ratio: 1; display: block; border-radius: 6px; touch-action: none; cursor: crosshair; background: #1c1612; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 8px; }
+.stat { background: #161312; border-radius: 8px; padding: 6px 8px; }
+.stat b { display: block; font-size: 18px; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: 12px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; color: var(--muted); font-size: 13px; margin-top: 14px; }
+.sw { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.notes { color: var(--muted); font-size: 13px; margin-top: 12px; max-width: 820px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Ant Farm Terrarium</h1>
+  <p class="sub">Two colonies in identical worlds. Each ant only senses pheromone, food and rock within two cells, plus a path-integration compass to its nest. Draw walls or drop food: every edit goes to both worlds.</p>
+  <div class="bar">
+    <div class="group" id="tools">
+      <button data-tool="wall" class="on">Draw wall</button>
+      <button data-tool="food">Drop food</button>
+      <button data-tool="erase">Erase</button>
+    </div>
+    <div class="group">
+      <button id="block">Block busiest trail</button>
+      <button id="reset">New world</button>
+      <button id="pause">Pause</button>
+    </div>
+    <div class="group">
+      <button data-speed="1">1x</button><button data-speed="4" class="on">4x</button><button data-speed="16">16x</button>
+    </div>
+    <label class="chk"><input type="checkbox" id="showpher" checked> pheromones</label>
+  </div>
+  <div class="panels" id="panels"></div>
+  <div class="legend">
+    <span><i class="sw" style="background:#3c78ff"></i>home pheromone</span>
+    <span><i class="sw" style="background:#3ce65a"></i>food pheromone</span>
+    <span><i class="sw" style="background:#ffc828"></i>food</span>
+    <span><i class="sw" style="background:#96502a"></i>nest</span>
+    <span><i class="sw" style="background:#f0f0f0"></i>searching ant</span>
+    <span><i class="sw" style="background:#ff463c"></i>ant carrying food</span>
+  </div>
+  <p class="notes" id="notes"></p>
+</main>
+<script>
+/*__DATA__*/
+// ------------------------------------------------------------ simulator (port of sim.py)
+const H = 64, W = 64, NEST_R = 2, FOOD_R = 2, FOOD_PER_CELL = 40;
+const DIRS = [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]];
+const TURNS = [-2,-1,0,1,2,4,0], STAY = 6;
+const C_MOVE = 1/300, C_STAY = 1/600, C_DEP = 1/3000, FOOD_VALUE = 1, DEP_AMOUNT = 1, P_MAX = 30;
+const EVAP = [0.006, 0.012], DIFF = 0.10, N_ANTS = 64, OBS_DIM = 59;
+
+class World {
+  constructor(layout) {
+    this.obst = Uint8Array.from(layout.obst);
+    this.food = Int16Array.from(layout.food);
+    this.nest = layout.nest.slice();
+    this.pher = new Float32Array(2 * H * W);
+    this.tmp = new Float32Array(H * W);
+    this.N = N_ANTS;
+    this.y = new Int32Array(N_ANTS); this.x = new Int32Array(N_ANTS); this.h = new Int32Array(N_ANTS);
+    this.carry = new Uint8Array(N_ANTS); this.energy = new Float32Array(N_ANTS).fill(1);
+    this.alive = new Uint8Array(N_ANTS).fill(1); this.clock = new Int32Array(N_ANTS);
+    this.store = 0.5 * N_ANTS; this.t = 0; this.delivered = 0; this.spent = 0;
+    for (let i = 0; i < N_ANTS; i++) {
+      let dy, dx;
+      do { dy = Math.floor(Math.random() * 5) - 2; dx = Math.floor(Math.random() * 5) - 2; } while (dy*dy + dx*dx > NEST_R*NEST_R);
+      this.y[i] = this.nest[0] + dy; this.x[i] = this.nest[1] + dx; this.h[i] = Math.floor(Math.random() * 8);
+    }
+  }
+  isNest(y, x) { const a = y - this.nest[0], b = x - this.nest[1]; return a*a + b*b <= NEST_R*NEST_R; }
+  blocked(y, x) { return y < 0 || y >= H || x < 0 || x >= W || this.obst[y*W + x] === 1; }
+}
+
+const ptrans = p => Math.log1p(20 * p) * 0.25;
+
+function observe(w, i, o) {
+  o.fill(0);
+  if (!w.alive[i]) return o;
+  const y = w.y[i], x = w.x[i], h = w.h[i];
+  for (let d = 0; d < 2; d++) for (let k = 0; k < 5; k++) {
+    const hh = ((h + k - 2) % 8 + 8) % 8;
+    const cy = y + (d + 1) * DIRS[hh][0], cx = x + (d + 1) * DIRS[hh][1];
+    const base = (d * 5 + k) * 5;
+    if (w.blocked(cy, cx)) { o[base + 2] = 1; continue; }
+    const c = cy * W + cx;
+    o[base] = ptrans(w.pher[c]); o[base + 1] = ptrans(w.pher[H*W + c]);
+    o[base + 3] = w.food[c] > 0 ? 1 : 0;
+    o[base + 4] = w.isNest(cy, cx) ? 1 : 0;
+  }
+  const c = y * W + x;
+  o[50] = ptrans(w.pher[c]); o[51] = ptrans(w.pher[H*W + c]);
+  o[52] = w.carry[i]; o[53] = w.energy[i];
+  const vy = w.nest[0] - y, vx = w.nest[1] - x, dist = Math.hypot(vy, vx);
+  if (dist > 0) {
+    let fy = DIRS[h][0], fx = DIRS[h][1]; const fn = Math.hypot(fy, fx); fy /= fn; fx /= fn;
+    const ry = fx, rx = -fy;
+    o[54] = (vy * fy + vx * fx) / dist; o[55] = (vy * ry + vx * rx) / dist;
+  }
+  o[56] = dist / 32; o[57] = dist * dist <= NEST_R * NEST_R ? 1 : 0;
+  o[58] = Math.min(w.clock[i], 400) / 100;
+  return o;
+}
+
+function stepWorld(w, moves, deps) {
+  for (let i = 0; i < w.N; i++) {
+    if (!w.alive[i]) continue;
+    let y = w.y[i], x = w.x[i], cost = 0;
+    const a = moves[i];
+    if (a === STAY) cost += C_STAY;
+    else {
+      const h = ((w.h[i] + TURNS[a]) % 8 + 8) % 8; w.h[i] = h;
+      const cy = y + DIRS[h][0], cx = x + DIRS[h][1];
+      if (!w.blocked(cy, cx)) { y = cy; x = cx; w.y[i] = y; w.x[i] = x; }
+      cost += C_MOVE;
+    }
+    const c = y * W + x;
+    if (deps[i] > 0) { const j = (deps[i] - 1) * H * W + c; w.pher[j] = Math.min(P_MAX, w.pher[j] + DEP_AMOUNT); cost += C_DEP; }
+    w.clock[i]++;
+    const atNest = w.isNest(y, x);
+    if (!w.carry[i] && w.food[c] > 0) { w.food[c]--; w.carry[i] = 1; w.clock[i] = 0; }
+    else if (w.carry[i] && atNest) { w.carry[i] = 0; w.store += FOOD_VALUE; w.delivered++; }
+    if (atNest) {
+      if (!w.carry[i]) w.clock[i] = 0;
+      const take = Math.min(1 - w.energy[i], w.store);
+      if (take > 0) { w.store -= take; w.energy[i] += take; }
+    }
+    w.energy[i] -= cost; w.spent += cost;
+    if (w.energy[i] <= 0) { w.energy[i] = 0; w.alive[i] = 0; if (w.carry[i]) { w.food[c]++; w.carry[i] = 0; } }
+  }
+  for (let ch = 0; ch < 2; ch++) {
+    const off = ch * H * W, p = w.pher, tmp = w.tmp, ev = 1 - EVAP[ch];
+    for (let yy = 0; yy < H; yy++) for (let xx = 0; xx < W; xx++) {
+      const c = yy * W + xx;
+      if (w.obst[c]) { tmp[c] = 0; continue; }
+      const v0 = p[off + c];
+      let s = 0;
+      s += (yy > 0 && !w.obst[c - W]) ? p[off + c - W] : v0;
+      s += (yy < H - 1 && !w.obst[c + W]) ? p[off + c + W] : v0;
+      s += (xx > 0 && !w.obst[c - 1]) ? p[off + c - 1] : v0;
+      s += (xx < W - 1 && !w.obst[c + 1]) ? p[off + c + 1] : v0;
+      const v = ((1 - DIFF) * v0 + DIFF * 0.25 * s) * ev;
+      tmp[c] = v > 1e-4 ? v : 0;
+    }
+    p.set(tmp, off);
+  }
+  w.t++;
+}
+
+// ------------------------------------------------------------ brains
+function softmaxInto(z, out, n) {
+  let m = -Infinity; for (let j = 0; j < n; j++) m = Math.max(m, z[j]);
+  let s = 0; for (let j = 0; j < n; j++) { out[j] = Math.exp(z[j] - m); s += out[j]; }
+  for (let j = 0; j < n; j++) out[j] /= s;
+  return out;
+}
+const DIR_F = [0,1,2,3,4].map(k => Math.cos((k - 2) * Math.PI / 4));
+const DIR_S = [0,1,2,3,4].map(k => Math.sin((k - 2) * Math.PI / 4));
+
+function handBrain(o, pm, pd) {   // port of handwritten.handwritten(use_compass=True)
+  const carry = o[52] > 0.5, energy = o[53], clock = o[58] * 100, cf = o[54], cs = o[55];
+  const ndist = o[56] * 32, atNest = o[57] > 0.5;
+  const homing = carry || energy < ndist * C_MOVE * 1.6 + 0.06;
+  const P = [], sc = [], blocked = [];
+  let pfMax = 0, mean = 0;
+  for (let k = 0; k < 5; k++) {
+    blocked[k] = o[k*5 + 2] > 0.5;
+    const ph = o[k*5] + 0.5 * o[(5+k)*5], pf = o[k*5+1] + 0.5 * o[(5+k)*5+1];
+    pfMax = Math.max(pfMax, pf);
+    P[k] = homing ? ph : pf; mean += P[k] / 5;
+  }
+  let nfree = 0;
+  for (let k = 0; k < 5; k++) {
+    let s = 6 * (P[k] - mean) + DIR_F[k];
+    if (homing) s += 2.5 * (cf * DIR_F[k] + cs * DIR_S[k]);
+    const seeFood = o[k*5+3] + 0.5 * o[(5+k)*5+3], seeNest = o[k*5+4] + 0.5 * o[(5+k)*5+4];
+    s += homing ? 8 * seeNest : (carry ? 0 : 8 * seeFood);
+    sc[k] = blocked[k] ? -1e9 : s;
+    if (!blocked[k]) nfree++;
+  }
+  softmaxInto(sc, pm, 5);
+  for (let k = 0; k < 5; k++) pm[k] = 0.95 * pm[k] + 0.05 * (blocked[k] ? 0 : 1) / Math.max(nfree, 1);
+  pm[5] = 0; pm[6] = 0;
+  if ((carry && clock < 0.5) || nfree === 0) { for (let k = 0; k < 7; k++) pm[k] = 0; pm[5] = 1; }
+  else if (atNest && !carry && clock < 0.5 && pfMax < 0.05) { for (let k = 0; k < 5; k++) pm[k] *= 0.7; pm[5] += 0.3; }
+  pd[0] = 1; pd[1] = 0; pd[2] = 0;
+  if (carry && clock < 150) { pd[0] = 0; pd[2] = 1; }
+  else if (!carry && clock < 150) { pd[0] = 0; pd[1] = 1; }
+}
+
+function randomBrain(o, pm, pd) { for (let k = 0; k < 6; k++) pm[k] = 1/6; pm[6] = 0; pd.fill(1/3); }
+
+function mlpBrain(net) {
+  const hid = net.a1.b.length, h1 = new Float32Array(hid), h2 = new Float32Array(hid), z = new Float32Array(8);
+  const lin = (L, x, out, act) => {
+    for (let r = 0; r < L.b.length; r++) {
+      let s = L.b[r]; const row = L.w[r];
+      for (let c = 0; c < x.length; c++) s += row[c] * x[c];
+      out[r] = act ? Math.tanh(s) : s;
+    }
+  };
+  return (o, pm, pd) => {
+    if (net.no_compass) { o[54] = 0; o[55] = 0; o[56] = 0; }
+    lin(net.a1, o, h1, true); lin(net.a2, h1, h2, true);
+    lin(net.move, h2, z, false); softmaxInto(z, pm, 7);
+    lin(net.dep, h2, z, false); softmaxInto(z, pd, 3);
+  };
+}
+
+const BRAINS = { "hand-written (2 pheromones + compass)": handBrain };
+for (const [name, net] of Object.entries(DATA.nets)) BRAINS[name] = mlpBrain(net);
+BRAINS["random walkers"] = randomBrain;
+
+function sample(p, n) { const u = Math.random(); let c = 0; for (let j = 0; j < n; j++) { c += p[j]; if (u < c) return j; } return n - 1; }
+
+// ------------------------------------------------------------ panels
+const panelsEl = document.getElementById("panels");
+let layoutIdx = 0, tool = "wall", speed = 4, paused = false, showPher = true;
+const DEFAULTS = [Object.keys(BRAINS)[0], Object.keys(BRAINS)[1] || Object.keys(BRAINS)[0]];
+const panels = DEFAULTS.map((brainName, idx) => {
+  const el = document.createElement("div"); el.className = "panel";
+  const opts = Object.keys(BRAINS).map(n => `<option${n === brainName ? " selected" : ""}>${n}</option>`).join("");
+  el.innerHTML = `<div class="phead"><select aria-label="colony brain">${opts}</select></div>
+    <canvas width="512" height="512"></canvas>
+    <div class="stats"><div class="stat"><b>0</b><span>food home</span></div><div class="stat"><b>64</b><span>ants alive</span></div>
+    <div class="stat"><b>0</b><span>food / energy</span></div><div class="stat"><b>0</b><span>step</span></div></div>`;
+  panelsEl.appendChild(el);
+  const P = { el, canvas: el.querySelector("canvas"), sel: el.querySelector("select"), stats: el.querySelectorAll(".stat b"),
+              brain: BRAINS[brainName], world: null, obs: new Float32Array(OBS_DIM), pm: new Float32Array(7), pd: new Float32Array(3),
+              mv: new Int32Array(N_ANTS), dp: new Int32Array(N_ANTS) };
+  P.sel.onchange = () => { P.brain = BRAINS[P.sel.value]; };
+  P.ctx = P.canvas.getContext("2d");
+  P.img = new ImageData(W, H); P.off = document.createElement("canvas"); P.off.width = W; P.off.height = H;
+  attachPointer(P);
+  return P;
+});
+
+function newWorlds(layout) { for (const P of panels) P.world = new World(layout); }
+
+function tick(P) {
+  const w = P.world;
+  for (let i = 0; i < w.N; i++) {
+    if (!w.alive[i]) { P.mv[i] = STAY; P.dp[i] = 0; continue; }
+    observe(w, i, P.obs); P.brain(P.obs, P.pm, P.pd);
+    P.mv[i] = sample(P.pm, 7); P.dp[i] = sample(P.pd, 3);
+  }
+  stepWorld(w, P.mv, P.dp);
+}
+
+function draw(P) {
+  const w = P.world, d = P.img.data, LP = Math.log1p(P_MAX);
+  for (let c = 0; c < H * W; c++) {
+    let r = 28, g = 22, b = 18;
+    if (showPher) {
+      const ph = Math.min(1, Math.log1p(w.pher[c]) / LP), pf = Math.min(1, Math.log1p(w.pher[H*W + c]) / LP);
+      r += ph * 60 * 0.7 + pf * 60; g += ph * 120 * 0.7 + pf * 230; b += ph * 255 * 0.7 + pf * 90;
+    }
+    const y = (c / W) | 0, x = c % W;
+    if (w.isNest(y, x)) { r = 150; g = 80; b = 40; }
+    if (w.food[c] > 0) { r = 255; g = 200; b = 40; }
+    if (w.obst[c]) { r = 110; g = 110; b = 118; }
+    d[4*c] = Math.min(255, r); d[4*c+1] = Math.min(255, g); d[4*c+2] = Math.min(255, b); d[4*c+3] = 255;
+  }
+  P.off.getContext("2d").putImageData(P.img, 0, 0);
+  const ctx = P.ctx, s = P.canvas.width / W;
+  ctx.imageSmoothingEnabled = false; ctx.drawImage(P.off, 0, 0, P.canvas.width, P.canvas.height);
+  let alive = 0;
+  for (let i = 0; i < w.N; i++) {
+    if (!w.alive[i]) continue; alive++;
+    ctx.fillStyle = w.carry[i] ? "#ff463c" : "#f0f0f0";
+    ctx.fillRect(w.x[i] * s + s * 0.2, w.y[i] * s + s * 0.2, s * 0.6, s * 0.6);
+  }
+  P.stats[0].textContent = w.delivered; P.stats[1].textContent = alive;
+  P.stats[2].textContent = w.spent > 0 ? (w.delivered / w.spent).toFixed(2) : "0";
+  P.stats[3].textContent = w.t;
+}
+
+// ------------------------------------------------------------ editing
+function paint(cy, cx) {
+  for (const P of panels) {
+    const w = P.world;
+    const r = tool === "food" ? FOOD_R : 1;
+    for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++) {
+      const y = cy + dy, x = cx + dx;
+      if (y < 0 || y >= H || x < 0 || x >= W) continue;
+      if (tool === "food" && dy*dy + dx*dx > r*r) continue;
+      if (tool !== "erase" && w.isNest(y, x)) continue;
+      const c = y * W + x;
+      if (tool === "wall") { w.obst[c] = 1; w.food[c] = 0; w.pher[c] = 0; w.pher[H*W + c] = 0; }
+      else if (tool === "food") { if (!w.obst[c]) w.food[c] = FOOD_PER_CELL; }
+      else { w.obst[c] = 0; w.food[c] = 0; }
+    }
+  }
+}
+function attachPointer(P) {
+  let down = false, last = null;
+  const cell = e => { const r = P.canvas.getBoundingClientRect(); return [Math.floor((e.clientY - r.top) / r.height * H), Math.floor((e.clientX - r.left) / r.width * W)]; };
+  const stroke = (a, b) => {   // paint along the segment so fast drags leave no gaps
+    const n = Math.max(Math.abs(b[0] - a[0]), Math.abs(b[1] - a[1]), 1);
+    for (let s = 0; s <= n; s++) paint(Math.round(a[0] + (b[0] - a[0]) * s / n), Math.round(a[1] + (b[1] - a[1]) * s / n));
+  };
+  P.canvas.addEventListener("pointerdown", e => { down = true; P.canvas.setPointerCapture(e.pointerId); last = cell(e); paint(...last); if (tool === "food") down = false; });
+  P.canvas.addEventListener("pointermove", e => { if (!down) return; const c = cell(e); stroke(last, c); last = c; });
+  P.canvas.addEventListener("pointerup", () => { down = false; });
+}
+
+function blockBusiest() {   // same rule as sim.block_route: wall across nest -> busiest food
+  const w0 = panels[0].world;
+  let best = -1, by = 0, bx = 0;
+  for (let c = 0; c < H * W; c++) {
+    if (w0.food[c] <= 0) continue;
+    const y = (c / W) | 0, x = c % W; let s = 0;
+    for (let dy = -6; dy <= 6; dy++) for (let dx = -6; dx <= 6; dx++) {
+      const yy = y + dy, xx = x + dx; if (yy >= 0 && yy < H && xx >= 0 && xx < W) s += w0.pher[H*W + yy*W + xx];
+    }
+    if (s > best) { best = s; by = y; bx = x; }
+  }
+  if (best < 0) return;
+  const ny = w0.nest[0], nx = w0.nest[1], vy = by - ny, vx = bx - nx, L = Math.hypot(vy, vx);
+  const uy = vy / L, ux = vx / L, py = -ux, px = uy, my = ny + 0.5 * vy, mx = nx + 0.5 * vx;
+  for (const P of panels) {
+    const w = P.world;
+    for (let s = -9; s <= 9; s += 0.125) for (const o of [-0.5, 0, 0.5]) {
+      const y = Math.round(my + s * py + o * uy), x = Math.round(mx + s * px + o * ux);
+      for (const [yy, xx] of [[y, x], [y + 1, x], [y, x + 1]]) {
+        if (yy < 0 || yy >= H || xx < 0 || xx >= W) continue;
+        const a = yy - ny, b = xx - nx; if (a*a + b*b <= 16) continue;
+        if (Math.hypot(yy - by, xx - bx) <= FOOD_R + 2) continue;
+        const c = yy * W + xx; w.obst[c] = 1; w.pher[c] = 0; w.pher[H*W + c] = 0;
+      }
+    }
+  }
+}
+
+// ------------------------------------------------------------ controls
+document.querySelectorAll("#tools button").forEach(b => b.onclick = () => {
+  tool = b.dataset.tool; document.querySelectorAll("#tools button").forEach(x => x.classList.toggle("on", x === b));
+});
+document.querySelectorAll("[data-speed]").forEach(b => b.onclick = () => {
+  speed = +b.dataset.speed; document.querySelectorAll("[data-speed]").forEach(x => x.classList.toggle("on", x === b));
+});
+document.getElementById("pause").onclick = e => { paused = !paused; e.target.textContent = paused ? "Run" : "Pause"; };
+document.getElementById("reset").onclick = () => { layoutIdx = (layoutIdx + 1) % DATA.layouts.length; newWorlds(DATA.layouts[layoutIdx]); };
+document.getElementById("block").onclick = blockBusiest;
+document.getElementById("showpher").onchange = e => { showPher = e.target.checked; };
+document.getElementById("notes").textContent = DATA.notes;
+
+newWorlds(DATA.layouts[0]);
+function loop() {
+  if (!paused) for (let s = 0; s < speed; s++) for (const P of panels) tick(P);
+  for (const P of panels) draw(P);
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

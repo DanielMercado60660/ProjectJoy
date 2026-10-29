@@ -1,0 +1,414 @@
+Joy Lab II: pitfalls and modern successors
+Oct 22, 2026 · @Daniel Mercado
+How to read this
+Each section covers one cluster of projects and answers three questions: what is already settled, what newer methods replaced the ones in the plan, and what is still genuinely open.
+Scope is all twelve Joy Lab II projects, plus the Joy Lab I projects already in motion: Roomba Rocket League, Alien Radio, Self-Healing Pixels, Tiny Grand Prix and Tiny AlphaZero.
+• Settled: a known result or failure mode. Fun to reproduce, but expect to rediscover it.
+• Successor: a newer method built to fix a known flaw in the one the plan names.
+• Open: a live question, where your result could actually add something.
+Every paper links to its page. Anything I could not confirm from the paper itself is labeled unverified.
+Little Newton, Dream Before You Leap and Peekaboo Physics
+LeWorldModel is real and the right size, but its own paper flags your kind of scene as its weak spot. The 2026 literature adds a sharper warning: low latent prediction loss says little about planning, so judge world models by closed-loop success and action sensitivity.
+Little Newton
+Settled
+• LeWorldModel checks out. LeWM (Maes, Le Lidec, Scieur, LeCun, Balestriero; Mar 2026) is about 15M parameters: a 5M ViT-tiny encoder plus a 10M predictor. It trains from pixels with next-embedding prediction plus SIGReg (from LeJEPA) and plans with CEM in under a second.
+• Its admitted weak spots are your scene. It lost the low-dimensional Two-Room task, because SIGReg struggles when data has low intrinsic dimension. It also plans only about 25 environment steps ahead, which may not fit "probe the floor, then push."
+• It starts out ignoring actions. Actions enter through zero-initialized AdaLN, so test action sensitivity explicitly after training.
+• Frozen vs learned encoders. Frozen patch features cannot collapse and win on rich 3D scenes (DINO-WM, V-JEPA 2-AC). End-to-end models (PLDM, LeWM) match them on 2D tasks at far lower planning cost. V-JEPA 2-AC needs 16 s per action on an RTX 4090.
+• Patches beat global vectors as tasks demand spatial precision (DINO-WM). LeWM's single CLS-token latent may lose detail that pushing needs.
+• A recipe exists. Terver et al.: DINO encoders beat V-JEPA ones, L2 goal cost beats L1, a 2-step rollout loss helps but longer ones hurt, and proprioception helps. Bigger models did not help in simulation.
+• Replan less often. In PLDM, replanning every 4 steps cut cost from 16.0 to 4.8 s per episode while keeping 95% of success. Random exploration data was fine.
+• Probing needs a mechanism. Flat goal-cost planners are greedy, and meta-RL needs explicit exploration (DREAM). Deliberate probing has precedent: Denil et al. 2016, and ASID choosing probes by Fisher information.
+• Beware the texture shortcut. Video models generalize by nearest example and weight color above everything (Kang et al.). Make carpet and ice look identical, or randomize texture independently of friction.
+Successors
+• Hierarchy fixes short horizons. HWM (CoRL 2026) reached 70% vs 0% on Franka pick-and-place from one goal image. H-JEPA (Oct 2026) went from 18% to 73% on Visual AntMaze.
+• Gradient planning is viable now. Temporal Straightening (ICML 2026) reshapes the latent space, and closing the train-test gap matches CEM in about 10% of its time.
+• Physics calibration. PhysiCalWorld (21 Oct 2026) turns an exploratory clip into a physics token that conditions the world model. T2-z (Oct 2026) instead optimizes an environment latent at test time, on friction and mass tasks.
+Open
+• Agent-chosen probes. PhysiCalWorld's clip comes from random or scripted exploration. An agent that picks its own probe by information gain on a learned latent model is unpublished, and it is Little Newton's headline experiment.
+• Probing an end-to-end JEPA world model for friction or mass. Nobody has done it.
+• A frozen SigLIP encoder for latent planning is untested. Indirect evidence suggests DINOv2 encodes geometry better (probe3d).
+Probe trap: in CALIPER (Sep 2026, preliminary), a randomly initialized ViT probed mass and friction within 0.02 R² of the ceiling in a clean fixed-camera scene. Randomize camera and lighting per episode, and add swap controls and a random-encoder baseline.
+Dream Before You Leap
+Settled
+• Short horizons by design. DreamerV3 (Nature, Apr 2025) imagines 16 steps; TD-MPC2 plans 3 steps with a 5M model. The value function carries long-horizon credit, so divergence past those horizons is expected.
+• Model-based costs wall-clock. MR.Q (ICLR 2025) reports training at 14 frames/s for TD-MPC2, 18 for DreamerV3 and 49 for MR.Q on HalfCheetah. Modern model-free critics (BRO, SimBa) close much of the sample-efficiency gap; MR.Q makes a good fourth arm.
+• The classic failure modes. MBPO showed short branched rollouts avoid model exploitation. Objective mismatch: one-step likelihood is often uncorrelated with control.
+• Pretrained visual features did not help DreamerV3 or TD-MPC2-style agents learn faster (NeurIPS 2024).
+Successors
+• TD-M(PC)² and BMPC fix TD-MPC2's value overestimation. If its Q-values explode, this is the known cause.
+• Dreamer 4 (Sep 2025) got Minecraft diamonds from offline data alone, at 2B parameters on 256 to 1024 TPU-v5p. Cite it; do not replicate it.
+• R2I swaps Dreamer's recurrence for state-space models to extend memory; SOLD uses object slots and beat both references on relational manipulation.
+Open: 2026 diagnostics for imagined vs real
+• Ensembles miss long-horizon drift. In Biased Dreams (RLC 2026), rollouts drift toward well-supported latents where disagreement shrinks even as true error grows.
+• Errors cluster at events. About 70% of return error sits at reward or episode-end steps (Events, Not Pixels, preliminary). Align divergence plots to crashes, falls and goal crossings.
+• Action timing matters. Delayed actions break TD-MPC2 and DreamerV3 in different ways (Mind the Execution Gap, preliminary). Check action repeat and latency before blaming the model.
+Measure divergence four ways: open-loop error vs horizon (probed against true state), error aligned to events, ensemble disagreement vs true error, and the closed-loop return gap.
+Peekaboo Physics
+Settled
+• Permanence is hard in complex scenes, easier in simple ones. Most models sit at chance on IntPhys 2 (V-JEPA 2 best, below 60%). Yet JEPA latents show permanence in simpler tests (Garrido et al. 2025), so your scale is where small models can show it.
+• The reference design is Learning to Track with Object Permanence: recurrent memory supervised on hidden objects. MuJoCo hands you that hidden ground truth for free.
+• A moving camera confounds everything. V-JEPA 2-AC proved sensitive to camera placement. Condition on camera pose, or ego-motion will masquerade as object motion.
+• Active camera baselines. SUGARL (NeurIPS 2023) splits motor and sensory policies. A raw prediction-error reward can drag the camera toward noise (large-scale curiosity).
+• Audio can locate the unseen. Bu and Huang used drop-impact sound to predict where an unseen object ended up; see also Finding Fallen Objects (CVPR 2022).
+• A recurrent model-free agent is a strong baseline for partial observability (Ni et al., ICML 2022). Beat it before crediting the world model with belief tracking.
+Successors
+• Self-supervised permanence: random-walk memory (2022), Loci-Looped (imagines hidden positions and shows surprise), and iSEE (Oct 2026), where objects kept their slot after 86% of occlusions vs 32% for SlotContrast.
+• Slot dynamics: SlotFormer and SlotSSMs.
+Open
+• Camera control by information gain from a learned latent belief in a small occlusion task. The nearest work is WoMAP.
+• Impact audio added to a JEPA world model for occluded events. No paper exists.
+• A belief probe across model types: decode the hidden ball's position during occlusion and plot error vs occlusion length, for temporal JEPA, RSSM, slots and recurrent model-free. Event-conditioned diagnostics gives a ready protocol at your scale.
+Audio leak: if impact sounds come deterministically from contact events, audio is an exact contact timestamp. Add variation and run a video-only control.
+Shared checklist
+1. Test action sensitivity: true vs shuffled vs zeroed actions.
+2. Select checkpoints on closed-loop success, not latent loss. One-step fidelity is a poor proxy (Cheung and He 2026), and LeWM checkpoints' imagined interventions did worse than predicting no change on Cheetah (Vakalis 2026).
+3. Visual quality does not predict task success; controllability does (World-in-World, ICLR 2026).
+4. Monitor collapse: per-dimension spread and effective rank of the embeddings.
+5. Anything that moves with the robot (shadows, the camera) can be learned in place of the action's effect (LAOM).
+6. Run 5+ seeds and report IQM with bootstrap intervals (rliable).
+Read first: Little Newton: LeWM, Terver et al., PLDM, PhysiCalWorld, CALIPER. Dream: DreamerV3, TD-MPC2, MBPO, Objective Mismatch, MR.Q. Peekaboo: Tokmakov et al., Loci-Looped, Garrido et al. with IntPhys 2, SUGARL, Finding Fallen Objects.
+Two Brains, One Wheel and The Sleeping Robot
+History-based adaptation is the settled default inside the training range, weight updates win outside it, and both projects will hit loss of plasticity before anything interesting unless you add the now-standard defenses.
+Two Brains, One Wheel
+Settled
+• RMA only promises the training range. RMA infers an 8-number latent from 0.5 s of history and adapts in under a second, with friction trained from 0.05 to 4.5. Place your slippery floor inside, at the edge of, or outside that range, or the comparison is predetermined.
+• Weight updates win outside the range. Context-only meta-learners failed out of distribution unless all their components kept updating (Xiong et al. 2021).
+• Plain online SGD on a big dynamics model did not adapt fast without meta-training. MOLe adds new models at changes and recalls old ones, which is your "old floor returns" baseline.
+• Long online adaptation collapses. In continual test-time adaptation, all but one method eventually did worse than not adapting; periodically resetting to the pretrained weights matched or beat them (Press et al. 2023). Run long, and add a reset-to-prior arm.
+• Plasticity loss can masquerade as failed adaptation. Dohare et al. (Nature 2024) resampled Ant's friction every 2M steps: standard PPO degraded after each change, while L2 plus continual backprop held up.
+• Uncertainty degrades under shift. Every method's calibration fell, in-distribution temperature scaling did not survive, and deep ensembles were most robust, with most gains by about 5 members (Ovadia et al. 2019). MC dropout is provably blind between data regions (Foong et al. 2020).
+• Learned gates collapse and forget. Theory says an MoE router should stop updating after enough rounds (Li et al., ICLR 2025). MOSAIC (2001) already saw inappropriate module switching in exactly this two-model setup.
+Successors
+• ROA trains RMA's two phases jointly, closing the gap between what the teacher knows and what history can reveal. HIM needs no privileged teacher at all.
+• Context and weights are converging. LocoFormer (CoRL 2025) stretches context across episodes; RoboTTT (Jul 2026) updates fast weights by gradient descent inside the policy.
+• Cheap middle grounds. Recursive least squares on frozen features adapted a real wheeled robot on an ice rink within seconds (Ward et al. 2025). A 210-parameter action residual matched full online fine-tuning under mass and damping shifts (ALRA, NeurIPS 2026 workshop).
+• Stream-AC recovered repeatedly across alternating floor-friction regimes with no replay buffer. It is the baseline for "online learning, no buffer."
+• Principled switching. Run Bayesian online changepoint detection on prediction residuals, or high-confidence change tests over an ensemble that trade detection delay against false alarms (Alegre et al. 2021).
+Open
+• Where is the crossover? Sweep friction from inside the training range to far outside, comparing RMA-style, least-squares head, residual SGD and gated arms. No controlled sweep exists.
+• A statistical trigger (changepoint or CUSUM) vs a learned confidence gate at equal detection delay. Nobody has compared them in continual RL.
+• How well ensemble disagreement detects dynamics shifts, as opposed to image shifts, is under-measured.
+The Sleeping Robot
+Settled
+• Replay is the bar to beat. Tiny episodic memories beat purpose-built methods (Chaudhry et al. 2019). Under fixed compute, uniform memory sampling beat every traditional method (Prabhu et al., CVPR 2023), so charge sleep compute against your baselines.
+• The actor-critic exception. In Continual World (SAC), naive replay scored 0.12, likely because replay over-regularizes the critic. Cloning on the actor fixed it (ClonEx-SAC: 87% vs PackNet's 80%). Consolidate actor and critic differently.
+• EWC's limits are documented. It fails when the condition must be inferred (van de Ven and Tolias), its multi-task penalty is inconsistent (Huszár 2017), and results hinge on how the Fisher is computed (van de Ven 2025).
+• Progress & Compress aged badly. It forgot more than reported in CORA and diverged with PPO in 2024. Its successor Reset & Distill (ICLR 2025) resets the day learner and distills with replay; transfer on Hard Meta-World went from −0.50 to −0.04.
+• The stability gap. Replay, distillation and regularization all dip right after a change and then recover, and end-of-day evaluation hides the dip (De Lange et al., ICLR 2023). Evaluate per step.
+• Data-free sleep helps most with a tiny buffer. Sleep Replay Consolidation reached 48.5% alone on class-incremental MNIST, vs 79.9% for rehearsal on 0.75% of the data and 86.5% combined. It gave no gain at 2,000 stored examples.
+• More sleep can mean less plasticity. Heavy replay is a high replay ratio. Resets counter the primacy bias that comes with it (Nikishin et al. 2022) and are what let replay ratios scale (D'Oro et al. 2023).
+Successors
+• The 2026 plasticity stack, with no single winner: LayerNorm plus weight decay (Lyle et al. 2024), continual backprop or shrink-and-perturb, soft partial resets, and Adam with β1 = β2 or a state reset at switches. Plasticine packages 13+ methods and metrics.
+• Fast/slow pairs. CLS-ER, Hare & Tortoise (resets the fast net to the slow one), and permanent plus transient value functions (Anand and Precup 2023).
+• Compute-budgeted wake/sleep. SIESTA trained continually on ImageNet-1K in under 2 hours on one GPU.
+• Merging needs a shared base. Simple averaging held up surprisingly well (MagMax, ECCV 2024), but only for adapters trained from the same consolidated weights.
+Open
+• Does sleep raise or lower plasticity loss over many cycles? Nobody has measured it.
+• Every episode vs every N episodes vs a prediction-error trigger, with total sleep compute fixed and a random-time control with the same number of sleeps. Evidence so far: replay timing matters in supervised learning (Klasson et al.), and one deferred sleep partially restores several tasks (Bazhenov et al. 2026).
+• Prediction-error triggers in RL exist only at small scale. CAWM (2026) runs CUSUM on a DreamerV3 agent's prediction error and flushes stale replay, over three seeds.
+• Surprise-based storage vs distribution matching for dynamics models. In lifelong RL, matching the training distribution won (Isele and Cosgun 2018).
+Shared design notes
+• Report forgetting and plasticity side by side, plus backward and forward transfer (GEM metrics). Conclusions can flip with the forgetting metric (Ashley et al. 2021).
+• Run every condition change both abruptly and as a ramp; plasticity loss is much milder under gradual change (Liu and Mou 2026).
+• Log dormant-unit fraction, effective rank and weight norm at every switch or sleep. They are cheap early warnings.
+Read first: Two Brains: RMA, Dohare et al. 2024, MOLe, Press et al. 2023, Ovadia et al. 2019. Sleeping Robot: Reset & Distill, Chaudhry et al. 2019, Sleep Replay Consolidation, Lyle et al. 2024, the stability gap.
+Curiosity Killed the Robot and The Skill Garden
+Which agents fall for a noisy TV depends on two things: whether the agent can switch it, and whether it shows fresh noise. For skills, the null hypothesis to beat is that pretrained skills do not beat training from scratch at a matched budget.
+Curiosity Killed the Robot
+Settled
+• Who falls for the TV. With a remote-controlled TV in a 3D maze, prediction-error curiosity slowed drastically (Large-Scale Curiosity). ICM ignores noise it cannot influence but falls for a TV it can switch.
+• RND is only partly immune. It removes the unpredictable part of the error, but a TV showing never-seen images stays novel forever (RND; Mavor-Parker et al. 2022).
+• Disagreement escapes, slowly. Ensemble variance shrinks on random targets (Disagreement, Plan2Explore). Still, ensemble coverage on MountainCar fell from 91.2% to 61.0% with a noise input. Measure time to escape, not just escape.
+• Neither episodic nor lifelong novelty dominates. Episodic bonuses win when episodes share little structure, global ones when they share a lot (Henaff et al. 2023). Naive episodic counts break when noise makes every frame unique (E3B).
+• Normalization decides as much as the bonus. RND needed observation whitening, return normalization and separate value heads. RLeXplore found normalization, update ratio and initialization all change rankings. Fix one recipe before comparing bonuses.
+• Resets leak reward. Curious agents learned to avoid dying because resets return them to boring states. Your reward-free agents are shaped by the reset rule.
+• Curiosity can hurt once a goal appears. Overly curious agents underperform extrinsic-only ones on easy tasks (EIPO; Taïga et al.).
+• Articulated bodies thrash. State-novelty agents spent effort on joint configurations instead of going places, even in state-based Ant (METRA's comparison). Compute novelty on a low-dimensional projection.
+• Detachment and derailment. Agents forget how to return to frontiers whose bonus they spent (Go-Explore, Nature 2021). Return-then-explore is cheap in a small deterministic world.
+• Learning progress must count drops too. Rewarding only improvement caused catastrophic forgetting of earlier tasks (Kanitscheider et al. 2021). Progress alone also happily masters trivial variations (OMNI).
+• LLM judges get gamed. Motif's NetHack agent ate a hallucinogenic corpse so a monster would look like its goal. ELLM never suggested a tool the agent needed, blocking that skill.
+Successors
+• Learning progress, tested directly. LPM (2026) rewards improvement over a model of the previous error. With noise on MountainCar it kept 67.0% coverage vs 61.0% for an ensemble, 28.0% for RND and 12.8% for inverse-dynamics curiosity. It is small enough to reproduce on a Mac.
+• The cheap ICM fix. Aleatoric mapping agents add a variance head and down-weight high-variance transitions.
+• Weighting fixes. NGU and Agent57 learn a family of intrinsic weights; DeRL separates exploring and exploiting policies.
+• Mechanism-focused curiosity. ELDEN (NeurIPS 2023) rewards uncertainty about which entities affect each other, aimed at chains like switch-then-door.
+• Async LLM guidance. ONI labels experience on an asynchronous LLM server and distills a reward model. Copy that pattern when a local LLM is slower than the simulator.
+Open
+• Learning progress vs disagreement at small scale. LPM beat the ensemble with noise but covered less without it (76.5% vs 91.2%). That is one paper.
+• Learnable but useless distractors, such as a chaotic pendulum. Both progress and disagreement may stay hooked; no test exists in object worlds.
+• A small local LLM as an interestingness judge. Untested.
+• What transfers to the later goal: the world model (Plan2Explore), the relabeled exploration data (ExORL) or the policy? No head-to-head exists in a mechanism-discovery world.
+Design: build the noisy TV as a 2x2: always on vs remote, crossed with a small fixed image set vs fresh noise. Predictions: ICM fails only with the remote, RND fails mainly with fresh noise, and disagreement and progress escape everything at different speeds. A surprise-minimizing arm (SMiRL) should simply switch the TV off.
+The Skill Garden
+Settled
+• Mutual information rewards distinguishability, not distance. DIAYN on Ant learned different poses in place rather than locomotion (LSD). On full joint state, postures are the expected baseline result.
+• Many locomotion results lean on an x-y prior. DIAYN and DADS often discriminate only x-y position, so judging x-y coverage for a method given x-y is circular.
+• A learned skill prior collapses. Learning p(z) cut the effective number of skills about 10x (DIAYN appendix). Keep it uniform.
+• The discriminator discourages exploration by under-rewarding novel states (DISDAIN), and skills end up depending on the start state (EDL).
+• Skill count is bounded; extra skills become duplicates (Information Geometry of URL).
+• More joints, stranger skills. VALOR's humanoid learned only a few unnatural behaviors.
+• Distance methods still prefer the body. In FetchPush, LSD and DIAYN moved only the gripper and ignored the object (CSD).
+• URLB is your null hypothesis. No method solved it (best 40 to 70% normalized), random initialization was competitive from states, skill methods lagged exploration methods, and in 9 of 18 experiments more pretraining did not help (URLB).
+Successors
+• Change the metric. LSD makes skills travel far and follow goals zero-shot; CSD reaches objects; METRA uses temporal distance and scales to pixels (up to 24 hours per pixel run on A5000 GPUs, so use the state version).
+• The twist. Can a MISL Fly? (ICLR 2025) argues METRA's gains fit inside mutual-information learning. Its contrastive successor features match METRA with fewer parts and are easier to port to MLX.
+• Add exploration to the skill objective: CIC, CeSD, APS.
+• Zero-shot representations. HILP and forward-backward (FB); zero-shot FB averaged 81% of a supervised offline agent (Touati et al.).
+• Usefulness priors. LGSD (ICLR 2025) has an LLM describe states and maximizes language distance, which also gives skills names. DoDont steers with under 8 instruction videos.
+• Composable structure. DUSDi and SkiLD build skills around separate state factors.
+• Off-policy drift. GenDa (2026) finds skill meanings drift during SAC-style training; relabel rewards at sampling time.
+Composition evidence
+• Count the budget honestly. URLB normalizes against an agent trained 2M steps on the task, while pretrained agents get 2M reward-free steps plus 100k fine-tuning. For one task at matched steps, scratch wins, so frame results as amortization over N goals.
+• Model-based reuse is strongest. Dreamer-style pretraining with task-aware fine-tuning reached 93.59% on URLB (Rajeswar et al.).
+• Most of hierarchy's benefit is exploration (Nachum et al.). Include a flat agent with temporally extended exploration.
+• Navigation flatters locomotion skills (HSD-3). Include goals that need something besides walking.
+• LLM composers need grounding. SayCan's planning success fell from 84% to 67% without value functions (SayCan). The strong LLM-composition results use named or coded skills, not discovered ones.
+Open
+• Break-even: how many goals before skill pretraining pays back its own budget. Nobody reports it.
+• An LLM composing unnamed discovered skills vs a learned high-level policy vs planning over skills. Name skills first (caption each skill's end state) so naming failures separate from feasibility failures.
+• Which METRA and CSF ingredients matter on a small creature.
+Design: run DIAYN with three discriminator inputs (full state, x-y, learned projection), log the effective number of skills, and measure coverage from the final policies rather than the replay buffer.
+Shared evaluation notes
+• Two groups of 5 seeds of one identical config differed "significantly" (p = 0.0016) (Henderson et al.). Use 10+ seeds and IQM with stratified bootstrap intervals (rliable).
+• Count distinct states on things the agent controls (cell, object states, door open), never raw observations.
+• Count LLM calls and wall-clock. Uncached, ELLM would spend about 27 hours querying per 5M-step run.
+Read first: Curiosity: Large-Scale Curiosity, RND, Disagreement with Plan2Explore, Henaff et al. 2023, LPM. Skills: DIAYN, LSD, METRA, Can a MISL Fly?, URLB. Composition: SayCan, Nachum et al., Rajeswar et al..
+Action Chunk Fight Club
+Both 2026 papers in your plan are real and correctly described. The bigger finding is a recent result that flips the usual story: diffusion and flow policies win through iterative computation, not by modeling multimodality, so the tournament needs a strong regression arm on a shared backbone.
+The two cited papers check out
+• Action-to-Action Flow Matching (Jia, Li et al., NTU; Feb 2026; in the RSS 2026 proceedings). It encodes the executed action history into a latent, flows to the next chunk's latent, and decodes, in one to a few steps.
+• Its own limits: little help for gripper-type discrete actions, hand-tuned loss weights, more sensitivity to history errors, and near-deterministic output unless the history gets noise.
+• Δ Flow Matching (Zuo et al., same lab; 11 Oct 2026). It flows in action space from mildly noised recent history, in one step. It is unreviewed, its code is not released, and it was tested only on LIBERO.
+• Read Δ-flow's smoothness claim carefully. Its 4.5x lower jerk is against one-step Gaussian sampling, not a converged multi-step flow. It has no real-robot, real-time chunking or async tests. Cite it by arXiv ID, since unrelated "DeltaFlow" papers exist.
+The idea has a long lineage
+• Diffusion Policy (2023) already noted warm-starting from the previous chunk. BRIDGeR (RSS 2024) found Gaussian sources seldom best; even simple heuristic sources beat them.
+• Streaming Flow Policy (CoRL 2025) starts near the last action and streams actions with no chunk boundaries at all. STEP (ICML 2026) names a warm-start failure, stalling, and adds a velocity-aware perturbation to fix it.
+• WarmPrior (May 2026) is the best-controlled test: 600 rollouts per cell, with gains largest at one step and on harder tasks. On π0.5 with real-time chunking, the gains stacked (Block Throwing 0.32 to 0.62), on small samples.
+Settled
+• Multimodality is not why generative policies win. Much Ado About Noising (Pan et al., 2025/2026) found across 28 benchmarks that the edge comes from supervised iterative steps plus the right noise. A two-step regression policy (MIP) roughly matches flow, and A2A itself saw ACT perform comparably.
+• Smooth single-step imitators compound exponentially, even on stable systems (Simchowitz et al. 2025). Your plain MLP arm loses for structural reasons, not tuning.
+• Chunking needs open-loop-stable dynamics. Zhang et al. 2025: chunking helped under position control and hurt in HalfCheetah. When injecting noise into demos, imitate the clean labels; imitating noised labels was catastrophic.
+• Position labels beat velocity labels for Diffusion Policy, an action horizon near 8 was best, and teleop pauses made single-step policies freeze. Gamepad sticks produce velocity-like commands, so integrate them into a position target and log both.
+• ACT's CVAE only matters with human data. Removing it dropped success from 35.3% to 2% on human demos, with no change on scripted ones (ACT). Temporal ensembling added only 3 to 4 points.
+• IBC is unstable to train. If you want an energy-based arm, use R-NCE instead.
+• History inputs invite copying. Policies with observation histories can learn to copy the previous action (Wen et al. 2020). This applies to your GRU and history-source arms.
+Chunk execution
+• Quasi-static tasks hide latency. The RTC authors note most simulated imitation tasks are quasi-static. Push, position and stack will not show latency failures unless physics keeps running during inference and you add moving targets or nudges.
+• Real-Time Chunking. RTC (NeurIPS 2025) treats async chunking as inpainting, needs no retraining, and works only for diffusion and flow heads. It beat Bidirectional Decoding and cost 97 ms vs 76 ms per call on π0.5.
+• Training-time RTC (Dec 2025) conditions on the committed prefix and removes that overhead, which suits a Mac. The Kinetix RTC repo is the closest small-model template.
+• Async buys throughput, RTC fixes jumps. SmolVLA's async mode was about 30% faster with similar success. LeRobot ships async inference and RTC as separate fixes.
+• Execution horizon matters as much as chunk size. On LIBERO, SmolVLA went from 50.0% at chunk size 1 to 84.0% at 10, but executing 50 actions before re-observing fell to 51.8%.
+• Stale observations have fixes. A2C2 adds a per-step correction head (+23 points over RTC on Kinetix); VLASH rolls the state forward.
+Evaluation
+• Ten trials prove little. A 7/10 success rate has a 95% interval of 0.40 to 0.89. Separating 0.70 from 0.80 takes about 294 trials per arm (our calculation), fewer with paired seeds. MuJoCo makes hundreds cheap.
+• Fix checkpoint selection in advance. robomimic showed selection alone moves results; Diffusion Policy averaged the last 10 checkpoints over 3 seeds.
+• Spread beats count. Past a threshold, diversity of starting conditions matters more than demo count (Data Scaling Laws, ICLR 2025). LeRobot's SmolVLA guide found 25 episodes too few and recommends about 50.
+• Measure jerk where it happens. Compute it on executed positions as well as commanded actions, and add a chunk-boundary jump metric (Δ-flow defines one). Position servos smooth commands and can hide boundary jumps.
+Open, where your result would add something
+• History-source flows under asynchronous execution with controlled delay. Neither A2A nor Δ-flow has been tested with RTC or async.
+• Stalling and copying with pause-heavy gamepad demos, for Gaussian vs history sources.
+• Three routes to one-step inference at matched compute: distillation (Consistency Policy), a better source (A2A, Δ-flow, WarmPrior) or few-step regression (MIP).
+• Chunking vs single-step as a function of actuator type in contact-rich pushing.
+• Gamepad demos and the policies trained on them. No study exists.
+• Whether SmolVLA's real-robot pretraining helps in MuJoCo. Menagerie has the SO-ARM100 and SO101 arms it was trained on.
+Practical order: fix position actuators and labels, build one backbone with swappable heads (MSE, MIP, ACT-CVAE, diffusion, flow from noise, flow from history), sweep synchronously with paired rollouts, then add delay, then perturbations, then SmolVLA.
+Read first: RTC with its training-time successor, Much Ado About Noising, WarmPrior alongside Δ-flow's section on A2A, Zhang et al. 2025, and Diffusion Policy sections 4.2 to 4.4.
+The Body Shop and The Infinite Dollhouse
+For same-topology bodies, adaptation from a short history beats explicit body descriptors. For procedural worlds, the classic regret-based curricula turned out to track success rate, not learnability.
+The Body Shop
+Settled
+• Encoding the body graph did not help. In Amorpheus (ICLR 2021), a transformer that ignored the body graph beat GNNs that used it. Always include a structure-free baseline.
+• History beats explicit system ID for parameter-only variation. RMA (RSS 2021) reached 73.5% simulated success vs 56.5% for explicit system ID, 62.4% for robust randomization, and 76.2% for an oracle given the true parameters.
+• What you randomize matters most. In Peng et al. 2018, an LSTM policy hit 0.89 real-robot success vs 0.67 feedforward, and 0.0 with no randomization. Dropping latency randomization cut success to 0.29; fixing mass only cut it to 0.64.
+• Descriptors cover kinematics, not dynamics. Hardware Conditioned Policies (NeurIPS 2018) found explicit structure vectors transferred across kinematic changes, but dynamics needed a learned embedding.
+• Pooled training transfers, within capacity limits. In Open X-Embodiment, the small pooled model helped small datasets but underfit the largest ones.
+Successors
+• Structure came back as a soft attention bias. See Body Transformer and GET-Zero. URMA (CoRL 2024) decodes one action per joint from joint descriptions, and trained on 48 CPU MuJoCo environments.
+• Stems, trunk, heads. HPT (NeurIPS 2024) uses per-body input stems and output heads around a shared trunk. That maps directly onto your proprioceptive encoders and motor adapters.
+• More bodies beats more data per body. Ai et al. (CoRL 2025) generated about 1,000 legged bodies; generalization rose with the number of training bodies.
+• 2026 fixes for negative transfer. MorFiC: a shared critic averages incompatible value targets, so condition the critic on the body. Abe et al. (ICLR 2026): gradients conflict across morphologies, so group similar robots. VISTA: normalized actions trace different physical paths on robots of different scale.
+Open
+• The full wheeled baseline ladder at equal compute: randomized MLP, oracle, explicit system ID (UP-OSI), RMA latent, GRU over history, descriptors plus history. RMA ran this for quadrupeds; nobody has published a wheeled version. This is your first milestone.
+• Does the critic need explicit body information when the actor adapts from history? MorFiC says yes for quadrupeds; wheels are untested.
+• Does the more-bodies trend hold for 10 to a few hundred generated wheeled bodies on CPU?
+Design notes
+• Split parameters in two. Feed build-time facts (wheelbase, wheel radius, sensor poses) as descriptors, and infer the rest (payload, motor strength, friction, latency) from history. This is a hypothesis, consistent with HCP.
+• Mass only shows during acceleration and friction only during slip, so gentle driving histories may not identify them. Probe the learned latent against the true parameters.
+• Body-twist commands (linear and angular velocity) hide the wheelbase from the policy; raw wheel torques expose it.
+The Infinite Dollhouse
+Settled
+• Regret proxies track success rate. No Regrets (NeurIPS 2024) found the practical regret scores (PVL, MaxMC) follow success rate rather than learnability, so curricula replay levels the agent already masters.
+• Hidden physics breaks minimax curricula. Levels with irreducible regret stall learning everywhere else (ReMiDi, ICML 2024). A curriculum that skews hidden parameters leaves the policy suboptimal on the real distribution (SAMPLR, NeurIPS 2022). Unseen friction and mass are exactly this case.
+• Agents overfit thousands of levels. CoinRun still overfit at 16,000 levels. Procgen needed up to 10,000 to close the gap, and a fixed level sequence gave an illusion of progress.
+• Too much randomization makes policies timid. DORAEMON (ICLR 2024) maximizes randomization only while success stays high.
+• Named factors beat bare seeds. The generalization survey by Kirk et al. argues for independently controllable factors of variation.
+Successors
+• Sampling For Learnability (SFL). From the same No Regrets paper: score each level by p(1−p), where p is the success rate, and train on a top-K buffer mixed with random levels. It beat domain randomization, PLR and ACCEL, but assumes deterministic, binary-outcome worlds. Kinetix (ICLR 2025) uses it.
+• Editing beats generating. ACCEL mutates useful levels with small edits, which suits config-based worlds. For continuous physical parameters, ALP-GMM samples by learning progress.
+• 2026 scorers. MNA penalizes unsolvable levels, TRACED (ICLR 2026) adds transition-prediction error, and PACE needs no extra rollouts, which matters on CPU.
+• LLM-written worlds. OMNI-EPIC, Eurekaverse and DiCode (ICML 2026) have a model write environment code. Expect invalid worlds; your replay machinery can check solvability before admitting one.
+• Forks expose lazy world models. Using exact simulator forks, Subramanian (Oct 2026) found a JEPA predictor barely responded to counterfactual actions. World Models Dream of Success (Oct 2026) found four released robot world models predicting success for verified failures.
+Forking in MuJoCo
+• Fork with mj_copyState and mjSTATE_INTEGRATION, which includes the solver warmstart. The docs call the warmstart critical for bit-exact replay from a non-initial state.
+• Replays are exact only within one MuJoCo version on one architecture (reproducibility notes). Four releases shipped between 8 Sep and 14 Oct 2026, so pin the version in every config.
+• A complete fork also holds every RNG in your code, the policy's recurrent state, wrapper counters, and a per-branch model copy if you edited the model.
+• Run mj_forward after restoring a state before reading sensors, and turn off sleeping islands for fork experiments.
+• Add a CI test: a fork with no intervention must reproduce the original trajectory bit for bit. Share future noise across branches so only the intervention differs (Twin Rollouts, 2026).
+Open
+• Learnability scoring with continuous rewards or stochastic physics. This is SFL's own stated limitation.
+• Which scorer wins on continuous physical parameters at equal rollout budget: ALP-GMM, SFL, MNA, TRACED or PACE? No paper compares them all.
+• The Procgen curve (generalization gap vs number of worlds) for 3D MuJoCo rooms, split by factor.
+• State-level learnability: use mid-episode forks, Go-Explore style, to find states where the agent sometimes succeeds.
+• A fork-based action-sensitivity battery as a standard world-model test. This pairs naturally with Little Newton.
+On a Mac, JAX runs on CPU only, so the 100x speedups quoted for the JAX UED libraries do not carry over. Rollouts spent scoring levels will dominate your compute budget.
+Read first: Body Shop: RMA, Peng et al. 2018, Amorpheus, URMA, Ai et al. 2025. Dollhouse: No Regrets, ACCEL, Procgen, Kinetix, and the MuJoCo State and Reproducibility docs.
+The Grounded Parrot
+Your core question, whether visual experience improves text-only physical reasoning, is untested. The anchor paper only showed text-to-text transfer inside one simulator, and none of its citing papers test vision-to-text.
+The anchor, read closely
+Language Models Meet World Models (Xiang, Tao, Gu, Shu, Wang, Yang, Hu; NeurIPS 2023) turned VirtualHome experiences into four text tasks: plan generation, activity recognition, counting and object tracking. Experiences came from an MCTS planner plus random exploration, and 1.3B to 13B models were fine-tuned with LoRA plus an EWC penalty. No images were involved.
+• Headline: +64% on average over base models across 18 tasks; GPT-J counting rose from 30% to 67%.
+• Without the EWC term it backfired. Plain fine-tuning left GPT-J below the base model on counting (30.4 to 16.5).
+• Negation controls regressed. The test built to catch word-association shortcuts fell for both 13B models (LLaMA-13B: 43.2 to 30.3).
+• Gains were tied to format. Removing a training task mostly removed its matching gain, so there was little shared embodied knowledge.
+• The ChatGPT comparison is inflated. Four of GPT-J's seven wins are one task scored four ways.
+• Retention was lightly checked: Pile perplexity plus a SuperGLUE subset where the base model sat near chance.
+These details live in Appendix Tables 6 to 8, which are worth reading first.
+Who cites it, and what they warn
+Semantic Scholar lists 183 citing records as of today, 18 flagged influential, and at least 8 of those are about forgetting. The anchor's lasting influence is EWC-LoRA as a forgetting baseline, not the claim that embodiment helps.
+• Gains can be tied to prompt wording. RL-tuned agents degraded on reworded prompts (Aissi et al.). Test every arm on paraphrases it never saw.
+• EWC-LoRA fails under repeated updates. Over 18 sequential manipulation skills it reached 6.9% vs 6.4% for naive fine-tuning (SkillsCrafter, 2026). It protects one update, not a stream.
+• Replay is the strongest single tool. Across 100 sequential tasks, no single mechanism retained well; replay plus merged LoRA helped most (Continual Learning Mechanisms Compose, Sep 2026, co-authored by Shu).
+• What you tune decides learn vs forget. Full LLM tuning gained +31.8 but lost 23.3 on held-out tasks; attention-only tuning gained +24.9 and lost 0.6 (Zhu et al., ECCV 2026).
+• Fluent physics talk is not understanding. LLMs that describe physical concepts well fail grid versions of the same concepts (The Stochastic Parrot on LLM's Shoulder, NAACL 2025). It is the natural foil for your project's name.
+• Random exploration under-samples informative events (LLaMA-Rider). Failed actions are useful signal (E2CL).
+• No-weight-update alternatives: WorldLLM refines natural-language theories in the prompt and explores where they predict badly. SPRInG blends an adapter with retrieval.
+Settled elsewhere
+• Robot fine-tuning can erase a VLM. OpenVLA scores 0 on 10 of 12 multimodal benchmarks in a later evaluation, and ChatVLA's robot-only model lost conversation entirely.
+• Known protections: co-training on general data (π0.5), stopping gradients from new action heads (Knowledge Insulating VLAs), writing actions as words so LoRA suffices (VLM2VLA), and weight merging.
+• Some forgetting is just misalignment. A short realignment can recover it (Spurious Forgetting, ICLR 2025).
+• LoRA learns less and forgets less (Biderman et al.). Forgetting tracks the KL shift from the base model on the new task (RL's Razor).
+• Small VLMs sit near chance on physics. About 1B open models score about 32% on PhysBench (chance 25%, humans 96%); most models are at chance on IntPhys 2. Counterfactual questions are hardest (CLEVRER).
+• Grounding rarely helps text-only skill at scale. See Yun et al. 2021, Zhuang et al. (helps only with tiny text budgets) and BabyLM 2024 (no multimodal entry beat the baselines). VLMs often trail their own LLM on text (SpatialEval).
+• Varied presentation matters. Knowledge is only extractable when training shows it in many forms (Physics of Language Models 3.1). Render each experience in several textual and visual variants.
+Successors worth borrowing
+• Mind's Eye (ICLR 2023) runs MuJoCo on demand and puts the outcome in the prompt: +27.9% zero-shot with no training. Your retrieval arm should include simulating on demand.
+• Physics Context Builders (ICCV 2025) fine-tune a small VLM to write physical scene descriptions for a frozen large VLM, up to +13.8%. It is a hybrid of hypotheses A and B.
+• Cosmos-Reason1 generates free self-supervised physics targets: arrow of time, shuffled patches, object permanence. All can come from MuJoCo renders.
+The model checks out
+LFM2.5-VL-450M is real: an LFM2.5-350M backbone (10 convolution and 6 attention layers) plus an 86M SigLIP2 encoder, released 8 Apr 2026 under the LFM Open License v1.0. Official LoRA notebooks and MLX weights exist, and mlx-vlm supports LoRA, DoRA and full fine-tuning.
+• At this size, full fine-tuning and full EWC fit easily in 128 GB, so every arm can run side by side.
+• Its card shows IFEval 61 vs 77 for its own LFM2.5-350M backbone (the cards may use different setups). Measure retention against both.
+• Only 6 of 16 text layers are attention, so check which convolution-block modules LoRA actually reaches.
+Open, where your experiment adds something
+• The core test. Does visual action-prediction training transfer to text-only physics questions? Controls: the text-only backbone, a blind VLM given no image, and shuffled images. Report near and far transfer separately.
+• A vs B at 450M. Raw-episode retrieval, distilled rules, simulate-on-demand, LoRA, EWC-LoRA, full EWC, LoRA plus replay, merged weights, and an adapter-retrieval hybrid. Nobody has run this sub-1B on physics data.
+• Where to update. Perception causes 37 to 45% of PhysBench errors, so an LM-only update may cap accuracy. Compare LM-only against LM plus vision encoder.
+• Active vs passive, with a trap. Under plain fine-tuning, a passive arm fed the active learner's chosen episodes is identical data. Compare active selection against random data of equal size, and log KL-to-base if the model's own predictions enter training.
+• Counterfactuals and hidden friction, not just forward prediction. The literature predicts counterfactuals improve least.
+Read first: the anchor with its appendix, Knowledge Insulating VLAs, Zhu et al., RL's Razor, and Lampinen et al. 2025 on in-context learning vs fine-tuning.
+Claude, Take the Wheel
+Expect Claude to make good skill-level choices and poor metric moves, and expect the outcome report to matter more than the prompt. Anthropic has published Claude as a robot programmer, never as a step-by-step pilot, so this experiment fills a real gap.
+Settled
+• High level is easy, low level is not. EmbodiedBench (ICML 2025) tested 24 models; the best managed about 29% on low-level manipulation. Claude 3.5 and 3.7 Sonnet led at the skill level but trailed GPT-4o on low-level navigation.
+• Vision matters mostly at the low level. In the same paper, removing images left skill-level scores flat but dropped GPT-4o's navigation from 57.7% to 17.4%.
+• Overshoot is the signature failure. Butter-Bench (Andon Labs, Oct 2025) is nearly your setup: an LLM drives a robot vacuum with drive, rotate and go-to commands. Best models score about 40% vs 95% for humans, and Claude Opus 4.1 overshot rotations and spun until lost (details).
+• The harness is a confound. In EmbodiedBench, detection boxes, examples, image size and feedback each moved scores 8 to 17 points. Meaning-preserving prompt formatting alone moved accuracy by up to 76 points (Sclar et al., ICLR 2024).
+• Feedback and feasibility make LLM planners work. Inner Monologue showed closed-loop language feedback is the main lever. SayCan showed the pilot needs a signal for which skills can succeed right now.
+• Metric estimates from pixels are weak. SpatialVLM traces this to missing 3D training data. Thinking in Space found chain-of-thought did not help, but having the model build an explicit map did.
+• Distilling a smarter teacher has two classic traps. Errors compound once the student leaves the teacher's states (DAgger). Imitation also averages away whatever the teacher saw that the student cannot (the imitation gap, ADVISOR, NeurIPS 2021).
+• There is no seed. The Claude API has no seed parameter, and served models are not deterministic even at temperature 0. In Thinking Machines' test, 1,000 identical requests gave 80 distinct completions.
+Successors
+• Middle-level interfaces sidestep metric weakness. Code as Policies offloads math to code, VoxPoser writes 3D value maps, and ReKep writes keypoint constraints a solver runs at control rate. Language to Rewards has the LLM write rewards for MuJoCo MPC: 90% of 17 tasks vs 50% for a primitive-skill baseline.
+• The current pattern: a reasoning model plans, an action model executes. See Gemini Robotics 1.5, Gemini Robotics-ER 1.6 (Apr 2026), Hi Robot and π0.5. ER 2 (Jul 2026, vendor numbers only) plans the next step while the robot is still moving.
+• The distillation recipe. In Scaling Up and Distilling Down (CoRL 2023), the LLM writes success checks, retries are kept, and a diffusion-policy student learns the retrying. Success rose 33.2 points on average across five domains.
+• Failed runs are training data. Three routes: tag each run with its outcome (Wang et al. 2024), pair failures with successes for DPO (ETO), or condition the policy on advantage (π*0.6 Recap).
+• Or skip demos and have Claude write rewards. Eureka beat expert-written rewards on 83% of 29 environments, and Text2Reward is the dense-reward variant. In MuJoCo this route is cheap.
+What exists for Claude specifically
+• Project Fetch. In Phase One (run August 2025), staff using Claude Opus 4.1 finished 7 of 8 robot-dog tasks vs 6 of 8 without it, in about half the time. In Phase Two (June 2026), Opus 4.7 in Claude Code did the shared tasks in 9 min 35 s vs 181 min for the faster human team.
+• Where Fetch fell short. Opus 4.7 failed at closed-loop ball pushing and did not finish autonomous fetching. In both phases Claude wrote code; it never drove the robot step by step.
+• Claude Plays Pokémon. Claude 3.7 Sonnet spent about 78 hours stuck in Mt. Moon in one run (community writeup). Opus 4.5 reached all eight badges by about 230,000 steps (follow-up). Persistence improved more than vision did.
+Open, where your result would add something
+• Per-step pilot vs "Claude writes the controller once" vs a hybrid that consults Claude only on failure, compared as cost per completion.
+• Abstraction level with the information budget held fixed inside one task. EmbodiedBench compares levels across different environments.
+• Whether bounded step sizes plus an achieved-motion report, or a map scratchpad, removes Butter-Bench-style overshoot.
+• Mid-episode handoff: Claude drives for k steps, then the apprentice finishes. Plot success against k.
+• Claude's run-to-run variance in an embodied loop. No public numbers exist.
+Design notes
+• Freeze one harness for all pilots, give each model the same 3 to 5 prompt variants, and report best and median.
+• Pause the simulator while any pilot thinks, and log wall-clock latency separately.
+• Log every usage field per call (input, output, cache write, cache read, thinking). Image and tool-schema changes can invalidate the prompt cache, which changes cost per episode.
+• Plot completion against cost, as AI Agents That Matter recommends, and keep held-out seeds nobody tunes on.
+Read first: EmbodiedBench, Butter-Bench, Inner Monologue, Scaling Up and Distilling Down, ADVISOR, and the Project Fetch Phase Two post.
+Joy Lab I projects already in motion
+Every one of these has a documented failure you may already be seeing, plus a cheap published fix or an exact oracle to grade against.
+Roomba Rocket League
+No RL paper names ball-pinning, but it belongs to a well-known family: shaping tied to the ball, plus stalling.
+Settled
+• Human leagues designed it out. IEEE Very Small Size Soccer (3v3 differential-drive robots) bolts 7 cm triangles into the corners and restarts play after a 10 s impasse (rules). RoboCup SSL stops play after 5 to 10 s of no progress (rules).
+• Ball-tied shaping breeds possession exploits. A robot rewarded for touching the ball learned to vibrate against it, as cited in Ng et al. 1999. Potential-based shaping, a difference of a state potential, cannot create a "sit here and farm" fixed point.
+• Restart rules are new loopholes. In Google Research Football, an agent kicked the ball out so the goalie's throw-in gave it a clear shot (Krakovna's list). Check who any free-ball rule favors.
+• Latest-opponent self-play locks in bad equilibria. Bansal et al. found sampling older snapshots stabilized training. Self-play cycles, so Elo against your own past is not progress.
+• Timeouts are not terminal states. Treating them as terminal corrupts value targets (Pardo et al. 2018); bootstrap at truncation.
+Successors
+• Anneal or evolve the shaping. Bansal annealed the dense reward to zero, and in Sumo a draw cost both agents as much as a loss. Liu et al. 2019 let population-based training tune shaping weights; the ball-chasing weight fell fast.
+• Leagues and exploiters. AlphaStar added exploiter agents to fix cycling. Gleave et al. showed self-play champions lose to odd adversarial policies, so train a dedicated anti-pinner.
+• Skills first, then self-play. Haarnoja et al. 2024 found end-to-end soccer degenerated; pretraining get-up and scoring skills fixed it.
+Open: pinning may be rational. If a draw is worth 0 against a competent opponent, freezing the ball cuts variance. Pinning regardless of score points to the shaping; pinning only when level or leading points to the terminal reward.
+Cheapest fixes, in order: corner fillets, a 10 s no-progress reset, a draw penalty, potential-based ball-progress shaping that anneals, then past-snapshot opponents plus an anti-pinner. Evaluate on a cross-play matrix, not self-play Elo.
+Alien Radio
+Settled
+• Effective long before compositional. In Kottur et al. 2017, agents hit near-perfect reward with a lookup-table code and got 25.6% on unseen combinations. A roomy channel invites this.
+• Success does not prove listening. Lowe et al. 2019 showed messages can predict the sender's action while the receiver ignores them. Only interventions on the message show listening.
+• Side channels are real. Agents still "communicated" about pure-noise images at about 95% vs 50% chance, using pixel statistics (Bouchacourt and Baroni 2018). Without a length cost, message length itself carries information (Chaabouni et al. 2019).
+• Topographic similarity is weak alone. It did not track generalization at scale (Chaabouni et al. 2022). Report positional and bag-of-symbols disentanglement too.
+Successors
+• Fight partner co-adaptation. Rita et al. 2022 traced lost structure to listener overfitting; resetting the listener gave more compositional, better-generalizing codes. Partner swapping is the cheap version.
+• Learnability pressures. Swap in new agents (Li and Bowling 2019), use iterated learning (Ren et al. 2020), or add channel noise (Kuciński et al. 2021).
+Open: does compositionality buy generalization? Chaabouni et al. 2020 and Kharitonov and Baroni 2020 say no; Auersperger and Pecina 2022 push back. Your held-out split design could settle it for your game.
+Design: hold out combinations, never primitives. Zero the message and confirm success drops to chance. Swap one symbol and check that exactly one attribute flips.
+Self-Healing Pixels
+Settled
+• The original documents its own failures. Growing NCA patterns explode or die past the training horizon. The fixes: a sample pool that reseeds the worst sample, damage during training, and gradient normalization.
+• Cross-entropy makes states grow without bound. In Self-classifying MNIST, L2 loss plus update noise fixed it, reaching 88% full agreement.
+• Damage robustness is not adversarial robustness. About 10% adversarial cells hijacked the MNIST collective (Distill 2021).
+Successors
+• IsoNCA removes the orientation bias from fixed Sobel axes. NoiseNCA fixes overfitting to the seed and grid resolution.
+• Differentiable Logic CA (Google, Mar 2025) uses binary states and learned logic gates. It learned Game of Life exactly, but training is hard.
+Open: Kvalsund and Stovold (Apr 2026) found the gecko NCA oscillates or is quasi-periodic, not a fixed point, and large damage can push it into a second mode. "It regenerates" by eye can hide this.
+Design: roll out at least 10x the training horizon, train on circular damage and test rectangles and halves, and log mean state and update size over time.
+Tiny AlphaZero
+Settled
+• You have an exact oracle. Connect Four is solved, and Pascal Pons' solver scores any position in milliseconds, with a 6,000-position benchmark. Measure the share of optimal moves, not self-play Elo.
+• Practitioner tuning for Connect Four. An Oracle series (2018) hit 99.76% weak-optimal moves with 800 simulations. Settings: Dirichlet alpha 1.0 to 1.75, temperature 1 all game, c_puct about 4, and a value target shifted from game outcome to search value.
+• Planning helps most during training. A MuZero study found shallow trees usually suffice.
+• Pass moves need explicit termination. An AlphaGo reimplementation on tic-tac-toe learned to pass forever.
+Successors
+• Gumbel AlphaZero (ICLR 2022) fixes policy improvement at low simulation counts; it trained Go with as few as 2 simulations. A JAX version ships in mctx.
+• KataGo: playout-cap randomization (full search on 25% of moves), forced playouts with target pruning, and auxiliary heads. Its ownership head transfers directly to a territory game.
+Open: vanilla AlphaZero plays Connect Four strongly but not perfectly (Kong et al., Jul 2026). Where policy-only overtakes search at equal compute, at hobby scale, is unknown.
+Design: match on forward passes and wall-clock. At 16 simulations or fewer, compare against Gumbel rather than PUCT.
+Tiny Grand Prix
+Settled
+• Your wall-hugging is documented and solved. Fuchs et al. (GT Sport, RA-L 2021) used a centerline-progress reward; without a penalty, cars ground along walls in sharp turns. A wall-contact penalty scaled by speed squared fixed it; fixed penalties were ignored or made the car stop.
+• Rays cannot see backward. Fuchs added heading relative to the centerline tangent and curvature lookahead. Pay signed progress, never raw speed, or you get CoastRunners-style loops.
+• Cloning from laps drifts. Compounding error needs DAgger, and extra inputs can hurt through causal confusion (de Haan et al. 2019).
+• RL beats MPC by its objective. In drone racing, RL won by optimizing a better task-level objective, not by optimizing better (Song et al. 2023). A fixed-line MPC baseline is handicapped by its line.
+Successors
+• Human laps rarely include recoveries. DART injects noise into the demonstrator; HG-DAgger lets the human take over.
+• GT Sophy picked race policies on a Pareto front of lap time vs off-course and collisions, not by training reward.
+Open: nobody has published a train/test track-split study for ray-sensor cars. Procedural spline tracks with held-out hairpins and chicanes would be a real result (Procgen shows why it matters).
+Read first: soccer: Bansal, Liu 2019. Radio: Lowe, Rita. Pixels: Growing NCA, Kvalsund and Stovold. AlphaZero: Gumbel, Pons solver. Racing: Fuchs, Swift.
+Start here
+If you read ten things before building, read these, in this order. Each one changes how you would set up more than one project.
+1. Deep RL at the Edge of the Statistical Precipice (rliable, NeurIPS 2021). The seeds-and-intervals discipline every comparison in both labs needs.
+2. Much Ado About Noising (2025/2026). Why a fair tournament needs a shared backbone and a few-step regression arm, not just fancier heads.
+3. Loss of plasticity in deep continual learning (Nature 2024). Its friction-switching Ant result is your slippery floor, and it shapes Two Brains, The Sleeping Robot and any long run.
+4. LeWorldModel (2026). The model in your plan, with its own admitted weak spots on simple, low-dimensional scenes.
+5. CALIPER (2026, preliminary). Short, and it will stop you trusting a clean fixed-camera probe.
+6. URLB (NeurIPS 2021). The null hypothesis for The Skill Garden: pretrained skills often do not beat training from scratch.
+7. Beyond Noisy-TVs (LPM) (2026). The most direct recent test of your noisy-TV comparison, small enough to reproduce.
+8. No Regrets (NeurIPS 2024). Why the Dollhouse's curriculum should score learnability, not regret.
+9. Real-Time Execution of Action Chunking Flow Policies (NeurIPS 2025). Async execution done right, plus the warning that quasi-static tasks hide latency.
+10. Language Models Meet World Models (NeurIPS 2023), appendix included, with Butter-Bench as a chaser. The Grounded Parrot's anchor and Claude's closest pilot benchmark.
+For the Joy Lab I projects already running, the three quickest wins are Fuchs et al. for the wall-hugging car, Pascal Pons' Connect Four solver as an AlphaZero grading oracle, and Lowe et al. 2019 before trusting any Alien Radio metric.

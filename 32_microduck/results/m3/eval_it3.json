@@ -1,0 +1,3071 @@
+{
+"tag": "it3",
+"params": null,
+"summary": {
+"bot/go_and_return/train": {
+"n": 20,
+"success": 19,
+"rate": 0.95,
+"median_s_success": 51.5,
+"falls": 0,
+"contact_episodes": 5,
+"wrong_pad_episodes": 3,
+"reached_pad": 20
+},
+"bot/set_lamp/train": {
+"n": 20,
+"success": 18,
+"rate": 0.9,
+"median_s_success": 20.95,
+"falls": 0,
+"contact_episodes": 1,
+"press_needed": [
+3,
+5
+],
+"extra_presses": 1,
+"visits_without_press": 2
+},
+"bot/find_ball/train": {
+"n": 20,
+"success": 19,
+"rate": 0.95,
+"median_s_success": 32.4,
+"falls": 0,
+"contact_episodes": 0,
+"by_hider": {
+"occluder": [
+8,
+9
+],
+"partition": [
+11,
+11
+]
+}
+}
+},
+"rows": [
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "yellow"
+},
+"config_id": "train-0000",
+"k": 0,
+"declared_done": true,
+"ticks": 278,
+"sim_time": 27.8,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 147,
+"home_after_pad_tick": 252,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 7.06,
+"log": [
+{
+"tick": 105,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 166,
+"event": "at_pad",
+"dist": 0.056761857423263354
+},
+{
+"tick": 277,
+"event": "home",
+"dist": 0.06230166237570635,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "off"
+},
+"config_id": "train-0000",
+"k": 0,
+"declared_done": true,
+"ticks": 210,
+"sim_time": 21.0,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": false,
+"lamp_final": false,
+"target": false,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 5.2,
+"log": [
+{
+"tick": 105,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 209,
+"event": "lamp_check",
+"on": false
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0000",
+"k": 0,
+"declared_done": true,
+"ticks": 333,
+"sim_time": 33.3,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.607,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 259,
+"ball_rest": [
+-0.808,
+-0.48
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 8.19,
+"log": [
+{
+"tick": 28,
+"event": "ball_lost",
+"last": [
+1.3492941287932512,
+0.24404655619670304
+],
+"direction": [
+0.5393443664371617,
+0.8420853011378934
+],
+"guess": [
+1.5110974387243996,
+0.496672146538071
+]
+},
+{
+"tick": 136,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 327,
+"event": "ball_found",
+"xy": [
+1.5246226532109224,
+0.3830788551034884
+],
+"centred": true
+}
+],
+"hider": "partition"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "yellow"
+},
+"config_id": "train-0001",
+"k": 0,
+"declared_done": true,
+"ticks": 409,
+"sim_time": 40.9,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 224,
+"home_after_pad_tick": 388,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 10.35,
+"log": [
+{
+"tick": 104,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 243,
+"event": "at_pad",
+"dist": 0.03289294224343917
+},
+{
+"tick": 408,
+"event": "home",
+"dist": 0.040128838955387526,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "on"
+},
+"config_id": "train-0001",
+"k": 0,
+"declared_done": true,
+"ticks": 146,
+"sim_time": 14.6,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": true,
+"lamp_final": true,
+"target": true,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 3.82,
+"log": [
+{
+"tick": 104,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 145,
+"event": "lamp_check",
+"on": true
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0001",
+"k": 0,
+"declared_done": true,
+"ticks": 271,
+"sim_time": 27.1,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.681,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 205,
+"ball_rest": [
+0.144,
+-0.597
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 6.68,
+"log": [
+{
+"tick": 32,
+"event": "ball_lost",
+"last": [
+0.8471461403603024,
+-0.41401172479614795
+],
+"direction": [
+0.3780534737642968,
+-0.9257837603753634
+],
+"guess": [
+0.9605621824895915,
+-0.6917468529087569
+]
+},
+{
+"tick": 136,
+"event": "floor_model",
+"ok": true,
+"clusters": 1
+},
+{
+"tick": 265,
+"event": "ball_found",
+"xy": [
+0.8009368370050479,
+-0.7670199554949604
+],
+"centred": true
+}
+],
+"hider": "partition"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "yellow"
+},
+"config_id": "train-0002",
+"k": 0,
+"declared_done": true,
+"ticks": 355,
+"sim_time": 35.5,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 209,
+"home_after_pad_tick": 332,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 8.63,
+"log": [
+{
+"tick": 104,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 227,
+"event": "at_pad",
+"dist": 0.05740611643943758
+},
+{
+"tick": 354,
+"event": "home",
+"dist": 0.031470501065024054,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "off"
+},
+"config_id": "train-0002",
+"k": 0,
+"declared_done": true,
+"ticks": 805,
+"sim_time": 80.5,
+"falls": 0,
+"collision_ticks": 30,
+"stopped": true,
+"lamp_initial": true,
+"lamp_final": true,
+"target": false,
+"presses": 0,
+"needed_presses": 1,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": false,
+"set": "train",
+"who": "bot",
+"wall_s": 18.96,
+"log": [
+{
+"tick": 104,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 161,
+"event": "lamp_check",
+"on": true
+},
+{
+"tick": 679,
+"event": "press",
+"ok": false,
+"reason": "approach failed"
+},
+{
+"tick": 804,
+"event": "lamp_check",
+"on": true
+}
+],
+"hider": null,
+"press_needed": true
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0002",
+"k": 0,
+"declared_done": true,
+"ticks": 493,
+"sim_time": 49.3,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.692,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 419,
+"ball_rest": [
+-0.134,
+-0.741
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 11.43,
+"log": [
+{
+"tick": 24,
+"event": "ball_lost",
+"last": [
+0.8331354446794788,
+-0.26439569996676815
+],
+"direction": [
+-0.06537509070241238,
+-0.9978607605851887
+],
+"guess": [
+0.813522917468755,
+-0.5637539281423247
+]
+},
+{
+"tick": 129,
+"event": "floor_model",
+"ok": true,
+"clusters": 1
+},
+{
+"tick": 487,
+"event": "ball_found",
+"xy": [
+0.7590753036773569,
+-0.848493434644941
+],
+"centred": true
+}
+],
+"hider": "partition"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "blue"
+},
+"config_id": "train-0003",
+"k": 0,
+"declared_done": true,
+"ticks": 525,
+"sim_time": 52.5,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 283,
+"home_after_pad_tick": 503,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 12.47,
+"log": [
+{
+"tick": 107,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 301,
+"event": "at_pad",
+"dist": 0.050523176973419175
+},
+{
+"tick": 524,
+"event": "home",
+"dist": 0.03790822801639685,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "on"
+},
+"config_id": "train-0003",
+"k": 0,
+"declared_done": true,
+"ticks": 152,
+"sim_time": 15.2,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": true,
+"lamp_final": true,
+"target": true,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 3.81,
+"log": [
+{
+"tick": 107,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 151,
+"event": "lamp_check",
+"on": true
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0003",
+"k": 0,
+"declared_done": true,
+"ticks": 410,
+"sim_time": 41.0,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.408,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 319,
+"ball_rest": [
+-1.137,
+-0.203
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 9.79,
+"log": [
+{
+"tick": 45,
+"event": "ball_lost",
+"last": [
+1.0377287798982995,
+0.32809099980802825
+],
+"direction": [
+0.7821039743649385,
+0.623147954568229
+],
+"guess": [
+1.272359972207781,
+0.515035386178497
+]
+},
+{
+"tick": 150,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 404,
+"event": "ball_found",
+"xy": [
+1.036729015789447,
+0.3481694245983997
+],
+"centred": true
+}
+],
+"hider": "occluder"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "yellow"
+},
+"config_id": "train-0004",
+"k": 0,
+"declared_done": true,
+"ticks": 608,
+"sim_time": 60.8,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 326,
+"home_after_pad_tick": 584,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 14.48,
+"log": [
+{
+"tick": 102,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 346,
+"event": "at_pad",
+"dist": 0.037059473291603404
+},
+{
+"tick": 607,
+"event": "home",
+"dist": 0.06633388534212496,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "on"
+},
+"config_id": "train-0004",
+"k": 0,
+"declared_done": true,
+"ticks": 624,
+"sim_time": 62.4,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": false,
+"lamp_final": true,
+"target": true,
+"presses": 1,
+"needed_presses": 1,
+"extra_presses": 0,
+"plate_visits": 3,
+"visits_without_press": 2,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 14.81,
+"log": [
+{
+"tick": 102,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 204,
+"event": "lamp_check",
+"on": false
+},
+{
+"tick": 469,
+"event": "lamp_recheck",
+"on": false
+},
+{
+"tick": 551,
+"event": "press",
+"ok": true,
+"reason": "crossed the plate centre"
+},
+{
+"tick": 623,
+"event": "lamp_check",
+"on": true
+}
+],
+"hider": null,
+"press_needed": true
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0004",
+"k": 0,
+"declared_done": true,
+"ticks": 266,
+"sim_time": 26.6,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.709,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 192,
+"ball_rest": [
+-0.653,
+0.614
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 6.48,
+"log": [
+{
+"tick": 29,
+"event": "ball_lost",
+"last": [
+0.9370899685775581,
+-0.2685691754759121
+],
+"direction": [
+0.6817013655650159,
+-0.7316305407695829
+],
+"guess": [
+1.141600378247063,
+-0.48805833770678697
+]
+},
+{
+"tick": 132,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 260,
+"event": "ball_found",
+"xy": [
+1.0168267935696902,
+-0.5458991645201872
+],
+"centred": true
+}
+],
+"hider": "partition"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "yellow"
+},
+"config_id": "train-0005",
+"k": 0,
+"declared_done": true,
+"ticks": 463,
+"sim_time": 46.3,
+"falls": 0,
+"collision_ticks": 2,
+"stopped": true,
+"reached_pad_tick": 245,
+"home_after_pad_tick": 435,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 11.13,
+"log": [
+{
+"tick": 107,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 266,
+"event": "at_pad",
+"dist": 0.036923718565826325
+},
+{
+"tick": 462,
+"event": "home",
+"dist": 0.0496620821752475,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "off"
+},
+"config_id": "train-0005",
+"k": 0,
+"declared_done": true,
+"ticks": 211,
+"sim_time": 21.1,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": false,
+"lamp_final": false,
+"target": false,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 5.13,
+"log": [
+{
+"tick": 107,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 210,
+"event": "lamp_check",
+"on": false
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0005",
+"k": 0,
+"declared_done": true,
+"ticks": 369,
+"sim_time": 36.9,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.694,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 262,
+"ball_rest": [
+-0.217,
+1.0
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 8.85,
+"log": [
+{
+"tick": 32,
+"event": "ball_lost",
+"last": [
+1.2810139211786482,
+-0.40091163017256537
+],
+"direction": [
+0.5035456607115988,
+-0.8639686149267919
+],
+"guess": [
+1.4320776193921279,
+-0.6601022146506029
+]
+},
+{
+"tick": 136,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 363,
+"event": "ball_found",
+"xy": [
+1.3629228291074889,
+-0.7595705232664135
+],
+"centred": true
+}
+],
+"hider": "occluder"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "red"
+},
+"config_id": "train-0006",
+"k": 0,
+"declared_done": true,
+"ticks": 484,
+"sim_time": 48.4,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 252,
+"home_after_pad_tick": 461,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 11.78,
+"log": [
+{
+"tick": 108,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 271,
+"event": "at_pad",
+"dist": 0.04240201887643957
+},
+{
+"tick": 483,
+"event": "home",
+"dist": 0.043673641303549414,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "off"
+},
+"config_id": "train-0006",
+"k": 0,
+"declared_done": true,
+"ticks": 214,
+"sim_time": 21.4,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": false,
+"lamp_final": false,
+"target": false,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 5.33,
+"log": [
+{
+"tick": 108,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 213,
+"event": "lamp_check",
+"on": false
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0006",
+"k": 0,
+"declared_done": true,
+"ticks": 267,
+"sim_time": 26.7,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.597,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 207,
+"ball_rest": [
+0.713,
+-0.57
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 6.51,
+"log": [
+{
+"tick": 41,
+"event": "ball_lost",
+"last": [
+0.9574155044194274,
+-0.3160175558391489
+],
+"direction": [
+0.7825078360047222,
+-0.6226407363730763
+],
+"guess": [
+1.192167855220844,
+-0.5028097767510717
+]
+},
+{
+"tick": 145,
+"event": "floor_model",
+"ok": true,
+"clusters": 1
+},
+{
+"tick": 261,
+"event": "ball_found",
+"xy": [
+0.9828129003676237,
+-0.47776653056905194
+],
+"centred": true
+}
+],
+"hider": "partition"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "yellow"
+},
+"config_id": "train-0007",
+"k": 0,
+"declared_done": true,
+"ticks": 630,
+"sim_time": 63.0,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 409,
+"home_after_pad_tick": 604,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 14.92,
+"log": [
+{
+"tick": 101,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 425,
+"event": "at_pad",
+"dist": 0.05649347052711038
+},
+{
+"tick": 629,
+"event": "home",
+"dist": 0.05498648225438445,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "on"
+},
+"config_id": "train-0007",
+"k": 0,
+"declared_done": true,
+"ticks": 648,
+"sim_time": 64.8,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": false,
+"lamp_final": true,
+"target": true,
+"presses": 1,
+"needed_presses": 1,
+"extra_presses": 0,
+"plate_visits": 1,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 15.09,
+"log": [
+{
+"tick": 101,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 206,
+"event": "lamp_check",
+"on": false
+},
+{
+"tick": 496,
+"event": "lamp_recheck",
+"on": false
+},
+{
+"tick": 578,
+"event": "press",
+"ok": true,
+"reason": "crossed the plate centre"
+},
+{
+"tick": 647,
+"event": "lamp_check",
+"on": true
+}
+],
+"hider": null,
+"press_needed": true
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0007",
+"k": 0,
+"declared_done": true,
+"ticks": 278,
+"sim_time": 27.8,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.676,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 240,
+"ball_rest": [
+-0.583,
+-0.647
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 6.75,
+"log": [
+{
+"tick": 27,
+"event": "ball_lost",
+"last": [
+1.506275571773601,
+0.24969643783221715
+],
+"direction": [
+0.7414090476248001,
+0.6710533690401136
+],
+"guess": [
+1.728698286061041,
+0.4510124485442512
+]
+},
+{
+"tick": 131,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 272,
+"event": "ball_found",
+"xy": [
+1.6820159485603383,
+0.468806078055389
+],
+"centred": true
+}
+],
+"hider": "partition"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "blue"
+},
+"config_id": "train-0008",
+"k": 0,
+"declared_done": true,
+"ticks": 497,
+"sim_time": 49.7,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 269,
+"home_after_pad_tick": 474,
+"on_mat": true,
+"wrong_pad_visits": [
+"green"
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 12.01,
+"log": [
+{
+"tick": 103,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 289,
+"event": "at_pad",
+"dist": 0.02414145903297353
+},
+{
+"tick": 496,
+"event": "home",
+"dist": 0.0432450763190082,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "off"
+},
+"config_id": "train-0008",
+"k": 0,
+"declared_done": true,
+"ticks": 206,
+"sim_time": 20.6,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": false,
+"lamp_final": false,
+"target": false,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 5.04,
+"log": [
+{
+"tick": 103,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 205,
+"event": "lamp_check",
+"on": false
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0008",
+"k": 0,
+"declared_done": true,
+"ticks": 355,
+"sim_time": 35.5,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.679,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 303,
+"ball_rest": [
+0.553,
+-0.747
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 8.5,
+"log": [
+{
+"tick": 30,
+"event": "ball_lost",
+"last": [
+1.062402026210843,
+-0.34966771698145416
+],
+"direction": [
+0.48091470350370497,
+-0.8767673853160505
+],
+"guess": [
+1.2066764372619545,
+-0.6126979325762694
+]
+},
+{
+"tick": 137,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 349,
+"event": "ball_found",
+"xy": [
+1.176222186938263,
+-0.8165518244211276
+],
+"centred": true
+}
+],
+"hider": "partition"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "red"
+},
+"config_id": "train-0009",
+"k": 0,
+"declared_done": false,
+"ticks": 1200,
+"sim_time": 120.0,
+"falls": 0,
+"collision_ticks": 36,
+"stopped": false,
+"reached_pad_tick": 691,
+"home_after_pad_tick": null,
+"on_mat": false,
+"wrong_pad_visits": [],
+"success": false,
+"set": "train",
+"who": "bot",
+"wall_s": 28.58,
+"log": [
+{
+"tick": 103,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 707,
+"event": "at_pad",
+"dist": 0.057271213299480594
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "on"
+},
+"config_id": "train-0009",
+"k": 0,
+"declared_done": true,
+"ticks": 156,
+"sim_time": 15.6,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": true,
+"lamp_final": true,
+"target": true,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 3.96,
+"log": [
+{
+"tick": 103,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 155,
+"event": "lamp_check",
+"on": true
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0009",
+"k": 0,
+"declared_done": true,
+"ticks": 379,
+"sim_time": 37.9,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.687,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 335,
+"ball_rest": [
+-0.067,
+-0.959
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 9.08,
+"log": [
+{
+"tick": 29,
+"event": "ball_lost",
+"last": [
+1.3962095791994382,
+0.36630409825155685
+],
+"direction": [
+0.15977969955195126,
+0.9871526972110689
+],
+"guess": [
+1.4441434890650235,
+0.6624499074148775
+]
+},
+{
+"tick": 133,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 373,
+"event": "ball_found",
+"xy": [
+1.5268011737351308,
+0.6924807574861698
+],
+"centred": true
+}
+],
+"hider": "occluder"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "blue"
+},
+"config_id": "train-0010",
+"k": 0,
+"declared_done": true,
+"ticks": 320,
+"sim_time": 32.0,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 184,
+"home_after_pad_tick": 298,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 7.65,
+"log": [
+{
+"tick": 103,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 204,
+"event": "at_pad",
+"dist": 0.04146379785126707
+},
+{
+"tick": 319,
+"event": "home",
+"dist": 0.04929817496030406,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "off"
+},
+"config_id": "train-0010",
+"k": 0,
+"declared_done": true,
+"ticks": 206,
+"sim_time": 20.6,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": false,
+"lamp_final": false,
+"target": false,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 5.04,
+"log": [
+{
+"tick": 103,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 205,
+"event": "lamp_check",
+"on": false
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0010",
+"k": 0,
+"declared_done": true,
+"ticks": 289,
+"sim_time": 28.9,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": false,
+"ball_distance": 0.678,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 223,
+"ball_rest": [
+-0.049,
+-1.018
+],
+"success": false,
+"set": "train",
+"who": "bot",
+"wall_s": 7.14,
+"log": [
+{
+"tick": 28,
+"event": "ball_lost",
+"last": [
+1.2039552615041884,
+0.35961249315306437
+],
+"direction": [
+0.049402965535082534,
+0.9987789279897425
+],
+"guess": [
+1.2187761511647133,
+0.6592461715499871
+]
+},
+{
+"tick": 131,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 283,
+"event": "ball_found",
+"xy": [
+1.2979587505832737,
+0.706657083150832
+],
+"centred": false
+}
+],
+"hider": "occluder"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "red"
+},
+"config_id": "train-0011",
+"k": 0,
+"declared_done": true,
+"ticks": 299,
+"sim_time": 29.9,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 157,
+"home_after_pad_tick": 275,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 7.5,
+"log": [
+{
+"tick": 106,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 177,
+"event": "at_pad",
+"dist": 0.02543357208101647
+},
+{
+"tick": 298,
+"event": "home",
+"dist": 0.05557169678971664,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "off"
+},
+"config_id": "train-0011",
+"k": 0,
+"declared_done": true,
+"ticks": 212,
+"sim_time": 21.2,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": false,
+"lamp_final": false,
+"target": false,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 5.18,
+"log": [
+{
+"tick": 106,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 211,
+"event": "lamp_check",
+"on": false
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0011",
+"k": 0,
+"declared_done": true,
+"ticks": 362,
+"sim_time": 36.2,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.687,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 301,
+"ball_rest": [
+0.024,
+0.506
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 8.97,
+"log": [
+{
+"tick": 28,
+"event": "ball_lost",
+"last": [
+1.0016212994447693,
+-0.30101330323306186
+],
+"direction": [
+0.5426307848042423,
+-0.8399713277146619
+],
+"guess": [
+1.164410534886042,
+-0.5530047015474604
+]
+},
+{
+"tick": 130,
+"event": "floor_model",
+"ok": true,
+"clusters": 1
+},
+{
+"tick": 356,
+"event": "ball_found",
+"xy": [
+1.059737365682294,
+-0.7400698574463692
+],
+"centred": true
+}
+],
+"hider": "partition"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "red"
+},
+"config_id": "train-0012",
+"k": 0,
+"declared_done": true,
+"ticks": 601,
+"sim_time": 60.1,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 330,
+"home_after_pad_tick": 575,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 14.76,
+"log": [
+{
+"tick": 107,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 352,
+"event": "at_pad",
+"dist": 0.04439587604835269
+},
+{
+"tick": 600,
+"event": "home",
+"dist": 0.07129499563095171,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "on"
+},
+"config_id": "train-0012",
+"k": 0,
+"declared_done": false,
+"ticks": 900,
+"sim_time": 90.0,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": false,
+"lamp_initial": false,
+"lamp_final": false,
+"target": true,
+"presses": 2,
+"needed_presses": 1,
+"extra_presses": 1,
+"plate_visits": 2,
+"visits_without_press": 0,
+"success": false,
+"set": "train",
+"who": "bot",
+"wall_s": 21.92,
+"log": [
+{
+"tick": 107,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 210,
+"event": "lamp_check",
+"on": false
+},
+{
+"tick": 435,
+"event": "lamp_recheck",
+"on": false
+},
+{
+"tick": 533,
+"event": "press",
+"ok": true,
+"reason": "crossed the plate centre"
+},
+{
+"tick": 648,
+"event": "lamp_check",
+"on": false
+}
+],
+"hider": null,
+"press_needed": true
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0012",
+"k": 0,
+"declared_done": true,
+"ticks": 253,
+"sim_time": 25.3,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.702,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 230,
+"ball_rest": [
+-0.497,
+1.247
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 6.4,
+"log": [
+{
+"tick": 33,
+"event": "ball_lost",
+"last": [
+1.3660160616052484,
+-0.3311872175204747
+],
+"direction": [
+0.6748771447219183,
+-0.737930104774152
+],
+"guess": [
+1.568479205021824,
+-0.5525662489527203
+]
+},
+{
+"tick": 142,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 247,
+"event": "ball_found",
+"xy": [
+1.4165639671285273,
+-0.585041827683297
+],
+"centred": true
+}
+],
+"hider": "occluder"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "green"
+},
+"config_id": "train-0013",
+"k": 0,
+"declared_done": true,
+"ticks": 515,
+"sim_time": 51.5,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 268,
+"home_after_pad_tick": 487,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 12.9,
+"log": [
+{
+"tick": 102,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 289,
+"event": "at_pad",
+"dist": 0.058787413071259044
+},
+{
+"tick": 514,
+"event": "home",
+"dist": 0.053510700917443914,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "on"
+},
+"config_id": "train-0013",
+"k": 0,
+"declared_done": true,
+"ticks": 161,
+"sim_time": 16.1,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": true,
+"lamp_final": true,
+"target": true,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 4.2,
+"log": [
+{
+"tick": 102,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 160,
+"event": "lamp_check",
+"on": true
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0013",
+"k": 0,
+"declared_done": true,
+"ticks": 240,
+"sim_time": 24.0,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.727,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 215,
+"ball_rest": [
+0.503,
+-0.58
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 6.21,
+"log": [
+{
+"tick": 32,
+"event": "ball_lost",
+"last": [
+0.951715003054908,
+-0.36493119762588
+],
+"direction": [
+0.3498329418590309,
+-0.9368121011122006
+],
+"guess": [
+1.0566648856126173,
+-0.6459748279595401
+]
+},
+{
+"tick": 140,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 234,
+"event": "ball_found",
+"xy": [
+0.9535819674819698,
+-0.6575872730126189
+],
+"centred": true
+}
+],
+"hider": "partition"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "blue"
+},
+"config_id": "train-0014",
+"k": 0,
+"declared_done": true,
+"ticks": 832,
+"sim_time": 83.2,
+"falls": 0,
+"collision_ticks": 1,
+"stopped": true,
+"reached_pad_tick": 574,
+"home_after_pad_tick": 812,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 20.66,
+"log": [
+{
+"tick": 103,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 592,
+"event": "at_pad",
+"dist": 0.04207716538021752
+},
+{
+"tick": 831,
+"event": "home",
+"dist": 0.04194691254894249,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "on"
+},
+"config_id": "train-0014",
+"k": 0,
+"declared_done": true,
+"ticks": 568,
+"sim_time": 56.8,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": true,
+"lamp_final": true,
+"target": true,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 14.12,
+"log": [
+{
+"tick": 103,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 207,
+"event": "lamp_check",
+"on": false
+},
+{
+"tick": 567,
+"event": "lamp_recheck",
+"on": true
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0014",
+"k": 0,
+"declared_done": true,
+"ticks": 466,
+"sim_time": 46.6,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.616,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 445,
+"ball_rest": [
+1.169,
+0.126
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 11.75,
+"log": [
+{
+"tick": 27,
+"event": "ball_lost",
+"last": [
+1.152261227653371,
+0.3483205252765162
+],
+"direction": [
+-0.017758953101080225,
+0.999842297357315
+],
+"guess": [
+1.1469335417230468,
+0.6482732144837107
+]
+},
+{
+"tick": 131,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 460,
+"event": "ball_found",
+"xy": [
+1.1534021920048072,
+0.7593406642885466
+],
+"centred": true
+}
+],
+"hider": "occluder"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "blue"
+},
+"config_id": "train-0015",
+"k": 0,
+"declared_done": true,
+"ticks": 520,
+"sim_time": 52.0,
+"falls": 0,
+"collision_ticks": 1,
+"stopped": true,
+"reached_pad_tick": 272,
+"home_after_pad_tick": 495,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 13.09,
+"log": [
+{
+"tick": 106,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 292,
+"event": "at_pad",
+"dist": 0.028990795656989442
+},
+{
+"tick": 519,
+"event": "home",
+"dist": 0.04662960069616984,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "on"
+},
+"config_id": "train-0015",
+"k": 0,
+"declared_done": true,
+"ticks": 140,
+"sim_time": 14.0,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": true,
+"lamp_final": true,
+"target": true,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 3.66,
+"log": [
+{
+"tick": 106,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 139,
+"event": "lamp_check",
+"on": true
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0015",
+"k": 0,
+"declared_done": true,
+"ticks": 247,
+"sim_time": 24.7,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.673,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 222,
+"ball_rest": [
+-0.226,
+1.268
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 6.25,
+"log": [
+{
+"tick": 31,
+"event": "ball_lost",
+"last": [
+1.1991275556219334,
+0.32548465444800495
+],
+"direction": [
+0.6926782921080706,
+0.7212466870927356
+],
+"guess": [
+1.4069310432543545,
+0.5418586605758257
+]
+},
+{
+"tick": 139,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 241,
+"event": "ball_found",
+"xy": [
+1.3428973999638105,
+0.48414936974853195
+],
+"centred": true
+}
+],
+"hider": "occluder"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "green"
+},
+"config_id": "train-0016",
+"k": 0,
+"declared_done": true,
+"ticks": 531,
+"sim_time": 53.1,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 285,
+"home_after_pad_tick": 509,
+"on_mat": true,
+"wrong_pad_visits": [
+"red"
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 13.33,
+"log": [
+{
+"tick": 107,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 304,
+"event": "at_pad",
+"dist": 0.04418442874637173
+},
+{
+"tick": 530,
+"event": "home",
+"dist": 0.05357725041894686,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "on"
+},
+"config_id": "train-0016",
+"k": 0,
+"declared_done": true,
+"ticks": 174,
+"sim_time": 17.4,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": true,
+"lamp_final": true,
+"target": true,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 4.51,
+"log": [
+{
+"tick": 107,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 173,
+"event": "lamp_check",
+"on": true
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0016",
+"k": 0,
+"declared_done": true,
+"ticks": 324,
+"sim_time": 32.4,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.443,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 196,
+"ball_rest": [
+0.568,
+0.41
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 8.29,
+"log": [
+{
+"tick": 42,
+"event": "ball_lost",
+"last": [
+1.469196947875678,
+0.38622407004789205
+],
+"direction": [
+0.25451049910615203,
+0.9670700108289664
+],
+"guess": [
+1.5455500976075236,
+0.6763450732965819
+]
+},
+{
+"tick": 150,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 318,
+"event": "ball_found",
+"xy": [
+1.5335405011598524,
+0.3786565950880493
+],
+"centred": true
+}
+],
+"hider": "partition"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "red"
+},
+"config_id": "train-0017",
+"k": 0,
+"declared_done": true,
+"ticks": 523,
+"sim_time": 52.3,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 288,
+"home_after_pad_tick": 498,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 13.31,
+"log": [
+{
+"tick": 104,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 306,
+"event": "at_pad",
+"dist": 0.03942064415377943
+},
+{
+"tick": 522,
+"event": "home",
+"dist": 0.043313488678074503,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "on"
+},
+"config_id": "train-0017",
+"k": 0,
+"declared_done": true,
+"ticks": 440,
+"sim_time": 44.0,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": true,
+"lamp_final": true,
+"target": true,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 11.14,
+"log": [
+{
+"tick": 104,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 208,
+"event": "lamp_check",
+"on": false
+},
+{
+"tick": 439,
+"event": "lamp_recheck",
+"on": true
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0017",
+"k": 0,
+"declared_done": true,
+"ticks": 444,
+"sim_time": 44.4,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.473,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 421,
+"ball_rest": [
+-0.909,
+-0.238
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 11.28,
+"log": [
+{
+"tick": 30,
+"event": "ball_lost",
+"last": [
+1.0039166518943483,
+0.32172086343143574
+],
+"direction": [
+0.571801428015803,
+0.8203920568356865
+],
+"guess": [
+1.1754570802990891,
+0.5678384804821417
+]
+},
+{
+"tick": 133,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 438,
+"event": "ball_found",
+"xy": [
+1.1471699121042762,
+0.5310670822048636
+],
+"centred": true
+}
+],
+"hider": "occluder"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "blue"
+},
+"config_id": "train-0018",
+"k": 0,
+"declared_done": true,
+"ticks": 679,
+"sim_time": 67.9,
+"falls": 0,
+"collision_ticks": 1,
+"stopped": true,
+"reached_pad_tick": 432,
+"home_after_pad_tick": 652,
+"on_mat": true,
+"wrong_pad_visits": [],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 16.98,
+"log": [
+{
+"tick": 107,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 454,
+"event": "at_pad",
+"dist": 0.03385709094222352
+},
+{
+"tick": 678,
+"event": "home",
+"dist": 0.06483824333887074,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "off"
+},
+"config_id": "train-0018",
+"k": 0,
+"declared_done": true,
+"ticks": 566,
+"sim_time": 56.6,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": true,
+"lamp_final": false,
+"target": false,
+"presses": 1,
+"needed_presses": 1,
+"extra_presses": 0,
+"plate_visits": 1,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 14.27,
+"log": [
+{
+"tick": 107,
+"event": "floor_model",
+"ok": true,
+"clusters": 3
+},
+{
+"tick": 154,
+"event": "lamp_check",
+"on": true
+},
+{
+"tick": 365,
+"event": "press",
+"ok": true,
+"reason": "crossed the plate centre"
+},
+{
+"tick": 565,
+"event": "lamp_check",
+"on": false
+}
+],
+"hider": null,
+"press_needed": true
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0018",
+"k": 0,
+"declared_done": true,
+"ticks": 243,
+"sim_time": 24.3,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.698,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 216,
+"ball_rest": [
+1.226,
+0.402
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 6.4,
+"log": [
+{
+"tick": 34,
+"event": "ball_lost",
+"last": [
+1.2224490517984443,
+0.4038079862190472
+],
+"direction": [
+0.5334034490888034,
+0.8458609581368371
+],
+"guess": [
+1.3824700865250854,
+0.6575662736600982
+]
+},
+{
+"tick": 141,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 237,
+"event": "ball_found",
+"xy": [
+1.3544379354180849,
+0.5732988666233819
+],
+"centred": true
+}
+],
+"hider": "occluder"
+},
+{
+"task": "go_and_return",
+"instruction": {
+"task": "go_and_return",
+"target": "green"
+},
+"config_id": "train-0019",
+"k": 0,
+"declared_done": true,
+"ticks": 430,
+"sim_time": 43.0,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"reached_pad_tick": 234,
+"home_after_pad_tick": 405,
+"on_mat": true,
+"wrong_pad_visits": [
+"yellow"
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 10.62,
+"log": [
+{
+"tick": 105,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 255,
+"event": "at_pad",
+"dist": 0.029318078849162234
+},
+{
+"tick": 429,
+"event": "home",
+"dist": 0.038544177562376145,
+"used_mat": true
+}
+],
+"hider": null
+},
+{
+"task": "set_lamp",
+"instruction": {
+"task": "set_lamp",
+"target": "off"
+},
+"config_id": "train-0019",
+"k": 0,
+"declared_done": true,
+"ticks": 209,
+"sim_time": 20.9,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"lamp_initial": false,
+"lamp_final": false,
+"target": false,
+"presses": 0,
+"needed_presses": 0,
+"extra_presses": 0,
+"plate_visits": 0,
+"visits_without_press": 0,
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 5.54,
+"log": [
+{
+"tick": 105,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 208,
+"event": "lamp_check",
+"on": false
+}
+],
+"hider": null,
+"press_needed": false
+},
+{
+"task": "find_ball",
+"instruction": {
+"task": "find_ball",
+"target": null
+},
+"config_id": "train-0019",
+"k": 0,
+"declared_done": true,
+"ticks": 300,
+"sim_time": 30.0,
+"falls": 0,
+"collision_ticks": 0,
+"stopped": true,
+"ball_visible_at_end": true,
+"ball_distance": 0.683,
+"ball_at_rest": true,
+"ball_hidden_seen": true,
+"reacquired_tick": 226,
+"ball_rest": [
+0.882,
+-0.55
+],
+"success": true,
+"set": "train",
+"who": "bot",
+"wall_s": 6.78,
+"log": [
+{
+"tick": 34,
+"event": "ball_lost",
+"last": [
+1.2673352891405427,
+-0.36391677381706317
+],
+"direction": [
+0.7526095399879144,
+-0.6584670685153358
+],
+"guess": [
+1.493118151136917,
+-0.5614568943716639
+]
+},
+{
+"tick": 140,
+"event": "floor_model",
+"ok": true,
+"clusters": 2
+},
+{
+"tick": 294,
+"event": "ball_found",
+"xy": [
+1.3674291015369957,
+-0.6650680568520332
+],
+"centred": true
+}
+],
+"hider": "partition"
+}
+],
+"wall_s": 154.1
+}

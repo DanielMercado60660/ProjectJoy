@@ -1,0 +1,259 @@
+[gpu_run] acquired gpu0: logs/eval_run1.sh
+cpg_baseline: success (0.024, np.float64(0.013781177149521824), np.float64(0.04147745969189818))  push-success (0.012, np.float64(0.0055109199671753584), np.float64(0.025930707718986326)) (23s)
+cpg_planner_baseline: success (0.072, np.float64(0.05245772605354006), np.float64(0.09806894740891321))  push-success (0.046, np.float64(0.030844883399787512), np.float64(0.06807827022627275)) (52s)
+residual_ppo: success (0.984, np.float64(0.9687485245822888), np.float64(0.9918708446797967))  push-success (0.978, np.float64(0.9610387448516022), np.float64(0.9876721198328542)) (67s)
+{
+ "n_layouts": 500,
+ "gap_max": 0.2,
+ "flat": false,
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 40.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.96,
+  0.942,
+  0.976
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 480,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 12,
+  "ppo_energy_per_m": [
+   568.3705958681453,
+   562.4998198127435,
+   573.5000521590667
+  ],
+  "base_energy_per_m": [
+   1208.1450268612134,
+   1155.1270137361216,
+   1267.4903794988488
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -639.774430993068,
+   -699.8077419429917,
+   -584.8170471483011
+  ],
+  "ppo_speed": [
+   1.6288349867100036,
+   1.603203046889788,
+   1.6561872692212216
+  ],
+  "base_speed": [
+   0.4696194741679502,
+   0.44920607227942483,
+   0.4889891952861108
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.912,
+  0.886,
+  0.936
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 456,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 36,
+  "ppo_energy_per_m": [
+   569.9241853331738,
+   565.17434496443,
+   574.442129541801
+  ],
+  "base_energy_per_m": [
+   1051.3882155855922,
+   1010.2215508875548,
+   1092.3589262126563
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -481.4640302524185,
+   -521.8629047392353,
+   -441.40867666390136
+  ],
+  "ppo_speed": [
+   1.630368912087961,
+   1.6141498956650668,
+   1.6466359559536645
+  ],
+  "base_speed": [
+   0.46991154142030883,
+   0.4524783094924472,
+   0.4883438669959106
+  ]
+ },
+ "wall_s": 67.65228486061096
+}
+cpg_baseline: success (0.208, np.float64(0.17471574281917435), np.float64(0.2457370344028732))  push-success (0.206, np.float64(0.17285607517585092), np.float64(0.24362720052032025)) (33s)
+cpg_planner_baseline: success (0.45, np.float64(0.4069388734465702), np.float64(0.4938235884065202))  push-success (0.414, np.float64(0.37164184827781455), np.float64(0.4576695861095008)) (72s)
+residual_ppo: success (0.996, np.float64(0.9855339859585811), np.float64(0.9989023924587627))  push-success (0.98, np.float64(0.9635794314459021), np.float64(0.9891009347644306)) (88s)
+{
+ "n_layouts": 500,
+ "gap_max": 0.125,
+ "flat": false,
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 40.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.788,
+  0.75,
+  0.822
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 394,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 104,
+  "ppo_energy_per_m": [
+   573.1480831800201,
+   570.6023944088151,
+   575.7471973198151
+  ],
+  "base_energy_per_m": [
+   1209.5295082817395,
+   1180.1246551444333,
+   1238.9178608177285
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -636.3814251017195,
+   -665.8778544486271,
+   -607.5165008448668
+  ],
+  "ppo_speed": [
+   1.5984049554649358,
+   1.588037250126086,
+   1.6084021113812532
+  ],
+  "base_speed": [
+   0.47051099974262856,
+   0.4607899264992771,
+   0.4804705834204313
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.546,
+  0.502,
+  0.59
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 274,
+  "base_only": 1
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 224,
+  "ppo_energy_per_m": [
+   572.6665951752077,
+   570.8603418413963,
+   574.5520622335566
+  ],
+  "base_energy_per_m": [
+   980.6337832898445,
+   960.8322563987366,
+   999.5653474309071
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -407.9671881146366,
+   -427.3079636836373,
+   -388.4211033148393
+  ],
+  "ppo_speed": [
+   1.5972346957143844,
+   1.5903011482987297,
+   1.604261637373417
+  ],
+  "base_speed": [
+   0.49895122601935654,
+   0.49089578696731717,
+   0.5073875070345117
+  ]
+ },
+ "wall_s": 88.30508637428284
+}
+cpg_baseline: success (0.925, np.float64(0.8799554020266798), np.float64(0.9540254929427476))  push-success (0.79, np.float64(0.7283526118460081), np.float64(0.8407167047213658)) (16s)
+cpg_planner_baseline: success (1.0, np.float64(0.9811539940816791), 1.0)  push-success (1.0, np.float64(0.9811539940816791), 1.0) (32s)
+residual_ppo: success (1.0, np.float64(0.9811539940816791), 1.0)  push-success (1.0, np.float64(0.9811539940816791), 1.0) (39s)
+{
+ "n_layouts": 200,
+ "gap_max": 0.2,
+ "flat": true,
+ "heldout_seeds": "10_000_000 + i, i < n",
+ "push_N": 40.0,
+ "push_s": 0.1,
+ "paired_success_diff_ppo_minus_cpg_baseline": [
+  0.075,
+  0.04,
+  0.115
+ ],
+ "discordant_vs_cpg_baseline": {
+  "ppo_only": 15,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_baseline": {
+  "n": 185,
+  "ppo_energy_per_m": [
+   589.1112797094703,
+   587.6396615546022,
+   590.5311914810255
+  ],
+  "base_energy_per_m": [
+   1066.9988081886622,
+   1056.764290712456,
+   1077.524825230292
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -477.88752847919193,
+   -488.6394470974518,
+   -467.4888732131668
+  ],
+  "ppo_speed": [
+   1.4343065289104233,
+   1.4280665110597428,
+   1.4405821542712187
+  ],
+  "base_speed": [
+   0.523554293420074,
+   0.5192025978702424,
+   0.5276846591120453
+  ]
+ },
+ "paired_success_diff_ppo_minus_cpg_planner_baseline": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "discordant_vs_cpg_planner_baseline": {
+  "ppo_only": 0,
+  "base_only": 0
+ },
+ "both_completed_vs_cpg_planner_baseline": {
+  "n": 200,
+  "ppo_energy_per_m": [
+   589.1973191451544,
+   587.7327687197782,
+   590.6039723005935
+  ],
+  "base_energy_per_m": [
+   761.6145792020756,
+   759.8229313243897,
+   763.3736402075975
+  ],
+  "diff_energy_per_m_ppo_minus_base": [
+   -172.41726005692115,
+   -174.44946736899607,
+   -170.46171598915168
+  ],
+  "ppo_speed": [
+   1.4344571649564113,
+   1.4285082536850586,
+   1.4407847920427244
+  ],
+  "base_speed": [
+   0.598062930208425,
+   0.5967724007096347,
+   0.5993936817159475
+  ]
+ },
+ "wall_s": 38.98686122894287
+}

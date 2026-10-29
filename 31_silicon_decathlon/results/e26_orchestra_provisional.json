@@ -1,0 +1,547 @@
+{
+ "event": {
+  "id": "26_orchestra",
+  "project": "26_neural_orchestra",
+  "model": "drum VAE decoder (MLP 24-256-512-864, GELU)",
+  "checkpoint": "../26_neural_orchestra/checkpoints/vae_cond_b1.0/best",
+  "unit": "patterns",
+  "params": 581216,
+  "notes": "Decoder only (the encoder is not used for generation). z ~ N(0, I), styles cycled. Outputs hit probability, velocity, offset per cell. Core ML packages are fp16. SURPRISE: the mlx_gpu fp32 reference is itself not fp32-exact at b=2000. MLX 0.32.4 GPU fp32 matmul with >= 8 rows has TF32-class error (probe: 512-term sums of N(0,1) entries, max err 0.07-0.09 vs fp64 for M = 8..2000, 1e-5 at M = 1; mlx_cpu and numpy 1e-4). So numpy/mlx_cpu disagree with mlx_gpu on 1.25% of threshold patterns while matching an fp64 decode 100%, and mlx_gpu matches fp64 on 98.75%. qualifies() still judges against mlx_gpu as pre-registered; task has *_vs_fp64 fields for the exact comparison."
+ },
+ "final": false,
+ "batches": {
+  "1": {
+   "agreement": {
+    "numpy_cpu": {
+     "p_max_err": 9.5367431640625e-07,
+     "vel_max_err": 2.980232238769531e-07,
+     "off_max_err": 3.8370490074157715e-07
+    },
+    "mlx_cpu": {
+     "p_max_err": 1.1920928955078125e-06,
+     "vel_max_err": 2.980232238769531e-07,
+     "off_max_err": 3.3527612686157227e-07
+    },
+    "mlx_gpu": {
+     "p_max_err": 0.0,
+     "vel_max_err": 0.0,
+     "off_max_err": 0.0
+    },
+    "mlx_gpu_fp16": {
+     "p_max_err": 0.000867009162902832,
+     "vel_max_err": 0.0004723072052001953,
+     "off_max_err": 0.00042776018381118774
+    },
+    "mlx_gpu_compiled": {
+     "p_max_err": 0.0,
+     "vel_max_err": 0.0,
+     "off_max_err": 0.0
+    },
+    "coreml_cpu": {
+     "p_max_err": 0.005200773477554321,
+     "vel_max_err": 0.0030414462089538574,
+     "off_max_err": 0.002827819436788559
+    },
+    "coreml_gpu": {
+     "p_max_err": 0.005200773477554321,
+     "vel_max_err": 0.0030414462089538574,
+     "off_max_err": 0.002827819436788559
+    },
+    "coreml_ane": {
+     "p_max_err": 0.005200773477554321,
+     "vel_max_err": 0.0030414462089538574,
+     "off_max_err": 0.002827819436788559
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 3510948,
+    "mlx_gpu": 3510180,
+    "mlx_gpu_fp16": 3506280,
+    "mlx_gpu_compiled": 3510134
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 0.0228749995585531,
+     "p90_ms": 0.02345800749026239,
+     "min_ms": 0.01995800994336605,
+     "calls": 6000,
+     "rounds": 3,
+     "round_median_spread": 1.0073279976503415
+    },
+    "mlx_cpu": {
+     "median_ms": 0.052916991990059614,
+     "p90_ms": 0.0591249845456332,
+     "min_ms": 0.044917018385604024,
+     "calls": 5575,
+     "rounds": 3,
+     "round_median_spread": 1.0804219294363304
+    },
+    "mlx_gpu": {
+     "median_ms": 0.20320850308053195,
+     "p90_ms": 0.2557709958637133,
+     "min_ms": 0.1268330088350922,
+     "calls": 1346,
+     "rounds": 3,
+     "round_median_spread": 1.5555814079056296
+    },
+    "mlx_gpu_fp16": {
+     "median_ms": 0.6392915092874318,
+     "p90_ms": 0.7849918998545036,
+     "min_ms": 0.4461249918676913,
+     "calls": 434,
+     "rounds": 3,
+     "round_median_spread": 1.3463912069922053
+    },
+    "mlx_gpu_compiled": {
+     "median_ms": 0.20533299539238214,
+     "p90_ms": 0.2853834128472954,
+     "min_ms": 0.13533400488086045,
+     "calls": 1229,
+     "rounds": 3,
+     "round_median_spread": 1.0520881236380561
+    },
+    "coreml_cpu": {
+     "median_ms": 0.042832980398088694,
+     "p90_ms": 0.04600000102072954,
+     "min_ms": 0.039166974602267146,
+     "calls": 6000,
+     "rounds": 3,
+     "round_median_spread": 1.0267064344163759
+    },
+    "coreml_gpu": {
+     "median_ms": 0.04191702464595437,
+     "p90_ms": 0.04404198261909187,
+     "min_ms": 0.03904200275428593,
+     "calls": 6000,
+     "rounds": 3,
+     "round_median_spread": 1.0120119240012393
+    },
+    "coreml_ane": {
+     "median_ms": 0.046874978579580784,
+     "p90_ms": 0.04949999856762588,
+     "min_ms": 0.04308301140554249,
+     "calls": 6000,
+     "rounds": 3,
+     "round_median_spread": 1.013440961164854
+    }
+   },
+   "task": {
+    "numpy_cpu": null,
+    "mlx_cpu": null,
+    "mlx_gpu": null,
+    "mlx_gpu_fp16": null,
+    "mlx_gpu_compiled": null,
+    "coreml_cpu": null,
+    "coreml_gpu": null,
+    "coreml_ane": null
+   },
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e26_orchestra_b1_fp16.mlpackage",
+     "size_bytes": 1169206,
+     "placement": {
+      "CPU": 15
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e26_orchestra_b1_fp16.mlpackage",
+     "size_bytes": 1169206,
+     "placement": {
+      "CPU": 15
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e26_orchestra_b1_fp16.mlpackage",
+     "size_bytes": 1169206,
+     "placement": {
+      "CPU": 15
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "hit-probability max error 9.5e-07 (need <= 0.01)"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "hit-probability max error 1.2e-06 (need <= 0.01)"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "hit-probability max error 0 (need <= 0.01)"
+    },
+    "mlx_gpu_fp16": {
+     "ok": true,
+     "reason": "hit-probability max error 0.00087 (need <= 0.01)"
+    },
+    "mlx_gpu_compiled": {
+     "ok": true,
+     "reason": "hit-probability max error 0 (need <= 0.01)"
+    },
+    "coreml_cpu": {
+     "ok": true,
+     "reason": "hit-probability max error 0.0052 (need <= 0.01)"
+    },
+    "coreml_gpu": {
+     "ok": true,
+     "reason": "hit-probability max error 0.0052 (need <= 0.01)"
+    },
+    "coreml_ane": {
+     "ok": true,
+     "reason": "hit-probability max error 0.0052 (need <= 0.01)"
+    }
+   }
+  },
+  "2000": {
+   "agreement": {
+    "numpy_cpu": {
+     "p_max_err": 0.006982028484344482,
+     "vel_max_err": 0.0011516213417053223,
+     "off_max_err": 0.0010451674461364746
+    },
+    "mlx_cpu": {
+     "p_max_err": 0.006981775164604187,
+     "vel_max_err": 0.0011516213417053223,
+     "off_max_err": 0.0010450780391693115
+    },
+    "mlx_gpu": {
+     "p_max_err": 0.0,
+     "vel_max_err": 0.0,
+     "off_max_err": 0.0
+    },
+    "mlx_gpu_fp16": {
+     "p_max_err": 0.009450435638427734,
+     "vel_max_err": 0.001381993293762207,
+     "off_max_err": 0.001267552375793457
+    },
+    "mlx_gpu_compiled": {
+     "p_max_err": 0.0,
+     "vel_max_err": 0.0,
+     "off_max_err": 0.0
+    },
+    "coreml_cpu": {
+     "p_max_err": 0.017226338386535645,
+     "vel_max_err": 0.005756884813308716,
+     "off_max_err": 0.004732668399810791
+    },
+    "coreml_gpu": {
+     "p_max_err": 0.007985591888427734,
+     "vel_max_err": 0.001381993293762207,
+     "off_max_err": 0.0011568069458007812
+    },
+    "coreml_ane": {
+     "p_max_err": 0.021768808364868164,
+     "vel_max_err": 0.006340384483337402,
+     "off_max_err": 0.002995595335960388
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 27381690,
+    "mlx_gpu": 27381690,
+    "mlx_gpu_fp16": 17420216,
+    "mlx_gpu_compiled": 27381702
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 22.147958487039432,
+     "p90_ms": 22.411103986087255,
+     "min_ms": 17.363249993650243,
+     "calls": 16,
+     "rounds": 3,
+     "round_median_spread": 1.2256142292221572
+    },
+    "mlx_cpu": {
+     "median_ms": 15.870875009568408,
+     "p90_ms": 16.163183096796274,
+     "min_ms": 10.261584015097469,
+     "calls": 24,
+     "rounds": 3,
+     "round_median_spread": 1.5401278137357082
+    },
+    "mlx_gpu": {
+     "median_ms": 0.8483749988954514,
+     "p90_ms": 1.867267000488937,
+     "min_ms": 0.7901249919086695,
+     "calls": 289,
+     "rounds": 3,
+     "round_median_spread": 1.0243946928147731
+    },
+    "mlx_gpu_fp16": {
+     "median_ms": 1.3702090072911233,
+     "p90_ms": 2.564658393384889,
+     "min_ms": 1.162165979621932,
+     "calls": 183,
+     "rounds": 3,
+     "round_median_spread": 1.0916622329550023
+    },
+    "mlx_gpu_compiled": {
+     "median_ms": 0.8202290046028793,
+     "p90_ms": 1.8924790056189522,
+     "min_ms": 0.7533750031143427,
+     "calls": 296,
+     "rounds": 3,
+     "round_median_spread": 1.0103975795153601
+    },
+    "coreml_cpu": {
+     "median_ms": 3.2151039922609925,
+     "p90_ms": 3.3218960015801713,
+     "min_ms": 1.9665840081870556,
+     "calls": 96,
+     "rounds": 3,
+     "round_median_spread": 1.0159792218411623
+    },
+    "coreml_gpu": {
+     "median_ms": 1.2732920149574056,
+     "p90_ms": 2.1538753091590475,
+     "min_ms": 1.1838329955935478,
+     "calls": 200,
+     "rounds": 3,
+     "round_median_spread": 1.3603610982259446
+    },
+    "coreml_ane": {
+     "median_ms": 0.8996249816846102,
+     "p90_ms": 0.9800418047234416,
+     "min_ms": 0.8537919784430414,
+     "calls": 329,
+     "rounds": 3,
+     "round_median_spread": 1.0069738155225296
+    }
+   },
+   "task": {
+    "numpy_cpu": {
+     "patterns": 2000,
+     "threshold_pattern_match": 0.9875,
+     "threshold_cell_match": 0.9999548611111111,
+     "threshold_pattern_match_vs_fp64": 1.0,
+     "sample_pattern_match": 0.982,
+     "sample_cell_match": 0.9999375,
+     "sample_pattern_match_vs_fp64": 1.0,
+     "style_agreement_with_ref": 1.0,
+     "style_acc_vs_condition": 0.995,
+     "ref_style_acc_vs_condition": 0.995
+    },
+    "mlx_cpu": {
+     "patterns": 2000,
+     "threshold_pattern_match": 0.9875,
+     "threshold_cell_match": 0.9999548611111111,
+     "threshold_pattern_match_vs_fp64": 1.0,
+     "sample_pattern_match": 0.982,
+     "sample_cell_match": 0.9999375,
+     "sample_pattern_match_vs_fp64": 1.0,
+     "style_agreement_with_ref": 1.0,
+     "style_acc_vs_condition": 0.995,
+     "ref_style_acc_vs_condition": 0.995
+    },
+    "mlx_gpu": {
+     "patterns": 2000,
+     "threshold_pattern_match": 1.0,
+     "threshold_cell_match": 1.0,
+     "threshold_pattern_match_vs_fp64": 0.9875,
+     "sample_pattern_match": 1.0,
+     "sample_cell_match": 1.0,
+     "sample_pattern_match_vs_fp64": 0.982,
+     "style_agreement_with_ref": 1.0,
+     "style_acc_vs_condition": 0.995,
+     "ref_style_acc_vs_condition": 0.995
+    },
+    "mlx_gpu_fp16": {
+     "patterns": 2000,
+     "threshold_pattern_match": 0.984,
+     "threshold_cell_match": 0.9999427083333333,
+     "threshold_pattern_match_vs_fp64": 0.9945,
+     "sample_pattern_match": 0.981,
+     "sample_cell_match": 0.9999340277777777,
+     "sample_pattern_match_vs_fp64": 0.989,
+     "style_agreement_with_ref": 1.0,
+     "style_acc_vs_condition": 0.995,
+     "ref_style_acc_vs_condition": 0.995
+    },
+    "mlx_gpu_compiled": {
+     "patterns": 2000,
+     "threshold_pattern_match": 1.0,
+     "threshold_cell_match": 1.0,
+     "threshold_pattern_match_vs_fp64": 0.9875,
+     "sample_pattern_match": 1.0,
+     "sample_cell_match": 1.0,
+     "sample_pattern_match_vs_fp64": 0.982,
+     "style_agreement_with_ref": 1.0,
+     "style_acc_vs_condition": 0.995,
+     "ref_style_acc_vs_condition": 0.995
+    },
+    "coreml_cpu": {
+     "patterns": 2000,
+     "threshold_pattern_match": 0.9715,
+     "threshold_cell_match": 0.9998993055555555,
+     "threshold_pattern_match_vs_fp64": 0.976,
+     "sample_pattern_match": 0.962,
+     "sample_cell_match": 0.9998663194444445,
+     "sample_pattern_match_vs_fp64": 0.974,
+     "style_agreement_with_ref": 1.0,
+     "style_acc_vs_condition": 0.995,
+     "ref_style_acc_vs_condition": 0.995
+    },
+    "coreml_gpu": {
+     "patterns": 2000,
+     "threshold_pattern_match": 0.984,
+     "threshold_cell_match": 0.9999427083333333,
+     "threshold_pattern_match_vs_fp64": 0.9955,
+     "sample_pattern_match": 0.979,
+     "sample_cell_match": 0.9999270833333334,
+     "sample_pattern_match_vs_fp64": 0.992,
+     "style_agreement_with_ref": 1.0,
+     "style_acc_vs_condition": 0.995,
+     "ref_style_acc_vs_condition": 0.995
+    },
+    "coreml_ane": {
+     "patterns": 2000,
+     "threshold_pattern_match": 0.9625,
+     "threshold_cell_match": 0.9998576388888889,
+     "threshold_pattern_match_vs_fp64": 0.965,
+     "sample_pattern_match": 0.94,
+     "sample_cell_match": 0.9997881944444444,
+     "sample_pattern_match_vs_fp64": 0.94,
+     "style_agreement_with_ref": 1.0,
+     "style_acc_vs_condition": 0.995,
+     "ref_style_acc_vs_condition": 0.995
+    }
+   },
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e26_orchestra_b2000_fp16.mlpackage",
+     "size_bytes": 1169232,
+     "placement": {
+      "CPU": 15
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e26_orchestra_b2000_fp16.mlpackage",
+     "size_bytes": 1169232,
+     "placement": {
+      "GPU": 15
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e26_orchestra_b2000_fp16.mlpackage",
+     "size_bytes": 1169232,
+     "placement": {
+      "NeuralEngine": 15
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": false,
+     "reason": "threshold patterns identical 0.9875 (need >= 0.99), classifier agrees on sampled patterns 1.0000 (need >= 0.99)"
+    },
+    "mlx_cpu": {
+     "ok": false,
+     "reason": "threshold patterns identical 0.9875 (need >= 0.99), classifier agrees on sampled patterns 1.0000 (need >= 0.99)"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "threshold patterns identical 1.0000 (need >= 0.99), classifier agrees on sampled patterns 1.0000 (need >= 0.99)"
+    },
+    "mlx_gpu_fp16": {
+     "ok": false,
+     "reason": "threshold patterns identical 0.9840 (need >= 0.99), classifier agrees on sampled patterns 1.0000 (need >= 0.99)"
+    },
+    "mlx_gpu_compiled": {
+     "ok": true,
+     "reason": "threshold patterns identical 1.0000 (need >= 0.99), classifier agrees on sampled patterns 1.0000 (need >= 0.99)"
+    },
+    "coreml_cpu": {
+     "ok": false,
+     "reason": "threshold patterns identical 0.9715 (need >= 0.99), classifier agrees on sampled patterns 1.0000 (need >= 0.99)"
+    },
+    "coreml_gpu": {
+     "ok": false,
+     "reason": "threshold patterns identical 0.9840 (need >= 0.99), classifier agrees on sampled patterns 1.0000 (need >= 0.99)"
+    },
+    "coreml_ane": {
+     "ok": false,
+     "reason": "threshold patterns identical 0.9625 (need >= 0.99), classifier agrees on sampled patterns 1.0000 (need >= 0.99)"
+    }
+   }
+  }
+ },
+ "skips": {
+  "mlx_gpu_q8": "quantization reserved for the LLM event (brief); also the first layer's 24 inputs don't divide MLX's group size 32/64 (the project's own JS demo does use int8 per-row weights)",
+  "mlx_gpu_q4": "same as mlx_gpu_q8"
+ },
+ "task_checks": true,
+ "settings": {
+  "repeats": 3,
+  "budget_s": 0.1,
+  "only": null
+ },
+ "env_before": {
+  "time": "2026-10-22 17:49:41",
+  "loadavg": [
+   2.41162109375,
+   2.54443359375,
+   2.62255859375
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; finishing charge; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 58793,
+    "cpu": 117.3,
+    "comm": "Python"
+   },
+   {
+    "pid": 58815,
+    "cpu": 96.8,
+    "comm": "Python"
+   },
+   {
+    "pid": 404,
+    "cpu": 23.0,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.1743658201303333,
+  "mlx_gpu_2048_matmul_ms": 1.5503645990975201
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.2955616603139788,
+  "mlx_gpu_2048_matmul_ms": 1.0854416497750208
+ },
+ "env_after": {
+  "time": "2026-10-22 17:49:48",
+  "loadavg": [
+   2.61865234375,
+   2.5849609375,
+   2.63623046875
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; finishing charge; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 58817,
+    "cpu": 115.2,
+    "comm": "Python"
+   },
+   {
+    "pid": 404,
+    "cpu": 43.6,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

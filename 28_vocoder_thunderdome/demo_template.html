@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vocoder Thunderdome</title>
+<style>
+:root{--bg:#f7f6f2;--card:#fff;--ink:#1d1d1b;--mute:#6b6a65;--line:#dedcd5;--acc:#b4441c;--ok:#2f6b3a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161614;--card:#21201d;--ink:#ecebe6;--mute:#a19f97;--line:#3a3934;--acc:#f08a5d;--ok:#7fc48b}}
+:root[data-theme="dark"]{--bg:#161614;--card:#21201d;--ink:#ecebe6;--mute:#a19f97;--line:#3a3934;--acc:#f08a5d;--ok:#7fc48b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:24px 16px 64px}h1{margin:0 0 4px;font-size:26px}p.lede{color:var(--mute);margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:14px 0}
+.txt{font-style:italic;color:var(--mute);margin:2px 0 12px}.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.slot{border:1px solid var(--line);border-radius:8px;padding:10px}.slot b{font-size:18px}audio{width:100%;margin-top:6px}
+.vote label{margin-right:10px;color:var(--mute);font-size:13px}.who{display:none;margin-top:6px;font-size:13px}
+.revealed .who{display:block}.who .n{color:var(--acc);font-weight:600}.tag{font-size:12px;color:var(--acc);border:1px solid var(--acc);border-radius:99px;padding:0 8px;margin-left:6px}
+button{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:10px 18px;font-size:15px;cursor:pointer}
+img{max-width:100%;display:none;margin-top:12px;border-radius:6px}.revealed img{display:block}
+table{border-collapse:collapse;font-size:14px;width:100%;overflow-x:auto;display:block}td,th{border-bottom:1px solid var(--line);padding:4px 10px;text-align:left}
+#score{margin-left:12px;color:var(--ok);font-weight:600}
+</style></head><body><main>
+<h1>Vocoder Thunderdome</h1>
+<p class="lede">Same 80-band log-mel (16 kHz, n_fft 1024, hop 256) in, four waveforms out: the original recording,
+classical Griffin–Lim (64 iterations), the main MLX neural vocoder (400 training clips, 17 min), and the
+same model trained on 3000 clips with its full 25k-step schedule (14 min; more data <em>and</em> a full LR schedule, so not a pure data ablation). Held-out LJSpeech chapters. All versions are
+loudness-matched to −23 LUFS. The order is shuffled per clip; pick the one you think is the real recording, then reveal.</p>
+<div id="clips"></div>
+<div class="card"><button id="rev">Reveal labels</button><span id="score"></span></div>
+<div class="card"><b>Objective proxies, mean over __N__ held-out clips</b> (lower is better; transient = high-band energy before onsets vs ground truth, dB)
+<table><tr><th>method</th><th>MR-STFT</th><th>mel L1</th><th>f0 RMSE (cents)</th><th>pre-onset excess (dB)</th></tr>__TABLE__</table></div>
+</main>
+<script>
+const DATA=__DATA__;
+const root=document.getElementById('clips');
+DATA.forEach((c,ci)=>{
+  const d=document.createElement('div');d.className='card';
+  let h=`<b>Clip ${ci+1}</b> <span style="color:var(--mute)">${c.id}</span>${c.transient?'<span class="tag">plosive-heavy</span>':''}<div class="txt">“${c.text}”</div><div class="row">`;
+  c.entries.forEach((e,k)=>{const L='ABCD'[k];
+    h+=`<div class="slot"><b>${L}</b><audio controls preload="none" src="data:audio/wav;base64,${e.b64}"></audio>
+    <div class="vote"><label><input type="radio" name="v${ci}" value="${k}"> this is the original</label></div>
+    <div class="who"><span class="n">${e.label}</span> · ${e.lufs} LUFS${e.label==='Ground truth'?'':` · mel L1 ${e.mel_l1} · MR-STFT ${e.mrstft}`}</div></div>`;});
+  h+=`</div><img alt="spectrograms: ground truth, Griffin-Lim, neural" src="data:image/jpeg;base64,${c.spec_b64}">`;
+  d.innerHTML=h;root.appendChild(d);});
+document.getElementById('rev').onclick=()=>{
+  let right=0,voted=0;
+  DATA.forEach((c,ci)=>{const v=document.querySelector(`input[name=v${ci}]:checked`);
+    if(v){voted++;if(c.entries[+v.value].label==='Ground truth')right++;}});
+  document.querySelectorAll('#clips .card').forEach(e=>e.classList.add('revealed'));
+  document.getElementById('score').textContent=voted?`You picked the original ${right} of ${voted} times.`:'';
+};
+</script></body></html>

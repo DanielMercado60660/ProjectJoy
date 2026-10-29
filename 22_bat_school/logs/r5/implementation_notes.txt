@@ -1,0 +1,7 @@
+Astra turn-1 implementation notes (2026-10-24, local CDT)
+First NumPy test run: 1 failed, 15 passed in 2.51 s. Official train/test pools shared two geometry hashes despite distinct seeds. No MLX was imported.
+Fixed with deterministic geometry-hash split partitions and exclusion of all original training/test layouts. Kept the legacy comparison on original 5x5/6x6 layout prefixes with explicitly new R5 physics.
+Subsequent suite: 16 passed in 3.16 s. Expanded suite: 18 passed in 3.80 s; see numpy_tests_final.txt.
+Prototype classical controller was strengthened with persistent wall evidence and known-traversed edges in addition to dynamic occupancy decay; both schedulers tune the same full parameter space.
+MLX runtime, checkpoint RNG restore on MLX 0.32, compiled-weight mutation, loss continuation and learned outcomes are for Claude to verify with smoke_r5.sh.
+Delivery review: selection now ranks completion first, with a bounded collision/time/pulse tie-breaker; added regression proving a never-committing policy cannot win. Final suite: 19 passed in 4.02 s (numpy_tests_delivery.txt). delivery_speed.json, delivery_tuner_check.json and delivery_eval_check.json use this final rule. Earlier prototype receipts are retained and used the draft utility score.

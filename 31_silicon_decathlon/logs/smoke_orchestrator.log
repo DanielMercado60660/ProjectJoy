@@ -1,0 +1,33 @@
+.................                                                        [100%]
+=============================== warnings summary ===============================
+tests/test_harness.py::test_run_writes_qualifies[True]
+  /Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/coremltools/optimize/torch/palettization/fake_palettize.py:82: SyntaxWarning: invalid escape sequence '\_'
+    n_bits (:obj:`int`): Number of palettization bits. There would be :math:`2^{n\_bits}` unique weights in the ``LUT``.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+17 passed, 1 warning in 4.22s
+== 09_alphazero  (provisional; MLX GPU matmul TF32, rel err 0.0008)
+  b=    1 numpy_cpu             0.311 ms (p90 0.324)  policy_max_err=1.13e-06, value_max_err=0  [Q]
+  b=    1 mlx_cpu               0.416 ms (p90 0.428)  policy_max_err=1.31e-06, value_max_err=0  [Q]
+  b=    1 mlx_gpu               1.038 ms (p90 1.942)  policy_max_err=0, value_max_err=0  [Q]
+  b=    1 mlx_gpu_fp16          0.928 ms (p90 1.187)  policy_max_err=0.00282, value_max_err=0.000207  [Q]
+  b=    1 mlx_gpu_compiled      0.506 ms (p90 0.548)  policy_max_err=0, value_max_err=0  [Q]
+  b=    1 coreml_cpu            0.055 ms (p90 0.062)  policy_max_err=0.0058, value_max_err=0.000207  [Q]
+  b=    1 coreml_gpu            0.054 ms (p90 0.056)  policy_max_err=0.0058, value_max_err=0.000207  [Q]
+  b=    1 coreml_ane            0.054 ms (p90 0.057)  policy_max_err=0.0058, value_max_err=0.000207  [Q]
+wrote logs/smoke/e09_alphazero_provisional.json
+== 15_object_permanence  (provisional; MLX GPU matmul TF32, rel err 0.0008)
+  b=    1 numpy_cpu             0.275 ms (p90 0.299)  mean_px_max_err=1.91e-06, sigma_rel_max_err=9.54e-07, rho_max_err=1.41e-08, h_max_err=5.96e-08  [Q]
+  b=    1 mlx_cpu               0.278 ms (p90 0.298)  mean_px_max_err=3.93e-06, sigma_rel_max_err=9.54e-07, rho_max_err=1.41e-08, h_max_err=8.94e-08  [Q]
+  b=    1 mlx_gpu               0.368 ms (p90 0.378)  mean_px_max_err=0, sigma_rel_max_err=0, rho_max_err=0, h_max_err=0  [Q]
+  b=    1 mlx_gpu_fp16          0.635 ms (p90 0.879)  mean_px_max_err=0.00803, sigma_rel_max_err=0.00205, rho_max_err=5.44e-05, h_max_err=0.00051  [Q]
+  b=    1 mlx_gpu_compiled      0.327 ms (p90 0.344)  mean_px_max_err=0, sigma_rel_max_err=0, rho_max_err=0, h_max_err=0  [Q]
+  b=    1 mlx_gpu_q8            0.946 ms (p90 1.973)  mean_px_max_err=0.0381, sigma_rel_max_err=0.0108, rho_max_err=0.000907, h_max_err=0.00027  [Q]
+  b=    1 mlx_gpu_q4            0.472 ms (p90 0.545)  mean_px_max_err=0.967, sigma_rel_max_err=0.154, rho_max_err=0.0369, h_max_err=0.0111  [DQ: one step: pos err 0.967 px (tol 0.25), sigma err 0.154 (tol 0.05)]
+  b=    1 coreml_cpu            0.099 ms (p90 0.105)  mean_px_max_err=0.0229, sigma_rel_max_err=0.00507, rho_max_err=0.0004, h_max_err=0.00202  [Q]
+  b=    1 coreml_gpu            0.099 ms (p90 0.107)  mean_px_max_err=0.0229, sigma_rel_max_err=0.00507, rho_max_err=0.0004, h_max_err=0.00202  [Q]
+  b=    1 coreml_ane            0.174 ms (p90 0.196)  mean_px_max_err=0.0105, sigma_rel_max_err=0.00205, rho_max_err=0.000143, h_max_err=0.00184  [Q]
+wrote logs/smoke/e15_object_permanence_provisional.json
+[make_report] 2 events (09_alphazero:P, 15_object_permanence:P); wrote logs/smoke/summary.md and leaderboard.png, crossover.png, demo.html in logs/smoke/
+demo.html OK: 2 events, 16 views rendered, 4 medal rows
+smoke OK

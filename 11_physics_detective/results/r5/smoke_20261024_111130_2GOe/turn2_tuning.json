@@ -1,0 +1,130 @@
+{
+  "status": "complete",
+  "source_sha256": "0824de49868daea18b0bcd5053716b684b3dc838f340ad1b4504a34f2c328e5b",
+  "config": {
+    "mode": "turn2_tune",
+    "seed": 73001,
+    "worlds": 1,
+    "source_sha256": "0824de49868daea18b0bcd5053716b684b3dc838f340ad1b4504a34f2c328e5b",
+    "original_source_sha256": "bf4c40b1b997ef173b9b67c2158c475790212369f3fad68623a4a0c62b4d2981",
+    "planner": {
+      "grid_size": 401,
+      "particles": 8,
+      "fantasies": 4,
+      "design_stride": 25
+    },
+    "gain_grid": {
+      "mu_size": 301,
+      "gain_size": 21
+    },
+    "baseline_tuning": {
+      "lsq": {
+        "protocol": "adaptive_10_90",
+        "offset": -0.5
+      },
+      "tobit": {
+        "protocol": "adaptive_10_90",
+        "offset": 0.0
+      }
+    },
+    "baseline_tuning_sha256": "29173a6b330fe115d70eaa3fdbb1f5326df80f13f2ea84e3a676b17dae35af2d",
+    "output": "/Users/danielmercado/ProjectJoy/11_physics_detective/results/r5/smoke_20261024_111130_2GOe/turn2_tuning.json",
+    "owners": [
+      "eig",
+      "lsq"
+    ],
+    "half_widths": [
+      0.15,
+      0.25
+    ],
+    "resolution_check": false
+  },
+  "seed": 73001,
+  "selected": {
+    "gain_bayes": {
+      "owner": "eig",
+      "half_width": 0.25
+    },
+    "gain_mle": {
+      "owner": "lsq",
+      "half_width": 0.15
+    }
+  },
+  "candidates": [
+    {
+      "method": "gain_bayes",
+      "owner": "eig",
+      "half_width": 0.15,
+      "successes": 2,
+      "trials": 6,
+      "abs_error_sum": 0.41619109699698353,
+      "brier_sum": 0.6313626750415755
+    },
+    {
+      "method": "gain_mle",
+      "owner": "eig",
+      "half_width": 0.15,
+      "successes": 0,
+      "trials": 6,
+      "abs_error_sum": 1.2313881428904825,
+      "brier_sum": 0.5378881491843973
+    },
+    {
+      "method": "gain_bayes",
+      "owner": "eig",
+      "half_width": 0.25,
+      "successes": 3,
+      "trials": 6,
+      "abs_error_sum": 0.32712026267487193,
+      "brier_sum": 1.396701727477129
+    },
+    {
+      "method": "gain_mle",
+      "owner": "eig",
+      "half_width": 0.25,
+      "successes": 0,
+      "trials": 6,
+      "abs_error_sum": 1.8167494607870651,
+      "brier_sum": 0.24216647038489642
+    },
+    {
+      "method": "gain_bayes",
+      "owner": "lsq",
+      "half_width": 0.15,
+      "successes": 2,
+      "trials": 6,
+      "abs_error_sum": 0.21636378726879613,
+      "brier_sum": 0.8905085606329801
+    },
+    {
+      "method": "gain_mle",
+      "owner": "lsq",
+      "half_width": 0.15,
+      "successes": 6,
+      "trials": 6,
+      "abs_error_sum": 0.028642395156538214,
+      "brier_sum": 2.741131298093555
+    },
+    {
+      "method": "gain_bayes",
+      "owner": "lsq",
+      "half_width": 0.25,
+      "successes": 2,
+      "trials": 6,
+      "abs_error_sum": 0.47385942766264566,
+      "brier_sum": 0.34008513217418973
+    },
+    {
+      "method": "gain_mle",
+      "owner": "lsq",
+      "half_width": 0.25,
+      "successes": 3,
+      "trials": 6,
+      "abs_error_sum": 0.11155796483647473,
+      "brier_sum": 0.5295019733507978
+    }
+  ],
+  "selection_metric": "Balanced matched/gain_shift success over budgets 1,2,4; ties by MAE then enumeration",
+  "elapsed_seconds": 0.289247874985449,
+  "checkpoint": "/Users/danielmercado/ProjectJoy/11_physics_detective/checkpoints/r5_smoke_20261024_111130_2GOe/turn2_tune.json"
+}

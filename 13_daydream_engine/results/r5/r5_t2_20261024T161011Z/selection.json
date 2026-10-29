@@ -1,0 +1,5716 @@
+{
+  "complete": true,
+  "models": [
+    {
+      "checkpoint": "/Users/danielmercado/ProjectJoy/13_daydream_engine/checkpoints/r5_20261024T152040Z_h32/step_00100000_86f61496",
+      "step": 100000,
+      "mean_error": 0.014120767824351788,
+      "members": 5,
+      "config": {
+        "members": 5,
+        "hidden": 32,
+        "batch": 128,
+        "unroll": 3,
+        "seed": 51010,
+        "lr": 0.001,
+        "train_sha256": "79a85cf928a74aabe03135ba450f7a2cc24dfe5de1d1412cdd5d1ba331fe9244",
+        "val_sha256": "076d317726949073c2bb309e18567699ae82707d89f495883a23a57f080d2a42"
+      }
+    },
+    {
+      "checkpoint": "/Users/danielmercado/ProjectJoy/13_daydream_engine/checkpoints/r5_t2_20261024T161011Z_raw/step_00123244_cf02fd26",
+      "step": 123244,
+      "mean_error": 0.014493639580905437,
+      "members": 5,
+      "config": {
+        "members": 5,
+        "hidden": 64,
+        "batch": 256,
+        "unroll": 5,
+        "seed": 53010,
+        "lr": 0.0008,
+        "features": "raw",
+        "depth": 3,
+        "collision_weight": 3.0,
+        "contact_fraction": 0.75,
+        "decay_steps": 100000,
+        "min_lr_fraction": 0.1,
+        "train_sha256": "79a85cf928a74aabe03135ba450f7a2cc24dfe5de1d1412cdd5d1ba331fe9244",
+        "val_sha256": "076d317726949073c2bb309e18567699ae82707d89f495883a23a57f080d2a42"
+      }
+    },
+    {
+      "checkpoint": "/Users/danielmercado/ProjectJoy/13_daydream_engine/checkpoints/r5_t2_20261024T161011Z_geometry/step_00085224_adc8a24f",
+      "step": 85224,
+      "mean_error": 0.013415917754173279,
+      "members": 5,
+      "config": {
+        "members": 5,
+        "hidden": 64,
+        "batch": 256,
+        "unroll": 5,
+        "seed": 53010,
+        "lr": 0.0008,
+        "features": "geometry",
+        "depth": 3,
+        "collision_weight": 3.0,
+        "contact_fraction": 0.75,
+        "decay_steps": 100000,
+        "min_lr_fraction": 0.1,
+        "train_sha256": "79a85cf928a74aabe03135ba450f7a2cc24dfe5de1d1412cdd5d1ba331fe9244",
+        "val_sha256": "076d317726949073c2bb309e18567699ae82707d89f495883a23a57f080d2a42"
+      }
+    }
+  ],
+  "selected": {
+    "checkpoint": "/Users/danielmercado/ProjectJoy/13_daydream_engine/checkpoints/r5_t2_20261024T161011Z_geometry/step_00085224_adc8a24f",
+    "step": 85224,
+    "mean_error": 0.013415917754173279,
+    "members": 5,
+    "config": {
+      "members": 5,
+      "hidden": 64,
+      "batch": 256,
+      "unroll": 5,
+      "seed": 53010,
+      "lr": 0.0008,
+      "features": "geometry",
+      "depth": 3,
+      "collision_weight": 3.0,
+      "contact_fraction": 0.75,
+      "decay_steps": 100000,
+      "min_lr_fraction": 0.1,
+      "train_sha256": "79a85cf928a74aabe03135ba450f7a2cc24dfe5de1d1412cdd5d1ba331fe9244",
+      "val_sha256": "076d317726949073c2bb309e18567699ae82707d89f495883a23a57f080d2a42"
+    }
+  },
+  "beta": 0.5,
+  "beta_metrics": {
+    "0.0": {
+      "n": 64,
+      "coverage": 1.0,
+      "dream_success": 0.6875,
+      "real_success": 0.53125,
+      "fooled_rate": 0.171875,
+      "fooled_given_dream_success": 0.25,
+      "severe_fooled_rate": 0.09375,
+      "dream_distance": {
+        "n": 64,
+        "mean": 0.05139119853269338,
+        "median": 0.03184630581365014,
+        "nonfinite": 0
+      },
+      "real_distance": {
+        "n": 64,
+        "mean": 0.08545332351289213,
+        "median": 0.05639019653965384,
+        "nonfinite": 0
+      },
+      "gap": {
+        "n": 64,
+        "mean": 0.03406212498019875,
+        "median": 0.0015240870324038976,
+        "nonfinite": 0
+      },
+      "invalid_candidates": 0,
+      "all_invalid_tasks": 0
+    },
+    "0.25": {
+      "n": 64,
+      "coverage": 1.0,
+      "dream_success": 0.6875,
+      "real_success": 0.5625,
+      "fooled_rate": 0.140625,
+      "fooled_given_dream_success": 0.20454545454545456,
+      "severe_fooled_rate": 0.03125,
+      "dream_distance": {
+        "n": 64,
+        "mean": 0.053872054481554674,
+        "median": 0.033331697282628754,
+        "nonfinite": 0
+      },
+      "real_distance": {
+        "n": 64,
+        "mean": 0.06502172271211096,
+        "median": 0.04865815385378172,
+        "nonfinite": 0
+      },
+      "gap": {
+        "n": 64,
+        "mean": 0.01114966823055629,
+        "median": 2.010415290734733e-06,
+        "nonfinite": 0
+      },
+      "invalid_candidates": 0,
+      "all_invalid_tasks": 0
+    },
+    "0.5": {
+      "n": 64,
+      "coverage": 1.0,
+      "dream_success": 0.65625,
+      "real_success": 0.59375,
+      "fooled_rate": 0.078125,
+      "fooled_given_dream_success": 0.11904761904761904,
+      "severe_fooled_rate": 0.015625,
+      "dream_distance": {
+        "n": 64,
+        "mean": 0.057567200954087766,
+        "median": 0.04116541494505116,
+        "nonfinite": 0
+      },
+      "real_distance": {
+        "n": 64,
+        "mean": 0.0631436017015233,
+        "median": 0.04516360294935843,
+        "nonfinite": 0
+      },
+      "gap": {
+        "n": 64,
+        "mean": 0.005576400747435543,
+        "median": 1.6014212285836438e-06,
+        "nonfinite": 0
+      },
+      "invalid_candidates": 0,
+      "all_invalid_tasks": 0
+    },
+    "1.0": {
+      "n": 64,
+      "coverage": 1.0,
+      "dream_success": 0.625,
+      "real_success": 0.578125,
+      "fooled_rate": 0.0625,
+      "fooled_given_dream_success": 0.1,
+      "severe_fooled_rate": 0.0,
+      "dream_distance": {
+        "n": 64,
+        "mean": 0.06049094472547266,
+        "median": 0.047134659224087924,
+        "nonfinite": 0
+      },
+      "real_distance": {
+        "n": 64,
+        "mean": 0.06634491085317193,
+        "median": 0.05218866964680713,
+        "nonfinite": 0
+      },
+      "gap": {
+        "n": 64,
+        "mean": 0.005853966127699276,
+        "median": 1.76903456487092e-06,
+        "nonfinite": 0
+      },
+      "invalid_candidates": 0,
+      "all_invalid_tasks": 0
+    },
+    "2.0": {
+      "n": 64,
+      "coverage": 1.0,
+      "dream_success": 0.53125,
+      "real_success": 0.5,
+      "fooled_rate": 0.046875,
+      "fooled_given_dream_success": 0.08823529411764706,
+      "severe_fooled_rate": 0.0,
+      "dream_distance": {
+        "n": 64,
+        "mean": 0.07097511858948682,
+        "median": 0.05693273352771043,
+        "nonfinite": 0
+      },
+      "real_distance": {
+        "n": 64,
+        "mean": 0.07428421810487473,
+        "median": 0.06111567948985593,
+        "nonfinite": 0
+      },
+      "gap": {
+        "n": 64,
+        "mean": 0.0033090995153878997,
+        "median": 1.5377801539269431e-06,
+        "nonfinite": 0
+      },
+      "invalid_candidates": 0,
+      "all_invalid_tasks": 0
+    }
+  },
+  "beta_rows": {
+    "0.0": [
+      {
+        "velocity": [
+          1.4831891532533064,
+          1.4046773372752006
+        ],
+        "dream": 0.20741330291541923,
+        "disagreement": 2.9802322387695312e-08,
+        "predicted_position": [
+          0.4910632073879242,
+          0.5513601303100586
+        ],
+        "score": 0.20741330291541923,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.2074116530886904,
+        "task_id": 0
+      },
+      {
+        "velocity": [
+          -0.5625140138161825,
+          -0.6072629958729655
+        ],
+        "dream": 0.01862038350192202,
+        "disagreement": 0.288079172372818,
+        "predicted_position": [
+          0.5194677114486694,
+          0.3763774037361145
+        ],
+        "score": 0.01862038350192202,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.2646572541103882,
+        "task_id": 1
+      },
+      {
+        "velocity": [
+          0.055974409770328526,
+          -1.2411119026816553
+        ],
+        "dream": 0.0014258406721677306,
+        "disagreement": 0.003466782160103321,
+        "predicted_position": [
+          0.3273068070411682,
+          0.628910481929779
+        ],
+        "score": 0.0014258406721677306,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.001318211068134084,
+        "task_id": 2
+      },
+      {
+        "velocity": [
+          -0.28324762532891967,
+          -1.4199656270203858
+        ],
+        "dream": 0.07410142842419755,
+        "disagreement": 0.04784786328673363,
+        "predicted_position": [
+          0.4707716107368469,
+          0.710351288318634
+        ],
+        "score": 0.07410142842419755,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0662455803168906,
+        "task_id": 3
+      },
+      {
+        "velocity": [
+          1.3789967668899163,
+          0.8821492031921997
+        ],
+        "dream": 0.01403397621105169,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.1970064789056778,
+          0.26585492491722107
+        ],
+        "score": 0.01403397621105169,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.014033628314918119,
+        "task_id": 4
+      },
+      {
+        "velocity": [
+          0.970467733383456,
+          -1.3935034424550794
+        ],
+        "dream": 0.12720498153766258,
+        "disagreement": 0.005290897097438574,
+        "predicted_position": [
+          0.7480940222740173,
+          0.6944297552108765
+        ],
+        "score": 0.12720498153766258,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.12739915781856273,
+        "task_id": 5
+      },
+      {
+        "velocity": [
+          -0.9129673645926438,
+          -1.254001778170374
+        ],
+        "dream": 0.012013334550514973,
+        "disagreement": 0.017111491411924362,
+        "predicted_position": [
+          0.8082506060600281,
+          0.37521088123321533
+        ],
+        "score": 0.012013334550514973,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.010011117993715098,
+        "task_id": 6
+      },
+      {
+        "velocity": [
+          -1.3276466379428127,
+          -1.331908433524653
+        ],
+        "dream": 0.02717472567750814,
+        "disagreement": 0.02251274697482586,
+        "predicted_position": [
+          0.21129341423511505,
+          0.839983344078064
+        ],
+        "score": 0.02717472567750814,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.034581767792838565,
+        "task_id": 7
+      },
+      {
+        "velocity": [
+          -1.4751237617383528,
+          -1.3281014108403446
+        ],
+        "dream": 0.07327009697637453,
+        "disagreement": 0.02669355273246765,
+        "predicted_position": [
+          0.6700695157051086,
+          0.6677447557449341
+        ],
+        "score": 0.07327009697637453,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0730561767639096,
+        "task_id": 8
+      },
+      {
+        "velocity": [
+          0.6629670842559595,
+          0.21500898990322748
+        ],
+        "dream": 0.012971493105611484,
+        "disagreement": 0.0953713059425354,
+        "predicted_position": [
+          0.366238534450531,
+          0.22727704048156738
+        ],
+        "score": 0.012971493105611484,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.1018945567993316,
+        "task_id": 9
+      },
+      {
+        "velocity": [
+          0.5228138046917801,
+          -0.30010214300899185
+        ],
+        "dream": 0.021555850192719196,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7337101697921753,
+          0.3574100732803345
+        ],
+        "score": 0.021555850192719196,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02155735058995166,
+        "task_id": 10
+      },
+      {
+        "velocity": [
+          -0.34094186188260744,
+          0.22174875979551745
+        ],
+        "dream": 0.06647831007771897,
+        "disagreement": 0.02386113442480564,
+        "predicted_position": [
+          0.21539869904518127,
+          0.7105454206466675
+        ],
+        "score": 0.06647831007771897,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0933622072847439,
+        "task_id": 11
+      },
+      {
+        "velocity": [
+          0.09439945537565131,
+          -1.1594386821003417
+        ],
+        "dream": 0.02718695792288394,
+        "disagreement": 0.015716899186372757,
+        "predicted_position": [
+          0.43046942353248596,
+          0.5189047455787659
+        ],
+        "score": 0.02718695792288394,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03904592926286826,
+        "task_id": 12
+      },
+      {
+        "velocity": [
+          -0.7563758498497211,
+          0.15948174725583497
+        ],
+        "dream": 0.013624337534941643,
+        "disagreement": 0.4665664732456207,
+        "predicted_position": [
+          0.5644626617431641,
+          0.38658666610717773
+        ],
+        "score": 0.013624337534941643,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.2555132790822791,
+        "task_id": 13
+      },
+      {
+        "velocity": [
+          -1.3368814228627448,
+          0.36703970243887474
+        ],
+        "dream": 0.03324979402847351,
+        "disagreement": 0.26988276839256287,
+        "predicted_position": [
+          0.30993738770484924,
+          0.6494046449661255
+        ],
+        "score": 0.03324979402847351,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.3876424158977409,
+        "task_id": 14
+      },
+      {
+        "velocity": [
+          1.361013629454974,
+          0.26994484978700284
+        ],
+        "dream": 0.010057357219657902,
+        "disagreement": 0.01625293865799904,
+        "predicted_position": [
+          0.36429184675216675,
+          0.20121130347251892
+        ],
+        "score": 0.010057357219657902,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.014156491471715726,
+        "task_id": 15
+      },
+      {
+        "velocity": [
+          -0.6780808369441977,
+          -1.4328762181960788
+        ],
+        "dream": 0.05907033629973711,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.2445775270462036,
+          0.5525878667831421
+        ],
+        "score": 0.05907033629973711,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05907086332083532,
+        "task_id": 16
+      },
+      {
+        "velocity": [
+          -1.1726369268452173,
+          1.1477992664342924
+        ],
+        "dream": 0.10172763067717666,
+        "disagreement": 0.1998126059770584,
+        "predicted_position": [
+          0.5344889760017395,
+          0.5309786200523376
+        ],
+        "score": 0.10172763067717666,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.1737980059181002,
+        "task_id": 17
+      },
+      {
+        "velocity": [
+          1.339242551051674,
+          -0.3040629530833384
+        ],
+        "dream": 0.009156573797953442,
+        "disagreement": 0.0008279855828732252,
+        "predicted_position": [
+          0.5905226469039917,
+          0.36935922503471375
+        ],
+        "score": 0.009156573797953442,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.008784594979843562,
+        "task_id": 18
+      },
+      {
+        "velocity": [
+          -1.178055692067627,
+          0.40393840512507695
+        ],
+        "dream": 0.017689850629062077,
+        "disagreement": 0.13254620134830475,
+        "predicted_position": [
+          0.4356352686882019,
+          0.19484692811965942
+        ],
+        "score": 0.017689850629062077,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0381230600873532,
+        "task_id": 19
+      },
+      {
+        "velocity": [
+          0.6409320906416573,
+          0.6595324415414445
+        ],
+        "dream": 0.020626919302767683,
+        "disagreement": 0.05555112659931183,
+        "predicted_position": [
+          0.8581504821777344,
+          0.36867377161979675
+        ],
+        "score": 0.020626919302767683,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.026102186982533113,
+        "task_id": 20
+      },
+      {
+        "velocity": [
+          -1.4170648422649168,
+          -1.0407833435789664
+        ],
+        "dream": 0.0204072625744743,
+        "disagreement": 0.04057756066322327,
+        "predicted_position": [
+          0.4189938008785248,
+          0.2282024323940277
+        ],
+        "score": 0.0204072625744743,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03614350231941874,
+        "task_id": 21
+      },
+      {
+        "velocity": [
+          -0.6051535874724604,
+          1.3382720204986773
+        ],
+        "dream": 0.024115107425349593,
+        "disagreement": 1.4901161193847656e-08,
+        "predicted_position": [
+          0.402561753988266,
+          0.23282340168952942
+        ],
+        "score": 0.024115107425349593,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.024117281710838687,
+        "task_id": 22
+      },
+      {
+        "velocity": [
+          -0.4361708839661187,
+          1.392720110331532
+        ],
+        "dream": 0.07439917709222046,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.35061702132225037,
+          0.4709095358848572
+        ],
+        "score": 0.07439917709222046,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07439782497895137,
+        "task_id": 23
+      },
+      {
+        "velocity": [
+          -1.2644048854963703,
+          1.340975105872543
+        ],
+        "dream": 0.13691743198215298,
+        "disagreement": 0.14050385355949402,
+        "predicted_position": [
+          0.6778761148452759,
+          0.6498234868049622
+        ],
+        "score": 0.13691743198215298,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07783500342491699,
+        "task_id": 24
+      },
+      {
+        "velocity": [
+          0.4992087813288094,
+          -0.7634541030671422
+        ],
+        "dream": 0.12385322806196407,
+        "disagreement": 0.02913670241832733,
+        "predicted_position": [
+          0.39601460099220276,
+          0.45365041494369507
+        ],
+        "score": 0.12385322806196407,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.1505840529807988,
+        "task_id": 25
+      },
+      {
+        "velocity": [
+          -0.894398035652187,
+          1.2019940479526465
+        ],
+        "dream": 0.08640487888895569,
+        "disagreement": 0.023249635472893715,
+        "predicted_position": [
+          0.6137868165969849,
+          0.3732634484767914
+        ],
+        "score": 0.08640487888895569,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09331610502049904,
+        "task_id": 26
+      },
+      {
+        "velocity": [
+          0.16198877070492068,
+          1.2459713965911763
+        ],
+        "dream": 0.00593539757743995,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7754900455474854,
+          0.5613417029380798
+        ],
+        "score": 0.00593539757743995,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.005926019950014823,
+        "task_id": 27
+      },
+      {
+        "velocity": [
+          1.1087281027315616,
+          -0.8881977333009506
+        ],
+        "dream": 0.06363281060888511,
+        "disagreement": 0.18862676620483398,
+        "predicted_position": [
+          0.775269627571106,
+          0.5872944593429565
+        ],
+        "score": 0.06363281060888511,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.19949689976632706,
+        "task_id": 28
+      },
+      {
+        "velocity": [
+          -1.4399278273050589,
+          1.231393274814336
+        ],
+        "dream": 0.019537782857140796,
+        "disagreement": 0.15056928992271423,
+        "predicted_position": [
+          0.18115416169166565,
+          0.18590323626995087
+        ],
+        "score": 0.019537782857140796,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.32595291577980806,
+        "task_id": 29
+      },
+      {
+        "velocity": [
+          -1.232916259105063,
+          0.841427163844979
+        ],
+        "dream": 0.013758730491941451,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.40820837020874023,
+          0.1645866185426712
+        ],
+        "score": 0.013758730491941451,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.013759590468049242,
+        "task_id": 30
+      },
+      {
+        "velocity": [
+          0.2538003542401719,
+          0.44475365761063035
+        ],
+        "dream": 0.019887613973109255,
+        "disagreement": 0.16697686910629272,
+        "predicted_position": [
+          0.8338190317153931,
+          0.29211461544036865
+        ],
+        "score": 0.019887613973109255,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.26207429085006784,
+        "task_id": 31
+      },
+      {
+        "velocity": [
+          -1.2417601586750777,
+          1.0904999209684476
+        ],
+        "dream": 0.04193425517200704,
+        "disagreement": 0.08373288065195084,
+        "predicted_position": [
+          0.3489357829093933,
+          0.18204811215400696
+        ],
+        "score": 0.04193425517200704,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07092537450990165,
+        "task_id": 32
+      },
+      {
+        "velocity": [
+          0.09270257954792005,
+          -1.4906682800580855
+        ],
+        "dream": 0.014560513761511072,
+        "disagreement": 0.017062338069081306,
+        "predicted_position": [
+          0.5967910885810852,
+          0.5567496418952942
+        ],
+        "score": 0.014560513761511072,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.026389565822123595,
+        "task_id": 33
+      },
+      {
+        "velocity": [
+          -0.2569440974329096,
+          0.8941143752133072
+        ],
+        "dream": 0.04343680579709137,
+        "disagreement": 7.450580596923828e-09,
+        "predicted_position": [
+          0.12088547646999359,
+          0.3802771270275116
+        ],
+        "score": 0.04343680579709137,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.043438433476473144,
+        "task_id": 34
+      },
+      {
+        "velocity": [
+          -1.3314504928987838,
+          -1.3240150083219921
+        ],
+        "dream": 0.11444980231305328,
+        "disagreement": 0.02050899714231491,
+        "predicted_position": [
+          0.22993536293506622,
+          0.41893815994262695
+        ],
+        "score": 0.11444980231305328,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.10588596683872893,
+        "task_id": 35
+      },
+      {
+        "velocity": [
+          1.3733591085175147,
+          1.4486267401927304
+        ],
+        "dream": 0.11832881129914122,
+        "disagreement": 0.017916804179549217,
+        "predicted_position": [
+          0.385964035987854,
+          0.38184553384780884
+        ],
+        "score": 0.11832881129914122,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.11991672744230197,
+        "task_id": 36
+      },
+      {
+        "velocity": [
+          -0.9490437608869938,
+          -1.2358137676036458
+        ],
+        "dream": 0.04057426166768742,
+        "disagreement": 0.029167713597416878,
+        "predicted_position": [
+          0.21696069836616516,
+          0.7977077960968018
+        ],
+        "score": 0.04057426166768742,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.01745219928632678,
+        "task_id": 37
+      },
+      {
+        "velocity": [
+          1.4746611925372142,
+          -1.1563614687940187
+        ],
+        "dream": 0.04175656822241491,
+        "disagreement": 0.2803240716457367,
+        "predicted_position": [
+          0.5376224517822266,
+          0.6608462333679199
+        ],
+        "score": 0.04175656822241491,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.245998075398533,
+        "task_id": 38
+      },
+      {
+        "velocity": [
+          0.6507345532093654,
+          0.2109573994352969
+        ],
+        "dream": 0.035744536941900044,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.6816843748092651,
+          0.2742965519428253
+        ],
+        "score": 0.035744536941900044,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03574694255453297,
+        "task_id": 39
+      },
+      {
+        "velocity": [
+          -1.3268360166305762,
+          -0.9349054620281237
+        ],
+        "dream": 0.0045096493619899685,
+        "disagreement": 0.059207893908023834,
+        "predicted_position": [
+          0.20624490082263947,
+          0.24874505400657654
+        ],
+        "score": 0.0045096493619899685,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.034605712225950096,
+        "task_id": 40
+      },
+      {
+        "velocity": [
+          0.7655633387004551,
+          1.0973905704013984
+        ],
+        "dream": 0.05438060288270123,
+        "disagreement": 0.014697404578328133,
+        "predicted_position": [
+          0.6840981245040894,
+          0.6282004117965698
+        ],
+        "score": 0.05438060288270123,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.056087542906916296,
+        "task_id": 41
+      },
+      {
+        "velocity": [
+          0.5118126681647315,
+          -0.6085069210335745
+        ],
+        "dream": 0.011732010897748436,
+        "disagreement": 0.022139932960271835,
+        "predicted_position": [
+          0.3024523854255676,
+          0.299299955368042
+        ],
+        "score": 0.011732010897748436,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.024811829684982353,
+        "task_id": 42
+      },
+      {
+        "velocity": [
+          -1.0803367741786207,
+          0.7977114791719447
+        ],
+        "dream": 0.13955592496490965,
+        "disagreement": 0.038309235125780106,
+        "predicted_position": [
+          0.24140024185180664,
+          0.5440368056297302
+        ],
+        "score": 0.13955592496490965,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.12701189845597147,
+        "task_id": 43
+      },
+      {
+        "velocity": [
+          -1.471618612398361,
+          -0.2106766453199752
+        ],
+        "dream": 0.006405705158695854,
+        "disagreement": 0.19629743695259094,
+        "predicted_position": [
+          0.6759389638900757,
+          0.20245103538036346
+        ],
+        "score": 0.006405705158695854,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.032342948463616565,
+        "task_id": 44
+      },
+      {
+        "velocity": [
+          0.6810106606305473,
+          -0.9414591082592024
+        ],
+        "dream": 0.05563998624431582,
+        "disagreement": 0.08350689709186554,
+        "predicted_position": [
+          0.4447059631347656,
+          0.6722607612609863
+        ],
+        "score": 0.05563998624431582,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.06671926839736554,
+        "task_id": 45
+      },
+      {
+        "velocity": [
+          -0.010267809562355734,
+          1.2913486250026673
+        ],
+        "dream": 0.033319059485640165,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.6672887206077576,
+          0.4398519992828369
+        ],
+        "score": 0.033319059485640165,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0333093129848587,
+        "task_id": 46
+      },
+      {
+        "velocity": [
+          0.8637695263350377,
+          -0.6291231640549755
+        ],
+        "dream": 0.0038905875052597048,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7749163508415222,
+          0.4606597423553467
+        ],
+        "score": 0.0038905875052597048,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0038924340503520794,
+        "task_id": 47
+      },
+      {
+        "velocity": [
+          0.7624830820813806,
+          1.427960848588286
+        ],
+        "dream": 0.07140023301884132,
+        "disagreement": 0.07832162827253342,
+        "predicted_position": [
+          0.7430102229118347,
+          0.45339345932006836
+        ],
+        "score": 0.07140023301884132,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08360523543507338,
+        "task_id": 48
+      },
+      {
+        "velocity": [
+          0.9130093094711853,
+          -0.6916982656264107
+        ],
+        "dream": 0.013751927016194833,
+        "disagreement": 0.010790977627038956,
+        "predicted_position": [
+          0.839817225933075,
+          0.2506471276283264
+        ],
+        "score": 0.013751927016194833,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.010384989588974292,
+        "task_id": 49
+      },
+      {
+        "velocity": [
+          1.1056691103166016,
+          0.3746068706640281
+        ],
+        "dream": 0.0015409641196576797,
+        "disagreement": 0.0005016552750021219,
+        "predicted_position": [
+          0.7796448469161987,
+          0.22422511875629425
+        ],
+        "score": 0.0015409641196576797,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.002013265018735599,
+        "task_id": 50
+      },
+      {
+        "velocity": [
+          0.8531650186384618,
+          -0.0019855644006805395
+        ],
+        "dream": 0.022072960851227987,
+        "disagreement": 0.032012347131967545,
+        "predicted_position": [
+          0.8616300821304321,
+          0.7202559113502502
+        ],
+        "score": 0.022072960851227987,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0141088615790623,
+        "task_id": 51
+      },
+      {
+        "velocity": [
+          -1.4687606034834264,
+          0.553039647260978
+        ],
+        "dream": 0.06556342939231576,
+        "disagreement": 0.049731962382793427,
+        "predicted_position": [
+          0.5703197717666626,
+          0.561282753944397
+        ],
+        "score": 0.06556342939231576,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09781760394795273,
+        "task_id": 52
+      },
+      {
+        "velocity": [
+          0.5509363524448353,
+          0.7282866355478288
+        ],
+        "dream": 0.032892911802935625,
+        "disagreement": 0.2068254053592682,
+        "predicted_position": [
+          0.40037351846694946,
+          0.3395442068576813
+        ],
+        "score": 0.032892911802935625,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08399973575286525,
+        "task_id": 53
+      },
+      {
+        "velocity": [
+          0.1628007022455461,
+          -0.31761376650259154
+        ],
+        "dream": 0.010474734915866863,
+        "disagreement": 0.11692589521408081,
+        "predicted_position": [
+          0.35735946893692017,
+          0.40450984239578247
+        ],
+        "score": 0.010474734915866863,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.1061829703613483,
+        "task_id": 54
+      },
+      {
+        "velocity": [
+          1.028457161969535,
+          1.4142127684179817
+        ],
+        "dream": 0.04899260523543205,
+        "disagreement": 0.1115606352686882,
+        "predicted_position": [
+          0.5185783505439758,
+          0.3712767958641052
+        ],
+        "score": 0.04899260523543205,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05669285017239138,
+        "task_id": 55
+      },
+      {
+        "velocity": [
+          -0.7572425746596813,
+          1.268281675821778
+        ],
+        "dream": 0.06035719134394225,
+        "disagreement": 0.026096025481820107,
+        "predicted_position": [
+          0.38473886251449585,
+          0.6048688888549805
+        ],
+        "score": 0.06035719134394225,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.046888772422243714,
+        "task_id": 56
+      },
+      {
+        "velocity": [
+          1.344733874837269,
+          -1.4174669555911739
+        ],
+        "dream": 0.07061520538503688,
+        "disagreement": 0.051197949796915054,
+        "predicted_position": [
+          0.3916410207748413,
+          0.4983106255531311
+        ],
+        "score": 0.07061520538503688,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07036950940234316,
+        "task_id": 57
+      },
+      {
+        "velocity": [
+          -0.0180742488035055,
+          -0.7346881781334613
+        ],
+        "dream": 0.017735268461335735,
+        "disagreement": 0.003192254574969411,
+        "predicted_position": [
+          0.8055206537246704,
+          0.29965925216674805
+        ],
+        "score": 0.017735268461335735,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.019195526382982775,
+        "task_id": 58
+      },
+      {
+        "velocity": [
+          -0.557553411870462,
+          0.7221573278292062
+        ],
+        "dream": 0.025528353386755163,
+        "disagreement": 1.4901161193847656e-08,
+        "predicted_position": [
+          0.16244374215602875,
+          0.21000578999519348
+        ],
+        "score": 0.025528353386755163,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02553004491079253,
+        "task_id": 59
+      },
+      {
+        "velocity": [
+          -1.0958211819630672,
+          -1.4559600644556214
+        ],
+        "dream": 0.2917882126883896,
+        "disagreement": 0.03135858103632927,
+        "predicted_position": [
+          0.5509055852890015,
+          0.5097636580467224
+        ],
+        "score": 0.2917882126883896,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.25794989253453227,
+        "task_id": 60
+      },
+      {
+        "velocity": [
+          -1.413841708389475,
+          1.4262865982397464
+        ],
+        "dream": 0.004989876683343988,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.3100604712963104,
+          0.4032970070838928
+        ],
+        "score": 0.004989876683343988,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.004987424865008545,
+        "task_id": 61
+      },
+      {
+        "velocity": [
+          1.263953628173263,
+          1.3991336334315443
+        ],
+        "dream": 0.2228111475015131,
+        "disagreement": 0.037161070853471756,
+        "predicted_position": [
+          0.4881344735622406,
+          0.6011156439781189
+        ],
+        "score": 0.2228111475015131,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.21295527847150045,
+        "task_id": 62
+      },
+      {
+        "velocity": [
+          -0.3299036623048097,
+          0.6762264972299736
+        ],
+        "dream": 0.03079969982436465,
+        "disagreement": 0.03514932096004486,
+        "predicted_position": [
+          0.4654485583305359,
+          0.17429764568805695
+        ],
+        "score": 0.03079969982436465,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05042753528531973,
+        "task_id": 63
+      }
+    ],
+    "0.25": [
+      {
+        "velocity": [
+          1.4831891532533064,
+          1.4046773372752006
+        ],
+        "dream": 0.20741330291541923,
+        "disagreement": 2.9802322387695312e-08,
+        "predicted_position": [
+          0.4910632073879242,
+          0.5513601303100586
+        ],
+        "score": 0.20741331036599983,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.2074116530886904,
+        "task_id": 0
+      },
+      {
+        "velocity": [
+          -0.26435267521073913,
+          1.2301364513481619
+        ],
+        "dream": 0.029508293286617714,
+        "disagreement": 0.03722924366593361,
+        "predicted_position": [
+          0.500465989112854,
+          0.3534769117832184
+        ],
+        "score": 0.038815604203101116,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.028840890024993102,
+        "task_id": 1
+      },
+      {
+        "velocity": [
+          0.055974409770328526,
+          -1.2411119026816553
+        ],
+        "dream": 0.0014258406721677306,
+        "disagreement": 0.003466782160103321,
+        "predicted_position": [
+          0.3273068070411682,
+          0.628910481929779
+        ],
+        "score": 0.002292536212193561,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.001318211068134084,
+        "task_id": 2
+      },
+      {
+        "velocity": [
+          -1.4536050884762584,
+          -1.4877219520933638
+        ],
+        "dream": 0.08529058525741133,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.4910896420478821,
+          0.7306166887283325
+        ],
+        "score": 0.08529058525741133,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08528756617112195,
+        "task_id": 3
+      },
+      {
+        "velocity": [
+          1.3789967668899163,
+          0.8821492031921997
+        ],
+        "dream": 0.01403397621105169,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.1970064789056778,
+          0.26585492491722107
+        ],
+        "score": 0.01403397621105169,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.014033628314918119,
+        "task_id": 4
+      },
+      {
+        "velocity": [
+          0.970467733383456,
+          -1.3935034424550794
+        ],
+        "dream": 0.12720498153766258,
+        "disagreement": 0.005290897097438574,
+        "predicted_position": [
+          0.7480940222740173,
+          0.6944297552108765
+        ],
+        "score": 0.12852770581202222,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.12739915781856273,
+        "task_id": 5
+      },
+      {
+        "velocity": [
+          -0.9129673645926438,
+          -1.254001778170374
+        ],
+        "dream": 0.012013334550514973,
+        "disagreement": 0.017111491411924362,
+        "predicted_position": [
+          0.8082506060600281,
+          0.37521088123321533
+        ],
+        "score": 0.016291207403496065,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.010011117993715098,
+        "task_id": 6
+      },
+      {
+        "velocity": [
+          -1.3276466379428127,
+          -1.331908433524653
+        ],
+        "dream": 0.02717472567750814,
+        "disagreement": 0.02251274697482586,
+        "predicted_position": [
+          0.21129341423511505,
+          0.839983344078064
+        ],
+        "score": 0.03280291242121461,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.034581767792838565,
+        "task_id": 7
+      },
+      {
+        "velocity": [
+          -1.4751237617383528,
+          -1.3281014108403446
+        ],
+        "dream": 0.07327009697637453,
+        "disagreement": 0.02669355273246765,
+        "predicted_position": [
+          0.6700695157051086,
+          0.6677447557449341
+        ],
+        "score": 0.07994348515949144,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0730561767639096,
+        "task_id": 8
+      },
+      {
+        "velocity": [
+          0.6629670842559595,
+          0.21500898990322748
+        ],
+        "dream": 0.012971493105611484,
+        "disagreement": 0.0953713059425354,
+        "predicted_position": [
+          0.366238534450531,
+          0.22727704048156738
+        ],
+        "score": 0.036814319591245336,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.1018945567993316,
+        "task_id": 9
+      },
+      {
+        "velocity": [
+          0.5228138046917801,
+          -0.30010214300899185
+        ],
+        "dream": 0.021555850192719196,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7337101697921753,
+          0.3574100732803345
+        ],
+        "score": 0.021555850192719196,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02155735058995166,
+        "task_id": 10
+      },
+      {
+        "velocity": [
+          -0.34094186188260744,
+          0.22174875979551745
+        ],
+        "dream": 0.06647831007771897,
+        "disagreement": 0.02386113442480564,
+        "predicted_position": [
+          0.21539869904518127,
+          0.7105454206466675
+        ],
+        "score": 0.07244359368392038,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0933622072847439,
+        "task_id": 11
+      },
+      {
+        "velocity": [
+          0.09439945537565131,
+          -1.1594386821003417
+        ],
+        "dream": 0.02718695792288394,
+        "disagreement": 0.015716899186372757,
+        "predicted_position": [
+          0.43046942353248596,
+          0.5189047455787659
+        ],
+        "score": 0.03111618271947713,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03904592926286826,
+        "task_id": 12
+      },
+      {
+        "velocity": [
+          -0.44658732182749394,
+          0.3167047602980788
+        ],
+        "dream": 0.03874280588981352,
+        "disagreement": 0.09821821004152298,
+        "predicted_position": [
+          0.5613414645195007,
+          0.43289345502853394
+        ],
+        "score": 0.06329735840019426,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.1240661297147664,
+        "task_id": 13
+      },
+      {
+        "velocity": [
+          -0.17260475959109423,
+          1.3346110679492067
+        ],
+        "dream": 0.03334433507961734,
+        "disagreement": 0.04746342822909355,
+        "predicted_position": [
+          0.33270615339279175,
+          0.6979131102561951
+        ],
+        "score": 0.04521019213689073,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0741165713152542,
+        "task_id": 14
+      },
+      {
+        "velocity": [
+          1.361013629454974,
+          0.26994484978700284
+        ],
+        "dream": 0.010057357219657902,
+        "disagreement": 0.01625293865799904,
+        "predicted_position": [
+          0.36429184675216675,
+          0.20121130347251892
+        ],
+        "score": 0.014120591884157662,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.014156491471715726,
+        "task_id": 15
+      },
+      {
+        "velocity": [
+          -0.6780808369441977,
+          -1.4328762181960788
+        ],
+        "dream": 0.05907033629973711,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.2445775270462036,
+          0.5525878667831421
+        ],
+        "score": 0.05907033629973711,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05907086332083532,
+        "task_id": 16
+      },
+      {
+        "velocity": [
+          0.9441133054602958,
+          -1.460926504902587
+        ],
+        "dream": 0.12804014419457493,
+        "disagreement": 0.02453548088669777,
+        "predicted_position": [
+          0.4886108934879303,
+          0.47773322463035583
+        ],
+        "score": 0.13417401441624938,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.12020451202715207,
+        "task_id": 17
+      },
+      {
+        "velocity": [
+          1.339242551051674,
+          -0.3040629530833384
+        ],
+        "dream": 0.009156573797953442,
+        "disagreement": 0.0008279855828732252,
+        "predicted_position": [
+          0.5905226469039917,
+          0.36935922503471375
+        ],
+        "score": 0.009363570193671749,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.008784594979843562,
+        "task_id": 18
+      },
+      {
+        "velocity": [
+          -0.6271496550702828,
+          1.4319839412930002
+        ],
+        "dream": 0.02824429699312015,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.4392646849155426,
+          0.1798233538866043
+        ],
+        "score": 0.02824429699312015,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02824587215619554,
+        "task_id": 19
+      },
+      {
+        "velocity": [
+          0.6409320906416573,
+          0.6595324415414445
+        ],
+        "dream": 0.020626919302767683,
+        "disagreement": 0.05555112659931183,
+        "predicted_position": [
+          0.8581504821777344,
+          0.36867377161979675
+        ],
+        "score": 0.03451470095259564,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.026102186982533113,
+        "task_id": 20
+      },
+      {
+        "velocity": [
+          -1.4170648422649168,
+          -1.0407833435789664
+        ],
+        "dream": 0.0204072625744743,
+        "disagreement": 0.04057756066322327,
+        "predicted_position": [
+          0.4189938008785248,
+          0.2282024323940277
+        ],
+        "score": 0.030551652740280117,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03614350231941874,
+        "task_id": 21
+      },
+      {
+        "velocity": [
+          -0.6051535874724604,
+          1.3382720204986773
+        ],
+        "dream": 0.024115107425349593,
+        "disagreement": 1.4901161193847656e-08,
+        "predicted_position": [
+          0.402561753988266,
+          0.23282340168952942
+        ],
+        "score": 0.02411511115063989,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.024117281710838687,
+        "task_id": 22
+      },
+      {
+        "velocity": [
+          -0.4361708839661187,
+          1.392720110331532
+        ],
+        "dream": 0.07439917709222046,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.35061702132225037,
+          0.4709095358848572
+        ],
+        "score": 0.07439917709222046,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07439782497895137,
+        "task_id": 23
+      },
+      {
+        "velocity": [
+          -1.2644048854963703,
+          1.340975105872543
+        ],
+        "dream": 0.13691743198215298,
+        "disagreement": 0.14050385355949402,
+        "predicted_position": [
+          0.6778761148452759,
+          0.6498234868049622
+        ],
+        "score": 0.17204339537202648,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07783500342491699,
+        "task_id": 24
+      },
+      {
+        "velocity": [
+          0.4992087813288094,
+          -0.7634541030671422
+        ],
+        "dream": 0.12385322806196407,
+        "disagreement": 0.02913670241832733,
+        "predicted_position": [
+          0.39601460099220276,
+          0.45365041494369507
+        ],
+        "score": 0.13113740366654592,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.1505840529807988,
+        "task_id": 25
+      },
+      {
+        "velocity": [
+          -0.894398035652187,
+          1.2019940479526465
+        ],
+        "dream": 0.08640487888895569,
+        "disagreement": 0.023249635472893715,
+        "predicted_position": [
+          0.6137868165969849,
+          0.3732634484767914
+        ],
+        "score": 0.09221728775717912,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09331610502049904,
+        "task_id": 26
+      },
+      {
+        "velocity": [
+          0.16198877070492068,
+          1.2459713965911763
+        ],
+        "dream": 0.00593539757743995,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7754900455474854,
+          0.5613417029380798
+        ],
+        "score": 0.00593539757743995,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.005926019950014823,
+        "task_id": 27
+      },
+      {
+        "velocity": [
+          -1.1427318696057123,
+          -1.2130491095903053
+        ],
+        "dream": 0.07446496075058955,
+        "disagreement": 0.018671026453375816,
+        "predicted_position": [
+          0.7713745832443237,
+          0.6113320589065552
+        ],
+        "score": 0.0791327173639335,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09751458843398228,
+        "task_id": 28
+      },
+      {
+        "velocity": [
+          -0.322612509770811,
+          0.47337428045523755
+        ],
+        "dream": 0.032439342648870106,
+        "disagreement": 0.07846274226903915,
+        "predicted_position": [
+          0.1869868040084839,
+          0.15044522285461426
+        ],
+        "score": 0.052055028216129895,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.10870205107944178,
+        "task_id": 29
+      },
+      {
+        "velocity": [
+          -1.232916259105063,
+          0.841427163844979
+        ],
+        "dream": 0.013758730491941451,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.40820837020874023,
+          0.1645866185426712
+        ],
+        "score": 0.013758730491941451,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.013759590468049242,
+        "task_id": 30
+      },
+      {
+        "velocity": [
+          -0.24537165202965916,
+          0.570193029299464
+        ],
+        "dream": 0.0332390863051696,
+        "disagreement": 0.08449041098356247,
+        "predicted_position": [
+          0.8088079690933228,
+          0.2977907657623291
+        ],
+        "score": 0.054361689051060216,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.01855619074285358,
+        "task_id": 31
+      },
+      {
+        "velocity": [
+          -1.2417601586750777,
+          1.0904999209684476
+        ],
+        "dream": 0.04193425517200704,
+        "disagreement": 0.08373288065195084,
+        "predicted_position": [
+          0.3489357829093933,
+          0.18204811215400696
+        ],
+        "score": 0.06286747533499475,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07092537450990165,
+        "task_id": 32
+      },
+      {
+        "velocity": [
+          0.09270257954792005,
+          -1.4906682800580855
+        ],
+        "dream": 0.014560513761511072,
+        "disagreement": 0.017062338069081306,
+        "predicted_position": [
+          0.5967910885810852,
+          0.5567496418952942
+        ],
+        "score": 0.0188260982787814,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.026389565822123595,
+        "task_id": 33
+      },
+      {
+        "velocity": [
+          -0.2569440974329096,
+          0.8941143752133072
+        ],
+        "dream": 0.04343680579709137,
+        "disagreement": 7.450580596923828e-09,
+        "predicted_position": [
+          0.12088547646999359,
+          0.3802771270275116
+        ],
+        "score": 0.043436807659736516,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.043438433476473144,
+        "task_id": 34
+      },
+      {
+        "velocity": [
+          -1.3314504928987838,
+          -1.3240150083219921
+        ],
+        "dream": 0.11444980231305328,
+        "disagreement": 0.02050899714231491,
+        "predicted_position": [
+          0.22993536293506622,
+          0.41893815994262695
+        ],
+        "score": 0.11957705159863201,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.10588596683872893,
+        "task_id": 35
+      },
+      {
+        "velocity": [
+          1.3733591085175147,
+          1.4486267401927304
+        ],
+        "dream": 0.11832881129914122,
+        "disagreement": 0.017916804179549217,
+        "predicted_position": [
+          0.385964035987854,
+          0.38184553384780884
+        ],
+        "score": 0.12280801234402852,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.11991672744230197,
+        "task_id": 36
+      },
+      {
+        "velocity": [
+          -0.9490437608869938,
+          -1.2358137676036458
+        ],
+        "dream": 0.04057426166768742,
+        "disagreement": 0.029167713597416878,
+        "predicted_position": [
+          0.21696069836616516,
+          0.7977077960968018
+        ],
+        "score": 0.04786619006704164,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.01745219928632678,
+        "task_id": 37
+      },
+      {
+        "velocity": [
+          1.4746611925372142,
+          -1.1563614687940187
+        ],
+        "dream": 0.04175656822241491,
+        "disagreement": 0.2803240716457367,
+        "predicted_position": [
+          0.5376224517822266,
+          0.6608462333679199
+        ],
+        "score": 0.11183758613384909,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.245998075398533,
+        "task_id": 38
+      },
+      {
+        "velocity": [
+          0.6507345532093654,
+          0.2109573994352969
+        ],
+        "dream": 0.035744536941900044,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.6816843748092651,
+          0.2742965519428253
+        ],
+        "score": 0.035744536941900044,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03574694255453297,
+        "task_id": 39
+      },
+      {
+        "velocity": [
+          -1.3268360166305762,
+          -0.9349054620281237
+        ],
+        "dream": 0.0045096493619899685,
+        "disagreement": 0.059207893908023834,
+        "predicted_position": [
+          0.20624490082263947,
+          0.24874505400657654
+        ],
+        "score": 0.01931162283899593,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.034605712225950096,
+        "task_id": 40
+      },
+      {
+        "velocity": [
+          0.7655633387004551,
+          1.0973905704013984
+        ],
+        "dream": 0.05438060288270123,
+        "disagreement": 0.014697404578328133,
+        "predicted_position": [
+          0.6840981245040894,
+          0.6282004117965698
+        ],
+        "score": 0.058054954027283265,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.056087542906916296,
+        "task_id": 41
+      },
+      {
+        "velocity": [
+          0.5118126681647315,
+          -0.6085069210335745
+        ],
+        "dream": 0.011732010897748436,
+        "disagreement": 0.022139932960271835,
+        "predicted_position": [
+          0.3024523854255676,
+          0.299299955368042
+        ],
+        "score": 0.017266994137816395,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.024811829684982353,
+        "task_id": 42
+      },
+      {
+        "velocity": [
+          -1.0803367741786207,
+          0.7977114791719447
+        ],
+        "dream": 0.13955592496490965,
+        "disagreement": 0.038309235125780106,
+        "predicted_position": [
+          0.24140024185180664,
+          0.5440368056297302
+        ],
+        "score": 0.14913323374635468,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.12701189845597147,
+        "task_id": 43
+      },
+      {
+        "velocity": [
+          -1.4819173549961064,
+          -0.23259435672731654
+        ],
+        "dream": 0.021713220473830317,
+        "disagreement": 0.12999778985977173,
+        "predicted_position": [
+          0.6903956532478333,
+          0.20914563536643982
+        ],
+        "score": 0.054212667938773246,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05377239079475757,
+        "task_id": 44
+      },
+      {
+        "velocity": [
+          0.6810106606305473,
+          -0.9414591082592024
+        ],
+        "dream": 0.05563998624431582,
+        "disagreement": 0.08350689709186554,
+        "predicted_position": [
+          0.4447059631347656,
+          0.6722607612609863
+        ],
+        "score": 0.0765167105172822,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.06671926839736554,
+        "task_id": 45
+      },
+      {
+        "velocity": [
+          -0.010267809562355734,
+          1.2913486250026673
+        ],
+        "dream": 0.033319059485640165,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.6672887206077576,
+          0.4398519992828369
+        ],
+        "score": 0.033319059485640165,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0333093129848587,
+        "task_id": 46
+      },
+      {
+        "velocity": [
+          0.8637695263350377,
+          -0.6291231640549755
+        ],
+        "dream": 0.0038905875052597048,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7749163508415222,
+          0.4606597423553467
+        ],
+        "score": 0.0038905875052597048,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0038924340503520794,
+        "task_id": 47
+      },
+      {
+        "velocity": [
+          0.7624830820813806,
+          1.427960848588286
+        ],
+        "dream": 0.07140023301884132,
+        "disagreement": 0.07832162827253342,
+        "predicted_position": [
+          0.7430102229118347,
+          0.45339345932006836
+        ],
+        "score": 0.09098064008697468,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08360523543507338,
+        "task_id": 48
+      },
+      {
+        "velocity": [
+          0.9130093094711853,
+          -0.6916982656264107
+        ],
+        "dream": 0.013751927016194833,
+        "disagreement": 0.010790977627038956,
+        "predicted_position": [
+          0.839817225933075,
+          0.2506471276283264
+        ],
+        "score": 0.016449671422954573,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.010384989588974292,
+        "task_id": 49
+      },
+      {
+        "velocity": [
+          1.1056691103166016,
+          0.3746068706640281
+        ],
+        "dream": 0.0015409641196576797,
+        "disagreement": 0.0005016552750021219,
+        "predicted_position": [
+          0.7796448469161987,
+          0.22422511875629425
+        ],
+        "score": 0.0016663779384082102,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.002013265018735599,
+        "task_id": 50
+      },
+      {
+        "velocity": [
+          0.8531650186384618,
+          -0.0019855644006805395
+        ],
+        "dream": 0.022072960851227987,
+        "disagreement": 0.032012347131967545,
+        "predicted_position": [
+          0.8616300821304321,
+          0.7202559113502502
+        ],
+        "score": 0.030076047634219873,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0141088615790623,
+        "task_id": 51
+      },
+      {
+        "velocity": [
+          -1.4687606034834264,
+          0.553039647260978
+        ],
+        "dream": 0.06556342939231576,
+        "disagreement": 0.049731962382793427,
+        "predicted_position": [
+          0.5703197717666626,
+          0.561282753944397
+        ],
+        "score": 0.07799641998801411,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09781760394795273,
+        "task_id": 52
+      },
+      {
+        "velocity": [
+          -0.958056546973161,
+          -0.24762857585812814
+        ],
+        "dream": 0.05494007073489329,
+        "disagreement": 0.011381766758859158,
+        "predicted_position": [
+          0.37421560287475586,
+          0.31305131316185
+        ],
+        "score": 0.05778551242460808,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.06310600530301648,
+        "task_id": 53
+      },
+      {
+        "velocity": [
+          0.1628007022455461,
+          -0.31761376650259154
+        ],
+        "dream": 0.010474734915866863,
+        "disagreement": 0.11692589521408081,
+        "predicted_position": [
+          0.35735946893692017,
+          0.40450984239578247
+        ],
+        "score": 0.039706208719387064,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.1061829703613483,
+        "task_id": 54
+      },
+      {
+        "velocity": [
+          -0.23622791508731567,
+          0.06608130565866077
+        ],
+        "dream": 0.049170493544586774,
+        "disagreement": 0.058926310390233994,
+        "predicted_position": [
+          0.5184178352355957,
+          0.3710380494594574
+        ],
+        "score": 0.06390207114214527,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03650401718429869,
+        "task_id": 55
+      },
+      {
+        "velocity": [
+          -0.7572425746596813,
+          1.268281675821778
+        ],
+        "dream": 0.06035719134394225,
+        "disagreement": 0.026096025481820107,
+        "predicted_position": [
+          0.38473886251449585,
+          0.6048688888549805
+        ],
+        "score": 0.06688119771439727,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.046888772422243714,
+        "task_id": 56
+      },
+      {
+        "velocity": [
+          1.344733874837269,
+          -1.4174669555911739
+        ],
+        "dream": 0.07061520538503688,
+        "disagreement": 0.051197949796915054,
+        "predicted_position": [
+          0.3916410207748413,
+          0.4983106255531311
+        ],
+        "score": 0.08341469283426564,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07036950940234316,
+        "task_id": 57
+      },
+      {
+        "velocity": [
+          -0.0180742488035055,
+          -0.7346881781334613
+        ],
+        "dream": 0.017735268461335735,
+        "disagreement": 0.003192254574969411,
+        "predicted_position": [
+          0.8055206537246704,
+          0.29965925216674805
+        ],
+        "score": 0.018533332105078088,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.019195526382982775,
+        "task_id": 58
+      },
+      {
+        "velocity": [
+          -0.557553411870462,
+          0.7221573278292062
+        ],
+        "dream": 0.025528353386755163,
+        "disagreement": 1.4901161193847656e-08,
+        "predicted_position": [
+          0.16244374215602875,
+          0.21000578999519348
+        ],
+        "score": 0.02552835711204546,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02553004491079253,
+        "task_id": 59
+      },
+      {
+        "velocity": [
+          -1.0958211819630672,
+          -1.4559600644556214
+        ],
+        "dream": 0.2917882126883896,
+        "disagreement": 0.03135858103632927,
+        "predicted_position": [
+          0.5509055852890015,
+          0.5097636580467224
+        ],
+        "score": 0.29962785794747193,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.25794989253453227,
+        "task_id": 60
+      },
+      {
+        "velocity": [
+          -1.413841708389475,
+          1.4262865982397464
+        ],
+        "dream": 0.004989876683343988,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.3100604712963104,
+          0.4032970070838928
+        ],
+        "score": 0.004989876683343988,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.004987424865008545,
+        "task_id": 61
+      },
+      {
+        "velocity": [
+          1.263953628173263,
+          1.3991336334315443
+        ],
+        "dream": 0.2228111475015131,
+        "disagreement": 0.037161070853471756,
+        "predicted_position": [
+          0.4881344735622406,
+          0.6011156439781189
+        ],
+        "score": 0.23210141521488103,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.21295527847150045,
+        "task_id": 62
+      },
+      {
+        "velocity": [
+          -0.3299036623048097,
+          0.6762264972299736
+        ],
+        "dream": 0.03079969982436465,
+        "disagreement": 0.03514932096004486,
+        "predicted_position": [
+          0.4654485583305359,
+          0.17429764568805695
+        ],
+        "score": 0.03958703006437586,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05042753528531973,
+        "task_id": 63
+      }
+    ],
+    "0.5": [
+      {
+        "velocity": [
+          1.4831891532533064,
+          1.4046773372752006
+        ],
+        "dream": 0.20741330291541923,
+        "disagreement": 2.9802322387695312e-08,
+        "predicted_position": [
+          0.4910632073879242,
+          0.5513601303100586
+        ],
+        "score": 0.20741331781658043,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.2074116530886904,
+        "task_id": 0
+      },
+      {
+        "velocity": [
+          -0.26435267521073913,
+          1.2301364513481619
+        ],
+        "dream": 0.029508293286617714,
+        "disagreement": 0.03722924366593361,
+        "predicted_position": [
+          0.500465989112854,
+          0.3534769117832184
+        ],
+        "score": 0.04812291511958452,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.028840890024993102,
+        "task_id": 1
+      },
+      {
+        "velocity": [
+          0.055974409770328526,
+          -1.2411119026816553
+        ],
+        "dream": 0.0014258406721677306,
+        "disagreement": 0.003466782160103321,
+        "predicted_position": [
+          0.3273068070411682,
+          0.628910481929779
+        ],
+        "score": 0.003159231752219391,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.001318211068134084,
+        "task_id": 2
+      },
+      {
+        "velocity": [
+          -1.4536050884762584,
+          -1.4877219520933638
+        ],
+        "dream": 0.08529058525741133,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.4910896420478821,
+          0.7306166887283325
+        ],
+        "score": 0.08529058525741133,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08528756617112195,
+        "task_id": 3
+      },
+      {
+        "velocity": [
+          1.3789967668899163,
+          0.8821492031921997
+        ],
+        "dream": 0.01403397621105169,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.1970064789056778,
+          0.26585492491722107
+        ],
+        "score": 0.01403397621105169,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.014033628314918119,
+        "task_id": 4
+      },
+      {
+        "velocity": [
+          0.970467733383456,
+          -1.3935034424550794
+        ],
+        "dream": 0.12720498153766258,
+        "disagreement": 0.005290897097438574,
+        "predicted_position": [
+          0.7480940222740173,
+          0.6944297552108765
+        ],
+        "score": 0.12985043008638186,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.12739915781856273,
+        "task_id": 5
+      },
+      {
+        "velocity": [
+          -0.9129673645926438,
+          -1.254001778170374
+        ],
+        "dream": 0.012013334550514973,
+        "disagreement": 0.017111491411924362,
+        "predicted_position": [
+          0.8082506060600281,
+          0.37521088123321533
+        ],
+        "score": 0.020569080256477155,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.010011117993715098,
+        "task_id": 6
+      },
+      {
+        "velocity": [
+          -1.3276466379428127,
+          -1.331908433524653
+        ],
+        "dream": 0.02717472567750814,
+        "disagreement": 0.02251274697482586,
+        "predicted_position": [
+          0.21129341423511505,
+          0.839983344078064
+        ],
+        "score": 0.03843109916492107,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.034581767792838565,
+        "task_id": 7
+      },
+      {
+        "velocity": [
+          -1.4751237617383528,
+          -1.3281014108403446
+        ],
+        "dream": 0.07327009697637453,
+        "disagreement": 0.02669355273246765,
+        "predicted_position": [
+          0.6700695157051086,
+          0.6677447557449341
+        ],
+        "score": 0.08661687334260836,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0730561767639096,
+        "task_id": 8
+      },
+      {
+        "velocity": [
+          -0.796802142370239,
+          -0.10130058921668195
+        ],
+        "dream": 0.05083251265108449,
+        "disagreement": 0.013882895931601524,
+        "predicted_position": [
+          0.3091452121734619,
+          0.22839617729187012
+        ],
+        "score": 0.05777396061688525,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.059125353676695386,
+        "task_id": 9
+      },
+      {
+        "velocity": [
+          0.5228138046917801,
+          -0.30010214300899185
+        ],
+        "dream": 0.021555850192719196,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7337101697921753,
+          0.3574100732803345
+        ],
+        "score": 0.021555850192719196,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02155735058995166,
+        "task_id": 10
+      },
+      {
+        "velocity": [
+          -0.34094186188260744,
+          0.22174875979551745
+        ],
+        "dream": 0.06647831007771897,
+        "disagreement": 0.02386113442480564,
+        "predicted_position": [
+          0.21539869904518127,
+          0.7105454206466675
+        ],
+        "score": 0.07840887729012179,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0933622072847439,
+        "task_id": 11
+      },
+      {
+        "velocity": [
+          0.09439945537565131,
+          -1.1594386821003417
+        ],
+        "dream": 0.02718695792288394,
+        "disagreement": 0.015716899186372757,
+        "predicted_position": [
+          0.43046942353248596,
+          0.5189047455787659
+        ],
+        "score": 0.03504540751607032,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03904592926286826,
+        "task_id": 12
+      },
+      {
+        "velocity": [
+          -0.06899400502734543,
+          1.3324355027121773
+        ],
+        "dream": 0.07748865597387777,
+        "disagreement": 0.007074431516230106,
+        "predicted_position": [
+          0.6097646951675415,
+          0.32753047347068787
+        ],
+        "score": 0.08102587173199283,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0801823849746576,
+        "task_id": 13
+      },
+      {
+        "velocity": [
+          -0.17260475959109423,
+          1.3346110679492067
+        ],
+        "dream": 0.03334433507961734,
+        "disagreement": 0.04746342822909355,
+        "predicted_position": [
+          0.33270615339279175,
+          0.6979131102561951
+        ],
+        "score": 0.05707604919416412,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0741165713152542,
+        "task_id": 14
+      },
+      {
+        "velocity": [
+          1.361013629454974,
+          0.26994484978700284
+        ],
+        "dream": 0.010057357219657902,
+        "disagreement": 0.01625293865799904,
+        "predicted_position": [
+          0.36429184675216675,
+          0.20121130347251892
+        ],
+        "score": 0.01818382654865742,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.014156491471715726,
+        "task_id": 15
+      },
+      {
+        "velocity": [
+          -0.6780808369441977,
+          -1.4328762181960788
+        ],
+        "dream": 0.05907033629973711,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.2445775270462036,
+          0.5525878667831421
+        ],
+        "score": 0.05907033629973711,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05907086332083532,
+        "task_id": 16
+      },
+      {
+        "velocity": [
+          0.9441133054602958,
+          -1.460926504902587
+        ],
+        "dream": 0.12804014419457493,
+        "disagreement": 0.02453548088669777,
+        "predicted_position": [
+          0.4886108934879303,
+          0.47773322463035583
+        ],
+        "score": 0.14030788463792382,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.12020451202715207,
+        "task_id": 17
+      },
+      {
+        "velocity": [
+          1.339242551051674,
+          -0.3040629530833384
+        ],
+        "dream": 0.009156573797953442,
+        "disagreement": 0.0008279855828732252,
+        "predicted_position": [
+          0.5905226469039917,
+          0.36935922503471375
+        ],
+        "score": 0.009570566589390055,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.008784594979843562,
+        "task_id": 18
+      },
+      {
+        "velocity": [
+          -0.6271496550702828,
+          1.4319839412930002
+        ],
+        "dream": 0.02824429699312015,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.4392646849155426,
+          0.1798233538866043
+        ],
+        "score": 0.02824429699312015,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02824587215619554,
+        "task_id": 19
+      },
+      {
+        "velocity": [
+          0.6409320906416573,
+          0.6595324415414445
+        ],
+        "dream": 0.020626919302767683,
+        "disagreement": 0.05555112659931183,
+        "predicted_position": [
+          0.8581504821777344,
+          0.36867377161979675
+        ],
+        "score": 0.048402482602423594,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.026102186982533113,
+        "task_id": 20
+      },
+      {
+        "velocity": [
+          -1.4170648422649168,
+          -1.0407833435789664
+        ],
+        "dream": 0.0204072625744743,
+        "disagreement": 0.04057756066322327,
+        "predicted_position": [
+          0.4189938008785248,
+          0.2282024323940277
+        ],
+        "score": 0.04069604290608593,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03614350231941874,
+        "task_id": 21
+      },
+      {
+        "velocity": [
+          -0.6051535874724604,
+          1.3382720204986773
+        ],
+        "dream": 0.024115107425349593,
+        "disagreement": 1.4901161193847656e-08,
+        "predicted_position": [
+          0.402561753988266,
+          0.23282340168952942
+        ],
+        "score": 0.02411511487593019,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.024117281710838687,
+        "task_id": 22
+      },
+      {
+        "velocity": [
+          -0.4361708839661187,
+          1.392720110331532
+        ],
+        "dream": 0.07439917709222046,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.35061702132225037,
+          0.4709095358848572
+        ],
+        "score": 0.07439917709222046,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07439782497895137,
+        "task_id": 23
+      },
+      {
+        "velocity": [
+          -1.2644048854963703,
+          1.340975105872543
+        ],
+        "dream": 0.13691743198215298,
+        "disagreement": 0.14050385355949402,
+        "predicted_position": [
+          0.6778761148452759,
+          0.6498234868049622
+        ],
+        "score": 0.20716935876189999,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07783500342491699,
+        "task_id": 24
+      },
+      {
+        "velocity": [
+          0.47879404833207007,
+          -0.9590015113792008
+        ],
+        "dream": 0.13359911945036232,
+        "disagreement": 0.006626597605645657,
+        "predicted_position": [
+          0.39581403136253357,
+          0.4439055919647217
+        ],
+        "score": 0.13691241825318515,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.13098344551681873,
+        "task_id": 25
+      },
+      {
+        "velocity": [
+          -0.894398035652187,
+          1.2019940479526465
+        ],
+        "dream": 0.08640487888895569,
+        "disagreement": 0.023249635472893715,
+        "predicted_position": [
+          0.6137868165969849,
+          0.3732634484767914
+        ],
+        "score": 0.09802969662540255,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09331610502049904,
+        "task_id": 26
+      },
+      {
+        "velocity": [
+          0.16198877070492068,
+          1.2459713965911763
+        ],
+        "dream": 0.00593539757743995,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7754900455474854,
+          0.5613417029380798
+        ],
+        "score": 0.00593539757743995,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.005926019950014823,
+        "task_id": 27
+      },
+      {
+        "velocity": [
+          -1.1427318696057123,
+          -1.2130491095903053
+        ],
+        "dream": 0.07446496075058955,
+        "disagreement": 0.018671026453375816,
+        "predicted_position": [
+          0.7713745832443237,
+          0.6113320589065552
+        ],
+        "score": 0.08380047397727745,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09751458843398228,
+        "task_id": 28
+      },
+      {
+        "velocity": [
+          -0.322612509770811,
+          0.47337428045523755
+        ],
+        "dream": 0.032439342648870106,
+        "disagreement": 0.07846274226903915,
+        "predicted_position": [
+          0.1869868040084839,
+          0.15044522285461426
+        ],
+        "score": 0.07167071378338968,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.10870205107944178,
+        "task_id": 29
+      },
+      {
+        "velocity": [
+          -1.232916259105063,
+          0.841427163844979
+        ],
+        "dream": 0.013758730491941451,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.40820837020874023,
+          0.1645866185426712
+        ],
+        "score": 0.013758730491941451,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.013759590468049242,
+        "task_id": 30
+      },
+      {
+        "velocity": [
+          -0.24537165202965916,
+          0.570193029299464
+        ],
+        "dream": 0.0332390863051696,
+        "disagreement": 0.08449041098356247,
+        "predicted_position": [
+          0.8088079690933228,
+          0.2977907657623291
+        ],
+        "score": 0.07548429179695083,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.01855619074285358,
+        "task_id": 31
+      },
+      {
+        "velocity": [
+          -0.8931201025370435,
+          0.16842241461767837
+        ],
+        "dream": 0.05802699947862158,
+        "disagreement": 0.019906897097826004,
+        "predicted_position": [
+          0.3408278822898865,
+          0.2007310390472412
+        ],
+        "score": 0.06798044802753458,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05394980400829452,
+        "task_id": 32
+      },
+      {
+        "velocity": [
+          0.09270257954792005,
+          -1.4906682800580855
+        ],
+        "dream": 0.014560513761511072,
+        "disagreement": 0.017062338069081306,
+        "predicted_position": [
+          0.5967910885810852,
+          0.5567496418952942
+        ],
+        "score": 0.023091682796051727,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.026389565822123595,
+        "task_id": 33
+      },
+      {
+        "velocity": [
+          -0.2569440974329096,
+          0.8941143752133072
+        ],
+        "dream": 0.04343680579709137,
+        "disagreement": 7.450580596923828e-09,
+        "predicted_position": [
+          0.12088547646999359,
+          0.3802771270275116
+        ],
+        "score": 0.043436809522381666,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.043438433476473144,
+        "task_id": 34
+      },
+      {
+        "velocity": [
+          -1.3314504928987838,
+          -1.3240150083219921
+        ],
+        "dream": 0.11444980231305328,
+        "disagreement": 0.02050899714231491,
+        "predicted_position": [
+          0.22993536293506622,
+          0.41893815994262695
+        ],
+        "score": 0.12470430088421074,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.10588596683872893,
+        "task_id": 35
+      },
+      {
+        "velocity": [
+          1.3733591085175147,
+          1.4486267401927304
+        ],
+        "dream": 0.11832881129914122,
+        "disagreement": 0.017916804179549217,
+        "predicted_position": [
+          0.385964035987854,
+          0.38184553384780884
+        ],
+        "score": 0.12728721338891583,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.11991672744230197,
+        "task_id": 36
+      },
+      {
+        "velocity": [
+          -0.9490437608869938,
+          -1.2358137676036458
+        ],
+        "dream": 0.04057426166768742,
+        "disagreement": 0.029167713597416878,
+        "predicted_position": [
+          0.21696069836616516,
+          0.7977077960968018
+        ],
+        "score": 0.05515811846639586,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.01745219928632678,
+        "task_id": 37
+      },
+      {
+        "velocity": [
+          1.4746611925372142,
+          -1.1563614687940187
+        ],
+        "dream": 0.04175656822241491,
+        "disagreement": 0.2803240716457367,
+        "predicted_position": [
+          0.5376224517822266,
+          0.6608462333679199
+        ],
+        "score": 0.18191860404528326,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.245998075398533,
+        "task_id": 38
+      },
+      {
+        "velocity": [
+          0.6507345532093654,
+          0.2109573994352969
+        ],
+        "dream": 0.035744536941900044,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.6816843748092651,
+          0.2742965519428253
+        ],
+        "score": 0.035744536941900044,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03574694255453297,
+        "task_id": 39
+      },
+      {
+        "velocity": [
+          -1.4704088364268273,
+          1.451007013588005
+        ],
+        "dream": 0.010883708198930418,
+        "disagreement": 0.04435781389474869,
+        "predicted_position": [
+          0.20334887504577637,
+          0.2411680966615677
+        ],
+        "score": 0.033062615146304764,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03522150796859895,
+        "task_id": 40
+      },
+      {
+        "velocity": [
+          0.7655633387004551,
+          1.0973905704013984
+        ],
+        "dream": 0.05438060288270123,
+        "disagreement": 0.014697404578328133,
+        "predicted_position": [
+          0.6840981245040894,
+          0.6282004117965698
+        ],
+        "score": 0.0617293051718653,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.056087542906916296,
+        "task_id": 41
+      },
+      {
+        "velocity": [
+          0.5118126681647315,
+          -0.6085069210335745
+        ],
+        "dream": 0.011732010897748436,
+        "disagreement": 0.022139932960271835,
+        "predicted_position": [
+          0.3024523854255676,
+          0.299299955368042
+        ],
+        "score": 0.022801977377884353,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.024811829684982353,
+        "task_id": 42
+      },
+      {
+        "velocity": [
+          1.4758678473022746,
+          1.4401517477884807
+        ],
+        "dream": 0.14706654259182736,
+        "disagreement": 0.01305002998560667,
+        "predicted_position": [
+          0.4265713691711426,
+          0.6391645669937134
+        ],
+        "score": 0.1535915575846307,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.15950303291970538,
+        "task_id": 43
+      },
+      {
+        "velocity": [
+          0.5239697347185676,
+          -0.1754186592380037
+        ],
+        "dream": 0.06208706018514134,
+        "disagreement": 0.022933319211006165,
+        "predicted_position": [
+          0.695349931716919,
+          0.1395752876996994
+        ],
+        "score": 0.07355371979064443,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08180266793726439,
+        "task_id": 44
+      },
+      {
+        "velocity": [
+          0.6810106606305473,
+          -0.9414591082592024
+        ],
+        "dream": 0.05563998624431582,
+        "disagreement": 0.08350689709186554,
+        "predicted_position": [
+          0.4447059631347656,
+          0.6722607612609863
+        ],
+        "score": 0.09739343479024859,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.06671926839736554,
+        "task_id": 45
+      },
+      {
+        "velocity": [
+          -0.010267809562355734,
+          1.2913486250026673
+        ],
+        "dream": 0.033319059485640165,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.6672887206077576,
+          0.4398519992828369
+        ],
+        "score": 0.033319059485640165,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0333093129848587,
+        "task_id": 46
+      },
+      {
+        "velocity": [
+          0.8637695263350377,
+          -0.6291231640549755
+        ],
+        "dream": 0.0038905875052597048,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7749163508415222,
+          0.4606597423553467
+        ],
+        "score": 0.0038905875052597048,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0038924340503520794,
+        "task_id": 47
+      },
+      {
+        "velocity": [
+          0.7624830820813806,
+          1.427960848588286
+        ],
+        "dream": 0.07140023301884132,
+        "disagreement": 0.07832162827253342,
+        "predicted_position": [
+          0.7430102229118347,
+          0.45339345932006836
+        ],
+        "score": 0.11056104715510803,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08360523543507338,
+        "task_id": 48
+      },
+      {
+        "velocity": [
+          0.9130093094711853,
+          -0.6916982656264107
+        ],
+        "dream": 0.013751927016194833,
+        "disagreement": 0.010790977627038956,
+        "predicted_position": [
+          0.839817225933075,
+          0.2506471276283264
+        ],
+        "score": 0.019147415829714312,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.010384989588974292,
+        "task_id": 49
+      },
+      {
+        "velocity": [
+          1.1056691103166016,
+          0.3746068706640281
+        ],
+        "dream": 0.0015409641196576797,
+        "disagreement": 0.0005016552750021219,
+        "predicted_position": [
+          0.7796448469161987,
+          0.22422511875629425
+        ],
+        "score": 0.0017917917571587407,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.002013265018735599,
+        "task_id": 50
+      },
+      {
+        "velocity": [
+          0.8531650186384618,
+          -0.0019855644006805395
+        ],
+        "dream": 0.022072960851227987,
+        "disagreement": 0.032012347131967545,
+        "predicted_position": [
+          0.8616300821304321,
+          0.7202559113502502
+        ],
+        "score": 0.03807913441721176,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0141088615790623,
+        "task_id": 51
+      },
+      {
+        "velocity": [
+          0.3376777521816142,
+          1.4794887898079936
+        ],
+        "dream": 0.07826385871747325,
+        "disagreement": 2.9802322387695312e-08,
+        "predicted_position": [
+          0.4909384846687317,
+          0.4694454073905945
+        ],
+        "score": 0.07826387361863445,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07826174937452558,
+        "task_id": 52
+      },
+      {
+        "velocity": [
+          -0.958056546973161,
+          -0.24762857585812814
+        ],
+        "dream": 0.05494007073489329,
+        "disagreement": 0.011381766758859158,
+        "predicted_position": [
+          0.37421560287475586,
+          0.31305131316185
+        ],
+        "score": 0.06063095411432287,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.06310600530301648,
+        "task_id": 53
+      },
+      {
+        "velocity": [
+          -1.1237683061472046,
+          -0.06526608595446859
+        ],
+        "dream": 0.052462726233964224,
+        "disagreement": 0.023226415738463402,
+        "predicted_position": [
+          0.39771679043769836,
+          0.3597746789455414
+        ],
+        "score": 0.06407593410319593,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.04228836850865318,
+        "task_id": 54
+      },
+      {
+        "velocity": [
+          -0.23622791508731567,
+          0.06608130565866077
+        ],
+        "dream": 0.049170493544586774,
+        "disagreement": 0.058926310390233994,
+        "predicted_position": [
+          0.5184178352355957,
+          0.3710380494594574
+        ],
+        "score": 0.07863364873970377,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03650401718429869,
+        "task_id": 55
+      },
+      {
+        "velocity": [
+          -0.7572425746596813,
+          1.268281675821778
+        ],
+        "dream": 0.06035719134394225,
+        "disagreement": 0.026096025481820107,
+        "predicted_position": [
+          0.38473886251449585,
+          0.6048688888549805
+        ],
+        "score": 0.0734052040848523,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.046888772422243714,
+        "task_id": 56
+      },
+      {
+        "velocity": [
+          -0.8846672822150562,
+          1.4138142538355774
+        ],
+        "dream": 0.09571213748418099,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.39630961418151855,
+          0.443310409784317
+        ],
+        "score": 0.09571213748418099,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09571213963029848,
+        "task_id": 57
+      },
+      {
+        "velocity": [
+          -0.0180742488035055,
+          -0.7346881781334613
+        ],
+        "dream": 0.017735268461335735,
+        "disagreement": 0.003192254574969411,
+        "predicted_position": [
+          0.8055206537246704,
+          0.29965925216674805
+        ],
+        "score": 0.01933139574882044,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.019195526382982775,
+        "task_id": 58
+      },
+      {
+        "velocity": [
+          -0.557553411870462,
+          0.7221573278292062
+        ],
+        "dream": 0.025528353386755163,
+        "disagreement": 1.4901161193847656e-08,
+        "predicted_position": [
+          0.16244374215602875,
+          0.21000578999519348
+        ],
+        "score": 0.02552836083733576,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02553004491079253,
+        "task_id": 59
+      },
+      {
+        "velocity": [
+          -1.0958211819630672,
+          -1.4559600644556214
+        ],
+        "dream": 0.2917882126883896,
+        "disagreement": 0.03135858103632927,
+        "predicted_position": [
+          0.5509055852890015,
+          0.5097636580467224
+        ],
+        "score": 0.30746750320655425,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.25794989253453227,
+        "task_id": 60
+      },
+      {
+        "velocity": [
+          -1.413841708389475,
+          1.4262865982397464
+        ],
+        "dream": 0.004989876683343988,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.3100604712963104,
+          0.4032970070838928
+        ],
+        "score": 0.004989876683343988,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.004987424865008545,
+        "task_id": 61
+      },
+      {
+        "velocity": [
+          1.263953628173263,
+          1.3991336334315443
+        ],
+        "dream": 0.2228111475015131,
+        "disagreement": 0.037161070853471756,
+        "predicted_position": [
+          0.4881344735622406,
+          0.6011156439781189
+        ],
+        "score": 0.24139168292824897,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.21295527847150045,
+        "task_id": 62
+      },
+      {
+        "velocity": [
+          -0.3299036623048097,
+          0.6762264972299736
+        ],
+        "dream": 0.03079969982436465,
+        "disagreement": 0.03514932096004486,
+        "predicted_position": [
+          0.4654485583305359,
+          0.17429764568805695
+        ],
+        "score": 0.048374360304387076,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05042753528531973,
+        "task_id": 63
+      }
+    ],
+    "1.0": [
+      {
+        "velocity": [
+          1.4831891532533064,
+          1.4046773372752006
+        ],
+        "dream": 0.20741330291541923,
+        "disagreement": 2.9802322387695312e-08,
+        "predicted_position": [
+          0.4910632073879242,
+          0.5513601303100586
+        ],
+        "score": 0.20741333271774162,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.2074116530886904,
+        "task_id": 0
+      },
+      {
+        "velocity": [
+          0.8985423748819453,
+          0.5653412935076007
+        ],
+        "dream": 0.056074725387868486,
+        "disagreement": 0.0017896865028887987,
+        "predicted_position": [
+          0.5169681310653687,
+          0.32889097929000854
+        ],
+        "score": 0.057864411890757285,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.057432896999915786,
+        "task_id": 1
+      },
+      {
+        "velocity": [
+          0.055974409770328526,
+          -1.2411119026816553
+        ],
+        "dream": 0.0014258406721677306,
+        "disagreement": 0.003466782160103321,
+        "predicted_position": [
+          0.3273068070411682,
+          0.628910481929779
+        ],
+        "score": 0.004892622832271052,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.001318211068134084,
+        "task_id": 2
+      },
+      {
+        "velocity": [
+          -1.4536050884762584,
+          -1.4877219520933638
+        ],
+        "dream": 0.08529058525741133,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.4910896420478821,
+          0.7306166887283325
+        ],
+        "score": 0.08529058525741133,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08528756617112195,
+        "task_id": 3
+      },
+      {
+        "velocity": [
+          1.3789967668899163,
+          0.8821492031921997
+        ],
+        "dream": 0.01403397621105169,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.1970064789056778,
+          0.26585492491722107
+        ],
+        "score": 0.01403397621105169,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.014033628314918119,
+        "task_id": 4
+      },
+      {
+        "velocity": [
+          0.970467733383456,
+          -1.3935034424550794
+        ],
+        "dream": 0.12720498153766258,
+        "disagreement": 0.005290897097438574,
+        "predicted_position": [
+          0.7480940222740173,
+          0.6944297552108765
+        ],
+        "score": 0.13249587863510115,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.12739915781856273,
+        "task_id": 5
+      },
+      {
+        "velocity": [
+          -0.9129673645926438,
+          -1.254001778170374
+        ],
+        "dream": 0.012013334550514973,
+        "disagreement": 0.017111491411924362,
+        "predicted_position": [
+          0.8082506060600281,
+          0.37521088123321533
+        ],
+        "score": 0.029124825962439337,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.010011117993715098,
+        "task_id": 6
+      },
+      {
+        "velocity": [
+          -1.3276466379428127,
+          -1.331908433524653
+        ],
+        "dream": 0.02717472567750814,
+        "disagreement": 0.02251274697482586,
+        "predicted_position": [
+          0.21129341423511505,
+          0.839983344078064
+        ],
+        "score": 0.049687472652334,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.034581767792838565,
+        "task_id": 7
+      },
+      {
+        "velocity": [
+          -1.4751237617383528,
+          -1.3281014108403446
+        ],
+        "dream": 0.07327009697637453,
+        "disagreement": 0.02669355273246765,
+        "predicted_position": [
+          0.6700695157051086,
+          0.6677447557449341
+        ],
+        "score": 0.09996364970884218,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0730561767639096,
+        "task_id": 8
+      },
+      {
+        "velocity": [
+          -0.796802142370239,
+          -0.10130058921668195
+        ],
+        "dream": 0.05083251265108449,
+        "disagreement": 0.013882895931601524,
+        "predicted_position": [
+          0.3091452121734619,
+          0.22839617729187012
+        ],
+        "score": 0.06471540858268601,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.059125353676695386,
+        "task_id": 9
+      },
+      {
+        "velocity": [
+          0.5228138046917801,
+          -0.30010214300899185
+        ],
+        "dream": 0.021555850192719196,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7337101697921753,
+          0.3574100732803345
+        ],
+        "score": 0.021555850192719196,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02155735058995166,
+        "task_id": 10
+      },
+      {
+        "velocity": [
+          -0.34094186188260744,
+          0.22174875979551745
+        ],
+        "dream": 0.06647831007771897,
+        "disagreement": 0.02386113442480564,
+        "predicted_position": [
+          0.21539869904518127,
+          0.7105454206466675
+        ],
+        "score": 0.09033944450252461,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0933622072847439,
+        "task_id": 11
+      },
+      {
+        "velocity": [
+          0.09439945537565131,
+          -1.1594386821003417
+        ],
+        "dream": 0.02718695792288394,
+        "disagreement": 0.015716899186372757,
+        "predicted_position": [
+          0.43046942353248596,
+          0.5189047455787659
+        ],
+        "score": 0.0429038571092567,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03904592926286826,
+        "task_id": 12
+      },
+      {
+        "velocity": [
+          -0.06899400502734543,
+          1.3324355027121773
+        ],
+        "dream": 0.07748865597387777,
+        "disagreement": 0.007074431516230106,
+        "predicted_position": [
+          0.6097646951675415,
+          0.32753047347068787
+        ],
+        "score": 0.08456308749010788,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0801823849746576,
+        "task_id": 13
+      },
+      {
+        "velocity": [
+          -0.17260475959109423,
+          1.3346110679492067
+        ],
+        "dream": 0.03334433507961734,
+        "disagreement": 0.04746342822909355,
+        "predicted_position": [
+          0.33270615339279175,
+          0.6979131102561951
+        ],
+        "score": 0.0808077633087109,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0741165713152542,
+        "task_id": 14
+      },
+      {
+        "velocity": [
+          1.361013629454974,
+          0.26994484978700284
+        ],
+        "dream": 0.010057357219657902,
+        "disagreement": 0.01625293865799904,
+        "predicted_position": [
+          0.36429184675216675,
+          0.20121130347251892
+        ],
+        "score": 0.02631029587765694,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.014156491471715726,
+        "task_id": 15
+      },
+      {
+        "velocity": [
+          -0.6780808369441977,
+          -1.4328762181960788
+        ],
+        "dream": 0.05907033629973711,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.2445775270462036,
+          0.5525878667831421
+        ],
+        "score": 0.05907033629973711,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05907086332083532,
+        "task_id": 16
+      },
+      {
+        "velocity": [
+          0.9653767138836571,
+          -1.4103606938146442
+        ],
+        "dream": 0.13529048656998038,
+        "disagreement": 0.01716708391904831,
+        "predicted_position": [
+          0.48676085472106934,
+          0.4322413504123688
+        ],
+        "score": 0.1524575704890287,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.12765195652142333,
+        "task_id": 17
+      },
+      {
+        "velocity": [
+          1.339242551051674,
+          -0.3040629530833384
+        ],
+        "dream": 0.009156573797953442,
+        "disagreement": 0.0008279855828732252,
+        "predicted_position": [
+          0.5905226469039917,
+          0.36935922503471375
+        ],
+        "score": 0.009984559380826668,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.008784594979843562,
+        "task_id": 18
+      },
+      {
+        "velocity": [
+          -0.6271496550702828,
+          1.4319839412930002
+        ],
+        "dream": 0.02824429699312015,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.4392646849155426,
+          0.1798233538866043
+        ],
+        "score": 0.02824429699312015,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02824587215619554,
+        "task_id": 19
+      },
+      {
+        "velocity": [
+          0.6409320906416573,
+          0.6595324415414445
+        ],
+        "dream": 0.020626919302767683,
+        "disagreement": 0.05555112659931183,
+        "predicted_position": [
+          0.8581504821777344,
+          0.36867377161979675
+        ],
+        "score": 0.07617804590207951,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.026102186982533113,
+        "task_id": 20
+      },
+      {
+        "velocity": [
+          -1.4170648422649168,
+          -1.0407833435789664
+        ],
+        "dream": 0.0204072625744743,
+        "disagreement": 0.04057756066322327,
+        "predicted_position": [
+          0.4189938008785248,
+          0.2282024323940277
+        ],
+        "score": 0.060984823237697564,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03614350231941874,
+        "task_id": 21
+      },
+      {
+        "velocity": [
+          -0.6051535874724604,
+          1.3382720204986773
+        ],
+        "dream": 0.024115107425349593,
+        "disagreement": 1.4901161193847656e-08,
+        "predicted_position": [
+          0.402561753988266,
+          0.23282340168952942
+        ],
+        "score": 0.024115122326510786,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.024117281710838687,
+        "task_id": 22
+      },
+      {
+        "velocity": [
+          -0.4361708839661187,
+          1.392720110331532
+        ],
+        "dream": 0.07439917709222046,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.35061702132225037,
+          0.4709095358848572
+        ],
+        "score": 0.07439917709222046,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07439782497895137,
+        "task_id": 23
+      },
+      {
+        "velocity": [
+          0.37707659167692553,
+          -1.438983075772315
+        ],
+        "dream": 0.16502019103991392,
+        "disagreement": 0.09352508187294006,
+        "predicted_position": [
+          0.66473788022995,
+          0.6147102117538452
+        ],
+        "score": 0.258545272912854,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.2253074340643242,
+        "task_id": 24
+      },
+      {
+        "velocity": [
+          0.47879404833207007,
+          -0.9590015113792008
+        ],
+        "dream": 0.13359911945036232,
+        "disagreement": 0.006626597605645657,
+        "predicted_position": [
+          0.39581403136253357,
+          0.4439055919647217
+        ],
+        "score": 0.14022571705600798,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.13098344551681873,
+        "task_id": 25
+      },
+      {
+        "velocity": [
+          -0.894398035652187,
+          1.2019940479526465
+        ],
+        "dream": 0.08640487888895569,
+        "disagreement": 0.023249635472893715,
+        "predicted_position": [
+          0.6137868165969849,
+          0.3732634484767914
+        ],
+        "score": 0.1096545143618494,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09331610502049904,
+        "task_id": 26
+      },
+      {
+        "velocity": [
+          0.16198877070492068,
+          1.2459713965911763
+        ],
+        "dream": 0.00593539757743995,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7754900455474854,
+          0.5613417029380798
+        ],
+        "score": 0.00593539757743995,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.005926019950014823,
+        "task_id": 27
+      },
+      {
+        "velocity": [
+          -1.149386437025176,
+          0.8148785736047471
+        ],
+        "dream": 0.09179855502068193,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7717548608779907,
+          0.5155196189880371
+        ],
+        "score": 0.09179855502068193,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09179935056954774,
+        "task_id": 28
+      },
+      {
+        "velocity": [
+          -0.322612509770811,
+          0.47337428045523755
+        ],
+        "dream": 0.032439342648870106,
+        "disagreement": 0.07846274226903915,
+        "predicted_position": [
+          0.1869868040084839,
+          0.15044522285461426
+        ],
+        "score": 0.11090208491790926,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.10870205107944178,
+        "task_id": 29
+      },
+      {
+        "velocity": [
+          -1.232916259105063,
+          0.841427163844979
+        ],
+        "dream": 0.013758730491941451,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.40820837020874023,
+          0.1645866185426712
+        ],
+        "score": 0.013758730491941451,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.013759590468049242,
+        "task_id": 30
+      },
+      {
+        "velocity": [
+          -0.24537165202965916,
+          0.570193029299464
+        ],
+        "dream": 0.0332390863051696,
+        "disagreement": 0.08449041098356247,
+        "predicted_position": [
+          0.8088079690933228,
+          0.2977907657623291
+        ],
+        "score": 0.11772949728873207,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.01855619074285358,
+        "task_id": 31
+      },
+      {
+        "velocity": [
+          -0.8931201025370435,
+          0.16842241461767837
+        ],
+        "dream": 0.05802699947862158,
+        "disagreement": 0.019906897097826004,
+        "predicted_position": [
+          0.3408278822898865,
+          0.2007310390472412
+        ],
+        "score": 0.07793389657644759,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05394980400829452,
+        "task_id": 32
+      },
+      {
+        "velocity": [
+          0.09270257954792005,
+          -1.4906682800580855
+        ],
+        "dream": 0.014560513761511072,
+        "disagreement": 0.017062338069081306,
+        "predicted_position": [
+          0.5967910885810852,
+          0.5567496418952942
+        ],
+        "score": 0.03162285183059238,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.026389565822123595,
+        "task_id": 33
+      },
+      {
+        "velocity": [
+          -0.2569440974329096,
+          0.8941143752133072
+        ],
+        "dream": 0.04343680579709137,
+        "disagreement": 7.450580596923828e-09,
+        "predicted_position": [
+          0.12088547646999359,
+          0.3802771270275116
+        ],
+        "score": 0.043436813247671964,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.043438433476473144,
+        "task_id": 34
+      },
+      {
+        "velocity": [
+          -1.3314504928987838,
+          -1.3240150083219921
+        ],
+        "dream": 0.11444980231305328,
+        "disagreement": 0.02050899714231491,
+        "predicted_position": [
+          0.22993536293506622,
+          0.41893815994262695
+        ],
+        "score": 0.1349587994553682,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.10588596683872893,
+        "task_id": 35
+      },
+      {
+        "velocity": [
+          1.3733591085175147,
+          1.4486267401927304
+        ],
+        "dream": 0.11832881129914122,
+        "disagreement": 0.017916804179549217,
+        "predicted_position": [
+          0.385964035987854,
+          0.38184553384780884
+        ],
+        "score": 0.13624561547869043,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.11991672744230197,
+        "task_id": 36
+      },
+      {
+        "velocity": [
+          -0.9490437608869938,
+          -1.2358137676036458
+        ],
+        "dream": 0.04057426166768742,
+        "disagreement": 0.029167713597416878,
+        "predicted_position": [
+          0.21696069836616516,
+          0.7977077960968018
+        ],
+        "score": 0.0697419752651043,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.01745219928632678,
+        "task_id": 37
+      },
+      {
+        "velocity": [
+          0.7351653300861991,
+          -1.1476186013991874
+        ],
+        "dream": 0.11790127896741198,
+        "disagreement": 0.1978759914636612,
+        "predicted_position": [
+          0.6362765431404114,
+          0.6099516153335571
+        ],
+        "score": 0.3157772704310732,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.22860504141032842,
+        "task_id": 38
+      },
+      {
+        "velocity": [
+          0.6507345532093654,
+          0.2109573994352969
+        ],
+        "dream": 0.035744536941900044,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.6816843748092651,
+          0.2742965519428253
+        ],
+        "score": 0.035744536941900044,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03574694255453297,
+        "task_id": 39
+      },
+      {
+        "velocity": [
+          -1.4704088364268273,
+          1.451007013588005
+        ],
+        "dream": 0.010883708198930418,
+        "disagreement": 0.04435781389474869,
+        "predicted_position": [
+          0.20334887504577637,
+          0.2411680966615677
+        ],
+        "score": 0.05524152209367911,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03522150796859895,
+        "task_id": 40
+      },
+      {
+        "velocity": [
+          0.7655633387004551,
+          1.0973905704013984
+        ],
+        "dream": 0.05438060288270123,
+        "disagreement": 0.014697404578328133,
+        "predicted_position": [
+          0.6840981245040894,
+          0.6282004117965698
+        ],
+        "score": 0.06907800746102936,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.056087542906916296,
+        "task_id": 41
+      },
+      {
+        "velocity": [
+          0.5118126681647315,
+          -0.6085069210335745
+        ],
+        "dream": 0.011732010897748436,
+        "disagreement": 0.022139932960271835,
+        "predicted_position": [
+          0.3024523854255676,
+          0.299299955368042
+        ],
+        "score": 0.03387194385802027,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.024811829684982353,
+        "task_id": 42
+      },
+      {
+        "velocity": [
+          1.4758678473022746,
+          1.4401517477884807
+        ],
+        "dream": 0.14706654259182736,
+        "disagreement": 0.01305002998560667,
+        "predicted_position": [
+          0.4265713691711426,
+          0.6391645669937134
+        ],
+        "score": 0.16011657257743403,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.15950303291970538,
+        "task_id": 43
+      },
+      {
+        "velocity": [
+          0.5239697347185676,
+          -0.1754186592380037
+        ],
+        "dream": 0.06208706018514134,
+        "disagreement": 0.022933319211006165,
+        "predicted_position": [
+          0.695349931716919,
+          0.1395752876996994
+        ],
+        "score": 0.08502037939614751,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08180266793726439,
+        "task_id": 44
+      },
+      {
+        "velocity": [
+          0.6810106606305473,
+          -0.9414591082592024
+        ],
+        "dream": 0.05563998624431582,
+        "disagreement": 0.08350689709186554,
+        "predicted_position": [
+          0.4447059631347656,
+          0.6722607612609863
+        ],
+        "score": 0.13914688333618136,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.06671926839736554,
+        "task_id": 45
+      },
+      {
+        "velocity": [
+          -0.010267809562355734,
+          1.2913486250026673
+        ],
+        "dream": 0.033319059485640165,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.6672887206077576,
+          0.4398519992828369
+        ],
+        "score": 0.033319059485640165,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0333093129848587,
+        "task_id": 46
+      },
+      {
+        "velocity": [
+          0.8637695263350377,
+          -0.6291231640549755
+        ],
+        "dream": 0.0038905875052597048,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7749163508415222,
+          0.4606597423553467
+        ],
+        "score": 0.0038905875052597048,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0038924340503520794,
+        "task_id": 47
+      },
+      {
+        "velocity": [
+          0.7624830820813806,
+          1.427960848588286
+        ],
+        "dream": 0.07140023301884132,
+        "disagreement": 0.07832162827253342,
+        "predicted_position": [
+          0.7430102229118347,
+          0.45339345932006836
+        ],
+        "score": 0.14972186129137474,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08360523543507338,
+        "task_id": 48
+      },
+      {
+        "velocity": [
+          0.9130093094711853,
+          -0.6916982656264107
+        ],
+        "dream": 0.013751927016194833,
+        "disagreement": 0.010790977627038956,
+        "predicted_position": [
+          0.839817225933075,
+          0.2506471276283264
+        ],
+        "score": 0.02454290464323379,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.010384989588974292,
+        "task_id": 49
+      },
+      {
+        "velocity": [
+          1.1056691103166016,
+          0.3746068706640281
+        ],
+        "dream": 0.0015409641196576797,
+        "disagreement": 0.0005016552750021219,
+        "predicted_position": [
+          0.7796448469161987,
+          0.22422511875629425
+        ],
+        "score": 0.0020426193946598017,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.002013265018735599,
+        "task_id": 50
+      },
+      {
+        "velocity": [
+          0.8531650186384618,
+          -0.0019855644006805395
+        ],
+        "dream": 0.022072960851227987,
+        "disagreement": 0.032012347131967545,
+        "predicted_position": [
+          0.8616300821304321,
+          0.7202559113502502
+        ],
+        "score": 0.05408530798319553,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0141088615790623,
+        "task_id": 51
+      },
+      {
+        "velocity": [
+          0.3376777521816142,
+          1.4794887898079936
+        ],
+        "dream": 0.07826385871747325,
+        "disagreement": 2.9802322387695312e-08,
+        "predicted_position": [
+          0.4909384846687317,
+          0.4694454073905945
+        ],
+        "score": 0.07826388851979564,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07826174937452558,
+        "task_id": 52
+      },
+      {
+        "velocity": [
+          -0.958056546973161,
+          -0.24762857585812814
+        ],
+        "dream": 0.05494007073489329,
+        "disagreement": 0.011381766758859158,
+        "predicted_position": [
+          0.37421560287475586,
+          0.31305131316185
+        ],
+        "score": 0.06632183749375245,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.06310600530301648,
+        "task_id": 53
+      },
+      {
+        "velocity": [
+          -1.1237683061472046,
+          -0.06526608595446859
+        ],
+        "dream": 0.052462726233964224,
+        "disagreement": 0.023226415738463402,
+        "predicted_position": [
+          0.39771679043769836,
+          0.3597746789455414
+        ],
+        "score": 0.07568914197242763,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.04228836850865318,
+        "task_id": 54
+      },
+      {
+        "velocity": [
+          -1.3887774728282902,
+          0.9557995134858164
+        ],
+        "dream": 0.08089225636371304,
+        "disagreement": 0.002367189386859536,
+        "predicted_position": [
+          0.43885985016822815,
+          0.3691253960132599
+        ],
+        "score": 0.08325944575057258,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08098419263384843,
+        "task_id": 55
+      },
+      {
+        "velocity": [
+          -0.7572425746596813,
+          1.268281675821778
+        ],
+        "dream": 0.06035719134394225,
+        "disagreement": 0.026096025481820107,
+        "predicted_position": [
+          0.38473886251449585,
+          0.6048688888549805
+        ],
+        "score": 0.08645321682576235,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.046888772422243714,
+        "task_id": 56
+      },
+      {
+        "velocity": [
+          -0.8846672822150562,
+          1.4138142538355774
+        ],
+        "dream": 0.09571213748418099,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.39630961418151855,
+          0.443310409784317
+        ],
+        "score": 0.09571213748418099,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09571213963029848,
+        "task_id": 57
+      },
+      {
+        "velocity": [
+          -0.0180742488035055,
+          -0.7346881781334613
+        ],
+        "dream": 0.017735268461335735,
+        "disagreement": 0.003192254574969411,
+        "predicted_position": [
+          0.8055206537246704,
+          0.29965925216674805
+        ],
+        "score": 0.020927523036305146,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.019195526382982775,
+        "task_id": 58
+      },
+      {
+        "velocity": [
+          -0.557553411870462,
+          0.7221573278292062
+        ],
+        "dream": 0.025528353386755163,
+        "disagreement": 1.4901161193847656e-08,
+        "predicted_position": [
+          0.16244374215602875,
+          0.21000578999519348
+        ],
+        "score": 0.025528368287916357,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02553004491079253,
+        "task_id": 59
+      },
+      {
+        "velocity": [
+          -1.0958211819630672,
+          -1.4559600644556214
+        ],
+        "dream": 0.2917882126883896,
+        "disagreement": 0.03135858103632927,
+        "predicted_position": [
+          0.5509055852890015,
+          0.5097636580467224
+        ],
+        "score": 0.3231467937247189,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.25794989253453227,
+        "task_id": 60
+      },
+      {
+        "velocity": [
+          -1.413841708389475,
+          1.4262865982397464
+        ],
+        "dream": 0.004989876683343988,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.3100604712963104,
+          0.4032970070838928
+        ],
+        "score": 0.004989876683343988,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.004987424865008545,
+        "task_id": 61
+      },
+      {
+        "velocity": [
+          1.263953628173263,
+          1.3991336334315443
+        ],
+        "dream": 0.2228111475015131,
+        "disagreement": 0.037161070853471756,
+        "predicted_position": [
+          0.4881344735622406,
+          0.6011156439781189
+        ],
+        "score": 0.25997221835498485,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.21295527847150045,
+        "task_id": 62
+      },
+      {
+        "velocity": [
+          -0.3299036623048097,
+          0.6762264972299736
+        ],
+        "dream": 0.03079969982436465,
+        "disagreement": 0.03514932096004486,
+        "predicted_position": [
+          0.4654485583305359,
+          0.17429764568805695
+        ],
+        "score": 0.0659490207844095,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05042753528531973,
+        "task_id": 63
+      }
+    ],
+    "2.0": [
+      {
+        "velocity": [
+          1.4831891532533064,
+          1.4046773372752006
+        ],
+        "dream": 0.20741330291541923,
+        "disagreement": 2.9802322387695312e-08,
+        "predicted_position": [
+          0.4910632073879242,
+          0.5513601303100586
+        ],
+        "score": 0.207413362520064,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.2074116530886904,
+        "task_id": 0
+      },
+      {
+        "velocity": [
+          0.8985423748819453,
+          0.5653412935076007
+        ],
+        "dream": 0.056074725387868486,
+        "disagreement": 0.0017896865028887987,
+        "predicted_position": [
+          0.5169681310653687,
+          0.32889097929000854
+        ],
+        "score": 0.059654098393646084,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.057432896999915786,
+        "task_id": 1
+      },
+      {
+        "velocity": [
+          0.055974409770328526,
+          -1.2411119026816553
+        ],
+        "dream": 0.0014258406721677306,
+        "disagreement": 0.003466782160103321,
+        "predicted_position": [
+          0.3273068070411682,
+          0.628910481929779
+        ],
+        "score": 0.008359404992374373,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.001318211068134084,
+        "task_id": 2
+      },
+      {
+        "velocity": [
+          -1.4536050884762584,
+          -1.4877219520933638
+        ],
+        "dream": 0.08529058525741133,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.4910896420478821,
+          0.7306166887283325
+        ],
+        "score": 0.08529058525741133,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08528756617112195,
+        "task_id": 3
+      },
+      {
+        "velocity": [
+          1.3789967668899163,
+          0.8821492031921997
+        ],
+        "dream": 0.01403397621105169,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.1970064789056778,
+          0.26585492491722107
+        ],
+        "score": 0.01403397621105169,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.014033628314918119,
+        "task_id": 4
+      },
+      {
+        "velocity": [
+          0.970467733383456,
+          -1.3935034424550794
+        ],
+        "dream": 0.12720498153766258,
+        "disagreement": 0.005290897097438574,
+        "predicted_position": [
+          0.7480940222740173,
+          0.6944297552108765
+        ],
+        "score": 0.13778677573253972,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.12739915781856273,
+        "task_id": 5
+      },
+      {
+        "velocity": [
+          -0.09649674125296348,
+          -1.4221976610371152
+        ],
+        "dream": 0.032035500735093224,
+        "disagreement": 2.9802322387695312e-08,
+        "predicted_position": [
+          0.8182436227798462,
+          0.41396909952163696
+        ],
+        "score": 0.032035560339738,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03203545098467749,
+        "task_id": 6
+      },
+      {
+        "velocity": [
+          -1.3276466379428127,
+          -1.331908433524653
+        ],
+        "dream": 0.02717472567750814,
+        "disagreement": 0.02251274697482586,
+        "predicted_position": [
+          0.21129341423511505,
+          0.839983344078064
+        ],
+        "score": 0.07220021962715986,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.034581767792838565,
+        "task_id": 7
+      },
+      {
+        "velocity": [
+          -1.4751237617383528,
+          -1.3281014108403446
+        ],
+        "dream": 0.07327009697637453,
+        "disagreement": 0.02669355273246765,
+        "predicted_position": [
+          0.6700695157051086,
+          0.6677447557449341
+        ],
+        "score": 0.12665720244130985,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0730561767639096,
+        "task_id": 8
+      },
+      {
+        "velocity": [
+          -0.796802142370239,
+          -0.10130058921668195
+        ],
+        "dream": 0.05083251265108449,
+        "disagreement": 0.013882895931601524,
+        "predicted_position": [
+          0.3091452121734619,
+          0.22839617729187012
+        ],
+        "score": 0.07859830451428754,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.059125353676695386,
+        "task_id": 9
+      },
+      {
+        "velocity": [
+          0.5228138046917801,
+          -0.30010214300899185
+        ],
+        "dream": 0.021555850192719196,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7337101697921753,
+          0.3574100732803345
+        ],
+        "score": 0.021555850192719196,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02155735058995166,
+        "task_id": 10
+      },
+      {
+        "velocity": [
+          -1.3189658194063465,
+          1.2871167004803712
+        ],
+        "dream": 0.09714920283062065,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.2573952376842499,
+          0.7183198928833008
+        ],
+        "score": 0.09714920283062065,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09715079364808747,
+        "task_id": 11
+      },
+      {
+        "velocity": [
+          0.1252892705020927,
+          -0.8711439893051355
+        ],
+        "dream": 0.04435019082902774,
+        "disagreement": 0.004728882573544979,
+        "predicted_position": [
+          0.4466911256313324,
+          0.536150336265564
+        ],
+        "score": 0.0538079559761177,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.04733184785927786,
+        "task_id": 12
+      },
+      {
+        "velocity": [
+          -0.06899400502734543,
+          1.3324355027121773
+        ],
+        "dream": 0.07748865597387777,
+        "disagreement": 0.007074431516230106,
+        "predicted_position": [
+          0.6097646951675415,
+          0.32753047347068787
+        ],
+        "score": 0.09163751900633799,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0801823849746576,
+        "task_id": 13
+      },
+      {
+        "velocity": [
+          -0.17260475959109423,
+          1.3346110679492067
+        ],
+        "dream": 0.03334433507961734,
+        "disagreement": 0.04746342822909355,
+        "predicted_position": [
+          0.33270615339279175,
+          0.6979131102561951
+        ],
+        "score": 0.12827119153780445,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0741165713152542,
+        "task_id": 14
+      },
+      {
+        "velocity": [
+          -0.16118913096532062,
+          0.7085951344301029
+        ],
+        "dream": 0.0275795067997239,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.39006561040878296,
+          0.21381492912769318
+        ],
+        "score": 0.0275795067997239,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.027578638263934533,
+        "task_id": 15
+      },
+      {
+        "velocity": [
+          -0.6780808369441977,
+          -1.4328762181960788
+        ],
+        "dream": 0.05907033629973711,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.2445775270462036,
+          0.5525878667831421
+        ],
+        "score": 0.05907033629973711,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05907086332083532,
+        "task_id": 16
+      },
+      {
+        "velocity": [
+          0.9653767138836571,
+          -1.4103606938146442
+        ],
+        "dream": 0.13529048656998038,
+        "disagreement": 0.01716708391904831,
+        "predicted_position": [
+          0.48676085472106934,
+          0.4322413504123688
+        ],
+        "score": 0.169624654408077,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.12765195652142333,
+        "task_id": 17
+      },
+      {
+        "velocity": [
+          1.339242551051674,
+          -0.3040629530833384
+        ],
+        "dream": 0.009156573797953442,
+        "disagreement": 0.0008279855828732252,
+        "predicted_position": [
+          0.5905226469039917,
+          0.36935922503471375
+        ],
+        "score": 0.010812544963699893,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.008784594979843562,
+        "task_id": 18
+      },
+      {
+        "velocity": [
+          -0.6271496550702828,
+          1.4319839412930002
+        ],
+        "dream": 0.02824429699312015,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.4392646849155426,
+          0.1798233538866043
+        ],
+        "score": 0.02824429699312015,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02824587215619554,
+        "task_id": 19
+      },
+      {
+        "velocity": [
+          0.38773581543515023,
+          1.3151937147071215
+        ],
+        "dream": 0.0793518695075067,
+        "disagreement": 0.0025126340333372355,
+        "predicted_position": [
+          0.8831719160079956,
+          0.43100911378860474
+        ],
+        "score": 0.08437713757418117,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07929496091895986,
+        "task_id": 20
+      },
+      {
+        "velocity": [
+          -1.2041492405898193,
+          0.22543931470148015
+        ],
+        "dream": 0.05779074166755237,
+        "disagreement": 0.01300513744354248,
+        "predicted_position": [
+          0.47289055585861206,
+          0.18213999271392822
+        ],
+        "score": 0.08380101655463733,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.04359639424908564,
+        "task_id": 21
+      },
+      {
+        "velocity": [
+          -0.6051535874724604,
+          1.3382720204986773
+        ],
+        "dream": 0.024115107425349593,
+        "disagreement": 1.4901161193847656e-08,
+        "predicted_position": [
+          0.402561753988266,
+          0.23282340168952942
+        ],
+        "score": 0.02411513722767198,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.024117281710838687,
+        "task_id": 22
+      },
+      {
+        "velocity": [
+          -0.4361708839661187,
+          1.392720110331532
+        ],
+        "dream": 0.07439917709222046,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.35061702132225037,
+          0.4709095358848572
+        ],
+        "score": 0.07439917709222046,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07439782497895137,
+        "task_id": 23
+      },
+      {
+        "velocity": [
+          0.37707659167692553,
+          -1.438983075772315
+        ],
+        "dream": 0.16502019103991392,
+        "disagreement": 0.09352508187294006,
+        "predicted_position": [
+          0.66473788022995,
+          0.6147102117538452
+        ],
+        "score": 0.35207035478579407,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.2253074340643242,
+        "task_id": 24
+      },
+      {
+        "velocity": [
+          0.47879404833207007,
+          -0.9590015113792008
+        ],
+        "dream": 0.13359911945036232,
+        "disagreement": 0.006626597605645657,
+        "predicted_position": [
+          0.39581403136253357,
+          0.4439055919647217
+        ],
+        "score": 0.14685231466165363,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.13098344551681873,
+        "task_id": 25
+      },
+      {
+        "velocity": [
+          -0.894398035652187,
+          1.2019940479526465
+        ],
+        "dream": 0.08640487888895569,
+        "disagreement": 0.023249635472893715,
+        "predicted_position": [
+          0.6137868165969849,
+          0.3732634484767914
+        ],
+        "score": 0.13290414983474313,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09331610502049904,
+        "task_id": 26
+      },
+      {
+        "velocity": [
+          0.16198877070492068,
+          1.2459713965911763
+        ],
+        "dream": 0.00593539757743995,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7754900455474854,
+          0.5613417029380798
+        ],
+        "score": 0.00593539757743995,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.005926019950014823,
+        "task_id": 27
+      },
+      {
+        "velocity": [
+          -1.149386437025176,
+          0.8148785736047471
+        ],
+        "dream": 0.09179855502068193,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7717548608779907,
+          0.5155196189880371
+        ],
+        "score": 0.09179855502068193,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09179935056954774,
+        "task_id": 28
+      },
+      {
+        "velocity": [
+          -0.3601840893587501,
+          0.49830280507807756
+        ],
+        "dream": 0.06549429117385974,
+        "disagreement": 0.06004881113767624,
+        "predicted_position": [
+          0.20855781435966492,
+          0.12539318203926086
+        ],
+        "score": 0.18559191344921222,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.14965104797193057,
+        "task_id": 29
+      },
+      {
+        "velocity": [
+          -1.232916259105063,
+          0.841427163844979
+        ],
+        "dream": 0.013758730491941451,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.40820837020874023,
+          0.1645866185426712
+        ],
+        "score": 0.013758730491941451,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.013759590468049242,
+        "task_id": 30
+      },
+      {
+        "velocity": [
+          -0.24537165202965916,
+          0.570193029299464
+        ],
+        "dream": 0.0332390863051696,
+        "disagreement": 0.08449041098356247,
+        "predicted_position": [
+          0.8088079690933228,
+          0.2977907657623291
+        ],
+        "score": 0.20221990827229452,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.01855619074285358,
+        "task_id": 31
+      },
+      {
+        "velocity": [
+          -0.8028407754089715,
+          0.24514311319428195
+        ],
+        "dream": 0.07181101048074529,
+        "disagreement": 0.011754747480154037,
+        "predicted_position": [
+          0.35872870683670044,
+          0.23262329399585724
+        ],
+        "score": 0.09532050544105336,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07338281690718482,
+        "task_id": 32
+      },
+      {
+        "velocity": [
+          0.9782472301771904,
+          1.3944046718011065
+        ],
+        "dream": 0.045199260451894596,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.6383805274963379,
+          0.519692063331604
+        ],
+        "score": 0.045199260451894596,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.045202797337551455,
+        "task_id": 33
+      },
+      {
+        "velocity": [
+          -0.2569440974329096,
+          0.8941143752133072
+        ],
+        "dream": 0.04343680579709137,
+        "disagreement": 7.450580596923828e-09,
+        "predicted_position": [
+          0.12088547646999359,
+          0.3802771270275116
+        ],
+        "score": 0.04343682069825256,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.043438433476473144,
+        "task_id": 34
+      },
+      {
+        "velocity": [
+          -0.6685765751908892,
+          1.4304277565192873
+        ],
+        "dream": 0.13815256774932974,
+        "disagreement": 3.111323530902155e-05,
+        "predicted_position": [
+          0.2907891273498535,
+          0.3741370439529419
+        ],
+        "score": 0.13821479421994778,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.13815609578905122,
+        "task_id": 35
+      },
+      {
+        "velocity": [
+          1.3733591085175147,
+          1.4486267401927304
+        ],
+        "dream": 0.11832881129914122,
+        "disagreement": 0.017916804179549217,
+        "predicted_position": [
+          0.385964035987854,
+          0.38184553384780884
+        ],
+        "score": 0.15416241965823965,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.11991672744230197,
+        "task_id": 36
+      },
+      {
+        "velocity": [
+          0.9877643281276851,
+          -1.4623079781765056
+        ],
+        "dream": 0.05185911039723895,
+        "disagreement": 0.018790442496538162,
+        "predicted_position": [
+          0.1376398503780365,
+          0.8446859121322632
+        ],
+        "score": 0.08943999539031527,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.046469897153644586,
+        "task_id": 37
+      },
+      {
+        "velocity": [
+          1.1200368986854392,
+          -1.3341432849036559
+        ],
+        "dream": 0.30189197202426593,
+        "disagreement": 0.045042622834444046,
+        "predicted_position": [
+          0.8147818446159363,
+          0.6845356225967407
+        ],
+        "score": 0.391977217693154,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.2855449055968209,
+        "task_id": 38
+      },
+      {
+        "velocity": [
+          0.6507345532093654,
+          0.2109573994352969
+        ],
+        "dream": 0.035744536941900044,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.6816843748092651,
+          0.2742965519428253
+        ],
+        "score": 0.035744536941900044,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03574694255453297,
+        "task_id": 39
+      },
+      {
+        "velocity": [
+          -1.4704088364268273,
+          1.451007013588005
+        ],
+        "dream": 0.010883708198930418,
+        "disagreement": 0.04435781389474869,
+        "predicted_position": [
+          0.20334887504577637,
+          0.2411680966615677
+        ],
+        "score": 0.0995993359884278,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.03522150796859895,
+        "task_id": 40
+      },
+      {
+        "velocity": [
+          0.766451496414224,
+          1.105615627598085
+        ],
+        "dream": 0.06194580312427536,
+        "disagreement": 0.0084601528942585,
+        "predicted_position": [
+          0.6752783060073853,
+          0.6245745420455933
+        ],
+        "score": 0.07886610891279236,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.06384023378030075,
+        "task_id": 41
+      },
+      {
+        "velocity": [
+          0.5118126681647315,
+          -0.6085069210335745
+        ],
+        "dream": 0.011732010897748436,
+        "disagreement": 0.022139932960271835,
+        "predicted_position": [
+          0.3024523854255676,
+          0.299299955368042
+        ],
+        "score": 0.0560118768182921,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.024811829684982353,
+        "task_id": 42
+      },
+      {
+        "velocity": [
+          1.4758678473022746,
+          1.4401517477884807
+        ],
+        "dream": 0.14706654259182736,
+        "disagreement": 0.01305002998560667,
+        "predicted_position": [
+          0.4265713691711426,
+          0.6391645669937134
+        ],
+        "score": 0.1731666025630407,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.15950303291970538,
+        "task_id": 43
+      },
+      {
+        "velocity": [
+          0.5239697347185676,
+          -0.1754186592380037
+        ],
+        "dream": 0.06208706018514134,
+        "disagreement": 0.022933319211006165,
+        "predicted_position": [
+          0.695349931716919,
+          0.1395752876996994
+        ],
+        "score": 0.10795369860715368,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08180266793726439,
+        "task_id": 44
+      },
+      {
+        "velocity": [
+          0.6810106606305473,
+          -0.9414591082592024
+        ],
+        "dream": 0.05563998624431582,
+        "disagreement": 0.08350689709186554,
+        "predicted_position": [
+          0.4447059631347656,
+          0.6722607612609863
+        ],
+        "score": 0.2226537804280469,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.06671926839736554,
+        "task_id": 45
+      },
+      {
+        "velocity": [
+          -0.010267809562355734,
+          1.2913486250026673
+        ],
+        "dream": 0.033319059485640165,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.6672887206077576,
+          0.4398519992828369
+        ],
+        "score": 0.033319059485640165,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0333093129848587,
+        "task_id": 46
+      },
+      {
+        "velocity": [
+          0.8637695263350377,
+          -0.6291231640549755
+        ],
+        "dream": 0.0038905875052597048,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7749163508415222,
+          0.4606597423553467
+        ],
+        "score": 0.0038905875052597048,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0038924340503520794,
+        "task_id": 47
+      },
+      {
+        "velocity": [
+          1.3192438289747375,
+          -1.3450201845094085
+        ],
+        "dream": 0.15746144116978303,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.7683171033859253,
+          0.370536744594574
+        ],
+        "score": 0.15746144116978303,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.1574608564104245,
+        "task_id": 48
+      },
+      {
+        "velocity": [
+          1.1637715086602443,
+          0.28789069449139293
+        ],
+        "dream": 0.025492990410425895,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.8011013865470886,
+          0.24856850504875183
+        ],
+        "score": 0.025492990410425895,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.025491614733931807,
+        "task_id": 49
+      },
+      {
+        "velocity": [
+          1.1056691103166016,
+          0.3746068706640281
+        ],
+        "dream": 0.0015409641196576797,
+        "disagreement": 0.0005016552750021219,
+        "predicted_position": [
+          0.7796448469161987,
+          0.22422511875629425
+        ],
+        "score": 0.0025442746696619236,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.002013265018735599,
+        "task_id": 50
+      },
+      {
+        "velocity": [
+          0.053308888892258044,
+          1.4925827673076417
+        ],
+        "dream": 0.08510828949483645,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.8731585741043091,
+          0.6441035270690918
+        ],
+        "score": 0.08510828949483645,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08510424008297497,
+        "task_id": 51
+      },
+      {
+        "velocity": [
+          0.3376777521816142,
+          1.4794887898079936
+        ],
+        "dream": 0.07826385871747325,
+        "disagreement": 2.9802322387695312e-08,
+        "predicted_position": [
+          0.4909384846687317,
+          0.4694454073905945
+        ],
+        "score": 0.07826391832211803,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.07826174937452558,
+        "task_id": 52
+      },
+      {
+        "velocity": [
+          -0.958056546973161,
+          -0.24762857585812814
+        ],
+        "dream": 0.05494007073489329,
+        "disagreement": 0.011381766758859158,
+        "predicted_position": [
+          0.37421560287475586,
+          0.31305131316185
+        ],
+        "score": 0.07770360425261161,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.06310600530301648,
+        "task_id": 53
+      },
+      {
+        "velocity": [
+          -0.6563678379177792,
+          1.4074396224370842
+        ],
+        "dream": 0.07710416893882975,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.29073092341423035,
+          0.40747231245040894
+        ],
+        "score": 0.07710416893882975,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.0771041342000583,
+        "task_id": 54
+      },
+      {
+        "velocity": [
+          -1.3887774728282902,
+          0.9557995134858164
+        ],
+        "dream": 0.08089225636371304,
+        "disagreement": 0.002367189386859536,
+        "predicted_position": [
+          0.43885985016822815,
+          0.3691253960132599
+        ],
+        "score": 0.08562663513743211,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.08098419263384843,
+        "task_id": 55
+      },
+      {
+        "velocity": [
+          -0.7572425746596813,
+          1.268281675821778
+        ],
+        "dream": 0.06035719134394225,
+        "disagreement": 0.026096025481820107,
+        "predicted_position": [
+          0.38473886251449585,
+          0.6048688888549805
+        ],
+        "score": 0.11254924230758245,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.046888772422243714,
+        "task_id": 56
+      },
+      {
+        "velocity": [
+          -0.8846672822150562,
+          1.4138142538355774
+        ],
+        "dream": 0.09571213748418099,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.39630961418151855,
+          0.443310409784317
+        ],
+        "score": 0.09571213748418099,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.09571213963029848,
+        "task_id": 57
+      },
+      {
+        "velocity": [
+          -0.0180742488035055,
+          -0.7346881781334613
+        ],
+        "dream": 0.017735268461335735,
+        "disagreement": 0.003192254574969411,
+        "predicted_position": [
+          0.8055206537246704,
+          0.29965925216674805
+        ],
+        "score": 0.024119777611274557,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.019195526382982775,
+        "task_id": 58
+      },
+      {
+        "velocity": [
+          -0.557553411870462,
+          0.7221573278292062
+        ],
+        "dream": 0.025528353386755163,
+        "disagreement": 1.4901161193847656e-08,
+        "predicted_position": [
+          0.16244374215602875,
+          0.21000578999519348
+        ],
+        "score": 0.02552838318907755,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.02553004491079253,
+        "task_id": 59
+      },
+      {
+        "velocity": [
+          -1.0958211819630672,
+          -1.4559600644556214
+        ],
+        "dream": 0.2917882126883896,
+        "disagreement": 0.03135858103632927,
+        "predicted_position": [
+          0.5509055852890015,
+          0.5097636580467224
+        ],
+        "score": 0.35450537476104815,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.25794989253453227,
+        "task_id": 60
+      },
+      {
+        "velocity": [
+          -1.413841708389475,
+          1.4262865982397464
+        ],
+        "dream": 0.004989876683343988,
+        "disagreement": 0.0,
+        "predicted_position": [
+          0.3100604712963104,
+          0.4032970070838928
+        ],
+        "score": 0.004989876683343988,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.004987424865008545,
+        "task_id": 61
+      },
+      {
+        "velocity": [
+          1.263953628173263,
+          1.3991336334315443
+        ],
+        "dream": 0.2228111475015131,
+        "disagreement": 0.037161070853471756,
+        "predicted_position": [
+          0.4881344735622406,
+          0.6011156439781189
+        ],
+        "score": 0.2971332892084566,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.21295527847150045,
+        "task_id": 62
+      },
+      {
+        "velocity": [
+          -0.3299036623048097,
+          0.6762264972299736
+        ],
+        "dream": 0.03079969982436465,
+        "disagreement": 0.03514932096004486,
+        "predicted_position": [
+          0.4654485583305359,
+          0.17429764568805695
+        ],
+        "score": 0.10109834174445437,
+        "invalid_candidates": 0,
+        "all_invalid": false,
+        "real": 0.05042753528531973,
+        "task_id": 63
+      }
+    ]
+  },
+  "fit": "/Users/danielmercado/ProjectJoy/13_daydream_engine/results/r5/r5_20261024T152040Z/fit.json",
+  "fit_sha256": "3f573120cb106a6119f19ddc3c1add322fa1bef6e53a52bbafd86a49e7e2e7a4",
+  "parameters": {
+    "restitution": 1.0,
+    "separation": 1.0
+  },
+  "weights_sha256": "fdf9b2b3afc821497324cb2769c876f1aa7637f92c9ab9f5dad5b935eb8500ba",
+  "validation_seed": 53003,
+  "forecast_val_scenes": 128,
+  "seconds": 4.989715499978047,
+  "primary_comparison": "hybrid_risk vs hybrid_mean at random 256 shots",
+  "soft_contact": {
+    "family": "finite_spring_damper_v1",
+    "parameters": {
+      "stiffness": 14242.086905299566,
+      "damping_ratio": 0.0,
+      "contact_radius": 0.0643561841503228
+    },
+    "fit": "/Users/danielmercado/ProjectJoy/13_daydream_engine/results/r5/r5_t2_20261024T161011Z/soft_fit.json",
+    "fit_sha256": "db9686127ca36178afc445fe0077eafcc1f554b0548c48ebaeaf546b8a342821"
+  },
+  "exact_law_role": "oracle ceiling for a fixed random candidate set; CEM is a reference search, not a universal bound",
+  "reference": {
+    "checkpoint": "/Users/danielmercado/ProjectJoy/13_daydream_engine/checkpoints/r5_20261024T152040Z_h32/step_00100000_86f61496",
+    "beta": 1.0,
+    "weights_sha256": "7622a8f5a096e9838c173f1c1c17cfb14e6f31a7e3702fc2f3249da5630b45dd",
+    "source_selection": "/Users/danielmercado/ProjectJoy/13_daydream_engine/results/r5/r5_20261024T152040Z/selection.json",
+    "selection_sha256": "8785ee3adcff818b030e3796a8bf1fe45b56734d9a56d4afb8a282d17d0c7f47"
+  }
+}

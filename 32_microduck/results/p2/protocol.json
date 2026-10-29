@@ -1,0 +1,140 @@
+{
+ "written": "2026-10-27 04:30 CDT, before any Phase 2 training run and before any Phase 2 dev episode",
+ "question": "Does a lamp/target auxiliary loss (with clean DAgger labels) make the learned policy tie 'done' to the lamp in set_lamp?",
+ "step_1_result": "results/p2/lamp_probe.json: a small CNN reads the bot-labelled lamp state from fresh-sighting frames at 64x64 with 0.953 accuracy on train configs 200-299 (32x32: 0.906). The frame size is not the bottleneck, so the frame stays 64x64 and the change is the auxiliary loss.",
+ "data": "Train split only: the 888 M4 demos (results/m5/bc_index.jsonl) + DAgger round 1 and round 2 episodes (episodes/dagger_index.jsonl, dagger2_index.jsonl), each truncated at its first cmd_bot done tick (inclusive), which is what the fixed recorder would have stored.",
+ "aux_labels": "From the bot's own beliefs, never from simulator truth: lamp (unknown/on/off) = memory lamp sighting newer than the bot's latest own press event; match (unknown/matches target/mismatch), set_lamp episodes only.",
+ "runs": {
+  "P2-A (main)": "64x64, aux weight 1.0",
+  "P2-B": "64x64, aux weight 1.0, done head also reads the match-head probabilities",
+  "P2-C (control)": "64x64, aux weight 0 (clean labels only)",
+  "common": "from scratch, seed 0, 16,000 steps, batch 32, window 128 / burn-in 32 / p_start 0.2, lr 3e-4, checkpoints every 4,000 steps, through bin/gpu_run with --max-minutes 45, one training at a time"
+ },
+ "dev_sets": {
+  "diagnostic_demos": "Reference-bot set_lamp episodes recorded on instances-dev 0010-0029, arrangements-dev 0000-0019, appearances-dev 0000-0019, distractor-dev 0000-0019 (k=0): 80 episodes, never trained on.",
+  "closed_loop": "set_lamp, policy driving, on instances/arrangements/appearances/distractor-dev 0000-0009 (k=0): 40 episodes; plus the M5 selection set (instances-dev 0000-0009 x 3 tasks) to check go-and-return and find-ball."
+ },
+ "metrics": {
+  "open_loop_lamp_auc": "Teacher-forced on the diagnostic demos: the policy's done logit at the bot's first lamp_check tick; AUC of no-press episodes (the bot says done there) vs press-needed episodes (the bot goes to press). M5's DAgger policy is measured the same way as the baseline.",
+  "open_loop_early_done": "press-needed diagnostic demos where the done logit exceeds 0 anywhere in the 30 ticks up to the lamp_check tick",
+  "aux_accuracy": "match-head and lamp-head accuracy on known-belief ticks of the diagnostic demos",
+  "closed_loop": "press-needed successes, no-press successes, presses made, 'said done without pressing' in press-needed episodes, falls"
+ },
+ "selection_rule": "Within each run, every checkpoint is run closed loop on the 40 set_lamp dev episodes. Pick: most press-needed successes, then higher open-loop lamp AUC, then most no-press successes, then the earlier step. Loss is not used.",
+ "pass_criteria": "The policy 'ties done to the lamp' if (1) open-loop lamp AUC >= 0.9 and (2) in closed loop it says done without pressing in at most half of the press-needed dev episodes and succeeds in at least one press-needed episode. Reported either way; the reserved test sets are not used in Phase 2 for this question.",
+ "not_changed": "No test-set episode is run for this question. The bot, judges, interface and splits stay frozen.",
+ "amendments": [
+  {
+   "written": "2026-10-27T05:23-05:00",
+   "finding": "P2-A (as specified) failed the dev check at every checkpoint (lamp AUC 0.41-0.49, 0/18 press-needed; results/p2/select_p2_a.json, diag files kept). Cause: its image encoder died. The last conv layer had 0% of channels positive for any frame by step 4,000, so image features were constant and the policy was blind. Short runs show plain-ReLU training kills that layer within ~250 steps on some seeds in both trainers (p2_train and M5's m5_train); M5's runs happened to survive. The earlier 96x96 probe failure (0.606/0.506) looks like the same thing.",
+   "change": "The image encoder uses leaky ReLU (slope 0.05; Policy2 act='leaky'), and training logs c4_alive every 500 steps. Runs become P2-A' (64, aux 1, leaky), P2-B' (+ done reads match), P2-C' (aux 0, leaky), same seed 0 and settings, one at a time. P2-A is reported as a negative result.",
+   "extra_checks": "Per checkpoint: lamp-head accuracy split by in-view (fresh sighting) vs remembered ticks on dev demos, and a linear lamp probe on the frozen image features (train configs 0-199 / 200-299). If in-view accuracy stays below ~85% by the last checkpoint, the next lever is masking the aux loss to ticks whose sighting lies inside the window, then encoder pretraining on the bot's per-frame detections.",
+   "selection_rule_and_pass_criteria": "unchanged"
+  },
+  {
+   "written": "2026-10-27T08:13:47-05:00",
+   "written_before": "any P2-D training step or P2-D dev episode",
+   "finding": "P2-A', P2-B', P2-C' (results/p2/select_p2_a2.json, select_p2_b2.json, select_p2_c2.json; diag_* files) all make 0 presses on the 18 press-needed dev episodes. P2-A' is best (lamp AUC 0.837, said done without pressing 2/18, no-press 17/22). The bot's vx is exactly 0 or 0.3 (p2_notes_astra_t3.md); an MSE head averages these to small values (~0.03), below the ~0.2 command the body needs to start a gait (results/m0/body_frozen.json), so the policy cannot walk to the button even when it 'wants' to.",
+   "change": "P2-D = P2-A' settings (64x64, aux weight 1.0, leaky encoder, seed 0, 16,000 steps, checkpoints every 4,000, same data and clean labels) plus --vx-head binary: vx is replaced by a walk logit trained with unit-weight BCE on bot vx > 0.15 (same window mask); live decoding sends vx = 0.3 if walk logit > 0 else 0. The other five regression slots and the done head are unchanged. Resume with --vx-head binary is covered by tests/test_p2.py::test_resume_continues_bit_exact.",
+   "checks": "Same as P2-A': closed-loop selection on the 40 set_lamp dev episodes per checkpoint, then p2_diag (lamp AUC, early done, aux accuracy), p2_aux_split and p2_enc_probe on the selected checkpoint. Reported in addition: presses made and falls (walking more may cause falls).",
+   "selection_rule_and_pass_criteria": "unchanged",
+   "comparison": "P2-D is compared with P2-A' (one seed each); a difference of one or two episodes out of 18 is within noise and is reported as such."
+  },
+  {
+   "written": "2026-10-27T11:09:57-05:00",
+   "written_before": "any dagger3 recording episode or P2-E training step",
+   "finding": "P2-D (results/p2/select_p2_d.json) made 1 press and 0 press-needed successes; the review (REVIEW_P2.md) showed the walk failure is a state-distribution problem, not output averaging: teacher-forced on the bot's dev demos P2-A' copies walking (walk ticks mean vx 0.255, 83% >= 0.2; results/p2/vx_check.jsonl), but driving itself on the 40 dev episodes its vx stays at its standing level (press-needed mean 0.019, 0% >= 0.2; results/p2/vx_closed.jsonl).",
+   "change": {
+    "recording": "DAgger round 3 (tag dagger3): P2-A' ckpt_016000 (the selected P2-A' checkpoint, regression vx head) drives with beta = 0 (every executed command is the policy's); the reference bot runs in shadow mode on the same observations and its command is the label. Recorder: record.py after_bot_done='stop' (episode ends at the bot's done, label recorded once). Episodes: set_lamp only, train configs 0-299, k=3 (k=1 demos and k=2 DAgger rounds 1-2 are taken; k=3 draws a different episode). P2-D is not the driver: its lamp reading dropped (AUC 0.75) and it is one seed.",
+    "why_beta_0": "The failure lives in the policy's own closed-loop states; beta=0 records exactly those. Per-tick mixing would pull the trajectory toward bot-like states the policy already copies.",
+    "training": "P2-E = P2-A' settings (64x64, aux weight 1.0, leaky encoder, regression vx head, from scratch, seed 0, 16,000 steps, batch 32, checkpoints every 4,000, --max-minutes 45) on the same three indexes plus episodes/dagger3_index.jsonl, same first-done truncation and label rules.",
+    "code": "record.py gets an explicit policy_kind ('m5' default | 'p2') stored in header['dagger']; new p2_dagger.py; m5_dagger.py unchanged."
+   },
+   "checks_before_training": "Reported before P2-E starts: dagger3 kept-tick share of all training ticks (per-tick sampling, so a large share of near-start 'walk' labels is the first suspect if no-press successes drop); number of episodes where the shadow bot never finished; for episodes where it finished, whether the simulator lamp (recorder truth, replay-only) matched the target at the bot's done tick. If done-with-lamp-wrong episodes exist they are reported, and their done labels are excluded from training only if they exceed 5% of finished episodes (decided here, before seeing the data).",
+   "checks": "Same as P2-A'/P2-D: p2_select on all four checkpoints (40 set_lamp dev episodes, presses and falls), then p2_diag, p2_aux_split, p2_enc_probe and p2_vx_closed on the selected checkpoint.",
+   "selection_rule_and_pass_criteria": "unchanged",
+   "comparison": "P2-E vs P2-A' (one seed each); one or two episodes out of 18 is within noise. The data mix shifts toward set_lamp; go-and-return and find-ball are still not checked for Phase 2 policies."
+  },
+  {
+   "written": "2026-10-27T11:29:54-05:00",
+   "written_before": "any P2-E or P2-A' seed-1 training step and any go-and-return/find-ball Phase 2 dev episode",
+   "dagger3_check_result": "results/p2/dagger3_check.json: 300 episodes, 0 presses; ends: bot said done 97, policy said done 56 (42 right), budget 147. The shadow bot said done with the simulator lamp wrong in 18/97 (19% > 5%), so per amendment 3 those 18 done labels are excluded. Kept ticks 171,963 = 18.2% of training ticks. Walk labels (bot vx > 0.15) are 1.9% of this round's ticks (earlier data 26.5%): P2-A' turns on 83% of ticks but weakly (mean |wz| 0.39 vs the bot's 0.55) and the opposite way on 33% of the bot's turning ticks, so the bot rarely gets to its walk step; the round mostly teaches turning. The bot's lamp beliefs disagree with the simulator on 2.6% of known ticks (round 1: 6.3%, round 2: 1.6%), so the aux labels are kept.",
+   "done_label_exclusion": "episodes/dagger3_train_index.jsonl = dagger3_index with drop_done_tick on the 18 rows; p2_train removes that final done tick (never relabels; relabelling would need truth). P2-E trains on dagger3_train_index.jsonl.",
+   "parallel_jobs": "The owner has made the machine's spare capacity available (2026-10-27). Up to three jobs at once, each through gpu_run with at most 4 processes/threads and 45 min wall. Latency and wall-time numbers from overlapping jobs are not compared; success counts are unaffected.",
+   "added_runs": {
+    "P2-A' seed 1": "P2-A' settings exactly, --seed 1 (runs/p2_a2_s1). Same selection rule and checks. Purpose: seed-to-seed spread, to judge whether differences of a few episodes between runs are noise.",
+    "other_task_dev_check": "p2_other.py: go_and_return and find_ball, policy driving, on instances/arrangements/appearances/distractor-dev 0000-0009 (k=0; 40 episodes per task per policy). The protocol's M5 selection set (instances-dev 0000-0009) is reported as a subset. Policies: M5 DAgger (checkpoints/m5_dagger.safetensors), P2-A' ckpt_016000, P2-D ckpt_016000, and later the P2-E and P2-A' seed-1 picks. Reported only; it does not enter the selection rule."
+   },
+   "selection_rule_and_pass_criteria": "unchanged"
+  },
+  {
+   "written": "2026-10-27T13:06:51-05:00",
+   "written_before": "any teacher-takeover episode and any teacher-forced turn measurement",
+   "owner_request": "Run a teacher-takeover check and a teacher-forced turn check, then plan a recovery round from the results.",
+   "context": "Step 2 (RESULTS 'Phase 2, step 2'): in policy-driven states the shadow bot rarely reached its walk step (1.9% walk labels) and said done with the lamp wrong in 18/97 finishes. P2-A' turns at mean |wz| 0.33 in closed loop; the bot turns in place at exactly +-0.55 (episodes/p2_dev), and on this body wz 0.3 does not start a turn in place (results/m0/body_frozen.json: +-0.5..0.6 does).",
+   "check_A_teacher_takeover": {
+    "script": "p2_takeover.py (record.py gains takeover_tick, takeover_fresh and a budget override)",
+    "episodes": "set_lamp, train configs 0-99, k=4 (unused so far). Episodes saved to episodes/p2_takeover/ (gitignored).",
+    "arms": {
+     "bot_alone": "reference bot drives from tick 0, budget 900 (baseline).",
+     "takeover_T": "P2-A' ckpt_016000 drives with the bot in shadow; at tick T in {100, 250, 400} the shadow bot takes control (its commands are executed from then on) and gets 900 more ticks (budget T+900), so time is not the limit.",
+     "fresh_250": "as takeover_250, but at T a new bot instance starts from the current state (no shadow memory)."
+    },
+    "metrics": "Per arm, split press-needed / no-press: success; bot said done with the simulator lamp wrong; presses; falls; episodes the policy ended (said done) before T (reported, removed from that arm's denominator).",
+    "gate": "The shadow bot is a valid recovery teacher if, at T=250, its press-needed success after takeover is at least 80% of bot_alone's press-needed success, and it says done with the lamp wrong in at most 5% of its finishes. If the shadow bot fails but fresh_250 passes, the recovery round restarts the bot at each takeover. If both fail, recovery demonstrations need a different teacher (e.g. the oracle's geometry for the approach) and the round is re-planned."
+   },
+   "check_B_teacher_forced_turn": {
+    "script": "p2_wz_check.py",
+    "data": "The 80 dev bot demos (episodes/p2_dev), teacher-forced as in p2_vx_check; policies P2-A' (s0, s1), P2-D, P2-E at their picked checkpoints.",
+    "metrics": "On the bot's turn-in-place ticks (|wz| > 0.1, vx == 0): share of policy wz with the bot's sign, mean |wz|, share with |wz| >= 0.5 (starts a turn on this body). The same on turning-while-walking ticks (sign and mean |wz| only). Also, replay-only diagnostic on the DAgger round 3 episodes: on ticks where P2-A' commanded a turn in place, the share where the duck's yaw actually changed (truth yaw, analysis only; never a label or input).",
+    "decision": "If on the bot's turn-in-place ticks the policy has the bot's sign on >= 90% and |wz| >= 0.5 on >= 70%, the turn output is fine in the bot's states and the closed-loop weakness is a state-distribution problem (recovery data is the fix). Otherwise the turn output itself is too weak or unsure: the recovery round adds a discrete turn head (left / none / right, decoded to +-0.55 / 0 in place), trained and compared alongside."
+   },
+   "parallel": "Up to three jobs at once, as amendment 4.",
+   "unchanged": "Selection rule, pass criteria, dev sets; no reserved test episode."
+  },
+  {
+   "written": "2026-10-27T13:38:35-05:00",
+   "written_before": "any recovery-round recording episode and any C/R1/R2/R3 training step",
+   "owner_decision": "Use the shadow bot as the recovery teacher with the done-label filter (amendment 5's gate failed as written: the 5% wrong-done bar was set without a baseline; the bot alone scores 11.6% on the same episodes). Write this amendment from the plan in RESULTS 'Phase 2, step 3', record the extra takeover episodes, train C/R1/R2/R3.",
+   "teacher": "The shadow bot (not a fresh bot: 21% wrong done vs 12.5%). Done-label filter: in every policy-driven episode (DAgger rounds 1 and 2, all recovery episodes) the bot's first done tick is removed (p2_train drop_done_tick) if the simulator lamp at that tick (truth column, replay-only) differs from the set_lamp target. Truth only removes labels; it never makes them. The BC demos are successes only and need no filter.",
+   "recording": "p2_recovery.py: P2-A' ckpt_016000 drives (beta 0), the bot shadows, and from tick T the bot's commands are executed; T = (60, 150, 250)[i % 3] for the i-th config; train configs 100-299, k=4; budget T+900; recorder stops at the bot's done; cold_renderer on. 200 episodes, episodes/p2_recovery/. The recovery set = these 200 + check A's takeover_100/250/400 episodes (train configs 0-99, k=4; 300). Failed recoveries are kept (their labels are the bot's best command where it was, as in rounds 1-2). Episodes the policy ended before T are kept (their labels are shadow labels).",
+   "data": "All arms: the 888 BC demos + DAgger rounds 1 and 2 (filtered). DAgger round 3 is excluded (it weakened the turn output and the lamp reading, steps 2-3). R1 and R2 add the recovery set as a separate sampling group.",
+   "sampling": "R1, R2: 16 of each batch's 32 windows come from the recovery set: episode chosen in proportion to its kept ticks from the focus point on; focus = first kept tick at or after (T - 64); window start uniform in [focus, max(focus, n - 128)]; burn-in masking as now (none only when the window starts at tick 0). The other 16 windows sample the main set as now. C, R3: sampling as now (no recovery set).",
+   "heads": "R2, R3: --vx-head binary (P2-D's walk/stand) plus --turn-head discrete: a 3-way logit (none / left / right) trained with unit-weight cross-entropy on ticks where the bot's vx < 0.05 (label: |wz| <= 0.1 none, wz > 0.1 left, wz < -0.1 right), same window mask. Decoding: when the decoded vx < 0.15, wz = 0 / +0.55 / -0.55 by argmax; when walking, wz comes from the regression slot as now (still trained on all ticks). C, R1: regression heads as P2-A'.",
+   "training": "All arms: P2-A' settings (64x64, aux weight 1, leaky encoder, from scratch, 16,000 steps, batch 32, window 128 / burn 32 / p_start 0.2, lr 3e-4, checkpoints every 4,000), seeds 0 and 1: eight runs, runs/p2_{c,r1,r2,r3}_s{0,1}. At most three jobs at once through gpu_run, 45 min per invocation; a run stopped by the guard is continued with --resume (which now also keeps --ckpt-every).",
+   "selection_and_checks": "Per run, the selection rule unchanged over the scheduled checkpoints 4k/8k/12k/16k (amendment-4-era practice, now written). On each pick: p2_diag, p2_aux_split, p2_vx_closed, p2_shadow_dev, p2_wz_check, p2_other; plus stage counts from the judge rows of the 18 press-needed dev episodes: reached the plate (plate_visits > 0), pressed, lamp right at the end, said done.",
+   "comparisons": "R1 vs C (recovery data, regression heads); R3 vs C (discrete heads alone); R2 vs R3 (recovery data with discrete heads). Two seeds each; differences of 2 episodes or less out of 18-22 are noise (step 2's seed spread).",
+   "encouraging_if": "An arm has press-needed successes on dev (policy driving alone) at the picked checkpoint in both seeds, with no-press successes no more than 3 below the control arm's mean. The protocol's pass criteria are unchanged and are reported too.",
+   "unchanged": "Dev sets, selection rule, pass criteria; no reserved test episode."
+  },
+  {
+   "written": "2026-10-27T17:47:20-05:00",
+   "written_before": "any E/H/Hr training step and any confirmation-room episode",
+   "owner_decision": "After the recovery round lands and Astra has the final numbers, write a protocol amendment and run Astra's option 1 pilot (full-history memory and episode-ending sampling).",
+   "amendment_6_outcome": "Picks (press-needed /18, no-press /22): C 0/7, 0/12; R1 0/7, 0/16; R2 1/12, 0/18; R3 0/17, 1/19. 'Encouraging' bar not met. Discrete heads give the first presses (pressed R2 4, 2; R3 1, 3; C, R1 0) but done after a press only 1 each in R2 s0, R2 s1, R3 s1. Seed spread exceeds the assumed 2 episodes (C 7 vs 12, R1 7 vs 16).",
+   "why": "Astra's diagnosis (p2_notes_astra_diag.md, p2_notes_astra_diag2.md): training windows (128 ticks, zero memory, 32 burn-in) contain an episode's final (done) tick ~0.2% of the time for episodes longer than 128 ticks (measured: set-lamp 0.0021, go-and-return 0.0021, find-ball 0.0045), while the short no-press set-lamp demos always show it; and memory never spans more than one window in training, though it does at deployment.",
+   "arms": {
+    "R3": "comparison arm, already trained: runs/p2_r3_s{0,1} (binary walk + 3-way turn heads, no recovery data).",
+    "E": "R3 settings + --p-end 0.2: 20% of windows end on the episode's last tick (p_start 0.2 kept; the rest uniform). Episode choice stays length-weighted, so forced endings are length-weighted too.",
+    "H": "R3 settings + --stream: each of the 32 rows plays one episode in order, 128 ticks per step, GRU state carried (detached, computed under the previous step's weights) between chunks, zero only at a new episode; episodes chosen uniformly; no burn-in mask; the short last chunk is padded and masked.",
+    "Hr": "H with --stream-reset: identical chronological chunks, masks and exposure, memory zeroed at every chunk (Astra's control: isolates carried memory from ordering/ending exposure)."
+   },
+   "training": "All: 888 BC demos + filtered DAgger rounds 1-2 (as R3), 64x64, aux weight 1, leaky, binary vx + discrete turn heads, 16,000 steps, batch 32, window 128, lr 3e-4, done positive weight 50 (unchanged; not tuned), checkpoints every 4,000; seeds 0 and 1: runs/p2_{e,h,hr}_s{0,1}. Same 32x128 frames per step in every arm; loss-bearing ticks and done-label ticks are logged per invocation (they differ by design: H/Hr have no burn-in but padded last chunks). At most three jobs through gpu_run, 45 min per invocation, --resume (stream state saved in streams.npz; bit-exact resume tested).",
+   "selection": "Unchanged rule on dev 0000-0009 of each family (40 episodes), scheduled checkpoints only. Picks are frozen before any confirmation episode.",
+   "confirmation": "p2_confirm.py: set_lamp k=0 on 80 dev rooms the learner was never selected or diagnosed on: instances-dev 0030-0049, arrangements/appearances/distractor-dev 0020-0039 (verified disjoint from p2_select's rooms and p2_devdemos' diag demos; Astra's catch: my first choice, dev 0010-0029, overlapped the diag demos). Run on the picks of R3, E, H, Hr (both seeds). Paired by room; seeds share rooms, so they are not independent rooms.",
+   "decision": "Success first. An arm is 'promising' if on the confirmation rooms (a) each seed's press-needed successes exceed R3's seed mean, and (b) the arm's two-seed sum beats R3's sum by at least 3; no-press successes reported per seed, and an arm whose two-seed no-press sum is more than 4 below R3's is flagged as trading no-press for press. These are operational pilot thresholds, not statistical tests. Done-after-press is reported split by lamp right / wrong at the done, not used as a bar. H vs Hr isolates carried memory; E vs R3 isolates ending exposure. Not promising -> don't scale it; skill selection (Astra option 2) stays the next capability experiment.",
+   "checks": "On every pilot pick: p2_confirm stage counts (reached plate, pressed, lamp right, said done, done after press right/wrong; no-press done tick). Full amendment-6 per-pick checks only for an arm that is promising. Not done unless H is promising: Astra's stale-state measurement (carried vs recomputed state on prefixes).",
+   "unchanged": "Dev selection rooms and rule, pass criteria; no reserved test episode.",
+   "correction": "Added 2026-10-27 after review (REVIEW_P2_STEPS2-5.md finding 3): 'first presses' is wrong; P2-D and M5 DAgger round 1 each pressed once with the lamp left right. The pressed counts quoted are rooms pressed; lamp right at the end: R2 4 and 1, R3 1 and 2."
+  },
+  {
+   "id": "7a",
+   "written": "2026-10-27T18:33:25-05:00",
+   "written_before": "any H/Hr training step under these settings (the first H s0 / Hr s0 attempts were stopped at ~2,000 steps and set aside as runs/failed_p2_{h,hr}_s0_1749; no checkpoint, no dev episode)",
+   "finding": "Stream training from scratch does not learn on the real data: H s0 and Hr s0 stayed flat for 2,000 steps (loss ~4.1-4.3, turn CE ~1.0 near chance; E s0 and R3 s0 learned by step 300-1,000). Bounded scratch experiments (batch 32, 300-800 steps, scratchpad dbg_stream.py) located it: the window sampler with p_start 0 (no window starting at an episode's first tick) also fails; chunk sampling (tick-weighted, aligned 128-tick chunks, zero memory) fails with or without a 32-tick burn-in mask, without the done positives, without the last partial chunk, and with or without an explicit zero initial state; a 512-stream pool (to remove correlation between consecutive batches) also fails; i.i.d. chunks with uniform episode choice (more first chunks) learn. Learning onset depends on episode-start windows; the exact mechanism is not established. After a 400-step windowed warm-up, pooled stream training keeps learning (cross-evaluated on fixed window batches: 2.40 vs 2.29 for 800 window steps).",
+   "change": "H and Hr: the first 2,000 steps use the R3 window sampler (identical to R3's first 2,000 steps' sampling scheme), then stream training with a pool of 512 streams in progress, 32 drawn at random per step, each advancing one 128-tick chunk with its own carried memory (H) or zero memory (Hr). A drawn stream's memory was computed under the weights of its previous draw (~16 steps earlier on average). p2_train defaults: --stream-pool 512, --stream-warmup 2000.",
+   "consequence": "H vs Hr still isolates carried memory (same warm-up, same chunks). H/Hr vs R3 now differ only after step 2,000. Everything else in amendment 7 unchanged.",
+   "script_note": "Added 2026-10-27 21:13, after the amendment: the scratch script is kept as p2_stream_debug.py so the cited experiments are reproducible."
+  }
+ ]
+}

@@ -1,0 +1,1614 @@
+{
+  "config": {
+    "split": "test",
+    "n": 1,
+    "max_steps": 80,
+    "source_sha256": {
+      "r5_eval.py": "cea00f69d6462d612735c32df35f959c3806b2cefbe194da573d5ee79a1f6d8b",
+      "r5_env.py": "bdc59b063fc5c5e38caf46705514c187ab9490e4cff6bb7d7dbd0b17dc47053a",
+      "r5_policy.py": "c928c4e61c0039ec0b004caf178ce700da475e7df9fdac5fd8fecf59249521bc",
+      "r5_baseline.py": "692a91326e323ff6a2a705a06828f566a99968ea4ed1c5a397f279dfd7b86d52",
+      "racing/sim.py": "b558516e6276cf2b5cae4e2665f1a533f19848ee514aae9810247df828fc2cfb"
+    },
+    "checkpoints": {
+      "rnn": "392fd9cbb9528f2e304a66c18bd0919b5aa0f060ef37286725ee577d16132578",
+      "ff": "5f012b47610ee26626222b6dc8dac2708045340dec3f292d0716a6b59a3d4527",
+      "rnn_memory_off": "392fd9cbb9528f2e304a66c18bd0919b5aa0f060ef37286725ee577d16132578",
+      "legacy_ff_frozen_extra_data": "3d4890ad7998f3f78288e1dbc8342d7668aaf0b6307cfe0060f0e57b3c3660d4",
+      "adaptive_ray": "a0b4d77be9aedb168b75b672e9a142c0e9a340b82dd735ccd1efc6edcab59e2d",
+      "adaptive_ray_frozen_estimator": "a0b4d77be9aedb168b75b672e9a142c0e9a340b82dd735ccd1efc6edcab59e2d"
+    }
+  },
+  "complete": true,
+  "methods": {
+    "rnn": {
+      "checkpoint": "checkpoints/r5_smoke_20261024_163601_rnn_selected.npz",
+      "overall": {
+        "n": 6,
+        "completion": 0.0,
+        "crash_rate": 0.0,
+        "collisions_per_attempt": 0.0,
+        "timeout_rate": 1.0,
+        "mean_finished_lap_s": null,
+        "mean_dnf_penalized_lap_s": 8.0,
+        "mean_progress": 0.28445168544455,
+        "utility": -0.7155483145554501,
+        "events_planned": 6,
+        "events_exposed": 0,
+        "events_recovered": 0,
+        "event_exposure_coverage": 0.0,
+        "event_recovery_coverage": 0.0,
+        "adaptation_capped_s": 5.0,
+        "adaptation_recovered_s": null,
+        "event_status_counts": {
+          "unreached": 6
+        }
+      },
+      "groups": {
+        "normal_patch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.3136674381548231,
+          "utility": -0.6863325618451769,
+          "events_planned": 2,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 2
+          }
+        },
+        "hard_patch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.28502261092627795,
+          "utility": -0.7149773890737221,
+          "events_planned": 2,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 2
+          }
+        },
+        "normal_switch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.28208007470061897,
+          "utility": -0.7179199252993811,
+          "events_planned": 1,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 1
+          }
+        },
+        "hard_switch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.2270341413505235,
+          "utility": -0.7729658586494765,
+          "events_planned": 1,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 1
+          }
+        },
+        "normal_static": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.31654120056311613,
+          "utility": -0.6834587994368839,
+          "events_planned": 0,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": null,
+          "event_recovery_coverage": null,
+          "adaptation_capped_s": null,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {}
+        },
+        "hard_static": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.2823646469719404,
+          "utility": -0.7176353530280596,
+          "events_planned": 0,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": null,
+          "event_recovery_coverage": null,
+          "adaptation_capped_s": null,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {}
+        }
+      },
+      "episodes": [
+        {
+          "track_seed": 1070000,
+          "group": "normal_patch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.3136674381548231,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            },
+            {
+              "slot": 1,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_patch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.28502261092627795,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            },
+            {
+              "slot": 1,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 1070000,
+          "group": "normal_switch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.28208007470061897,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_switch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.2270341413505235,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 1070000,
+          "group": "normal_static",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.31654120056311613,
+          "events": []
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_static",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.2823646469719404,
+          "events": []
+        }
+      ],
+      "seconds": 0.09781766700325534
+    },
+    "ff": {
+      "checkpoint": "checkpoints/r5_smoke_20261024_163601_ff_selected.npz",
+      "overall": {
+        "n": 6,
+        "completion": 0.0,
+        "crash_rate": 0.0,
+        "collisions_per_attempt": 0.0,
+        "timeout_rate": 1.0,
+        "mean_finished_lap_s": null,
+        "mean_dnf_penalized_lap_s": 8.0,
+        "mean_progress": 0.2851602990123105,
+        "utility": -0.7148397009876897,
+        "events_planned": 6,
+        "events_exposed": 0,
+        "events_recovered": 0,
+        "event_exposure_coverage": 0.0,
+        "event_recovery_coverage": 0.0,
+        "adaptation_capped_s": 5.0,
+        "adaptation_recovered_s": null,
+        "event_status_counts": {
+          "unreached": 6
+        }
+      },
+      "groups": {
+        "normal_patch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.31402228891331435,
+          "utility": -0.6859777110866856,
+          "events_planned": 2,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 2
+          }
+        },
+        "hard_patch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.2850110555329069,
+          "utility": -0.7149889444670932,
+          "events_planned": 2,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 2
+          }
+        },
+        "normal_switch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.28206561893560983,
+          "utility": -0.7179343810643901,
+          "events_planned": 1,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 1
+          }
+        },
+        "hard_switch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.2307163970066945,
+          "utility": -0.7692836029933054,
+          "events_planned": 1,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 1
+          }
+        },
+        "normal_static": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.31651947468259967,
+          "utility": -0.6834805253174003,
+          "events_planned": 0,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": null,
+          "event_recovery_coverage": null,
+          "adaptation_capped_s": null,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {}
+        },
+        "hard_static": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.28262695900273765,
+          "utility": -0.7173730409972623,
+          "events_planned": 0,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": null,
+          "event_recovery_coverage": null,
+          "adaptation_capped_s": null,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {}
+        }
+      },
+      "episodes": [
+        {
+          "track_seed": 1070000,
+          "group": "normal_patch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.31402228891331435,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            },
+            {
+              "slot": 1,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_patch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.2850110555329069,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            },
+            {
+              "slot": 1,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 1070000,
+          "group": "normal_switch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.28206561893560983,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_switch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.2307163970066945,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 1070000,
+          "group": "normal_static",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.31651947468259967,
+          "events": []
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_static",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.28262695900273765,
+          "events": []
+        }
+      ],
+      "seconds": 0.01757974998326972
+    },
+    "rnn_memory_off": {
+      "checkpoint": "checkpoints/r5_smoke_20261024_163601_rnn_selected.npz",
+      "overall": {
+        "n": 6,
+        "completion": 0.0,
+        "crash_rate": 0.0,
+        "collisions_per_attempt": 0.0,
+        "timeout_rate": 1.0,
+        "mean_finished_lap_s": null,
+        "mean_dnf_penalized_lap_s": 8.0,
+        "mean_progress": 0.2850231840433323,
+        "utility": -0.7149768159566676,
+        "events_planned": 6,
+        "events_exposed": 0,
+        "events_recovered": 0,
+        "event_exposure_coverage": 0.0,
+        "event_recovery_coverage": 0.0,
+        "adaptation_capped_s": 5.0,
+        "adaptation_recovered_s": null,
+        "event_status_counts": {
+          "unreached": 6
+        }
+      },
+      "groups": {
+        "normal_patch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.31326459017033237,
+          "utility": -0.6867354098296676,
+          "events_planned": 2,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 2
+          }
+        },
+        "hard_patch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.28493095635372434,
+          "utility": -0.7150690436462757,
+          "events_planned": 2,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 2
+          }
+        },
+        "normal_switch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.28206506261598707,
+          "utility": -0.7179349373840129,
+          "events_planned": 1,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 1
+          }
+        },
+        "hard_switch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.23071837922576355,
+          "utility": -0.7692816207742365,
+          "events_planned": 1,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 1
+          }
+        },
+        "normal_static": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.3165163000852984,
+          "utility": -0.6834836999147016,
+          "events_planned": 0,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": null,
+          "event_recovery_coverage": null,
+          "adaptation_capped_s": null,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {}
+        },
+        "hard_static": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.2826438158088884,
+          "utility": -0.7173561841911116,
+          "events_planned": 0,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": null,
+          "event_recovery_coverage": null,
+          "adaptation_capped_s": null,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {}
+        }
+      },
+      "episodes": [
+        {
+          "track_seed": 1070000,
+          "group": "normal_patch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.31326459017033237,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            },
+            {
+              "slot": 1,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_patch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.28493095635372434,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            },
+            {
+              "slot": 1,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 1070000,
+          "group": "normal_switch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.28206506261598707,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_switch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.23071837922576355,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 1070000,
+          "group": "normal_static",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.3165163000852984,
+          "events": []
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_static",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.2826438158088884,
+          "events": []
+        }
+      ],
+      "seconds": 0.01784666598541662
+    },
+    "legacy_ff_frozen_extra_data": {
+      "checkpoint": "checkpoints/ppo_dr_r0_rg_best.npz",
+      "overall": {
+        "n": 6,
+        "completion": 0.0,
+        "crash_rate": 0.0,
+        "collisions_per_attempt": 0.0,
+        "timeout_rate": 1.0,
+        "mean_finished_lap_s": null,
+        "mean_dnf_penalized_lap_s": 8.0,
+        "mean_progress": 0.2860036235281192,
+        "utility": -0.7139963764718807,
+        "events_planned": 6,
+        "events_exposed": 0,
+        "events_recovered": 0,
+        "event_exposure_coverage": 0.0,
+        "event_recovery_coverage": 0.0,
+        "adaptation_capped_s": 5.0,
+        "adaptation_recovered_s": null,
+        "event_status_counts": {
+          "unreached": 6
+        }
+      },
+      "groups": {
+        "normal_patch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.3162296505775684,
+          "utility": -0.6837703494224316,
+          "events_planned": 2,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 2
+          }
+        },
+        "hard_patch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.28285515606814954,
+          "utility": -0.7171448439318504,
+          "events_planned": 2,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 2
+          }
+        },
+        "normal_switch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.28639228154042007,
+          "utility": -0.7136077184595799,
+          "events_planned": 1,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 1
+          }
+        },
+        "hard_switch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.23038107720174847,
+          "utility": -0.7696189227982515,
+          "events_planned": 1,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 1
+          }
+        },
+        "normal_static": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.3181500823381225,
+          "utility": -0.6818499176618775,
+          "events_planned": 0,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": null,
+          "event_recovery_coverage": null,
+          "adaptation_capped_s": null,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {}
+        },
+        "hard_static": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.28201349344270604,
+          "utility": -0.7179865065572939,
+          "events_planned": 0,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": null,
+          "event_recovery_coverage": null,
+          "adaptation_capped_s": null,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {}
+        }
+      },
+      "episodes": [
+        {
+          "track_seed": 1070000,
+          "group": "normal_patch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.3162296505775684,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            },
+            {
+              "slot": 1,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_patch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.28285515606814954,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            },
+            {
+              "slot": 1,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 1070000,
+          "group": "normal_switch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.28639228154042007,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_switch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.23038107720174847,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 1070000,
+          "group": "normal_static",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.3181500823381225,
+          "events": []
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_static",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.28201349344270604,
+          "events": []
+        }
+      ],
+      "seconds": 0.01623641699552536
+    },
+    "adaptive_ray": {
+      "checkpoint": "checkpoints/r5_smoke_20261024_163601_baseline_selected.json",
+      "overall": {
+        "n": 6,
+        "completion": 0.0,
+        "crash_rate": 0.16666666666666666,
+        "collisions_per_attempt": 0.16666666666666666,
+        "timeout_rate": 0.8333333333333334,
+        "mean_finished_lap_s": null,
+        "mean_dnf_penalized_lap_s": 8.0,
+        "mean_progress": 0.2666592752862445,
+        "utility": -1.0666740580470888,
+        "events_planned": 6,
+        "events_exposed": 0,
+        "events_recovered": 0,
+        "event_exposure_coverage": 0.0,
+        "event_recovery_coverage": 0.0,
+        "adaptation_capped_s": 5.0,
+        "adaptation_recovered_s": null,
+        "event_status_counts": {
+          "unreached": 6
+        }
+      },
+      "groups": {
+        "normal_patch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.3106317756900736,
+          "utility": -0.6893682243099264,
+          "events_planned": 2,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 2
+          }
+        },
+        "hard_patch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.321832935586923,
+          "utility": -0.6781670644130771,
+          "events_planned": 2,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 2
+          }
+        },
+        "normal_switch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.25689293970104493,
+          "utility": -0.7431070602989551,
+          "events_planned": 1,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 1
+          }
+        },
+        "hard_switch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 1.0,
+          "collisions_per_attempt": 1.0,
+          "timeout_rate": 0.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.06949026165287081,
+          "utility": -2.930509738347129,
+          "events_planned": 1,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 1
+          }
+        },
+        "normal_static": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.3144819208672524,
+          "utility": -0.6855180791327475,
+          "events_planned": 0,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": null,
+          "event_recovery_coverage": null,
+          "adaptation_capped_s": null,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {}
+        },
+        "hard_static": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.3266258182193023,
+          "utility": -0.6733741817806977,
+          "events_planned": 0,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": null,
+          "event_recovery_coverage": null,
+          "adaptation_capped_s": null,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {}
+        }
+      },
+      "episodes": [
+        {
+          "track_seed": 1070000,
+          "group": "normal_patch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.3106317756900736,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            },
+            {
+              "slot": 1,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_patch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.321832935586923,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            },
+            {
+              "slot": 1,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 1070000,
+          "group": "normal_switch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.25689293970104493,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_switch",
+          "finished": false,
+          "crashed": true,
+          "lap_penalty_s": 8.0,
+          "progress": 0.06949026165287081,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 1070000,
+          "group": "normal_static",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.3144819208672524,
+          "events": []
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_static",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.3266258182193023,
+          "events": []
+        }
+      ],
+      "seconds": 0.017312583979219198
+    },
+    "adaptive_ray_frozen_estimator": {
+      "checkpoint": "checkpoints/r5_smoke_20261024_163601_baseline_selected.json",
+      "overall": {
+        "n": 6,
+        "completion": 0.0,
+        "crash_rate": 0.5,
+        "collisions_per_attempt": 0.5,
+        "timeout_rate": 0.5,
+        "mean_finished_lap_s": null,
+        "mean_dnf_penalized_lap_s": 8.0,
+        "mean_progress": 0.187261113937885,
+        "utility": -1.812738886062115,
+        "events_planned": 6,
+        "events_exposed": 0,
+        "events_recovered": 0,
+        "event_exposure_coverage": 0.0,
+        "event_recovery_coverage": 0.0,
+        "adaptation_capped_s": 5.0,
+        "adaptation_recovered_s": null,
+        "event_status_counts": {
+          "unreached": 6
+        }
+      },
+      "groups": {
+        "normal_patch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.285340218202049,
+          "utility": -0.714659781797951,
+          "events_planned": 2,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 2
+          }
+        },
+        "hard_patch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 1.0,
+          "collisions_per_attempt": 1.0,
+          "timeout_rate": 0.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.0707643728472729,
+          "utility": -2.9292356271527273,
+          "events_planned": 2,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 2
+          }
+        },
+        "normal_switch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.2742009718903819,
+          "utility": -0.725799028109618,
+          "events_planned": 1,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 1
+          }
+        },
+        "hard_switch": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 1.0,
+          "collisions_per_attempt": 1.0,
+          "timeout_rate": 0.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.1388159379465585,
+          "utility": -2.8611840620534412,
+          "events_planned": 1,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": 0.0,
+          "event_recovery_coverage": 0.0,
+          "adaptation_capped_s": 5.0,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {
+            "unreached": 1
+          }
+        },
+        "normal_static": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 0.0,
+          "collisions_per_attempt": 0.0,
+          "timeout_rate": 1.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.2836808098937746,
+          "utility": -0.7163191901062254,
+          "events_planned": 0,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": null,
+          "event_recovery_coverage": null,
+          "adaptation_capped_s": null,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {}
+        },
+        "hard_static": {
+          "n": 1,
+          "completion": 0.0,
+          "crash_rate": 1.0,
+          "collisions_per_attempt": 1.0,
+          "timeout_rate": 0.0,
+          "mean_finished_lap_s": null,
+          "mean_dnf_penalized_lap_s": 8.0,
+          "mean_progress": 0.0707643728472729,
+          "utility": -2.9292356271527273,
+          "events_planned": 0,
+          "events_exposed": 0,
+          "events_recovered": 0,
+          "event_exposure_coverage": null,
+          "event_recovery_coverage": null,
+          "adaptation_capped_s": null,
+          "adaptation_recovered_s": null,
+          "event_status_counts": {}
+        }
+      },
+      "episodes": [
+        {
+          "track_seed": 1070000,
+          "group": "normal_patch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.285340218202049,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            },
+            {
+              "slot": 1,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_patch",
+          "finished": false,
+          "crashed": true,
+          "lap_penalty_s": 8.0,
+          "progress": 0.0707643728472729,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            },
+            {
+              "slot": 1,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 1070000,
+          "group": "normal_switch",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.2742009718903819,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_switch",
+          "finished": false,
+          "crashed": true,
+          "lap_penalty_s": 8.0,
+          "progress": 0.1388159379465585,
+          "events": [
+            {
+              "slot": 0,
+              "status": "unreached",
+              "exposed": false,
+              "change_step": -1,
+              "direction": 0,
+              "capped_latency_s": 5.0
+            }
+          ]
+        },
+        {
+          "track_seed": 1070000,
+          "group": "normal_static",
+          "finished": false,
+          "crashed": false,
+          "lap_penalty_s": 8.0,
+          "progress": 0.2836808098937746,
+          "events": []
+        },
+        {
+          "track_seed": 2070000,
+          "group": "hard_static",
+          "finished": false,
+          "crashed": true,
+          "lap_penalty_s": 8.0,
+          "progress": 0.0707643728472729,
+          "events": []
+        }
+      ],
+      "seconds": 0.016565166995860636
+    }
+  },
+  "comparison_notes": {
+    "rnn_and_ff": "Matched fine-tuning from the same historical PPO+DR checkpoint; extra prior training.",
+    "adaptive_ray": "CEM also includes historical DR ray knobs; prior-data/compute history is unmatched.",
+    "legacy_ff_frozen_extra_data": "Frozen historical 13-sensor policy; no R5 fine-tuning or gyro input.",
+    "ablations": "Memory-off and frozen-estimator variants are not retuned."
+  },
+  "track_manifest": [
+    {
+      "geometry": "heldout",
+      "requested_seed": 1070000,
+      "effective_seed": 1070000,
+      "retry": 0
+    },
+    {
+      "geometry": "hard",
+      "requested_seed": 2070000,
+      "effective_seed": 2070000,
+      "retry": 0
+    }
+  ],
+  "paired": {
+    "rnn_minus_ff": {
+      "n": 6,
+      "jointly_finished": 0,
+      "mean_dnf_penalized_delta_s": 0.0,
+      "mean_joint_finish_delta_s": null
+    },
+    "rnn_minus_adaptive_ray": {
+      "n": 6,
+      "jointly_finished": 0,
+      "mean_dnf_penalized_delta_s": 0.0,
+      "mean_joint_finish_delta_s": null
+    },
+    "rnn_minus_legacy_ff_frozen_extra_data": {
+      "n": 6,
+      "jointly_finished": 0,
+      "mean_dnf_penalized_delta_s": 0.0,
+      "mean_joint_finish_delta_s": null
+    },
+    "rnn_minus_rnn_memory_off": {
+      "n": 6,
+      "jointly_finished": 0,
+      "mean_dnf_penalized_delta_s": 0.0,
+      "mean_joint_finish_delta_s": null
+    }
+  },
+  "wall_seconds_this_invocation": 0.19866525003453717
+}

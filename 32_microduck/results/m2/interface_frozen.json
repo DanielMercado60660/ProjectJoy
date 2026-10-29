@@ -1,0 +1,78 @@
+{
+ "frozen": "2026-10-26T17:18:05-05:00",
+ "interface_py_sha256": "caef37da617c588cadeb152fdf21a1a6c7e4bb20cc0ca1f5f4379d8f200bbc13",
+ "spec": {
+  "tick_hz": 10,
+  "policy_steps_per_tick": 5,
+  "frame_size": 128,
+  "command_fields": [
+   "vx",
+   "vy",
+   "wz",
+   "neck_pitch",
+   "head_pitch",
+   "head_yaw",
+   "head_roll",
+   "done"
+  ],
+  "bounds": {
+   "vx": [
+    -0.3,
+    0.4
+   ],
+   "vy": [
+    0.0,
+    0.0
+   ],
+   "wz": [
+    -0.6,
+    0.6
+   ],
+   "head": [
+    0.88,
+    0.88,
+    1.12,
+    0.248
+   ]
+  },
+  "head_bounds_names": [
+   "neck_pitch",
+   "head_pitch",
+   "head_yaw",
+   "head_roll"
+  ],
+  "observation": {
+   "frame": "128x128x3 uint8, head camera, upright",
+   "body": [
+    "gyro(3)",
+    "gravity(3)",
+    "joint_pos minus default(14)",
+    "joint_vel(14)",
+    "gyro_substeps(5x3), the tick's 50 Hz IMU samples, oldest first",
+    "gravity_substeps(5x3), likewise"
+   ],
+   "also": [
+    "last_command",
+    "tick",
+    "sim_time"
+   ],
+   "not_observable": [
+    "lamp flag",
+    "press count",
+    "ball position",
+    "true pose",
+    "button depth"
+   ]
+  },
+  "episode_end": "first tick with done=True, or the task's step budget",
+  "sessions": "a session boundary falls between skills/ticks; skill-internal state is not saved",
+  "body_notes": [
+   "forward 0.1-0.15 m/s does not start a gait from standing; 0.2+ does",
+   "turning in place needs |wz| >= 0.5 from standing",
+   "achieved/commanded: forward ~0.44, backward ~0.52, turn ~1.4 (results/m0/gate.json)",
+   "commanded straight, the duck curves left ~+0.22 rad/s (median)",
+   "neck_pitch barely responds; head_pitch sits ~0.1-0.17 rad off; head_yaw tracks",
+   "turning while standing on the button's edge can re-press it"
+  ]
+ }
+}

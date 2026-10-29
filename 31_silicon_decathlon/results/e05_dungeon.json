@@ -1,0 +1,678 @@
+{
+ "event": {
+  "id": "05_dungeon",
+  "project": "05_dungeon",
+  "model": "PPO-GRU navigator (MLP enc 55-128-128, GRU 128, pi/v heads)",
+  "checkpoint": "../05_dungeon/checkpoints/solver_cur3/weights.safetensors",
+  "unit": "agent steps (one recurrent step, hidden state in/out)",
+  "params": 156421,
+  "notes": "solver_cur3 = PPO-GRU after 3 curriculum rounds (first policy in 05's demo.html). Task check uses greedy actions (05's eval samples actions; greedy makes the check deterministic). q8/q4: enc1 (in 55) stays fp32. Core ML packages are fp16. At batch 512 CPU fp32 engines differ from the MLX GPU reference (logits ~0.03) because MLX GPU runs fp32 matmuls in TF32 by default here (MLX_ENABLE_TF32='' turns it off)."
+ },
+ "final": true,
+ "batches": {
+  "1": {
+   "agreement": {
+    "numpy_cpu": {
+     "logits_max_err": 9.5367431640625e-07,
+     "value_max_err": 0.0,
+     "h_max_err": 1.1920928955078125e-07,
+     "greedy_action_agreement": 1.0
+    },
+    "mlx_cpu": {
+     "logits_max_err": 3.5762786865234375e-07,
+     "value_max_err": 0.0,
+     "h_max_err": 2.086162567138672e-07,
+     "greedy_action_agreement": 1.0
+    },
+    "mlx_gpu": {
+     "logits_max_err": 0.0,
+     "value_max_err": 0.0,
+     "h_max_err": 0.0,
+     "greedy_action_agreement": 1.0
+    },
+    "mlx_gpu_fp16": {
+     "logits_max_err": 0.0029718875885009766,
+     "value_max_err": 0.00030982494354248047,
+     "h_max_err": 0.0005649328231811523,
+     "greedy_action_agreement": 1.0
+    },
+    "mlx_gpu_compiled": {
+     "logits_max_err": 0.0,
+     "value_max_err": 0.0,
+     "h_max_err": 0.0,
+     "greedy_action_agreement": 1.0
+    },
+    "mlx_gpu_q8": {
+     "logits_max_err": 0.012145042419433594,
+     "value_max_err": 4.7087669372558594e-05,
+     "h_max_err": 0.0034062564373016357,
+     "greedy_action_agreement": 1.0
+    },
+    "mlx_gpu_q4": {
+     "logits_max_err": 0.2150859832763672,
+     "value_max_err": 0.007422924041748047,
+     "h_max_err": 0.0459810234606266,
+     "greedy_action_agreement": 1.0
+    },
+    "coreml_cpu": {
+     "logits_max_err": 0.031256675720214844,
+     "value_max_err": 0.00030982494354248047,
+     "h_max_err": 0.0022838711738586426,
+     "greedy_action_agreement": 1.0
+    },
+    "coreml_gpu": {
+     "logits_max_err": 0.031256675720214844,
+     "value_max_err": 0.00030982494354248047,
+     "h_max_err": 0.0022838711738586426,
+     "greedy_action_agreement": 1.0
+    },
+    "coreml_ane": {
+     "logits_max_err": 0.031256675720214844,
+     "value_max_err": 0.00030982494354248047,
+     "h_max_err": 0.0022838711738586426,
+     "greedy_action_agreement": 1.0
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 635432,
+    "mlx_gpu": 639256,
+    "mlx_gpu_fp16": 948374,
+    "mlx_gpu_compiled": 950568,
+    "mlx_gpu_q8": 1174116,
+    "mlx_gpu_q4": 1339480
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 0.018791004549711943,
+     "p90_ms": 0.019208004232496023,
+     "min_ms": 0.017166981706395745,
+     "calls": 14000,
+     "rounds": 7,
+     "round_median_spread": 1.0111429342072644
+    },
+    "mlx_cpu": {
+     "median_ms": 0.0923750048968941,
+     "p90_ms": 0.10300409921910615,
+     "min_ms": 0.05687499651685357,
+     "calls": 14000,
+     "rounds": 7,
+     "round_median_spread": 1.0310561401495997
+    },
+    "mlx_gpu": {
+     "median_ms": 0.22229200112633407,
+     "p90_ms": 0.24092539679259062,
+     "min_ms": 0.1635839871596545,
+     "calls": 7639,
+     "rounds": 7,
+     "round_median_spread": 1.0720558370854723
+    },
+    "mlx_gpu_fp16": {
+     "median_ms": 0.6518959999084473,
+     "p90_ms": 0.7584326900541782,
+     "min_ms": 0.5146250186953694,
+     "calls": 2600,
+     "rounds": 7,
+     "round_median_spread": 1.0221890296237568
+    },
+    "mlx_gpu_compiled": {
+     "median_ms": 0.19574997713789344,
+     "p90_ms": 0.2144169993698597,
+     "min_ms": 0.14958297833800316,
+     "calls": 8881,
+     "rounds": 7,
+     "round_median_spread": 1.12164894349971
+    },
+    "mlx_gpu_q8": {
+     "median_ms": 0.23991698981262743,
+     "p90_ms": 0.25599999935366213,
+     "min_ms": 0.17379102064296603,
+     "calls": 7080,
+     "rounds": 7,
+     "round_median_spread": 1.0572291527254516
+    },
+    "mlx_gpu_q4": {
+     "median_ms": 0.2410000015515834,
+     "p90_ms": 0.26175001403316855,
+     "min_ms": 0.18441598513163626,
+     "calls": 7086,
+     "rounds": 7,
+     "round_median_spread": 1.056218551595142
+    },
+    "coreml_cpu": {
+     "median_ms": 0.047667010221630335,
+     "p90_ms": 0.049583002692088485,
+     "min_ms": 0.038749974919483066,
+     "calls": 14000,
+     "rounds": 7,
+     "round_median_spread": 1.021219698827139
+    },
+    "coreml_gpu": {
+     "median_ms": 0.047375011490657926,
+     "p90_ms": 0.04924999666400254,
+     "min_ms": 0.03733299672603607,
+     "calls": 14000,
+     "rounds": 7,
+     "round_median_spread": 1.0249623751219794
+    },
+    "coreml_ane": {
+     "median_ms": 0.05358300404623151,
+     "p90_ms": 0.055832992075011134,
+     "min_ms": 0.04383400664664805,
+     "calls": 14000,
+     "rounds": 7,
+     "round_median_spread": 1.0157166100972672
+    }
+   },
+   "task": {
+    "numpy_cpu": {
+     "levels": 20,
+     "escaped": 20,
+     "ref_escaped": 20,
+     "mean_steps_escaped": 38.15,
+     "open_loop_action_agreement": 1.0,
+     "open_loop_steps": 763
+    },
+    "mlx_cpu": {
+     "levels": 20,
+     "escaped": 20,
+     "ref_escaped": 20,
+     "mean_steps_escaped": 38.15,
+     "open_loop_action_agreement": 1.0,
+     "open_loop_steps": 763
+    },
+    "mlx_gpu": {
+     "levels": 20,
+     "escaped": 20,
+     "ref_escaped": 20,
+     "mean_steps_escaped": 38.15,
+     "open_loop_action_agreement": 1.0,
+     "open_loop_steps": 763
+    },
+    "mlx_gpu_fp16": {
+     "levels": 20,
+     "escaped": 20,
+     "ref_escaped": 20,
+     "mean_steps_escaped": 38.15,
+     "open_loop_action_agreement": 1.0,
+     "open_loop_steps": 763
+    },
+    "mlx_gpu_compiled": {
+     "levels": 20,
+     "escaped": 20,
+     "ref_escaped": 20,
+     "mean_steps_escaped": 38.15,
+     "open_loop_action_agreement": 1.0,
+     "open_loop_steps": 763
+    },
+    "mlx_gpu_q8": {
+     "levels": 20,
+     "escaped": 19,
+     "ref_escaped": 20,
+     "mean_steps_escaped": 33.10526315789474,
+     "open_loop_action_agreement": 0.9986893840104849,
+     "open_loop_steps": 763
+    },
+    "mlx_gpu_q4": {
+     "levels": 20,
+     "escaped": 18,
+     "ref_escaped": 20,
+     "mean_steps_escaped": 27.055555555555557,
+     "open_loop_action_agreement": 0.9973787680209698,
+     "open_loop_steps": 763
+    },
+    "coreml_cpu": {
+     "levels": 20,
+     "escaped": 20,
+     "ref_escaped": 20,
+     "mean_steps_escaped": 38.15,
+     "open_loop_action_agreement": 1.0,
+     "open_loop_steps": 763
+    },
+    "coreml_gpu": {
+     "levels": 20,
+     "escaped": 20,
+     "ref_escaped": 20,
+     "mean_steps_escaped": 38.15,
+     "open_loop_action_agreement": 1.0,
+     "open_loop_steps": 763
+    },
+    "coreml_ane": {
+     "levels": 20,
+     "escaped": 20,
+     "ref_escaped": 20,
+     "mean_steps_escaped": 38.15,
+     "open_loop_action_agreement": 1.0,
+     "open_loop_steps": 763
+    }
+   },
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e05_dungeon_b1_fp16.mlpackage",
+     "size_bytes": 325011,
+     "placement": {
+      "CPU": 32
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e05_dungeon_b1_fp16.mlpackage",
+     "size_bytes": 325011,
+     "placement": {
+      "CPU": 32
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e05_dungeon_b1_fp16.mlpackage",
+     "size_bytes": 325011,
+     "placement": {
+      "CPU": 32
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 20/20 (ref 20)"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 20/20 (ref 20)"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 20/20 (ref 20)"
+    },
+    "mlx_gpu_fp16": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 20/20 (ref 20)"
+    },
+    "mlx_gpu_compiled": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 20/20 (ref 20)"
+    },
+    "mlx_gpu_q8": {
+     "ok": true,
+     "reason": "open-loop action agreement 0.999, escaped 19/20 (ref 20)"
+    },
+    "mlx_gpu_q4": {
+     "ok": false,
+     "reason": "open-loop action agreement 0.997, escaped 18/20 (ref 20)"
+    },
+    "coreml_cpu": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 20/20 (ref 20)"
+    },
+    "coreml_gpu": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 20/20 (ref 20)"
+    },
+    "coreml_ane": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 20/20 (ref 20)"
+    }
+   }
+  },
+  "512": {
+   "agreement": {
+    "numpy_cpu": {
+     "logits_max_err": 3.814697265625e-06,
+     "value_max_err": 2.384185791015625e-07,
+     "h_max_err": 2.942979335784912e-07,
+     "greedy_action_agreement": 1.0
+    },
+    "mlx_cpu": {
+     "logits_max_err": 3.814697265625e-06,
+     "value_max_err": 2.384185791015625e-07,
+     "h_max_err": 4.76837158203125e-07,
+     "greedy_action_agreement": 1.0
+    },
+    "mlx_gpu": {
+     "logits_max_err": 0.0,
+     "value_max_err": 0.0,
+     "h_max_err": 0.0,
+     "greedy_action_agreement": 1.0
+    },
+    "mlx_gpu_fp16": {
+     "logits_max_err": 0.0076503753662109375,
+     "value_max_err": 0.0009434223175048828,
+     "h_max_err": 0.0010329484939575195,
+     "greedy_action_agreement": 1.0
+    },
+    "mlx_gpu_compiled": {
+     "logits_max_err": 0.0,
+     "value_max_err": 0.0,
+     "h_max_err": 0.0,
+     "greedy_action_agreement": 1.0
+    },
+    "mlx_gpu_q8": {
+     "logits_max_err": 0.02657032012939453,
+     "value_max_err": 0.0025641024112701416,
+     "h_max_err": 0.00529391597956419,
+     "greedy_action_agreement": 1.0
+    },
+    "mlx_gpu_q4": {
+     "logits_max_err": 0.48332643508911133,
+     "value_max_err": 0.04082345962524414,
+     "h_max_err": 0.10434653609991074,
+     "greedy_action_agreement": 0.99609375
+    },
+    "coreml_cpu": {
+     "logits_max_err": 0.058274269104003906,
+     "value_max_err": 0.004196763038635254,
+     "h_max_err": 0.00524476170539856,
+     "greedy_action_agreement": 1.0
+    },
+    "coreml_gpu": {
+     "logits_max_err": 0.058274269104003906,
+     "value_max_err": 0.004196763038635254,
+     "h_max_err": 0.00524476170539856,
+     "greedy_action_agreement": 1.0
+    },
+    "coreml_ane": {
+     "logits_max_err": 0.05282783508300781,
+     "value_max_err": 0.0033620595932006836,
+     "h_max_err": 0.006023839116096497,
+     "greedy_action_agreement": 0.998046875
+    }
+   },
+   "memory_bytes": {
+    "mlx_cpu": 5273956,
+    "mlx_gpu": 5388644,
+    "mlx_gpu_fp16": 4066156,
+    "mlx_gpu_compiled": 4915058,
+    "mlx_gpu_q8": 12258986,
+    "mlx_gpu_q4": 12426398
+   },
+   "timing": {
+    "numpy_cpu": {
+     "median_ms": 0.6460830045398325,
+     "p90_ms": 0.6771577871404588,
+     "min_ms": 0.6250420119613409,
+     "calls": 2683,
+     "rounds": 7,
+     "round_median_spread": 1.0058222754157233
+    },
+    "mlx_cpu": {
+     "median_ms": 0.6025829934515059,
+     "p90_ms": 0.6268330034799874,
+     "min_ms": 0.5830000154674053,
+     "calls": 2886,
+     "rounds": 7,
+     "round_median_spread": 1.0091116303692773
+    },
+    "mlx_gpu": {
+     "median_ms": 0.2995409886352718,
+     "p90_ms": 0.31804099562577903,
+     "min_ms": 0.24391600163653493,
+     "calls": 5607,
+     "rounds": 7,
+     "round_median_spread": 1.0751323996107998
+    },
+    "mlx_gpu_fp16": {
+     "median_ms": 0.6909795047249645,
+     "p90_ms": 0.7736871892120689,
+     "min_ms": 0.5947909958194941,
+     "calls": 2442,
+     "rounds": 7,
+     "round_median_spread": 1.0261520334257024
+    },
+    "mlx_gpu_compiled": {
+     "median_ms": 0.27150000096298754,
+     "p90_ms": 0.29372540884651244,
+     "min_ms": 0.22995899780653417,
+     "calls": 6267,
+     "rounds": 7,
+     "round_median_spread": 1.019550125406029
+    },
+    "mlx_gpu_q8": {
+     "median_ms": 0.30862499261274934,
+     "p90_ms": 0.32608299516141415,
+     "min_ms": 0.24854199727997184,
+     "calls": 5447,
+     "rounds": 7,
+     "round_median_spread": 1.055078242887869
+    },
+    "mlx_gpu_q4": {
+     "median_ms": 0.30545800109393895,
+     "p90_ms": 0.32449999707750976,
+     "min_ms": 0.25437501608394086,
+     "calls": 5554,
+     "rounds": 7,
+     "round_median_spread": 1.0777895845375907
+    },
+    "coreml_cpu": {
+     "median_ms": 0.2192499814555049,
+     "p90_ms": 0.22829200606793165,
+     "min_ms": 0.19579200306907296,
+     "calls": 7955,
+     "rounds": 7,
+     "round_median_spread": 1.0044739642425826
+    },
+    "coreml_gpu": {
+     "median_ms": 0.21808300516568124,
+     "p90_ms": 0.2266669849632308,
+     "min_ms": 0.20179199054837227,
+     "calls": 7998,
+     "rounds": 7,
+     "round_median_spread": 1.0055573623490992
+    },
+    "coreml_ane": {
+     "median_ms": 0.21614550496451557,
+     "p90_ms": 0.23175411624833944,
+     "min_ms": 0.1832919951993972,
+     "calls": 8070,
+     "rounds": 7,
+     "round_median_spread": 1.0404858307932119
+    }
+   },
+   "task": {
+    "numpy_cpu": {
+     "levels": 500,
+     "escaped": 495,
+     "ref_escaped": 495,
+     "mean_steps_escaped": 39.33535353535353,
+     "open_loop_action_agreement": 1.0,
+     "open_loop_steps": 20471
+    },
+    "mlx_cpu": {
+     "levels": 500,
+     "escaped": 495,
+     "ref_escaped": 495,
+     "mean_steps_escaped": 39.33535353535353,
+     "open_loop_action_agreement": 1.0,
+     "open_loop_steps": 20471
+    },
+    "mlx_gpu": {
+     "levels": 500,
+     "escaped": 495,
+     "ref_escaped": 495,
+     "mean_steps_escaped": 39.33535353535353,
+     "open_loop_action_agreement": 1.0,
+     "open_loop_steps": 20471
+    },
+    "mlx_gpu_fp16": {
+     "levels": 500,
+     "escaped": 495,
+     "ref_escaped": 495,
+     "mean_steps_escaped": 39.32727272727273,
+     "open_loop_action_agreement": 0.9999511504078941,
+     "open_loop_steps": 20471
+    },
+    "mlx_gpu_compiled": {
+     "levels": 500,
+     "escaped": 495,
+     "ref_escaped": 495,
+     "mean_steps_escaped": 39.33535353535353,
+     "open_loop_action_agreement": 1.0,
+     "open_loop_steps": 20471
+    },
+    "mlx_gpu_q8": {
+     "levels": 500,
+     "escaped": 494,
+     "ref_escaped": 495,
+     "mean_steps_escaped": 39.02429149797571,
+     "open_loop_action_agreement": 0.9996580528552587,
+     "open_loop_steps": 20471
+    },
+    "mlx_gpu_q4": {
+     "levels": 500,
+     "escaped": 493,
+     "ref_escaped": 495,
+     "mean_steps_escaped": 39.462474645030426,
+     "open_loop_action_agreement": 0.9957500854867862,
+     "open_loop_steps": 20471
+    },
+    "coreml_cpu": {
+     "levels": 500,
+     "escaped": 495,
+     "ref_escaped": 495,
+     "mean_steps_escaped": 39.31919191919192,
+     "open_loop_action_agreement": 0.9998534512236823,
+     "open_loop_steps": 20471
+    },
+    "coreml_gpu": {
+     "levels": 500,
+     "escaped": 495,
+     "ref_escaped": 495,
+     "mean_steps_escaped": 39.31919191919192,
+     "open_loop_action_agreement": 0.9998534512236823,
+     "open_loop_steps": 20471
+    },
+    "coreml_ane": {
+     "levels": 500,
+     "escaped": 495,
+     "ref_escaped": 495,
+     "mean_steps_escaped": 39.41414141414141,
+     "open_loop_action_agreement": 0.9997069024473646,
+     "open_loop_steps": 20471
+    }
+   },
+   "coreml": {
+    "coreml_cpu": {
+     "package": "checkpoints/coreml/e05_dungeon_b512_fp16.mlpackage",
+     "size_bytes": 325057,
+     "placement": {
+      "CPU": 32
+     }
+    },
+    "coreml_gpu": {
+     "package": "checkpoints/coreml/e05_dungeon_b512_fp16.mlpackage",
+     "size_bytes": 325057,
+     "placement": {
+      "CPU": 32
+     }
+    },
+    "coreml_ane": {
+     "package": "checkpoints/coreml/e05_dungeon_b512_fp16.mlpackage",
+     "size_bytes": 325057,
+     "placement": {
+      "NeuralEngine": 32
+     }
+    }
+   },
+   "qualifies": {
+    "numpy_cpu": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 495/500 (ref 495)"
+    },
+    "mlx_cpu": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 495/500 (ref 495)"
+    },
+    "mlx_gpu": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 495/500 (ref 495)"
+    },
+    "mlx_gpu_fp16": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 495/500 (ref 495)"
+    },
+    "mlx_gpu_compiled": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 495/500 (ref 495)"
+    },
+    "mlx_gpu_q8": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 494/500 (ref 495)"
+    },
+    "mlx_gpu_q4": {
+     "ok": true,
+     "reason": "open-loop action agreement 0.996, escaped 493/500 (ref 495)"
+    },
+    "coreml_cpu": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 495/500 (ref 495)"
+    },
+    "coreml_gpu": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 495/500 (ref 495)"
+    },
+    "coreml_ane": {
+     "ok": true,
+     "reason": "open-loop action agreement 1.000, escaped 495/500 (ref 495)"
+    }
+   }
+  }
+ },
+ "skips": {},
+ "task_checks": true,
+ "settings": {
+  "repeats": 7,
+  "budget_s": 0.25,
+  "only": null
+ },
+ "mlx_tf32": false,
+ "mlx_gpu_matmul_rel_err": 5.303472196546295e-07,
+ "mlx_tf32_env": "0",
+ "idle_wait": {
+  "waited_s": 0.0,
+  "load1": 1.4912109375
+ },
+ "env_before": {
+  "time": "2026-10-22 18:02:31",
+  "loadavg": [
+   1.4912109375,
+   1.53564453125,
+   1.96875
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 404,
+    "cpu": 40.0,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.17462583957239985,
+  "mlx_gpu_2048_matmul_ms": 1.6714625002350658
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.17232249956578016,
+  "mlx_gpu_2048_matmul_ms": 1.5572478994727135
+ },
+ "env_after": {
+  "time": "2026-10-22 18:03:16",
+  "loadavg": [
+   2.02197265625,
+   1.6748046875,
+   1.998046875
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

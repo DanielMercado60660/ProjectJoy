@@ -1,0 +1,79 @@
+{
+  "version": 2,
+  "split": "hard_val",
+  "screen_indices": [
+    0
+  ],
+  "confirm_indices": [
+    64
+  ],
+  "objective": "mean per-sequence all-frame pixel NLL",
+  "search_space": {
+    "kalman": [
+      {
+        "q": 0.5,
+        "r": 7.0
+      }
+    ],
+    "particle": [
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 16,
+        "bandwidth": 4.0
+      }
+    ]
+  },
+  "rows": [
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 16,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 31.71558503357152,
+      "screen_seconds": 0.021526875032577664,
+      "confirm_nll": 30.51417070410135,
+      "confirm_seconds": 0.017234208004083484
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.5,
+        "r": 7.0
+      },
+      "screen_nll": 4.974390755015458,
+      "screen_seconds": 0.015450458973646164,
+      "confirm_nll": 27.204932250220715,
+      "confirm_seconds": 0.013013083022087812
+    }
+  ],
+  "selected": {
+    "particle": {
+      "q": 0.5,
+      "r": 1.0,
+      "miss": 0.35,
+      "particles": 16,
+      "bandwidth": 4.0
+    },
+    "kalman": {
+      "q": 0.5,
+      "r": 7.0
+    }
+  },
+  "complete": true,
+  "elapsed_seconds": 0.07308941695373505,
+  "selection_stage": {
+    "particle": "confirm",
+    "kalman": "confirm"
+  },
+  "boundary_parameters": {
+    "particle": [],
+    "kalman": []
+  },
+  "grid_complete": true
+}

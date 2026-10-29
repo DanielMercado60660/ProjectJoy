@@ -1,0 +1,14 @@
+[gpu_run] acquired gpu0: ../.venv/bin/python efficiency/bench_step.py --depth 6 --variants base kernel --windows 20 --per-window 15 --tag F_long_d6_interleaved
+[bench] matmul peak 59.3 TFLOP/s bf16, loadavg (2.6904296875, 2.84716796875, 2.7900390625), env {}
+[bench] warm base: 4.6s  loss 6.2276  loader 0.2 ms/update
+[bench] warm kernel: 4.0s  loss 6.2290  loader 0.3 ms/update
+[bench] window 0 base: 229,984 tok/s (570 ms/update)
+[bench] window 0 kernel: 247,965 tok/s (529 ms/update)
+[bench] window 1 kernel: 243,315 tok/s (539 ms/update)
+[bench] window 1 base: 217,414 tok/s (603 ms/update)
+[bench] window 2 base: 212,908 tok/s (616 ms/update)
+[bench] window 2 kernel: 228,869 tok/s (573 ms/update)
+[bench] window 3 kernel: 227,246 tok/s (577 ms/update)
+[bench] window 3 base: 206,976 tok/s (633 ms/update)
+[bench] window 4 base: 206,300 tok/s (635 ms/update)
+[bench] window 4 kernel: 221,491 tok/s (592 ms/update)

@@ -1,0 +1,24 @@
+Post-run audit (20:28, not part of the main run): launches whose RELEASE state is already over the wing's
+strength limit (max_load_ratio > 1 but status != -2, because sim_struct checks only after each step), scored
+as 0 m ("corrected"). Produced by an inline python snippet in the builder session (re-evaluates results/struct/eval.json winners with sim_struct.evaluate_batch); not saved as a script.
+0.125MPa cma_best    train   release-exceed 2  raw 109.9 corrected 78.0  breaks 2
+0.125MPa cma_best    heldout release-exceed 5  raw 43.2  corrected 35.2  breaks 43
+0.125MPa hand_retrim train   release-exceed 0  raw 95.8  corrected 95.8  breaks 0
+0.125MPa hand_retrim heldout release-exceed 1  raw 43.3  corrected 42.1  breaks 27
+0.125MPa random_best train   release-exceed 0  raw 92.8  corrected 92.8  breaks 0
+0.125MPa random_best heldout release-exceed 1  raw 41.6  corrected 40.0  breaks 33
+0.25MPa  cma_best    train   release-exceed 0  raw 118.0 corrected 118.0 breaks 0
+0.25MPa  cma_best    heldout release-exceed 1  raw 57.9  corrected 56.8  breaks 28
+0.25MPa  hand_retrim train   release-exceed 0  raw 104.0 corrected 104.0 breaks 0
+0.25MPa  hand_retrim heldout release-exceed 1  raw 69.0  corrected 68.0  breaks 12
+0.25MPa  random_best train   release-exceed 0  raw 100.9 corrected 100.9 breaks 0
+0.25MPa  random_best heldout release-exceed 3  raw 68.1  corrected 64.0  breaks 13
+0.5MPa   cma_best    train   release-exceed 0  raw 117.7 corrected 117.7 breaks 0
+0.5MPa   cma_best    heldout release-exceed 0  raw 88.1  corrected 88.1  breaks 6
+0.5MPa   hand_retrim train   release-exceed 0  raw 105.4 corrected 105.4 breaks 0
+0.5MPa   hand_retrim heldout release-exceed 0  raw 88.9  corrected 88.9  breaks 7
+0.5MPa   random_best train   release-exceed 0  raw 100.9 corrected 100.9 breaks 0
+0.5MPa   random_best heldout release-exceed 1  raw 77.3  corrected 76.9  breaks 1
+0.125MPa cma_best per training launch [range, status, max_load] at dt 5 ms:
+ [114.1 1 0.86] [107.76 1 0.75] [121.46 1 0.91] [88.93 1 1.02] [124.47 1 0.88] [102.75 1 1.19]
+ at dt 2.5 ms launch 6 breaks (0.01 m, status -2): the first step is shorter, so the load is checked before it falls under 1.

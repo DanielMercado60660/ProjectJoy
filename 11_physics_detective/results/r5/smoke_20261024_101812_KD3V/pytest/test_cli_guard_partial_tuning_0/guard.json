@@ -1,0 +1,789 @@
+{
+  "schema": 1,
+  "config": {
+    "mode": "tune",
+    "seed": 51001,
+    "worlds": 1,
+    "planner": {
+      "grid_size": 101,
+      "particles": 64,
+      "fantasies": 16,
+      "design_stride": 1
+    },
+    "source_sha256": "bf4c40b1b997ef173b9b67c2158c475790212369f3fad68623a4a0c62b4d2981",
+    "legacy_mu": false,
+    "budgets": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "families": [
+      "matched",
+      "gain_shift"
+    ],
+    "methods": [
+      "eig",
+      "task_voi",
+      "lsq",
+      "tobit"
+    ],
+    "output": "/Users/danielmercado/ProjectJoy/11_physics_detective/results/r5/smoke_20261024_101812_KD3V/pytest/test_cli_guard_partial_tuning_0/tuning.json",
+    "protocols": [
+      "fixed8",
+      "fixed12",
+      "ladder",
+      "adaptive_10_35",
+      "adaptive_10_65",
+      "adaptive_10_90",
+      "adaptive_10_target",
+      "adaptive_12_35",
+      "adaptive_12_65",
+      "adaptive_12_90",
+      "adaptive_12_target",
+      "adaptive_15_35",
+      "adaptive_15_65",
+      "adaptive_15_90",
+      "adaptive_15_target"
+    ],
+    "aim_offsets": [
+      -0.5,
+      0.0,
+      0.5
+    ]
+  },
+  "next_world": 1,
+  "status": "complete",
+  "elapsed_seconds": 0.022895082947798073,
+  "rows": [],
+  "tuning_totals": [
+    {
+      "method": "lsq",
+      "protocol": "fixed8",
+      "offset": -0.5,
+      "successes": 0,
+      "abs_error_sum": 0.50318887390073,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "fixed8",
+      "offset": 0.0,
+      "successes": 0,
+      "abs_error_sum": 0.304640565849463,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "fixed8",
+      "offset": 0.5,
+      "successes": 0,
+      "abs_error_sum": 0.5933805488855112,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "fixed12",
+      "offset": -0.5,
+      "successes": 2,
+      "abs_error_sum": 0.11647723517286701,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "fixed12",
+      "offset": 0.0,
+      "successes": 0,
+      "abs_error_sum": 0.10080233410309347,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "fixed12",
+      "offset": 0.5,
+      "successes": 0,
+      "abs_error_sum": 0.11630695780448808,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "ladder",
+      "offset": -0.5,
+      "successes": 1,
+      "abs_error_sum": 0.7759579138493747,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "ladder",
+      "offset": 0.0,
+      "successes": 0,
+      "abs_error_sum": 0.7487191790757852,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "ladder",
+      "offset": 0.5,
+      "successes": 0,
+      "abs_error_sum": 0.7635903726725055,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_10_35",
+      "offset": -0.5,
+      "successes": 2,
+      "abs_error_sum": 0.06983814165682511,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_10_35",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.041037731016105194,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_10_35",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.08329419303075725,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_10_65",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_10_65",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_10_65",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_10_90",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.026584666434979365,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_10_90",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.048150657975480904,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_10_90",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0768027866027613,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_10_target",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_10_target",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_10_target",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_12_35",
+      "offset": -0.5,
+      "successes": 2,
+      "abs_error_sum": 0.09315768841484606,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_12_35",
+      "offset": 0.0,
+      "successes": 1,
+      "abs_error_sum": 0.07092003255959933,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_12_35",
+      "offset": 0.5,
+      "successes": 1,
+      "abs_error_sum": 0.09980057541762266,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_12_65",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_12_65",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_12_65",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_12_90",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.07322375995102126,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_12_90",
+      "offset": 0.0,
+      "successes": 0,
+      "abs_error_sum": 0.10791526106246918,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_12_90",
+      "offset": 0.5,
+      "successes": 0,
+      "abs_error_sum": 0.10981555137649213,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_12_target",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_12_target",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_12_target",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_15_35",
+      "offset": -0.5,
+      "successes": 2,
+      "abs_error_sum": 0.09006287240460298,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_15_35",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.04773335301711967,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_15_35",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.07279209578523715,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_15_65",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_15_65",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_15_65",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_15_90",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_15_90",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_15_90",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_15_target",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_15_target",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "lsq",
+      "protocol": "adaptive_15_target",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "fixed8",
+      "offset": -0.5,
+      "successes": 0,
+      "abs_error_sum": 0.50318887390073,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "fixed8",
+      "offset": 0.0,
+      "successes": 0,
+      "abs_error_sum": 0.304640565849463,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "fixed8",
+      "offset": 0.5,
+      "successes": 0,
+      "abs_error_sum": 0.5933805488855112,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "fixed12",
+      "offset": -0.5,
+      "successes": 2,
+      "abs_error_sum": 0.11647723517286701,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "fixed12",
+      "offset": 0.0,
+      "successes": 0,
+      "abs_error_sum": 0.10080233410309347,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "fixed12",
+      "offset": 0.5,
+      "successes": 0,
+      "abs_error_sum": 0.11630695780448808,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "ladder",
+      "offset": -0.5,
+      "successes": 1,
+      "abs_error_sum": 0.7759579138493747,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "ladder",
+      "offset": 0.0,
+      "successes": 0,
+      "abs_error_sum": 0.7487191790757852,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "ladder",
+      "offset": 0.5,
+      "successes": 0,
+      "abs_error_sum": 0.7635903726725055,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_10_35",
+      "offset": -0.5,
+      "successes": 2,
+      "abs_error_sum": 0.06983814165682511,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_10_35",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.041037731016105194,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_10_35",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.08329419303075725,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_10_65",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_10_65",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_10_65",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_10_90",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_10_90",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_10_90",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_10_target",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_10_target",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_10_target",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_12_35",
+      "offset": -0.5,
+      "successes": 2,
+      "abs_error_sum": 0.09315768841484606,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_12_35",
+      "offset": 0.0,
+      "successes": 1,
+      "abs_error_sum": 0.07092003255959933,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_12_35",
+      "offset": 0.5,
+      "successes": 1,
+      "abs_error_sum": 0.09980057541762266,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_12_65",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_12_65",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_12_65",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_12_90",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_12_90",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_12_90",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_12_target",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_12_target",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_12_target",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_15_35",
+      "offset": -0.5,
+      "successes": 2,
+      "abs_error_sum": 0.09006287240460298,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_15_35",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.04773335301711967,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_15_35",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.07279209578523715,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_15_65",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_15_65",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_15_65",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_15_90",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_15_90",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_15_90",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_15_target",
+      "offset": -0.5,
+      "successes": 3,
+      "abs_error_sum": 0.04680939718275723,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_15_target",
+      "offset": 0.0,
+      "successes": 2,
+      "abs_error_sum": 0.05484627997649538,
+      "trials": 3
+    },
+    {
+      "method": "tobit",
+      "protocol": "adaptive_15_target",
+      "offset": 0.5,
+      "successes": 2,
+      "abs_error_sum": 0.0663006893572412,
+      "trials": 3
+    }
+  ],
+  "rng_state": {
+    "algorithm": "PCG64 / SeedSequence",
+    "root_seed": 51001,
+    "addressing": "[seed, world, stream, step]; stream 1 world, 2 camera, 3 planner"
+  },
+  "weights": null,
+  "optimizer": null,
+  "non_neural_note": "Weights/optimizer are not applicable; exact inference plus tuned protocols."
+}

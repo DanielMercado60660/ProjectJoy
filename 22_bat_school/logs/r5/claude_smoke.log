@@ -1,0 +1,25 @@
+[gpu_run] acquired gpu2: bash ./smoke_r5.sh
+...................                                                      [100%]
+19 passed in 2.83s
+MLX CHECKS OK: shapes, resets, budget mask, finite zero gradient, live compiled weights, RNG restore
+{"candidate_pairs": 1, "seconds": 0.9500509169884026, "measured_pair_seconds": 0.6401818750309758, "projected_total_pairs": 37}
+{"candidate_pairs": 2, "seconds": 1.5885733339819126, "measured_pair_seconds": 0.6369007080211304, "projected_total_pairs": 37}
+BASELINES COMPLETE: 2 candidates per scheduler; 1.6s
+{"resumed_update": 1, "optimizer_step": 1, "previous_loss": -0.02965199388563633}
+{"update": 2, "env_steps": 128, "seconds": 0.3736889999709092, "loss": -0.028365932404994965, "entropy": 2.2320427894592285, "grad_norm": 0.29838085174560547, "optimizer_step": 2}
+{"validation_update": 2, "score": -0.0012254901960784314, "best_score": -0.0012254901960784314, "rows": 16, "complete": true}
+{"update": 3, "env_steps": 192, "seconds": 1.1333809579955414, "loss": -0.028721490874886513, "entropy": 2.210334539413452, "grad_norm": 0.2731691002845764, "optimizer_step": 3}
+{"update": 3, "invocation_updates": 2, "seconds": 1.8802649169811048, "total_seconds": 4.700791208946612, "best_score": -0.0012254901960784314, "stop": "smoke update cap", "selected": "logs/r5/smoke_20261024_160652_18483/resume_a_selected.npz", "latest": "logs/r5/smoke_20261024_160652_18483/resume_a/latest.npz", "utilization": 0.07834528124900923, "measured_update_seconds": 0.02153562501189299}
+{"resumed_update": 1, "optimizer_step": 1, "previous_loss": -0.02965199388563633}
+{"update": 2, "env_steps": 128, "seconds": 0.359211792005226, "loss": -0.028365932404994965, "entropy": 2.2320427894592285, "grad_norm": 0.29838085174560547, "optimizer_step": 2}
+{"validation_update": 2, "score": -0.0012254901960784314, "best_score": -0.0012254901960784314, "rows": 16, "complete": true}
+{"update": 3, "env_steps": 192, "seconds": 1.1167885420145467, "loss": -0.028721490874886513, "entropy": 2.210334539413452, "grad_norm": 0.2731691002845764, "optimizer_step": 3}
+{"update": 3, "invocation_updates": 2, "seconds": 1.8364843750023283, "total_seconds": 4.657010625989642, "best_score": -0.0012254901960784314, "stop": "smoke update cap", "selected": "logs/r5/smoke_20261024_160652_18483/resume_b_selected.npz", "latest": "logs/r5/smoke_20261024_160652_18483/resume_b/latest.npz", "utilization": 0.07652083854191005, "measured_update_seconds": 0.02026860401383601}
+RESUME OK: update 1 -> 3; finite loss -0.028721; deterministic replay
+{"method": "event", "score": 0.7483527688419118, "seconds": 0.31168029201216996, "rows": 16, "complete": true}
+{"method": "uncertainty", "score": 0.7483527688419118, "seconds": 0.3157166659948416, "rows": 16, "complete": true}
+{"method": "every", "score": 0.8108750287224264, "seconds": 0.3072488749749027, "rows": 16, "complete": true}
+{"method": "learned", "score": -0.0012254901960784314, "seconds": 0.7295283330022357, "rows": 16, "complete": true}
+{"method": "learned_every", "score": -0.0013403799019607843, "seconds": 0.4892407499719411, "rows": 16, "complete": true}
+DEMO OK: 1 clips; absent categories ['success']
+SMOKE R5 OK in 16.6s; owned child saved/killed/resumed; logs/r5/smoke_20261024_160652_18483

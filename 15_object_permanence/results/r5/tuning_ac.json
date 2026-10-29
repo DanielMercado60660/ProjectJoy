@@ -1,0 +1,3168 @@
+{
+  "version": 1,
+  "split": "hard_val",
+  "screen_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "confirm_indices": [
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111
+  ],
+  "objective": "mean per-sequence all-frame pixel NLL",
+  "search_space": {
+    "kalman": [
+      {
+        "q": 0.5,
+        "r": 7.0
+      },
+      {
+        "q": 0.035,
+        "r": 0.5
+      },
+      {
+        "q": 1.2,
+        "r": 30.0
+      },
+      {
+        "q": 1.2,
+        "r": 7.0
+      },
+      {
+        "q": 1.2,
+        "r": 0.5
+      },
+      {
+        "q": 0.035,
+        "r": 0.07
+      },
+      {
+        "q": 0.035,
+        "r": 7.0
+      },
+      {
+        "q": 0.15,
+        "r": 0.07
+      },
+      {
+        "q": 1.2,
+        "r": 0.07
+      },
+      {
+        "q": 1.2,
+        "r": 2.0
+      },
+      {
+        "q": 0.5,
+        "r": 30.0
+      },
+      {
+        "q": 0.035,
+        "r": 30.0
+      },
+      {
+        "q": 0.15,
+        "r": 7.0
+      },
+      {
+        "q": 0.15,
+        "r": 14.0
+      },
+      {
+        "q": 0.15,
+        "r": 0.5
+      },
+      {
+        "q": 0.035,
+        "r": 14.0
+      },
+      {
+        "q": 0.5,
+        "r": 14.0
+      },
+      {
+        "q": 0.5,
+        "r": 0.5
+      },
+      {
+        "q": 0.15,
+        "r": 2.0
+      },
+      {
+        "q": 0.5,
+        "r": 0.07
+      },
+      {
+        "q": 0.15,
+        "r": 30.0
+      },
+      {
+        "q": 0.5,
+        "r": 2.0
+      },
+      {
+        "q": 1.2,
+        "r": 14.0
+      },
+      {
+        "q": 0.035,
+        "r": 2.0
+      }
+    ],
+    "particle": [
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      }
+    ]
+  },
+  "rows": [
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 13.942227694539813,
+      "screen_seconds": 0.44750995899084955
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.5,
+        "r": 7.0
+      },
+      "screen_nll": 7.989608451688935,
+      "screen_seconds": 0.22731325001223013
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 9.445207829705069,
+      "screen_seconds": 0.44561666704248637
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.035,
+        "r": 0.5
+      },
+      "screen_nll": 414.74881074275163,
+      "screen_seconds": 0.22569949994795024
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.66551648264571,
+      "screen_seconds": 0.4494792089681141
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 1.2,
+        "r": 30.0
+      },
+      "screen_nll": 7.303994363845639,
+      "screen_seconds": 0.23357633402338251
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 8.67610456090105,
+      "screen_seconds": 0.45279254199704155
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 1.2,
+        "r": 7.0
+      },
+      "screen_nll": 7.417426722958358,
+      "screen_seconds": 0.22364920802647248
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.8599742742236085,
+      "screen_seconds": 0.45959508302621543
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 1.2,
+        "r": 0.5
+      },
+      "screen_nll": 364.1139563121504,
+      "screen_seconds": 0.22842666698852554
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 14.393131238904536,
+      "screen_seconds": 0.45116358302766457
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.035,
+        "r": 0.07
+      },
+      "screen_nll": 5639.760831192226,
+      "screen_seconds": 0.2284953750204295
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 73.58583290444764,
+      "screen_seconds": 0.45517979201395065
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.035,
+        "r": 7.0
+      },
+      "screen_nll": 12.83247736662019,
+      "screen_seconds": 0.2328961659804918
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.588573181960791,
+      "screen_seconds": 0.44153804203961045
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.15,
+        "r": 0.07
+      },
+      "screen_nll": 2877.4320717832384,
+      "screen_seconds": 0.22419708396773785
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 16.248027207798813,
+      "screen_seconds": 0.4538147500134073
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 1.2,
+        "r": 0.07
+      },
+      "screen_nll": 19855.064603130497,
+      "screen_seconds": 0.22862229199381545
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 11.275233585394364,
+      "screen_seconds": 0.4561182080069557
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 1.2,
+        "r": 2.0
+      },
+      "screen_nll": 43.17859970381119,
+      "screen_seconds": 0.23245716700330377
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.338862908696548,
+      "screen_seconds": 0.4571990420226939
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.5,
+        "r": 30.0
+      },
+      "screen_nll": 7.0782413178565715,
+      "screen_seconds": 0.23218749999068677
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 8.270151471559661,
+      "screen_seconds": 0.47002495895139873
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.035,
+        "r": 30.0
+      },
+      "screen_nll": 7.0788281340986465,
+      "screen_seconds": 0.2271233749925159
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 233.40804283103114,
+      "screen_seconds": 0.44593920797342435
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.15,
+        "r": 7.0
+      },
+      "screen_nll": 6.816165026405255,
+      "screen_seconds": 0.2265147499856539
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 28.443184138282014,
+      "screen_seconds": 0.4489029580145143
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.15,
+        "r": 14.0
+      },
+      "screen_nll": 6.2801323529754445,
+      "screen_seconds": 0.22483874997124076,
+      "confirm_nll": 6.705327511324221,
+      "confirm_seconds": 0.6792939160368405
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 7.57139450576457,
+      "screen_seconds": 0.449860249995254
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.15,
+        "r": 0.5
+      },
+      "screen_nll": 456.2360328476883,
+      "screen_seconds": 0.23141183296684176
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.510112000046746,
+      "screen_seconds": 0.4720175419934094
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.035,
+        "r": 14.0
+      },
+      "screen_nll": 6.576198043363998,
+      "screen_seconds": 0.23939645796781406,
+      "confirm_nll": 7.051458756722179,
+      "confirm_seconds": 0.6844326659920625
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 32.74637204164499,
+      "screen_seconds": 0.47777716600103304
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.5,
+        "r": 14.0
+      },
+      "screen_nll": 6.211479462258737,
+      "screen_seconds": 0.2368179999757558,
+      "confirm_nll": 6.445107252285054,
+      "confirm_seconds": 0.6621327920001931
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 7.525562301629947,
+      "screen_seconds": 0.47643195901764557
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.5,
+        "r": 0.5
+      },
+      "screen_nll": 428.1407074967161,
+      "screen_seconds": 0.23962358303833753
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 56.45971509888862,
+      "screen_seconds": 0.46961670799646527
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.15,
+        "r": 2.0
+      },
+      "screen_nll": 26.118357812283698,
+      "screen_seconds": 0.23596679198089987
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 223.79619707578615,
+      "screen_seconds": 0.4728151250164956
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.5,
+        "r": 0.07
+      },
+      "screen_nll": 2703.2944581729544,
+      "screen_seconds": 0.24110037501668558
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 172.61576820278447,
+      "screen_seconds": 0.4793771660188213
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.15,
+        "r": 30.0
+      },
+      "screen_nll": 7.054426544539394,
+      "screen_seconds": 0.23633262503426522
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.51097657893013,
+      "screen_seconds": 0.4820288750343025
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.5,
+        "r": 2.0
+      },
+      "screen_nll": 30.832793169283605,
+      "screen_seconds": 0.23554008296923712
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.155979402122508,
+      "screen_seconds": 0.48032104200683534
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 1.2,
+        "r": 14.0
+      },
+      "screen_nll": 6.956920162326042,
+      "screen_seconds": 0.24377225001808256
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 55.7603945750532,
+      "screen_seconds": 0.48000920796766877
+    },
+    {
+      "method": "kalman",
+      "config": {
+        "q": 0.035,
+        "r": 2.0
+      },
+      "screen_nll": 52.814655407579174,
+      "screen_seconds": 0.23749666701769456
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 7.756942759921632,
+      "screen_seconds": 0.47847066703252494
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.470631666274769,
+      "screen_seconds": 0.47560449998127297
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 9.262000207851646,
+      "screen_seconds": 0.4761786249582656
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.653040274194872,
+      "screen_seconds": 0.47407558298436925
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 5.795523343158819,
+      "screen_seconds": 0.47680037503596395
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 23.842526623276832,
+      "screen_seconds": 0.4802625419688411
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 57.830582897011894,
+      "screen_seconds": 0.4755989999976009
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.545530564046722,
+      "screen_seconds": 0.4723606670158915
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 10.697470663863447,
+      "screen_seconds": 0.46888954198220745
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 48.1808422924445,
+      "screen_seconds": 0.4640849999850616
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.428717109621465,
+      "screen_seconds": 0.47097754204878584
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 128.62674729904242,
+      "screen_seconds": 0.455087749985978
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 7.06156838620918,
+      "screen_seconds": 0.4540771670290269
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 29.816118226113915,
+      "screen_seconds": 0.45649400004185736
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 73.10754051196113,
+      "screen_seconds": 0.4435719170141965
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 5.688257552275954,
+      "screen_seconds": 0.47963537502801046
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.346813059057791,
+      "screen_seconds": 0.46217675000661984
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 6.8332600798821055,
+      "screen_seconds": 0.4681640840135515
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.9148831892560985,
+      "screen_seconds": 0.4475689589744434
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 9.01438714222523,
+      "screen_seconds": 0.4564756670151837
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 19.71769824446568,
+      "screen_seconds": 0.45980175002478063
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 9.29187173027659,
+      "screen_seconds": 0.4592406250303611
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 5.7629843137931385,
+      "screen_seconds": 0.45258658402599394
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 39.16458692298026,
+      "screen_seconds": 0.47772712499136105
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 7.123165456763237,
+      "screen_seconds": 0.44444016698980704
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.918346865189721,
+      "screen_seconds": 0.46440941700711846
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 19.64674659453895,
+      "screen_seconds": 0.4486587500432506
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.007322321102646,
+      "screen_seconds": 0.4533744170330465
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 17.54419230282773,
+      "screen_seconds": 0.44735333300195634
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 3.1352465470175845,
+      "screen_seconds": 0.4515465829754248,
+      "confirm_nll": 27.72874596090708,
+      "confirm_seconds": 1.3377484999946319
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.801062706210509,
+      "screen_seconds": 0.4451628749957308
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 16.807772510137777,
+      "screen_seconds": 0.46025775000452995
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 5.119449275255983,
+      "screen_seconds": 0.4643837079638615
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 14.405321863036827,
+      "screen_seconds": 0.4851745000341907
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 54.017676648109045,
+      "screen_seconds": 0.4450206669862382
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 136.19177355167346,
+      "screen_seconds": 0.4549388329614885
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 99.12880502046083,
+      "screen_seconds": 0.4545233749668114
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.216074097391582,
+      "screen_seconds": 0.4412181670195423
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 14.833381017580052,
+      "screen_seconds": 0.4527425830019638
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.052628421374968,
+      "screen_seconds": 0.4603928330470808
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 116.64462877586345,
+      "screen_seconds": 0.4478785829851404
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 129.79222951067882,
+      "screen_seconds": 0.4456516660284251
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 8.780450720627451,
+      "screen_seconds": 0.4461345830350183
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 7.074966115628145,
+      "screen_seconds": 0.4528365829610266
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.354972277101094,
+      "screen_seconds": 0.455139874946326
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.427034188280871,
+      "screen_seconds": 0.4544261249830015
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 145.73024169937761,
+      "screen_seconds": 0.4495601660455577
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 10.09093270995079,
+      "screen_seconds": 0.453250291000586
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 7.130749907187139,
+      "screen_seconds": 0.44795795797836035
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 9.623491046678136,
+      "screen_seconds": 0.4535579169751145
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.431068762213965,
+      "screen_seconds": 0.4562432080274448
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.505511326474773,
+      "screen_seconds": 0.46055120800156146
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 13.522292414573926,
+      "screen_seconds": 0.5072922079707496
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.183069504830264,
+      "screen_seconds": 0.46633633301826194
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 9.372507143210896,
+      "screen_seconds": 0.4502345829969272
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.663436864348185,
+      "screen_seconds": 0.4634767910465598
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.84690414102865,
+      "screen_seconds": 0.45462766697164625
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 124.4488766977596,
+      "screen_seconds": 0.4474888749537058
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 7.605813134860607,
+      "screen_seconds": 0.45221845799824223
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 95.72606205966855,
+      "screen_seconds": 0.4590820830198936
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.877538338843371,
+      "screen_seconds": 0.4501758749829605
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 106.92692765576007,
+      "screen_seconds": 0.46701870899414644
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 18.903085334240764,
+      "screen_seconds": 0.4740989580168389
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 7.333215325075803,
+      "screen_seconds": 0.45107979205204174
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 221.2013052313146,
+      "screen_seconds": 0.44673550000879914
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 4.867764652208747,
+      "screen_seconds": 0.46854237496154383
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 14.663694648792827,
+      "screen_seconds": 0.4493695419514552
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 19.12533850866812,
+      "screen_seconds": 0.4473722499678843
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 98.52096538103406,
+      "screen_seconds": 0.45856837497558445
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 17.11906677336171,
+      "screen_seconds": 0.45815770799526945
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.5474766439390395,
+      "screen_seconds": 0.4761372919892892
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 7.128126479965619,
+      "screen_seconds": 0.4586087909992784
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.5402530276573625,
+      "screen_seconds": 0.45419291604775935
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 19.335473302576656,
+      "screen_seconds": 0.4556003750185482
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 8.581815710875642,
+      "screen_seconds": 0.46554470900446177
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.553882177301616,
+      "screen_seconds": 0.46960349997971207
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 5.709321764445727,
+      "screen_seconds": 0.4746996669564396
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.413349940533903,
+      "screen_seconds": 0.48721175000537187
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 7.165922275770971,
+      "screen_seconds": 0.4591548329917714
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 28.831732638443924,
+      "screen_seconds": 0.4559059590101242
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 7.307573761155237,
+      "screen_seconds": 0.46438487502746284
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 83.1624437714445,
+      "screen_seconds": 0.4536136249662377
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 5.69049703676382,
+      "screen_seconds": 0.45615762495435774
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.155228368403751,
+      "screen_seconds": 0.45821320899995044
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 5.310977820120413,
+      "screen_seconds": 0.4659209160017781
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.10562700744544,
+      "screen_seconds": 0.45525479200296104
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.056808005868232,
+      "screen_seconds": 0.45794166694395244
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.8802053247657895,
+      "screen_seconds": 0.46453795896377414
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.840575398891355,
+      "screen_seconds": 0.4488698749919422
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 5.09639108197428,
+      "screen_seconds": 0.46610924997366965
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.022139949088993,
+      "screen_seconds": 0.45478575001470745
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.617711933879846,
+      "screen_seconds": 0.4461558749899268
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.7340447745412675,
+      "screen_seconds": 0.47656029101926833
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.898153742279355,
+      "screen_seconds": 0.480667750001885
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 7.291856978870051,
+      "screen_seconds": 0.46530062501551583
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.57867033039607,
+      "screen_seconds": 0.461856416950468
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 32.6486795964063,
+      "screen_seconds": 0.45644774998072535
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.374940203319929,
+      "screen_seconds": 0.4629645409877412
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 46.522137816215505,
+      "screen_seconds": 0.46350908296881244
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 39.92829262991785,
+      "screen_seconds": 0.46660262503428385
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 16.70504003738694,
+      "screen_seconds": 0.4538131669978611
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 5.763897272021779,
+      "screen_seconds": 0.4642228750162758
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 121.91394858608592,
+      "screen_seconds": 0.4540247499826364
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 117.86245821565845,
+      "screen_seconds": 0.46373908303212374
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 5.827006829967329,
+      "screen_seconds": 0.4588211250375025
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 10.541227030673106,
+      "screen_seconds": 0.45626283303136006
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 8.365903761683798,
+      "screen_seconds": 0.47604550002142787
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.05,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 17.549662552485877,
+      "screen_seconds": 0.4590112500009127
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 11.375350916739457,
+      "screen_seconds": 0.45181241701357067
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 5.716413369288938,
+      "screen_seconds": 0.45146524999290705
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.694175795162122,
+      "screen_seconds": 0.4637137500103563
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 1.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.4553252206102565,
+      "screen_seconds": 0.46416999999200925
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.414426140095745,
+      "screen_seconds": 0.4577559169847518
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 0.5
+      },
+      "screen_nll": 116.54877808920044,
+      "screen_seconds": 0.46797649998916313
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 3.0,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.154248628515829,
+      "screen_seconds": 0.44913091603666544
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 3.387055870993634,
+      "screen_seconds": 0.4684849170153029,
+      "confirm_nll": 6.446811158687176,
+      "confirm_seconds": 1.3454498329665512
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.15,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 8.0
+      },
+      "screen_nll": 6.533275941821396,
+      "screen_seconds": 0.46843741700286046
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 1.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 4.793829791655144,
+      "screen_seconds": 0.46697783400304615,
+      "confirm_nll": 5.347560380902294,
+      "confirm_seconds": 1.3042769589810632
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.02,
+        "r": 6.0,
+        "miss": 0.35,
+        "particles": 512,
+        "bandwidth": 4.0
+      },
+      "screen_nll": 6.856723155228007,
+      "screen_seconds": 0.45258262497372925
+    },
+    {
+      "method": "particle",
+      "config": {
+        "q": 0.5,
+        "r": 0.3,
+        "miss": 0.2,
+        "particles": 512,
+        "bandwidth": 1.5
+      },
+      "screen_nll": 23.681313247392957,
+      "screen_seconds": 0.4475344580132514
+    }
+  ],
+  "selected": {
+    "particle": {
+      "q": 0.5,
+      "r": 1.0,
+      "miss": 0.35,
+      "particles": 512,
+      "bandwidth": 4.0
+    },
+    "kalman": {
+      "q": 0.5,
+      "r": 14.0
+    }
+  },
+  "complete": true,
+  "elapsed_seconds": 78.10149170801742,
+  "selection_stage": {
+    "particle": "confirm",
+    "kalman": "confirm"
+  },
+  "boundary_parameters": {
+    "particle": [
+      "q",
+      "miss"
+    ],
+    "kalman": []
+  },
+  "grid_complete": true
+}

@@ -1,0 +1,65 @@
+[gpu_run] acquired gpu2: ../.venv/bin/python -W ignore evaluate.py --ckpt checkpoints/run3/latest.npz --ckpt_before checkpoints/run1/latest.npz
+[   10s] zero (hold still)            th=0.15-0.40 fric=None mass=None: succ 0.039±0.012 drop 0.000 peakF med 1.9 over 0.000
+[   19s] posture (tuned hold)         th=0.15-0.40 fric=None mass=None: succ 0.141±0.022 drop 0.000 peakF med 2.0 over 0.000
+[   28s] random (sigma=0.1)           th=0.15-0.40 fric=None mass=None: succ 0.070±0.016 drop 0.000 peakF med 2.8 over 0.000
+[   36s] scripted gait (tuned)        th=0.15-0.40 fric=None mass=None: succ 0.430±0.031 drop 0.000 peakF med 4.0 over 0.000
+[   43s] PPO (asym. critic, touch)    th=0.15-0.40 fric=None mass=None: succ 0.996±0.004 drop 0.000 peakF med 7.5 over 0.129
+[   51s] scripted gait (force-aware retune) th=0.15-0.40 fric=None mass=None: succ 0.504±0.031 drop 0.000 peakF med 4.5 over 0.000
+[   61s] PPO before force fine-tune   th=0.15-0.40 fric=None mass=None: succ 0.988±0.007 drop 0.000 peakF med 10.5 over 0.543
+[   66s] zero (hold still)            th=0.00-0.40 fric=None mass=None: succ 0.227±0.037 drop 0.000 peakF med 2.0 over 0.000
+[   72s] posture (tuned hold)         th=0.00-0.40 fric=None mass=None: succ 0.109±0.028 drop 0.000 peakF med 2.0 over 0.000
+[   78s] random (sigma=0.1)           th=0.00-0.40 fric=None mass=None: succ 0.203±0.036 drop 0.000 peakF med 2.8 over 0.000
+[   82s] scripted gait (tuned)        th=0.00-0.40 fric=None mass=None: succ 0.555±0.044 drop 0.000 peakF med 3.8 over 0.000
+[   86s] PPO (asym. critic, touch)    th=0.00-0.40 fric=None mass=None: succ 1.000±0.000 drop 0.000 peakF med 7.4 over 0.195
+[   90s] scripted gait (force-aware retune) th=0.00-0.40 fric=None mass=None: succ 0.539±0.044 drop 0.000 peakF med 4.5 over 0.000
+[   93s] PPO before force fine-tune   th=0.00-0.40 fric=None mass=None: succ 0.984±0.011 drop 0.000 peakF med 8.7 over 0.422
+[   98s] zero (hold still)            th=0.40-0.80 fric=None mass=None: succ 0.000±0.000 drop 0.000 peakF med 2.0 over 0.000
+[  103s] zero (hold still)            th=0.80-1.57 fric=None mass=None: succ 0.000±0.000 drop 0.000 peakF med 1.9 over 0.000
+[  109s] posture (tuned hold)         th=0.40-0.80 fric=None mass=None: succ 0.000±0.000 drop 0.000 peakF med 2.0 over 0.000
+[  115s] posture (tuned hold)         th=0.80-1.57 fric=None mass=None: succ 0.000±0.000 drop 0.000 peakF med 2.0 over 0.000
+[  120s] random (sigma=0.1)           th=0.40-0.80 fric=None mass=None: succ 0.000±0.000 drop 0.000 peakF med 2.8 over 0.000
+[  126s] random (sigma=0.1)           th=0.80-1.57 fric=None mass=None: succ 0.000±0.000 drop 0.000 peakF med 2.8 over 0.000
+[  132s] scripted gait (tuned)        th=0.40-0.80 fric=None mass=None: succ 0.141±0.031 drop 0.000 peakF med 4.2 over 0.000
+[  137s] scripted gait (tuned)        th=0.80-1.57 fric=None mass=None: succ 0.000±0.000 drop 0.000 peakF med 4.2 over 0.000
+[  143s] PPO (asym. critic, touch)    th=0.40-0.80 fric=None mass=None: succ 1.000±0.000 drop 0.000 peakF med 8.6 over 0.305
+[  148s] PPO (asym. critic, touch)    th=0.80-1.57 fric=None mass=None: succ 0.984±0.011 drop 0.000 peakF med 11.6 over 0.633
+[  153s] scripted gait (force-aware retune) th=0.40-0.80 fric=None mass=None: succ 0.172±0.033 drop 0.000 peakF med 4.8 over 0.000
+[  159s] scripted gait (force-aware retune) th=0.80-1.57 fric=None mass=None: succ 0.000±0.000 drop 0.000 peakF med 4.9 over 0.000
+[  164s] PPO before force fine-tune   th=0.40-0.80 fric=None mass=None: succ 0.977±0.013 drop 0.000 peakF med 24.3 over 0.906
+[  169s] PPO before force fine-tune   th=0.80-1.57 fric=None mass=None: succ 0.969±0.015 drop 0.000 peakF med 36.6 over 1.000
+[  175s] zero (hold still)            th=0.15-0.40 fric=0.3 mass=1.0: succ 0.016±0.011 drop 0.000 peakF med 1.8 over 0.000
+[  181s] zero (hold still)            th=0.15-0.40 fric=0.5 mass=1.0: succ 0.023±0.013 drop 0.000 peakF med 1.9 over 0.000
+[  187s] zero (hold still)            th=0.15-0.40 fric=1.0 mass=1.0: succ 0.039±0.017 drop 0.000 peakF med 1.8 over 0.000
+[  194s] zero (hold still)            th=0.15-0.40 fric=2.0 mass=1.0: succ 0.047±0.019 drop 0.000 peakF med 1.8 over 0.000
+[  200s] zero (hold still)            th=0.15-0.40 fric=1.0 mass=0.4: succ 0.016±0.011 drop 0.000 peakF med 0.8 over 0.000
+[  206s] zero (hold still)            th=0.15-0.40 fric=1.0 mass=2.0: succ 0.039±0.017 drop 0.000 peakF med 3.5 over 0.000
+[  212s] zero (hold still)            th=0.15-0.40 fric=1.0 mass=3.0: succ 0.062±0.021 drop 0.000 peakF med 5.2 over 0.000
+[  218s] posture (tuned hold)         th=0.15-0.40 fric=0.3 mass=1.0: succ 0.086±0.025 drop 0.000 peakF med 2.0 over 0.000
+[  224s] posture (tuned hold)         th=0.15-0.40 fric=0.5 mass=1.0: succ 0.148±0.031 drop 0.000 peakF med 2.0 over 0.000
+[  230s] posture (tuned hold)         th=0.15-0.40 fric=1.0 mass=1.0: succ 0.180±0.034 drop 0.000 peakF med 2.0 over 0.000
+[  236s] posture (tuned hold)         th=0.15-0.40 fric=2.0 mass=1.0: succ 0.156±0.032 drop 0.000 peakF med 1.9 over 0.000
+[  242s] posture (tuned hold)         th=0.15-0.40 fric=1.0 mass=0.4: succ 0.055±0.020 drop 0.000 peakF med 1.0 over 0.000
+[  248s] posture (tuned hold)         th=0.15-0.40 fric=1.0 mass=2.0: succ 0.117±0.028 drop 0.000 peakF med 3.6 over 0.000
+[  255s] posture (tuned hold)         th=0.15-0.40 fric=1.0 mass=3.0: succ 0.117±0.028 drop 0.000 peakF med 5.3 over 0.000
+[  260s] scripted gait (tuned)        th=0.15-0.40 fric=0.3 mass=1.0: succ 0.281±0.040 drop 0.000 peakF med 4.6 over 0.000
+[  265s] scripted gait (tuned)        th=0.15-0.40 fric=0.5 mass=1.0: succ 0.406±0.043 drop 0.000 peakF med 4.7 over 0.000
+[  270s] scripted gait (tuned)        th=0.15-0.40 fric=1.0 mass=1.0: succ 0.602±0.043 drop 0.000 peakF med 3.9 over 0.000
+[  274s] scripted gait (tuned)        th=0.15-0.40 fric=2.0 mass=1.0: succ 0.578±0.044 drop 0.000 peakF med 2.6 over 0.000
+[  278s] scripted gait (tuned)        th=0.15-0.40 fric=1.0 mass=0.4: succ 0.133±0.030 drop 0.000 peakF med 3.5 over 0.000
+[  284s] scripted gait (tuned)        th=0.15-0.40 fric=1.0 mass=2.0: succ 0.398±0.043 drop 0.000 peakF med 5.3 over 0.000
+[  289s] scripted gait (tuned)        th=0.15-0.40 fric=1.0 mass=3.0: succ 0.258±0.039 drop 0.000 peakF med 6.7 over 0.016
+[  293s] scripted gait (force-aware retune) th=0.15-0.40 fric=0.3 mass=1.0: succ 0.227±0.037 drop 0.000 peakF med 4.9 over 0.000
+[  298s] scripted gait (force-aware retune) th=0.15-0.40 fric=0.5 mass=1.0: succ 0.336±0.042 drop 0.000 peakF med 5.2 over 0.000
+[  304s] scripted gait (force-aware retune) th=0.15-0.40 fric=1.0 mass=1.0: succ 0.562±0.044 drop 0.000 peakF med 4.4 over 0.000
+[  310s] scripted gait (force-aware retune) th=0.15-0.40 fric=2.0 mass=1.0: succ 0.664±0.042 drop 0.000 peakF med 2.9 over 0.000
+[  316s] scripted gait (force-aware retune) th=0.15-0.40 fric=1.0 mass=0.4: succ 0.281±0.040 drop 0.000 peakF med 4.2 over 0.000
+[  322s] scripted gait (force-aware retune) th=0.15-0.40 fric=1.0 mass=2.0: succ 0.461±0.044 drop 0.000 peakF med 5.8 over 0.000
+[  328s] scripted gait (force-aware retune) th=0.15-0.40 fric=1.0 mass=3.0: succ 0.359±0.042 drop 0.000 peakF med 7.3 over 0.000
+[  333s] PPO (asym. critic, touch)    th=0.15-0.40 fric=0.3 mass=1.0: succ 0.859±0.031 drop 0.008 peakF med 7.7 over 0.188
+[  338s] PPO (asym. critic, touch)    th=0.15-0.40 fric=0.5 mass=1.0: succ 1.000±0.000 drop 0.000 peakF med 7.4 over 0.180
+[  343s] PPO (asym. critic, touch)    th=0.15-0.40 fric=1.0 mass=1.0: succ 1.000±0.000 drop 0.000 peakF med 7.7 over 0.195
+[  348s] PPO (asym. critic, touch)    th=0.15-0.40 fric=2.0 mass=1.0: succ 0.984±0.011 drop 0.000 peakF med 5.4 over 0.062
+[  353s] PPO (asym. critic, touch)    th=0.15-0.40 fric=1.0 mass=0.4: succ 0.781±0.037 drop 0.031 peakF med 7.4 over 0.258
+[  358s] PPO (asym. critic, touch)    th=0.15-0.40 fric=1.0 mass=2.0: succ 0.938±0.021 drop 0.000 peakF med 9.8 over 0.477
+[  364s] PPO (asym. critic, touch)    th=0.15-0.40 fric=1.0 mass=3.0: succ 0.844±0.032 drop 0.000 peakF med 12.7 over 0.938
+saved results/eval.json (364s)

@@ -1,0 +1,1056 @@
+{
+ "env": {
+  "time": "2026-10-22 17:39:13",
+  "loadavg": [
+   2.23486328125,
+   2.43359375,
+   2.67333984375
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t99%; finishing charge; 0:02 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 404,
+    "cpu": 39.0,
+    "comm": "WindowServer"
+   },
+   {
+    "pid": 16934,
+    "cpu": 33.0,
+    "comm": "ANECompilerService"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "rows": [
+  {
+   "model": "az64_real",
+   "params": 374810,
+   "input_shape": [
+    1,
+    6,
+    7,
+    2
+   ],
+   "package": "checkpoints/coreml/probe_az64_real_b1_fp16.mlpackage",
+   "timing": {
+    "coreml_cpu": {
+     "median_ms": 0.05354100721888244,
+     "p90_ms": 0.0587090034969151,
+     "min_ms": 0.045082997530698776,
+     "calls": 8314
+    },
+    "coreml_gpu": {
+     "median_ms": 0.052749994210898876,
+     "p90_ms": 0.058290985180065036,
+     "min_ms": 0.045082997530698776,
+     "calls": 8386
+    },
+    "coreml_ane": {
+     "median_ms": 0.05387500277720392,
+     "p90_ms": 0.058833014918491244,
+     "min_ms": 0.045374996261671185,
+     "calls": 8289
+    }
+   },
+   "distribution": {
+    "coreml_cpu": {
+     "p10": 0.052208887063898146,
+     "p50": 0.05500001134350896,
+     "p90": 0.05900411342736333,
+     "p99": 0.07354143366683273,
+     "calls": 4000
+    },
+    "coreml_gpu": {
+     "p10": 0.05220901221036911,
+     "p50": 0.054916992667131126,
+     "p90": 0.05812497984152287,
+     "p99": 0.06945883855223654,
+     "calls": 4000
+    },
+    "coreml_ane": {
+     "p10": 0.05179198342375457,
+     "p50": 0.054665986681357026,
+     "p90": 0.05895798676647246,
+     "p99": 0.07120841270079835,
+     "calls": 4000
+    }
+   },
+   "cpu_time": {
+    "coreml_cpu": {
+     "wall_ms": 0.05530479000299238,
+     "cpu_ms": 0.06909999999999972,
+     "cpu_per_wall": 1.2494396958429987
+    },
+    "coreml_gpu": {
+     "wall_ms": 0.0550954150094185,
+     "cpu_ms": 0.06867000000000179,
+     "cpu_per_wall": 1.246383206084621
+    },
+    "coreml_ane": {
+     "wall_ms": 0.0552122900262475,
+     "cpu_ms": 0.0687900000000008,
+     "cpu_per_wall": 1.2459182542020726
+    }
+   },
+   "output_diff": {
+    "coreml_cpu_vs_coreml_gpu": 0.0,
+    "coreml_cpu_vs_coreml_ane": 0.0,
+    "coreml_gpu_vs_coreml_ane": 0.0
+   },
+   "plan": {
+    "coreml_cpu": {
+     "preferred": {
+      "CPU": 43
+     },
+     "supported": {
+      "CPU": 43
+     },
+     "cost_share": {
+      "CPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0258
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0509
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0509
+      }
+     ]
+    },
+    "coreml_gpu": {
+     "preferred": {
+      "CPU": 43
+     },
+     "supported": {
+      "CPU+GPU": 43
+     },
+     "cost_share": {
+      "CPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0258
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0509
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0509
+      }
+     ]
+    },
+    "coreml_ane": {
+     "preferred": {
+      "CPU": 43
+     },
+     "supported": {
+      "CPU+NeuralEngine": 43
+     },
+     "cost_share": {
+      "CPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0258
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0509
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0509
+      }
+     ]
+    }
+   }
+  },
+  {
+   "model": "az128_random",
+   "params": 1517319,
+   "input_shape": [
+    1,
+    6,
+    7,
+    2
+   ],
+   "package": "checkpoints/coreml/probe_az128_random_b1_fp16.mlpackage",
+   "timing": {
+    "coreml_cpu": {
+     "median_ms": 0.11704102507792413,
+     "p90_ms": 0.12341641122475266,
+     "min_ms": 0.1035839959513396,
+     "calls": 3847
+    },
+    "coreml_gpu": {
+     "median_ms": 0.11649998486973345,
+     "p90_ms": 0.1229170011356473,
+     "min_ms": 0.10479101911187172,
+     "calls": 3865
+    },
+    "coreml_ane": {
+     "median_ms": 0.12935450649820268,
+     "p90_ms": 0.1463329914258793,
+     "min_ms": 0.10183302219957113,
+     "calls": 3438
+    }
+   },
+   "distribution": {
+    "coreml_cpu": {
+     "p10": 0.10983299580402672,
+     "p50": 0.116915995022282,
+     "p90": 0.12241630465723574,
+     "p99": 0.1415673922747373,
+     "calls": 2568
+    },
+    "coreml_gpu": {
+     "p10": 0.10595799540169537,
+     "p50": 0.1137500221375376,
+     "p90": 0.12241699732840061,
+     "p99": 0.14405323192477223,
+     "calls": 2625
+    },
+    "coreml_ane": {
+     "p10": 0.10970799485221505,
+     "p50": 0.11908350279554725,
+     "p90": 0.13757040433119982,
+     "p99": 0.16410873126005743,
+     "calls": 2364
+    }
+   },
+   "cpu_time": {
+    "coreml_cpu": {
+     "wall_ms": 0.11847728994325735,
+     "cpu_ms": 0.13322999999999752,
+     "cpu_per_wall": 1.124519307149967
+    },
+    "coreml_gpu": {
+     "wall_ms": 0.11595458490774035,
+     "cpu_ms": 0.13031499999999419,
+     "cpu_per_wall": 1.123845168379325
+    },
+    "coreml_ane": {
+     "wall_ms": 0.12058083506417461,
+     "cpu_ms": 0.05897499999999667,
+     "cpu_per_wall": 0.48909099002846884
+    }
+   },
+   "output_diff": {
+    "coreml_cpu_vs_coreml_gpu": 0.0,
+    "coreml_cpu_vs_coreml_ane": 0.0013427734375,
+    "coreml_gpu_vs_coreml_ane": 0.0013427734375
+   },
+   "plan": {
+    "coreml_cpu": {
+     "preferred": {
+      "CPU": 32
+     },
+     "supported": {
+      "CPU": 32
+     },
+     "cost_share": {
+      "CPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.008
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0628
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0628
+      }
+     ]
+    },
+    "coreml_gpu": {
+     "preferred": {
+      "CPU": 32
+     },
+     "supported": {
+      "CPU+GPU": 32
+     },
+     "cost_share": {
+      "CPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU+GPU",
+       "cost": 0.008
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0628
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0628
+      }
+     ]
+    },
+    "coreml_ane": {
+     "preferred": {
+      "NeuralEngine": 32
+     },
+     "supported": {
+      "CPU+NeuralEngine": 32
+     },
+     "cost_share": {
+      "NeuralEngine": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0438
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0438
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0438
+      }
+     ]
+    }
+   }
+  },
+  {
+   "model": "az256_random",
+   "params": 5983751,
+   "input_shape": [
+    1,
+    6,
+    7,
+    2
+   ],
+   "package": "checkpoints/coreml/probe_az256_random_b1_fp16.mlpackage",
+   "timing": {
+    "coreml_cpu": {
+     "median_ms": 0.31279149698093534,
+     "p90_ms": 0.3386670141480863,
+     "min_ms": 0.2894159988500178,
+     "calls": 1420
+    },
+    "coreml_gpu": {
+     "median_ms": 0.5272910057101399,
+     "p90_ms": 0.6066794099751861,
+     "min_ms": 0.4963749961461872,
+     "calls": 778
+    },
+    "coreml_ane": {
+     "median_ms": 0.19249999604653567,
+     "p90_ms": 0.20997899991925806,
+     "min_ms": 0.1644160074647516,
+     "calls": 2316
+    }
+   },
+   "distribution": {
+    "coreml_cpu": {
+     "p10": 0.2987499756272882,
+     "p50": 0.3131669946014881,
+     "p90": 0.33651640405878425,
+     "p99": 0.35696251143235713,
+     "calls": 947
+    },
+    "coreml_gpu": {
+     "p10": 0.5258413177216426,
+     "p50": 0.5436249921331182,
+     "p90": 0.641907803947106,
+     "p99": 1.4385340179433115,
+     "calls": 512
+    },
+    "coreml_ane": {
+     "p10": 0.1824999926611781,
+     "p50": 0.19564549438655376,
+     "p90": 0.21077940182294697,
+     "p99": 0.23448089690646157,
+     "calls": 1524
+    }
+   },
+   "cpu_time": {
+    "coreml_cpu": {
+     "wall_ms": 0.32295687502482906,
+     "cpu_ms": 0.3382750000000012,
+     "cpu_per_wall": 1.0474308682049096
+    },
+    "coreml_gpu": {
+     "wall_ms": 0.6081458349945024,
+     "cpu_ms": 0.21987499999999827,
+     "cpu_per_wall": 0.3615497917567518
+    },
+    "coreml_ane": {
+     "wall_ms": 0.19144562509609386,
+     "cpu_ms": 0.06058499999999967,
+     "cpu_per_wall": 0.3164606136577409
+    }
+   },
+   "output_diff": {
+    "coreml_cpu_vs_coreml_gpu": 0.0018310546875,
+    "coreml_cpu_vs_coreml_ane": 0.002288818359375,
+    "coreml_gpu_vs_coreml_ane": 0.0011138916015625
+   },
+   "plan": {
+    "coreml_cpu": {
+     "preferred": {
+      "CPU": 32
+     },
+     "supported": {
+      "CPU": 32
+     },
+     "cost_share": {
+      "CPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0021
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0667
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0667
+      }
+     ]
+    },
+    "coreml_gpu": {
+     "preferred": {
+      "GPU": 32
+     },
+     "supported": {
+      "CPU+GPU": 32
+     },
+     "cost_share": {
+      "GPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "GPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0476
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "GPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0476
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "GPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0476
+      }
+     ]
+    },
+    "coreml_ane": {
+     "preferred": {
+      "NeuralEngine": 32
+     },
+     "supported": {
+      "CPU+NeuralEngine": 32
+     },
+     "cost_share": {
+      "NeuralEngine": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0218
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0533
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0533
+      }
+     ]
+    }
+   }
+  },
+  {
+   "model": "az512_random",
+   "params": 23763975,
+   "input_shape": [
+    1,
+    6,
+    7,
+    2
+   ],
+   "package": "checkpoints/coreml/probe_az512_random_b1_fp16.mlpackage",
+   "timing": {
+    "coreml_cpu": {
+     "median_ms": 1.173041993752122,
+     "p90_ms": 1.256333984201774,
+     "min_ms": 1.1007499997504056,
+     "calls": 381
+    },
+    "coreml_gpu": {
+     "median_ms": 0.9317504882346839,
+     "p90_ms": 1.0323624039301649,
+     "min_ms": 0.8365420217160136,
+     "calls": 454
+    },
+    "coreml_ane": {
+     "median_ms": 0.4432499990798533,
+     "p90_ms": 0.46992460265755653,
+     "min_ms": 0.40912500116974115,
+     "calls": 1009
+    }
+   },
+   "distribution": {
+    "coreml_cpu": {
+     "p10": 1.1149670172017068,
+     "p50": 1.1497080267872661,
+     "p90": 1.2242998054716738,
+     "p99": 1.298991158255376,
+     "calls": 259
+    },
+    "coreml_gpu": {
+     "p10": 0.8732911956030875,
+     "p50": 0.9372920030727983,
+     "p90": 1.0353247984312475,
+     "p99": 2.9518136725528175,
+     "calls": 303
+    },
+    "coreml_ane": {
+     "p10": 0.4263123875716701,
+     "p50": 0.4405625077197328,
+     "p90": 0.4667124943807721,
+     "p99": 0.5202655639732257,
+     "calls": 674
+    }
+   },
+   "cpu_time": {
+    "coreml_cpu": {
+     "wall_ms": 1.175563970601241,
+     "cpu_ms": 1.294458823529411,
+     "cpu_per_wall": 1.101138564894398
+    },
+    "coreml_gpu": {
+     "wall_ms": 1.0086212499300018,
+     "cpu_ms": 0.2738700000000005,
+     "cpu_per_wall": 0.2715290799385865
+    },
+    "coreml_ane": {
+     "wall_ms": 0.4387983350898139,
+     "cpu_ms": 0.07090999999999958,
+     "cpu_per_wall": 0.1616004308345555
+    }
+   },
+   "output_diff": {
+    "coreml_cpu_vs_coreml_gpu": 0.0985107421875,
+    "coreml_cpu_vs_coreml_ane": 0.09881591796875,
+    "coreml_gpu_vs_coreml_ane": 0.0010986328125
+   },
+   "plan": {
+    "coreml_cpu": {
+     "preferred": {
+      "CPU": 32
+     },
+     "supported": {
+      "CPU": 32
+     },
+     "cost_share": {
+      "CPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0008
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0676
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0676
+      }
+     ]
+    },
+    "coreml_gpu": {
+     "preferred": {
+      "GPU": 32
+     },
+     "supported": {
+      "CPU+GPU": 32
+     },
+     "cost_share": {
+      "GPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "GPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0441
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "GPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0441
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "GPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0441
+      }
+     ]
+    },
+    "coreml_ane": {
+     "preferred": {
+      "NeuralEngine": 32
+     },
+     "supported": {
+      "CPU+NeuralEngine": 32
+     },
+     "cost_share": {
+      "NeuralEngine": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0065
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0637
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0637
+      }
+     ]
+    }
+   }
+  },
+  {
+   "model": "mlp4096x4_random",
+   "params": 67125248,
+   "input_shape": [
+    1,
+    4096
+   ],
+   "package": "checkpoints/coreml/probe_mlp4096x4_random_b1_fp16.mlpackage",
+   "timing": {
+    "coreml_cpu": {
+     "median_ms": 1.7592079821042717,
+     "p90_ms": 1.8919833994004875,
+     "min_ms": 1.6623749979771674,
+     "calls": 253
+    },
+    "coreml_gpu": {
+     "median_ms": 0.4998960066586733,
+     "p90_ms": 0.6034037010977045,
+     "min_ms": 0.4300829896237701,
+     "calls": 824
+    },
+    "coreml_ane": {
+     "median_ms": 0.9890624933177605,
+     "p90_ms": 1.03745000960771,
+     "min_ms": 0.9520829771645367,
+     "calls": 452
+    }
+   },
+   "distribution": {
+    "coreml_cpu": {
+     "p10": 1.6903750074561685,
+     "p50": 1.735166006255895,
+     "p90": 1.864416990429163,
+     "p99": 1.9225877069402486,
+     "calls": 171
+    },
+    "coreml_gpu": {
+     "p10": 0.47614561044611037,
+     "p50": 0.4935409961035475,
+     "p90": 0.5986919073620811,
+     "p99": 1.3926760587492029,
+     "calls": 568
+    },
+    "coreml_ane": {
+     "p10": 0.958050019107759,
+     "p50": 0.9766669827513397,
+     "p90": 1.0548499994911253,
+     "p99": 1.1764499946730211,
+     "calls": 303
+    }
+   },
+   "cpu_time": {
+    "coreml_cpu": {
+     "wall_ms": 1.7805287608798528,
+     "cpu_ms": 1.8026814159292113,
+     "cpu_per_wall": 1.0124416159604248
+    },
+    "coreml_gpu": {
+     "wall_ms": 0.5871847899106797,
+     "cpu_ms": 0.17606500000000302,
+     "cpu_per_wall": 0.29984598209157526
+    },
+    "coreml_ane": {
+     "wall_ms": 0.9881427050277124,
+     "cpu_ms": 0.07696999999999399,
+     "cpu_per_wall": 0.077893607480344
+    }
+   },
+   "output_diff": {
+    "coreml_cpu_vs_coreml_gpu": 0.0003662109375,
+    "coreml_cpu_vs_coreml_ane": 0.0009765625,
+    "coreml_gpu_vs_coreml_ane": 0.00087738037109375
+   },
+   "plan": {
+    "coreml_cpu": {
+     "preferred": {
+      "CPU": 9
+     },
+     "supported": {
+      "CPU": 9
+     },
+     "cost_share": {
+      "CPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.linear",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.2499
+      },
+      {
+       "op": "ios18.linear",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.2499
+      },
+      {
+       "op": "ios18.linear",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.2499
+      }
+     ]
+    },
+    "coreml_gpu": {
+     "preferred": {
+      "GPU": 9
+     },
+     "supported": {
+      "CPU+GPU": 9
+     },
+     "cost_share": {
+      "GPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.linear",
+       "preferred": "GPU",
+       "supported": "CPU+GPU",
+       "cost": 0.2
+      },
+      {
+       "op": "ios18.linear",
+       "preferred": "GPU",
+       "supported": "CPU+GPU",
+       "cost": 0.2
+      },
+      {
+       "op": "ios18.linear",
+       "preferred": "GPU",
+       "supported": "CPU+GPU",
+       "cost": 0.2
+      }
+     ]
+    },
+    "coreml_ane": {
+     "preferred": {
+      "NeuralEngine": 9
+     },
+     "supported": {
+      "CPU+NeuralEngine": 9
+     },
+     "cost_share": {
+      "NeuralEngine": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.linear",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.2172
+      },
+      {
+       "op": "ios18.linear",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.2172
+      },
+      {
+       "op": "ios18.linear",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.2172
+      }
+     ]
+    }
+   }
+  },
+  {
+   "model": "az64_real",
+   "params": 374810,
+   "input_shape": [
+    256,
+    6,
+    7,
+    2
+   ],
+   "package": "checkpoints/coreml/probe_az64_real_b256_fp16.mlpackage",
+   "timing": {
+    "coreml_cpu": {
+     "median_ms": 3.814791503828019,
+     "p90_ms": 3.8764875062042847,
+     "min_ms": 3.7431250093504786,
+     "calls": 120
+    },
+    "coreml_gpu": {
+     "median_ms": 0.5079589900560677,
+     "p90_ms": 0.5580416007433087,
+     "min_ms": 0.4692500224336982,
+     "calls": 805
+    },
+    "coreml_ane": {
+     "median_ms": 0.7961250084917992,
+     "p90_ms": 0.8203838136978447,
+     "min_ms": 0.7600840181112289,
+     "calls": 565
+    }
+   },
+   "distribution": {
+    "coreml_cpu": {
+     "p10": 3.7592172040604055,
+     "p50": 3.7972919817548245,
+     "p90": 3.8635333883576095,
+     "p99": 3.8898974854964763,
+     "calls": 79
+    },
+    "coreml_gpu": {
+     "p10": 0.5007786065107211,
+     "p50": 0.5169165087863803,
+     "p90": 0.5672583065461368,
+     "p99": 1.7120672363671479,
+     "calls": 540
+    },
+    "coreml_ane": {
+     "p10": 0.7811039977241307,
+     "p50": 0.7976045017130673,
+     "p90": 0.814791492302902,
+     "p99": 0.8323539950652048,
+     "calls": 376
+    }
+   },
+   "cpu_time": {
+    "coreml_cpu": {
+     "wall_ms": 3.8119671539439315,
+     "cpu_ms": 3.826826923076924,
+     "cpu_per_wall": 1.003898189184977
+    },
+    "coreml_gpu": {
+     "wall_ms": 0.6111835400224663,
+     "cpu_ms": 0.354574999999997,
+     "cpu_per_wall": 0.5801448775714138
+    },
+    "coreml_ane": {
+     "wall_ms": 0.7898491650121287,
+     "cpu_ms": 0.08831999999999951,
+     "cpu_per_wall": 0.11181881796208938
+    }
+   },
+   "output_diff": {
+    "coreml_cpu_vs_coreml_gpu": 0.019775390625,
+    "coreml_cpu_vs_coreml_ane": 0.02001953125,
+    "coreml_gpu_vs_coreml_ane": 0.00390625
+   },
+   "plan": {
+    "coreml_cpu": {
+     "preferred": {
+      "CPU": 43
+     },
+     "supported": {
+      "CPU": 43
+     },
+     "cost_share": {
+      "CPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0075
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0927
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "CPU",
+       "supported": "CPU",
+       "cost": 0.0927
+      }
+     ]
+    },
+    "coreml_gpu": {
+     "preferred": {
+      "GPU": 43
+     },
+     "supported": {
+      "CPU+GPU": 43
+     },
+     "cost_share": {
+      "GPU": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "GPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0231
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "GPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0532
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "GPU",
+       "supported": "CPU+GPU",
+       "cost": 0.0532
+      }
+     ]
+    },
+    "coreml_ane": {
+     "preferred": {
+      "NeuralEngine": 43
+     },
+     "supported": {
+      "CPU+NeuralEngine": 43
+     },
+     "cost_share": {
+      "NeuralEngine": 1.0
+     },
+     "heavy_ops_first3": [
+      {
+       "op": "ios18.conv",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0028
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0877
+      },
+      {
+       "op": "ios18.conv",
+       "preferred": "NeuralEngine",
+       "supported": "CPU+NeuralEngine",
+       "cost": 0.0877
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tiny Grand Prix</title>
+<style>
+:root { --bg:#14161b; --panel:#1d2027; --ink:#e8e9ec; --muted:#9aa0ab; --line:#2c3039; --accent:#e64a3c; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+header { padding:18px 20px 6px; }
+h1 { margin:0; font-size:22px; letter-spacing:.2px; }
+header p { margin:4px 0 0; color:var(--muted); max-width:900px; }
+main { display:flex; flex-wrap:wrap; gap:16px; padding:12px 20px 24px; }
+#stage { flex:1 1 560px; max-width:820px; }
+canvas { width:100%; aspect-ratio:1/1; background:#2e6e3a; border-radius:10px; display:block; touch-action:none; }
+aside { flex:1 1 300px; max-width:440px; display:flex; flex-direction:column; gap:12px; }
+.card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+.card h2 { margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:600; }
+label { display:flex; align-items:center; gap:8px; margin:4px 0; }
+select, button { background:#262a33; color:var(--ink); border:1px solid var(--line); border-radius:6px; padding:5px 8px; font:inherit; }
+button { cursor:pointer; } button:hover { border-color:#4a505c; }
+input[type=range] { flex:1; min-width:0; } #gripv { min-width:3.2ch; } aside label { max-width:100%; }
+.swatch { width:12px; height:12px; border-radius:3px; display:inline-block; flex:none; }
+table { width:100%; border-collapse:collapse; font-size:12.5px; }
+td, th { padding:3px 4px; text-align:left; border-bottom:1px solid var(--line); }
+th { color:var(--muted); font-weight:500; }
+td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; }
+.row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.hint { color:var(--muted); font-size:12.5px; }
+#cars td:first-child { white-space:nowrap; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Tiny Grand Prix</h1>
+  <p>Small neural networks (13&rarr;32&rarr;32&rarr;2, ~1.6k weights) that learned to race from 10 wall-distance rays and their own speed.
+     Every track here was <b>held out</b> from training. Everything runs live in this page: same physics and policy weights as the Python code
+     (JS computes in float64, Python's policy in float32, so lap times can differ by a step or two).
+     Try lowering the grip: the grip-randomized policies (off by default, tick them below) keep going long after the others crash.</p>
+</header>
+<main>
+  <div id="stage"><canvas id="cv" width="820" height="820"></canvas>
+    <p class="hint">Keyboard car: &uarr;/W throttle, &darr;/S brake, &larr;&rarr;/A D steer. Touch: hold left/right half of the track view to steer, it throttles by itself.</p>
+  </div>
+  <aside>
+    <div class="card">
+      <h2>Race setup</h2>
+      <div class="row"><label>Track <select id="track"></select></label>
+        <button id="restart">Restart</button> <button id="pause">Pause</button></div>
+      <label>Grip <input id="grip" type="range" min="0.4" max="1.2" step="0.05" value="1.0"> <span id="gripv">1.00</span></label>
+      <div class="hint">Training grip was 1.0. Lower grip = icier: the car slides wide if it enters corners too fast.</div>
+      <div class="row"><label>Speed <select id="speed"><option>0.5</option><option selected>1</option><option>2</option><option>4</option></select>&times;</label>
+        <label>Rules <select id="rules"><option value="strict">strict (wall = out)</option><option value="respawn">respawn (wall = collision)</option></select></label></div>
+      <label><input type="checkbox" id="rays" checked> draw rays of first selected AI</label>
+      <div id="who"></div>
+    </div>
+    <div class="card"><h2>Live</h2><table id="cars"></table></div>
+    <div class="card"><h2>Measured on 100 held-out tracks (Python eval, strict rules)</h2><table id="eval"></table>
+      <div class="hint" id="evalnote"></div></div>
+  </aside>
+</main>
+<script>
+/*__SIM_JS__*/
+</script>
+<script>
+"use strict";
+const DATA = /*__DATA__*/;
+const COLORS = {es:"#e63c3c", ppo:"#2878e6", es_dr:"#dc46c8", ppo_dr:"#28bebe", ray:"#fabe1e", ray_dr:"#b07a10", pursuit:"#999", human:"#f5f5f5"};
+const NAMES = {es:"ES (neuroevolution)", ppo:"PPO", es_dr:"ES + grip randomization", ppo_dr:"PPO + grip randomization",
+               ray:"Ray follower (hand-coded, tuned)", ray_dr:"Ray follower (tuned w/ grip rand.)", human:"You (keyboard)"};
+const tracks = DATA.tracks.map(prepTrack);
+const cv = document.getElementById("cv"), ctx = cv.getContext("2d");
+const sel = document.getElementById("track");
+tracks.forEach((t, i) => { const o = document.createElement("option"); o.value = i; o.textContent = t.label; sel.appendChild(o); });
+const who = document.getElementById("who");
+const enabled = {es:true, ppo:true, es_dr:false, ppo_dr:false, ray:true, ray_dr:false, human:false};
+for (const k of Object.keys(NAMES)) {
+  if (k === "ray_dr" && !DATA.ray_dr_params) { enabled[k] = false; continue; }
+  if (!k.startsWith("ray") && k !== "human" && !DATA.policies[k]) { enabled[k] = false; continue; }
+  const l = document.createElement("label");
+  l.innerHTML = `<input type="checkbox" ${enabled[k] ? "checked" : ""}> <span class="swatch" style="background:${COLORS[k]}"></span> ${NAMES[k]}`;
+  l.querySelector("input").onchange = e => { enabled[k] = e.target.checked; reset(); };
+  who.appendChild(l);
+}
+let track, cars, view, paused = false, acc = 0, last = null;
+const keys = {};
+addEventListener("keydown", e => { keys[e.key.toLowerCase()] = true; if (e.key.startsWith("Arrow")) e.preventDefault(); });
+addEventListener("keyup", e => { keys[e.key.toLowerCase()] = false; });
+let touchSteer = 0, touching = false;
+cv.addEventListener("pointerdown", e => { touching = true; touchSteer = e.offsetX < cv.clientWidth / 2 ? 1 : -1; });
+for (const ev of ["pointerup", "pointercancel", "pointerleave"]) cv.addEventListener(ev, () => { touching = false; touchSteer = 0; });
+
+function reset() {
+  track = tracks[+sel.value];
+  const grip = +document.getElementById("grip").value;
+  cars = Object.keys(NAMES).filter(k => enabled[k]).map(k => ({key:k, car:newCar(track, grip), prev:null}));
+  cars.forEach(c => c.prev = {x:c.car.x, y:c.car.y, yaw:c.car.yaw});
+  const pts = track.left.concat(track.right);
+  let lo = [1e9, 1e9], hi = [-1e9, -1e9];
+  for (const p of pts) { lo = [Math.min(lo[0], p[0]), Math.min(lo[1], p[1])]; hi = [Math.max(hi[0], p[0]), Math.max(hi[1], p[1])]; }
+  const pad = 30, s = (cv.width - 2 * pad) / Math.max(hi[0] - lo[0], hi[1] - lo[1]);
+  view = {s, ox:(cv.width - (hi[0] - lo[0]) * s) / 2 - lo[0] * s, oy:(cv.height - (hi[1] - lo[1]) * s) / 2 - lo[1] * s};
+  acc = 0;
+}
+const P = (x, y) => [x * view.s + view.ox, cv.height - (y * view.s + view.oy)];
+
+function act(k, c) {
+  if (k === "human") {
+    let st = (keys["arrowleft"] || keys["a"] ? 1 : 0) - (keys["arrowright"] || keys["d"] ? 1 : 0);
+    let pd = (keys["arrowup"] || keys["w"] ? 1 : 0) - (keys["arrowdown"] || keys["s"] ? 1 : 0);
+    if (touching) { st = touchSteer; pd = 0.5; }
+    return [st, pd];
+  }
+  const obs = observe(track, c);
+  if (k === "ray") return rayFollower(DATA.ray_params, obs);
+  if (k === "ray_dr") return rayFollower(DATA.ray_dr_params, obs);
+  return mlpForward(DATA.policies[k], obs);
+}
+
+function simStep() {
+  const respawnMode = document.getElementById("rules").value === "respawn";
+  for (const c of cars) {
+    c.prev = {x:c.car.x, y:c.car.y, yaw:c.car.yaw};
+    if (c.car.done) continue;
+    const [st, pd] = act(c.key, c.car);
+    stepCar(track, c.car, st, pd);
+    if (c.car.crashed && respawnMode) { respawn(track, c.car); c.prev = {x:c.car.x, y:c.car.y, yaw:c.car.yaw}; }
+  }
+}
+
+function drawTrack() {
+  ctx.fillStyle = "#2e6e3a"; ctx.fillRect(0, 0, cv.width, cv.height);
+  const poly = (w, fill) => { ctx.beginPath(); w.forEach((p, i) => { const q = P(p[0], p[1]); i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); }); ctx.closePath(); ctx.fillStyle = fill; ctx.fill(); ctx.strokeStyle = "#ececec"; ctx.lineWidth = 2; ctx.stroke(); };
+  const area = w => w.reduce((s, p, i) => { const q = w[(i + 1) % w.length]; return s + p[0] * q[1] - q[0] * p[1]; }, 0);
+  const [outer, inner] = Math.abs(area(track.left)) > Math.abs(area(track.right)) ? [track.left, track.right] : [track.right, track.left];
+  poly(outer, "#46484e"); poly(inner, "#2e6e3a");
+  const a = P(...track.left[0]), b = P(...track.right[0]);
+  ctx.strokeStyle = "#fff"; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(...a); ctx.lineTo(...b); ctx.stroke();
+}
+
+function drawCar(c, alpha, rays) {
+  const x = c.prev.x + (c.car.x - c.prev.x) * alpha, y = c.prev.y + (c.car.y - c.prev.y) * alpha;
+  const yaw = c.prev.yaw + (c.car.yaw - c.prev.yaw) * alpha;
+  if (rays) {
+    ctx.strokeStyle = "rgba(255,255,170,.75)"; ctx.fillStyle = "rgba(255,255,170,.9)"; ctx.lineWidth = 1;
+    for (const ang of SIM.RAY_ANGLES) {
+      const d = castRay(track, x, y, yaw + ang);
+      const p0 = P(x, y), p1 = P(x + d * Math.cos(yaw + ang), y + d * Math.sin(yaw + ang));
+      ctx.beginPath(); ctx.moveTo(...p0); ctx.lineTo(...p1); ctx.stroke();
+      ctx.beginPath(); ctx.arc(p1[0], p1[1], 2.2, 0, 7); ctx.fill();
+    }
+  }
+  const [px, py] = P(x, y), sc = view.s * 2.0;
+  ctx.save(); ctx.translate(px, py); ctx.rotate(-yaw);
+  ctx.fillStyle = COLORS[c.key]; ctx.strokeStyle = "#000"; ctx.lineWidth = 1;
+  ctx.fillRect(-2.3 * sc, -1.0 * sc, 4.6 * sc, 2.0 * sc); ctx.strokeRect(-2.3 * sc, -1.0 * sc, 4.6 * sc, 2.0 * sc);
+  ctx.fillStyle = "rgba(0,0,0,.45)"; ctx.fillRect(0.6 * sc, -0.8 * sc, 0.9 * sc, 1.6 * sc);
+  ctx.restore();
+  if (c.car.crashed) { ctx.strokeStyle = "#ff2a2a"; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(px - 9, py - 9); ctx.lineTo(px + 9, py + 9); ctx.moveTo(px - 9, py + 9); ctx.lineTo(px + 9, py - 9); ctx.stroke(); }
+}
+
+function table() {
+  const rows = cars.map(c => {
+    const k = c.car;
+    const st = k.finished ? `<b>${k.lapTime.toFixed(1)} s</b>` : k.crashed ? "<span style='color:#ff6b5e'>crashed</span>" : `${(k.v * 3.6).toFixed(0)} km/h`;
+    return `<tr><td><span class="swatch" style="background:${COLORS[c.key]}"></span> ${NAMES[c.key]}</td><td class="num">${Math.max(0, Math.min(100, 100 * k.prog / track.length)).toFixed(0)}%</td><td class="num">${st}</td><td class="num">${k.collisions}</td></tr>`;
+  }).join("");
+  document.getElementById("cars").innerHTML = `<tr><th>car</th><th class="num">lap</th><th class="num">status</th><th class="num">hits</th></tr>` + rows +
+    `<tr><td colspan=4 class="hint">t = ${(Math.max(0, ...cars.map(c => c.car.t)) * SIM.DT).toFixed(1)} s</td></tr>`;
+}
+
+function frame(ts) {
+  if (last === null) last = ts;
+  const dt = Math.min(0.1, (ts - last) / 1000); last = ts;
+  if (!paused) {
+    acc += dt * +document.getElementById("speed").value;
+    let n = 0;
+    while (acc >= SIM.DT && n < 20) { simStep(); acc -= SIM.DT; n++; }
+  }
+  drawTrack();
+  const firstAI = cars.find(c => c.key !== "human");
+  const alpha = paused ? 1 : Math.min(1, acc / SIM.DT);
+  for (const c of cars) drawCar(c, alpha, document.getElementById("rays").checked && c === firstAI);
+  table();
+  requestAnimationFrame(frame);
+}
+
+function evalTable() {
+  const e = DATA.eval;
+  if (!e) { document.getElementById("eval").innerHTML = "<tr><td>not available</td></tr>"; return; }
+  let h = `<tr><th>controller</th><th class="num">grip</th><th class="num">laps done</th><th class="num">lap time</th></tr>`;
+  for (const r of e) h += `<tr><td>${r.label}</td><td class="num">${r.grip}</td><td class="num">${(100 * r.completion).toFixed(0)}%</td><td class="num">${r.mean_lap_time != null ? r.mean_lap_time.toFixed(1) + " s" : "&ndash;"}</td></tr>`;
+  document.getElementById("eval").innerHTML = h;
+  document.getElementById("evalnote").textContent = DATA.eval_note || "";
+}
+
+sel.onchange = reset;
+document.getElementById("restart").onclick = reset;
+document.getElementById("pause").onclick = e => { paused = !paused; e.target.textContent = paused ? "Play" : "Pause"; };
+document.getElementById("grip").oninput = e => { document.getElementById("gripv").textContent = (+e.target.value).toFixed(2); reset(); };
+evalTable();
+reset();
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

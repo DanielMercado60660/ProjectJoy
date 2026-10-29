@@ -1,0 +1,52 @@
+{
+  "frozen": "2026-10-26 after the M0 gate (results/m0/gate.json)",
+  "body": "policy",
+  "policy": {
+    "file": "../data/microduck_policies/velstand.onnx",
+    "sha256": "2fc7f8ee6acd7d0d3f66a99927b5d5a56589aeed02ec714de329b252d5ccf492",
+    "hf_revision": "665ae4eb20bfe13bca1ef4ea6d4bb6b4a096e448",
+    "runtime": "policy/velstand_np.py (numpy port, max abs err 2.1e-6 vs onnxruntime 1.31.0 on 1,000 obs)"
+  },
+  "simulator": {
+    "mujoco": "3.16.0",
+    "scene": "robot/scene_allcollisions.xml (velstand's training robot, without backlash)",
+    "actuators": "XML position actuators (kp 0.55, forcerange +-0.96 N*m), not Pollen's BAM M6 model",
+    "body_config_note": "phys_delay 4 = 20 ms actuator lag, reading training's BAM delay_min/max_lag 3..6 as 5 ms physics steps (unit not stated in the vendored code); jv_lag 1 = training's 1-control-step joint_vel obs lag. Valid for this body only: the frozen command bounds do not reliably start a gait on the plain no-lag body.",
+    "physics_dt_s": 0.005,
+    "decimation": 4,
+    "control_hz": 50,
+    "body_config": {
+      "scene": "allcollisions",
+      "phys_delay": 4,
+      "jv_lag": 1,
+      "obs_noise": 0.0
+    },
+    "head_camera": "MJCF camera turned 180 deg about its right axis (as Pollen's sim/camera.py does), image rotated upright"
+  },
+  "command_bounds": {
+    "vx_forward_mps": {
+      "allowed": "0 or 0.2..0.4",
+      "achieved_ratio_median": 0.44,
+      "note": "commands 0.1-0.15 do not reliably start a gait from standing; 0.2 starts from every standing state tried (review_checks.json)"
+    },
+    "vx_backward_mps": {
+      "allowed": "0 or -0.3",
+      "achieved_ratio_median": 0.52,
+      "note": "-0.2 moves the duck only once it is already walking (from_rest.json); not gate-tested, so not allowed"
+    },
+    "vy_mps": {
+      "allowed": "0 only",
+      "note": "lateral commands barely move the body (0.3 -> 0.04-0.06 m/s)"
+    },
+    "wz_radps": {
+      "allowed": "turn in place: 0 or +-0.5..0.6; while walking forward (vx 0.2..0.4): any |wz| <= 0.6 (the gate's pad controller steers this way)",
+      "achieved_ratio_median": 1.39,
+      "note": "wz 0.3 does not start turning in place from standing (from_rest.json); +-0.5 and +-0.6 start from every standing state tried on this body (review_checks.json) but NOT on the plain no-lag body; turning overshoots"
+    },
+    "head_pose_rad": {
+      "allowed": "within 0.8 x caps (neck_pitch 1.1, head_pitch 1.1, head_yaw 1.4, head_roll 0.31)"
+    },
+    "body_pose": "zero (untouched in Phase 1)"
+  },
+  "for_M2": "Skills must close the loop on position/heading (odometry): speeds are about half the command forward and about 1.4x on turns, and the gait snaps between standing and a minimum walking speed rather than creeping. Commanded straight, the duck curves left: median +0.22 rad/s over the 70 forward-only gate segments (found in M1), so heading must be servoed as well."
+}

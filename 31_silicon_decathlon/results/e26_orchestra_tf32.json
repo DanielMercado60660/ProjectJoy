@@ -1,0 +1,162 @@
+{
+ "event": {
+  "id": "26_orchestra",
+  "project": "26_neural_orchestra",
+  "model": "drum VAE decoder (MLP 24-256-512-864, GELU)",
+  "checkpoint": "../26_neural_orchestra/checkpoints/vae_cond_b1.0/best",
+  "unit": "patterns",
+  "params": 581216,
+  "notes": "Decoder only (the encoder is not used for generation). z ~ N(0, I), styles cycled. Outputs hit probability, velocity, offset per cell. Core ML packages are fp16. SURPRISE: the mlx_gpu fp32 reference is itself not fp32-exact at b=2000. MLX 0.32.4 GPU fp32 matmul with >= 8 rows has TF32-class error (probe: 512-term sums of N(0,1) entries, max err 0.07-0.09 vs fp64 for M = 8..2000, 1e-5 at M = 1; mlx_cpu and numpy 1e-4). So numpy/mlx_cpu disagree with mlx_gpu on 1.25% of threshold patterns while matching an fp64 decode 100%, and mlx_gpu matches fp64 on 98.75%. qualifies() still judges against mlx_gpu as pre-registered; task has *_vs_fp64 fields for the exact comparison."
+ },
+ "final": true,
+ "tf32_pass": true,
+ "batches": {
+  "1": {
+   "agreement": {
+    "mlx_gpu_tf32": {
+     "p_max_err": 0.0,
+     "vel_max_err": 0.0,
+     "off_max_err": 0.0
+    },
+    "mlx_gpu_compiled_tf32": {
+     "p_max_err": 0.0,
+     "vel_max_err": 0.0,
+     "off_max_err": 0.0
+    }
+   },
+   "memory_bytes": {
+    "mlx_gpu_tf32": 61695310,
+    "mlx_gpu_compiled_tf32": 61695418
+   },
+   "timing": {
+    "mlx_gpu_tf32": {
+     "median_ms": 0.16079199849627912,
+     "p90_ms": 0.2011250122450292,
+     "min_ms": 0.12162499479018152,
+     "calls": 10363,
+     "rounds": 7,
+     "round_median_spread": 1.0166918444414323
+    },
+    "mlx_gpu_compiled_tf32": {
+     "median_ms": 0.1583749835845083,
+     "p90_ms": 0.19565371039789173,
+     "min_ms": 0.11591700604185462,
+     "calls": 10654,
+     "rounds": 7,
+     "round_median_spread": 1.0177236777114005
+    }
+   },
+   "task": {},
+   "coreml": {},
+   "qualifies": {
+    "mlx_gpu_tf32": {
+     "ok": true,
+     "reason": "hit-probability max error 0 (need <= 0.01)"
+    },
+    "mlx_gpu_compiled_tf32": {
+     "ok": true,
+     "reason": "hit-probability max error 0 (need <= 0.01)"
+    }
+   }
+  },
+  "2000": {
+   "agreement": {
+    "mlx_gpu_tf32": {
+     "p_max_err": 0.006982371211051941,
+     "vel_max_err": 0.001151740550994873,
+     "off_max_err": 0.0010451972484588623
+    },
+    "mlx_gpu_compiled_tf32": {
+     "p_max_err": 0.006982371211051941,
+     "vel_max_err": 0.001151740550994873,
+     "off_max_err": 0.0010451972484588623
+    }
+   },
+   "memory_bytes": {
+    "mlx_gpu_tf32": 85566878,
+    "mlx_gpu_compiled_tf32": 85566890
+   },
+   "timing": {
+    "mlx_gpu_tf32": {
+     "median_ms": 0.40275001083500683,
+     "p90_ms": 0.4098913981579244,
+     "min_ms": 0.3330000035930425,
+     "calls": 4307,
+     "rounds": 7,
+     "round_median_spread": 1.005709224711744
+    },
+    "mlx_gpu_compiled_tf32": {
+     "median_ms": 0.39175001438707113,
+     "p90_ms": 0.39695799932815135,
+     "min_ms": 0.33316700137220323,
+     "calls": 4466,
+     "rounds": 7,
+     "round_median_spread": 1.0031975037873602
+    }
+   },
+   "task": {},
+   "coreml": {},
+   "qualifies": {
+    "mlx_gpu_tf32": {
+     "ok": true,
+     "reason": "hit-probability max error 0.007 (need <= 0.01)"
+    },
+    "mlx_gpu_compiled_tf32": {
+     "ok": true,
+     "reason": "hit-probability max error 0.007 (need <= 0.01)"
+    }
+   }
+  }
+ },
+ "skips": {},
+ "task_checks": false,
+ "settings": {
+  "repeats": 7,
+  "budget_s": 0.25
+ },
+ "mlx_tf32": true,
+ "mlx_gpu_matmul_rel_err": 0.0007571232809227448,
+ "mlx_tf32_env": "1",
+ "env_before": {
+  "time": "2026-10-22 18:11:41",
+  "loadavg": [
+   2.51904296875,
+   2.44140625,
+   2.26806640625
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.1720449997810647,
+  "mlx_gpu_2048_matmul_ms": 0.9327645500889048
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.16948500007856637,
+  "mlx_gpu_2048_matmul_ms": 0.540918750630226
+ },
+ "env_after": {
+  "time": "2026-10-22 18:11:48",
+  "loadavg": [
+   2.39697265625,
+   2.4169921875,
+   2.26025390625
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

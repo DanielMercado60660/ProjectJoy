@@ -1,0 +1,14 @@
+[gpu_run] acquired gpu3: ../.venv/bin/python eval.py
+rollouts 6000, ckpt step 20189
+horizon        1        2        5       10       20       25       30       40       50
+model                   0.0036   0.0051   0.0074   0.0102   0.0222   0.0323   0.0454   0.0803   0.1225
+const_velocity          0.0018   0.0069   0.0387   0.1309   0.3869   0.5274   0.6688   0.9419   1.1927
+ballistic_no_collision  0.0012   0.0049   0.0287   0.1052   0.3620   0.5351   0.7334   1.1947   1.7473
+walls_only_physics      0.0003   0.0013   0.0079   0.0279   0.0865   0.1167   0.1461   0.1995   0.2404
+one-step position / velocity error by event:
+  model                  free_flight: 0.00164/0.0154  wall_bounce: 0.01269/0.1847  ball_ball: 0.01430/0.3232
+  const_velocity         free_flight: 0.00066/0.0600  wall_bounce: 0.00734/0.7240  ball_ball: 0.01063/1.0735
+  ballistic_no_collision free_flight: 0.00006/0.0000  wall_bounce: 0.00706/0.6971  ball_ball: 0.01044/1.0567
+  walls_only_physics     free_flight: 0.00000/0.0000  wall_bounce: 0.00000/0.0000  ball_ball: 0.00970/1.0092
+out of box: {'model': {'frac_ball_frames_pen_gt_0p02': 0.01219281045751634, 'frac_rollouts_pen_gt_0p02': 0.8355, 'frac_rollouts_center_outside_box': 0.024666666666666667, 'rollout_max_pen_p50_p99': [0.031033147126436234, 0.06750040777027609]}, 'const_velocity': {'frac_ball_frames_pen_gt_0p02': 0.5579705882352941, 'frac_rollouts_pen_gt_0p02': 0.9983333333333333, 'frac_rollouts_center_outside_box': 0.9978333333333333, 'rollout_max_pen_p50_p99': [1.0280881127715111, 2.2382037468999636]}, 'ballistic_no_collisions': {'frac_ball_frames_pen_gt_0p02': 0.6172516339869281, 'frac_rollouts_pen_gt_0p02': 1.0, 'frac_rollouts_center_outside_box': 1.0, 'rollout_max_pen_p50_p99': [2.064108138382435, 3.7043608956038963]}, 'walls_only_physics': {'frac_ball_frames_pen_gt_0p02': 0.0, 'frac_rollouts_pen_gt_0p02': 0.0, 'frac_rollouts_center_outside_box': 0.0, 'rollout_max_pen_p50_p99': [-0.00091106592443186, -1.1988682597495386e-06]}}
+wrote media/horizon_error.png

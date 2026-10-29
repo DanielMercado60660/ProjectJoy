@@ -1,0 +1,22 @@
+[gpu_run] acquired gpu7: ./smoke.sh
+baseline MAE on 16 clips 0.0029042390499540247
+params 471010
+{"step": 1, "t": 0.0, "lr": 0.0, "loss": 0.04443995654582977, "mse": 0.04443995654582977, "val_mae": 0.1470082102035316, "val_nll": -0.21231878906286064, "val_cov90": 0.765625}
+{"step": 93, "t": 10.0, "lr": 0.00012064906331943348, "loss": -1.0449247360229492, "mse": 0.0450499951839447, "val_mae": 0.15140394494759296, "val_nll": -0.24475959300918468, "val_cov90": 1.0}
+final {"step": 138, "t": 15.1, "val_mae": 0.15038142260985826, "val_nll": -0.2551367198645194, "steps_per_s": 9.142153875546443, "params": 471010}
+main (in-distribution, noise 0-0.12) {"network": {"mae": 0.19377644826939067, "median_ae": 0.20196483643689958, "calib_mae": 0.08045454545454546, "nll": -0.08714308863419185, "resim_cm_mean": 10.303569017682367}, "classical": {"mae": 0.00161060625231475, "median_ae": 0.0008017475500644577, "calib_mae": 0.23130681818181814, "nll": -4.563723328593981, "resim_cm_mean": 0.14932014134032817}, "prior_mean": {"mae": 0.19458660093417127, "median_ae": 0.2032350610163479, "calib_mae": 0.081875, "nll": -0.08250837778258335, "resim_cm_mean": 10.316201280857111}}
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py:3037: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py:3038: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+hard (noise 0.25-0.40, outside training range) {"network": {"mae": 0.19038179026895896, "median_ae": 0.18375206143309158, "calib_mae": 0.07477272727272727, "nll": -0.10007621128984578, "resim_cm_mean": 12.243580513599053}, "classical": {"mae": 0.018773049266252465, "median_ae": 0.003022530845031568, "calib_mae": 0.03954545454545455, "nll": -3.574184578224954, "resim_cm_mean": 0.8672113342392926}, "prior_mean": {"mae": 0.1912186923807277, "median_ae": 0.18482536227156204, "calib_mae": 0.08045454545454546, "nll": -0.09611430404254415, "resim_cm_mean": 12.254728079079527}}
+wrote /var/folders/9w/11pv31p94y9952swqt2n8wkw0000gn/T/tmp.uTXptmcCFy/r.json
+wrote /var/folders/9w/11pv31p94y9952swqt2n8wkw0000gn/T/tmp.uTXptmcCFy/demo.gif clips [45, 4, 52] e [0.29860358 0.59891696 0.90008842]
+calibration.png
+ck
+demo.gif
+demo_frame.png
+r.json
+scatter.png
+SMOKE OK
+exit 0

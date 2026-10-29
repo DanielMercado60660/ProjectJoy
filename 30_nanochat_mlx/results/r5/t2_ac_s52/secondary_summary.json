@@ -1,0 +1,5396 @@
+{
+ "args": {
+  "command": "evaluate",
+  "methods": [
+   "pretrained=checkpoints/r5_t2_ac_s52/pretrained/selected",
+   "scratch=checkpoints/r5_t2_ac_s52/scratch/selected",
+   "mlp=checkpoints/r5_t2_ac_s52/mlp_trial2/selected",
+   "reward=checkpoints/r5_t2_ac_s52/reward/selected",
+   "control=checkpoints/r5_t2_ac_s52/control/selected"
+  ],
+  "data": "results/r5/t2_ac_s52/data",
+  "out": "results/r5/t2_ac_s52/secondary.json",
+  "demo": "media/r5_t2_ac_s52_secondary.html",
+  "max_minutes": 0.8,
+  "episodes": 4,
+  "secondary": true,
+  "seed_start": 81241000,
+  "smoke_one": false
+ },
+ "complete": false,
+ "source_sha256": {
+  "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+  "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+  "r5_eval.py": "18d8ff7a0518d6d1266d2407d6142a1d54a35caf5fae0f53bc1664db06dadccc"
+ },
+ "paired_scenarios": 36,
+ "expected_scenarios": 80,
+ "elapsed_s": 45.0031855829875,
+ "identities": {
+  "pretrained": {
+   "path": "checkpoints/r5_t2_ac_s52/pretrained/selected",
+   "sha256": "d648780b82db6e3c7d7cb77171bcbab61c4f60ba098678785b115b25dde9e424",
+   "step": 12067,
+   "seed": 52,
+   "spec": {
+    "kind": "lm",
+    "model_config": {
+     "sequence_len": 1024,
+     "vocab_size": 8192,
+     "n_layer": 6,
+     "n_head": 3,
+     "n_kv_head": 3,
+     "n_embd": 384
+    },
+    "seed": 52,
+    "batch": 16,
+    "lr": 0.0003,
+    "train_sha256": "3b43ab51a38e40e0c6ea6a26255be7d3a7ef28c2dda7fce85bc5f80ee41ad762",
+    "val_sha256": "dc0cc35c9f8df9c0b0aac54101c67fb21b503b84a12cfebae5c5e1bd801371fd",
+    "replay_sha256": null,
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "b5d4715dbc9c875c321fdb767a2684270cf466d5f2fbc91dba00ba1d7e554aac",
+     "r5_train.py": "65816f53971b597788a2f7f1a934511a4b37f58c22446560ba3919034c69dc6a",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+     "r5_validation.py": "402178f1c3989b903c9f7c135a245510c487c9de725e7133ebd855f7e524c58d",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  },
+  "scratch": {
+   "path": "checkpoints/r5_t2_ac_s52/scratch/selected",
+   "sha256": "53e0eabff637a0fa465a66d6beeac08e47c9380c5b72031645e399d1e6579849",
+   "step": 11736,
+   "seed": 52,
+   "spec": {
+    "kind": "lm",
+    "model_config": {
+     "sequence_len": 1024,
+     "vocab_size": 8192,
+     "n_layer": 6,
+     "n_head": 3,
+     "n_kv_head": 3,
+     "n_embd": 384
+    },
+    "seed": 52,
+    "batch": 16,
+    "lr": 0.0003,
+    "train_sha256": "3b43ab51a38e40e0c6ea6a26255be7d3a7ef28c2dda7fce85bc5f80ee41ad762",
+    "val_sha256": "dc0cc35c9f8df9c0b0aac54101c67fb21b503b84a12cfebae5c5e1bd801371fd",
+    "replay_sha256": null,
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "b5d4715dbc9c875c321fdb767a2684270cf466d5f2fbc91dba00ba1d7e554aac",
+     "r5_train.py": "65816f53971b597788a2f7f1a934511a4b37f58c22446560ba3919034c69dc6a",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+     "r5_validation.py": "402178f1c3989b903c9f7c135a245510c487c9de725e7133ebd855f7e524c58d",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  },
+  "mlp": {
+   "path": "checkpoints/r5_t2_ac_s52/mlp_trial2/selected",
+   "sha256": "fa9948a1e7fb3a4f7ce84dfa3b2fa5e07effb4bf49d996eaa1de6b0ca22229d3",
+   "step": 996175,
+   "seed": 52,
+   "spec": {
+    "kind": "mlp",
+    "model_config": {
+     "din": 130,
+     "hidden": 256
+    },
+    "seed": 52,
+    "batch": 256,
+    "lr": 0.003,
+    "train_sha256": "3b43ab51a38e40e0c6ea6a26255be7d3a7ef28c2dda7fce85bc5f80ee41ad762",
+    "val_sha256": "dc0cc35c9f8df9c0b0aac54101c67fb21b503b84a12cfebae5c5e1bd801371fd",
+    "replay_sha256": null,
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "b5d4715dbc9c875c321fdb767a2684270cf466d5f2fbc91dba00ba1d7e554aac",
+     "r5_train.py": "65816f53971b597788a2f7f1a934511a4b37f58c22446560ba3919034c69dc6a",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+     "r5_validation.py": "402178f1c3989b903c9f7c135a245510c487c9de725e7133ebd855f7e524c58d",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  },
+  "reward": {
+   "path": "checkpoints/r5_t2_ac_s52/reward/selected",
+   "sha256": "455eac83273e210fc7c6ea933d0cb620e7e591ad70d81e2f324dac8e5bb323c3",
+   "step": 2235,
+   "seed": 52,
+   "spec": {
+    "kind": "lm",
+    "model_config": {
+     "sequence_len": 1024,
+     "vocab_size": 8192,
+     "n_layer": 6,
+     "n_head": 3,
+     "n_kv_head": 3,
+     "n_embd": 384
+    },
+    "seed": 52,
+    "batch": 16,
+    "lr": 0.0001,
+    "train_sha256": "3b43ab51a38e40e0c6ea6a26255be7d3a7ef28c2dda7fce85bc5f80ee41ad762",
+    "val_sha256": "dc0cc35c9f8df9c0b0aac54101c67fb21b503b84a12cfebae5c5e1bd801371fd",
+    "replay_sha256": "7deb8b86634e67648a5cce7348bb2a950ad6978be0f9ff03933a487ddb2ff9ed",
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "b5d4715dbc9c875c321fdb767a2684270cf466d5f2fbc91dba00ba1d7e554aac",
+     "r5_train.py": "65816f53971b597788a2f7f1a934511a4b37f58c22446560ba3919034c69dc6a",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+     "r5_validation.py": "402178f1c3989b903c9f7c135a245510c487c9de725e7133ebd855f7e524c58d",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  },
+  "control": {
+   "path": "checkpoints/r5_t2_ac_s52/control/selected",
+   "sha256": "ae2393f311a912badcc25606ae3089c5b63ea251b0a229d043aa83342f39f8af",
+   "step": 3776,
+   "seed": 52,
+   "spec": {
+    "kind": "lm",
+    "model_config": {
+     "sequence_len": 1024,
+     "vocab_size": 8192,
+     "n_layer": 6,
+     "n_head": 3,
+     "n_kv_head": 3,
+     "n_embd": 384
+    },
+    "seed": 52,
+    "batch": 16,
+    "lr": 0.0001,
+    "train_sha256": "3b43ab51a38e40e0c6ea6a26255be7d3a7ef28c2dda7fce85bc5f80ee41ad762",
+    "val_sha256": "dc0cc35c9f8df9c0b0aac54101c67fb21b503b84a12cfebae5c5e1bd801371fd",
+    "replay_sha256": null,
+    "tokenizer_sha256": "18343119d1807801ef8ea3c4fa8a7f77c37aefcbc8aa1f09618883b4b427d1c6",
+    "source_sha256": {
+     "r5_world.py": "ed85b8adb76a165ce212a73ca2b40b9d390b74df1700bb67c36f648a0098bc4b",
+     "r5_data.py": "b5d4715dbc9c875c321fdb767a2684270cf466d5f2fbc91dba00ba1d7e554aac",
+     "r5_train.py": "65816f53971b597788a2f7f1a934511a4b37f58c22446560ba3919034c69dc6a",
+     "r5_checkpoint.py": "04c8476842df932a3dce8897d34660e6a8a5d20ae5fe279f84d22c1ab3b7103b",
+     "r5_protocol.py": "3da339a6be4010d0f0243b4f5e89904255e69a7c9dc02f7f3a07edcc9278aaf5",
+     "r5_validation.py": "402178f1c3989b903c9f7c135a245510c487c9de725e7133ebd855f7e524c58d",
+     "gpt.py": "d919dc3bceb910b7b91eebf176a2d3137f32e1b751c3a2494a8ae833915f7819",
+     "fused_ce.py": "9864c525514750808c5dcd551373d03a3b417bf4ad99e069575df4b81b16ef6d"
+    }
+   }
+  }
+ },
+ "summary": {
+  "planner": {
+   "seen/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 3.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.0011663457068304222
+   },
+   "seen/locked": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.08333333333333333,
+    "mean_steps": 12.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.0006473734780835608
+   },
+   "seen/missing": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.07142857142857142,
+    "mean_steps": 14.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 0.0005709883482314837
+   },
+   "seen/redirect": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 0.000736674597387069
+   },
+   "pairs/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.0007201618115816798
+   },
+   "pairs/locked": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.09090909090909091,
+    "mean_steps": 11.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.0006797978192822547
+   },
+   "pairs/missing": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.06666666666666667,
+    "mean_steps": 15.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 0.0005710163739942281
+   },
+   "pairs/redirect": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 8.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 0.0007590644859841891
+   },
+   "order/none": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 10.5,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.0006920650114559314
+   },
+   "order/locked": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.08695652173913043,
+    "mean_steps": 11.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.0007278429234936607
+   },
+   "order/missing": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.058823529411764705,
+    "mean_steps": 17.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 6.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 6.5,
+    "decision_latency_ms_mean": 0.0005060625399517662
+   },
+   "order/redirect": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 9.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 3.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 3.0,
+    "decision_latency_ms_mean": 0.0007454396432472599
+   },
+   "long3/none": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 13.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.0006185705737712291
+   },
+   "long3/locked": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0625,
+    "mean_steps": 16.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.0005908251064372998
+   },
+   "long3/missing": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.05128205128205128,
+    "mean_steps": 19.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 8.0,
+    "decision_latency_ms_mean": 0.0005458660828145711
+   },
+   "long3/redirect": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 13.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 0.0006241956086071965
+   },
+   "long4/none": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 19.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.0005586991190082497
+   },
+   "long4/locked": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.05405405405405406,
+    "mean_steps": 18.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.0005664892953531871
+   },
+   "long4/missing": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.05,
+    "mean_steps": 20.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 8.0,
+    "decision_latency_ms_mean": 0.0004958856152370572
+   },
+   "long4/redirect": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 17.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 0.0005697551791349219
+   },
+   "all": {
+    "episodes": 36,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.03909465020576132,
+    "mean_steps": 13.5,
+    "disruption_assigned": 28,
+    "disruption_exposed": 28,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 3.642857142857143,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 3.642857142857143,
+    "decision_latency_ms_mean": 0.0006405112739688336
+   }
+  },
+  "pretrained": {
+   "seen/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 3.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.746944691054523
+   },
+   "seen/locked": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7105263157894737,
+    "mean_steps": 38.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.348398252256933
+   },
+   "seen/missing": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.6623376623376623,
+    "mean_steps": 38.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 5.267349755181035
+   },
+   "seen/redirect": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7916666666666666,
+    "mean_steps": 36.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 30.0,
+    "decision_latency_ms_mean": 5.644841707635351
+   },
+   "pairs/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.144940423113959
+   },
+   "pairs/locked": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.09090909090909091,
+    "mean_steps": 11.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.21600653261193
+   },
+   "pairs/missing": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.6538461538461539,
+    "mean_steps": 39.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 5.563435794946209
+   },
+   "pairs/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.65625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 5.3428480173352
+   },
+   "order/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.6875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.58469756924751
+   },
+   "order/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 6.242052094421524
+   },
+   "order/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8203125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 58.0,
+    "decision_latency_ms_mean": 5.6642795680090785
+   },
+   "order/redirect": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 62.0,
+    "decision_latency_ms_mean": 6.012700499923085
+   },
+   "long3/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.782977515082166
+   },
+   "long3/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.78440292065352
+   },
+   "long3/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.84375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 60.0,
+    "decision_latency_ms_mean": 5.517027016139764
+   },
+   "long3/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.90625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 60.0,
+    "decision_latency_ms_mean": 5.46235835781772
+   },
+   "long4/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8984375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.818957350584242
+   },
+   "long4/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8671875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.385448656852532
+   },
+   "long4/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 62.0,
+    "decision_latency_ms_mean": 5.376907593017677
+   },
+   "long4/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 30.0,
+    "decision_latency_ms_mean": 5.736018842526391
+   },
+   "all": {
+    "episodes": 36,
+    "success_rate": 0.2222222222222222,
+    "invalid_action_rate": 0.8017103153393907,
+    "mean_steps": 51.97222222222222,
+    "disruption_assigned": 28,
+    "disruption_exposed": 24,
+    "exposure_coverage": 0.8571428571428571,
+    "success_given_disruption": 0.25,
+    "recovery_rate": 0.5833333333333334,
+    "recovery_steps_mean": 3.5,
+    "recovery_unresolved": 10,
+    "recovery_steps_capped_mean": 26.875,
+    "decision_latency_ms_mean": 5.583435919714207
+   }
+  },
+  "scratch": {
+   "seen/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 3.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.802430328913033
+   },
+   "seen/locked": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.42105263157894735,
+    "mean_steps": 38.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.029266527041424
+   },
+   "seen/missing": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.6883116883116883,
+    "mean_steps": 38.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 5.573238695188383
+   },
+   "seen/redirect": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7916666666666666,
+    "mean_steps": 36.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 30.0,
+    "decision_latency_ms_mean": 5.588159848684882
+   },
+   "pairs/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.092386854812503
+   },
+   "pairs/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.6796875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 29.5,
+    "decision_latency_ms_mean": 5.50080274388165
+   },
+   "pairs/missing": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.675,
+    "mean_steps": 40.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 5.605076241408824
+   },
+   "pairs/redirect": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7746478873239436,
+    "mean_steps": 35.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 5.521372463460596
+   },
+   "order/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.094225570450362
+   },
+   "order/locked": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7236842105263158,
+    "mean_steps": 38.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.483142055102993
+   },
+   "order/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 32.5,
+    "decision_latency_ms_mean": 5.496232373843668
+   },
+   "order/redirect": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 9.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 3.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 3.0,
+    "decision_latency_ms_mean": 5.162921339635634
+   },
+   "long3/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.9140625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.1538873887911905
+   },
+   "long3/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8515625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.804902290947211
+   },
+   "long3/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 34.0,
+    "decision_latency_ms_mean": 5.500362615293852
+   },
+   "long3/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.921875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 60.0,
+    "decision_latency_ms_mean": 5.435283899714705
+   },
+   "long4/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.757200834523246
+   },
+   "long4/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.84375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 29.5,
+    "decision_latency_ms_mean": 5.710852609809081
+   },
+   "long4/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 8.0,
+    "decision_latency_ms_mean": 5.957753894108464
+   },
+   "long4/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.84375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 30.0,
+    "decision_latency_ms_mean": 5.756047594331903
+   },
+   "all": {
+    "episodes": 36,
+    "success_rate": 0.25,
+    "invalid_action_rate": 0.7878787878787878,
+    "mean_steps": 50.416666666666664,
+    "disruption_assigned": 28,
+    "disruption_exposed": 27,
+    "exposure_coverage": 0.9642857142857143,
+    "success_given_disruption": 0.25925925925925924,
+    "recovery_rate": 0.7037037037037037,
+    "recovery_steps_mean": 4.052631578947368,
+    "recovery_unresolved": 8,
+    "recovery_steps_capped_mean": 20.185185185185187,
+    "decision_latency_ms_mean": 5.612099997844933
+   }
+  },
+  "mlp": {
+   "seen/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 3.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.6015136799154183
+   },
+   "seen/locked": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.08333333333333333,
+    "mean_steps": 12.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.5116962056490593
+   },
+   "seen/missing": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.07142857142857142,
+    "mean_steps": 14.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 0.5459337440044738
+   },
+   "seen/redirect": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 0.5298987198329996
+   },
+   "pairs/none": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.484375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.5056296104157809
+   },
+   "pairs/locked": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.782051282051282,
+    "mean_steps": 39.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.5072996503128837
+   },
+   "pairs/missing": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0967741935483871,
+    "mean_steps": 15.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 0.5192617455814347
+   },
+   "pairs/redirect": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.43243243243243246,
+    "mean_steps": 37.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.5256331940472592
+   },
+   "order/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.859375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.503395806390472
+   },
+   "order/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8359375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.5241933677098132
+   },
+   "order/missing": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.611764705882353,
+    "mean_steps": 42.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.0,
+    "decision_latency_ms_mean": 0.502807351191829
+   },
+   "order/redirect": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.90625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.5274588875181507
+   },
+   "long3/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.859375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.5251507081993623
+   },
+   "long3/locked": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.6962025316455697,
+    "mean_steps": 39.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.5450587440464005
+   },
+   "long3/missing": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.5632183908045977,
+    "mean_steps": 43.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 9.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 9.5,
+    "decision_latency_ms_mean": 0.5064081054154921
+   },
+   "long3/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8671875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 0.5108877562634007
+   },
+   "long4/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8515625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 0.5162096235835634
+   },
+   "long4/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.7890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 28.0,
+    "decision_latency_ms_mean": 0.5058736423961818
+   },
+   "long4/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.78125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 8.0,
+    "decision_latency_ms_mean": 0.48075457925733645
+   },
+   "long4/redirect": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.6585365853658537,
+    "mean_steps": 41.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 0.5224087282032188
+   },
+   "all": {
+    "episodes": 36,
+    "success_rate": 0.4166666666666667,
+    "invalid_action_rate": 0.7095730918499353,
+    "mean_steps": 42.94444444444444,
+    "disruption_assigned": 28,
+    "disruption_exposed": 25,
+    "exposure_coverage": 0.8928571428571429,
+    "success_given_disruption": 0.56,
+    "recovery_rate": 0.96,
+    "recovery_steps_mean": 4.125,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 6.12,
+    "decision_latency_ms_mean": 0.5199886372989548
+   }
+  },
+  "reward": {
+   "seen/none": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.9375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.22692058186658
+   },
+   "seen/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.573404936512816
+   },
+   "seen/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8046875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 5.333098274149961
+   },
+   "seen/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 58.0,
+    "decision_latency_ms_mean": 6.118884410625469
+   },
+   "pairs/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.1271368616393636
+   },
+   "pairs/locked": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.09090909090909091,
+    "mean_steps": 11.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.246270952684581
+   },
+   "pairs/missing": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.6538461538461539,
+    "mean_steps": 39.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 7.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 7.5,
+    "decision_latency_ms_mean": 5.550454277909012
+   },
+   "pairs/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.65625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 1.5,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 1.5,
+    "decision_latency_ms_mean": 5.3347938765000436
+   },
+   "order/none": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7702702702702703,
+    "mean_steps": 37.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.6108491346094524
+   },
+   "order/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.959522117791494
+   },
+   "order/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8203125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 58.0,
+    "decision_latency_ms_mean": 5.61380987346638
+   },
+   "order/redirect": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.90625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 62.0,
+    "decision_latency_ms_mean": 6.049836611964565
+   },
+   "long3/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.8599325911927735
+   },
+   "long3/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.821142205149954
+   },
+   "long3/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8046875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 34.0,
+    "decision_latency_ms_mean": 5.718984044960962
+   },
+   "long3/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.90625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 60.0,
+    "decision_latency_ms_mean": 5.395623999902455
+   },
+   "long4/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.527043586880609
+   },
+   "long4/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8671875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.3917067411930475
+   },
+   "long4/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 62.0,
+    "decision_latency_ms_mean": 5.357337282475783
+   },
+   "long4/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 30.0,
+    "decision_latency_ms_mean": 5.711913414415903
+   },
+   "all": {
+    "episodes": 36,
+    "success_rate": 0.1388888888888889,
+    "invalid_action_rate": 0.8276877761413843,
+    "mean_steps": 56.583333333333336,
+    "disruption_assigned": 28,
+    "disruption_exposed": 24,
+    "exposure_coverage": 0.8571428571428571,
+    "success_given_disruption": 0.125,
+    "recovery_rate": 0.5833333333333334,
+    "recovery_steps_mean": 3.9285714285714284,
+    "recovery_unresolved": 10,
+    "recovery_steps_capped_mean": 27.041666666666668,
+    "decision_latency_ms_mean": 5.619336117051002
+   }
+  },
+  "control": {
+   "seen/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 3.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.006666323325287
+   },
+   "seen/locked": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7105263157894737,
+    "mean_steps": 38.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.425418182918898
+   },
+   "seen/missing": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7142857142857143,
+    "mean_steps": 38.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 33.5,
+    "decision_latency_ms_mean": 5.608828769779323
+   },
+   "seen/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 58.0,
+    "decision_latency_ms_mean": 6.077664671011007
+   },
+   "pairs/none": {
+    "episodes": 1,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "mean_steps": 7.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.083464285624879
+   },
+   "pairs/locked": {
+    "episodes": 2,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.12,
+    "mean_steps": 12.5,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.174659769601511
+   },
+   "pairs/missing": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7051282051282052,
+    "mean_steps": 39.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.5,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 7.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 33.5,
+    "decision_latency_ms_mean": 5.67908590879337
+   },
+   "pairs/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.6796875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 1.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 29.5,
+    "decision_latency_ms_mean": 5.348334978407365
+   },
+   "order/none": {
+    "episodes": 2,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.7702702702702703,
+    "mean_steps": 37.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.584058063504926
+   },
+   "order/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 1,
+    "exposure_coverage": 0.5,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.910659804612806
+   },
+   "order/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8203125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 2,
+    "recovery_steps_capped_mean": 58.0,
+    "decision_latency_ms_mean": 5.642110655116994
+   },
+   "order/redirect": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.90625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.0,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 62.0,
+    "decision_latency_ms_mean": 6.133437498647254
+   },
+   "long3/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.750838531184854
+   },
+   "long3/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.90625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 0,
+    "exposure_coverage": 0.0,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 5.818512076530169
+   },
+   "long3/missing": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.8046875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 34.0,
+    "decision_latency_ms_mean": 5.7279546999779996
+   },
+   "long3/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.890625,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 31.0,
+    "decision_latency_ms_mean": 5.7407812782912515
+   },
+   "long4/none": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.875,
+    "mean_steps": 64.0,
+    "disruption_assigned": 0,
+    "disruption_exposed": 0,
+    "exposure_coverage": null,
+    "success_given_disruption": null,
+    "recovery_rate": null,
+    "recovery_steps_mean": null,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": null,
+    "decision_latency_ms_mean": 6.2713528186577605
+   },
+   "long4/locked": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.828125,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 2.0,
+    "decision_latency_ms_mean": 5.414963585735677
+   },
+   "long4/missing": {
+    "episodes": 1,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.75,
+    "mean_steps": 64.0,
+    "disruption_assigned": 1,
+    "disruption_exposed": 1,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 1.0,
+    "recovery_steps_mean": 8.0,
+    "recovery_unresolved": 0,
+    "recovery_steps_capped_mean": 8.0,
+    "decision_latency_ms_mean": 5.246611329312145
+   },
+   "long4/redirect": {
+    "episodes": 2,
+    "success_rate": 0.0,
+    "invalid_action_rate": 0.859375,
+    "mean_steps": 64.0,
+    "disruption_assigned": 2,
+    "disruption_exposed": 2,
+    "exposure_coverage": 1.0,
+    "success_given_disruption": 0.0,
+    "recovery_rate": 0.5,
+    "recovery_steps_mean": 2.0,
+    "recovery_unresolved": 1,
+    "recovery_steps_capped_mean": 30.0,
+    "decision_latency_ms_mean": 5.790021488792263
+   },
+   "all": {
+    "episodes": 36,
+    "success_rate": 0.2222222222222222,
+    "invalid_action_rate": 0.8123667377398721,
+    "mean_steps": 52.111111111111114,
+    "disruption_assigned": 28,
+    "disruption_exposed": 25,
+    "exposure_coverage": 0.8928571428571429,
+    "success_given_disruption": 0.2,
+    "recovery_rate": 0.56,
+    "recovery_steps_mean": 3.5,
+    "recovery_unresolved": 11,
+    "recovery_steps_capped_mean": 27.96,
+    "decision_latency_ms_mean": 5.677796388965054
+   }
+  }
+ },
+ "excluded_partial_block": [
+  {
+   "method": "planner",
+   "seed": 81241104,
+   "split": "pairs",
+   "mode": "none",
+   "success": true,
+   "steps": 7,
+   "invalid": 0,
+   "disruption": null,
+   "latency_ms": 0.0007082957641354629,
+   "trace": [
+    {
+     "observation": {
+      "room": 1,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       -1,
+       -1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       false,
+       false
+      ],
+      "feedback": "start",
+      "steps": 0
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       true,
+       false
+      ],
+      "feedback": "seen",
+      "steps": 1
+     },
+     "action": "GO 0",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 2
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "seen",
+      "steps": 3
+     },
+     "action": "GO 2",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 4
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       2,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "seen",
+      "steps": 5
+     },
+     "action": "TAKE cup",
+     "valid": true,
+     "feedback": "taken"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "taken",
+      "steps": 6
+     },
+     "action": "SEND cup green",
+     "valid": true,
+     "feedback": "delivered"
+    }
+   ]
+  },
+  {
+   "method": "pretrained",
+   "seed": 81241104,
+   "split": "pairs",
+   "mode": "none",
+   "success": false,
+   "steps": 64,
+   "invalid": 57,
+   "disruption": null,
+   "latency_ms": 5.416712886471942,
+   "trace": [
+    {
+     "observation": {
+      "room": 1,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       -1,
+       -1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       false,
+       false
+      ],
+      "feedback": "start",
+      "steps": 0
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       true,
+       false
+      ],
+      "feedback": "seen",
+      "steps": 1
+     },
+     "action": "GO 0",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       false,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 2
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 0,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "seen",
+      "steps": 3
+     },
+     "action": "GO 2",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       -1,
+       -1
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        -1,
+        -1,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       false
+      ],
+      "feedback": "moved",
+      "steps": 4
+     },
+     "action": "INSPECT",
+     "valid": true,
+     "feedback": "seen"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": -1,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       2,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "seen",
+      "steps": 5
+     },
+     "action": "TAKE cup",
+     "valid": true,
+     "feedback": "taken"
+    },
+    {
+     "observation": {
+      "room": 2,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "taken",
+      "steps": 6
+     },
+     "action": "GO 1",
+     "valid": true,
+     "feedback": "moved"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "moved",
+      "steps": 7
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 8
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 9
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 10
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 11
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 12
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 13
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 14
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 15
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 16
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 17
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 18
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 19
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 20
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 21
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 22
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 23
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 24
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 25
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 26
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 27
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 28
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 29
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 30
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 31
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 32
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 33
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 34
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 35
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 36
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 37
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 38
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 39
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 40
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 41
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 42
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 43
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 44
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 45
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 46
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 47
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 48
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 49
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 50
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 51
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 52
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 53
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 54
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 55
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 56
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 57
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 58
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 59
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 60
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 61
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 62
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    },
+    {
+     "observation": {
+      "room": 1,
+      "holding": 2,
+      "cursor": 0,
+      "orders": [
+       [
+        2,
+        2
+       ]
+      ],
+      "items": [
+       1,
+       1,
+       3,
+       2
+      ],
+      "bins": [
+       [
+        1,
+        0,
+        -1
+       ],
+       [
+        0,
+        1,
+        -1
+       ],
+       [
+        2,
+        2,
+        -1
+       ]
+      ],
+      "seen": [
+       true,
+       true,
+       true
+      ],
+      "feedback": "illegal",
+      "steps": 63
+     },
+     "action": "SEND cup red",
+     "valid": false,
+     "feedback": "illegal"
+    }
+   ]
+  }
+ ],
+ "note": "Per-episode traces (key \"episodes\") are kept locally in the full secondary.json (gitignored for size)."
+}

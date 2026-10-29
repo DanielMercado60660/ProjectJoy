@@ -1,0 +1,164 @@
+{
+ "event": {
+  "id": "07_terra",
+  "project": "07_terra",
+  "model": "HNet U-Net heuristic (base 32, GroupNorm, 4 downsamplings)",
+  "checkpoint": "../07_terra/checkpoints/hnet",
+  "unit": "heuristic fields (one 96x96 map + goal)",
+  "params": 1968417,
+  "notes": "Queries from ../07_terra/data/val.npz (generated, gitignored there; regenerable with its make_dataset.py). Core ML packages are fp16."
+ },
+ "final": true,
+ "tf32_pass": true,
+ "batches": {
+  "1": {
+   "agreement": {
+    "mlx_gpu_tf32": {
+     "r_max_err": 0.0,
+     "h_max_rel_err": 0.0
+    },
+    "mlx_gpu_compiled_tf32": {
+     "r_max_err": 0.0,
+     "h_max_rel_err": 0.0
+    }
+   },
+   "memory_bytes": {
+    "mlx_gpu_tf32": 50044818,
+    "mlx_gpu_compiled_tf32": 50044682
+   },
+   "timing": {
+    "mlx_gpu_tf32": {
+     "median_ms": 1.6604580159764737,
+     "p90_ms": 1.695825019851327,
+     "min_ms": 1.6083749942481518,
+     "calls": 1053,
+     "rounds": 7,
+     "round_median_spread": 1.0037969987659758
+    },
+    "mlx_gpu_compiled_tf32": {
+     "median_ms": 1.504312502220273,
+     "p90_ms": 1.5698589064413682,
+     "min_ms": 1.4568750048056245,
+     "calls": 1158,
+     "rounds": 7,
+     "round_median_spread": 1.0059532853421318
+    }
+   },
+   "task": {},
+   "coreml": {},
+   "qualifies": {
+    "mlx_gpu_tf32": {
+     "ok": true,
+     "reason": "r max err 0 (tolerance 0.05)"
+    },
+    "mlx_gpu_compiled_tf32": {
+     "ok": true,
+     "reason": "r max err 0 (tolerance 0.05)"
+    }
+   }
+  },
+  "16": {
+   "agreement": {
+    "mlx_gpu_tf32": {
+     "r_max_err": 0.004660367965698242,
+     "h_max_rel_err": 0.004671216011047363
+    },
+    "mlx_gpu_compiled_tf32": {
+     "r_max_err": 0.004660367965698242,
+     "h_max_rel_err": 0.004671216011047363
+    }
+   },
+   "memory_bytes": {
+    "mlx_gpu_tf32": 806378414,
+    "mlx_gpu_compiled_tf32": 806378278
+   },
+   "timing": {
+    "mlx_gpu_tf32": {
+     "median_ms": 7.650165993254632,
+     "p90_ms": 7.77420899248682,
+     "min_ms": 7.421124988468364,
+     "calls": 231,
+     "rounds": 7,
+     "round_median_spread": 1.0182098948542813
+    },
+    "mlx_gpu_compiled_tf32": {
+     "median_ms": 7.035979491774924,
+     "p90_ms": 7.1937535831239074,
+     "min_ms": 6.851375015685335,
+     "calls": 252,
+     "rounds": 7,
+     "round_median_spread": 1.018197801437318
+    }
+   },
+   "task": {},
+   "coreml": {},
+   "qualifies": {
+    "mlx_gpu_tf32": {
+     "ok": true,
+     "reason": "r max err 0.0047 (tolerance 0.05)"
+    },
+    "mlx_gpu_compiled_tf32": {
+     "ok": true,
+     "reason": "r max err 0.0047 (tolerance 0.05)"
+    }
+   }
+  }
+ },
+ "skips": {},
+ "task_checks": false,
+ "settings": {
+  "repeats": 7,
+  "budget_s": 0.25
+ },
+ "mlx_tf32": true,
+ "mlx_gpu_matmul_rel_err": 0.0007571232809227448,
+ "mlx_tf32_env": "1",
+ "env_before": {
+  "time": "2026-10-22 18:10:47",
+  "loadavg": [
+   2.310546875,
+   2.39013671875,
+   2.24169921875
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ },
+ "noise_before": {
+  "numpy_512_matmul_ms": 0.17503581999335438,
+  "mlx_gpu_2048_matmul_ms": 0.8966542009147815
+ },
+ "noise_after": {
+  "numpy_512_matmul_ms": 0.17396084032952785,
+  "mlx_gpu_2048_matmul_ms": 0.5173229001229629
+ },
+ "env_after": {
+  "time": "2026-10-22 18:10:56",
+  "loadavg": [
+   2.49658203125,
+   2.42626953125,
+   2.25634765625
+  ],
+  "power": "Now drawing from 'AC Power'",
+  "battery": "-InternalBattery-0 (id=22806627)\t100%; charged; 0:00 remaining present: true",
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "busy_processes": [
+   {
+    "pid": 404,
+    "cpu": 22.6,
+    "comm": "WindowServer"
+   }
+  ],
+  "mlx": "0.32.4",
+  "coremltools": "9.0",
+  "numpy": "2.5.4",
+  "machine": "arm64",
+  "macos": "27.0.1"
+ }
+}

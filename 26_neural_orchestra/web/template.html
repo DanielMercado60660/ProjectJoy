@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neural Orchestra</title>
+<style>
+:root {
+  --bg: #121214; --panel: #1b1b1f; --panel2: #232329; --line: #2f2f37; --text: #e9e7e2; --muted: #9a978f;
+  --accent: #ff8a3d; --accent2: #5cc8ff; --cell: #2a2a31; --beat: #33333b;
+  --i0: #ff6b4a; --i1: #ffb03b; --i2: #f7d154; --i3: #7fd88a; --i4: #4fd1b5; --i5: #5cc8ff; --i6: #7d9bff; --i7: #b58cff; --i8: #ff7cc3;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+main { max-width: 1100px; margin: 0 auto; padding: 20px 16px 40px; }
+header { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+h1 { font-size: 22px; letter-spacing: 0.08em; margin: 0; font-weight: 700; }
+h1 span { color: var(--accent); }
+header p { margin: 0; color: var(--muted); }
+h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+.transport { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 12px; }
+button { background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 7px; padding: 7px 12px; font: inherit; cursor: pointer; }
+button:hover { border-color: #4a4a55; }
+button.primary { background: var(--accent); color: #1a1004; border-color: var(--accent); font-weight: 650; }
+button.on { border-color: var(--accent2); color: var(--accent2); }
+#play { width: 92px; font-weight: 700; }
+label.ctl { display: flex; align-items: center; gap: 8px; color: var(--muted); }
+label.ctl b { color: var(--text); font-variant-numeric: tabular-nums; min-width: 2.5em; display: inline-block; }
+input[type=range] { accent-color: var(--accent); }
+select { background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 5px 6px; font: inherit; }
+.gridwrap { overflow-x: auto; }
+.grid { display: grid; grid-template-columns: 34px repeat(32, minmax(14px, 1fr)); gap: 3px; min-width: 620px; }
+.lab { font-size: 11px; color: var(--muted); display: flex; align-items: center; font-weight: 600; }
+.cell { height: 22px; border-radius: 3px; background: var(--cell); cursor: pointer; position: relative; }
+.cell.beat { background: var(--beat); }
+.cell.bar2 { margin-left: 0; }
+.cell.ph { outline: 1px solid rgba(255,255,255,0.55); }
+.cell.hit { background: var(--c); }
+.cell .tick { position: absolute; top: 2px; bottom: 2px; width: 2px; background: rgba(0,0,0,0.45); border-radius: 1px; }
+.status { display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 12px; margin-top: 10px; flex-wrap: wrap; }
+.status b { color: var(--text); font-weight: 600; }
+.cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+@media (max-width: 860px) { .cols { grid-template-columns: 1fr; } }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.chip { padding: 5px 10px; border-radius: 999px; font-size: 12px; }
+.chip.sel { background: var(--accent); color: #1a1004; border-color: var(--accent); font-weight: 650; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+.row.sp { justify-content: space-between; }
+.small { font-size: 12px; color: var(--muted); }
+canvas#pad { width: 100%; max-width: 260px; aspect-ratio: 1; background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; touch-action: none; cursor: crosshair; display: block; }
+input.wide { width: 100%; }
+.note { color: var(--muted); font-size: 12px; margin-top: 18px; line-height: 1.55; }
+.note b { color: var(--text); }
+kbd { background: var(--panel2); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; font-size: 11px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>NEURAL <span>ORCHESTRA</span></h1>
+    <p>A tiny style-conditional VAE that dreams up 2-bar drum grooves. The decoder runs right here in your browser.</p>
+  </header>
+
+  <div class="card transport">
+    <button id="play" class="primary">▶ Play</button>
+    <label class="ctl">Tempo <input id="bpm" type="range" min="60" max="180" value="110"> <b id="bpmv">110</b></label>
+    <label class="ctl"><input id="feel" type="checkbox" checked> Microtiming feel</label>
+    <label class="ctl">Volume <input id="vol" type="range" min="0" max="100" value="75"></label>
+    <span class="small"><kbd>space</kbd> play · <kbd>N</kbd> new groove</span>
+  </div>
+
+  <div class="card">
+    <div class="gridwrap"><div class="grid" id="grid"></div></div>
+    <div class="status"><span id="src">—</span><span id="stats"></span></div>
+  </div>
+
+  <div class="cols">
+    <section class="card">
+      <h2>Generate</h2>
+      <div class="chips" id="styles"></div>
+      <div class="row">
+        <button id="gen" class="primary">New neural groove</button>
+        <select id="mode" title="How decoder probabilities become hits">
+          <option value="sample">loose (sample)</option>
+          <option value="threshold">tight (p &gt; 0.5)</option>
+        </select>
+      </div>
+      <div class="row"><label class="ctl small">Sampling temperature <input id="temp" type="range" min="30" max="130" value="100"> <b id="tempv">1.00</b></label></div>
+      <div class="row small">Compare with the same style from:</div>
+      <div class="row">
+        <button data-set="real">Real data</button>
+        <button data-set="markov_bar">Bar-Markov</button>
+        <button data-set="bernoulli">Bernoulli</button>
+      </div>
+      <p class="small">Real = held-out test pattern from the procedural generator. Baselines are fit on the same training split.</p>
+    </section>
+
+    <section class="card">
+      <h2>Morph</h2>
+      <div class="row">
+        <select id="ma"></select> → <select id="mb"></select>
+        <button id="mroll" title="Roll new latent endpoints">🎲</button>
+      </div>
+      <input id="malpha" class="wide" type="range" min="0" max="1000" value="0">
+      <div class="row sp small"><span>A</span><span id="maval">α = 0.00</span><span>B</span></div>
+      <div class="row"><button id="mauto">Auto-morph (1 step / 2 bars)</button></div>
+      <h2 style="margin-top:14px">Baked walks (match the WAVs)</h2>
+      <div class="row"><select id="walk"></select></div>
+      <input id="walkpt" class="wide" type="range" min="0" max="8" value="0">
+    </section>
+
+    <section class="card">
+      <h2>Latent pad</h2>
+      <canvas id="pad" width="260" height="260"></canvas>
+      <p class="small">Drag to move the current groove along the two main directions of the training latents (±2.5 sd). Style stays fixed.</p>
+    </section>
+  </div>
+
+  <p class="note" id="about"></p>
+</main>
+<script>
+/*__DATA__*/
+/*__CORE__*/
+/*__UI__*/
+</script>
+</body>
+</html>
