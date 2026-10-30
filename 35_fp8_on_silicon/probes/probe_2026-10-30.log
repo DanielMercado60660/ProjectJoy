@@ -1,0 +1,6 @@
+# 2026-10-30 11:40 CDT, M5 Max, MLX 0.32.4, load average ~3 (light), AC power, single non-interleaved runs
+M=8192 K=1024 N=4096: bf16 2.229 ms (30.8 TF/s) | mxfp8 1.705 ms (1.31x) | mxfp4 1.642 ms (1.36x) | nvfp4 1.568 ms (1.42x) | affine 1.583 ms (1.41x)
+M=8192 K=2048 N=8192: bf16 4.509 ms (61.0 TF/s) | mxfp8 5.274 ms (0.86x) | mxfp4 4.872 ms (0.93x) | nvfp4 4.908 ms (0.92x) | affine 4.827 ms (0.93x)
+M=1 K=2048 N=8192: bf16 0.189 ms (0.2 TF/s) | mxfp8 0.171 ms (1.11x) | mxfp4 0.161 ms (1.18x) | nvfp4 0.160 ms (1.19x) | affine 0.162 ms (1.17x)
+grad wrt activations: OK (64, 1024)
+grad wrt weights/scales ERR: [QuantizedMatmul::vjp] no gradient wrt scales in mxfp8 quantization.
