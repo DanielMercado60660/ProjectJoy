@@ -1,0 +1,45 @@
+[gpu_run] acquired gpu0: ../.venv/bin/python train.py --out runs/r2 --text chars --compute bfloat16 --steps 1200 --warmup 300 --max_minutes 15 --lr 3e-5 --lr_new 3e-4 --cb_weight 20,4 --corrupt 0.15 --select cb0 --val_every 100 --save_every 100
+train 10515 clips, val 300; trainable params 142.3M
+{"step": 0, "val_loss": 7.6251, "val_cb": [7.625, 7.625, 7.625, 7.625, 7.625, 7.625, 7.625, 7.625, 7.625, 7.625, 7.625, 7.625, 7.625, 7.625, 7.625, 7.625]}
+{"step": 25, "epoch": 0, "loss": 6.3662, "gnorm": 9.997, "tok_s": 18528, "elapsed_min": 0.3}
+{"step": 50, "epoch": 0, "loss": 6.2446, "gnorm": 1.401, "tok_s": 18757, "elapsed_min": 0.6}
+{"step": 75, "epoch": 0, "loss": 5.6192, "gnorm": 2.228, "tok_s": 16877, "elapsed_min": 0.94}
+{"step": 100, "epoch": 0, "loss": 5.8395, "gnorm": 1.601, "tok_s": 15706, "elapsed_min": 1.3}
+{"step": 100, "val_loss": 6.1315, "val_cb": [5.911, 5.767, 5.905, 5.972, 6.032, 6.082, 6.129, 6.159, 6.204, 6.221, 6.24, 6.253, 6.279, 6.294, 6.319, 6.336]}
+{"step": 125, "epoch": 0, "loss": 6.0469, "gnorm": 0.848, "tok_s": 10469, "elapsed_min": 1.83}
+{"step": 150, "epoch": 0, "loss": 5.9634, "gnorm": 1.682, "tok_s": 13357, "elapsed_min": 2.25}
+{"step": 175, "epoch": 0, "loss": 5.9136, "gnorm": 2.043, "tok_s": 12591, "elapsed_min": 2.71}
+{"step": 200, "epoch": 1, "loss": 5.5348, "gnorm": 2.5, "tok_s": 12930, "elapsed_min": 3.14}
+{"step": 200, "val_loss": 6.063, "val_cb": [5.674, 5.588, 5.803, 5.928, 6.0, 6.047, 6.083, 6.098, 6.147, 6.165, 6.19, 6.209, 6.239, 6.25, 6.276, 6.31]}
+{"step": 225, "epoch": 1, "loss": 5.2139, "gnorm": 2.417, "tok_s": 10483, "elapsed_min": 3.68}
+{"step": 250, "epoch": 1, "loss": 5.8188, "gnorm": 1.758, "tok_s": 14553, "elapsed_min": 4.06}
+{"step": 275, "epoch": 1, "loss": 5.7544, "gnorm": 2.085, "tok_s": 14174, "elapsed_min": 4.46}
+{"step": 300, "epoch": 1, "loss": 5.3137, "gnorm": 2.086, "tok_s": 13960, "elapsed_min": 4.87}
+{"step": 300, "val_loss": 5.9683, "val_cb": [5.043, 5.19, 5.628, 5.834, 5.951, 6.025, 6.08, 6.101, 6.144, 6.151, 6.172, 6.186, 6.213, 6.23, 6.252, 6.293]}
+{"step": 325, "epoch": 1, "loss": 5.3461, "gnorm": 3.833, "tok_s": 11113, "elapsed_min": 5.37}
+{"step": 350, "epoch": 1, "loss": 5.1767, "gnorm": 5.975, "tok_s": 13820, "elapsed_min": 5.78}
+{"step": 375, "epoch": 2, "loss": 5.1761, "gnorm": 7.16, "tok_s": 13984, "elapsed_min": 6.18}
+{"step": 400, "epoch": 2, "loss": 4.5662, "gnorm": 5.636, "tok_s": 14041, "elapsed_min": 6.58}
+{"step": 400, "val_loss": 5.868, "val_cb": [4.048, 4.812, 5.496, 5.754, 5.914, 6.004, 6.078, 6.102, 6.149, 6.151, 6.17, 6.186, 6.22, 6.232, 6.272, 6.302]}
+{"step": 425, "epoch": 2, "loss": 4.4837, "gnorm": 6.093, "tok_s": 10372, "elapsed_min": 7.13}
+{"step": 450, "epoch": 2, "loss": 4.7596, "gnorm": 7.339, "tok_s": 14198, "elapsed_min": 7.52}
+{"step": 475, "epoch": 2, "loss": 3.5481, "gnorm": 3.793, "tok_s": 14388, "elapsed_min": 7.92}
+{"step": 500, "epoch": 2, "loss": 4.1782, "gnorm": 6.451, "tok_s": 14235, "elapsed_min": 8.31}
+{"step": 500, "val_loss": 5.7893, "val_cb": [3.494, 4.593, 5.398, 5.69, 5.862, 5.961, 6.041, 6.075, 6.127, 6.131, 6.157, 6.17, 6.193, 6.211, 6.246, 6.28]}
+{"step": 525, "epoch": 2, "loss": 4.4071, "gnorm": 4.067, "tok_s": 10117, "elapsed_min": 8.86}
+{"step": 550, "epoch": 3, "loss": 3.7556, "gnorm": 3.285, "tok_s": 13771, "elapsed_min": 9.28}
+{"step": 575, "epoch": 3, "loss": 4.3756, "gnorm": 3.691, "tok_s": 13485, "elapsed_min": 9.7}
+{"step": 600, "epoch": 3, "loss": 4.2828, "gnorm": 4.675, "tok_s": 12275, "elapsed_min": 10.16}
+{"step": 600, "val_loss": 5.7608, "val_cb": [3.158, 4.441, 5.357, 5.666, 5.843, 5.956, 6.041, 6.079, 6.138, 6.142, 6.165, 6.179, 6.21, 6.229, 6.269, 6.296]}
+{"step": 625, "epoch": 3, "loss": 4.2905, "gnorm": 5.091, "tok_s": 8545, "elapsed_min": 10.81}
+{"step": 650, "epoch": 3, "loss": 3.752, "gnorm": 3.718, "tok_s": 10293, "elapsed_min": 11.35}
+{"step": 675, "epoch": 3, "loss": 3.9048, "gnorm": 4.328, "tok_s": 9369, "elapsed_min": 11.96}
+{"step": 700, "epoch": 3, "loss": 4.1251, "gnorm": 5.224, "tok_s": 9871, "elapsed_min": 12.53}
+{"step": 700, "val_loss": 5.6995, "val_cb": [2.876, 4.31, 5.28, 5.61, 5.793, 5.904, 5.999, 6.043, 6.096, 6.113, 6.133, 6.149, 6.174, 6.2, 6.238, 6.275]}
+{"step": 725, "epoch": 4, "loss": 3.984, "gnorm": 2.912, "tok_s": 7868, "elapsed_min": 13.24}
+{"step": 750, "epoch": 4, "loss": 3.7109, "gnorm": 2.737, "tok_s": 10417, "elapsed_min": 13.78}
+{"step": 775, "epoch": 4, "loss": 4.1099, "gnorm": 4.574, "tok_s": 11142, "elapsed_min": 14.28}
+{"step": 800, "epoch": 4, "loss": 3.9149, "gnorm": 2.959, "tok_s": 10782, "elapsed_min": 14.81}
+{"step": 800, "val_loss": 5.7054, "val_cb": [2.786, 4.235, 5.276, 5.612, 5.803, 5.914, 6.015, 6.058, 6.119, 6.138, 6.159, 6.171, 6.198, 6.23, 6.27, 6.303]}
+{"step": 803, "val_loss": 5.7116, "val_cb": [2.756, 4.253, 5.288, 5.622, 5.811, 5.92, 6.022, 6.066, 6.126, 6.145, 6.165, 6.179, 6.206, 6.238, 6.278, 6.311], "final": true}
+done step 803 best val 2.7557 wall 15.1 min

@@ -1,0 +1,47 @@
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files:  17%|█▋        | 1/6 [00:00<00:02,  2.40it/s]Fetching 6 files:  33%|███▎      | 2/6 [00:00<00:00,  4.02it/s]Fetching 6 files:  83%|████████▎ | 5/6 [00:00<00:00,  9.22it/s]Fetching 6 files:  83%|████████▎ | 5/6 [00:20<00:00,  9.22it/s]Fetching 6 files: 100%|██████████| 6/6 [01:02<00:00, 15.68s/it]Fetching 6 files: 100%|██████████| 6/6 [01:02<00:00, 10.34s/it]
+OK Qwen/Qwen3-TTS-Tokenizer-12Hz /Users/danielmercado/.cache/huggingface/hub/models--Qwen--Qwen3-TTS-Tokenizer-12Hz/snapshots/7dd38ad4e9bad454aae9cd937d0cd577604fe229
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:00<00:01,  2.98it/s]Fetching 4 files: 100%|██████████| 4/4 [03:30<00:00, 56.90s/it]Fetching 4 files: 100%|██████████| 4/4 [03:30<00:00, 52.66s/it]
+OK Soul-AILab/SAC-16k-37_5Hz /Users/danielmercado/.cache/huggingface/hub/models--Soul-AILab--SAC-16k-37_5Hz/snapshots/9715ce1875b82a9e9c6b10672c685a617a9a0758
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files:  17%|█▋        | 1/6 [00:00<00:01,  3.28it/s]Fetching 6 files:  33%|███▎      | 2/6 [00:00<00:00,  4.39it/s]Fetching 6 files:  67%|██████▋   | 4/6 [00:00<00:00,  6.90it/s]Fetching 6 files: 100%|██████████| 6/6 [02:02<00:00, 28.82s/it]Fetching 6 files: 100%|██████████| 6/6 [02:02<00:00, 20.39s/it]
+OK zai-org/glm-4-voice-tokenizer /Users/danielmercado/.cache/huggingface/hub/models--zai-org--glm-4-voice-tokenizer/snapshots/a5f2404e63c84e92f5238908e1706316324ebafa
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files:  11%|█         | 1/9 [00:00<00:03,  2.54it/s]Fetching 9 files:  44%|████▍     | 4/9 [00:00<00:00,  9.12it/s]Fetching 9 files:  67%|██████▋   | 6/9 [00:00<00:00,  9.97it/s]Fetching 9 files:  89%|████████▉ | 8/9 [00:13<00:00,  9.97it/s]Fetching 9 files:  89%|████████▉ | 8/9 [06:32<00:49, 49.02s/it]
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+  File "/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 276, in _inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py", line 541, in snapshot_download
+    hf_thread_map(
+  File "/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/huggingface_hub/utils/tqdm.py", line 441, in hf_thread_map
+    results[future_to_index[future]] = future.result()
+                                       ^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py", line 521, in _inner_hf_hub_download
+    hf_hub_download(  # type: ignore
+  File "/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 276, in _inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1047, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1285, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 2016, in _download_to_tmp_and_move
+    xet_get(
+  File "/Users/danielmercado/ProjectJoy/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 589, in xet_get
+    with session.new_file_download_group(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Task error: File reconstruction error: CAS Client Error: Format error: I/O error: error decoding response body

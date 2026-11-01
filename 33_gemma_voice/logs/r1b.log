@@ -1,0 +1,18 @@
+[gpu_run] acquired gpu0: ../.venv/bin/python train.py --out runs/r1 --resume --compute bfloat16 --steps 3000 --warmup 300 --max_minutes 44 --lr 2e-5 --lr_new 2e-4 --cb_weight 20,4 --corrupt 0.15 --select cb0 --val_every 100 --save_every 100
+train 10515 clips, val 300; trainable params 142.3M
+resumed at step 690 (best val 3.3444)
+{"step": 700, "epoch": 6, "loss": 4.026, "gnorm": 4.887, "tok_s": 13998, "elapsed_min": 0.15}
+{"step": 700, "val_loss": 5.8769, "val_cb": [3.338, 4.473, 5.421, 5.746, 5.93, 6.05, 6.143, 6.188, 6.254, 6.287, 6.313, 6.339, 6.357, 6.374, 6.392, 6.426]}
+{"step": 725, "epoch": 6, "loss": 3.4584, "gnorm": 4.805, "tok_s": 10961, "elapsed_min": 0.67}
+{"step": 750, "epoch": 6, "loss": 3.9393, "gnorm": 2.97, "tok_s": 13452, "elapsed_min": 1.09}
+{"step": 775, "epoch": 7, "loss": 3.6026, "gnorm": 7.028, "tok_s": 13251, "elapsed_min": 1.52}
+{"step": 800, "epoch": 7, "loss": 3.767, "gnorm": 3.213, "tok_s": 13103, "elapsed_min": 1.96}
+{"step": 800, "val_loss": 5.8929, "val_cb": [3.361, 4.459, 5.425, 5.755, 5.935, 6.061, 6.163, 6.209, 6.274, 6.31, 6.334, 6.364, 6.376, 6.395, 6.415, 6.449]}
+{"step": 825, "epoch": 7, "loss": 3.6913, "gnorm": 2.99, "tok_s": 10955, "elapsed_min": 2.47}
+{"step": 850, "epoch": 7, "loss": 3.2448, "gnorm": 2.512, "tok_s": 12758, "elapsed_min": 2.92}
+{"step": 875, "epoch": 8, "loss": 3.3643, "gnorm": 3.409, "tok_s": 12924, "elapsed_min": 3.38}
+{"step": 900, "epoch": 8, "loss": 3.5905, "gnorm": 6.225, "tok_s": 13291, "elapsed_min": 3.81}
+{"step": 900, "val_loss": 5.9147, "val_cb": [3.38, 4.453, 5.441, 5.772, 5.964, 6.084, 6.185, 6.229, 6.296, 6.331, 6.355, 6.388, 6.412, 6.424, 6.444, 6.477]}
+{"step": 925, "epoch": 8, "loss": 3.5222, "gnorm": 4.159, "tok_s": 10461, "elapsed_min": 4.36}
+{"step": 933, "val_loss": 5.9219, "val_cb": [3.384, 4.447, 5.444, 5.779, 5.967, 6.091, 6.192, 6.242, 6.308, 6.34, 6.368, 6.399, 6.419, 6.432, 6.453, 6.485], "final": true}
+done step 933 best val 3.3382 wall 4.5 min

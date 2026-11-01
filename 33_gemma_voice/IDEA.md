@@ -1,5 +1,5 @@
 # 33. Gemma Voice — Teach a small borrowed backbone to speak, then to listen
-Status: idea, not built (written 2026-10-30)
+Status: **finished 2026-11-01** (first version 2026-10-30, then rounds 2–3: more data, Whisper judge, flow head on Mimi latents). See README.md and RESULTS.md; this file is the original idea note
 Scope: Expandable
 
 **Build:** Take Gemma 3 270M as a ready-made backbone (skip pretraining) and give it a voice: text in,
