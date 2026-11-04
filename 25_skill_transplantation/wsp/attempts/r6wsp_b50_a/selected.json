@@ -1,0 +1,75 @@
+{
+  "0": {
+    "config": {
+      "mode": "shared",
+      "scale": 1.5,
+      "profile": "upright",
+      "mix": 1.0
+    },
+    "score": 0.9174,
+    "name": "exact_fwd_basis",
+    "call": 41
+  },
+  "1": {
+    "config": {
+      "mode": "splice",
+      "branches": [
+        {
+          "mode": "shared"
+        },
+        {
+          "mode": "shared",
+          "scale": 1.5,
+          "mixture": true
+        }
+      ]
+    },
+    "score": 1.09,
+    "name": "splice_best",
+    "call": 26
+  },
+  "2": {
+    "config": {
+      "mode": "splice",
+      "branches": [
+        {
+          "mode": "shared",
+          "scale": 1.5,
+          "profile": "upright",
+          "basis": "pool",
+          "ranking": "weight"
+        },
+        {
+          "mode": "shared",
+          "scale": 1.5,
+          "profile": "upright",
+          "basis": "pool"
+        }
+      ]
+    },
+    "score": 0.9124,
+    "name": "pool_splice",
+    "call": 47
+  },
+  "3": {
+    "config": {
+      "mode": "splice",
+      "branches": [
+        {
+          "mode": "shared",
+          "scale": 1.5,
+          "profile": "transition"
+        },
+        {
+          "mode": "shared",
+          "scale": 1.5,
+          "profile": "upright",
+          "weighted3": true
+        }
+      ]
+    },
+    "score": 0.9382,
+    "name": "splice_best",
+    "call": 28
+  }
+}

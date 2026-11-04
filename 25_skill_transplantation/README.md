@@ -89,11 +89,21 @@ adapt stage also skips runs already recorded in `results/adapt_s<seed>.json`.
 | `media/` | `demo_grid.mp4/.gif`, `interpolation.png`, `branch_length.png`, `adaptation.png`, `training_curves.png` |
 | `logs/` | job logs and the checkpoint/resume test |
 
-**Repo size:** `checkpoints/**/*_state.pkl` (Adam moments, RNG and history for resume, ~58 MB of the
-~107 MB) are excluded by the project `.gitignore` but kept on disk. The demo, `report.py`,
-`lambda_fine.py` and `review_checks.py` only read the `.npz` weights. Without the `.pkl` files,
+**Repo size:** weights are not in the public repo. The root `.gitignore` excludes every
+`checkpoints/` folder (including the `*_state.pkl` resume files, ~58 MB of the ~107 MB) and the
+project `.gitignore` excludes `wsp/**/*.npz`; all of them stay on disk. The demo, `report.py`,
+`lambda_fine.py` and `review_checks.py` only read the `.npz` weights, so a fresh clone needs the
+training runs first. Without the `.pkl` files,
 `ppo.train` cannot skip finished runs, so rerunning `run_*.sh` retrains from scratch instead of
 returning the saved result.
+
+## Round 6: weight-space programming
+
+An LLM (Astra, gpt-6-astra) writes the merged fwd+bwd network directly from the specialists' weights, with
+no gradient descent, one-shot or with a 10/50-call rollout budget. The networks are scored on fresh held-out
+resets against matched-budget PPO/DAgger and runner controls. Everything lives in `wsp/`. Results and the
+rerun commands are in **[wsp/RESULTS_WSP.md](wsp/RESULTS_WSP.md)** (one-shot 82–84%, budget-50 90% held-out
+retained vs ≤46% for weight arithmetic; matched-step DAgger 96–97.5%; SGD on synthetic inputs 83%).
 
 ## Round 5: sequential three-skill repertoire
 

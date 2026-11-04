@@ -679,3 +679,36 @@ retention, switching failures, training throughput, peak memory, GPU smoke/resum
 learned-policy demo are **not measured**. Do not treat the tiny CPG artifact as a baseline result.
 Claude must run the guarded commands, return the receipts, and qualify acquisition as well as
 retention before this section receives outcome claims.
+
+## Round 6: weight-space programming (an LLM writes the merged weights)
+
+Full write-up: **[wsp/RESULTS_WSP.md](wsp/RESULTS_WSP.md)** (2026-11-04, `pre` condition, 4 training seeds).
+Astra (gpt-6-astra via Codex CLI) got the fwd/bwd/θ0 actor weights and a task description. With no
+gradient descent, it wrote one 19→128→128→6 network per seed that routes on the task one-hot. There were
+6 independent threads: 2 one-shot (no rollouts), 2 with 10 and 2 with 50 evaluation calls on training
+resets. I scored them on a fresh held-out reset bank (31000–31019) that Astra never saw.
+
+| network (held-out mean retained, 4 seeds) | env steps / seed | retained |
+|---|---|---|
+| Astra one-shot A / B | 0 | 82% / 84% |
+| Astra budget-10 A / B | ~15k | 83% / 89% |
+| Astra budget-50 A / B | ~75k | 90% / 90% |
+| SGD distillation on synthetic Gaussian inputs (control) | 0 | 83% |
+| Astra's routing skeleton with the original weights, no fitting (control) | 0 | 24% |
+| DAgger, matched steps (61k / 74k) | 61–74k | 97.5% / 96% |
+| PPO fine-tune from the average, matched steps (74k / 299k) | 74–299k | 30% / 48% |
+| best weight-arithmetic merge / fwd specialist for both labels | 0 | 46% / 55% |
+
+All six threads converged on the same construction. Layer 1 holds 127 shared features, with each task's
+first-layer bias moved into its one-hot column. Layer 2 is split into a ~64-unit fwd bank and a ~63-unit
+bwd bank, and the inactive bank is switched off by an exactly saturated tanh gate (margin ≥ 12). Output
+constants cancel per task. The banks are filled by closed-form ridge regression onto each specialist on
+synthetic inputs. The routing holds on real states: live layer-2 units under the two labels are disjoint,
+and the action MSE to the specialists falls from 0.23 (average) to 0.01. The gain comes from that
+data-free regression, not from editing a few weights: 93–100% of weights change, and plain SGD on
+synthetic inputs ties the one-shot. With environment access, DAgger at the same step count still wins by
+6–9 points. Earlier I said the averaged net ignores its label; that holds for `init`. In `pre` its actions
+do depend on the label (it is a wrecked fwd gait). TASK.md repeated the `init` claim to Astra; this is
+disclosed in the write-up. I also ran the one-shot builders unchanged on the `init` condition (random θ0),
+where the other merges keep −5% to 19% (fwd_spec_both is the 19%); they keep 86% / 87% there. Demo: `wsp/media/wsp_demo.mp4`, plot:
+`wsp/media/wsp_retained.png`.
