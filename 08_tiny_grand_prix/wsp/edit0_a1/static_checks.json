@@ -1,0 +1,453 @@
+{
+  "scope": "Static weight/hand-made-input checks only; zero simulator calls or driving.",
+  "start_sha256": "50f875b604d183c9b6d000a790bc7d1f5d0bd551a49d6ad627307ed68a941231",
+  "final_sha256": "9f3891391b8d989f826e85171358c1a3b8cf5115b93010d2b2eacee839610ae3",
+  "total_parameters": 1570,
+  "changed_parameters": 394,
+  "changed_fraction": 0.25095541401273885,
+  "changed_by_array": {
+    "W1": 80,
+    "b1": 32,
+    "W2": 184,
+    "b2": 32,
+    "W3": 64,
+    "b3": 2
+  },
+  "repurposed_h1_mean_activations": {
+    "23": 0.8613976104322254,
+    "29": -0.9293991360625,
+    "14": 0.3222478418410739,
+    "6": 0.2665312747283862
+  },
+  "retained_steering_logit_rmse": 0.007861067249815739,
+  "retained_steering_logit_max_abs_error": 0.019337774182443423,
+  "removed_center_steering_logit": 0.16897425971385208,
+  "static_grid_size": 1323,
+  "pedal_identity_max_abs_error": 9.539671853350112e-07,
+  "checks_passed": [
+    "six arrays, exact shapes, float32, finite, identical reload",
+    "pedal agrees with the programmed formula",
+    "no positive pedal at/above any of the three target speeds",
+    "pedal decreases monotonically with speed on static grid",
+    "pedal increases monotonically with forward clearance on static grid",
+    "previous pedal has no effect on either output"
+  ],
+  "hand_made_probes": [
+    {
+      "case": "straight_center",
+      "speed_m_s": 0,
+      "previous_steer": 0,
+      "original_action": [
+        0.19738105187530341,
+        0.9998709570501255
+      ],
+      "final_action": [
+        0.009361592071983983,
+        0.9565773477073124
+      ]
+    },
+    {
+      "case": "straight_center",
+      "speed_m_s": 12,
+      "previous_steer": 0,
+      "original_action": [
+        0.1769594054636713,
+        0.9999013926049922
+      ],
+      "final_action": [
+        0.0032168887789436056,
+        0.9565674557285908
+      ]
+    },
+    {
+      "case": "straight_center",
+      "speed_m_s": 20,
+      "previous_steer": 0,
+      "original_action": [
+        0.15272719890960007,
+        0.9999126396276512
+      ],
+      "final_action": [
+        -0.003798752827905705,
+        0.9537983062187471
+      ]
+    },
+    {
+      "case": "straight_center",
+      "speed_m_s": 30,
+      "previous_steer": 0,
+      "original_action": [
+        0.11055705106115665,
+        0.9999204488234378
+      ],
+      "final_action": [
+        -0.015670709581572843,
+        -0.9439073773587976
+      ]
+    },
+    {
+      "case": "straight_near_left",
+      "speed_m_s": 0,
+      "previous_steer": 0,
+      "original_action": [
+        -0.8290889233868974,
+        0.999775933892981
+      ],
+      "final_action": [
+        -0.3253655506891103,
+        0.9565773467469411
+      ]
+    },
+    {
+      "case": "straight_near_left",
+      "speed_m_s": 12,
+      "previous_steer": 0,
+      "original_action": [
+        -0.8354915585152657,
+        0.9998265586768295
+      ],
+      "final_action": [
+        -0.33060316038919885,
+        0.9565631829615867
+      ]
+    },
+    {
+      "case": "straight_near_left",
+      "speed_m_s": 20,
+      "previous_steer": 0,
+      "original_action": [
+        -0.8397861422026456,
+        0.9998443602346041
+      ],
+      "final_action": [
+        -0.33432184457141445,
+        0.9524934398264946
+      ]
+    },
+    {
+      "case": "straight_near_left",
+      "speed_m_s": 30,
+      "previous_steer": 0,
+      "original_action": [
+        -0.8452526539294514,
+        0.9998564305218548
+      ],
+      "final_action": [
+        -0.3392303252266776,
+        -0.9859212819106165
+      ]
+    },
+    {
+      "case": "straight_at_left",
+      "speed_m_s": 0,
+      "previous_steer": 0,
+      "original_action": [
+        -0.9635035460592397,
+        0.9996240339185962
+      ],
+      "final_action": [
+        -0.49252500209655387,
+        0.9564119833802357
+      ]
+    },
+    {
+      "case": "straight_at_left",
+      "speed_m_s": 12,
+      "previous_steer": 0,
+      "original_action": [
+        -0.9642806928517048,
+        0.99970949022578
+      ],
+      "final_action": [
+        -0.4951075595624782,
+        -0.8760182252360734
+      ]
+    },
+    {
+      "case": "straight_at_left",
+      "speed_m_s": 20,
+      "previous_steer": 0,
+      "original_action": [
+        -0.9643522284068524,
+        0.9997405602252197
+      ],
+      "final_action": [
+        -0.49571080509985055,
+        -0.9589359772113242
+      ]
+    },
+    {
+      "case": "straight_at_left",
+      "speed_m_s": 30,
+      "previous_steer": 0,
+      "original_action": [
+        -0.9640083854264679,
+        0.999763369527552
+      ],
+      "final_action": [
+        -0.49535545609451853,
+        -0.9861946704162485
+      ]
+    },
+    {
+      "case": "heading_left",
+      "speed_m_s": 0,
+      "previous_steer": 0,
+      "original_action": [
+        -0.8471200561145549,
+        0.9997590483052667
+      ],
+      "final_action": [
+        -0.33809580554505336,
+        0.9565773323504119
+      ]
+    },
+    {
+      "case": "heading_left",
+      "speed_m_s": 12,
+      "previous_steer": 0,
+      "original_action": [
+        -0.8524993702493735,
+        0.9998154421509946
+      ],
+      "final_action": [
+        -0.34300893051998393,
+        0.9564990695757346
+      ]
+    },
+    {
+      "case": "heading_left",
+      "speed_m_s": 20,
+      "previous_steer": 0,
+      "original_action": [
+        -0.8564930693515004,
+        0.9998356815907847
+      ],
+      "final_action": [
+        -0.34679779840050906,
+        0.9268871405576249
+      ]
+    },
+    {
+      "case": "heading_left",
+      "speed_m_s": 30,
+      "previous_steer": 0,
+      "original_action": [
+        -0.861968735354075,
+        0.999849669120239
+      ],
+      "final_action": [
+        -0.3521387313829054,
+        -0.9861795670298846
+      ]
+    },
+    {
+      "case": "gentle_left",
+      "speed_m_s": 0,
+      "previous_steer": 0,
+      "original_action": [
+        0.7856126659494252,
+        0.9997738923188894
+      ],
+      "final_action": [
+        0.21941942115093366,
+        0.9565773413502495
+      ]
+    },
+    {
+      "case": "gentle_left",
+      "speed_m_s": 12,
+      "previous_steer": 0,
+      "original_action": [
+        0.7887088970715237,
+        0.9998391773571035
+      ],
+      "final_action": [
+        0.22096515275284767,
+        0.9565391630252068
+      ]
+    },
+    {
+      "case": "gentle_left",
+      "speed_m_s": 20,
+      "previous_steer": 0,
+      "original_action": [
+        0.7818553550869061,
+        0.9998654263385335
+      ],
+      "final_action": [
+        0.21624103265544106,
+        0.9443006517605288
+      ]
+    },
+    {
+      "case": "gentle_left",
+      "speed_m_s": 30,
+      "previous_steer": 0,
+      "original_action": [
+        0.7634326460748311,
+        0.9998859814228356
+      ],
+      "final_action": [
+        0.20448262203120113,
+        -0.986157858826526
+      ]
+    },
+    {
+      "case": "sharp_left",
+      "speed_m_s": 0,
+      "previous_steer": 0,
+      "original_action": [
+        0.7779210562485525,
+        0.999558589744069
+      ],
+      "final_action": [
+        0.213036639306303,
+        0.9565738598828
+      ]
+    },
+    {
+      "case": "sharp_left",
+      "speed_m_s": 12,
+      "previous_steer": 0,
+      "original_action": [
+        0.7820485380750317,
+        0.9996995144012121
+      ],
+      "final_action": [
+        0.21537844954324403,
+        0.9371561945734858
+      ]
+    },
+    {
+      "case": "sharp_left",
+      "speed_m_s": 20,
+      "previous_steer": 0,
+      "original_action": [
+        0.7737474602710009,
+        0.9997572756936313
+      ],
+      "final_action": [
+        0.21007638467243467,
+        -0.9713747548571701
+      ]
+    },
+    {
+      "case": "sharp_left",
+      "speed_m_s": 30,
+      "previous_steer": 0,
+      "original_action": [
+        0.7512175604725694,
+        0.9998035041128749
+      ],
+      "final_action": [
+        0.19658987715916965,
+        -0.9866065428616906
+      ]
+    },
+    {
+      "case": "very_sharp_left",
+      "speed_m_s": 0,
+      "previous_steer": 0,
+      "original_action": [
+        0.6146237129879257,
+        0.9993111326188626
+      ],
+      "final_action": [
+        0.1346311036220729,
+        0.9565473450476872
+      ]
+    },
+    {
+      "case": "very_sharp_left",
+      "speed_m_s": 12,
+      "previous_steer": 0,
+      "original_action": [
+        0.6091360656861017,
+        0.9995429516046728
+      ],
+      "final_action": [
+        0.1324947512670283,
+        0.22292283528579931
+      ]
+    },
+    {
+      "case": "very_sharp_left",
+      "speed_m_s": 20,
+      "previous_steer": 0,
+      "original_action": [
+        0.5873974944163549,
+        0.9996347416453684
+      ],
+      "final_action": [
+        0.12402035340208438,
+        -0.9861727718514179
+      ]
+    },
+    {
+      "case": "very_sharp_left",
+      "speed_m_s": 30,
+      "previous_steer": 0,
+      "original_action": [
+        0.5412675804869768,
+        0.9997058494778573
+      ],
+      "final_action": [
+        0.10690150643855088,
+        -0.9866067018040104
+      ]
+    },
+    {
+      "case": "approach_left",
+      "speed_m_s": 0,
+      "previous_steer": 0,
+      "original_action": [
+        0.4689751931170172,
+        0.9997643775361337
+      ],
+      "final_action": [
+        0.08509978541820944,
+        0.9565773476116322
+      ]
+    },
+    {
+      "case": "approach_left",
+      "speed_m_s": 12,
+      "previous_steer": 0,
+      "original_action": [
+        0.4567765451517789,
+        0.9998321456474452
+      ],
+      "final_action": [
+        0.08061093765180628,
+        0.956567030063291
+      ]
+    },
+    {
+      "case": "approach_left",
+      "speed_m_s": 20,
+      "previous_steer": 0,
+      "original_action": [
+        0.43364828200258704,
+        0.9998579495136202
+      ],
+      "final_action": [
+        0.072813427111926,
+        0.9536702555578527
+      ]
+    },
+    {
+      "case": "approach_left",
+      "speed_m_s": 30,
+      "previous_steer": 0,
+      "original_action": [
+        0.3890107683356925,
+        0.999877018290737
+      ],
+      "final_action": [
+        0.05844406289175612,
+        -0.9817522375383932
+      ]
+    }
+  ]
+}

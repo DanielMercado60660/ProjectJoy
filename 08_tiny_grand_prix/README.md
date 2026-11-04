@@ -85,6 +85,13 @@ Set `NUMBA_NUM_THREADS=4` on this shared machine (`train_all.sh` does).
 | `results/` | `eval.json`, `eval_table.md`, `eval_per_track.npz`, `hack.json`, `diagnose_grip.json`; `seeds/` (ES/PPO seed 2); `dr_seeds/` (grip-randomized seeds × selection rule: `seeds_table.md`, `selection.json`, `eval*.{json,md,npz}`) |
 | `tests/test_smoke.py` | pytest smoke suite |
 
+## Round 6: weight-space programming
+
+An LLM (Astra) reads and edits the policy weights directly, with no training: it identifies the wall-riding
+policy from its weights, writes an edit that removes the wall-riding (100% held-out with 10-12
+evaluation calls, where matched-budget ES gets 0%), and writes a one-row grip-0.5 fix. Everything is
+in [wsp/](wsp/) and the results are in [wsp/RESULTS_WSP.md](wsp/RESULTS_WSP.md).
+
 ## Round 5: discover grip while driving
 
 The new experiment adds invisible wet patches and mid-lap changes, paired GRU /
@@ -149,7 +156,8 @@ MPLCONFIGDIR=results/r5/mpl_cache ../.venv/bin/python analyze_r5.py --tag r5_see
 The planned AC seeds 1/2 were **not** run; all Round-5 numbers are one seed. The reviewer
 re-ran the 23 NumPy tests and `analyze_r5.py` (output to a scratch path) and got an identical
 audit. `analyze_r5.py` needs `checkpoints/r5_seed0_state.npz` (364 KB, the final rolling
-state); `.gitignore` now keeps that one state file so the audit reruns from a checkout.
+state). The project `.gitignore` tries to keep that one state file, but the root rule excludes every
+`checkpoints/` folder, so it is not in the public repo and the audit reruns only locally.
 
 To reproduce the completed analysis (~4–15 s, no MLX), run the timestamped
 commands below from this folder; they preserve existing receipts and keep CPU

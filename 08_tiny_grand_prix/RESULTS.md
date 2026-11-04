@@ -657,3 +657,30 @@ RNN/FF arms and retune the classical estimator on new train/validation splits,
 reserving another fresh test. That task and its training runtime are **not
 measured**. Repeating the present easy-to-observe task would measure seed variance,
 not resolve its weak test of memory.
+
+## Round 6: weight-space programming
+
+Full write-up: [wsp/RESULTS_WSP.md](wsp/RESULTS_WSP.md). Astra (gpt-6-astra via Codex,
+numpy only) read and wrote the 1,570 weights directly, with no gradient descent. Claude ran the
+harness and the baselines, and scored everything on fresh tracks no Astra thread saw: held-out
+1,090,000–1,090,199 and hard 2,090,000–2,090,099.
+
+* **Read.** From weight text alone, with no code and no rollouts, Astra identified the soft-wall
+  wall-rider (`es_soft`) against the clean `es` in 3/3 blind attempts (95–97% confidence). It
+  answered "neither" on a catch trial with two clean policies. The units it named do **not**
+  matter: clamping them is inside the random-unit null, and no single unit of 64 changes wall
+  contact. The hack is a missing brake on a saturated pedal output (logit ≥ 3.6 on 99% of steps,
+  full throttle 100% of the time), not a circuit.
+* **Edit.** With a 25-call budget on 32 train tracks, both attempts reached 32/32 legal laps
+  (12 and 10 calls). On held-out tracks: **100% / 25.47 s and 100% / 25.77 s**. On hard tracks:
+  **98% and 96%**. For comparison: tuned ray follower 100% / 25.82 s, 79% hard; ES from scratch
+  100% / 25.09 s, 74% hard. The 25-call hill-climb and ES fine-tunes at 1× and 10× the episode
+  budget all stay at **0%**. ES needs 100× (160k episodes, 56–79M steps) to reach 99–100%.
+  One-shot edits with no rollouts score 97.5% and 65.5%. Both edits are speed governors written
+  into spare units (14–18% of weights), not a surgical fix.
+* **Grip.** Both attempts started by scaling the speed input's weights by √2 (a1's final edit keeps
+  √2; a2's best uses 1.35), because corner speed scales
+  with √μ. Plus small steering fixes, this takes `es` from 4.5% to **100% / 99.5% at grip 0.5**,
+  against 71–87% for matched ES and 92.5% for `ppo_dr`. It costs ~4 s per lap at grip 1.0
+  (29.0 s vs 25.1 s). An obstacle removed, not grip sensing added.
+* Demos: `wsp/media/hack_before_after_{soft,strict}.gif`, `wsp/media/grip05_before_after.gif`.
