@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duck Hunt Duel</title>
+<style>
+  :root { --bg:#f6f4ee; --ink:#1d2433; --muted:#5b6475; --panel:#ffffff; --line:#d9d5ca;
+          --sky1:#bfe3f5; --sky2:#e9f6fb; --ground:#7fae5b; --duck:#2f6b3a; --cross:#c0392b; --wp:#334; --done:#9aa; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+          --bg:#14171d; --ink:#e7e9ee; --muted:#9aa3b2; --panel:#1d222b; --line:#2f3642;
+          --sky1:#1d3346; --sky2:#26425a; --ground:#3f6431; --duck:#8fd19e; --cross:#ff6b5b; --wp:#dde; --done:#567; } }
+  :root[data-theme="dark"] { --bg:#14171d; --ink:#e7e9ee; --muted:#9aa3b2; --panel:#1d222b; --line:#2f3642;
+          --sky1:#1d3346; --sky2:#26425a; --ground:#3f6431; --duck:#8fd19e; --cross:#ff6b5b; --wp:#dde; --done:#567; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.45 system-ui, -apple-system, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 18px 16px 40px; }
+  h1 { font-size: 1.35rem; margin: 0 0 4px; }
+  p.sub { color: var(--muted); margin: 0 0 14px; }
+  .bar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:10px; }
+  select, button, input { font: inherit; color: var(--ink); background: var(--panel); border:1px solid var(--line);
+          border-radius:6px; padding:5px 9px; }
+  select { max-width: 100%; }
+  canvas { width:100%; height:auto; display:block; border-radius:8px; border:1px solid var(--line); background:var(--sky2); }
+  .status { display:flex; flex-wrap:wrap; gap:16px; margin:8px 0; font-variant-numeric: tabular-nums; }
+  .status b { font-weight:600; }
+  .legend { color:var(--muted); font-size:0.88rem; }
+  .res-HIT { color: var(--cross); } .res-SURVIVED { color: var(--duck); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Duck Hunt Duel</h1>
+  <p class="sub">Held-out courses. The duck must pass 6 rings in order within 11 s; the hunter moves a crosshair
+     (max 14 m/s), sees the duck only through 0.3 m position noise, has 3 shells, and each shot lands 0.25 s after
+     the trigger where the crosshair was.</p>
+  <div class="bar">
+    <select id="ep" aria-label="episode"></select>
+    <button id="play">Pause</button>
+    <button id="restart">Restart</button>
+    <label>speed <select id="speed"><option>0.25</option><option>0.5</option><option selected>1</option><option>2</option></select></label>
+  </div>
+  <canvas id="cv" width="920" height="480"></canvas>
+  <div class="status"><span>t = <b id="t">0.00</b> s</span><span>rings <b id="k">0</b>/6</span>
+    <span>shells left <b id="ammo">3</b></span><span>result <b id="res"></b></span></div>
+  <p class="legend">Green dot and trail: duck. Grey dots: what the hunter sees (noisy). Red cross: crosshair.
+     Dashed red circle: a shot in flight (its radius is the 0.6 m hit radius); it flashes on impact.
+     Rings: next ring bold, passed rings faded.</p>
+</main>
+<script>
+const EPS = __EPISODES__;
+const K = __CONST__;
+const cv = document.getElementById('cv'), g = cv.getContext('2d');
+const sel = document.getElementById('ep');
+EPS.forEach((e, i) => { const o = document.createElement('option'); o.value = i;
+  o.textContent = `${e.label} | course ${e.course} | ${e.result}`; sel.appendChild(o); });
+let cur = 0, f = 0, playing = true, acc = 0, last = null, flashes = [];
+const [X0, X1, Z0, Z1] = K.ARENA;
+function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+function sx(x) { return (x - X0) / (X1 - X0) * cv.width; }
+function sz(z) { return cv.height - (z - Z0) / (Z1 - Z0) * cv.height; }
+const S = cv.width / (X1 - X0);
+function draw() {
+  const e = EPS[cur], n = e.p.length, i = Math.min(f, n - 1);
+  const grd = g.createLinearGradient(0, 0, 0, cv.height); grd.addColorStop(0, css('--sky1')); grd.addColorStop(1, css('--sky2'));
+  g.fillStyle = grd; g.fillRect(0, 0, cv.width, cv.height);
+  g.fillStyle = css('--ground'); g.fillRect(0, sz(0.4), cv.width, cv.height - sz(0.4));
+  // rings
+  for (let j = 1; j < e.W.length; j++) {
+    const passed = j < e.k[i], next = j === e.k[i];
+    g.beginPath(); g.arc(sx(e.W[j][0]), sz(e.W[j][1]), K.WP_R * S, 0, 2 * Math.PI);
+    g.strokeStyle = passed ? css('--done') : css('--wp'); g.lineWidth = next ? 3 : 1.2; g.stroke();
+    g.fillStyle = passed ? css('--done') : css('--wp'); g.font = '12px system-ui';
+    g.fillText(j, sx(e.W[j][0]) + K.WP_R * S + 3, sz(e.W[j][1]) - 3);
+  }
+  // noisy observations
+  g.fillStyle = css('--muted');
+  for (let j = Math.max(0, i - 12); j <= i; j++) { g.globalAlpha = 0.25 + 0.6 * (j - i + 12) / 12;
+    g.beginPath(); g.arc(sx(e.z[j][0]), sz(e.z[j][1]), 2.2, 0, 2 * Math.PI); g.fill(); }
+  g.globalAlpha = 1;
+  // trail + duck
+  g.strokeStyle = css('--duck'); g.lineWidth = 2; g.beginPath();
+  for (let j = 0; j <= i; j++) { const X = sx(e.p[j][0]), Z = sz(e.p[j][1]); j ? g.lineTo(X, Z) : g.moveTo(X, Z); }
+  g.stroke();
+  g.fillStyle = css('--duck'); g.beginPath(); g.arc(sx(e.p[i][0]), sz(e.p[i][1]), 6, 0, 2 * Math.PI); g.fill();
+  // shot in flight
+  if (e.pend[i] > 0) { g.setLineDash([5, 4]); g.strokeStyle = css('--cross'); g.lineWidth = 2;
+    g.beginPath(); g.arc(sx(e.aim[i][0]), sz(e.aim[i][1]), K.HIT_R * S, 0, 2 * Math.PI); g.stroke(); g.setLineDash([]); }
+  if (i > 0 && e.pend[i - 1] === 1) flashes.push({ x: e.aim[i - 1][0], z: e.aim[i - 1][1], life: 8 });
+  flashes.forEach(fl => { g.globalAlpha = fl.life / 8; g.fillStyle = css('--cross');
+    g.beginPath(); g.arc(sx(fl.x), sz(fl.z), K.HIT_R * S, 0, 2 * Math.PI); g.fill(); });
+  g.globalAlpha = 1;
+  // crosshair
+  const cx = sx(e.c[i][0]), cz = sz(e.c[i][1]); g.strokeStyle = css('--cross'); g.lineWidth = 2;
+  g.beginPath(); g.arc(cx, cz, 11, 0, 2 * Math.PI); g.moveTo(cx - 17, cz); g.lineTo(cx + 17, cz); g.moveTo(cx, cz - 17); g.lineTo(cx, cz + 17); g.stroke();
+  document.getElementById('t').textContent = ((i + 1) * K.DT).toFixed(2);
+  document.getElementById('k').textContent = Math.min(e.k[i] - 1, 6);
+  const shotsSoFar = e.pend.slice(0, i + 1).filter((v, j) => v === K.DELAY).length;
+  document.getElementById('ammo').textContent = 3 - shotsSoFar;
+  const r = document.getElementById('res'); r.textContent = i >= n - 1 ? e.result : '…'; r.className = i >= n - 1 ? 'res-' + e.result : '';
+}
+function tick(ts) {
+  if (last === null) last = ts; const dt = (ts - last) / 1000; last = ts;
+  if (playing) { acc += dt * parseFloat(document.getElementById('speed').value);
+    while (acc >= K.DT) { acc -= K.DT; f++; flashes.forEach(fl => fl.life--); flashes = flashes.filter(fl => fl.life > 0);
+      if (f >= EPS[cur].p.length + 25) { f = 0; flashes = []; } } }
+  draw(); requestAnimationFrame(tick);
+}
+sel.onchange = () => { cur = +sel.value; f = 0; flashes = []; };
+document.getElementById('play').onclick = (ev) => { playing = !playing; ev.target.textContent = playing ? 'Pause' : 'Play'; };
+document.getElementById('restart').onclick = () => { f = 0; flashes = []; };
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>

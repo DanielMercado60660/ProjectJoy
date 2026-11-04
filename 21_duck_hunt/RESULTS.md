@@ -1,4 +1,22 @@
-# 21 Duck Hunt: results (first satisfying version)
+# 21 Duck Hunt: results
+
+## Round 6 summary (2026-11-04)
+
+Three follow-ups, each on a fresh held-out set whose seeds were fixed after the method was frozen.
+Full protocol, every attempt and caveats in the linked files; the first-version results below are
+unchanged.
+
+| part | result | file |
+|---|---|---|
+| Flight, learned residual on PD+ | vs PD+ at 2× tuning budget, 2000 fresh courses: −0.113 s [−0.124, −0.102] at σ=2, −0.117 s [−0.128, −0.106] at σ=4; faster on 68–74% of courses per seed (3 seeds). Done bar met. Extra PD+ tuning gave no gain. | [RESULTS_R6_flight.md](RESULTS_R6_flight.md) |
+| Flight, pure PPO (2.3e8 steps, 3 seeds) | vs PD+ 1×: −0.047 s [−0.059, −0.035] at σ=2 (its training wind), +0.073 s [+0.058, +0.089] at σ=4. Split result, done bar not met. Later training got slower as exploration noise collapsed (cause not isolated). | [RESULTS_R6_flight.md](RESULTS_R6_flight.md) |
+| Tracker | CNN trained on procedurally randomized scenes (round 2 adds haze): 0–1.3% lost on every held-out shift (was 54–99.7%), 0–0.5% on a new pre-registered family set, 5.5% [3.2–8.3] on all-shifts-at-once fresh seeds (round 1: 18.7%). Classical with matched help: 2.5–36%; its pre-registered pick (v4) generalizes worse than v3, which is shown but labelled as chosen after viewing. | [RESULTS_R6_tracker.md](RESULTS_R6_tracker.md) |
+| Hunter game | Self-play hunter vs tuned lead-pursuit hunter: +0.13 / +0.14 / +0.09 hit rate on straight / jink / dodge evaders, tie on held-out dodge_jink (−0.012 [−0.070, +0.046]). The learned duck is hit less than a straight-flying PD+ duck by both lead-pursuit hunters (tuned: 0.508 vs 0.620, −0.112 [−0.166, −0.056]) but ties the held-out constant-acceleration hunter; the arms race still favours the hunter (final hunter hits the final duck 70% of the time). Single seed per agent. | [RESULTS_R6_hunter.md](RESULTS_R6_hunter.md), [HUNTER_DESIGN.md](HUNTER_DESIGN.md) |
+
+Open decisions: mixed-wind training for pure PPO (needs PD+ retuned the same way and another fresh
+seed); 3 seeds of hunter self-play.
+
+# First satisfying version
 
 All numbers come from real runs in this folder; the file each comes from is named. Run on battery
 (started at 74%, see the end of this file), with one other light job on the machine;

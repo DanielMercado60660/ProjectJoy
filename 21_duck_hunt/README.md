@@ -16,13 +16,41 @@ Two halves, each with its own cheap, tuned classical baseline:
    backgrounds (sunset, desert, snow), dusk lighting with more noise, new distractors
    (balloons, duck-coloured hawks), and all three at once.
 
-The hunter/evasion stage ("Go deeper") is not built.
+Round 6 (2026-11-04) built the hunter/evasion stage ("Go deeper"), see below.
 
 **Cross-review (2026-10-24):** a reviewer-added stronger flight baseline, PD+ (`pd_plus.py`: aim at
 the ring edge along the shortest-path bisector, braking-distance speed profile, no slow-down at
 the last waypoint, direction-preserving thrust clip; tuned with the same 2801-configuration
 budget), completes 100% of the held-out courses in 6.48 s vs PPO's 6.62 s. The learned flyer
 does not beat a good heuristic. Details in RESULTS.md.
+
+## Round 6 (2026-11-04): flight rematch, robust tracker, hunter game
+
+All on fresh held-out sets whose seeds were fixed after each method was frozen. Summary at the top
+of RESULTS.md; full write-ups:
+
+- **Flight** ([RESULTS_R6_flight.md](RESULTS_R6_flight.md)). A learned residual on top of PD+ beats PD+
+  at twice its tuning budget by 0.11 s (CI excludes 0) at both wind levels, faster on ~70% of
+  courses. Pure PPO at 2.3e8 steps beats PD+ in its training wind (−0.047 s) but loses in stronger
+  unseen wind (+0.073 s).
+- **Tracker** ([RESULTS_R6_tracker.md](RESULTS_R6_tracker.md)). A CNN trained on procedurally
+  randomized scenes (palettes, textures, lighting, haze, decoy birds) loses 0–1.3% of frames on every
+  held-out shift (was 54–99.7%) and 5.5% when everything shifts at once. The classical tracker,
+  given matched help, loses 2.5–36%.
+- **Hunter game** ([HUNTER_DESIGN.md](HUNTER_DESIGN.md), [RESULTS_R6_hunter.md](RESULTS_R6_hunter.md),
+  [media/hunter_demo.html](media/hunter_demo.html)). A duck on a timed course vs a crosshair hunter
+  with 3 shells. After 8 generations of self-play the learned hunter out-hits a tuned lead-pursuit
+  hunter by 9–14 points on training-style evaders and ties it on a held-out evader. The hunter wins
+  the arms race: the learned duck dodges the lead-pursuit hunters better than a straight-flying PD+
+  duck (hit 51% vs 62% by the tuned one) but not a held-out constant-acceleration hunter, and the
+  final hunter still hits the final duck 70% of the time.
+
+Commands: "Reproduce" in RESULTS_R6_flight.md, "How to run" in RESULTS_R6_tracker.md, "Files and
+commands" in RESULTS_R6_hunter.md. New files:
+`train_flight_r6.py`, `pd_plus_r6.py`, `eval_r6_flight.py`, `r6_flight_figs.py`, `hunter.py`,
+`train_hunter.py`, `tune_lead_r6h.py`, `eval_hunter.py`, `r6h_*.py`, `make_hunter_demo.py`,
+`scene_r6.py`, `train_tracker_r6.py`, `track_classical_r6.py`, `eval_tracker_r6.py`, `select_r6.py`,
+`diagnose_r6.py`, `replicate_r6.py`, `demo_tracker_r6.py`, `tests/test_r6*.py`.
 
 ## Commands (run from this folder)
 
