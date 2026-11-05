@@ -1,5 +1,17 @@
 # Results: Roomba Rocket League (first satisfying version)
 
+> **Round 6 (2026-11-04), population training: full write-up in [RESULTS_R6.md](RESULTS_R6.md).** An attacker trained
+> against randomized scripted defender/striker families plus a self-play archive of its own snapshots, evaluated on
+> three NEW opponents specified before training (interceptor, zone, presser; never trained or tuned on). 3 seeds, 1000
+> held-out matches per cell, paired bootstrap CIs. All three seeds beat the scripted striker vs the zone (+9 to +11
+> points) and the presser (+47 to +54). Vs the interceptor, seeds 0 and 2 are +22 / +22 and seed 1 is −8. Round 4's
+> run 4 is below the scripted striker on all three new opponents (18.7 / 29.0 / 30.2%). Only seed 0 also keeps the
+> original goalie (89%, vs run 4's 75%); seeds 1 and 2 drop to 13% / 5%. Pre-registered done bar: met by 1 of 3 seeds
+> (two extra pre-registered seeds: 1 of 5 overall; zone/presser beaten 5/5, interceptor 3/5, goalie kept 1/5).
+> Elo: seeds 1322 / 1302 / 1209, CEM-tuned scripted striker 1163, scripted 1000, run 4 799. Backwards dribbling
+> is explained as an arbitrary symmetry choice (a mirrored "twin" of the policy drives forwards and scores the same).
+> The text below is the original rounds 1–4 write-up, unchanged.
+
 ## Headline (all numbers are on held-out starts, 500 matches per cell)
 | policy | vs goalie (trained) heldout / corner / kickoff | vs keeper (unseen) heldout | vs chaser (unseen) heldout goal / conceded+own | file |
 |---|---|---|---|---|
@@ -92,7 +104,7 @@ much worse (15.6% vs 49.4%), because it spends the match pinning instead of shoo
 Same config as run 1 except the touch bonus: +0.5 once, on the learner's first touch. The run ran
 18.0 min (19:01–19:19, after waiting ~5 min for a GPU slot), 3,381 updates and 110.8 M env steps.
 Throughput was ~103 k steps/s **under load** (uptime load average 11.6 at start and 7.7 at end, with ten
-builders running). Logs: `logs/train.jsonl`; curve: `media/training_curve.png`.
+builders running). Logs: `logs/train.jsonl`; curve: `media/run2_training_curve.png`.
 
 **What happened in training.** The goal rate over training episodes rose to **91%** at 4 min, but on
 the easy curriculum (ball near the goal, curriculum 0.46). It peaked at **36.5%** once starts were fully

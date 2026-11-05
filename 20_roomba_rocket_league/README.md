@@ -94,3 +94,52 @@ results/        eval.json (run 2 final + baselines), eval_run{1,2_snapshot,3,4}_
 media/          run 4 demo clips (ppo_vs_goalie/keeper/chaser, scripted_vs_goalie, ppo_goals, ppo_pin_exploit),
                 run{2,3,4}_training_curve.png, and subfolders run1_touchbonus/ (pinning exploit), run2_snapshot_10min/, run2_final/
 ```
+
+## Round 6 (2026-11-04): population training, new held-out opponents
+Goal: an attacker that generalizes to opponents it never saw. Trained against a population (randomized scripted
+defender/striker families + self-play archive of its own snapshots); evaluated on three NEW opponents
+(`interceptor`, `zone`, `presser`) that were specified in STATUS.md before any training and never trained or
+tuned against. Result: all 3 seeds beat the scripted striker vs zone and presser, 2 of 3 vs the interceptor, and
+only seed 0 also keeps the original goalie (pre-registered done bar met by 1 of 3 seeds; 1 of 5 with two extra seeds). Write-up: [RESULTS_R6.md](RESULTS_R6.md). Demo: `media/r6_demo.html` (GIFs `media/r6_*.gif`).
+
+```bash
+export OMP_NUM_THREADS=4 NUMBA_NUM_THREADS=4
+# train (3 seeds, ~25-32 min each under load; resumable with --resume 1)
+../bin/gpu_run ../.venv/bin/python r6_train.py --seed 0 --total-steps 110e6 --minutes 43 --snap-every 8e6 --out checkpoints/r6_s0
+# baseline: CEM-tuned scripted attacker against the training pool
+../bin/gpu_run ../.venv/bin/python r6_tune_attacker.py --minutes 35 --max-gens 200 --out results/r6_tuned_attacker.json
+# held-out eval (seed base drawn at the recipe freeze), tables with paired bootstrap CIs, Elo round robin
+B=$(cat results/r6_heldout_seed_base.txt)
+../bin/gpu_run ../.venv/bin/python r6_eval.py --mode heldout --seed-base $B --n 1000 --out results/r6_heldout_a.json \
+    --att scripted tuned=results/r6_tuned_attacker.json run4=checkpoints/run4_tanh_relp.npz \
+          r6_s0=checkpoints/r6_s0.pkl r6_s1=checkpoints/r6_s1.pkl
+../bin/gpu_run ../.venv/bin/python r6_eval.py --mode heldout --seed-base $B --n 1000 --out results/r6_heldout_b.json \
+    --att r6_s2=checkpoints/r6_s2.pkl          # seed 2 finished later; same seeds -> same starts
+# (extension) seeds 3-4 -> results/r6_heldout_c.json; post-hoc goalie fine-tunes (r6_train.py --init ... ) ->
+#   results/r6_heldout_posthoc_goalieft.json; see RESULTS_R6.md for the exact commands/flags
+../.venv/bin/python r6_report.py results/r6_heldout_a.json results/r6_heldout_b.json > results/r6_heldout_tables.md
+../.venv/bin/python r6_donebar.py results/r6_heldout_a.json results/r6_heldout_b.json --out results/r6_donebar.json
+../bin/gpu_run ../.venv/bin/python r6_elo.py --seed-base $((B+500)) --out results/r6_elo.json \
+    --att tuned=results/r6_tuned_attacker.json run4=checkpoints/run4_tanh_relp.npz r6_s0=checkpoints/r6_s0.pkl \
+          r6_s1=checkpoints/r6_s1.pkl r6_s2=checkpoints/r6_s2.pkl \
+    --arch checkpoints/r6_s0_arch,checkpoints/r6_s1_arch,checkpoints/r6_s2_arch
+../.venv/bin/python r6_demo.py --att r6_s0=checkpoints/r6_s0.pkl r6_s1=checkpoints/r6_s1.pkl scripted \
+    run4=checkpoints/run4_tanh_relp.npz --seed-base $B          # then --att r6_s2=... (page is rebuilt from all clips)
+../.venv/bin/python r6_demo.py --att r6_s1=checkpoints/r6_s1.pkl twin_r6_s1=checkpoints/r6_s1.pkl \
+    run4=checkpoints/run4_tanh_relp.npz twin_run4=checkpoints/run4_tanh_relp.npz --opps keeper,goalie \
+    --seed-base 1501 --prefix r6_reverse_                      # reverse-dribbling clips + mirror twins
+../.venv/bin/python r6_mirror_twin.py --att r6_s1=checkpoints/r6_s1.pkl run4=checkpoints/run4_tanh_relp.npz --out results/r6_mirror_twin.json
+../.venv/bin/python r6_probe_reverse.py --att r6_s0=checkpoints/r6_s0.pkl r6_s1=checkpoints/r6_s1.pkl \
+    --opp goalie,keeper,interceptor --out results/r6_probe_reverse_s01.json
+../.venv/bin/python r6_plot.py logs/r6_s0.jsonl logs/r6_s1.jsonl logs/r6_s2.jsonl --out media/r6_training_curves.png
+../.venv/bin/python -m pytest -q tests/test_r6.py     # also run by ./smoke.sh
+```
+Files: `r6_common.py` (R6Arena: mirrored 27-d obs, ball-delay history, per-env opponent kinds; networks; slot-1
+dispatcher), `r6_opponents.py` (training families, held-out opponents, parametric scripted attacker),
+`r6_train.py` (PPO vs population, step-based schedule, full-state checkpoints; optional `--learn-def 1` learned
+defender, which failed, see RESULTS_R6), `r6_eval.py` (check / dev / heldout modes; dev mode refuses held-out
+opponents), `r6_report.py`, `r6_elo.py`, `r6_tune_attacker.py`, `r6_demo.py`, `r6_probe_reverse.py`, `r6_plot.py`,
+`r6_diag_learndef.py`, `r6_donebar.py`, `r6_mirror_twin.py`, `tests/test_r6.py`. Final checkpoints:
+`checkpoints/r6_s{0,1,2}.pkl` (seed 0 is the one that meets the done bar); stopped learned-defender pilot:
+`checkpoints/r6_pilot_def_s11.pkl`. Outputs: `checkpoints/r6_*` (`.pkl` full state; `*_arch/` snapshots),
+`results/r6_*`, `logs/r6_*`, `media/r6_*`.
