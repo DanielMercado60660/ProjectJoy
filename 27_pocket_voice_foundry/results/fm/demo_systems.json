@@ -1,0 +1,62 @@
+{
+ "heldout": [
+  [
+   "rec",
+   "Real recording (22 kHz original, played at 16 kHz)",
+   "real"
+  ],
+  [
+   "gt_voc28",
+   "Real mel -> 28's vocoder (vocoder ceiling)",
+   "voc28_real"
+  ],
+  [
+   "v1",
+   "27 v1 (FastSpeech, L1) -> 28's vocoder",
+   "p27v1"
+  ],
+  [
+   "v1_gan",
+   "27 v1 -> GAN-fine-tuned vocoder (partial, failed its gate)",
+   "p27v1_gan"
+  ],
+  [
+   "fm_lj",
+   "Follow-up B: flow matching, LJ only -> 28's vocoder (shipped)",
+   "fm_lj"
+  ],
+  [
+   "fm_ft",
+   "Follow-up C: flow matching, 337 h pretrain + LJ fine-tune -> 28's vocoder",
+   "fm_ft"
+  ],
+  [
+   "gemma",
+   "Gemma Voice (project 33), best-of-4, Mimi codec",
+   "gemma_bo4"
+  ]
+ ],
+ "hard": [
+  [
+   "v1",
+   "27 v1 (FastSpeech, L1) -> 28's vocoder",
+   "v1",
+   "",
+   "checkpoints/vocoder28/vocoder.safetensors"
+  ],
+  [
+   "fm_lj",
+   "Follow-up B: flow matching, LJ only -> 28's vocoder (shipped)",
+   "fm",
+   "checkpoints/fm/tts_fm_lj",
+   "checkpoints/vocoder28/vocoder.safetensors"
+  ],
+  [
+   "fm_ft",
+   "Follow-up C: flow matching, 337 h pretrain + LJ fine-tune -> 28's vocoder",
+   "fm",
+   "checkpoints/fm/tts_fm_ft",
+   "checkpoints/vocoder28/vocoder.safetensors"
+  ]
+ ]
+}

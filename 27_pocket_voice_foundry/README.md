@@ -118,3 +118,83 @@ The run-1 and step-7,000 exports used by `val_compare.py`, `results/run1/` and `
 gitignored `runs/` (2.6 GB on this disk). The committed checkpoints (~124 MB: acoustic 46, ctc 30, vocoder28 30, baseline
 18) are all needed: acoustic + vocoder for the demo, baseline + ctc for the eval. `results/wavs/` (137 MB of eval WAVs) is
 gitignored.
+
+## Follow-up (2026-10-31): flow-matching TTS, multi-speaker pretraining, vocoder check
+
+**Result (RESULTS.md, "Follow-up"):** a 44 M-parameter flow-matching (Matcha-style OT-CFM) acoustic model on v1's own MAS
+alignment + duration predictor, with pitch/energy predictors, raises UTMOS on the same 100 test clips from 1.95 (v1) to
+**2.96** through the same vocoder, with Whisper intelligibility level with v1 (1.32 % vs 1.14 % CER, CI spans 0). That beats
+Gemma Voice (project 33: 2.45 % CER, UTMOS 2.35). Pretraining on 337 h of LibriTTS-R + Hi-Fi TTS before an LJ fine-tune
+ties the LJ-only model on test. 28's vocoder is the naturalness ceiling (real mel through it: 2.59; real recording: 4.40). A
+short GAN fine-tune of it failed its gate, and halves the new model's margin over v1 to +0.5. Listener preference: not
+measured; blind page `media/followup.html`.
+
+*Reviewer (REVIEW_FOLLOWUP.md):* the 2.96 comes after choosing the sampler temperature by val UTMOS. At the pre-registered
+default (temp 0.667) B scores 2.87, still **+0.93 [+0.86, +1.00]** over v1. The run's unselected last step gives +0.94.
+WER is not level with v1: +0.83 points [+0.00, +1.65]. The GAN vocoder is better mainly on v1's mels (+0.48 there, +0.11 on
+real mels), so the "+0.5 through a better vocoder" is not a measurement with a good vocoder. Speed under load was about 2×
+slower than idle (B 57 ms vs 30 ms per clip). The loose `media/followup_*.wav` files carry system names in their
+filenames, so listen through the page for blind picks. The page's final tally lists v1, B and C twice each (once per
+label wording: held-out groups vs hard groups), so add the two rows by hand. The Gemma row reads 33's WAVs from 33's
+gitignored `runs/`, and `hard_fm.py` imports 33's `judge.normalize`, so those two pieces are not standalone.
+
+*Builder, after the review:* three of these are fixed. The page's tally now uses one label per system (page regenerated; every WAV
+byte-identical). `hard_fm.py` now carries a verbatim, provenance-marked copy of the judge normalizer (same `hard_summary.json`). And
+`eval_fm.py`'s sampler flags now default to the checkpoint's stored sampler (shipped checkpoints: Euler 10, temp 0.5). The Gemma
+row still reads 33's WAVs.
+
+```
+text --normalize--> chars --encoder(+speaker)--> h, mu --dur/pitch/energy predictors--> durations, per-char pitch & energy
+     --length regulator--> [mu, h + pitch/energy emb] per frame --OT-CFM decoder, Euler 10 steps, temp 0.5--> 80-band log-mel
+     --> 28's vocoder --> 16 kHz          (training only: MAS on log N(mel; mu, I), exactly as v1)
+```
+
+Run it (from this folder; every MLX process caps itself at 16 GB / 2 GB cache):
+```sh
+NUMBA_NUM_THREADS=4 OMP_NUM_THREADS=4 ../bin/gpu_run ../.venv/bin/python prep_multi.py      # -> cache2/{lj,libritts,hifi} (12 GB, ~12 min)
+../.venv/bin/python prep_wav16.py                                                         # -> cache2/lj/wav16.* (vocoder GAN only)
+# B: LJ only, 2 x 45 min
+../bin/gpu_run ../.venv/bin/python train_fm.py --sources lj --out runs/fm/lj/ckpt --max_minutes 45
+../bin/gpu_run ../.venv/bin/python train_fm.py --sources lj --out runs/fm/lj/ckpt --max_minutes 45 --resume --anneal_to 0.1
+# C: multi-speaker pretraining 2 x 45 min, then LJ fine-tune 45 min
+../bin/gpu_run ../.venv/bin/python train_fm.py --sources lj,libritts,hifi --out runs/fm/multi/ckpt --max_minutes 45
+../bin/gpu_run ../.venv/bin/python train_fm.py --sources lj,libritts,hifi --out runs/fm/multi/ckpt --max_minutes 45 --resume
+../bin/gpu_run ../.venv/bin/python train_fm.py --sources lj --init runs/fm/multi/ckpt --out runs/fm/ft/ckpt --lr 2e-4 --warm 500 --max_minutes 45
+# export a snapshot (pace fitted on val), generate + proxy-score, then Whisper judge + UTMOS
+../.venv/bin/python finalize_fm.py --src runs/fm/lj/ckpt_snap14000 --out runs/fm/export/lj_s14000
+../bin/gpu_run ../.venv/bin/python eval_fm.py --ckpt runs/fm/export/lj_s14000 --name fm_lj --split test --temp 0.5   # also --system v1|real, --vocoder, --split val|hard
+./score_fm.sh test_fm_lj                                       # ../.venv-judge (33's judge.py, as-is) + ../.venv-sac (mos.py, UTMOS22)
+runs/fm/grid.sh                                                # the val sampler grid used for selection
+../bin/gpu_run ../.venv/bin/python voc_check.py && ./score_fm.sh vc_lj_real vc_lj_voc vc_libritts_real vc_libritts_voc vc_hifi_real vc_hifi_voc
+../bin/gpu_run ../.venv/bin/python train_voc_gan.py --out runs/voc/gan --max_minutes 45   # GAN fine-tune of 28's vocoder (failed its gate)
+../.venv-judge/bin/python hard_fm.py hard_p27v1 hard_fm_lj hard_fm_ft ; python3 endings_fm.py
+../.venv/bin/python report_fm.py                               # -> results/fm/tables.md (every follow-up table)
+../.venv/bin/python make_demo_fm.py                            # -> media/followup.html + media/followup_*.wav
+../.venv/bin/python synth_fm.py "Dr. Smith paid \$15 on March 3rd, 1963." --out media/fm_synth.wav
+./smoke_fm.sh                                                  # follow-up pipeline end to end at tiny size (~40 s)
+../.venv/bin/python review_fm.py                               # reviewer: selection effect on test -> results/fm/review_tables.md (inputs: see its docstring)
+```
+(*Reviewer:* `smoke_fm.sh` covers prep, training, resume, fine-tune, export and synthesis (20 s here). It does not run
+`eval_fm.py`, the judge, UTMOS, `report_fm.py` or `make_demo_fm.py`. Also, `eval_fm.py`'s CLI defaults (`--temp 0.667`,
+`--n_steps 10`) override a checkpoint's stored sampler, so pass `--temp 0.5` to reproduce the shipped setting, as the
+command above does. `synth_fm.py` and `make_demo_fm.py` do use the stored sampler.)
+The exact sequence that ran is in `runs/fm/chain1.sh`, `runs/fm/chain2.sh` and STATUS.md (gitignored `runs/` holds the logs).
+
+| path | what |
+|---|---|
+| `pitch.py` | numpy F0 tracker (normalized autocorrelation), frame-aligned with `mel.py` |
+| `prep_multi.py`, `prep_wav16.py` | multi-source mel + F0 cache (`cache2/`, memory-mapped fp16); LJ 16 kHz waveforms for the vocoder GAN |
+| `model_fm.py` | flow-matching acoustic model, losses, MAS alignment, ODE sampling, `cap_memory()` |
+| `train_fm.py` | training (single or multi-source, `--init` fine-tune, `--resume`), snapshots |
+| `finalize_fm.py`, `eval_fm.py`, `synth_fm.py` | export with val pace; generation + proxy metrics + judge lists; text → wav |
+| `score_fm.sh`, `mos.py`, `report_fm.py`, `hard_fm.py`, `endings_fm.py` | Whisper + UTMOS scoring, tables, hard set, sentence-ending check |
+| `voc_check.py`, `train_voc_gan.py` | 28's vocoder on other speakers; GAN fine-tune of it |
+| `make_demo_fm.py`, `followup_template.html` | blind page (per-viewer shuffle, labels hidden until reveal, per-system tally) |
+| `smoke_fm.sh` | tiny end-to-end check |
+| `review_fm.py` | reviewer diagnostic: test at the default sampler and the final step → `results/fm/review_tables.md` |
+| `checkpoints/fm/tts_fm_lj.*` | **shipped**: B, LJ only, step 14,000, fp16, pace + val-chosen sampler in the JSON (88 MB) |
+| `checkpoints/fm/tts_fm_ft.*` | C, pretrain + LJ fine-tune, step 4,000 (88 MB) |
+| `results/fm/` | `lists/` (judge lists), `judge/`, `mos/`, `proxy/`, `tables.md`, `systems.json`, `hard_summary.json`, `endings.json` |
+
+The new checkpoints add 176 MB to `checkpoints/`. `cache2/` (12 GB) and `runs/` (training checkpoints, generated WAVs, the
+GAN vocoder snapshots) are regenerable and gitignored.

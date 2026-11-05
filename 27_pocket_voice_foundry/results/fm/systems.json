@@ -1,0 +1,360 @@
+{
+ "sections": [
+  {
+   "title": "Test (27's 100 clips), 28's vocoder for every mel-based system",
+   "refs": [
+    "27 v1 -> 28's vocoder",
+    "real recording"
+   ],
+   "rows": [
+    [
+     "real recording",
+     "test_real"
+    ],
+    [
+     "real mel -> 28's vocoder",
+     "test_voc28_real"
+    ],
+    [
+     "real mel -> Griffin-Lim 64",
+     "test_gt_gl"
+    ],
+    [
+     "27 v1 -> 28's vocoder",
+     "test_p27v1"
+    ],
+    [
+     "B: flow matching, LJ only (90 min)",
+     "test_fm_lj"
+    ],
+    [
+     "C: flow matching, 337 h pretrain + LJ fine-tune",
+     "test_fm_ft"
+    ],
+    [
+     "Gemma Voice (33) best-of-4, Mimi 24 kHz",
+     "test_gemma_bo4"
+    ]
+   ]
+  },
+  {
+   "title": "Test, B vs C (paired)",
+   "refs": [
+    "B: flow matching, LJ only (90 min)"
+   ],
+   "rows": [
+    [
+     "B: flow matching, LJ only (90 min)",
+     "test_fm_lj"
+    ],
+    [
+     "C: flow matching, 337 h pretrain + LJ fine-tune",
+     "test_fm_ft"
+    ]
+   ]
+  },
+  {
+   "title": "Test proxy metrics (27's CTC recognizer, spectral distances)",
+   "kind": "proxy",
+   "rows": [
+    [
+     "real mel -> 28's vocoder",
+     "test_real_voc28_regen"
+    ],
+    [
+     "27 v1 -> 28's vocoder",
+     "test_p27v1_regen"
+    ],
+    [
+     "B: LJ only",
+     "test_fm_lj"
+    ],
+    [
+     "C: pretrain + fine-tune",
+     "test_fm_ft"
+    ]
+   ]
+  },
+  {
+   "title": "Test through the GAN-fine-tuned vocoder (run 1, 4,754 steps; failed its UTMOS >= 3.0 gate, partial result)",
+   "refs": [
+    "27 v1 -> GAN vocoder"
+   ],
+   "rows": [
+    [
+     "real mel -> GAN vocoder",
+     "test_real_gan"
+    ],
+    [
+     "27 v1 -> GAN vocoder",
+     "test_p27v1_gan"
+    ],
+    [
+     "B -> GAN vocoder",
+     "test_fm_lj_gan"
+    ],
+    [
+     "C -> GAN vocoder",
+     "test_fm_ft_gan"
+    ]
+   ]
+  },
+  {
+   "title": "Vocoder swap, paired (same mels, 28's vocoder -> GAN vocoder), test",
+   "refs": [
+    "real mel -> 28's vocoder",
+    "27 v1 -> 28's vocoder",
+    "B -> 28's vocoder",
+    "C -> 28's vocoder"
+   ],
+   "rows": [
+    [
+     "real mel -> 28's vocoder",
+     "test_voc28_real"
+    ],
+    [
+     "real mel -> GAN vocoder",
+     "test_real_gan"
+    ],
+    [
+     "27 v1 -> 28's vocoder",
+     "test_p27v1"
+    ],
+    [
+     "27 v1 -> GAN vocoder",
+     "test_p27v1_gan"
+    ],
+    [
+     "B -> 28's vocoder",
+     "test_fm_lj"
+    ],
+    [
+     "B -> GAN vocoder",
+     "test_fm_lj_gan"
+    ],
+    [
+     "C -> 28's vocoder",
+     "test_fm_ft"
+    ],
+    [
+     "C -> GAN vocoder",
+     "test_fm_ft_gan"
+    ]
+   ]
+  },
+  {
+   "title": "Val-100: reference systems and the default-sampler candidates",
+   "refs": [
+    "27 v1 -> 28's vocoder"
+   ],
+   "rows": [
+    [
+     "real recording",
+     "val_real"
+    ],
+    [
+     "real mel -> 28's vocoder",
+     "val_real_voc28"
+    ],
+    [
+     "27 v1 -> 28's vocoder",
+     "val_p27v1"
+    ],
+    [
+     "B1 end (step 8,369)",
+     "val_fm_lj_s8369"
+    ],
+    [
+     "B s10000",
+     "val_fm_lj_s10000"
+    ],
+    [
+     "B s12000",
+     "val_fm_lj_s12000"
+    ],
+    [
+     "B s14000",
+     "val_fm_lj_s14000"
+    ],
+    [
+     "B s16000",
+     "val_fm_lj_s16000"
+    ],
+    [
+     "B s17719 (end)",
+     "val_fm_lj_s17719"
+    ],
+    [
+     "pretrained only (P2 end, LJ speaker id)",
+     "val_fm_multi_s19866"
+    ],
+    [
+     "C s2000",
+     "val_fm_ft_s2000"
+    ],
+    [
+     "C s4000",
+     "val_fm_ft_s4000"
+    ],
+    [
+     "C s6000",
+     "val_fm_ft_s6000"
+    ],
+    [
+     "C s8000",
+     "val_fm_ft_s8000"
+    ],
+    [
+     "C s9819 (end)",
+     "val_fm_ft_s9819"
+    ]
+   ]
+  },
+  {
+   "title": "Val-100: sampler grid on the chosen checkpoints",
+   "refs": [],
+   "rows": [
+    [
+     "B euler10 t0.5",
+     "val_fm_lj_s14000_euler10_t0.5"
+    ],
+    [
+     "B euler10 t0.667",
+     "val_fm_lj_s14000"
+    ],
+    [
+     "B euler10 t0.8",
+     "val_fm_lj_s14000_euler10_t0.8"
+    ],
+    [
+     "B euler32 t0.5",
+     "val_fm_lj_s14000_euler32_t0.5"
+    ],
+    [
+     "B euler32 t0.667",
+     "val_fm_lj_s14000_euler32_t0.667"
+    ],
+    [
+     "B euler32 t0.8",
+     "val_fm_lj_s14000_euler32_t0.8"
+    ],
+    [
+     "B midpoint10 t0.5",
+     "val_fm_lj_s14000_midpoint10_t0.5"
+    ],
+    [
+     "B midpoint10 t0.667",
+     "val_fm_lj_s14000_midpoint10_t0.667"
+    ],
+    [
+     "B midpoint10 t0.8",
+     "val_fm_lj_s14000_midpoint10_t0.8"
+    ],
+    [
+     "C euler10 t0.5",
+     "val_fm_ft_s4000_euler10_t0.5"
+    ],
+    [
+     "C euler10 t0.667",
+     "val_fm_ft_s4000"
+    ],
+    [
+     "C euler10 t0.8",
+     "val_fm_ft_s4000_euler10_t0.8"
+    ],
+    [
+     "C euler32 t0.5",
+     "val_fm_ft_s4000_euler32_t0.5"
+    ],
+    [
+     "C euler32 t0.667",
+     "val_fm_ft_s4000_euler32_t0.667"
+    ],
+    [
+     "C euler32 t0.8",
+     "val_fm_ft_s4000_euler32_t0.8"
+    ],
+    [
+     "C midpoint10 t0.5",
+     "val_fm_ft_s4000_midpoint10_t0.5"
+    ],
+    [
+     "C midpoint10 t0.667",
+     "val_fm_ft_s4000_midpoint10_t0.667"
+    ],
+    [
+     "C midpoint10 t0.8",
+     "val_fm_ft_s4000_midpoint10_t0.8"
+    ]
+   ]
+  },
+  {
+   "title": "28's vocoder on other speakers (20 clips per source; real recording vs real mel -> vocoder)",
+   "refs": [],
+   "rows": [
+    [
+     "LJ val, real",
+     "vc_lj_real"
+    ],
+    [
+     "LJ val, voc28",
+     "vc_lj_voc"
+    ],
+    [
+     "LibriTTS-R held-out speakers, real",
+     "vc_libritts_real"
+    ],
+    [
+     "LibriTTS-R held-out speakers, voc28",
+     "vc_libritts_voc"
+    ],
+    [
+     "Hi-Fi TTS, real",
+     "vc_hifi_real"
+    ],
+    [
+     "Hi-Fi TTS, voc28",
+     "vc_hifi_voc"
+    ]
+   ]
+  },
+  {
+   "title": "Val: GAN vocoder gate and the vocoder choice for the shipped systems",
+   "refs": [],
+   "rows": [
+    [
+     "real mel -> 28's vocoder",
+     "val_real_voc28"
+    ],
+    [
+     "real mel -> GAN s2000",
+     "val_vocgan_s2000_real"
+    ],
+    [
+     "real mel -> GAN s4754 (end)",
+     "val_vocgan_s4754_real"
+    ],
+    [
+     "27 v1 -> GAN",
+     "val_p27v1_gan"
+    ],
+    [
+     "B (euler10 t0.5) -> 28's vocoder",
+     "val_fm_lj_s14000_euler10_t0.5"
+    ],
+    [
+     "B -> GAN",
+     "val_fm_lj_gan"
+    ],
+    [
+     "C (euler10 t0.5) -> 28's vocoder",
+     "val_fm_ft_s4000_euler10_t0.5"
+    ],
+    [
+     "C -> GAN",
+     "val_fm_ft_gan"
+    ]
+   ]
+  }
+ ]
+}
