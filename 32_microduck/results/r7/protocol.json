@@ -1,0 +1,133 @@
+{
+ "written": "2026-11-04T21:37:50-06:00",
+ "written_before": "any Round 7 training step, any Round 7 closed-loop episode, and the fresh-slice draw",
+ "plan": "design/R7_CAMPAIGN.md (panel design, 2026-11-04 evening); this file is section 3 of that plan as pre-registered",
+ "question": "Does an explicit sensors-only belief (plate / lamp / mat bearing, distance, age) make the 10 Hz command policy act on what it sees (turn toward and walk to a seen or remembered plate, verify, then say done), measured on the press-needed set-lamp rooms?",
+ "bar": {
+  "rooms": "the 80 confirmation rooms: instances-dev 0030-0049, arrangements/appearances/distractor-dev 0020-0039, set_lamp, k=0 (second project look; paired with the step-5 rows, never a headline)",
+  "press_needed_successes": ">= 2 per seed and >= 5 over two seeds (40 press-needed rooms)",
+  "said_done_without_press_pn": "not above the arm's own base recipe on the same rooms: Hr 27 (s0) / 28 (s1) of 40, R3 22 / 20 of 40 (results/p2/confirm.jsonl)",
+  "no_press_successes": ">= base - 4: Hr 30 / 38, R3 22 / 30 of 40",
+  "stage_counts": "per seed and per family: reached plate, within 0.5 m, pressed, lamp right at end, said done, said done after press (lamp right / wrong); never averaged over appearances-dev (the bot drops to 4/10 there)",
+  "headline": "a fresh reserved slice (splits/r7_*.json, 20 rooms per family, slots 9-12, dev-family rules), drawn in Stage 0 before any training and looked at once in Stage 5 after the method set freezes; the absolute bar (2 per seed, 5 over two seeds against 40 press-needed rooms) is kept if the draw yields 32-48 press-needed set-lamp rooms, otherwise extra rooms are drawn in Stage 0 until it does"
+ },
+ "intentionality_metric": {
+  "why": "the bar is gameable: a scripted done after a lamp-right press would give Hr 6/80 on rooms already looked at (section 1 of the plan); every bar count is reported beside these",
+  "instrument": "evaluation-side sensors-only tracker on the learner's own frames (odometry.py leg mode with anchors off, bodymodel camera pose, perception.detect, refbot.Memory incl. lamp_update); truth only to score",
+  "intentional_reach": "body-centre plate entry within K ticks of the tracker's first confirmed lamp sighting, with odometry path length / straight line over that stretch <= R; K and R calibrated in Stage 0 so the frozen bot passes on >= 90% of its own press-needed successes (plan defaults K=400, R=2.5); calibrated values appended below before any training",
+  "turn_onset": "the first turn run (>= 6 ticks of |wz| > 0.1 while standing) after the lamp check starts toward the shorter bearing to the remembered plate (tracker button track, replayed odometry)",
+  "verified_done": "a done after a press counts as verified only if the tracker confirms a fresh lamp sighting between the press and the done",
+  "learned_claim": "intentional reaches >= half of reaches and verified dones >= half of done-after-press, per seed; successes that fail these still count for the bar and are reported as 'unverified'"
+ },
+ "open_loop_gates": {
+  "turn_onset_probe": {
+   "protocol": "27 p2_dev press-needed demos with a blind first turn after the lamp check (scratch/r7/critic_dreamzero/blind_turn_t0.py), teacher-forced, MLX inference",
+   "baseline": "share p(bot dir) > p(opp) at t0 0.48-0.74; argmax = bot direction 2-5 of 27",
+   "gate": ">= 0.85 and >= 15/27"
+  },
+  "bearing_read": {
+   "only_for": "arms with belief heads",
+   "baseline": "ridge readout of R3 s1's GRU state: median 57-72 deg at the lamp check, 17-27% within 30 deg; out of view 53-65 deg",
+   "gate": "median error at the lamp check <= 30 deg and >= 60% of checks within 30 deg; out of view <= 30 deg"
+  }
+ },
+ "closed_loop_stage_gate": {
+  "rooms": "the 40 selection rooms (instances/arrangements/appearances/distractor-dev 0000-0009, k=0): 18 press-needed, 22 no-press; also the checkpoint-pick rooms (p2_select rule unchanged)",
+  "per_seed": {
+   "reached_plate": ">= 6/18 (base 1-3; bot 18/18)",
+   "within_0_5m": ">= 9/18 (base 3-5)",
+   "done_after_press_lamp_right": ">= half of pressed episodes",
+   "said_done_without_press": "<= the base recipe's pick on the same rooms: Hr s1 12/18, R3 s1 6/18",
+   "no_press_successes": ">= 15/22 (Hr s1 18, R3 s1 19)"
+  },
+  "caveat": "30 of the 40 selection rooms also hold p2_dev demos; the rooms have been used for 17+ picks"
+ },
+ "seeds_and_power": "two seeds per arm, never promote on one; with p = 0.025 per episode P(>= 2 of 40) = 0.26 per seed and P(>= 5 of 80) = 0.05, with p = 0.10 0.92 and 0.90; differences of 1-2 episodes are noise",
+ "controls": "shuffled-input control for any supplied-input arm (vector values from a random other episode's tick); the pixel-free policy for the map-sensor arm; shuffled-label and (skill, lamp-belief)-conditioned most-frequent-next-skill for the selector; the frozen bot as the ceiling",
+ "disclosure": "Stages 1B, 2 and 3 run the bot's own sensors-only modules at test time; every table labels them 'learned decisions + supplied perception/skills'; no simulator truth enters any controller",
+ "arms": [
+  "1B pixel-free belief-vector policy (Hr recipe, 2 seeds)",
+  "1C belief heads on R3 (1 seed) and onset weighting on R3 (1 seed): open-loop probes only",
+  "1D map-free pixel servo (oracle latch / lamp-perception latch): baseline rows, not learned",
+  "2A Hr + belief vector (2 seeds) + shuffled-vector control (2 seeds)",
+  "2B post-press coverage (conditional)",
+  "3A/3B skill selector + shuffled-label + belief-conditioned controls",
+  "4A chicken-head pre-gate + test-time replay",
+  "4D Astra weight-space edits over named inputs (after a 2A reach gate)",
+  "5 fresh slice: step-5 Hr s0/s1 + R3 s1, bot, every passed arm"
+ ],
+ "not_run_by_owner_decision": [
+  "4B DINOv2 (download not approved)",
+  "4C LeWM-B (not funded)",
+  "teacher activity strings as an aux target"
+ ],
+ "kill_rules": {
+  "1A": "plate-bearing label p90 > 45 deg on approaches: fix the replay or require bot_pose recordings before any belief arm",
+  "1B": "both seeds fail the reach gate (< 6/18): Stage 2 is cut, Stage 3 is the main arm",
+  "2A": "both seeds fail the reach gate: the pixel policy cannot use the map; if the pixel-free policy ties or beats 2A, the pixels add nothing",
+  "2B": "no gain over the +4k-old-data control in both seeds",
+  "3A": "learned selector within 2 episodes of the belief-conditioned control: scaffolding; 3B becomes a one-seed documentation run",
+  "3B": "within 2 episodes of the belief-conditioned control on both seeds: scaffolding, not learning",
+  "1D": "reached plate < 6/18 with the oracle latch kills the 'compile a stage machine into weights' route"
+ },
+ "lane_plan": "<= 2 concurrent jobs counted by PID, <= 45 min per invocation with verified resume, <= 16 GB per process, OMP_NUM_THREADS=4 for training and 1 x 4 processes for evaluations",
+ "baselines_from_frozen_files": {
+  "confirm_80": "results/p2/confirm.jsonl (R3/E/H/Hr x s0/s1): press-needed successes 0-1/40, reached plate 1-3, pressed 1-5, done after press 0-1, said done pn 20-37, no-press 22-39",
+  "select_40": "results/p2/select_p2_*.json picks: reached plate R3 s0 1, R3 s1 3, Hr s0 0, Hr s1 4 of 18; done without press R3 6/6, Hr 12/12 of 18; no-press R3 17/19, Hr 16/18 of 22",
+  "bot": "results/m3/eval_final.json frozen M3 bot, gaze off: 80 confirmation rooms press-needed 27/40 (8/10, 10/13, 4/10, 5/7), no-press 40/40; selection rooms 15/18 (2/4, 5/5, 4/5, 4/4), no-press 22/22",
+  "turn_onset": "scratch/r7/critic_dreamzero/blind_turn_t0*.json: none at t0 17-25 of 27; p(bot) > p(opp) 0.48-0.74",
+  "labels": "scratch/r7/dreamzero/odom_label_check.json: approach bearing median 4.6 deg, p90-median 24 deg; pose end error median 2-13 cm"
+ },
+ "amendments": [
+  {
+   "number": 1,
+   "written": "2026-11-04T21:40:25-06:00",
+   "written_before": "any Round 7 training step or closed-loop episode",
+   "finding": "The 20-per-family draw (80 rooms) yields 29 press-needed set-lamp rooms (k=0), below the pre-registered 32-48 (make_splits.py --r7 deterministic draw; counts for 21..30 per family: 31, 33, 36, 40, 42, 45, 46, 48, 50, 53).",
+   "change": "The slice is 24 rooms per family (96 rooms; the first 20 per family are the original draw, unchanged): 40 press-needed rooms, the same count as the 80 confirmation rooms, so the absolute bar (>= 2 per seed, >= 5 over two seeds) applies unchanged. The smallest in-range extension (22 per family, 33 press-needed) was not chosen so that the bar needs no re-scaling. No room of the slice has been run.",
+   "manifest": {
+    "files_sha256": {
+     "r7_instances.json": "51933dd9a675c7fa2d19053d06e487679d7b63d7923e522a6fac6a3f1fa6d190",
+     "r7_arrangements.json": "b4de78eef7a9e752486af234434642bb5e4ba6259c94e79560ed78a670d307e1",
+     "r7_appearances.json": "fe32ad7bf3cb611b1cd2843972718b7b1e7ba1de0a3a155fd3f56917bd2599c3",
+     "r7_distractor.json": "b87ad364dc78ecfa1913eb7d1c48b678e6b1775e96d53019ffbec324f01e1670"
+    },
+    "press_needed": {
+     "instances": 10,
+     "arrangements": 10,
+     "appearances": 7,
+     "distractor": 13,
+     "total": 40
+    },
+    "written": "2026-11-04T21:40:09-06:00"
+   }
+  },
+  {
+   "number": 2,
+   "written": "2026-11-04T22:16:44-06:00",
+   "written_before": "any Stage 1B closed-loop gate reading (the 1B-v0 selections were in progress; their partial rows had been seen for checkpoints 4k-12k) and before any Stage 2/3 run",
+   "finding": "While debugging the Stage 3 adapter, the belief vector's lamp one-hot was found to follow the bot's Memory.lamp_state(), which demands a fresh run of >= 3 consecutive sightings and so flickers back to 'unknown' after an isolated re-sighting (e.g. instances-dev-0000: known at tick 100, unknown at 103-262). In the vector that is the only slot carrying the lamp state (the merged lamp track carries position only), so the policy's lamp belief was intermittently blank in training and at deployment.",
+   "change": "belief.py VERSION r7_belief_v2: the lamp one-hot and its age come from the latest confirmed lamp track (lamp_on / lamp_off, n >= confirm), i.e. sticky; everything else unchanged. Side files rebuilt, the 1A gate re-run on v2, tests updated. Stage 1B is re-run as 1B-v1 (same recipe, seeds 0 and 1, same gates); the 1B-v0 rows are kept and reported as a superseded attempt in the ledger, not as the stage result. The Stage 3 adapter's explore step now mirrors the bot's find()/lamp-search step (scan pitch, stop when the sought object is confirmed).",
+   "gates": "unchanged"
+  },
+  {
+   "number": 3,
+   "written": "2026-11-05T01:54:53-06:00",
+   "written_after": "the method freeze (00:24) and 11 of 15 fresh-slice arms; a deviation, disclosed",
+   "finding": "The Stage 3 adapter (p2_skillsel.SelectorBot.run) could loop without consuming a tick: look_lamp returns at once when no lamp is remembered, and a chooser that repeats that choice (features unchanged) never advances the clock. The shuffled-label control, seed 1, hit this on the fresh slice (57 min, four workers spinning); every other arm had completed. The learned / program / belief-conditioned arms cannot enter the loop in practice (the program picks look_lamp only after a press, by which point the lamp is remembered), and a loop that exits is impossible (same features -> same choice), so no completed result is affected.",
+   "change": "A guard: the third consecutive zero-tick decision costs one stop tick (regression test tests/test_r7_skillsel.py::test_adapter_never_hangs_on_a_zero_tick_choice). The hung job was killed (parent + workers, exact PIDs); the shuffled-s1 fresh run restarts from scratch with the guard, followed by the three arms that had not started (freq, program, 3B). No pick, threshold or arm definition changes.",
+   "gates": "unchanged"
+  }
+ ],
+ "intentionality_calibration": {
+  "K_ticks": 400,
+  "R_path_ratio": 3.1,
+  "bot_pass_share": 0.900709219858156,
+  "pooled_successes": 141,
+  "defaults": [
+   400,
+   2.5
+  ],
+  "written": "2026-11-04T22:00:14-06:00"
+ }
+}

@@ -1,0 +1,6213 @@
+{
+"factor": "arrangements",
+"split": "r7",
+"train": "train.json",
+"note": "Round 7 reserved slice: dev-family rules, slots 9-12; one look in Stage 5",
+"mujoco_version": "3.16.0",
+"arrangement_families": {
+"train": {
+"home": [
+0,
+2,
+6,
+8
+],
+"button": [
+0,
+2,
+6,
+8
+],
+"occluder": [
+1,
+7,
+3,
+5
+],
+"partition": "wall_NS",
+"pads_interior": [
+0,
+0
+]
+},
+"dev": {
+"home": [
+1,
+7
+],
+"button": [
+3,
+5
+],
+"occluder": [
+0,
+2,
+6,
+8
+],
+"partition": "wall_EW",
+"pads_interior": [
+1,
+1
+]
+},
+"test": {
+"home": [
+3,
+5
+],
+"button": [
+1,
+7
+],
+"occluder": [
+4
+],
+"partition": "free",
+"pads_interior": [
+2,
+4
+]
+}
+},
+"appearance_families": {
+"train": {
+"hue_offset": [
+-6,
+6
+],
+"s": [
+0.75,
+0.95
+],
+"v": [
+0.75,
+0.95
+],
+"floor_builtin": "checker",
+"floor_mark": "edge",
+"floor_hue": [
+190,
+250
+],
+"floor_s": [
+0.05,
+0.15
+],
+"floor_v": [
+0.22,
+0.38
+],
+"texrepeat": [
+5,
+8
+],
+"wall_hue": [
+30,
+60
+],
+"wall_s": [
+0.0,
+0.1
+],
+"wall_v": [
+0.7,
+0.85
+],
+"home_s": [
+0.0,
+0.05
+],
+"home_v": [
+0.85,
+0.95
+],
+"light_tilt_deg": [
+0,
+15
+],
+"diffuse": [
+0.55,
+0.7
+],
+"ambient": [
+0.2,
+0.3
+]
+},
+"dev": {
+"hue_offset": [
+8,
+14
+],
+"s": [
+0.55,
+0.72
+],
+"v": [
+0.75,
+0.95
+],
+"floor_builtin": "flat",
+"floor_mark": "random",
+"floor_hue": [
+20,
+50
+],
+"floor_s": [
+0.1,
+0.2
+],
+"floor_v": [
+0.4,
+0.52
+],
+"texrepeat": [
+5,
+8
+],
+"wall_hue": [
+200,
+240
+],
+"wall_s": [
+0.05,
+0.15
+],
+"wall_v": [
+0.55,
+0.69
+],
+"home_s": [
+0.0,
+0.05
+],
+"home_v": [
+0.7,
+0.8
+],
+"light_tilt_deg": [
+30,
+45
+],
+"diffuse": [
+0.45,
+0.54
+],
+"ambient": [
+0.31,
+0.4
+]
+},
+"test": {
+"hue_offset": [
+-14,
+-8
+],
+"s": [
+0.75,
+0.95
+],
+"v": [
+0.5,
+0.68
+],
+"floor_builtin": "checker",
+"floor_mark": "none",
+"floor_hue": [
+90,
+150
+],
+"floor_s": [
+0.15,
+0.25
+],
+"floor_v": [
+0.53,
+0.65
+],
+"texrepeat": [
+2,
+3
+],
+"wall_hue": [
+300,
+360
+],
+"wall_s": [
+0.0,
+0.08
+],
+"wall_v": [
+0.35,
+0.5
+],
+"home_s": [
+0.15,
+0.25
+],
+"home_v": [
+0.82,
+0.92
+],
+"light_tilt_deg": [
+16,
+29
+],
+"diffuse": [
+0.75,
+0.85
+],
+"ambient": [
+0.1,
+0.15
+]
+}
+},
+"configs": [
+{
+"id": "arrangements-r7-0000",
+"mujoco_version": "3.16.0",
+"seed": 40000000,
+"seeds": {
+"layout": 20000000,
+"appearance": 30000000,
+"instance": 40000000
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+-0.953,
+0.425
+],
+"yaw": 0.0,
+"length": 1.093,
+"attached": "W",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+0.846,
+0.701
+],
+"yaw": 1.1199,
+"cell": 8
+},
+"ball": {
+"pos": [
+1.125,
+0.588
+]
+},
+"home": {
+"pos": [
+0.177,
+0.881
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+-0.761,
+-0.081
+],
+"cell": 3,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "green",
+"pos": [
+0.58,
+-0.228
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+-0.943,
+-0.586
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+0.194,
+-1.005
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "E",
+"offset": -0.667,
+"height": 0.3
+},
+"start": {
+"pos": [
+0.204,
+0.954
+],
+"yaw": 1.0872
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2754,
+0.3116,
+0.3229
+],
+"rgb2": [
+0.2203,
+0.2493,
+0.2583
+],
+"markrgb": [
+0.3889,
+0.4124,
+0.4197
+],
+"random": 0.0,
+"texrepeat": 7,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6834,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7931,
+0.7873,
+0.7487
+],
+"partition_rgb": [
+0.6741,
+0.6692,
+0.6364
+],
+"occluder_rgb": [
+0.5552,
+0.5511,
+0.5241
+],
+"home_rgb": [
+0.913,
+0.9113,
+0.9078
+],
+"pad_rgb": {
+"red": [
+0.8686,
+0.1846,
+0.2168
+],
+"green": [
+0.1187,
+0.8839,
+0.1366
+],
+"blue": [
+0.0475,
+0.3465,
+0.9016
+],
+"yellow": [
+0.7593,
+0.7121,
+0.1709
+]
+},
+"button_rgb": [
+0.1216,
+0.9156,
+0.8716
+],
+"ball_rgb": [
+0.7959,
+0.1428,
+0.8167
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+0.0742,
+-0.0995,
+-0.9923
+],
+"diffuse": [
+0.6688,
+0.6688,
+0.6688
+],
+"ambient": [
+0.2589,
+0.2589,
+0.2589
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "92229d5aff13c633"
+},
+{
+"id": "arrangements-r7-0001",
+"mujoco_version": "3.16.0",
+"seed": 40000001,
+"seeds": {
+"layout": 20000001,
+"appearance": 30000001,
+"instance": 40000001
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+-0.964,
+0.289
+],
+"yaw": 0.0,
+"length": 1.073,
+"attached": "W",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+0.708,
+0.723
+],
+"yaw": 2.7608,
+"cell": 8
+},
+"ball": {
+"pos": [
+0.573,
+0.454
+]
+},
+"home": {
+"pos": [
+-0.293,
+0.881
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+1.107,
+-0.132
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "green",
+"pos": [
+-0.031,
+0.04
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+0.984,
+-0.74
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+0.422,
+-1.065
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+-0.847,
+-1.003
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "E",
+"offset": 0.629,
+"height": 0.3
+},
+"start": {
+"pos": [
+-0.317,
+0.84
+],
+"yaw": -0.9073
+},
+"lamp_initial_on": true
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2623,
+0.2754,
+0.282
+],
+"rgb2": [
+0.2098,
+0.2203,
+0.2256
+],
+"markrgb": [
+0.3538,
+0.3623,
+0.3666
+],
+"random": 0.0,
+"texrepeat": 8,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6766,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7384,
+0.728,
+0.6738
+],
+"partition_rgb": [
+0.6276,
+0.6188,
+0.5727
+],
+"occluder_rgb": [
+0.5169,
+0.5096,
+0.4717
+],
+"home_rgb": [
+0.9427,
+0.93,
+0.9045
+],
+"pad_rgb": {
+"red": [
+0.7787,
+0.1831,
+0.2313
+],
+"green": [
+0.1929,
+0.9404,
+0.1477
+],
+"blue": [
+0.0959,
+0.3374,
+0.7933
+],
+"yellow": [
+0.8702,
+0.8649,
+0.1005
+]
+},
+"button_rgb": [
+0.1771,
+0.7428,
+0.7509
+],
+"ball_rgb": [
+0.8952,
+0.143,
+0.8304
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.0044,
+0.0148,
+-0.9999
+],
+"diffuse": [
+0.6611,
+0.6611,
+0.6611
+],
+"ambient": [
+0.2357,
+0.2357,
+0.2357
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "c73d69446151d95f"
+},
+{
+"id": "arrangements-r7-0002",
+"mujoco_version": "3.16.0",
+"seed": 40000002,
+"seeds": {
+"layout": 20000002,
+"appearance": 30000002,
+"instance": 40000002
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+-0.93,
+-0.444
+],
+"yaw": 0.0,
+"length": 1.14,
+"attached": "W",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.763,
+-0.915
+],
+"yaw": 0.336,
+"cell": 0
+},
+"ball": {
+"pos": [
+-0.626,
+-1.185
+]
+},
+"home": {
+"pos": [
+0.36,
+-0.883
+],
+"cell": 1,
+"size": 0.4
+},
+"button": {
+"pos": [
+-0.744,
+0.213
+],
+"cell": 3,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "red",
+"pos": [
+0.411,
+-0.042
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+0.969,
+-0.064
+],
+"size": 0.3
+},
+{
+"color": "green",
+"pos": [
+-0.934,
+1.003
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "S",
+"offset": 0.436,
+"height": 0.3
+},
+"start": {
+"pos": [
+0.37,
+-0.903
+],
+"yaw": -2.3415
+},
+"lamp_initial_on": true
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2626,
+0.2742,
+0.2932
+],
+"rgb2": [
+0.2101,
+0.2194,
+0.2345
+],
+"markrgb": [
+0.3613,
+0.3688,
+0.3811
+],
+"random": 0.0,
+"texrepeat": 6,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6565,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7673,
+0.7652,
+0.7551
+],
+"partition_rgb": [
+0.6522,
+0.6504,
+0.6418
+],
+"occluder_rgb": [
+0.5371,
+0.5356,
+0.5286
+],
+"home_rgb": [
+0.8969,
+0.8878,
+0.8696
+],
+"pad_rgb": {
+"red": [
+0.9406,
+0.1999,
+0.2149
+],
+"green": [
+0.1767,
+0.7872,
+0.2148
+],
+"blue": [
+0.0623,
+0.2603,
+0.7986
+],
+"yellow": [
+0.842,
+0.8057,
+0.1616
+]
+},
+"button_rgb": [
+0.1013,
+0.8074,
+0.7364
+],
+"ball_rgb": [
+0.917,
+0.0891,
+0.9029
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.0316,
+0.0236,
+-0.9992
+],
+"diffuse": [
+0.6952,
+0.6952,
+0.6952
+],
+"ambient": [
+0.2667,
+0.2667,
+0.2667
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "da36399bf2ca1965"
+},
+{
+"id": "arrangements-r7-0003",
+"mujoco_version": "3.16.0",
+"seed": 40000003,
+"seeds": {
+"layout": 20000003,
+"appearance": 30000003,
+"instance": 40000003
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+-0.998,
+-0.392
+],
+"yaw": 0.0,
+"length": 1.004,
+"attached": "W",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+0.733,
+0.927
+],
+"yaw": 2.2037,
+"cell": 8
+},
+"ball": {
+"pos": [
+0.449,
+0.807
+]
+},
+"home": {
+"pos": [
+-0.292,
+0.628
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+1.086,
+-0.094
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "green",
+"pos": [
+0.151,
+-0.558
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+1.071,
+-0.856
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+-1.112,
+0.563
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+0.384,
+-1.077
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "S",
+"offset": 0.08,
+"height": 0.3
+},
+"start": {
+"pos": [
+-0.244,
+0.672
+],
+"yaw": 0.9228
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.3056,
+0.3158,
+0.3582
+],
+"rgb2": [
+0.2445,
+0.2527,
+0.2866
+],
+"markrgb": [
+0.4315,
+0.4381,
+0.4657
+],
+"random": 0.0,
+"texrepeat": 5,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6436,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.8164,
+0.8053,
+0.7777
+],
+"partition_rgb": [
+0.6939,
+0.6845,
+0.661
+],
+"occluder_rgb": [
+0.5715,
+0.5637,
+0.5444
+],
+"home_rgb": [
+0.89,
+0.8837,
+0.8713
+],
+"pad_rgb": {
+"red": [
+0.8902,
+0.1391,
+0.0823
+],
+"green": [
+0.0813,
+0.9431,
+0.0801
+],
+"blue": [
+0.0734,
+0.3441,
+0.9321
+],
+"yellow": [
+0.9412,
+0.8937,
+0.1276
+]
+},
+"button_rgb": [
+0.0681,
+0.8982,
+0.7721
+],
+"ball_rgb": [
+0.8594,
+0.0948,
+0.8659
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.0147,
+-0.0068,
+-0.9999
+],
+"diffuse": [
+0.624,
+0.624,
+0.624
+],
+"ambient": [
+0.2334,
+0.2334,
+0.2334
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "f1a9fe7815039e58"
+},
+{
+"id": "arrangements-r7-0004",
+"mujoco_version": "3.16.0",
+"seed": 40000004,
+"seeds": {
+"layout": 20000004,
+"appearance": 30000004,
+"instance": 40000004
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+-0.958,
+0.051
+],
+"yaw": 0.0,
+"length": 1.084,
+"attached": "W",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.64,
+-0.919
+],
+"yaw": 2.8952,
+"cell": 0
+},
+"ball": {
+"pos": [
+-0.551,
+-0.632
+]
+},
+"home": {
+"pos": [
+-0.044,
+0.87
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+1.048,
+-0.387
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "blue",
+"pos": [
+-0.719,
+0.568
+],
+"size": 0.3
+},
+{
+"color": "green",
+"pos": [
+0.551,
+-1.003
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+1.078,
+0.726
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "N",
+"offset": 0.298,
+"height": 0.3
+},
+"start": {
+"pos": [
+-0.041,
+0.895
+],
+"yaw": 0.7873
+},
+"lamp_initial_on": true
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2459,
+0.2507,
+0.2635
+],
+"rgb2": [
+0.1968,
+0.2006,
+0.2108
+],
+"markrgb": [
+0.3311,
+0.3342,
+0.3425
+],
+"random": 0.0,
+"texrepeat": 6,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6491,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7348,
+0.734,
+0.7321
+],
+"partition_rgb": [
+0.6246,
+0.6239,
+0.6223
+],
+"occluder_rgb": [
+0.5144,
+0.5138,
+0.5125
+],
+"home_rgb": [
+0.8602,
+0.8508,
+0.8321
+],
+"pad_rgb": {
+"red": [
+0.8262,
+0.1257,
+0.113
+],
+"green": [
+0.0521,
+0.8686,
+0.0672
+],
+"blue": [
+0.1894,
+0.4316,
+0.8028
+],
+"yellow": [
+0.8778,
+0.7508,
+0.0464
+]
+},
+"button_rgb": [
+0.1788,
+0.8997,
+0.8821
+],
+"ball_rgb": [
+0.7152,
+0.0652,
+0.7808
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+0.031,
+0.0948,
+-0.995
+],
+"diffuse": [
+0.6691,
+0.6691,
+0.6691
+],
+"ambient": [
+0.2831,
+0.2831,
+0.2831
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "3cb428aad92d15cd"
+},
+{
+"id": "arrangements-r7-0005",
+"mujoco_version": "3.16.0",
+"seed": 40000005,
+"seeds": {
+"layout": 20000005,
+"appearance": 30000005,
+"instance": 40000005
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+-0.889,
+0.294
+],
+"yaw": 0.0,
+"length": 1.221,
+"attached": "W",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.691,
+-0.842
+],
+"yaw": 0.3629,
+"cell": 0
+},
+"ball": {
+"pos": [
+-0.856,
+-0.584
+]
+},
+"home": {
+"pos": [
+0.069,
+-0.773
+],
+"cell": 1,
+"size": 0.4
+},
+"button": {
+"pos": [
+-0.876,
+-0.181
+],
+"cell": 3,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "yellow",
+"pos": [
+0.314,
+0.384
+],
+"size": 0.3
+},
+{
+"color": "green",
+"pos": [
+1.079,
+0.363
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+0.214,
+0.939
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+1.073,
+-0.765
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "S",
+"offset": 0.463,
+"height": 0.3
+},
+"start": {
+"pos": [
+0.028,
+-0.834
+],
+"yaw": 2.1667
+},
+"lamp_initial_on": true
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2601,
+0.2614,
+0.2969
+],
+"rgb2": [
+0.2081,
+0.2091,
+0.2376
+],
+"markrgb": [
+0.3621,
+0.3629,
+0.386
+],
+"random": 0.0,
+"texrepeat": 7,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6325,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7025,
+0.7018,
+0.7005
+],
+"partition_rgb": [
+0.5971,
+0.5965,
+0.5954
+],
+"occluder_rgb": [
+0.4917,
+0.4913,
+0.4903
+],
+"home_rgb": [
+0.8685,
+0.8672,
+0.8646
+],
+"pad_rgb": {
+"red": [
+0.905,
+0.2229,
+0.1787
+],
+"green": [
+0.0883,
+0.8816,
+0.1648
+],
+"blue": [
+0.093,
+0.2725,
+0.8159
+],
+"yellow": [
+0.8682,
+0.8179,
+0.1188
+]
+},
+"button_rgb": [
+0.195,
+0.9412,
+0.8898
+],
+"ball_rgb": [
+0.8599,
+0.0469,
+0.7993
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.153,
+0.0998,
+-0.9832
+],
+"diffuse": [
+0.5666,
+0.5666,
+0.5666
+],
+"ambient": [
+0.2979,
+0.2979,
+0.2979
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 2,
+"hash": "9918fdb48324a6e1"
+},
+{
+"id": "arrangements-r7-0006",
+"mujoco_version": "3.16.0",
+"seed": 40000006,
+"seeds": {
+"layout": 20000006,
+"appearance": 30000006,
+"instance": 40000006
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+0.986,
+-0.035
+],
+"yaw": 0.0,
+"length": 1.027,
+"attached": "E",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.775,
+-0.713
+],
+"yaw": 3.0902,
+"cell": 0
+},
+"ball": {
+"pos": [
+-0.851,
+-1.009
+]
+},
+"home": {
+"pos": [
+0.319,
+-0.892
+],
+"cell": 1,
+"size": 0.4
+},
+"button": {
+"pos": [
+-0.966,
+-0.231
+],
+"cell": 3,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "yellow",
+"pos": [
+0.182,
+0.744
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+0.71,
+1.118
+],
+"size": 0.3
+},
+{
+"color": "green",
+"pos": [
+-0.743,
+1.035
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "W",
+"offset": -0.605,
+"height": 0.3
+},
+"start": {
+"pos": [
+0.383,
+-0.952
+],
+"yaw": -1.301
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2381,
+0.2588,
+0.2737
+],
+"rgb2": [
+0.1905,
+0.207,
+0.219
+],
+"markrgb": [
+0.3327,
+0.3461,
+0.3558
+],
+"random": 0.0,
+"texrepeat": 8,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6706,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.785,
+0.7824,
+0.7613
+],
+"partition_rgb": [
+0.6673,
+0.665,
+0.6471
+],
+"occluder_rgb": [
+0.5495,
+0.5477,
+0.5329
+],
+"home_rgb": [
+0.8946,
+0.8853,
+0.8667
+],
+"pad_rgb": {
+"red": [
+0.7501,
+0.1413,
+0.1956
+],
+"green": [
+0.1873,
+0.8149,
+0.2351
+],
+"blue": [
+0.0558,
+0.236,
+0.7899
+],
+"yellow": [
+0.8533,
+0.7763,
+0.176
+]
+},
+"button_rgb": [
+0.1884,
+0.7743,
+0.6787
+],
+"ball_rgb": [
+0.9051,
+0.0526,
+0.8401
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.1912,
+0.0826,
+-0.9781
+],
+"diffuse": [
+0.6982,
+0.6982,
+0.6982
+],
+"ambient": [
+0.2003,
+0.2003,
+0.2003
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 2,
+"hash": "54d81554bf6f7134"
+},
+{
+"id": "arrangements-r7-0007",
+"mujoco_version": "3.16.0",
+"seed": 40000007,
+"seeds": {
+"layout": 20000007,
+"appearance": 30000007,
+"instance": 40000007
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+0.882,
+0.437
+],
+"yaw": 0.0,
+"length": 1.235,
+"attached": "E",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.887,
+-0.766
+],
+"yaw": 0.4426,
+"cell": 0
+},
+"ball": {
+"pos": [
+-0.787,
+-1.05
+]
+},
+"home": {
+"pos": [
+0.231,
+-0.74
+],
+"cell": 1,
+"size": 0.4
+},
+"button": {
+"pos": [
+-0.758,
+0.001
+],
+"cell": 3,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "yellow",
+"pos": [
+0.692,
+0.013
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+1.096,
+0.883
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+-0.154,
+0.94
+],
+"size": 0.3
+},
+{
+"color": "green",
+"pos": [
+-1.103,
+0.786
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "E",
+"offset": -0.256,
+"height": 0.3
+},
+"start": {
+"pos": [
+0.206,
+-0.667
+],
+"yaw": 1.4283
+},
+"lamp_initial_on": true
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2752,
+0.2801,
+0.3197
+],
+"rgb2": [
+0.2201,
+0.2241,
+0.2558
+],
+"markrgb": [
+0.3867,
+0.3899,
+0.4156
+],
+"random": 0.0,
+"texrepeat": 7,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6377,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.785,
+0.7685,
+0.7088
+],
+"partition_rgb": [
+0.6673,
+0.6532,
+0.6025
+],
+"occluder_rgb": [
+0.5495,
+0.5379,
+0.4962
+],
+"home_rgb": [
+0.9469,
+0.9445,
+0.9398
+],
+"pad_rgb": {
+"red": [
+0.8358,
+0.1648,
+0.1405
+],
+"green": [
+0.205,
+0.8678,
+0.182
+],
+"blue": [
+0.1498,
+0.436,
+0.8954
+],
+"yellow": [
+0.7565,
+0.6708,
+0.0606
+]
+},
+"button_rgb": [
+0.1614,
+0.913,
+0.7841
+],
+"ball_rgb": [
+0.8664,
+0.1672,
+0.901
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+0.0228,
+-0.1676,
+-0.9856
+],
+"diffuse": [
+0.6517,
+0.6517,
+0.6517
+],
+"ambient": [
+0.2362,
+0.2362,
+0.2362
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "a2b32dd64d38ef14"
+},
+{
+"id": "arrangements-r7-0008",
+"mujoco_version": "3.16.0",
+"seed": 40000008,
+"seeds": {
+"layout": 20000008,
+"appearance": 30000008,
+"instance": 40000008
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+-0.923,
+0.443
+],
+"yaw": 0.0,
+"length": 1.155,
+"attached": "W",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.787,
+-0.658
+],
+"yaw": 1.051,
+"cell": 0
+},
+"ball": {
+"pos": [
+-0.541,
+-0.833
+]
+},
+"home": {
+"pos": [
+-0.222,
+0.996
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+0.965,
+0.344
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "red",
+"pos": [
+0.382,
+0.709
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+0.886,
+-0.905
+],
+"size": 0.3
+},
+{
+"color": "green",
+"pos": [
+0.215,
+-1.088
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+0.839,
+0.944
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "N",
+"offset": -0.305,
+"height": 0.3
+},
+"start": {
+"pos": [
+-0.262,
+1.012
+],
+"yaw": 0.4231
+},
+"lamp_initial_on": true
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2187,
+0.2265,
+0.2332
+],
+"rgb2": [
+0.1749,
+0.1812,
+0.1866
+],
+"markrgb": [
+0.2937,
+0.2988,
+0.3032
+],
+"random": 0.0,
+"texrepeat": 6,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6677,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.802,
+0.8,
+0.7866
+],
+"partition_rgb": [
+0.6817,
+0.68,
+0.6686
+],
+"occluder_rgb": [
+0.5614,
+0.56,
+0.5506
+],
+"home_rgb": [
+0.8885,
+0.8835,
+0.8735
+],
+"pad_rgb": {
+"red": [
+0.9175,
+0.121,
+0.0524
+],
+"green": [
+0.1068,
+0.9161,
+0.1546
+],
+"blue": [
+0.1644,
+0.335,
+0.7566
+],
+"yellow": [
+0.9309,
+0.9022,
+0.1237
+]
+},
+"button_rgb": [
+0.1615,
+0.9374,
+0.8725
+],
+"ball_rgb": [
+0.8507,
+0.2013,
+0.8157
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+0.1511,
+0.0791,
+-0.9854
+],
+"diffuse": [
+0.6424,
+0.6424,
+0.6424
+],
+"ambient": [
+0.2891,
+0.2891,
+0.2891
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "e89202b33f26efaa"
+},
+{
+"id": "arrangements-r7-0009",
+"mujoco_version": "3.16.0",
+"seed": 40000009,
+"seeds": {
+"layout": 20000009,
+"appearance": 30000009,
+"instance": 40000009
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+0.938,
+0.365
+],
+"yaw": 0.0,
+"length": 1.123,
+"attached": "E",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.901,
+0.624
+],
+"yaw": 0.8034,
+"cell": 6
+},
+"ball": {
+"pos": [
+-0.674,
+0.428
+]
+},
+"home": {
+"pos": [
+0.224,
+-0.882
+],
+"cell": 1,
+"size": 0.4
+},
+"button": {
+"pos": [
+0.802,
+-0.319
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "green",
+"pos": [
+-0.666,
+-0.084
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+0.71,
+1.047
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+0.755,
+-1.035
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+0.026,
+0.966
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "N",
+"offset": 0.531,
+"height": 0.3
+},
+"start": {
+"pos": [
+0.216,
+-0.814
+],
+"yaw": -2.3562
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2716,
+0.268,
+0.3008
+],
+"rgb2": [
+0.2173,
+0.2144,
+0.2406
+],
+"markrgb": [
+0.3721,
+0.3697,
+0.3911
+],
+"random": 0.0,
+"texrepeat": 7,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.6378,
+0.63,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.722,
+0.703,
+0.6538
+],
+"partition_rgb": [
+0.6137,
+0.5975,
+0.5557
+],
+"occluder_rgb": [
+0.5054,
+0.4921,
+0.4577
+],
+"home_rgb": [
+0.8747,
+0.8647,
+0.8447
+],
+"pad_rgb": {
+"red": [
+0.8651,
+0.1085,
+0.1179
+],
+"green": [
+0.1438,
+0.7609,
+0.1697
+],
+"blue": [
+0.1674,
+0.4145,
+0.7504
+],
+"yellow": [
+0.9496,
+0.8631,
+0.1489
+]
+},
+"button_rgb": [
+0.0632,
+0.8215,
+0.6936
+],
+"ball_rgb": [
+0.8598,
+0.1703,
+0.8218
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.1964,
+0.0712,
+-0.9779
+],
+"diffuse": [
+0.6955,
+0.6955,
+0.6955
+],
+"ambient": [
+0.26,
+0.26,
+0.26
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "2a157766857d3965"
+},
+{
+"id": "arrangements-r7-0010",
+"mujoco_version": "3.16.0",
+"seed": 40000010,
+"seeds": {
+"layout": 20000010,
+"appearance": 30000010,
+"instance": 40000010
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+-0.878,
+0.245
+],
+"yaw": 0.0,
+"length": 1.244,
+"attached": "W",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+0.878,
+-0.691
+],
+"yaw": 1.3457,
+"cell": 2
+},
+"ball": {
+"pos": [
+1.15,
+-0.846
+]
+},
+"home": {
+"pos": [
+-0.281,
+0.795
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+0.799,
+0.261
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "red",
+"pos": [
+-0.218,
+-0.421
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+-1.118,
+0.904
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+-0.65,
+-1.093
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "N",
+"offset": -0.579,
+"height": 0.3
+},
+"start": {
+"pos": [
+-0.256,
+0.839
+],
+"yaw": 3.1
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.3345,
+0.3569,
+0.3664
+],
+"rgb2": [
+0.2676,
+0.2855,
+0.2931
+],
+"markrgb": [
+0.4555,
+0.4701,
+0.4763
+],
+"random": 0.0,
+"texrepeat": 7,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6792,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7754,
+0.7568,
+0.7332
+],
+"partition_rgb": [
+0.6591,
+0.6433,
+0.6232
+],
+"occluder_rgb": [
+0.5428,
+0.5298,
+0.5132
+],
+"home_rgb": [
+0.8938,
+0.8878,
+0.8756
+],
+"pad_rgb": {
+"red": [
+0.911,
+0.1086,
+0.0528
+],
+"green": [
+0.1391,
+0.783,
+0.1038
+],
+"blue": [
+0.094,
+0.272,
+0.8494
+],
+"yellow": [
+0.8593,
+0.7985,
+0.1322
+]
+},
+"button_rgb": [
+0.132,
+0.9354,
+0.88
+],
+"ball_rgb": [
+0.9315,
+0.1889,
+0.8757
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+0.0012,
+-0.1736,
+-0.9848
+],
+"diffuse": [
+0.6591,
+0.6591,
+0.6591
+],
+"ambient": [
+0.2566,
+0.2566,
+0.2566
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "b68863ad9cc44f76"
+},
+{
+"id": "arrangements-r7-0011",
+"mujoco_version": "3.16.0",
+"seed": 40000011,
+"seeds": {
+"layout": 20000011,
+"appearance": 30000011,
+"instance": 40000011
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+0.935,
+-0.28
+],
+"yaw": 0.0,
+"length": 1.13,
+"attached": "E",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+0.703,
+0.923
+],
+"yaw": 2.4649,
+"cell": 8
+},
+"ball": {
+"pos": [
+0.538,
+0.671
+]
+},
+"home": {
+"pos": [
+-0.392,
+0.747
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+-1.056,
+-0.347
+],
+"cell": 3,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "yellow",
+"pos": [
+-0.257,
+0.193
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+-0.955,
+0.897
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+0.165,
+-1.084
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "E",
+"offset": -0.756,
+"height": 0.3
+},
+"start": {
+"pos": [
+-0.455,
+0.775
+],
+"yaw": -0.2087
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2785,
+0.2858,
+0.3192
+],
+"rgb2": [
+0.2228,
+0.2286,
+0.2554
+],
+"markrgb": [
+0.3885,
+0.3932,
+0.415
+],
+"random": 0.0,
+"texrepeat": 6,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6425,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7985,
+0.7907,
+0.7711
+],
+"partition_rgb": [
+0.6787,
+0.6721,
+0.6554
+],
+"occluder_rgb": [
+0.5589,
+0.5535,
+0.5398
+],
+"home_rgb": [
+0.8886,
+0.8777,
+0.8558
+],
+"pad_rgb": {
+"red": [
+0.901,
+0.1172,
+0.0842
+],
+"green": [
+0.0804,
+0.8404,
+0.0635
+],
+"blue": [
+0.1408,
+0.4141,
+0.9458
+],
+"yellow": [
+0.7747,
+0.776,
+0.0872
+]
+},
+"button_rgb": [
+0.0655,
+0.8496,
+0.7149
+],
+"ball_rgb": [
+0.7634,
+0.1138,
+0.8067
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.1246,
+0.0538,
+-0.9908
+],
+"diffuse": [
+0.664,
+0.664,
+0.664
+],
+"ambient": [
+0.2531,
+0.2531,
+0.2531
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "c3be61dce50bf3a0"
+},
+{
+"id": "arrangements-r7-0012",
+"mujoco_version": "3.16.0",
+"seed": 40000012,
+"seeds": {
+"layout": 20000012,
+"appearance": 30000012,
+"instance": 40000012
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+0.878,
+-0.131
+],
+"yaw": 0.0,
+"length": 1.244,
+"attached": "E",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.665,
+0.759
+],
+"yaw": 2.9413,
+"cell": 6
+},
+"ball": {
+"pos": [
+-0.582,
+1.048
+]
+},
+"home": {
+"pos": [
+0.394,
+1.075
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+-0.72,
+0.331
+],
+"cell": 3,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "red",
+"pos": [
+-0.176,
+-0.775
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+-0.891,
+-0.96
+],
+"size": 0.3
+},
+{
+"color": "green",
+"pos": [
+0.498,
+-1.095
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+0.93,
+0.297
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "N",
+"offset": 0.468,
+"height": 0.3
+},
+"start": {
+"pos": [
+0.434,
+1.044
+],
+"yaw": -2.9232
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.3132,
+0.3364,
+0.3552
+],
+"rgb2": [
+0.2505,
+0.2691,
+0.2841
+],
+"markrgb": [
+0.4344,
+0.4495,
+0.4617
+],
+"random": 0.0,
+"texrepeat": 8,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6687,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7443,
+0.7419,
+0.7283
+],
+"partition_rgb": [
+0.6327,
+0.6306,
+0.6191
+],
+"occluder_rgb": [
+0.521,
+0.5193,
+0.5098
+],
+"home_rgb": [
+0.8611,
+0.859,
+0.8549
+],
+"pad_rgb": {
+"red": [
+0.7532,
+0.1881,
+0.2198
+],
+"green": [
+0.0485,
+0.8373,
+0.1045
+],
+"blue": [
+0.2239,
+0.4086,
+0.9396
+],
+"yellow": [
+0.8099,
+0.6981,
+0.0437
+]
+},
+"button_rgb": [
+0.1006,
+0.9274,
+0.8106
+],
+"ball_rgb": [
+0.8402,
+0.1316,
+0.882
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.1185,
+0.0919,
+-0.9887
+],
+"diffuse": [
+0.6312,
+0.6312,
+0.6312
+],
+"ambient": [
+0.2161,
+0.2161,
+0.2161
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "90d5e8535d2ef460"
+},
+{
+"id": "arrangements-r7-0013",
+"mujoco_version": "3.16.0",
+"seed": 40000013,
+"seeds": {
+"layout": 20000013,
+"appearance": 30000013,
+"instance": 40000013
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+-0.895,
+-0.305
+],
+"yaw": 0.0,
+"length": 1.209,
+"attached": "W",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.634,
+-0.925
+],
+"yaw": 0.8698,
+"cell": 0
+},
+"ball": {
+"pos": [
+-0.911,
+-0.788
+]
+},
+"home": {
+"pos": [
+-0.304,
+0.968
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+0.608,
+-0.289
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "red",
+"pos": [
+0.768,
+0.31
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+-1.038,
+0.203
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+-1.065,
+0.826
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "N",
+"offset": -0.255,
+"height": 0.3
+},
+"start": {
+"pos": [
+-0.313,
+1.025
+],
+"yaw": -3.0469
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2441,
+0.2383,
+0.2769
+],
+"rgb2": [
+0.1953,
+0.1906,
+0.2215
+],
+"markrgb": [
+0.3387,
+0.3349,
+0.36
+],
+"random": 0.0,
+"texrepeat": 7,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.6406,
+0.63,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7753,
+0.7735,
+0.7539
+],
+"partition_rgb": [
+0.659,
+0.6575,
+0.6408
+],
+"occluder_rgb": [
+0.5427,
+0.5414,
+0.5277
+],
+"home_rgb": [
+0.8528,
+0.8461,
+0.8327
+],
+"pad_rgb": {
+"red": [
+0.7617,
+0.0571,
+0.0539
+],
+"green": [
+0.0635,
+0.825,
+0.0618
+],
+"blue": [
+0.0982,
+0.4641,
+0.9471
+],
+"yellow": [
+0.8137,
+0.8064,
+0.0993
+]
+},
+"button_rgb": [
+0.1516,
+0.8984,
+0.7647
+],
+"ball_rgb": [
+0.7734,
+0.0974,
+0.7452
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.0664,
+-0.1798,
+-0.9815
+],
+"diffuse": [
+0.6664,
+0.6664,
+0.6664
+],
+"ambient": [
+0.2603,
+0.2603,
+0.2603
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "954b3503be981843"
+},
+{
+"id": "arrangements-r7-0014",
+"mujoco_version": "3.16.0",
+"seed": 40000014,
+"seeds": {
+"layout": 20000014,
+"appearance": 30000014,
+"instance": 40000014
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+0.985,
+0.592
+],
+"yaw": 0.0,
+"length": 1.029,
+"attached": "E",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+0.779,
+-0.665
+],
+"yaw": 2.7688,
+"cell": 2
+},
+"ball": {
+"pos": [
+0.933,
+-0.403
+]
+},
+"home": {
+"pos": [
+0.08,
+0.643
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+-0.889,
+0.216
+],
+"cell": 3,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "green",
+"pos": [
+-0.25,
+-0.709
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+-1.045,
+1.048
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+-1.116,
+-0.508
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+-0.522,
+1.012
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "S",
+"offset": -0.747,
+"height": 0.3
+},
+"start": {
+"pos": [
+0.1,
+0.681
+],
+"yaw": -0.8157
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.1997,
+0.1995,
+0.2333
+],
+"rgb2": [
+0.1598,
+0.1596,
+0.1866
+],
+"markrgb": [
+0.2815,
+0.2813,
+0.3033
+],
+"random": 0.0,
+"texrepeat": 5,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.6305,
+0.63,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.8423,
+0.8371,
+0.7623
+],
+"partition_rgb": [
+0.716,
+0.7115,
+0.648
+],
+"occluder_rgb": [
+0.5896,
+0.586,
+0.5336
+],
+"home_rgb": [
+0.9465,
+0.9319,
+0.9025
+],
+"pad_rgb": {
+"red": [
+0.8123,
+0.1477,
+0.1167
+],
+"green": [
+0.215,
+0.9424,
+0.2381
+],
+"blue": [
+0.0583,
+0.226,
+0.7701
+],
+"yellow": [
+0.9454,
+0.8324,
+0.0741
+]
+},
+"button_rgb": [
+0.1619,
+0.9189,
+0.9284
+],
+"ball_rgb": [
+0.8808,
+0.065,
+0.9097
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+0.0377,
+0.0323,
+-0.9988
+],
+"diffuse": [
+0.6248,
+0.6248,
+0.6248
+],
+"ambient": [
+0.2523,
+0.2523,
+0.2523
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 2,
+"hash": "6146a86a61fa87d0"
+},
+{
+"id": "arrangements-r7-0015",
+"mujoco_version": "3.16.0",
+"seed": 40000015,
+"seeds": {
+"layout": 20000015,
+"appearance": 30000015,
+"instance": 40000015
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+0.99,
+0.017
+],
+"yaw": 0.0,
+"length": 1.021,
+"attached": "E",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+0.712,
+0.8
+],
+"yaw": 1.3259,
+"cell": 8
+},
+"ball": {
+"pos": [
+0.429,
+0.907
+]
+},
+"home": {
+"pos": [
+-0.306,
+0.702
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+-0.933,
+0.203
+],
+"cell": 3,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "yellow",
+"pos": [
+-0.636,
+-0.868
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+-0.068,
+-1.069
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+-1.124,
+-0.353
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "W",
+"offset": -0.142,
+"height": 0.3
+},
+"start": {
+"pos": [
+-0.251,
+0.773
+],
+"yaw": 0.9785
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.3042,
+0.3169,
+0.3212
+],
+"rgb2": [
+0.2434,
+0.2535,
+0.257
+],
+"markrgb": [
+0.4065,
+0.4148,
+0.4176
+],
+"random": 0.0,
+"texrepeat": 5,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.682,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7571,
+0.7561,
+0.7419
+],
+"partition_rgb": [
+0.6435,
+0.6427,
+0.6306
+],
+"occluder_rgb": [
+0.53,
+0.5293,
+0.5193
+],
+"home_rgb": [
+0.8502,
+0.837,
+0.8106
+],
+"pad_rgb": {
+"red": [
+0.8621,
+0.1998,
+0.1835
+],
+"green": [
+0.1177,
+0.916,
+0.1038
+],
+"blue": [
+0.1631,
+0.4179,
+0.7597
+],
+"yellow": [
+0.9169,
+0.8432,
+0.1173
+]
+},
+"button_rgb": [
+0.1703,
+0.7654,
+0.6629
+],
+"ball_rgb": [
+0.8919,
+0.0829,
+0.8391
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.0076,
+-0.0913,
+-0.9958
+],
+"diffuse": [
+0.6789,
+0.6789,
+0.6789
+],
+"ambient": [
+0.2882,
+0.2882,
+0.2882
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "ec551af4daa0755f"
+},
+{
+"id": "arrangements-r7-0016",
+"mujoco_version": "3.16.0",
+"seed": 40000016,
+"seeds": {
+"layout": 20000016,
+"appearance": 30000016,
+"instance": 40000016
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+0.938,
+-0.398
+],
+"yaw": 0.0,
+"length": 1.124,
+"attached": "E",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+0.612,
+0.949
+],
+"yaw": 1.3072,
+"cell": 8
+},
+"ball": {
+"pos": [
+0.902,
+0.873
+]
+},
+"home": {
+"pos": [
+-0.141,
+-0.76
+],
+"cell": 1,
+"size": 0.4
+},
+"button": {
+"pos": [
+0.751,
+-0.037
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "green",
+"pos": [
+-0.619,
+0.249
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+1.059,
+-0.802
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+-0.766,
+-1.076
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+-0.629,
+1.023
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "N",
+"offset": -0.973,
+"height": 0.3
+},
+"start": {
+"pos": [
+-0.163,
+-0.718
+],
+"yaw": -0.6511
+},
+"lamp_initial_on": true
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2328,
+0.2426,
+0.246
+],
+"rgb2": [
+0.1863,
+0.194,
+0.1968
+],
+"markrgb": [
+0.3113,
+0.3176,
+0.3199
+],
+"random": 0.0,
+"texrepeat": 6,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6816,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7663,
+0.7525,
+0.7357
+],
+"partition_rgb": [
+0.6514,
+0.6396,
+0.6253
+],
+"occluder_rgb": [
+0.5364,
+0.5267,
+0.515
+],
+"home_rgb": [
+0.9253,
+0.9141,
+0.8918
+],
+"pad_rgb": {
+"red": [
+0.7665,
+0.2192,
+0.1755
+],
+"green": [
+0.1143,
+0.8509,
+0.123
+],
+"blue": [
+0.1133,
+0.3219,
+0.84
+],
+"yellow": [
+0.8318,
+0.7246,
+0.0536
+]
+},
+"button_rgb": [
+0.1998,
+0.9411,
+0.9326
+],
+"ball_rgb": [
+0.8181,
+0.2034,
+0.836
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.0444,
+-0.2549,
+-0.966
+],
+"diffuse": [
+0.6131,
+0.6131,
+0.6131
+],
+"ambient": [
+0.2332,
+0.2332,
+0.2332
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "74d7f78fea7beb52"
+},
+{
+"id": "arrangements-r7-0017",
+"mujoco_version": "3.16.0",
+"seed": 40000017,
+"seeds": {
+"layout": 20000017,
+"appearance": 30000017,
+"instance": 40000017
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+0.992,
+0.162
+],
+"yaw": 0.0,
+"length": 1.015,
+"attached": "E",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.946,
+0.824
+],
+"yaw": 0.2035,
+"cell": 6
+},
+"ball": {
+"pos": [
+-0.848,
+0.538
+]
+},
+"home": {
+"pos": [
+0.163,
+-0.608
+],
+"cell": 1,
+"size": 0.4
+},
+"button": {
+"pos": [
+1.072,
+-0.221
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "blue",
+"pos": [
+0.051,
+0.37
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+0.772,
+-0.915
+],
+"size": 0.3
+},
+{
+"color": "green",
+"pos": [
+-1.088,
+-0.132
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+0.616,
+0.987
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "E",
+"offset": -0.064,
+"height": 0.3
+},
+"start": {
+"pos": [
+0.105,
+-0.592
+],
+"yaw": -3.0009
+},
+"lamp_initial_on": true
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2489,
+0.2476,
+0.2635
+],
+"rgb2": [
+0.1991,
+0.1981,
+0.2108
+],
+"markrgb": [
+0.3331,
+0.3322,
+0.3425
+],
+"random": 0.0,
+"texrepeat": 8,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.6357,
+0.63,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.783,
+0.7791,
+0.7716
+],
+"partition_rgb": [
+0.6655,
+0.6622,
+0.6559
+],
+"occluder_rgb": [
+0.5481,
+0.5454,
+0.5401
+],
+"home_rgb": [
+0.9375,
+0.9366,
+0.9347
+],
+"pad_rgb": {
+"red": [
+0.9238,
+0.1696,
+0.2319
+],
+"green": [
+0.1468,
+0.8035,
+0.1469
+],
+"blue": [
+0.0982,
+0.2717,
+0.775
+],
+"yellow": [
+0.7645,
+0.6877,
+0.1248
+]
+},
+"button_rgb": [
+0.1559,
+0.9192,
+0.7795
+],
+"ball_rgb": [
+0.877,
+0.1115,
+0.9464
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.0138,
+0.013,
+-0.9998
+],
+"diffuse": [
+0.5834,
+0.5834,
+0.5834
+],
+"ambient": [
+0.2829,
+0.2829,
+0.2829
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "323666dc63fa89f4"
+},
+{
+"id": "arrangements-r7-0018",
+"mujoco_version": "3.16.0",
+"seed": 40000018,
+"seeds": {
+"layout": 20000018,
+"appearance": 30000018,
+"instance": 40000018
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+0.954,
+0.102
+],
+"yaw": 0.0,
+"length": 1.093,
+"attached": "E",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.906,
+0.778
+],
+"yaw": 2.7737,
+"cell": 6
+},
+"ball": {
+"pos": [
+-0.835,
+1.072
+]
+},
+"home": {
+"pos": [
+0.111,
+-1.038
+],
+"cell": 1,
+"size": 0.4
+},
+"button": {
+"pos": [
+0.984,
+-0.318
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "yellow",
+"pos": [
+-0.637,
+-0.163
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+-0.219,
+1.055
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+0.986,
+1.04
+],
+"size": 0.3
+},
+{
+"color": "green",
+"pos": [
+0.252,
+1.056
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "S",
+"offset": -0.637,
+"height": 0.3
+},
+"start": {
+"pos": [
+0.101,
+-1.009
+],
+"yaw": 3.1318
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2629,
+0.292,
+0.3077
+],
+"rgb2": [
+0.2103,
+0.2336,
+0.2461
+],
+"markrgb": [
+0.3708,
+0.3898,
+0.4
+],
+"random": 0.0,
+"texrepeat": 6,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6755,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7141,
+0.7136,
+0.6736
+],
+"partition_rgb": [
+0.607,
+0.6066,
+0.5726
+],
+"occluder_rgb": [
+0.4999,
+0.4995,
+0.4715
+],
+"home_rgb": [
+0.9404,
+0.9365,
+0.9288
+],
+"pad_rgb": {
+"red": [
+0.7752,
+0.1838,
+0.146
+],
+"green": [
+0.1551,
+0.8721,
+0.2266
+],
+"blue": [
+0.0404,
+0.2406,
+0.8057
+],
+"yellow": [
+0.9142,
+0.8666,
+0.1977
+]
+},
+"button_rgb": [
+0.1165,
+0.8966,
+0.8226
+],
+"ball_rgb": [
+0.8345,
+0.1425,
+0.8331
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.1101,
+-0.2161,
+-0.9701
+],
+"diffuse": [
+0.6166,
+0.6166,
+0.6166
+],
+"ambient": [
+0.2998,
+0.2998,
+0.2998
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 2,
+"hash": "b091a4c62d301330"
+},
+{
+"id": "arrangements-r7-0019",
+"mujoco_version": "3.16.0",
+"seed": 40000019,
+"seeds": {
+"layout": 20000019,
+"appearance": 30000019,
+"instance": 40000019
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+-0.941,
+-0.332
+],
+"yaw": 0.0,
+"length": 1.117,
+"attached": "W",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+0.949,
+-0.875
+],
+"yaw": 0.7701,
+"cell": 2
+},
+"ball": {
+"pos": [
+1.163,
+-1.085
+]
+},
+"home": {
+"pos": [
+0.249,
+0.866
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+0.743,
+-0.314
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "blue",
+"pos": [
+0.087,
+-0.862
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+-0.335,
+1.105
+],
+"size": 0.3
+},
+{
+"color": "green",
+"pos": [
+-0.591,
+-0.93
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+1.044,
+0.538
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "S",
+"offset": 0.914,
+"height": 0.3
+},
+"start": {
+"pos": [
+0.282,
+0.938
+],
+"yaw": 2.061
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2658,
+0.2666,
+0.2851
+],
+"rgb2": [
+0.2126,
+0.2133,
+0.2281
+],
+"markrgb": [
+0.3581,
+0.3586,
+0.3707
+],
+"random": 0.0,
+"texrepeat": 5,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6329,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.8274,
+0.8268,
+0.8093
+],
+"partition_rgb": [
+0.7033,
+0.7028,
+0.6879
+],
+"occluder_rgb": [
+0.5792,
+0.5788,
+0.5665
+],
+"home_rgb": [
+0.8985,
+0.8868,
+0.8635
+],
+"pad_rgb": {
+"red": [
+0.8415,
+0.096,
+0.0999
+],
+"green": [
+0.2442,
+0.8326,
+0.1971
+],
+"blue": [
+0.0658,
+0.4009,
+0.8584
+],
+"yellow": [
+0.9183,
+0.9229,
+0.1039
+]
+},
+"button_rgb": [
+0.1916,
+0.9315,
+0.8944
+],
+"ball_rgb": [
+0.9185,
+0.1365,
+0.8556
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+0.1197,
+0.0888,
+-0.9888
+],
+"diffuse": [
+0.6129,
+0.6129,
+0.6129
+],
+"ambient": [
+0.2972,
+0.2972,
+0.2972
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "4de65a09754ec056"
+},
+{
+"id": "arrangements-r7-0020",
+"mujoco_version": "3.16.0",
+"seed": 40000020,
+"seeds": {
+"layout": 20000020,
+"appearance": 30000020,
+"instance": 40000020
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+0.932,
+0.475
+],
+"yaw": 0.0,
+"length": 1.136,
+"attached": "E",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.709,
+0.831
+],
+"yaw": 2.4467,
+"cell": 6
+},
+"ball": {
+"pos": [
+-0.915,
+0.612
+]
+},
+"home": {
+"pos": [
+0.254,
+-0.865
+],
+"cell": 1,
+"size": 0.4
+},
+"button": {
+"pos": [
+1.015,
+-0.184
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "red",
+"pos": [
+-0.41,
+-0.126
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+-0.95,
+-0.797
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+0.595,
+0.986
+],
+"size": 0.3
+},
+{
+"color": "green",
+"pos": [
+1.083,
+1.096
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "W",
+"offset": -0.682,
+"height": 0.3
+},
+"start": {
+"pos": [
+0.203,
+-0.83
+],
+"yaw": -0.0072
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2414,
+0.2567,
+0.2715
+],
+"rgb2": [
+0.1931,
+0.2054,
+0.2172
+],
+"markrgb": [
+0.3334,
+0.3433,
+0.3529
+],
+"random": 0.0,
+"texrepeat": 6,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6657,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7913,
+0.786,
+0.7625
+],
+"partition_rgb": [
+0.6726,
+0.6681,
+0.6481
+],
+"occluder_rgb": [
+0.5539,
+0.5502,
+0.5337
+],
+"home_rgb": [
+0.9474,
+0.9455,
+0.9418
+],
+"pad_rgb": {
+"red": [
+0.8076,
+0.0865,
+0.0669
+],
+"green": [
+0.182,
+0.7978,
+0.1791
+],
+"blue": [
+0.192,
+0.4499,
+0.8937
+],
+"yellow": [
+0.7616,
+0.7394,
+0.1893
+]
+},
+"button_rgb": [
+0.114,
+0.935,
+0.9373
+],
+"ball_rgb": [
+0.725,
+0.1197,
+0.7883
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+0.009,
+0.0538,
+-0.9985
+],
+"diffuse": [
+0.5578,
+0.5578,
+0.5578
+],
+"ambient": [
+0.2747,
+0.2747,
+0.2747
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "1b0f24c3850f9b6d"
+},
+{
+"id": "arrangements-r7-0021",
+"mujoco_version": "3.16.0",
+"seed": 40000021,
+"seeds": {
+"layout": 20000021,
+"appearance": 30000021,
+"instance": 40000021
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+0.977,
+-0.056
+],
+"yaw": 0.0,
+"length": 1.046,
+"attached": "E",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+-0.746,
+0.84
+],
+"yaw": 1.1122,
+"cell": 6
+},
+"ball": {
+"pos": [
+-0.987,
+1.029
+]
+},
+"home": {
+"pos": [
+-0.288,
+-0.658
+],
+"cell": 1,
+"size": 0.4
+},
+"button": {
+"pos": [
+0.728,
+0.381
+],
+"cell": 5,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "red",
+"pos": [
+0.814,
+-0.495
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+0.263,
+-1.119
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+0.8,
+0.986
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "N",
+"offset": 0.145,
+"height": 0.3
+},
+"start": {
+"pos": [
+-0.238,
+-0.597
+],
+"yaw": -0.935
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.249,
+0.2514,
+0.2716
+],
+"rgb2": [
+0.1992,
+0.2011,
+0.2173
+],
+"markrgb": [
+0.3384,
+0.3399,
+0.353
+],
+"random": 0.0,
+"texrepeat": 6,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6375,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7052,
+0.6781,
+0.6508
+],
+"partition_rgb": [
+0.5994,
+0.5764,
+0.5532
+],
+"occluder_rgb": [
+0.4936,
+0.4747,
+0.4556
+],
+"home_rgb": [
+0.8509,
+0.8442,
+0.8307
+],
+"pad_rgb": {
+"red": [
+0.9127,
+0.2164,
+0.2345
+],
+"green": [
+0.166,
+0.9449,
+0.1375
+],
+"blue": [
+0.2042,
+0.4363,
+0.9169
+],
+"yellow": [
+0.892,
+0.8448,
+0.1809
+]
+},
+"button_rgb": [
+0.1153,
+0.934,
+0.7879
+],
+"ball_rgb": [
+0.8427,
+0.176,
+0.8759
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+0.0254,
+-0.1633,
+-0.9863
+],
+"diffuse": [
+0.669,
+0.669,
+0.669
+],
+"ambient": [
+0.2895,
+0.2895,
+0.2895
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "4a17420dfedff448"
+},
+{
+"id": "arrangements-r7-0022",
+"mujoco_version": "3.16.0",
+"seed": 40000022,
+"seeds": {
+"layout": 20000022,
+"appearance": 30000022,
+"instance": 40000022
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+-0.984,
+-0.213
+],
+"yaw": 0.0,
+"length": 1.033,
+"attached": "W",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+0.696,
+-0.616
+],
+"yaw": 1.0321,
+"cell": 2
+},
+"ball": {
+"pos": [
+0.971,
+-0.74
+]
+},
+"home": {
+"pos": [
+-0.36,
+0.621
+],
+"cell": 7,
+"size": 0.4
+},
+"button": {
+"pos": [
+-0.84,
+0.169
+],
+"cell": 3,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "yellow",
+"pos": [
+-0.496,
+-0.587
+],
+"size": 0.3
+},
+{
+"color": "green",
+"pos": [
+1.047,
+0.128
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+-1.008,
+0.993
+],
+"size": 0.3
+},
+{
+"color": "blue",
+"pos": [
+0.928,
+0.718
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "E",
+"offset": -0.3,
+"height": 0.3
+},
+"start": {
+"pos": [
+-0.281,
+0.578
+],
+"yaw": -2.67
+},
+"lamp_initial_on": false
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2999,
+0.3103,
+0.3197
+],
+"rgb2": [
+0.2399,
+0.2482,
+0.2558
+],
+"markrgb": [
+0.4027,
+0.4095,
+0.4156
+],
+"random": 0.0,
+"texrepeat": 6,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6666,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7537,
+0.7454,
+0.7007
+],
+"partition_rgb": [
+0.6406,
+0.6336,
+0.5956
+],
+"occluder_rgb": [
+0.5276,
+0.5218,
+0.4905
+],
+"home_rgb": [
+0.8764,
+0.8757,
+0.8742
+],
+"pad_rgb": {
+"red": [
+0.7603,
+0.103,
+0.0784
+],
+"green": [
+0.1346,
+0.9156,
+0.1123
+],
+"blue": [
+0.1219,
+0.3546,
+0.9203
+],
+"yellow": [
+0.8796,
+0.8105,
+0.176
+]
+},
+"button_rgb": [
+0.1835,
+0.8767,
+0.8758
+],
+"ball_rgb": [
+0.932,
+0.1785,
+0.9448
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+0.0358,
+0.0398,
+-0.9986
+],
+"diffuse": [
+0.6265,
+0.6265,
+0.6265
+],
+"ambient": [
+0.2182,
+0.2182,
+0.2182
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "e54ececea87b551f"
+},
+{
+"id": "arrangements-r7-0023",
+"mujoco_version": "3.16.0",
+"seed": 40000023,
+"seeds": {
+"layout": 20000023,
+"appearance": 30000023,
+"instance": 40000023
+},
+"layout": {
+"family": "dev",
+"room": {
+"size": [
+3.0,
+3.0
+],
+"wall_height": 0.4,
+"wall_thickness": 0.05
+},
+"partition": {
+"pos": [
+-0.97,
+-0.281
+],
+"yaw": 0.0,
+"length": 1.06,
+"attached": "W",
+"thickness": 0.04,
+"height": 0.3
+},
+"occluder": {
+"length": 0.4,
+"thickness": 0.04,
+"height": 0.2,
+"pos": [
+0.622,
+-0.922
+],
+"yaw": 0.944,
+"cell": 2
+},
+"ball": {
+"pos": [
+0.865,
+-1.098
+]
+},
+"home": {
+"pos": [
+-0.395,
+-0.959
+],
+"cell": 1,
+"size": 0.4
+},
+"button": {
+"pos": [
+-0.675,
+0.067
+],
+"cell": 3,
+"size": 0.24,
+"thickness": 0.005,
+"height": 0.005,
+"travel": 0.005,
+"stiffness": 1500.0,
+"preload": 0.0,
+"damping": 2.0,
+"mass": 0.03,
+"press_depth": 0.0025
+},
+"pads": [
+{
+"color": "green",
+"pos": [
+-0.101,
+0.323
+],
+"size": 0.3
+},
+{
+"color": "yellow",
+"pos": [
+0.803,
+0.957
+],
+"size": 0.3
+},
+{
+"color": "red",
+"pos": [
+-0.618,
+0.982
+],
+"size": 0.3
+}
+],
+"lamp": {
+"wall": "E",
+"offset": 0.018,
+"height": 0.3
+},
+"start": {
+"pos": [
+-0.462,
+-0.948
+],
+"yaw": 2.7995
+},
+"lamp_initial_on": true
+},
+"appearance": {
+"family": "train",
+"floor": {
+"builtin": "checker",
+"mark": "edge",
+"rgb1": [
+0.2416,
+0.2479,
+0.2593
+],
+"rgb2": [
+0.1933,
+0.1983,
+0.2075
+],
+"markrgb": [
+0.3256,
+0.3297,
+0.3371
+],
+"random": 0.0,
+"texrepeat": 7,
+"reflectance": 0.05
+},
+"sky": {
+"rgb1": [
+0.63,
+0.6547,
+0.7
+],
+"rgb2": [
+0.2,
+0.2,
+0.25
+]
+},
+"wall_rgb": [
+0.7457,
+0.7325,
+0.6937
+],
+"partition_rgb": [
+0.6338,
+0.6226,
+0.5896
+],
+"occluder_rgb": [
+0.522,
+0.5128,
+0.4856
+],
+"home_rgb": [
+0.892,
+0.8799,
+0.8558
+],
+"pad_rgb": {
+"red": [
+0.9049,
+0.1382,
+0.0659
+],
+"green": [
+0.0929,
+0.8287,
+0.1551
+],
+"blue": [
+0.1139,
+0.3106,
+0.8203
+],
+"yellow": [
+0.9418,
+0.935,
+0.1049
+]
+},
+"button_rgb": [
+0.1695,
+0.8609,
+0.7757
+],
+"ball_rgb": [
+0.9413,
+0.1635,
+0.9349
+],
+"lamp_off_rgb": [
+0.15,
+0.15,
+0.15
+],
+"lamp_on_rgb": [
+1.0,
+0.95,
+0.6
+],
+"lamp_on_emission": 0.9,
+"light": {
+"dir": [
+-0.0987,
+0.1687,
+-0.9807
+],
+"diffuse": [
+0.6652,
+0.6652,
+0.6652
+],
+"ambient": [
+0.2257,
+0.2257,
+0.2257
+],
+"castshadow": true,
+"headlight_ambient": [
+0.2,
+0.2,
+0.2
+],
+"headlight_diffuse": [
+0.3,
+0.3,
+0.3
+]
+}
+},
+"distractor": null,
+"layout_attempts": 1,
+"hash": "3a77c96e3774e33a"
+}
+]
+}

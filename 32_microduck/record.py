@@ -39,7 +39,7 @@ from PIL import Image
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from interface import Interface  # noqa: E402
+from interface import BOUNDS, Command, Interface  # noqa: E402
 from refbot import controller  # noqa: E402
 from room import World  # noqa: E402
 from tasks import BUDGET_TICKS, Judge, _hiders, _place_ball, ball_viewpoints, ball_visibility, make_episode, start_episode  # noqa: E402
@@ -91,7 +91,8 @@ def _alt_hiding_spot(w, rng):
 
 def record_episode(cfg, split, task, k, perturb=None, params=None, out_dir=EP_DIR, seed=0,
                    policy_weights=None, beta=1.0, tag=None, cold_renderer=False, after_bot_done="stop",
-                   policy_kind="m5", takeover_tick=None, takeover_fresh=False, budget_ticks=None):
+                   policy_kind="m5", takeover_tick=None, takeover_fresh=False, budget_ticks=None,
+                   noise=None, bot_pose=False):
     """policy_weights + beta < 1: DAgger recording. The bot runs in shadow mode on the same observation
     stream and its command is always recorded as the label (cmd_bot); each tick the executed command is
     the bot's with probability beta, else the policy's (cmd_exec).
@@ -113,7 +114,18 @@ def record_episode(cfg, split, task, k, perturb=None, params=None, out_dir=EP_DI
     takeover_tick (amendment 5): the policy drives until this tick, then the bot's commands are executed.
     takeover_fresh: at that tick a new bot instance starts from the current state instead of the shadow
     bot (the shadow bot's log is kept in header['dagger']['pre_takeover_events']).
-    budget_ticks: overrides the task budget (the bot is given the same budget)."""
+    budget_ticks: overrides the task budget (the bot is given the same budget).
+
+    noise (R6 LeWM, off by default): {"p": start prob per tick, "len": [lo, hi], "head_frac": f}. A "noisy
+    bot" for world-model data: with probability p per tick (outside a burst, and never on a done tick) a
+    burst of lo..hi ticks starts in which one random command (vx, wz uniform in the bounds, head deltas
+    uniform in +-f x bounds) is executed instead of the bot's; the bot keeps running closed loop on what
+    actually happened (its odometry reads the executed command) and recovers afterwards. cmd_bot keeps
+    the bot's own command, cmd_exec the executed one; header['noise'] has the settings and the count.
+
+    bot_pose (Round 7, off by default so stored episodes still reproduce byte for byte): also store the bot's
+    (or shadow bot's) own odometry pose per tick, `bot_pose` (T, 3) float32 = x, y, yaw in its odometry frame
+    (anchor-corrected when the bot's anchors are on), read before the command of tick t is chosen."""
     ep = make_episode(cfg, task, k)
     w = World(cfg)
     start_episode(w, ep)
@@ -136,6 +148,8 @@ def record_episode(cfg, split, task, k, perturb=None, params=None, out_dir=EP_DI
             raise ValueError("policy_kind must be m5 or p2")
         pcmd = next(pgen)
     n_policy = 0
+    noise_rng = np.random.default_rng([int(cfg["hash"], 16) % 2 ** 32, k, 13])
+    burst_left, burst_cmd, n_noisy = 0, None, 0
     pre_takeover_events = None
     pert = {"type": perturb, "tick": None}
     if perturb == "missed_press":
@@ -145,6 +159,7 @@ def record_episode(cfg, split, task, k, perturb=None, params=None, out_dir=EP_DI
     shove_dir = float(rng.uniform(0, 2 * np.pi))
     hidden_run, moved = 0, False
     F, B, I, CE, CB, SK, AC, MEM, ST, WT, TR = ([] for _ in range(11))
+    BP = []
     vocab_sk, vocab_ac = {}, {}
     obs = iface.observe()
     t0 = time.time()
@@ -161,6 +176,16 @@ def record_episode(cfg, split, task, k, perturb=None, params=None, out_dir=EP_DI
         if pgen is not None and not taken and (bot_done or mix_rng.random() >= beta):
             exec_cmd = pcmd
             n_policy += 1
+        if noise is not None and not exec_cmd.done:
+            if burst_left == 0 and noise_rng.random() < noise["p"]:
+                burst_left = int(noise_rng.integers(noise["len"][0], noise["len"][1] + 1))
+                hc = np.asarray(BOUNDS["head"]) * noise.get("head_frac", 0.6)
+                burst_cmd = Command(vx=float(noise_rng.uniform(*BOUNDS["vx"])), wz=float(noise_rng.uniform(*BOUNDS["wz"])),
+                                    head=tuple(float(x) for x in noise_rng.uniform(-hc, hc)))
+            if burst_left > 0:
+                exec_cmd = burst_cmd
+                burst_left -= 1
+                n_noisy += 1
         chain = bot.activity()
         skill = bot.skill_stack[-1] if bot.skill_stack else ("watch_ball" if chain and chain[-1] == "find_ball" else "-")
         act = ">".join(c for c in chain if c not in ("drive", "_single")) or "-"
@@ -180,6 +205,8 @@ def record_episode(cfg, split, task, k, perturb=None, params=None, out_dir=EP_DI
         SK.append(vocab_sk.setdefault(skill, len(vocab_sk)))
         AC.append(vocab_ac.setdefault(act, len(vocab_ac)))
         MEM.append(mem_snapshot(bot))
+        if bot_pose:
+            BP.append(np.array(bot.pose(), np.float32))
         ST.append(obs.sim_time)
         WT.append(time.time() - t0)
         p = w.duck.pos()
@@ -238,6 +265,12 @@ def record_episode(cfg, split, task, k, perturb=None, params=None, out_dir=EP_DI
                                                    "policy_kind": policy_kind, "takeover_tick": takeover_tick,
                                                    "takeover_fresh": takeover_fresh,
                                                    "pre_takeover_events": pre_takeover_events}}
+    if noise is not None:
+        header["noise"] = {**noise, "noisy_ticks": n_noisy}
+    extra = {}
+    if bot_pose:
+        header["bot_pose"] = True
+        extra["bot_pose"] = np.stack(BP)
     sub = Path(out_dir) / task
     sub.mkdir(parents=True, exist_ok=True)
     name = f"{split}_{cfg['id']}_k{k}" + (f"_{perturb}" if perturb else "") + (f"_{tag}" if tag else "")
@@ -247,7 +280,7 @@ def record_episode(cfg, split, task, k, perturb=None, params=None, out_dir=EP_DI
                         activity=np.array(AC, np.int16), sim_time=np.array(ST, np.float32),
                         wall_time=np.array(WT, np.float64), obs_age=np.zeros(T, np.float32),
                         truth=np.array(TR, np.float32), observed=np.array(observed),
-                        memory=np.array(json.dumps(MEM)), header=np.array(json.dumps(header)))
+                        memory=np.array(json.dumps(MEM)), header=np.array(json.dumps(header)), **extra)
     return {"path": str(path.relative_to(HERE)) if path.is_relative_to(HERE) else str(path), "config": cfg["id"], "split": split, "task": task, "k": k,
             "instruction": ep["instruction"], "controller": header["controller"], "perturbation": pert,
             "success": res["success"], "ticks": T, "mb": round(path.stat().st_size / 1e6, 2),

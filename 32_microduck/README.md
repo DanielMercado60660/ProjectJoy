@@ -71,6 +71,21 @@ raises no-press successes (72, 69, 68 of 80 over two seeds vs 52), mostly by say
 says done as often when a press is needed), and the duck still almost never presses (at most 1 of 80 press-needed successes per arm), and carrying a detached
 memory across chunks changed no success count (H ≈ Hr; this does not test learned long memory). Next: skill selection with a shared sensors-only map (Astra's option 2). Reviewed.
 
+**Round 6 (2026-11-04): LeWorldModel S1** trained from scratch fails all four pre-registered gates (the latent is a
+room code; the lamp is invisible to a next-frame objective), so the encoder swap was not started.
+
+**Round 7 (2026-11-04 night → 11-05): make the duck press** (panel plan `design/R7_CAMPAIGN.md`, protocol
+`results/r7/protocol.json`). A 58-float sensors-only belief vector (plate / lamp / mat / pad / ball bearing,
+distance, age from the bot's own memory and leg odometry; `belief.py`) fed to the policy: the pixel-free belief
+policy is the first learned arm with more than one press-needed success on the 80 confirmation rooms (4/40 in one
+seed, 0 in the other; 2 and 1 of 40 on the fresh 96-room slice; done-without-press 1–5/40 against 27–29), but it
+fails its pre-registered reach gate, so the pixel + belief arm was cut and no learned arm meets the bar. Skill
+selection on the bot's map and skills equals the bot (21/40 fresh) but also equals the (previous skill, lamp
+belief) lookup table (18) — scaffolding. A hand-written map-free 64 px servo on the bot's lamp detector gets 31/40
+(the bot 21): the task is reactively solvable from 64 px pixels. Chicken head fails both gates; weight-space
+programming never became eligible; DINOv2 / LeWM-B not approved. Demo `media/r7_demo.html`; checkpoint
+`checkpoints/r7_1bv1_s0.*`; 136 tests.
+
 See [RESULTS.md](RESULTS.md) and [tasks/](tasks/).
 
 ## Run
@@ -173,6 +188,33 @@ OMP_NUM_THREADS=1 P2_PROCS=4 ../bin/gpu_run ../.venv/bin/python p2_recovery.py -
 ./p2_lane.sh e_s0 h_s1                        # e: --p-end 0.2; h: --stream; hr: --stream --stream-reset (2,000-step window warm-up, 512-stream pool)
 OMP_NUM_THREADS=1 P2_PROCS=4 ../bin/gpu_run ../.venv/bin/python p2_confirm.py NAME=WEIGHTS ...   # 80 never-used dev rooms -> results/p2/confirm.jsonl
 ../.venv/bin/python p2_confirm.py --stages select_p2_r3_s1   # stage counts from a selection file's pick
+# Round 6: LeWorldModel S1 (plan design/LEWM_FEASIBILITY.md; gates results/lewm/protocol.json; code lewm/)
+../bin/gpu_run ../.venv/bin/python lewm/record_noisy.py --lo 0 --hi 300 --k 5 --index episodes/noisy_index.jsonl --max-min 44
+../bin/gpu_run ../.venv/bin/python lewm/data.py build base     # also: noisy, dev -> episodes/cache/lewm_*/ (64 px memmap)
+sh lewm/lane.sh runs/lewm_s1 20000                    # LeWM, resumes after each 44-min guard stop
+sh lewm/lane.sh runs/lewm_rand 20000 --random-encoder # control: frozen random encoder, trained predictor
+../bin/gpu_run ../.venv/bin/python lewm/evaluate.py runs/lewm_s1      # G1-G3 -> results/lewm/eval_lewm_s1.json
+../bin/gpu_run ../.venv/bin/python lewm/probes.py lewm:runs/lewm_s1 rand:runs/lewm_rand p2:runs/p2_a2/ckpt_016000/weights.safetensors
+../.venv/bin/python lewm/report.py runs/lewm_s1 runs/lewm_rand        # gate table -> results/lewm/gates.json
+# Round 7 (plan design/R7_CAMPAIGN.md; protocol + amendments results/r7/protocol.json; every attempt results/r7/ledger.jsonl)
+../.venv/bin/python make_splits.py --r7 && ../.venv/bin/python check_splits.py   # fresh reserved slice splits/r7_*.json (24 rooms/family)
+OMP_NUM_THREADS=1 P2_PROCS=4 ../bin/gpu_run ../.venv/bin/python p2_belief_labels.py build --index episodes/index.jsonl --index episodes/dagger_index.jsonl \
+  --index episodes/dagger2_index.jsonl --index episodes/dagger3_index.jsonl --index episodes/recovery_index.jsonl --index episodes/noisy_index.jsonl   # belief side files (~1 min)
+../.venv/bin/python p2_belief_labels.py gate            # Stage 1A label gate (truth to score only) -> results/r7/belief_labels_gate.json
+../.venv/bin/python r7_probes.py calibrate              # intentional-reach thresholds K, R from the bot's own successes -> protocol.json
+../.venv/bin/python r7_probes.py ceiling                # scripted-done counterfactual on the stored 80-room rows
+../.venv/bin/python r7_probes.py onset NAME=WEIGHTS ... # turn-onset probe (27 blind first turns); bearing NAME=WEIGHTS for belief-head arms
+./r7_lane.sh 1bv1_s0                                    # arms: 1bv1 (Hr + belief vector, no pixels), 1c_bh, 1c_ow, 2a, 2a_sh; trains to 16k with --resume
+OMP_NUM_THREADS=1 P2_PROCS=4 ../bin/gpu_run ../.venv/bin/python r7_eval.py select --run runs/r7_1bv1_s0    # 40 rooms per checkpoint + diag, p2_select pick rule
+OMP_NUM_THREADS=1 P2_PROCS=4 ../bin/gpu_run ../.venv/bin/python r7_eval.py confirm NAME=WEIGHTS ...        # the 80 rooms (second look); fresh = the 96-room slice (Stage 5)
+../.venv/bin/python r7_gate.py stage results/r7/select_r7_1bv1_s0.json                                      # the closed-loop stage gate per pick
+OMP_NUM_THREADS=1 P2_PROCS=4 ../bin/gpu_run ../.venv/bin/python p2_servo_baseline.py select               # 1D map-free pixel servo, oracle + lamp latches
+../.venv/bin/python p2_skillsel.py extract && ../.venv/bin/python p2_skillsel.py train learned --seed 0    # Stage 3 decision set + selectors (also: train shuffled; freq)
+OMP_NUM_THREADS=1 P2_PROCS=4 ../bin/gpu_run ../.venv/bin/python r7_eval.py select sel_learned_s0=selector:results/r7/skillsel/learned_s0.npz sel_program=selector:program bot=bot
+OMP_NUM_THREADS=1 P2_PROCS=4 ../bin/gpu_run ../.venv/bin/python r7_gaze_pregate.py                       # Stage 4A chicken-head pre-gate recording (20 x 2 episodes)
+./r7_queue4.sh && ./r7_queue5.sh && ./r7_queue6.sh    # the lane plan actually used (1B-v1 selections -> 1C -> servo + Stage 3 -> 1B confirmations -> 4A -> 3A gate / 3B -> Stage 3 on the 80 rooms); queue1-3 were superseded before launching anything
+./r7_queue_fresh.sh [results/r7/fresh_arms.txt]        # Stage 5: every frozen arm once on the fresh slice (the authoritative arm list); ../.venv/bin/python r7_report.py fresh -> results/r7/table_fresh.md
+OMP_NUM_THREADS=1 P2_PROCS=4 ../bin/gpu_run ../.venv/bin/python r7_eval.py select r7_pick=checkpoints/r7_1bv1_s0.safetensors   # reload the Round 7 checkpoint (its .json sits beside it)
 ```
 Everything in M0 is CPU-only and quick (the gate is 40 simulated minutes in about 10 s on 4 processes),
 so nothing goes through `bin/gpu_run`.
@@ -273,6 +315,23 @@ episodes/p2_shadow_dev/  p2_shadow_dev.py's dev episodes (gitignored)
 episodes/p2_takeover/ check A's 500 episodes (train configs 0-99, k=4), by arm (gitignored)
 episodes/p2_recovery/ step 4's 200 recovery episodes (train configs 100-299, k=4) (gitignored)
 episodes/p2_look/     4 scratch closed-loop episodes of P2-A′ (dev, bot shadowing), the basis of amendment 2 (gitignored)
+episodes/*/train_*_k5_noisy.npz  R6 noisy-bot episodes (random command bursts, bot recovers; index episodes/noisy_index.jsonl) (gitignored)
+episodes/cache/lewm_{base,noisy,dev}/  R6 LeWM 64 px frame memmaps + 6-d cmd_exec actions (gitignored)
+lewm/                 R6 LeWorldModel in MLX: model.py, data.py (cache + windows), train.py (resumable), lane.sh,
+                      evaluate.py (gates G1-G3), probes.py (G4), report.py, record_noisy.py, bench_step.py (timing)
+design/LEWM_FEASIBILITY.md  R6 feasibility study and staged plan; results/lewm/ protocol, evals, probes, gates
+design/R7_CAMPAIGN.md R7 panel design (four proposals, critiques, one lead); results/r7/ protocol, ledger, gates, evals, selections
+belief.py             R7 sensors-only belief vector (58 floats): BeliefTracker (deployment) + the same builder for recorded episodes
+p2_belief_labels.py   R7 belief side files per episode (episodes/cache/r7_belief_v2/) and the Stage 1A label gate
+r7_eval.py            R7 instrumented closed-loop evaluator (select 40 / confirm 80 / fresh 96 rooms): stage counts + intentionality metric
+r7_probes.py          R7 turn-onset probe, bearing read, intentional-reach calibration, scripted-done ceiling
+r7_gate.py            R7 stage-gate reader; r7_lane.sh / r7_queue*.sh the lane and queue scripts (two jobs at most)
+p2_servo_baseline.py  R7 Stage 1D map-free 64 px cyan servo (oracle latch / sensors-only lamp latch): baseline rows
+p2_skillsel.py        R7 Stage 3 skill selection: decision set from the bot's demos, MLX selector + controls, the adapter on the bot's skills/map
+r7_gaze_pregate.py    R7 Stage 4A chicken-head pre-gate recording (gaze on vs off, 20 matched rooms)
+splits/r7_*.json      R7 fresh reserved slice (24 rooms per family, dev-family rules, slots 9-12; one look in Stage 5)
+tests/test_r7*.py     R7 checks: belief vector/tracker/offline equivalence, trainer paths + resume, evaluator equivalence, intentionality fields, skill selection
+tests/test_lewm.py    R6: noise hook, window/action alignment, AdaLN-zero + causality, SIGReg, bit-exact resume
 learner.py            M5 policy (CNN + GRU, MLX), input preparation, PolicyController for run_episode
 m5_train.py           BC / DAgger training (resumable); m5_select.py applies the selection rule
 m5_dagger.py          DAgger recording (policy and shadow bot on train configs)

@@ -1,0 +1,24 @@
+# Round 7 Stage 5 arms (DRAFT, finalised at the method freeze; one NAME=WEIGHTS per line; '#' lines are skipped)
+# step-5 pixel policies (first look on the 80 rooms already spent; re-run once on the fresh slice)
+p2_hr_s0=runs/p2_hr_s0/ckpt_016000/weights.safetensors
+p2_hr_s1=runs/p2_hr_s1/ckpt_016000/weights.safetensors
+p2_r3_s1=runs/p2_r3_s1/ckpt_016000/weights.safetensors
+# Stage 1B pixel-free belief-vector policy (frozen picks), learned decisions + supplied perception
+r7_1bv1_s0=runs/r7_1bv1_s0/ckpt_012000/weights.safetensors
+r7_1bv1_s1=runs/r7_1bv1_s1/ckpt_016000/weights.safetensors
+# superseded recipe (flickering lamp belief), extra row, not a plan arm
+r7_1bv0_s0_superseded=runs/r7_1b_s0/ckpt_016000/weights.safetensors
+# the frozen reference bot (ceiling)
+bot=bot
+# Stage 1D servo, sensors-only lamp latch (only if 1D's gate passed; oracle latch is not a candidate)
+servo_lamp=servo:lamp
+# Stage 3 selector arms (learned decisions + supplied perception/skills) and controls
+sel_learned_s0=selector:results/r7/skillsel/learned_s0.npz
+sel_learned_s1=selector:results/r7/skillsel/learned_s1.npz
+sel_shuffled_s0=selector:results/r7/skillsel/shuffled_s0.npz
+sel_shuffled_s1=selector:results/r7/skillsel/shuffled_s1.npz
+sel_freq=selector:freq:results/r7/skillsel/freq.json
+sel_program=selector:program
+# 3B one-seed documentation run (3A kill: scaffolding)
+sel_learned_s0_dagger=selector:results/r7/skillsel/learned_s0_dagger.npz
+# 4A arms: none (both gates failed)

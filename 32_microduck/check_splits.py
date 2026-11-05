@@ -36,6 +36,74 @@ def load():
     return data
 
 
+def check_r7(data, allc, content, layout, start):
+    """Round 7 reserved slice (splits/r7_*.json, make_splits.py --r7), when present: manifest sha256, unique ids and
+    hashes against every Phase 1 config, dev-family rules one factor at a time, seeds and content disjoint from
+    train, and layouts / start poses / source train configs disjoint from the dev and test sets of each factor."""
+    man_p = SPLITS / "R7_MANIFEST.json"
+    if not man_p.exists():
+        return None
+    man = json.loads(man_p.read_text())
+    sha = {n: hashlib.sha256((SPLITS / n).read_bytes()).hexdigest() for n in man["files_sha256"]}
+    r7 = {f: json.loads((SPLITS / f"r7_{f}.json").read_text())["configs"]
+          for f in ("instances", "arrangements", "appearances", "distractor")}
+    cfgs = [(f, c) for f in r7 for c in r7[f]]
+    train = data["train"]
+    by_id = {c["id"]: c for c in train}
+    res = {"sha256_match": sha == man["files_sha256"], "n_configs": len(cfgs),
+           "counts": {f: len(v) for f, v in r7.items()},
+           "pinned_and_hash_ok": all(c["mujoco_version"] == MUJOCO_VERSION and c["hash"] == config_hash(c) for _, c in cfgs)}
+    old_ids = {c["id"] for _, _, c in allc}
+    old_hashes = {c["hash"] for _, _, c in allc}
+    ids = [c["id"] for _, c in cfgs]
+    hashes = [c["hash"] for _, c in cfgs]
+    res["ids_unique"] = len(set(ids)) == len(ids) and not (set(ids) & old_ids)
+    res["hashes_unique"] = len(set(hashes)) == len(hashes) and not (set(hashes) & old_hashes)
+    one = {}
+    for f, lst in r7.items():
+        ok = True
+        for c in lst:
+            lf, af, dist = c["layout"]["family"], c["appearance"]["family"], c["distractor"] is not None
+            if f == "instances":
+                ok &= (lf, af, dist) == ("train", "train", False)
+            elif f == "arrangements":
+                ok &= (lf, af, dist) == ("dev", "train", False)
+            elif f == "appearances":
+                src = by_id[c["source_train_id"]]
+                ok &= (lf, af, dist) == ("train", "dev", False) and c["layout"] == src["layout"]
+            else:
+                src = by_id[c["source_train_id"]]
+                ok &= (lf, af, dist) == ("train", "train", True) and c["layout"] == src["layout"] \
+                    and c["appearance"] == src["appearance"]
+        one[f] = bool(ok)
+    res["one_factor_at_a_time"] = one
+    res["n_invalid"] = sum(bool(validate(c)) for _, c in cfgs)
+    tl = {c["seeds"]["layout"] for c in train}
+    ti = {c["seeds"]["instance"] for c in train}
+    res["seeds_unseen"] = all(c["seeds"]["layout"] not in tl and c["seeds"]["instance"] not in ti
+                              for f in ("instances", "arrangements") for c in r7[f])
+    tc, tl_, ts = {content(c) for c in train}, {layout(c) for c in train}, {start(c) for c in train}
+    res["content_in_train"] = sum(content(c) in tc for _, c in cfgs)
+    fresh = [c for f in ("instances", "arrangements") for c in r7[f]]
+    res["fresh_layouts_in_train"] = sum(layout(c) in tl_ for c in fresh)
+    res["fresh_start_poses_in_train"] = sum(start(c) in ts for c in fresh)
+    shared = {}
+    for f, lst in r7.items():
+        n = 0
+        for s in ("dev", "test"):
+            other = data[f][s]
+            n += len({layout(c) for c in lst} & {layout(c) for c in other})
+            n += len({content(c) for c in lst} & {content(c) for c in other})
+            n += len({c.get("source_train_id") for c in lst} & {c.get("source_train_id") for c in other} - {None})
+        shared[f] = n
+    res["shared_with_dev_or_test"] = shared
+    res["pass"] = bool(res["sha256_match"] and res["pinned_and_hash_ok"] and res["ids_unique"] and res["hashes_unique"]
+                       and all(one.values()) and res["n_invalid"] == 0 and res["seeds_unseen"]
+                       and res["content_in_train"] == 0 and res["fresh_layouts_in_train"] == 0
+                       and res["fresh_start_poses_in_train"] == 0 and not any(shared.values()))
+    return res
+
+
 def main():
     res, fails = {}, []
     man = json.loads((SPLITS / "MANIFEST.json").read_text())
@@ -141,6 +209,10 @@ def main():
     checks = [content_ok, res["sha256_match"], res["pinned_and_hash_ok"], res["ids_unique"], res["hashes_unique"],
               res["held_out_in_train"] == 0, all(disj.values()), res["n_invalid"] == 0,
               all(one.values()), all(res["seeds_unseen"].values())]
+    r7 = check_r7(data, allc, content, layout, start)
+    if r7 is not None:
+        res["r7"] = r7
+        checks.append(r7["pass"])
     res["pass"] = bool(all(checks))
     out = HERE / "results" / "m1" / "split_check.json"
     out.parent.mkdir(parents=True, exist_ok=True)

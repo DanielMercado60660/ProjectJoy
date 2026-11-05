@@ -1,0 +1,27 @@
+{
+ "written": "2026-11-04 16:15 CST, before any LeWM S1 recording or training",
+ "plan": "design/LEWM_FEASIBILITY.md, S1 (owner approved 'Yes, plus recording')",
+ "model": "MLX LeWM: ViT-tiny encoder (12x192, 3 heads) on 64x64 frames, patch 8; BN projector 192-2048-192; predictor 6 layers, 16x64 heads, MLP 2048, AdaLN-zero on action blocks; history 3; frameskip 5 (action block = 5 ticks x [vx, wz, 4 head deltas] of cmd_exec = 30-d); loss MSE + 0.09 SIGReg (1024 directions, 17 knots on [0,3]); AdamW 5e-5, wd 1e-3, batch 128, grad clip 1.0, fp32",
+ "training_data": "train-split episodes of configs train-0000..0269 from index, dagger, dagger2, dagger3, recovery_index and the new noisy-bot recording (episodes/noisy_index.jsonl). Excluded: configs 0270-0299 (held out), all dev/test rooms (p2_dev, p2_shadow_dev, p2_look, m6_clips).",
+ "control": "random-encoder control: same architecture, encoder + projector frozen at random init (projector BN in eval mode with running stats from 200 warm-up batches), predictor trained with the same loss (MSE only; SIGReg has no trainable target), same steps/batch/seed",
+ "check_sets": {
+  "heldout_train": "all episodes of configs 0270-0299 (all sources)",
+  "p2_dev": "episodes/p2_dev (80 set_lamp bot demos; instances-dev 0010-0029, others 0000-0019)"
+ },
+ "untouched": "confirmation rooms instances-dev 0030-0049 and others 0020-0039; reserved test rooms",
+ "gates": {
+  "G1_no_collapse": "on heldout_train embeddings (eval mode): >= 90% of the 192 dims have std in [0.5, 2]; effective rank (exp of entropy of normalised covariance eigenvalues) >= 100; SIGReg statistic at the final checkpoint below its step-1000 value",
+  "G2_prediction": "one-block prediction error ratio R = mean||zhat_{t+1}-z_{t+1}||^2 / mean||z_t - z_{t+1}||^2 (copy-last-latent = 1.0) with true-latent history of 3: R <= 0.70 on heldout_train and R <= 0.85 on p2_dev; random-encoder control's R reported",
+  "G3_action_ranking": "heldout_train windows: true last action block vs 15 blocks drawn from other episodes; pick the candidate whose prediction is nearest the true next latent; top-1 >= 0.50 AND >= 3x the random-encoder control's top-1 (chance 0.0625)",
+  "G4_probes": "p2_enc_probe protocol (bot fresh lamp sightings in results/m5/bc_index.jsonl episodes, 64 px, standardised features, linear softmax, Adam 1e-2 x 800, L2 1e-3, fit configs 0-199, test 200-299): lamp test accuracy >= 0.90 (P2-A' ckpt_016000: 0.837); AND plate (button) in-view AUC, same protocol and frames (ticks with a confirmed button track: positive if seen this tick), >= P2-A' s0's AUC on the same frames",
+  "reported_not_gated": "random-encoder probe scores, P2-A' s1 and R3 s1 probe scores, yaw-change probe r (truth-labelled, evaluation only), frameskip-2 ablation if time allows",
+  "verdict": "S1 passes only if all four gates pass; checkpoint used = final step of the planned schedule (no selection among checkpoints)"
+ },
+ "amendment_1": {
+  "written": "2026-11-04 16:15",
+  "before_training": true,
+  "change": "schedule 20,000 steps (was ~30,000 in the feasibility plan) for both LeWM and the random-encoder control; warm-up 1,000, cosine to 0.1x lr at 20k",
+  "reason": "measured 2.9 steps/s on real data at load 22-36 (other projects + recorder); 30k steps would not finish inside the owner's 6-hour box after the ~1 h noisy recording. Budget is now ~20k x 128 = 2.56M windows (~1.6 passes over the ~1.6M training start positions).",
+  "resume_check": "40-step run vs 20 + kill + resume 20: max abs weight diff 0.0 over 233 arrays (scratch runs)"
+ }
+}

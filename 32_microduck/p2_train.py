@@ -12,6 +12,16 @@ sampling a window) and labels.npz (small arrays in RAM). 96px frames would excee
 The loss and accuracy denominators exclude padding, burn-in and masked labels. Accuracy reports
 describe the current training batch, with class counts; absent classes are null, not 100% correct.
 T3: --vx-head binary replaces vx MSE with unit-weight walk BCE; decoding emits exactly 0 or 0.3.
+Round 7 (design/R7_CAMPAIGN.md; the old sampling path is untouched and draws identically):
+  --mem-vector      the 58-float sensors-only belief vector (belief.py, side files from p2_belief_labels.py)
+                    joins the GRU input beside the frame, body and instruction
+  --no-pixels       no image branch (Stage 1B: the pixel-free control / decisive test); needs --mem-vector
+  --shuffle-vector  control: each window's vectors come from a random other episode's ticks
+  --belief-heads    Stage 1C: per-class (sin, cos, log-dist, in-view) heads on the trunk feature, weight 1,
+                    masked to ticks whose track sighting lies inside the window
+  --onset-weight W  Stage 1C control: the bot's motion-onset ticks (stand->turn, stand->walk, turn->walk)
+                    weigh W x in the walk / turn losses (1 = off)
+  --init-encoder-only / --freeze-encoder   partial init from a p2_pretrain export (c1..c4, img only) and freezing it
 """
 import argparse
 import hashlib
@@ -27,11 +37,13 @@ import mlx.optimizers as optim
 import numpy as np
 from mlx.utils import tree_flatten, tree_unflatten
 
-from p2_learner import Policy2, body_vec, cmd_targets, instr_vec, policy_config, prep_frame
+from p2_learner import BELIEF_OUT, VEC_DIM, Policy2, body_vec, cmd_targets, instr_vec, policy_config, prep_frame
 
 HERE = Path(__file__).resolve().parent
 CACHE = HERE / "episodes" / "cache"
 CACHE_VERSION = "p2_belief_v1"
+ENCODER_LAYERS = ("c1", "c2", "c3", "c4", "img")
+N_BELIEF_CLASSES = BELIEF_OUT // 4
 REG_W = np.array([1, 1, 0.5, 0.5, 0.5, 0.5], np.float32)
 # T3: compare cached normalized vx against the SAME float32 transform of 0.15; no cache rewrite.
 WALK_REG_THRESHOLD = float(cmd_targets(np.array([0.15, 0, 0, 0, 0, 0, 0, 0], np.float32))[0][0])
@@ -149,8 +161,11 @@ def load_episode(rel, img=64):
     return ep
 
 
-def load_all(index_files, img=64, deadline=None):
+def load_all(index_files, img=64, deadline=None, vectors=False):
+    """vectors (Round 7): attach the belief side file (vec, last_seen on the kept ticks) to every episode."""
     eps, kept = [], []
+    if vectors:
+        from p2_belief_labels import load_side
     for f in index_files:
         counts = {"episodes": 0, "source_ticks": 0, "cut_ticks": 0, "invalid_ticks": 0, "kept_ticks": 0}
         with open(HERE / f) as stream:
@@ -164,13 +179,19 @@ def load_all(index_files, img=64, deadline=None):
                     continue
                 try:
                     ep = load_episode(row["path"], img)
+                    if vectors:
+                        side = load_side(row["path"])
+                        if len(side["vec"]) != int(ep["source_ticks"]):
+                            raise ValueError("belief side file does not match the recording's tick count")
+                        ep["vec"] = side["vec"][ep["ticks"]].astype(np.float32)
+                        ep["last_seen"] = side["last_seen"][ep["ticks"]].astype(np.int64)
                 except (KeyError, OSError, ValueError) as e:
                     print("skipping", row.get("path"), repr(e)[:120], flush=True)
                     continue
                 if row.get("drop_done_tick") and len(ep["done"]) > 1 and ep["done"][-1] > 0.5:
                     # Amendment 3: a shadow-bot "done" judged unreliable is removed, never relabelled
                     # (relabelling would need simulator truth). The episode's other ticks stay.
-                    ep = {k: (v[:-1] if k in ("body", "reg", "done", "lamp_lbl", "match_lbl", "ticks") else v)
+                    ep = {k: (v[:-1] if k in ("body", "reg", "done", "lamp_lbl", "match_lbl", "ticks", "vec", "last_seen") else v)
                           for k, v in ep.items()}
                     ep["frames"] = CachedFrames(ep["frames"].path, len(ep["done"]), img)
                     counts["dropped_done"] = counts.get("dropped_done", 0) + 1
@@ -190,17 +211,18 @@ def batch(eps, lens, rng, B, W=128, BURN=32, p_start=0.2, img=64, rec=None, rec_
     With rec_n == 0 the random draws are exactly the original ones.
     p_end (amendment 7): share of main windows that end on the episode's last tick (its "done" tick); with
     p_end == 0 the random draws are exactly the original ones."""
+    rows = _draw_windows(eps, lens, rng, B, W, p_start, rec, rec_n, p_end)
+    return _fill(rows, B, W, BURN, img)
+
+
+def _draw_windows(eps, lens, rng, B, W, p_start, rec, rec_n, p_end):
+    """The window draw of batch(), in its exact RNG order: [(episode, start, n)] per row."""
     p = lens / lens.sum()
-    F = np.zeros((B, W, img, img, 3), np.uint8)
-    Bo = np.zeros((B, W, 34), np.float32)
-    In = np.zeros((B, W, 9), np.float32)
-    R = np.zeros((B, W, 6), np.float32)
-    D, M = np.zeros((B, W), np.float32), np.zeros((B, W), np.float32)
-    L, A = np.full((B, W), -1, np.int32), np.full((B, W), -1, np.int32)
     if rec_n:
         rec_eps, focus = rec
         rest = np.array([max(1, len(e["frames"]) - f) for e, f in zip(rec_eps, focus)], np.float64)
         rp = rest / rest.sum()
+    rows = []
     for b in range(B):
         if b < rec_n:
             j = rng.choice(len(rec_eps), p=rp)
@@ -212,8 +234,20 @@ def batch(eps, lens, rng, B, W=128, BURN=32, p_start=0.2, img=64, rec=None, rec_
             T = len(e["frames"])
             u = rng.random()
             s = 0 if u < p_start else (max(0, T - W) if u < p_start + p_end else int(rng.integers(0, max(1, T - W + 1))))
-        n = min(W, T - s)
-        F[b, :n] = e["frames"][s:s + n]
+        rows.append((e, s, min(W, T - s)))
+    return rows
+
+
+def _fill(rows, B, W, BURN, img, frames=True):
+    F = np.zeros((B, W, img, img, 3), np.uint8) if frames else None
+    Bo = np.zeros((B, W, 34), np.float32)
+    In = np.zeros((B, W, 9), np.float32)
+    R = np.zeros((B, W, 6), np.float32)
+    D, M = np.zeros((B, W), np.float32), np.zeros((B, W), np.float32)
+    L, A = np.full((B, W), -1, np.int32), np.full((B, W), -1, np.int32)
+    for b, (e, s, n) in enumerate(rows):
+        if frames:
+            F[b, :n] = e["frames"][s:s + n]
         Bo[b, :n] = e["body"][s:s + n]
         In[b, :] = e["instr"]
         R[b, :n] = e["reg"][s:s + n]
@@ -222,6 +256,37 @@ def batch(eps, lens, rng, B, W=128, BURN=32, p_start=0.2, img=64, rec=None, rec_
         A[b, :n] = e["match_lbl"][s:s + n]
         M[b, (0 if s == 0 else BURN):n] = 1.0
     return F, Bo, In, R, D, M, L, A
+
+
+def _vectors(rows, eps, rng, B, W, shuffle=False):
+    """Round 7: belief vectors V (B, W, 58), last-seen ticks LS (B, W, 8) and the window's first original tick
+    WS (B,) for the rows of a batch. With shuffle (the control) each row's vectors come from a random OTHER
+    episode at a random start (wrapping), drawn after the main windows so the main draw is unchanged; LS is
+    then -1 (no belief-head supervision in the control)."""
+    V = np.zeros((B, W, VEC_DIM), np.float32)
+    LS = np.full((B, W, N_BELIEF_CLASSES), -1, np.int64)
+    WS = np.zeros(B, np.int64)
+    for b, (e, s, n) in enumerate(rows):
+        WS[b] = int(e["ticks"][s]) if "ticks" in e else s
+        if shuffle:
+            j = int(rng.integers(len(eps)))
+            if len(eps) > 1 and eps[j] is e:
+                j = (j + 1 + int(rng.integers(len(eps) - 1))) % len(eps)
+            o = eps[j]
+            T2 = len(o["vec"])
+            s2 = int(rng.integers(T2))
+            V[b, :n] = o["vec"][(s2 + np.arange(n)) % T2]
+        else:
+            V[b, :n] = e["vec"][s:s + n]
+            LS[b, :n] = e["last_seen"][s:s + n]
+    return V, LS, WS
+
+
+def batch_r7(eps, lens, rng, B, W=128, BURN=32, p_start=0.2, img=64, rec=None, rec_n=0, p_end=0.0,
+             frames=True, shuffle=False):
+    """batch() plus the belief arrays (same window draw; frames optional for the pixel-free policy)."""
+    rows = _draw_windows(eps, lens, rng, B, W, p_start, rec, rec_n, p_end)
+    return _fill(rows, B, W, BURN, img, frames) + _vectors(rows, eps, rng, B, W, shuffle)
 
 
 class Streams:
@@ -243,30 +308,26 @@ class Streams:
         self.last = np.arange(B)
 
     def next(self, eps, rng, W, img=64):
+        rows, h0 = self._advance(eps, rng, W)
+        return _fill(rows, self.B, W, 0, img), h0
+
+    def next_r7(self, eps, rng, W, img=64, frames=True, shuffle=False):
+        """Round 7: next() plus the belief arrays (frames optional; shuffle = the control's vectors)."""
+        rows, h0 = self._advance(eps, rng, W)
+        return _fill(rows, self.B, W, 0, img, frames) + _vectors(rows, eps, rng, self.B, W, shuffle), h0
+
+    def _advance(self, eps, rng, W):
         B = self.B
         self.last = np.arange(B) if len(self.ep) == B else np.sort(rng.choice(len(self.ep), B, replace=False))
-        F = np.zeros((B, W, img, img, 3), np.uint8)
-        Bo = np.zeros((B, W, 34), np.float32)
-        In = np.zeros((B, W, 9), np.float32)
-        R = np.zeros((B, W, 6), np.float32)
-        D, M = np.zeros((B, W), np.float32), np.zeros((B, W), np.float32)
-        L, A = np.full((B, W), -1, np.int32), np.full((B, W), -1, np.int32)
-        for b, k in enumerate(self.last):
+        rows = []
+        for k in self.last:
             if self.ep[k] < 0 or self.pos[k] >= len(eps[self.ep[k]]["frames"]):
                 self.ep[k], self.pos[k] = int(rng.integers(len(eps))), 0
                 self.h[k] = 0.0
             e, s = eps[self.ep[k]], int(self.pos[k])
-            n = min(W, len(e["frames"]) - s)
-            F[b, :n] = e["frames"][s:s + n]
-            Bo[b, :n] = e["body"][s:s + n]
-            In[b, :] = e["instr"]
-            R[b, :n] = e["reg"][s:s + n]
-            D[b, :n] = e["done"][s:s + n]
-            L[b, :n] = e["lamp_lbl"][s:s + n]
-            A[b, :n] = e["match_lbl"][s:s + n]
-            M[b, :n] = 1.0
+            rows.append((e, s, min(W, len(e["frames"]) - s)))
             self.pos[k] = s + W
-        return (F, Bo, In, R, D, M, L, A), self.h[self.last].copy()
+        return rows, self.h[self.last].copy()
 
     def update(self, h_last):
         self.h[self.last] = h_last
@@ -287,8 +348,42 @@ def masked_aux(logits, labels, M):
     return (ce * mask).sum() / (mask.sum() + 1e-6), correct, counts
 
 
-def loss_fn(model, F, Bo, In, R, D, M, L, A, aux_weight=1.0, h0=None):
-    reg, dl, aux, h_last = model(F.astype(mx.float32) / 255.0, Bo, In, h0)
+def onset_weights(R, w):
+    """Round 7 (1C control): per-tick weights, w at the bot's motion-onset ticks (the first tick of a stand->turn,
+    stand->walk or turn->walk change in its command labels), 1 elsewhere; the window's first tick is never an onset."""
+    walk = R[..., 0] > WALK_REG_THRESHOLD
+    turn = (R[..., 0] < STAND_REG_THRESHOLD) & (mx.abs(R[..., 1]) > TURN_REG_THRESHOLD)
+    state = mx.where(walk, 2, mx.where(turn, 1, 0))
+    prev = mx.concatenate([state[:, :1], state[:, :-1]], axis=1)
+    onset = (state != prev) & (state != 0) & ~((prev == 2) & (state == 1))
+    return 1.0 + (w - 1.0) * onset.astype(mx.float32)
+
+
+def belief_loss(pred, V, LS, WS, M):
+    """Round 7 (1C): per class k, (sin, cos, log-dist) MSE + in-view BCE from the belief vector's slots, on ticks in
+    the loss mask where a confirmed track exists and its most recent sighting lies inside the window (LS >= WS).
+    Returns (loss, masked ticks, median bearing error in degrees over those ticks)."""
+    B, T = M.shape
+    K = N_BELIEF_CLASSES
+    p = pred.reshape(B, T, K, 4)
+    v = V[..., :K * 6].reshape(B, T, K, 6)         # the per-class slots; lamp belief / pose / flags are not targets
+    tgt = v[..., :3]
+    inview = v[..., 3]
+    present = v[..., 5]
+    inside = (LS >= WS[:, None, None]).astype(mx.float32)
+    mask = M[..., None] * present * inside
+    mse = ((p[..., :3] - tgt) ** 2).sum(-1)
+    bce = inview * nn.softplus(-p[..., 3]) + (1 - inview) * nn.softplus(p[..., 3])
+    n = mask.sum() + 1e-6
+    loss = ((mse + bce) * mask).sum() / n
+    ang = mx.abs(mx.arctan2(p[..., 0], p[..., 1]) - mx.arctan2(tgt[..., 0], tgt[..., 1]))
+    ang = mx.minimum(ang, 2 * np.pi - ang) * (180.0 / np.pi)
+    return loss, mask.sum(), (ang * mask).sum() / n
+
+
+def loss_fn(model, F, Bo, In, R, D, M, L, A, aux_weight=1.0, h0=None, V=None, LS=None, WS=None, belief_w=0.0, onset_w=1.0):
+    frames = None if F is None else F.astype(mx.float32) / 255.0
+    reg, dl, aux, h_last = model(frames, Bo, In, h0, vec=V) if V is not None else model(frames, Bo, In, h0)
     if model.vx_head == "binary":                 # T3: vx is classified, all other regression weights unchanged
         mse = (((reg[..., 1:] - R[..., 1:]) ** 2) * mx.array(REG_W[1:])).sum(-1)
     else:
@@ -298,11 +393,12 @@ def loss_fn(model, F, Bo, In, R, D, M, L, A, aux_weight=1.0, h0=None):
     metrics = {"mse": (mse * M).sum() / denom, "bce": (bce * M).sum() / denom,
                "h_last": mx.stop_gradient(h_last)}   # amendment 7: carried to the next chunk in stream mode
     total = metrics["mse"] + metrics["bce"]
+    ow = onset_weights(R, onset_w) if onset_w != 1.0 else 1.0
     metrics["walk_bce"] = mx.array(0.0)
     if model.vx_head == "binary":
         walk_y = (R[..., 0] > WALK_REG_THRESHOLD).astype(mx.float32)  # bot vx > 0.15
         walk = walk_y * nn.softplus(-aux["walk"]) + (1 - walk_y) * nn.softplus(aux["walk"])
-        metrics["walk_bce"] = (walk * M).sum() / denom
+        metrics["walk_bce"] = (walk * ow * M).sum() / denom
         total = total + metrics["walk_bce"]        # weight 1, NOT aux_weight; same padding/burn mask
     metrics["turn_ce"] = mx.array(0.0)
     if getattr(model, "turn_head", "regress") == "discrete":   # amendment 6: unit weight, standing ticks only
@@ -310,8 +406,15 @@ def loss_fn(model, F, Bo, In, R, D, M, L, A, aux_weight=1.0, h0=None):
         lbl = mx.where(wz > TURN_REG_THRESHOLD, 1, mx.where(wz < -TURN_REG_THRESHOLD, 2, 0))
         tm = M * (R[..., 0] < STAND_REG_THRESHOLD)
         ce = nn.losses.cross_entropy(aux["turn"], lbl, reduction="none")
-        metrics["turn_ce"] = (ce * tm).sum() / (tm.sum() + 1e-6)
+        metrics["turn_ce"] = (ce * ow * tm).sum() / (tm.sum() + 1e-6)
         total = total + metrics["turn_ce"]
+    metrics["belief_loss"], metrics["belief_ticks"], metrics["belief_bearing_deg"] = mx.array(0.0), mx.array(0.0), mx.array(0.0)
+    if belief_w > 0 and "belief" in aux:
+        if V is None or LS is None or WS is None:
+            raise ValueError("belief heads need V, LS and WS")
+        bl, bn, bd = belief_loss(aux["belief"], V, LS, WS, M)
+        metrics["belief_loss"], metrics["belief_ticks"], metrics["belief_bearing_deg"] = bl, bn, bd
+        total = total + belief_w * bl
     for name, labels in (("lamp", L), ("match", A)):
         if name in aux:
             value, correct, counts = masked_aux(aux[name], labels, M)
@@ -374,6 +477,13 @@ def main():
     ap.add_argument("--stream-warmup", type=int, default=2000,
                     help="amendment 7a: with --stream, the first N steps use the window sampler (from scratch, stream "
                          "chunks alone never start learning)")
+    ap.add_argument("--mem-vector", action="store_true", help="Round 7: the sensors-only belief vector as an input")
+    ap.add_argument("--no-pixels", action="store_true", help="Round 7 (1B): no image branch; needs --mem-vector")
+    ap.add_argument("--shuffle-vector", action="store_true", help="Round 7 control: vectors from a random other episode")
+    ap.add_argument("--belief-heads", action="store_true", help="Round 7 (1C): belief regression heads on the trunk")
+    ap.add_argument("--onset-weight", type=float, default=1.0, help="Round 7 (1C control): weight of motion-onset ticks")
+    ap.add_argument("--init-encoder-only", action="store_true", help="Round 7 pre-flight: --init loads c1..c4, img only")
+    ap.add_argument("--freeze-encoder", action="store_true", help="Round 7 pre-flight: c1..c4, img are not trained")
     a = ap.parse_args()
     run = HERE / a.run
     meta, d = None, None
@@ -388,9 +498,12 @@ def main():
         # Omitted options inherit the saved run. Explicit changes to training semantics are errors.
         explicit = {s.split("=", 1)[0] for s in sys.argv[1:] if s.startswith("--")}
         legacy_defaults = {"act": "relu", "vx_head": "regress", "turn_head": "regress", "recovery_index": None,
-                           "recovery_frac": 0.0, "recovery_lead": 64, "p_end": 0.0, "stream": False, "stream_reset": False, "stream_pool": 512, "stream_warmup": 2000}  # old runs keep their setup
+                           "recovery_frac": 0.0, "recovery_lead": 64, "p_end": 0.0, "stream": False, "stream_reset": False, "stream_pool": 512, "stream_warmup": 2000,
+                           "mem_vector": False, "no_pixels": False, "shuffle_vector": False, "belief_heads": False, "onset_weight": 1.0,
+                           "init_encoder_only": False, "freeze_encoder": False}  # old runs keep their setup
         for key in ("index", "batch", "lr", "seed", "window", "burn", "p_start", "img", "aux_weight", "done_from_aux", "act", "vx_head",
-                    "turn_head", "recovery_index", "recovery_frac", "recovery_lead", "p_end", "stream", "stream_reset", "stream_pool", "stream_warmup"):
+                    "turn_head", "recovery_index", "recovery_frac", "recovery_lead", "p_end", "stream", "stream_reset", "stream_pool", "stream_warmup",
+                    "mem_vector", "no_pixels", "shuffle_vector", "belief_heads", "onset_weight", "init_encoder_only", "freeze_encoder"):
             old = meta["cfg"].get(key, legacy_defaults[key]) if key in legacy_defaults else meta["cfg"][key]
             if "--" + key.replace("_", "-") in explicit and getattr(a, key) != old:
                 ap.error(f"--resume cannot change {key}: saved {old!r}, requested {getattr(a, key)!r}")
@@ -413,12 +526,21 @@ def main():
         ap.error("--recovery-index and --recovery-frac in (0,1) go together; --recovery-lead >= 0")
     if not 0 <= a.p_end <= 1 - a.p_start or (a.stream and (a.p_end > 0 or a.recovery_index)) or (a.stream_reset and not a.stream) or a.stream_pool < a.batch or a.stream_warmup < 0:
         ap.error("need 0 <= p-end <= 1 - p-start; --stream takes neither --p-end nor --recovery-index; --stream-reset needs --stream; --stream-pool >= --batch")
+    if (a.no_pixels or a.shuffle_vector) and not a.mem_vector:
+        ap.error("--no-pixels and --shuffle-vector need --mem-vector")
+    if a.onset_weight < 1 or not np.isfinite(a.onset_weight):
+        ap.error("--onset-weight must be >= 1 (1 = off)")
+    if (a.init_encoder_only and not a.init) or ((a.init_encoder_only or a.freeze_encoder) and a.no_pixels):
+        ap.error("--init-encoder-only needs --init; encoder options need an image branch")
+    if a.no_pixels and a.recovery_index:
+        ap.error("--no-pixels does not take --recovery-index (Round 7 arms use the Hr data)")
+    r7 = a.mem_vector or a.belief_heads or a.no_pixels           # Round 7 sampling path (belief arrays)
     cfg = dict(vars(a), aux=a.aux_weight > 0)
     run.mkdir(parents=True, exist_ok=True)
     t0 = time.monotonic()
     deadline = t0 + a.max_minutes * 60
     try:
-        rows, eps = load_all(a.index, a.img, deadline=deadline)
+        rows, eps = load_all(a.index, a.img, deadline=deadline, vectors=r7)
     except TimeoutError as e:
         print(str(e), flush=True)
         return
@@ -445,6 +567,9 @@ def main():
     rng = np.random.default_rng(a.seed)
     streams = Streams(a.batch, model.gru.hidden_size, a.stream_pool) if a.stream else None
     step = 0
+    if a.freeze_encoder:                     # before the optimizer sees the parameters (resume included)
+        for name in ENCODER_LAYERS:
+            getattr(model, name).freeze()
     if meta is not None:
         model.load_weights(str(d / "weights.safetensors"))
         opt.init(model.trainable_parameters())
@@ -456,9 +581,17 @@ def main():
         if streams is not None:
             streams.load(np.load(d / "streams.npz"))
         print(f"resumed at step {step}", flush=True)
+    elif a.init and a.init_encoder_only:     # Round 7 pre-flight: a p2_pretrain export's encoder, nothing else
+        enc = [(k, v) for k, v in mx.load(str(HERE / a.init)).items() if k.split(".")[0] in ENCODER_LAYERS]
+        if len(enc) != 2 * len(ENCODER_LAYERS):
+            raise ValueError(f"--init-encoder-only expected {2 * len(ENCODER_LAYERS)} encoder arrays, found {len(enc)}")
+        model.load_weights(enc, strict=False)
+        print(f"loaded {len(enc)} encoder arrays from {a.init}", flush=True)
     elif a.init:
         model.load_weights(str(HERE / a.init))
+    mx.eval(model.parameters())
     vg = nn.value_and_grad(model, loss_fn)
+    belief_w = 1.0 if a.belief_heads else 0.0
     start_step, seen, t_train = step, 0, time.monotonic()
     sup = {"loss_ticks": 0, "done_ticks": 0}       # amendment 7: supervision actually received (this invocation)
     with open(run / "train_log.jsonl", "a") as log:
@@ -466,14 +599,24 @@ def main():
             if time.monotonic() >= deadline:
                 print("wall guard reached; saving and stopping", flush=True)
                 break
+            extra = {}
             if streams is not None and step >= a.stream_warmup:
-                arrays, h0 = streams.next(eps, rng, a.window, a.img)
+                if r7:
+                    arrays, h0 = streams.next_r7(eps, rng, a.window, a.img, frames=not a.no_pixels, shuffle=a.shuffle_vector)
+                else:
+                    arrays, h0 = streams.next(eps, rng, a.window, a.img)
                 if a.stream_reset:
                     h0 = np.zeros_like(h0)
-                (loss, metrics), g = vg(model, *[mx.array(x) for x in arrays], aux_weight=a.aux_weight, h0=mx.array(h0))
+                extra["h0"] = mx.array(h0)
+            elif r7:
+                arrays = batch_r7(eps, lens, rng, a.batch, a.window, a.burn, a.p_start, a.img, rec_group, rec_n, a.p_end,
+                                  frames=not a.no_pixels, shuffle=a.shuffle_vector)
             else:
                 arrays = batch(eps, lens, rng, a.batch, a.window, a.burn, a.p_start, a.img, rec_group, rec_n, a.p_end)
-                (loss, metrics), g = vg(model, *[mx.array(x) for x in arrays], aux_weight=a.aux_weight)
+            if r7:
+                extra.update(V=mx.array(arrays[8]), LS=mx.array(arrays[9]), WS=mx.array(arrays[10]), belief_w=belief_w, onset_w=a.onset_weight)
+            main_arrays = [None if x is None else mx.array(x) for x in arrays[:8]]
+            (loss, metrics), g = vg(model, *main_arrays, aux_weight=a.aux_weight, **extra)
             g, _ = optim.clip_grad_norm(g, 1.0)
             opt.update(model, g)
             mx.eval(model.parameters(), opt.state, loss, metrics)
@@ -488,7 +631,10 @@ def main():
                 rec = {"step": step, "loss": float(loss),
                        **{k: float(metrics[k]) for k in ("mse", "bce", "walk_bce", "turn_ce", "lamp_loss", "match_loss")},
                        "steps_per_s": round((step - start_step) / max(el, 1e-6), 2), "elapsed_s": round(el, 1), **sup}
-                if step % 500 == 0:       # dead-encoder guard (P2-A's last conv went silent unnoticed)
+                if a.belief_heads:
+                    rec.update(belief_loss=float(metrics["belief_loss"]), belief_ticks=int(float(metrics["belief_ticks"])),
+                               belief_bearing_deg=round(float(metrics["belief_bearing_deg"]), 2))
+                if step % 500 == 0 and arrays[0] is not None:       # dead-encoder guard (P2-A's last conv went silent unnoticed)
                     rec["c4_alive"] = round(model.encoder_health(mx.array(arrays[0][:4, ::8].reshape(-1, *arrays[0].shape[2:])).astype(mx.float32) / 255.0), 3)
                 if step % 1000 == 0:
                     rec["accuracy_scope"] = "current_training_batch_before_update"

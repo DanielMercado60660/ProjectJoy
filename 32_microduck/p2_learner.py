@@ -17,6 +17,8 @@ from learner import Policy, body_vec, cmd_targets, decode as decode_regression, 
 
 TURN_IN_PLACE = 0.55       # the bot's turn-in-place rate; wz below ~0.5 does not start a turn on this body
 TURN_WZ = (0.0, TURN_IN_PLACE, -TURN_IN_PLACE)   # turn-head classes: none / left (wz > 0) / right
+VEC_DIM = 58               # belief.DIM (Round 7); imported lazily so pixel-only policies need no bot modules
+BELIEF_OUT = 4 * 8         # belief heads: per class sin, cos, log-distance, in-view logit
 
 
 # T3: discrete walking avoids averaging stop/walk commands into the body's gait dead zone.
@@ -64,7 +66,14 @@ def policy_config(weights=None, cfg=None):
            "hidden": int(cfg.get("hidden", 256)),
            "act": str(cfg.get("act", "relu")),
            "vx_head": str(cfg.get("vx_head", "regress")),  # T3: old configs retain regression
-           "turn_head": str(cfg.get("turn_head", "regress"))}  # amendment 6
+           "turn_head": str(cfg.get("turn_head", "regress")),  # amendment 6
+           # Round 7: a sensors-only belief vector as an input (mem_vector), no image branch (no_pixels),
+           # belief regression heads on the trunk feature (belief_heads). Old configs: 0 / True / False.
+           "vec_dim": int(cfg.get("vec_dim", VEC_DIM if cfg.get("mem_vector") else 0)),
+           "pixels": bool(cfg.get("pixels", not cfg.get("no_pixels", False))),
+           "belief_heads": bool(cfg.get("belief_heads", False))}
+    if not out["pixels"] and not out["vec_dim"]:
+        raise ValueError("a pixel-free policy needs the belief vector (mem_vector)")
     if out["vx_head"] not in ("regress", "binary"):
         raise ValueError("vx_head must be regress or binary")
     if out["turn_head"] not in ("regress", "discrete"):
@@ -87,15 +96,30 @@ class Policy2(Policy):
     the return tuple and six regression slots remain unchanged.
     """
     def __init__(self, img=64, aux=True, done_from_aux=False, hidden=256, act="relu", vx_head="regress",
-                 turn_head="regress"):
+                 turn_head="regress", vec_dim=0, pixels=True, belief_heads=False):
         if img not in (64, 96):
             raise ValueError("img must be 64 or 96")
         if done_from_aux and not aux:
             raise ValueError("done_from_aux requires auxiliary heads")
         if vx_head not in ("regress", "binary"):
             raise ValueError("vx_head must be regress or binary")
+        if not pixels and not vec_dim:
+            raise ValueError("a pixel-free policy needs the belief vector")
         super().__init__(hidden=hidden)
         self.image_size = img
+        # Round 7: the GRU input is [image 192 if pixels] + [belief 64 if vec_dim] + body 64 + instruction 32.
+        # Layers are created in the parent's order first, so the init RNG stream of every old config is unchanged.
+        self.vec_dim, self.pixels, self.belief_heads = int(vec_dim), bool(pixels), bool(belief_heads)
+        if vec_dim:
+            self.vec = nn.Linear(int(vec_dim), 64)
+        if not pixels:
+            for name in ("c1", "c2", "c3", "c4", "img"):
+                delattr(self, name)
+        gru_in = (192 if pixels else 0) + (64 if vec_dim else 0) + 64 + 32
+        if gru_in != 192 + 64 + 32:
+            self.gru = nn.GRU(gru_in, hidden)
+        if belief_heads:
+            self.belief = nn.Linear(128, BELIEF_OUT)
         self.act = act        # "leaky": leaky ReLU (slope 0.05) in the image encoder, so conv units can't die
         # (Phase 2, P2-A: with plain ReLU the last conv layer went silent for every frame within ~250 steps on
         # some seeds, in both trainers; then the policy is blind. M5's runs happened to survive.)
@@ -118,27 +142,41 @@ class Policy2(Policy):
         if turn_head == "discrete":
             self.turn = nn.Linear(128, 3)
 
-    def encode(self, frames, body, instr):
-        if self.act == "relu":
-            return super().encode(frames, body, instr)
-        f = lambda v: nn.leaky_relu(v, 0.05)  # noqa: E731
-        B, T = frames.shape[:2]
-        x = frames.reshape(B * T, *frames.shape[2:])
-        for c in (self.c1, self.c2, self.c3, self.c4):
-            x = f(c(x))
-        x = f(self.img(x.reshape(B * T, -1))).reshape(B, T, -1)
-        return mx.concatenate([x, nn.relu(self.bod(body)), nn.relu(self.ins(instr))], -1)
+    def encode(self, frames, body, instr, vec=None):
+        parts = []
+        if self.pixels:
+            if self.act == "relu":
+                B, T = frames.shape[:2]
+                x = frames.reshape(B * T, *frames.shape[2:])
+                for c in (self.c1, self.c2, self.c3, self.c4):
+                    x = nn.relu(c(x))
+                x = nn.relu(self.img(x.reshape(B * T, -1))).reshape(B, T, -1)
+            else:
+                f = lambda v: nn.leaky_relu(v, 0.05)  # noqa: E731
+                B, T = frames.shape[:2]
+                x = frames.reshape(B * T, *frames.shape[2:])
+                for c in (self.c1, self.c2, self.c3, self.c4):
+                    x = f(c(x))
+                x = f(self.img(x.reshape(B * T, -1))).reshape(B, T, -1)
+            parts.append(x)
+        if self.vec_dim:
+            if vec is None:
+                raise ValueError("this policy needs the belief vector input")
+            parts.append(nn.relu(self.vec(vec)))
+        return mx.concatenate(parts + [nn.relu(self.bod(body)), nn.relu(self.ins(instr))], -1)
 
     def encoder_health(self, frames):
-        """Fraction of last-conv channels that are positive for at least one frame."""
+        """Fraction of last-conv channels that are positive for at least one frame (1.0 without an image branch)."""
+        if not self.pixels:
+            return 1.0
         x = frames
         for c in (self.c1, self.c2, self.c3, self.c4):
             x = nn.relu(c(x)) if self.act == "relu" else nn.leaky_relu(c(x), 0.05)
         c4 = (x.reshape(-1, x.shape[-1]).max(0) > 0).mean()
         return float(c4)
 
-    def __call__(self, frames, body, instr, h0=None):
-        z = self.encode(frames, body, instr)
+    def __call__(self, frames, body, instr, h0=None, vec=None):
+        z = self.encode(frames, body, instr, vec)
         hs = self.gru(z, hidden=h0)                         # (B, T, hidden), as in M5
         y = nn.relu(self.h1(mx.concatenate([hs, nn.relu(self.ins(instr))], -1)))
         aux = {"lamp": self.lamp(y), "match": self.match(y)} if self.has_aux else {}
@@ -146,12 +184,19 @@ class Policy2(Policy):
             aux["walk"] = self.walk(y)[..., 0]
         if self.turn_head == "discrete":
             aux["turn"] = self.turn(y)
+        if self.belief_heads:                    # Round 7 (1C): (B, T, 32) = 8 classes x (sin, cos, log-dist, in-view logit)
+            aux["belief"] = self.belief(y)
         dy = mx.concatenate([y, mx.softmax(aux["match"], axis=-1)], -1) if self.done_from_aux else y
         return mx.tanh(self.reg(y)), self.done(dy)[..., 0], aux, hs[:, -1]
 
 
 class P2Controller:
-    """PolicyController's generator protocol, optional gaze reflex, and per-tick latency list."""
+    """PolicyController's generator protocol, optional gaze reflex, and per-tick latency list.
+
+    Round 7: a policy with vec_dim > 0 runs belief.BeliefTracker on its own observations (the bot's odometry
+    with anchors off, camera pose, colour detector and memory: supplied sensors-only perception, disclosed as
+    such) and feeds the same 58-float vector its training labels were built from. `tracker_latency` holds the
+    per-tick cost of that chain; `latency` the policy's own inference. No simulator state is read."""
     def __init__(self, weights, cfg=None, gaze=False, device="cpu"):
         from bodymodel import BodyModel
         from gaze import Gaze
@@ -165,6 +210,8 @@ class P2Controller:
         self.gaze_on = gaze
         self.Gaze, self.BodyModel, self.Odometry = Gaze, BodyModel, Odometry
         self.latency = []
+        self.tracker_latency = []
+        self.tracker = None            # the last episode's BeliefTracker (evaluators may read its memory)
 
     def factory(self, iface, instruction):
         import time
@@ -173,11 +220,18 @@ class P2Controller:
         ins = mx.array(instr_vec(instruction)[None, None])
         h = None
         obs = iface.observe()
+        tracker = None
+        if self.cfg["vec_dim"]:
+            from belief import BeliefTracker
+            tracker = self.tracker = BeliefTracker()
         while True:
             t0 = time.perf_counter()
-            fr = mx.array(prep_frame(obs.frame(), self.cfg["img"])[None, None].astype(np.float32) / 255.0)
+            fr = None
+            if self.cfg["pixels"]:
+                fr = mx.array(prep_frame(obs.frame(), self.cfg["img"])[None, None].astype(np.float32) / 255.0)
             bd = mx.array(body_vec(obs.body)[None, None])
-            reg, dl, aux, h = self.model(fr, bd, ins, h)
+            vc = mx.array(tracker.vector()[0][None, None]) if tracker is not None else None
+            reg, dl, aux, h = self.model(fr, bd, ins, h, vec=vc)
             mx.eval(reg, dl, h)
             walk = float(aux["walk"][0, 0]) if self.cfg["vx_head"] == "binary" else None
             turn = np.array(aux["turn"][0, 0]) if self.cfg["turn_head"] == "discrete" else None
@@ -191,6 +245,10 @@ class P2Controller:
             obs = yield cmd
             if obs is None:
                 obs = iface.observe()
+            if tracker is not None and obs.tick > 0:     # the bot's convention: sensing starts at tick 1
+                t1 = time.perf_counter()
+                tracker.update(obs)
+                self.tracker_latency.append(time.perf_counter() - t1)
             if self.gaze_on:
                 od.update(obs)
                 _, _, cm = bm.fk(obs.body["joint_pos"])

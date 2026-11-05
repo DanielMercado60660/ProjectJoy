@@ -1982,3 +1982,513 @@ sum at least 3 above R3's).
   chunks after a window warm-up (H or Hr) look safer than E's end-weighted windows: one of two seeds of each
   keeps a lamp-related gap (H s1 9, Hr s1 10), while E has none in either seed. That is one seed's
   difference.
+
+## Round 6: LeWorldModel S1 (2026-11-04) — trained and gated; fails 4 of 4 gates, so S2 is not started
+
+**Question.** The owner asked for LeWorldModel (LeWM, arXiv 2603.19312). The feasibility study is `design/LEWM_FEASIBILITY.md`. Its findings:
+- The released checkpoints don't fit the Microduck: the predictor is built for another environment's actions, and the encoder for patch-14 images at 224 px.
+- So S1 trains LeWM from scratch on our own episodes.
+- It then gates the result before any use: if the gates pass, the frozen encoder replaces the Phase 2 policy's CNN in S2.
+
+The gates were written before recording or training (`results/lewm/protocol.json`, STATUS 16:08). Amendment 1 (20k steps instead of ~30k) was also written before training.
+
+**Verdict: S1 fails.** The LeWM embedding does not carry the lamp state: its lamp probe reads 0.50, chance level. It also tells actions apart no better than a frozen random encoder. Its effective rank is far below the bar. S2 (the encoder swap) and the WAM option are therefore not started.
+
+| Gate (pre-registered) | Bar | LeWM (20k steps) | Random-encoder control | Reference | Pass |
+|---|---|---|---|---|---|
+| G1 no collapse: share of dims with std in [0.5, 2] | ≥ 0.90 | 1.00 (std 0.54–1.28) | — | — | yes |
+| G1 effective rank, 20k held-out frames | ≥ 100 | **27.0** (24.5 at step 7.5k) | — | — | **no** |
+| G1 SIGReg, last vs step 1000 | falling | 0.764 vs 1.765 | — | Gaussian batch of 128: ~0.5 | yes |
+| G2 one-block error ratio vs copy-last, held-out train configs 270–299 | ≤ 0.70 | **0.753** | 0.541 (its own fixed latent) | copy-last = 1 | **no** |
+| G2 same, on `p2_dev` dev rooms | ≤ 0.85 | 0.837 | 0.673 | | yes |
+| G3 action ranking top-1 of 16, held-out | ≥ 0.50 and ≥ 3× control | **0.265** | 0.283 | chance 0.0625 | **no** |
+| (G3 on `p2_dev`, reported) | | 0.281 | 0.338 | | |
+| G4 lamp probe accuracy (`p2_enc_probe` protocol, 1,482 test frames) | ≥ 0.90 | **0.503** | 0.525 | P2-A′ s0 0.837 (reproduced exactly); 64 px supervised CNN 0.953 | **no** |
+| G4 plate-in-view AUC (same probe and frames, 3,124 test) | ≥ P2-A′ s0 0.719 | 0.817 | 0.792 | P2-A′ s1 0.770, R3 s1 0.785 | yes |
+
+G1 and G4 each need both of their lines to pass, so each fails as a whole. The final gate table is in `results/lewm/gates.json`.
+
+Reported only, not gated:
+- Pre-projector [CLS] features of LeWM: lamp 0.517, plate AUC 0.865, ball AUC 0.830.
+- Ball-in-view AUC: LeWM 0.743, control 0.764, P2-A′ s0 0.715.
+- Lamp test AUC: LeWM 0.503, control 0.516, P2-A′ s0 0.906.
+
+**What was built and run.**
+- **Noisy-bot recording.** `lewm/record_noisy.py` drives the new opt-in `noise=` hook in `record.py` (off by default, so stored episodes still reproduce). With p = 0.0385 per tick, a burst of 3–10 ticks starts in which one random command is executed instead of the bot's. The bot keeps running closed loop and recovers; its odometry reads the executed command.
+  - Result: 616 episodes, 352,816 ticks, 453 bot successes, training configs 0000–0205 only, k=5. 14% of ticks were noisy in a two-episode check.
+  - Total recording was about 58 min, capped at the owner's ~1 h. 4 processes × 1 thread, through `gpu_run`.
+- **Frame caches** (`lewm/data.py`): 64 px box-downsampled memmaps plus 6-d `cmd_exec` actions.
+  - base: 2,729 episodes, 1,325,072 frames, 16.3 GB;
+  - noisy: 4.3 GB;
+  - dev (`p2_dev`, 80 episodes): 0.4 GB.
+  - That is 21 GB on disk against the ~16 GB I quoted to the owner; 994 GB was free.
+- **Model and data split.**
+  - MLX LeWM, 17.96M parameters (`lewm/model.py`).
+  - Encoder: ViT-tiny at 64 px, patch 8. BatchNorm projector, a 6-layer AdaLN-zero causal predictor with dropout 0.1.
+  - Actions: frameskip 5, so each action block is 5 ticks × [vx, wz, 4 head] = 30 numbers. History 3 frames.
+  - Loss: MSE + 0.09 × SIGReg (1024 directions, 17 knots). AdamW 5e-5, batch 128, fp32, 20,000 steps.
+  - Training set: 1,496,248 windows from 3,083 episodes of configs 0000–0269. Configs 0270–0299 are held out, and no dev or test room was used.
+- **Run time.**
+  - LeWM: four invocations (three 44-min guard stops, resumed) at a mean 2.33 steps/s, about 2.4 h.
+  - Control: 5.5 steps/s, about 1 h.
+  - Load: other projects plus my own jobs, mostly 5–20.
+  - Resume is bit-exact: the tests cover both modes at tiny size, and a 40 vs 20+20 step run on real data covered LeWM mode.
+- **Control.** The same architecture with encoder and projector frozen at the seeded random init. BatchNorm statistics come from 200 warm-up batches; only the predictor is trained, on MSE.
+
+**Findings.**
+1. **The JEPA embedding drops the lamp.**
+   - Its lamp probe is 0.503, and 0.517 even before the projector. Random features score 0.525; P2-A′'s encoder (which had a lamp loss) 0.837; a supervised 64 px CNN 0.953.
+   - So the information is in the frames, and LeWM's ViT does not keep it. That fits the objective: the lamp is a few pixels that change on about one tick per episode. Ego-motion from the gait, turning and head moves dominates next-frame prediction.
+   - This was risk 2 in the feasibility plan.
+2. **The learned latent adds no action-relevant information over random pixel features at this budget.**
+   - Swapping the last action block, LeWM picks the true one 26.5% of the time against 28.3% for the random-encoder control (chance 6.25%).
+   - Its own-space error ratio (0.75) is also worse than the control's (0.54). Ratios in different latent spaces are not strictly comparable: the control's target is fixed, LeWM's moves.
+   - Both beat copy-last at every horizon step (table below). LeWM matching the control on G3 suggests the ranking signal is ego-motion plus continuity of the commands within a window, not learned object dynamics.
+3. **Effective rank is low even though every dimension has unit-like variance.**
+   - Over 20k held-out frames the covariance has a few eigenvalues of 9–17 and an effective rank of 27. On training rooms it is 40 (`results/lewm/rank_diag.json`, 4,096 frames per set, final weights).
+   - The bar of 100 was set without a baseline. Held-out frames come from only 30 rooms, which also lowers rank.
+   - The mechanism found: SIGReg tests random 1-D projections, and a random direction's variance is uᵀCu ≈ trace/d. So a batch can look nearly Gaussian (training statistic 0.76, against 0.515 for a true Gaussian batch of 128 in `rank_diag.json`) while a few directions dominate.
+   - Train-mode and eval-mode BatchNorm give the same rank (40.5 vs 40.3 on training rooms, 29.0 vs 26.7 held out), so it is not a mode bug.
+4. **The plate-in-view probe was a weak bar.** Even random features (0.792) beat P2-A′'s trained encoder (0.719). LeWM's 0.817 (0.865 pre-projector) passes, but random features would too. The registered gate stands as written; the lamp half is the informative one.
+5. **Still improving, slowly.**
+   - Training prediction loss: 0.127 at step 1k, 0.069 at 5k, 0.053 at 10k, 0.040 at 20k.
+   - Held-out ratio: 0.80 at 7.5k, 0.753 at 20k. Rank: 24.5 to 27.
+   - A longer run would lower G2 somewhat. Nothing in the curve suggests it would fix the lamp or the action ranking.
+
+**Prediction error by horizon** (reported for the WAM option; autoregressive from 3 true latents, history 3; one block = 5 ticks = 0.5 s; 2,000 windows):
+
+| Horizon (blocks) | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|
+| LeWM ratio vs copy-last, held-out | 0.77 | 0.73 | 0.75 | 0.78 | 0.80 |
+| LeWM absolute MSE (copy-last), held-out | 11.9 (15.5) | 19.9 (27.2) | 29.1 (38.8) | 37.5 (47.9) | 44.4 (55.2) |
+| LeWM ratio, `p2_dev` | 0.86 | 0.82 | 0.84 | 0.87 | 0.88 |
+| Control ratio, held-out / `p2_dev` | 0.53 / 0.70 | 0.58 / 0.74 | 0.63 / 0.78 | 0.65 / 0.82 | 0.68 / 0.81 |
+
+The rollouts stay below copy-last out to 2.5 s with no blow-up, but they gain only 12–18% over copy-last on dev rooms.
+
+**What didn't go to plan (process).**
+- My first external 44-min watcher for the recorder had a zsh string-compare bug. It stopped both recording halves at 16:23 instead of 16:53: 14 min, 125 episodes. Three orphaned pool workers were killed by exact PID. Seven in-flight npz files have no index row and are ignored.
+- Fix: `record_noisy.py` now has a built-in `--max-min` guard and skips pairs already recorded. The continuation ran its 44 min.
+- Because of the ~1 h cap, the noisy data covers configs 0000–0205 only; the held-out configs got none.
+- Smoke: `sh smoke.sh` passes all 118 tests in 110 s on the final tree; the new LeWM tests take about 13 s.
+- No checkpoint was copied to `checkpoints/`, since S1 failed. The final weights are in `runs/lewm_s1/final/` and `runs/lewm_rand/final/` (gitignored).
+
+**What's next.**
+- S1's bar is not met, so the frozen-encoder swap (S2) and the WAM arm (`design/WAM_S2_OPTION.md`) stay unrun.
+- These latents are not usable as WAM targets: they carry no lamp state, the event the press task turns on, and their action sensitivity is no better than random features.
+- If the owner wants one more LeWM try, it should aim at the two measured failures, not just more steps:
+  - oversample windows around presses and lamp changes;
+  - try 96 px (bf16) so the lamp is more than a few pixels;
+  - report rank on training rooms next to held-out;
+  - re-gate on lamp ≥ 0.90 and action ranking clearly above the control.
+- Otherwise, return to the paused Phase 2 plan, skill selection with a shared sensors-only map.
+
+Files:
+- `lewm/` (model, data, train, lane.sh, evaluate, probes, report, record_noisy, bench_step);
+- `results/lewm/` (protocol.json, eval_lewm_s1.json, eval_lewm_rand.json, progress_eval_lewm_s1_ckpt.json from the step-7.5k progress look, probes.jsonl, gates.json, rank_diag.json from `lewm/rank_diag.py`);
+- `tests/test_lewm.py`;
+- logs `logs/lewm_*`.
+
+## Round 7: make the duck press (2026-11-04 night → 2026-11-05) — no learned arm meets the bar; the pixel-free belief policy is the first with more than one press-needed success, skill selection is supplied structure, and a hand-written 64 px servo shows the task is reactively solvable from pixels
+
+**Verdict (headline: the fresh 96-room slice, one look; bar: ≥ 2 press-needed successes per seed and ≥ 5 over two
+seeds out of 40, no rise in done-without-press, no-press not below base − 4).**
+- **No learned arm meets the bar.** The pixel-free belief-vector policy (Stage 1B, the round's decisive test) gets
+  **2 and 1 of 40** press-needed rooms on the fresh slice (4 and 0 on the 80 confirmation rooms), against 0–2 for
+  every step-5 pixel policy; its done-without-press falls to 2–5 of 40 from Hr's 28–29, and in seed 0 it presses in
+  7 fresh rooms (6 lamp-right; 10 of the 80, all lamp-right), but the two-seed count is 3 (bar 5) and the second seed is
+  weak. Its closed-loop reach gate failed on both seeds (4 and 1 body-centre entries of 18, gate 6), so by the
+  pre-registered kill rule Stage 2 (pixels + belief) was cut (owner, 23:30: keep the cut for now).
+- **Skill selection on the bot's map and skills equals the bot (21/40 per seed, the bot 21/40) but is scaffolding:**
+  the (previous skill, lamp belief) most-frequent table gets 18/40 and the hand-written program rule 22/40 on the
+  same slice, and on the 40 selection rooms the learned selector was within 2 of that control on both seeds (the
+  pre-registered kill). What presses is the bot's perception, map and skills steered by a six-entry table.
+- **A hand-written map-free 64 px cyan servo with the bot's lamp detector gets 31/40 press-needed on the fresh
+  slice (the bot 21/40; no-press 40/56 vs the bot's 56/56)** and 17/18 on the selection rooms. It is a baseline,
+  not a learned arm, and it was debugged on four selection rooms; but it settles that a 64 px frame carries enough
+  to reach and cross the plate in essentially every room, so the learned pixel policies' failure to reach is a
+  learning failure, not an information failure.
+- **The owner's four routes:** the chicken head fails both of its gates (pre-gate −14% frame change, sighting share
+  0.649; replays with the reflex on reach less); weight-space programming never became eligible (its condition was a
+  Stage 2A reach-gate pass); DINOv2 and LeWM-B were not approved / not funded. Belief heads on the pixel trunk (1C)
+  halve the remembered-bearing error (34° at the lamp check vs 57–72°) but miss their gate and do not move the
+  turn-onset decision; onset weighting changes nothing.
+- **Where the belief policy's remaining successes sit:** in the finishing link. On the 80 rooms seed 0 has six
+  lamp-right presses with no done after them (scripted-done counterfactual 10/40 vs Hr's 2–4): the "verify, then
+  done" link that Stage 2B was designed to repair, gated on 2A and therefore an open owner ask.
+- Three deviations, all disclosed: the slice is 24 rooms per family (amendment 1, before training); the lamp belief
+  was made sticky and Stage 1B re-run (amendment 2, before its gate reading); a zero-tick guard was added to the
+  Stage 3 adapter after the freeze when a control arm hung on the fresh slice (amendment 3; no completed result
+  affected). The intentionality calibration was widened by its own rule (R 2.5 → 3.1); "reached" (body-centre
+  entry) undercounts edge presses; CIs on 40 rooms are wide (4/40 = 4–23%).
+
+**Question.** The panel design (`design/R7_CAMPAIGN.md`) located the press failure at two links that are not
+perception: acting on a seen or remembered plate (walking / turning toward it) and finishing (done fires on the
+clock; done-after-press is lost in the learner's own states). Round 7 gives the policy an explicit sensors-only
+*belief* of where the plate, lamp, mat, pads and ball are (bearing, distance, age; built from the bot's own
+memory and leg odometry, no simulator truth), tests whether a 10 Hz command policy can act on it (Stage 1B,
+pixel-free; Stage 2A, pixels + belief), compares against skill selection on the shared map (Stage 3), and keeps
+the owner's ideas as hard-gated side probes (Stage 4). Pre-registration: `results/r7/protocol.json` (written
+21:37, before any Round 7 training, closed-loop episode or the fresh-slice draw); every attempt is in
+`results/r7/ledger.jsonl`.
+
+**Disclosure.** Stages 1B, 2 and 3 run the bot's own sensors-only modules at test time (`odometry.py` leg
+mode with anchors off, `bodymodel` camera pose, `perception.detect`, `refbot.Memory`; Stage 3 also its skills,
+map and budgets). Every such arm is labelled "learned decisions + supplied perception/skills". No simulator
+truth enters any controller; truth is used only to score. The 80 confirmation rooms are on their second look
+(paired with the step-5 rows, never a headline); the headline is the fresh reserved slice, looked at once in
+Stage 5.
+
+### Stage 0: protocol, fresh slice, instruments (21:37–22:02)
+
+- **Fresh reserved slice** (`make_splits.py --r7`, `splits/r7_*.json`, `splits/R7_MANIFEST.json`;
+  `check_splits.py` extended with an r7 section, passes): dev-family rules, seed slots 9–12 (overlap nothing),
+  appearances/distractor sources train 120–139 / 140–159 (disjoint from dev's 250–299 and test's 0–119).
+  The pre-registered 20-per-family draw gave 29 press-needed set-lamp rooms, below the registered 32–48, so
+  per the protocol's own rule the slice was extended before any training: **24 rooms per family, 96 rooms,
+  40 press-needed** (exactly the confirmation set's count, so the absolute bar needs no re-scaling; amendment 1).
+- **Belief vector** (`belief.py`, 58 floats; `p2_belief_labels.py` side files, 3,345 episodes, 526 MB, 64 s):
+  per class (button, lamp, mat, 4 pads, ball) sin/cos bearing, log distance, in-view, log age, present; lamp
+  belief one-hot + age; own odometry pose; two sensors-only flags (crossed the remembered plate since the last
+  lamp sighting; lamp changed since the crossing). The deployed tracker (`BeliefTracker`) is the bot's own
+  sensing chain with anchors off; `tests/test_r7.py` checks it reproduces the bot's confirmed memory tick for
+  tick on a live episode and that the offline builder (recorded memory + replayed odometry) gives the same
+  vectors as the live tracker.
+- **Stage 1A gate** (`results/r7/belief_labels_gate.json`; truth only to score): plate-bearing label error on
+  approach segments median 4.2° (40 train demos) / 3.2° (30 dev demos), median p90 20.7° / 16.0° (gate ≤ 6
+  and ≤ 30), worst-episode p90 32° / 44° (kill at > 45), a confirmed button track on 46–75% of set-lamp ticks in
+  every source (gate ≥ 45%), check-to-press ticks learnable under the Hr chunk sampler 0.94 / 0.92 (gate ≥ 0.80).
+  **PASS.**
+- **Instruments.** `r7_eval.py`: the closed-loop evaluator with an evaluation-side tracker on the learner's own
+  frames; its judge rows are bit-identical to `p2_confirm`'s on three re-run rooms (`logs/r7_equiv_check.log`),
+  and it adds: minimum distance to the plate, within 0.5 m, the learner's lamp check (first confirmed sighting),
+  plate entries, press ticks, and the three intentionality fields. `r7_probes.py`: the turn-onset probe (a port
+  of the panel's `blind_turn_t0`, reproduces its numbers: R3 s1 share 0.74 / argmax-agree 3 / none 23 of 27,
+  Hr s1 0.52 / 2 / 23, R3 s0 0.56 / 2 / 25), the bearing read for belief-head arms, the intentionality
+  calibration, the scripted-done ceiling.
+- **Intentionality calibration** (`results/r7/calibration.json`): at the plan's defaults (entry within K = 400
+  ticks of the lamp check, odometry path / straight line ≤ R = 2.5) the frozen bot's own press-needed
+  successes pass only 64% (108 train demos) / 58% (33 dev demos): the bot's approach is not straight (it goes to
+  a look point, turns, then crosses). Per the pre-registered rule (widen until ≥ 90% of the bot's successes
+  pass) **K = 400, R = 3.1** (90.1% of 141 pooled successes). Written into the protocol before any Round 7
+  closed-loop episode.
+- **Scripted-done ceiling** (`results/r7/done_ceiling.json`, from the stored step-5 rows, nothing re-run): a
+  done after every lamp-right press would give Hr s0 2/40, Hr s1 4/40 (6/80 over the two seeds), R3 s1 3/40,
+  E s0 2/40; this is why every bar count below carries the intentionality metric.
+- **Pre-flights.** `p2_train.py` flags `--mem-vector`, `--no-pixels`, `--shuffle-vector`, `--belief-heads`,
+  `--onset-weight`, `--init-encoder-only`, `--freeze-encoder` (resume bit-exact on every new path,
+  `tests/test_r7.py`); `record.py` opt-in `bot_pose` field (stored episodes reproduce byte for byte);
+  `p2_diag.py` feeds belief vectors to vector policies. 16 new tests (`test_r7.py`, `test_r7_eval.py`,
+  `test_r7_skillsel.py`).
+
+**Amendment 2 (22:30, before any Stage 1B gate reading; the 1B-v0 selection was in progress).** While
+debugging the Stage 3 adapter, the vector's lamp one-hot was found to follow the bot's `Memory.lamp_state()`,
+which demands a fresh run of ≥ 3 consecutive sightings and so flickers back to "unknown" after an isolated
+re-sighting (instances-dev-0000: known at tick 100, unknown at 103–262). Since the merged lamp track carries
+position only, the policy's lamp belief was intermittently blank. `belief.py` v2 makes it sticky (the latest
+confirmed lamp track's class); side files rebuilt, the 1A gate re-passed on v2, Stage 1B re-run as 1B-v1 with
+unchanged gates; the 1B-v0 rows are reported below as a superseded attempt.
+
+### Stage 1B: the pixel-free belief-vector policy (the decisive test)
+
+Recipe: Hr (binary walk + 3-way turn heads, leaky, aux 1, done weight 50, `--stream --stream-reset`, 2,000-step
+window warm-up, 16k steps, batch 32) with the 58-float belief vector, the 34-d body vector and the instruction
+into the GRU-256 trunk, no image branch. Training: 9 min per seed at 34 steps/s alone (16 min at load 9).
+Deployment: `P2Controller` runs the tracker on its own observations. Selection: the 40 rooms, unchanged
+`p2_select` rule (`results/r7/select_r7_*.json`).
+
+| arm | seed | pick | press-needed | no-press | reached | within 0.5 m | pressed | done after press (lamp right) | done w/o press | intentional reach / reaches | verified dones | turn onset toward | stage gate |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1B-v0 (superseded: flickering lamp belief) | 0 | 16k | 4/18 | 17/22 | 6 | 9 | 8 | 4 (4) | 2 | 2 / 6 | 4 / 4 | 6 of 13 | pass |
+| 1B-v0 | 1 | 8k | 3/18 | 17/22 | 1 | 3 | 3 | 3 (3) | 3 | 1 / 1 | 3 / 3 | — | fail (reached 1) |
+| **1B-v1 (the stage result)** | 0 | 12k | **4/18** | 17/22 | 4 | 12 | 9 | 4 (4) | 1 | 1 / 4 | 3 / 4 | 5 of 12 | **fail** (reached 4 < 6; done after press 4 < half of 9 pressed) |
+| 1B-v1 | 1 | 16k | 1/18 | 19/22 | 1 | 4 | 1 | 1 (1) | 4 | 0 / 1 | 0 / 1 | — | fail (reached 1) |
+| base R3 s1 (step 4, same rooms) | 1 | 16k | 1/18 | 19/22 | 3 | — | 3 | 1 | 6 | — | — | 3 agree / 27 (open loop) | — |
+| base Hr s1 (step 5, same rooms) | 1 | 16k | 0/18 | 18/22 | 4 | — | 4 | 0 | 12 | — | — | 2 / 27 | — |
+
+Turn-onset probe (27 blind first turns, teacher-forced; gate share ≥ 0.85 and argmax-agree ≥ 15):
+1B-v1 s0 share 0.78, argmax-agree 8, none 19, opposite 0; 1B-v1 s1 0.70 / 4 / 23; 1B-v0 s0 0.78 / 14 / 10 / 3
+(baselines 0.48–0.74 and 2–5 of 27). The vector policy never turns the wrong way at t0 (opposite 0) and
+agrees 2–4× more often than any pixel policy, but mostly still says "none" at the onset tick: gate not met.
+
+**Verdict (pre-registered).** Both seeds fail the closed-loop reach gate (body-centre plate entries 4 and 1 of 18
+against ≥ 6), so by the written kill rule **an explicit map summary is not enough for the 10 Hz command policy at
+this budget: Stage 2 (the pixel + belief arm) is cut and Stage 3 is the round's main arm.** The turn-onset gate is
+not met either.
+
+**What moved, honestly.** The funnel moved more than in any earlier arm: on the same 18 press-needed selection
+rooms every Phase 2 pixel policy had 0–1 successes, 0–4 presses and 0–4 plate entries; the pixel-free belief
+policy (seed 0, both label versions) has 4 successes, 8–9 presses, 9–12 rooms within 0.5 m of the plate, says
+done without a press in only 1–2 rooms (R3 6, Hr 12) and keeps no-press at 17/22. Two caveats cut the other
+way: (i) "reached" counts body-centre entries, and 9 presses with 4 entries means the duck is pressing from the
+plate's edge, so the gate's reach count undercounts edge presses (a metric note, not a re-score; the gate
+stands as written); (ii) under the intentionality metric only 1 of the 4 reaches is intentional (entry within
+400 ticks of the lamp check along a path ≤ 3.1× the straight line) and 3 of 4 dones after a press are verified,
+so the learned-claim bar (≥ half intentional) is not met and the 4 successes count as *unverified*. Seed 1 is
+weak throughout (1/18), which is the seed noise the protocol warned about.
+
+The aux-head accuracies in the selection tables fell from 0.98–1.0 (v0) to 0.85–0.94 (v1): `aux_labels` still
+builds the lamp / match *targets* from the bot's fresh-run `lamp_state()` with press invalidation, while the
+*input* is now the sticky track class, so target and input disagree on some ticks; the aux heads are diagnostic
+only and this is not a regression of the policy.
+
+Frozen picks (before any further look): 1B-v1 s0 `runs/r7_1bv1_s0/ckpt_012000`, s1 `runs/r7_1bv1_s1/ckpt_016000`.
+Each gets one pass on the 80 confirmation rooms and one on the fresh slice (Stage 5 procedure), read against Hr's
+base rows (done without press ≤ 27/28, no-press ≥ 26/34 of 40).
+
+**The 80 confirmation rooms (second project look; paired with the step-5 rows; never a headline).**
+
+| arm | press-needed (inst / arr / app / dist) | no-press | reached | within 0.5 m | pressed | lamp right | done after press (lamp right) | done w/o press | intentional / reaches | verified / dones | falls |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **1B-v1 s0** (pixel-free belief policy) | **4/40** (0/10, 2/13, 1/10, 1/7) | 36/40 | 8 | 13 | 10 | 10 | 4 (4) | **1** | 1 / 8 | 3 / 4 | 1 |
+| 1B-v1 s1 | 0/40 | 37/40 | 1 | 12 | 2 | 2 | 0 | 6 | 0 / 1 | — | 1 |
+| step 5: Hr s0 / Hr s1 (same rooms, first look) | 0/40 / 0/40 | 30 / 38 | 2 / 3 | — | 2 / 5 | 2 / 4 | 0 / 0 | 27 / 28 | — | — | 0 / 0 |
+| step 5: R3 s1 / E s0 | 0/40 / 1/40 | 30 / 37 | 3 / 2 | — | 3 / 2 | 3 / 2 | 0 / 1 | 20 / 33 | — | — | 0 / 0 |
+
+**The bar is not met**: seed 0 clears its per-seed count (4 ≥ 2) with done-without-press at 1/40 against Hr's 27–28
+and no-press 36/40, but seed 1 gets 0, so the two-seed sum is 4 (< 5). Seed 0 is nonetheless the first policy of
+the project with more than one press-needed success on these rooms (every step-5 arm: 0–1), with ten presses, all
+lamp-right, and only one premature done; its successes are "unverified" under the intentionality metric (1 of 8
+reaches intentional). Per family the 4 are 0 / 2 / 1 / 1, so nothing is being claimed for any family.
+
+Where the rest of seed 0's presses went (offline, from the stored rows): six more press-needed rooms end with a
+lamp-right press and *no* done (instances-dev 0031 / 0038 / 0044 / 0048, arrangements-dev 0024 / 0028), so the
+scripted-done counterfactual is 10/40 for 1B-v1 s0 against 2 / 4 for Hr s0 / s1 (seed 1: 2). The remaining
+successes of this policy sit in the finishing link (verify, then done), which is the link Stage 2B was designed to
+repair; 2B was gated on 2A and is an open owner ask.
+
+### Stage 1C: belief heads vs onset weighting (open-loop probes only) — both gates fail; the heads halve the remembered-bearing error
+
+Two R3-recipe pixel runs, seed 1, 16k steps each (two invocations, the 44-min guard at ~13.4k, resumed
+bit-exact), no selection or confirmation (as planned): run 1 adds per-class belief heads (sin, cos, log-distance,
+in-view logit for the 8 classes, weight 1, masked to ticks whose track sighting lies inside the window; 9–11k
+supervised class-ticks per batch); run 2 up-weights the bot's motion-onset ticks ×20 in the walk / turn losses.
+
+| probe (p2_dev demos, teacher-forced) | gate | baseline (R3 s1) | belief heads | onset ×20 |
+|---|---|---|---|---|
+| plate bearing at the lamp check, median / within 30° | ≤ 30° / ≥ 60% | 57–72° / 17–27% (ridge readout of the GRU) | **33.9° / 45%** (n = 67) | — |
+| plate bearing out of view, median | ≤ 30° | 53–65° | **40.7°** (n = 16,120 ticks) | — |
+| plate bearing in view, median | — | 13–17° | 13.2° (n = 8,139) | — |
+| turn onset: share p(bot dir) > p(opp) / argmax agree / none (27) | ≥ 0.85 / ≥ 15 | 0.74 / 3 / 23 | 0.81 / 2 / 24 | 0.74 / 3 / 23 |
+
+(Errors are against the sensors-only label; against truth they are within 1° of these.) The heads learn a
+persistent bearing far better than the unsupervised GRU state (34° vs 57–72° at the check, 41° vs 53–65° out of
+view) but miss the pre-registered thresholds, and neither lever moves the turn-onset decision at all: the
+onset-weighted run's probe numbers are identical to the base run's. Pre-registered decision rule: "bearing
+fails → the heads cannot learn the bearing from these windows: drop them" (`results/r7/stage2_config.json`);
+moot in practice because Stage 2A is cut by 1B's kill rule (owner, 23:30: keep the cut for now).
+
+### Stage 1D: the map-free pixel servo baseline — a reactive 64 px servo reaches the plate in 18/18 rooms
+
+`p2_servo_baseline.py` (~150 lines, no map, no odometry for the servo itself): the cyan plate mask at 64 px with the
+bot's own hue thresholds, mass and column offset averaged over 5 ticks; head pitch 0.2 searching / 0.45 near; turn in
+place at 0.55 when the plate is out of view, a 30-tick walk after a blind full turn; walk at 0.3 steering on the column
+offset; stall-and-turn after 60 ticks without mass growth; a 55-tick cross when the blob reaches the frame bottom
+(~0.35 m), steering on the blob while visible then a fixed −0.22 rad/s trim for the body's left curve. Two things had
+to be fixed on the first three rooms before the run (ledger): a far plate is 1–2 px at 64 px (the seen-mass threshold
+is 0.8 over 5 ticks) and the blind straight cross missed by the body's curve. Latches: ORACLE (reads the task's
+`needed_presses`; scores the servo alone) and the sensors-only lamp latch (BeliefTracker: a full turn first, done if
+the remembered lamp matches, else servo + cross, then a turn until the lamp is re-seen; at most 3 tries).
+
+| arm | press-needed | per family (inst / arr / app / dist) | no-press | reached | pressed | done after press, lamp right | done w/o press | intentional / reaches | verified / dones after press | falls | note |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| servo, ORACLE latch (truth: needed_presses) | 18/18 | 4/4 / 5/5 / 5/5 / 4/4 | 22/22 | 18 | 18 | 18 | 0 | 9 / 18 | 0 / 18 | 0 | done at tick 1 when no press is needed; no lamp re-check |
+| servo, sensors-only lamp latch (map-free) | 17/18 | 4/4 / 4/5 / 5/5 / 4/4 | 17/22 | 18 | 18 | 17 | 0 | 15 / 18 | 12 / 18 | 0 | 26 presses in 18 rooms (re-tries); the baseline row |
+| frozen reference bot (same evaluator run) | 15/18 | 2/4 / 5/5 / 4/5 / 4/4 | 22/22 | 18 | 18 | 15 | 0 | 16 / 18 | 16 / 18 | 0 | ceiling |
+
+In-sample disclosure: the two fixes above were made after watching the servo on instances-dev 0002 / 0003 / 0006 /
+0009, which are selection rooms, so its 40-room numbers are partly in-sample; the fresh slice is its clean number.
+
+Reading (pre-registered): reached ≥ 10/18 means the servo is fine, and the sensors-only variant becomes the map-free
+reactive baseline row beside the bot's 15/18: **17/18 press-needed (15 intentional reaches, 12 verified dones) and
+17/22 no-press** (five no-press rooms end with a needless press or a timeout after a lamp misread). Neither variant is a
+learned arm. What it settles: a 64 px cyan blob is enough to reach and cross the plate under the 900-tick budget in
+every selection room, so the learned pixel policies' failure to reach (1–4 of 18) is a learning failure, not an
+information failure of the 64 px input; and a hand-written reactive stage machine on the bot's lamp detector beats
+every learned arm of the project.
+
+
+### Stage 2: the map-sensor pixel policy — cut by 1B's pre-registered kill rule (owner: keep the cut for now)
+
+Not run. 1B-v1 failed the closed-loop reach gate on both seeds (4 and 1 of 18 against ≥ 6), which is the kill rule
+"both seeds fail the reach gate: Stage 2 is cut (no pixel arm), Stage 3 becomes the main arm". The 1C decision rule
+would have sent 2A out with no extra flags (belief heads dropped: bearing gate failed). The owner was asked whether to
+revisit after Stage 3 ("Yes, for now" = keep the cut) and will get a yes/no recommendation in the round report; 2B
+(post-press on-policy coverage) was gated on 2A and is an open ask for the 1B pick instead.
+
+
+### Stage 3: skill selection on the shared sensors-only map — matches the bot, but the belief-conditioned control matches it too (scaffolding)
+
+`p2_skillsel.py`. Macro-skills: scan, explore (nearest frontier/ring point, then scan, stopping when the sought object
+is confirmed: the bot's own find / lamp-search step), approach (look point 0.6 m before the remembered plate, face
+it), press (the bot's `press_button` + 12 settle ticks), look_lamp (turn to the remembered lamp; from where it was
+first seen if hidden), done. The learner's input at each boundary: the 58-float belief vector from the bot's memory
+and pose, the target, the previous macro-skill and whether it reported ok, the budget fraction, and the lamp-vs-target
+bits (72 floats). Decision set: 1,374 decisions from the 343 bot set-lamp demos (train split), segmented by the
+recorded activity / skill columns and the bot's events (the strings are used for the boundaries only, never as an
+input): scan 371, explore 152, approach 170, press 184, look_lamp 176, done 321; the common transitions are
+scan→done 136, scan→approach 101, scan→explore 108, approach→press 170, press→look_lamp 176, look_lamp→done 131,
+look_lamp→approach 27. Selectors: an MLX MLP (72→64→64→6, 3,000 Adam steps; train accuracy 1.00, agreement with the
+hand-written program rule 0.91) in two seeds; the same MLP on shuffled labels (train accuracy 0.75–0.76: memorising);
+the most-frequent next skill given (previous skill, lamp belief: unknown / match / mismatch); and "program", the
+bot's set_lamp rule written over the same features (the adapter's ceiling and the 3B labeller). Every arm runs the
+bot's skills, map, perception and budgets ("learned decisions + supplied perception/skills"); the adapter with the
+program rule reproduces the bot on instances-dev-0003 to the tick (378). In-sample disclosure: the adapter's explore step
+was changed (to mirror the bot's find / lamp-search step) after watching the program-chooser adapter on selection rooms
+instances-dev 0000 / 0002 / 0003; the change touches every Stage 3 arm equally, and the fresh slice is the clean number.
+
+| arm | press-needed | per family (inst / arr / app / dist) | no-press | reached | pressed | done after press, lamp right | done w/o press | intentional / reaches | verified / dones after press | falls | note |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| bot (ceiling, same run) | 15/18 | 2/4 / 5/5 / 4/5 / 4/4 | 22/22 | 18 | 18 | 15 | 0 | 16 / 18 | 16 / 18 | 0 |  |
+| program rule over the same features | 14/18 | 1/4 / 5/5 / 4/5 / 4/4 | 22/22 | 18 | 18 | 14 | 0 | 15 / 18 | 13 / 14 | 0 | hand-written; the 3B labeller |
+| learned selector, seed 0 | 13/18 | 1/4 / 4/5 / 4/5 / 4/4 | 21/22 | 18 | 18 | 13 | 0 | 14 / 18 | 16 / 16 | 0 | MLP 72→64→64→6 |
+| learned selector, seed 1 | 14/18 | 1/4 / 5/5 / 4/5 / 4/4 | 21/22 | 18 | 18 | 14 | 0 | 14 / 18 | 15 / 16 | 0 |  |
+| belief-conditioned most-frequent control | 13/18 | 1/4 / 4/5 / 4/5 / 4/4 | 21/22 | 17 | 17 | 13 | 1 | 15 / 17 | 13 / 13 | 0 | (previous skill, lamp belief) lookup |
+| shuffled-label control, seed 0 | 0/18 | 0/4 / 0/5 / 0/5 / 0/4 | 22/22 | 0 | 0 | 0 | 18 | 0 / 0 | 0 / 0 | 0 |  |
+| shuffled-label control, seed 1 | 3/18 | 0/4 / 1/5 / 0/5 / 2/4 | 10/22 | 6 | 6 | 3 | 4 | 2 / 6 | 2 / 5 | 0 |  |
+
+**3A gate (pre-registered):** learned ≥ 50% of the bot's press-needed successes (13 and 14 vs 15: yes) and ≥ 5 above
+*both* controls (shuffled 0 and 3: yes; belief-conditioned control 13: **no**). Kill rule: within 2 episodes of the
+belief-conditioned control on both seeds → **skill selection is scaffolding**; 3B is cut to a one-seed documentation
+run (`results/r7/gate_3a.json`). What the learner learned is the lookup table the bot's program structure already
+gives once the lamp-vs-target bit is in hand: the (previous skill, lamp belief) table alone gets 13/18 and 21/22, the
+learned MLP 13–14/18 and 21/22, the program rule 14/18 and 22/22, the bot 15/18 and 22/22. The shuffled-label
+controls show the table is doing real work (0 and 3 of 18), but it is supplied structure, not learned behaviour.
+Intentionality on these arms is high (reaches 14–16 of 18 intentional, dones 13–16 verified): the bot's skills, not
+the learner, walk and verify.
+
+**3B (one-seed documentation run, as the kill rule prescribes).** One decision-level DAgger round: the learned selector
+(seed 0) drove set_lamp on train configs 0000–0299 (k=0) while the program rule labelled every decision it faced
+(1,227 decisions, the learner already agreed with the labeller on 1,117 = 91%; it succeeded in 106/160 press-needed
+rooms while driving); retrained on the union (2,601 decisions; train accuracy 0.99, agreement with the program 0.95).
+On the 40 selection rooms: **13/18 press-needed, 21/22 no-press**, reached 17, pressed 17, done after press 13 (all
+lamp right), done without press 1, intentional reaches 14/17, verified dones 13/13 — the same numbers as the 3A
+learned s0 and the belief-conditioned control. Scaffolding confirmed: the decision table is already complete after
+the bot's demos; on-policy decisions add nothing because the bot's skills do the walking and the verifying.
+
+**The 80 confirmation rooms (the Stage 3 arm's one look, with its belief-conditioned control; second project look):**
+
+| arm | press-needed (inst / arr / app / dist) | no-press | reached | pressed | done after press (lamp right) | done w/o press | intentional / reaches | verified / dones | falls |
+|---|---|---|---|---|---|---|---|---|---|
+| 3B learned selector s0 (+ DAgger round) | 26/40 (7/10, 9/13, 5/10, 5/7) | 40/40 | 34 | 34 | 28 (26) | 5 | 22 / 34 | 26 / 28 | 0 |
+| belief-conditioned most-frequent control | 25/40 (7/10, 9/13, 4/10, 5/7) | 40/40 | 31 | 31 | 25 (25) | 2 | 21 / 31 | 25 / 25 | 0 |
+| frozen bot (M3, first look) | 27/40 (8/10, 10/13, 4/10, 5/7) | 40/40 | — | 31 | — | — | — | — | 0 |
+
+The bar's counts are met many times over (26 ≥ 5, no-press 40/40, done without press 5 ≤ 28), and the
+intentionality metric is high (22 of 34 reaches intentional, 26 of 28 dones verified), but the arm is within one
+episode of its belief-conditioned control and one below the bot: what presses here is the bot's perception, map and
+skills, steered by a six-entry decision table that the bot's program structure supplies. Reported as scaffolding.
+
+
+### Stage 4: the owner's ideas as bounded, hard-gated side probes
+
+**4A. Chicken head (gaze stabilisation).** Pre-gate recording (`r7_gaze_pregate.py`; 20 press-needed train
+rooms, set_lamp k=6, the frozen bot with the reflex off vs on; `episodes/r7_gaze/`, `bot_pose` recorded):
+
+| | reflex off | reflex on | gate |
+|---|---|---|---|
+| 64 px grey frame change per tick while walking, median | 13.5 | 11.6 (−14%) | down ≥ 20%: **fail** |
+| plate in the memory's view on the approach (lamp check → press), median share | 0.658 | 0.649 | ≥ 0.65: **fail** |
+| falls | 0 | 1 | ≤ 1: pass |
+| bot successes (press-needed rooms) | 15/20 | 13/20 | — |
+
+Test-time replay without training (the plan's kill, not its test; and a substitution, disclosed: with Stage 2 cut
+there is no Stage 2 pick, so the step-5 *pixel* policies ran with `P2Controller(gaze=True)` on the 40 selection
+rooms, paired with their stored gaze-off rows; this is the version the plan's own rationale asked for, "never tested
+for a pixel learner"): Hr s1 on: press-needed 2/18, no-press 22/22, reached 2, pressed 2, no falls (off: 0/18, 18/22,
+reached 4, pressed 4); R3 s1 on: 0/18, 15/22, reached 1 (off: 1/18, 19/22, reached 3). Reach counts are lower with the
+reflex on in both, so the gate ("reach counts not lower, no falls") fails too; Hr s1's two successes with fewer
+reaches are seed-noise-sized. **Both gates fail: the honest gaze-on recording + training arm is not run** (as the
+plan's < 10% odds anticipated: the plate is first seen standing, where the reflex is off, and the decision is
+elsewhere).
+
+**4B. DINOv2 probe:** not run (download not approved). **4C. LeWM-B:** not funded. **4D. Weight-space programming
+with Astra:** not run; its approved condition (a Stage 2A seed passing the reach gate) never arose. The 1B pick's
+inputs are exactly the named belief slots the 4D method wants, so a 4D round on the 1B pick is possible, but that is
+a new owner decision (STATUS open ask), not something this round did.
+
+
+### Stage 5: the fresh reserved slice (96 rooms, 40 press-needed / 56 no-press; one look per frozen arm)
+
+Method set frozen at 00:24 (STATUS.md lists every arm by checkpoint path); every arm ran once through `r7_eval.py
+fresh` (two jobs at a time, 00:24–02:12, including a 57-min hang of the shuffled-s1 control, amendment 3). Wilson
+95% intervals on 40 press-needed rooms are wide (2/40 → 1–17%). "Learned decisions + supplied perception/skills"
+arms run the bot's sensors-only modules at test time; the ORACLE servo is not on the slice.
+
+| arm | press-needed (95% CI) | per family (inst / arr / app / dist) | no-press (95% CI) | reached | within 0.5 m | pressed | done after press (lamp right) | done w/o press | intentional / reaches | verified / dones after press | falls | median done tick (pn / np) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| step-5 Hr s0 (pixels) | 0/40 (0–9%) | 0/10 / 0/10 / 0/7 / 0/13 | 37/56 (53–77%) | 2 | 3 | 2 | 0 (0) | 29 | 1 / 2 | 0 / 0 | 0 | 173.0 / 149.5 |
+| step-5 Hr s1 (pixels) | 2/40 (1–17%) | 0/10 / 2/10 / 0/7 / 0/13 | 49/56 (76–94%) | 3 | 6 | 4 | 2 (2) | 28 | 2 / 3 | 0 / 2 | 0 | 215.0 / 135.0 |
+| step-5 R3 s1 (pixels) | 0/40 (0–9%) | 0/10 / 0/10 / 0/7 / 0/13 | 44/56 (66–87%) | 7 | 12 | 7 | 0 (0) | 14 | 2 / 7 | 0 / 0 | 1 | 101.5 / 102.5 |
+| 1B-v1 s0: belief vector, no pixels (learned decisions + supplied perception) | 2/40 (1–17%) | 0/10 / 1/10 / 0/7 / 1/13 | 46/56 (70–90%) | 4 | 13 | 7 | 2 (2) | 2 | 1 / 4 | 1 / 2 | 0 | 482.0 / 105.0 |
+| 1B-v1 s1: belief vector, no pixels (learned decisions + supplied perception) | 1/40 (0–13%) | 0/10 / 0/10 / 0/7 / 1/13 | 46/56 (70–90%) | 3 | 11 | 4 | 1 (1) | 5 | 2 / 3 | 1 / 1 | 0 | 526.5 / 104.0 |
+| 1B-v0 s0, superseded recipe (flickering lamp belief), extra row | 3/40 (3–20%) | 1/10 / 0/10 / 0/7 / 2/13 | 47/56 (72–91%) | 8 | 17 | 9 | 3 (3) | 4 | 2 / 8 | 0 / 3 | 0 | 609.0 / 105.0 |
+| frozen reference bot (ceiling) | 21/40 (37–67%) | 4/10 / 8/10 / 1/7 / 8/13 | 56/56 (94–100%) | 34 | 35 | 35 | 31 (21) | 3 | 26 / 34 | 30 / 31 | 0 | 708.0 / 106.0 |
+| 1D map-free pixel servo, sensors-only lamp latch (hand-written baseline) | 31/40 (62–88%) | 7/10 / 9/10 / 5/7 / 10/13 | 40/56 (59–82%) | 35 | 36 | 36 | 36 (31) | 1 | 21 / 35 | 25 / 36 | 0 | 339.0 / 70.0 |
+| 3A learned selector s0 (learned decisions + supplied perception/skills) | 21/40 (37–67%) | 4/10 / 8/10 / 1/7 / 8/13 | 56/56 (94–100%) | 33 | 34 | 34 | 28 (21) | 2 | 24 / 33 | 26 / 28 | 0 | 648.0 / 106.0 |
+| 3A learned selector s1 (learned decisions + supplied perception/skills) | 21/40 (37–67%) | 4/10 / 8/10 / 1/7 / 8/13 | 56/56 (94–100%) | 34 | 35 | 35 | 28 (21) | 2 | 24 / 34 | 25 / 28 | 0 | 648.0 / 106.0 |
+| 3A shuffled-label control s0 | 0/40 (0–9%) | 0/10 / 0/10 / 0/7 / 0/13 | 56/56 (94–100%) | 0 | 0 | 0 | 0 (0) | 40 | 0 / 0 | 0 / 0 | 0 | 0.0 / 0.0 |
+| 3A shuffled-label control s1 | 2/40 (1–17%) | 0/10 / 0/10 / 0/7 / 2/13 | 28/56 (37–63%) | 5 | 6 | 5 | 3 (2) | 19 | 1 / 5 | 2 / 3 | 0 | 425.5 / 265.0 |
+| 3A belief-conditioned most-frequent control | 18/40 (31–60%) | 3/10 / 7/10 / 1/7 / 7/13 | 56/56 (94–100%) | 29 | 30 | 30 | 18 (18) | 5 | 25 / 29 | 18 / 18 | 0 | 448.0 / 106.0 |
+| 3A program rule (hand-written) | 22/40 (40–69%) | 4/10 / 8/10 / 1/7 / 9/13 | 56/56 (94–100%) | 34 | 36 | 35 | 23 (22) | 4 | 26 / 34 | 20 / 23 | 0 | 504.0 / 106.0 |
+| 3B learned selector s0 + decision-level DAgger (documentation run) | 23/40 (42–71%) | 5/10 / 8/10 / 1/7 / 9/13 | 56/56 (94–100%) | 34 | 35 | 35 | 24 (23) | 1 | 25 / 34 | 22 / 24 | 0 | 530.0 / 106.0 |
+
+Reading. Rows that are frozen hand-written programs (bot, servo, program rule) and controls (shuffled, belief-
+conditioned table) bracket the learned rows: the learned selectors sit between the table (18) and the bot (21) and
+match the bot's per-family counts exactly (4/10, 8/10, 1/7, 8/13), so the learner has reproduced the bot's
+decision table and nothing beyond it; the 3B run (23) and the program rule (22) differ from it by noise. The belief
+policy's two seeds (2, 1) do not reach the bar, but both keep no-press at 46/56 while almost never saying done
+early in press-needed rooms (2, 5 of 40; Hr 28–29), and seed 0 presses in 7 rooms; the superseded 1B-v0 row (3/40,
+9 presses) is the same picture with the earlier label definition. Every step-5 pixel policy is at 0–2. Appearances
+is the hardest family for every program-based arm (bot 1/7): the detector's lamp-off recall is the limiter there,
+as the plan's risk list said. Nothing was tuned on this slice; the odd things are written down (the servo's needless
+presses in no-press rooms; the bot's 1/7 on appearances; shuffled s1's long episodes).
+
+### What worked, what did not, surprises, next
+
+- **Worked:** the belief label pipeline (1A gate passed at 3–4° median bearing error; the live tracker reproduces
+  the bot's memory tick for tick); the instrumented evaluator (bit-identical judge rows plus stage counts and the
+  intentionality fields); the pixel-free policy as a cheap decisive test (9 minutes of training, a clear negative
+  with a real shift in the funnel); the servo as a solvability check; the pre-registered gates, which cut Stage 2
+  and reduced Stage 3 to a documentation run without argument.
+- **Did not:** the explicit map summary is not enough for the 10 Hz command policy at this budget (the plan's own
+  kill sentence); belief heads and onset weighting do not move the turn-onset decision; the chicken head fails its
+  pre-gate; skill selection learns only what the program structure supplies; seed noise remains large (1B 4 vs 0 on
+  the 80 rooms).
+- **Surprises:** a ~150-line reactive servo beats the bot on press-needed rooms (31 vs 21 on the fresh slice);
+  the bot's own lamp belief flickers (amendment 2); the bot's intentional-reach pass rate at the plan's defaults was
+  only 58–64%; the fresh slice is harder for the bot (21/40) than the dev rooms (27/40), mostly appearances (1/7).
+- **Next (owner's call; nothing started):** (1) the finishing link on the 1B pick (2B's on-policy post-press
+  recording, ~1 h; pixel-free retraining is minutes): the 10/40 counterfactual says it is where the presses are;
+  (2) a labelled post-hoc 2A: *not recommended* on this evidence (1C showed neither lever moves the onset decision,
+  1B's reach failure is within-0.5-m → entry, and the 80-room counterfactual points at finishing, not navigation);
+  (3) if the goal is a pixel policy that presses, the servo's trajectories are a solvable-from-pixels teacher whose
+  decisions are reactive (no hidden program state), unlike the bot's; (4) 4D on the 1B pick's named belief slots
+  is now a well-posed weight-space question, but needs approval.
+
+### Disclosures and process
+
+- Jobs: never more than two of mine at once (counted by PID; `r7_power_guard.sh` enforced the battery rule, never
+  had to pause anything: AC throughout); every invocation ≤ 45 min with bit-exact resume (the two 1C runs resumed
+  once each); evaluations at `P2_PROCS=4`, `OMP_NUM_THREADS=1`.
+- Looks: the 80 confirmation rooms were looked at a second time by 1B-v1 (both seeds), the 3B arm and its
+  belief-conditioned control (one pass each; the step-5 arms were not re-run there); the fresh slice once per arm.
+- Code versions: `r7_eval.py` was edited while the 1B-v0 selections ran (unpack after belief v2; weight-spec
+  prefixes; semantics unchanged); `p2_skillsel.py` got the zero-tick guard after the freeze (amendment 3); the
+  servo's two fixes and the adapter's explore change were made after watching selection rooms (in-sample for the
+  40-room numbers, disclosed in their sections). The 1B-v0 attempt (superseded label definition) is reported, not
+  hidden. The lane logs end with a harmless bash "syntax error near done" from editing `r7_lane.sh` while lanes ran.
+- Aux-head accuracies in the 1B-v1 selection tables (0.85–0.94) are below v0's (0.98–1.0) because `aux_labels`
+  still targets the bot's fresh-run `lamp_state()` while the input is the sticky track class; diagnostic only.
+- Disk added: 0.78 GB (belief side files 536 MB, gaze pre-gate episodes 78 MB, six runs 159 MB, demo 2 MB,
+  results/r7 6 MB); the superseded v1 side files (526 MB) were deleted; nothing of earlier rounds was touched.
+- Tests: `sh smoke.sh` 118 → 136 tests (18 new in `tests/test_r7*.py`), ~2 min.
+
+**Files.** `belief.py`, `p2_belief_labels.py`, `r7_eval.py`, `r7_probes.py`, `r7_gate.py`, `r7_report.py`,
+`p2_servo_baseline.py`, `p2_skillsel.py`, `r7_gaze_pregate.py`, `r7_lane.sh`, `r7_queue*.sh`,
+`r7_power_guard.sh`, `make_splits.py --r7`, `check_splits.py` (r7 section), `p2_train.py` / `p2_learner.py`
+(new flags, vector input, belief heads), `p2_diag.py` (vector policies), `record.py` (`bot_pose`),
+`splits/r7_*.json` + `R7_MANIFEST.json`, `results/r7/` (protocol + 3 amendments, ledger, gates, calibration,
+every selection / confirmation / fresh evaluation, `table_*.md`, `skillsel/`), `episodes/cache/r7_belief_v2/`,
+`episodes/r7_gaze/`, `episodes/r7_demo/`, `checkpoints/r7_1bv1_s0.safetensors` + `.json`, `media/r7_demo.html`,
+`tests/test_r7.py`, `tests/test_r7_eval.py`, `tests/test_r7_skillsel.py`, `logs/r7_*`.

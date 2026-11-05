@@ -58,10 +58,17 @@ def episodes():
 def run(w):
     m = load_model(w)
     rows = []
+    vec_dim = int(getattr(m, "vec_dim", 0))          # Round 7: belief-vector policies get the demo's vectors
     for r, H, c, match, F, B, mem in episodes():
         n = len(B)
         I = np.broadcast_to(instr_vec(H["instruction"]), (n, 9))
-        out = m(mx.array(F[None].astype(np.float32) / 255.0), mx.array(B[None]), mx.array(I[None]))
+        frames = mx.array(F[None].astype(np.float32) / 255.0) if getattr(m, "pixels", True) else None
+        if vec_dim:
+            from p2_belief_labels import load_side
+            V = load_side(r["path"])["vec"][:n]
+            out = m(frames, mx.array(B[None]), mx.array(I[None]), vec=mx.array(V[None]))
+        else:
+            out = m(frames, mx.array(B[None]), mx.array(I[None]))
         dl = np.array(out[1][0])
         row = {"config": r["config"], "c": c, "match": bool(match), "logit_c": float(dl[c]),
                "max_logit_window": float(dl[max(0, c - 29):c + 1].max())}
