@@ -1,0 +1,158 @@
+{
+ "tolerance": {
+  "single_pass": 0.001,
+  "ddpm_sampler": 0.002,
+  "rule": "max|mlx - torch| <= tol * max(1, max|torch|)"
+ },
+ "inputs": "uniform [0,1] images, ImageNet-normalized, batch 4, seed 0",
+ "mlx_device": "Device(gpu, 0)",
+ "MLX_ENABLE_TF32": "0",
+ "torch": "2.14.1",
+ "checks": {
+  "vint_distance": {
+   "max_abs_err": 8.106231689453125e-06,
+   "max_abs_ref": 7.507068157196045,
+   "rel_err": 1.0798132532848713e-06,
+   "tolerance": 0.001,
+   "pass": true
+  },
+  "vint_waypoints_xy": {
+   "max_abs_err": 2.6226043701171875e-06,
+   "max_abs_ref": 4.130406379699707,
+   "rel_err": 6.349506874207033e-07,
+   "tolerance": 0.001,
+   "pass": true
+  },
+  "vint_waypoints_angle": {
+   "max_abs_err": 9.126961231231689e-07,
+   "max_abs_ref": 0.9999997615814209,
+   "rel_err": 9.126961231231689e-07,
+   "tolerance": 0.001,
+   "pass": true
+  },
+  "nomad_context_mask0": {
+   "max_abs_err": 1.52587890625e-05,
+   "max_abs_ref": 16.837539672851562,
+   "rel_err": 9.062362648566108e-07,
+   "tolerance": 0.001,
+   "pass": true
+  },
+  "nomad_distance_mask0": {
+   "max_abs_err": 1.52587890625e-05,
+   "max_abs_ref": 6.056234359741211,
+   "rel_err": 2.5195176005626083e-06,
+   "tolerance": 0.001,
+   "pass": true
+  },
+  "nomad_context_mask1": {
+   "max_abs_err": 1.621246337890625e-05,
+   "max_abs_ref": 21.19822120666504,
+   "rel_err": 7.648030096887945e-07,
+   "tolerance": 0.001,
+   "pass": true
+  },
+  "nomad_distance_mask1": {
+   "max_abs_err": 1.1444091796875e-05,
+   "max_abs_ref": 10.066679000854492,
+   "rel_err": 1.1368289180477086e-06,
+   "tolerance": 0.001,
+   "pass": true
+  },
+  "nomad_unet_eps": {
+   "max_abs_err": 9.5367431640625e-07,
+   "max_abs_ref": 3.77760910987854,
+   "rel_err": 2.524544728337213e-07,
+   "tolerance": 0.001,
+   "pass": true
+  },
+  "nomad_sampler_ndeltas": {
+   "max_abs_err": 1.735985279083252e-06,
+   "max_abs_ref": 0.5396956205368042,
+   "rel_err": 1.735985279083252e-06,
+   "tolerance": 0.002,
+   "pass": true
+  },
+  "nomad_sampler_waypoints": {
+   "max_abs_err": 3.361701965332031e-05,
+   "max_abs_ref": 10.414119720458984,
+   "rel_err": 3.228023160448044e-06,
+   "tolerance": 0.002,
+   "pass": true
+  },
+  "ddpm_alphas_cumprod": {
+   "max_abs_err": 1.4901161193847656e-08,
+   "max_abs_ref": 0.9720927476882935,
+   "rel_err": 1.4901161193847656e-08,
+   "tolerance": 0.001,
+   "pass": true
+  }
+ },
+ "vint_load": {
+  "strict": true,
+  "n_tensors": 799
+ },
+ "vint_mlx_forward_s": 1.059,
+ "vint_sample_output": {
+  "distance": [
+   6.730000019073486,
+   7.5071001052856445,
+   5.576900005340576,
+   6.371799945831299
+  ],
+  "waypoint0": [
+   [
+    0.4440000057220459,
+    0.0006000000284984708,
+    0.9991000294685364,
+    0.04349999874830246
+   ],
+   [
+    0.44600000977516174,
+    9.999999747378752e-05,
+    0.9998999834060669,
+    -0.01549999974668026
+   ],
+   [
+    0.4203000068664551,
+    -0.012500000186264515,
+    0.9965000152587891,
+    -0.08340000361204147
+   ],
+   [
+    0.8270999789237976,
+    -0.013700000010430813,
+    1.0,
+    -0.0010999999940395355
+   ]
+  ]
+ },
+ "nomad_load": {
+  "strict": true,
+  "n_tensors": 645
+ },
+ "nomad_mlx_sampler_s": 0.066,
+ "all_pass": true,
+ "params": {
+  "vint_total": 29662397,
+  "vint_used_excl_fc_and_sa_layer_copy": 23948013,
+  "nomad_total": 19049675,
+  "nomad_used_excl_fc_and_sa_layer_copy": 15697915
+ },
+ "tf32_on_for_reference": {
+  "note": "MLX default on this GPU (MLX_ENABLE_TF32 unset = TF32 matmuls); NOT the runtime setting",
+  "all_pass": false,
+  "rel_err": {
+   "vint_distance": 0.002962689974880368,
+   "vint_waypoints_xy": 0.0026408176317724704,
+   "vint_waypoints_angle": 0.004413306713104248,
+   "nomad_context_mask0": 0.0007025879842133643,
+   "nomad_distance_mask0": 0.0021341888775265644,
+   "nomad_context_mask1": 0.0006125397281422225,
+   "nomad_distance_mask1": 0.002123501683169949,
+   "nomad_unet_eps": 0.00014825388917160285,
+   "nomad_sampler_ndeltas": 0.0008920282125473022,
+   "nomad_sampler_waypoints": 0.002225138177706292,
+   "ddpm_alphas_cumprod": 1.4901161193847656e-08
+  }
+ }
+}

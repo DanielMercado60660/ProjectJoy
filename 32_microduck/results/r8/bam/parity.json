@@ -1,0 +1,43 @@
+{
+ "states": 1400,
+ "tolerance_abs_Nm": 1e-09,
+ "cpu_semantics_vs_bam_mujoco": {
+  "torque": {
+   "max_abs_diff": 0.0,
+   "bit_identical_frac": 1.0,
+   "ref_abs_max": 0.4776417359825597,
+   "pass": true
+  },
+  "frictionloss": {
+   "max_abs_diff": 0.0,
+   "bit_identical_frac": 1.0,
+   "ref_abs_max": 0.17243111477023823,
+   "pass": true
+  },
+  "damping": {
+   "max_abs_diff": 0.0,
+   "bit_identical_frac": 1.0,
+   "ref_abs_max": 0.005359668274599504,
+   "pass": true
+  }
+ },
+ "mjlab_semantics_vs_bam_mjlab_torch": {
+  "external_torque": {
+   "max_abs_diff": 0.0,
+   "ref_abs_max": 0.7087997514162513,
+   "pass": true
+  },
+  "frictionloss": {
+   "max_abs_diff": 1.3877787807814457e-17,
+   "ref_abs_max": 0.1611769408363166,
+   "pass": true
+  },
+  "cpu_vs_mjlab_frictionloss": {
+   "max_abs_diff": 0.014115953501480566,
+   "median_abs_diff": 0.001474644568088563,
+   "median_budget": 0.020787793835928665
+  }
+ },
+ "mjlab_reference": "bam/mjlab.py BamActuator._dof_friction_force + _compute_friction_budget (commit 62bd8ce), executed with torch float64 on the harvested states",
+ "inputs": "harvested by `replay` from bam.mujoco.MujocoController on Pollen's model, every other physics step of a 14 s walk/turn/back/lateral/head script"
+}

@@ -16,6 +16,12 @@ Extra knobs that mirror training rather than the script (all off by default):
 `phys_delay` (actuator lag in 5 ms physics steps; training's BAM has delay_min/max_lag 3-6,
 read here as physics steps since the vendored code does not state the unit),
 `jv_lag` (joint velocity seen one policy step late, as in training) and `kp_scale`.
+
+R8 (additive, off by default): `actuator="bam_m6"` swaps the XML position actuators for the BAM M6
+XL330 servo model the policy was trained with (bam_m6.py: voltage-controlled firmware P loop, DC
+motor, load-dependent friction, its own 3-6 physics-step target delay); `bam` overrides
+bam_m6.DEFAULTS. The default body (actuator="xml") is unchanged bit for bit
+(r8_bam_defaults.py, tests/test_r8_bam.py).
 """
 from collections import deque
 from dataclasses import dataclass, field
@@ -24,6 +30,7 @@ from pathlib import Path
 import mujoco
 import numpy as np
 
+import bam_m6
 from policy.velstand_np import DEFAULT_POSE, VelstandPolicy
 
 HERE = Path(__file__).resolve().parent
@@ -60,9 +67,13 @@ class BodyConfig:
     foot_solref: float | None = None    # infer_policy.py --foot-solref
     obs_noise: float = 0.0      # scale on training's uniform obs noise (1.0 = as trained)
     extra: dict = field(default_factory=dict)
+    actuator: str = "xml"       # "xml" (M0 body: MuJoCo position actuators) or "bam_m6" (R8, bam_m6.py)
+    bam: dict = field(default_factory=dict)  # overrides of bam_m6.DEFAULTS (actuator="bam_m6" only)
 
     def label(self):
         bits = [self.scene]
+        if self.actuator != "xml":
+            bits.append(bam_m6.label(self.bam))
         if self.delay_max:
             bits.append(f"delay{self.delay_min}-{self.delay_max}")
         if self.phys_delay:
@@ -118,6 +129,9 @@ class Duck:
         self.pre_state = np.zeros(self.state_size, np.float64)
         self.has_pre_state = False
         self._fix_head_camera()
+        self.bam_act = None
+        if self.cfg.actuator == "bam_m6":  # model already converted in _apply_body_options
+            self.bam_act = bam_m6.BamM6(m, self.data, np.arange(m.nu), bam_m6.options(self.cfg.bam))
         self.rng = np.random.default_rng(seed)
         self.reset()
 
@@ -139,6 +153,17 @@ class Duck:
 
     def _apply_body_options(self):
         m, c = self.model, self.cfg
+        if c.actuator not in ("xml", "bam_m6"):
+            raise ValueError(f"unknown actuator {c.actuator!r}")
+        if c.actuator == "bam_m6":
+            # BAM brings its own servo law, force range and target delay: the XML-actuator knobs
+            # and the extra lag buffers would double up.
+            if c.kp_scale != 1.0 or c.torque_limit is not None or c.phys_delay or c.delay_max:
+                raise ValueError("actuator='bam_m6' takes no kp_scale/torque_limit/phys_delay/delay_max "
+                                 "(use bam={'kp_fw', 'max_current', 'lag_min', 'lag_max', ...})")
+            bam_m6.convert_model(m, np.arange(m.nu), bam_m6.options(c.bam))
+        elif c.bam:
+            raise ValueError("BodyConfig.bam is only used with actuator='bam_m6'")
         if c.kp_scale != 1.0:
             kp = m.actuator_gainprm[:, 0] * c.kp_scale
             m.actuator_gainprm[:, 0] = kp
@@ -162,7 +187,10 @@ class Duck:
         d.qpos[self.qadr:self.qadr + 3] = (x, y, 0.125)
         d.qpos[self.qadr + 3:self.qadr + 7] = (np.cos(yaw / 2), 0, 0, np.sin(yaw / 2))
         d.qpos[self.jq] = DEFAULT_POSE
-        d.ctrl[:] = DEFAULT_POSE
+        if self.bam_act is None:
+            d.ctrl[:] = DEFAULT_POSE
+        else:  # ctrl is a motor torque (0 after mj_resetData), as in infer_policy's BAM start
+            self.bam_act.reset(DEFAULT_POSE, self.rng)
         mujoco.mj_forward(m, d)
         self._reset_controller()
 
@@ -188,6 +216,7 @@ class Duck:
             "target_queue": [t.tolist() for t in self.target_queue],
             "jv_hist": [j.tolist() for j in self.jv_hist], "push_force": self.push_force.tolist(),
             "steps": self.steps, "rng": self.rng.bit_generator.state,
+            **({"bam": self.bam_act.state()} if self.bam_act is not None else {}),
         }
 
     def set_controller_state(self, s):
@@ -199,6 +228,13 @@ class Duck:
         self.push_force = np.asarray(s["push_force"], np.float64)
         self.steps = int(s["steps"])
         self.rng.bit_generator.state = s["rng"]
+        if self.bam_act is not None:
+            # BAM writes dof_frictionloss/dof_damping into the MODEL every step, and the derived
+            # quantities restore_physics() rebuilt depend on them: put them back, then rebuild.
+            self.bam_act.set_state(s["bam"])
+            cur = np.empty(self.state_size, np.float64)
+            mujoco.mj_getState(self.model, self.data, cur, STATE_SPEC)
+            self.restore_physics(cur, self.pre_state.copy() if self.has_pre_state else None)
 
     def set_command(self, vx=0.0, vy=0.0, wz=0.0, head=(0, 0, 0, 0), body=(0, 0, 0, 0, 0, 0)):
         head = np.clip(np.asarray(head, np.float32), -HEAD_CAPS, HEAD_CAPS)
@@ -237,8 +273,11 @@ class Duck:
         target = DEFAULT_POSE + applied
         d = self.data
         for i in range(DECIMATION):
-            self.target_queue.append(target)
-            d.ctrl[:] = self.target_queue[0]
+            if self.bam_act is None:
+                self.target_queue.append(target)
+                d.ctrl[:] = self.target_queue[0]
+            else:  # delay line + firmware loop + motor torque + friction budget (bam_m6.py)
+                self.bam_act.substep(target, self.rng)
             d.xfrc_applied[self.trunk_id, :3] = self.push_force
             if i == DECIMATION - 1:
                 # The next observation reads sensordata/xquat that mj_step computed for the state

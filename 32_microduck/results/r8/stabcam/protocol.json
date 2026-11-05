@@ -1,0 +1,202 @@
+{
+ "title": "Round 8 Gate B: steady-camera numbers (head / reflex / trunk / ORACLE / electronic / phase-locked)",
+ "written": "2026-11-05 15:39 CST -- before any measurement run (only the dev runs below had run)",
+ "question": "How steady can the duck's camera view get, cheapest options first? Decides whether stage 2 (chicken head) is worth building and which kind (R8_STAGED_PLAN.md s3, s5 row B).",
+ "code": {
+  "library": "r8_stabcam.py",
+  "runner": "r8_stabcam_run.py",
+  "metrics": "r8_stabcam_analyze.py",
+  "tests": "tests/test_r8_stabcam.py"
+ },
+ "body": "frozen M0 body (room.FROZEN_BODY, duck.py default actuator='xml'), frozen walker, frozen interface; MuJoCo 3.16.0",
+ "streams": {
+  "head": "head camera as now: 128 px, 45 deg, rendered exactly like Duck.head_image (sensor-only: it is the sensor)",
+  "reflex": "head camera with the gaze.py reflex on (paired physics run; scripted: m3_gaze's loop; bot: params {'gaze': True})",
+  "trunk": "SIM-ONLY hardware alternative: camera fixed to trunk_base at [0.05, 0.0, 0.02] m (front-top, ~0.14 m above the floor), tilted 10 deg down in the trunk frame, 45 deg, 128 px",
+  "oracle": "ORACLE (simulator truth): true head-camera position; orientation = the true head-camera orientation through the frozen target filter (yaw, pitch smoothed; roll held at 0 = level horizon); rendered directly, 45 deg, 128 px",
+  "eis": "electronic stabilisation, sensor-only: 140 deg render at 864 px from the head camera; orientation estimate from gyro (yaw integrated as odometry.py), the gravity reading (tilt) and the joint encoders through BodyModel.fk (the bot's camera model), read at 50 Hz; target = the estimate through the same frozen filter, roll 0; warp H = K R K^-1 (bilinear, numpy/scipy), crop to 45 deg / 128 px; the target is pulled toward the source axis when it is more than 39.54 deg away (then 100% of output pixels are inside the render)",
+  "eis_lag": "eis with the estimate and target from one 50 Hz sample earlier (a 20 ms sensor-to-frame latency); robustness row",
+  "eis_lagc": "eis_lag with the late estimate extrapolated one sample at its last rotation rate (constant-rate latency compensation); robustness row",
+  "eis_reflex / eis_reflex_lag / eis_reflex_lagc": "the eis warps applied on the reflex run (both at once)",
+  "pl_head / pl_eis": "phase-locked sampling of head / eis: the 50 Hz frame at each left-foot touchdown while walking (1 per stride, ~1.86 Hz). Gait phase from encoders + gravity only: the stance foot is the lower foot in the gravity-aligned trunk frame (odometry.py's rule) with a 2 mm hysteresis",
+  "pl2_head / pl2_eis": "both touchdowns (2 per stride)"
+ },
+ "frozen_parameters": {
+  "filter": {
+   "kind": "notch",
+   "stride_hz": 1.86,
+   "ramp_yaw": false,
+   "ramp_pitch": false
+  },
+  "filter_name": "ma2: two cascaded moving averages of 27 samples (one stride at 1.86 Hz, 50 Hz) on yaw and pitch, no ramp term; delay 0.52 s",
+  "wide_fovy_deg": 140.0,
+  "wide_px": 864,
+  "out_fovy_deg": 45.0,
+  "out_px": 128,
+  "clamp_deg": 39.539,
+  "trunk_mount": {
+   "pos": [
+    0.05,
+    0.0,
+    0.02
+   ],
+   "tilt_down_deg": 10.0
+  },
+  "stance_hyst_m": 0.002,
+  "render": "default room visuals (shadows, reflections, headlight) for every stream; separate MjData synced from the live one (qpos -> mj_kinematics -> mj_camlight)"
+ },
+ "dev_tuning": {
+  "rooms": {
+   "scripted": [
+    "train-0000",
+    "train-0001",
+    "train-0002",
+    "train-0003",
+    "train-0004",
+    "train-0005"
+   ],
+   "bot": [
+    [
+     "train-0006",
+     8
+    ],
+    [
+     "train-0007",
+     8
+    ]
+   ]
+  },
+  "what": "orientation-only runs (no renders); filter candidates ema tau 1.0/0.5 s, alpha-beta wn 1/2/4 rad/s, notch(ma2) with/without ramp terms, ma1; source FOV 100/120/140 deg",
+  "rule": "lowest mean of eis walking wobble yaw/2.0 and pitch/1.0 over the dev scripted walking average and the dev bot episodes",
+  "files": [
+   "results/r8/stabcam/dev_filters.json",
+   "results/r8/stabcam/dev_grid.txt"
+  ],
+  "result": "ma2 at 140 deg: dev eis scripted walking 1.02/0.51 deg, dev bot 0.85/0.46 deg, clamp active 2.7% of scripted walking samples (100 deg: 28%)"
+ },
+ "episodes": {
+  "scripted": {
+   "configs": [
+    "train-0020",
+    "train-0021",
+    "train-0022",
+    "train-0023",
+    "train-0024",
+    "train-0025"
+   ],
+   "segments_vx_wz": [
+    [
+     0.2,
+     0.0
+    ],
+    [
+     0.3,
+     0.0
+    ],
+    [
+     0.4,
+     0.0
+    ],
+    [
+     0.3,
+     0.4
+    ],
+    [
+     0.3,
+     -0.4
+    ],
+    [
+     0.0,
+     0.55
+    ]
+   ],
+   "ticks": 130,
+   "walk_ticks": 100,
+   "head_command": "(0, 0, 0, 0) + reflex offsets in the reflex run (m3_gaze.run)",
+   "window_50hz_steps": [
+    150,
+    500
+   ],
+   "note": "same configs and segments as M3.1's validation (m3_gaze.py); reflex off and on"
+  },
+  "bot": {
+   "task": "set_lamp",
+   "k": 8,
+   "configs": [
+    "train-0040",
+    "train-0042",
+    "train-0043",
+    "train-0045",
+    "train-0046",
+    "train-0048",
+    "train-0051",
+    "train-0052",
+    "train-0055",
+    "train-0059"
+   ],
+   "rule": "the first 10 train configs from index 40 whose set_lamp episode k=8 needs a press (r7_gaze_pregate's rule)",
+   "controller": "the frozen reference bot (refbot.controller), reflex off and on",
+   "budget_ticks": 900
+  },
+  "pool": "splits/train.json only (no dev, test, R7 or confirmation rooms); dev tuning rooms disjoint from both measurement sets"
+ },
+ "metrics": {
+  "wobble": "per stream, the effective view orientation (yaw/pitch of the forward axis, roll of the right axis vs horizontal) minus its centred 1 s moving mean, std in deg. Scripted: m3_gaze.detrended_std on 50 Hz steps 150..500 (M3.1's number). Bot: the whole episode detrended, std over walking steps (executed vx > 0.15). eis effective orientation = R_true_head * R_est^T * R_target (scored by truth)",
+  "frame_change": "mean |grey difference| between consecutive 10 Hz frames at 64 px (128 -> 96 -> 64 BOX, channel mean: the 4A pipeline), walking only (scripted: frames of ticks 30..99; bot: ticks whose command had vx > 0.15); eis streams over pixels valid in both frames. Per run mean and median; scripted: mean over configs per segment, walking average over the 5 walking segments; bot: median of per-episode medians (4A) and mean of means",
+  "valid_fraction": "eis streams: fraction of 64 px output pixels inside the wide render (a 64 px pixel is valid if its 2x2 block at 128 px is), walking ticks; also the clamp-active fraction of walking steps",
+  "phase_locked": "kept = 50 Hz frames at left touchdowns (pl) or both touchdowns (pl2) during walking. (1) The sampled sequence's own wobble: std of the detrended stream angle at the kept frames, vs the same at unlocked fixed-clock samples (random start phase, 8 draws) at the kept frames' mean gap ('same rate') and at 2 Hz (every 25 steps). (2) Frame change between consecutive kept frames (gap <= 1.0 s pl / 0.6 s pl2, walking throughout) vs consecutive clock samples (same two clocks) and vs random-phase pairs with each kept pair's gap (8 per pair; phase-matched by construction at a one-stride gap, so they measure the real motion per stride). Gate row for pl_* = (1)'s locked wobble.",
+  "secondary_no_headlight": "MuJoCo's headlight turns with each camera (diffuse 0.3 of the room's ~0.9): the scripted set is re-rendered with the headlight's diffuse term at 0 for every stream (10 Hz frames; wobble unaffected); frame change reported for both"
+ },
+ "aggregation": "scripted: per segment the mean over the 6 configs; walking average = mean over the 5 walking segments (M3.1); turn in place reported separately. bot: wobble mean over episodes; frame change as above",
+ "gate": {
+  "primary": "a sensor-only stream with scripted walking-average wobble <= 2.0 deg yaw AND <= 1.0 deg pitch (the plan's 'at or below trunk level (~2 deg / 1 deg)'; the measured trunk-camera row is reported beside it, not used as a moving bar). Roll reported, not gated",
+  "sensor_only_streams": [
+   "head",
+   "reflex",
+   "eis",
+   "eis_lag",
+   "eis_lagc",
+   "eis_reflex",
+   "eis_reflex_lag",
+   "eis_reflex_lagc",
+   "pl_head",
+   "pl_eis",
+   "pl2_head",
+   "pl2_eis"
+  ],
+  "not_sensor_only": {
+   "oracle": "simulator truth",
+   "trunk": "a hardware change (camera moved), sim-only here; it is the 'trunk level' reference"
+  },
+  "eis_usable": "an eis stream counts only with walking valid-pixel fraction >= 0.95 and clamp active on <= 5% of walking steps",
+  "secondary_bars_descriptive": {
+   "bot_episodes": "same 2.0/1.0 deg bars on the bot episodes (realistic mix)",
+   "frame_change": "<= 0.8 x the head stream's walking frame change (4A's -20% bar)",
+   "phase_locked": "locked frame change <= 0.8 x the same-rate clock's; locked sequence wobble reported against both clocks"
+  }
+ },
+ "verdict_rules": [
+  "eis passes (and is usable) and eis_lag or eis_lagc passes -> stage 2 = software stabilisation (rotation warp on a wide camera); no physical chicken head or learned chicken walk; next: the stage 3 representation gates on the eis stream (not run here)",
+  "eis passes but neither lag row does -> software works only with sensor-to-frame sync well under 20 ms: a hardware requirement to state",
+  "no sensor-only stream passes but the ORACLE does -> the gap is sensing or filtering: improve the estimator before any hardware",
+  "the ORACLE fails too -> rotation alone cannot reach trunk level (translation, filter limits): the trunk camera or a learned chicken walk are the remaining options",
+  "phase-locked streams that pass are a free fallback at ~1.9 Hz frames",
+  "the plan's full stage 2 gate also needs 'the stage 3 gates improve over the wobbly stream': not measured in this gate"
+ ],
+ "truth_use": "ORACLE stream pose; every metric (true camera orientation for wobble); bot episode success/falls for context. The eis estimate, the phase detector and the reflex read only gyro, gravity and encoders.",
+ "known_idealisations": [
+  "projected gravity is exact (a real IMU's tilt is corrupted by stride accelerations)",
+  "the gyro is noise- and bias-free (FROZEN_BODY obs_noise 0)",
+  "estimate and frame are sampled at the same instant in eis (eis_lag/eis_lagc test 20 ms)",
+  "rectilinear 140 deg render stands in for a wide/fisheye lens; no motion blur, rolling shutter or exposure change",
+  "the extra renders show the state after the tick's last physics substep; the bot's own frame shows the state 5 ms earlier (identical between streams)"
+ ],
+ "compute_plan": "./r8_job.sh (<= 4 processes): scripted ~15 min, bot ~12 min, no-headlight ~5 min",
+ "amendments": [
+  {
+   "when": "2026-11-05 15:45 CST",
+   "before_measurement": true,
+   "what": "phase-locked control: a dev smoke pair (train-0001, 0.3 m/s, reflex off/on; scratch data, not a measurement room) showed that random-phase pairs with the same gap as kept pairs are one stride apart and so phase-matched by construction (locked 13.2 vs control 13.0 grey levels). Added unlocked fixed-clock controls (same rate, 2 Hz) for frame change and for the sampled sequence's wobble; the same-gap pairs are kept and relabelled. Also: eis_lagc / eis_reflex_lagc listed as sensor-only in the analysis code (they were in the protocol already)."
+  }
+ ]
+}

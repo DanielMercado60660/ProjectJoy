@@ -1,0 +1,51 @@
+{
+ "written": "2026-11-05 15:40 CST, before the probe set was built and before any feature extraction or probe fit on R8 frames",
+ "track": "R8 Gate C, representation part 1: encoder probe bake-off on duck frames (design/R8_STAGED_PLAN.md s4 3a, s5 row C)",
+ "frames": {
+  "source": "episodes/r8_rep (r8_rep/rep_record.py): reference-bot set_lamp episodes recorded with a separate warm 224x224 head-camera renderer (record.py conventions; recorder check in results/r8/probes/record_check.json)",
+  "fit_episodes": "index rows without error, task set_lamp, configs train-0000..0269, k=8 (clean bot) and k=9 (noisy bot, R6 noise settings), complete when the probe set is built (count written to probeset.json)",
+  "test_episodes": "index rows without error, task set_lamp, configs train-0270..0299 (held out from all R8 training), k=8, 10 (clean) and 9, 11 (noisy)",
+  "64px_rows": "the stored-style 96 px frame of the same tick (interface 128 px render, box to 96), box-resized to 64 px exactly as R6's probes did"
+ },
+ "labels_simulator_truth_labels_only": {
+  "lamp": "frames with >= 16 visible lamp pixels at 224 px (segmentation render); label = lamp on (truth); up to 12 frames per episode, rng seed 0",
+  "plate_in_view": "positive: >= 16 visible plate pixels; negative: 0 plate pixels and 0 pixels of its dark frame; 1-15 px excluded; up to 6 positive + 6 negative per episode, rng seed 1",
+  "plate_bearing": "frames with >= 16 visible plate pixels; target = horizontal-plane bearing of the plate centre from the camera's optical axis (rad, + = left); up to 8 per episode, rng seed 2",
+  "difference_from_R6": "R6 labelled the lamp by the bot's fresh sightings and the plate by the bot's confirmed button track (sensors-only beliefs) on M5 demo frames; R8 uses simulator truth (pixel counts from a segmentation render), so the R8 numbers are on a different, cleaner label set and are not identical to R6's"
+ },
+ "arms": {
+  "dinov2_s": "DINOv2 ViT-S/14 (facebook/dinov2-small), 224 px, MLX port",
+  "vjepa21_l": "V-JEPA 2.1 ViT-L/16 distilled (dgrauet/vjepa-2.1-vitl-mlx), 224 px image path, MLX port",
+  "lewm_tworooms, lewm_pusht, lewm_cube, lewm_reacher": "official LeWM checkpoint encoders, zero-shot, 224 px, MLX port",
+  "random_vit": "LeWM encoder architecture (ViT-tiny/14, 224 px) at HF random init, seed 0, never trained (control)",
+  "r6_bars_recomputed_on_these_frames": "P2-A' s0 encoder (runs/p2_a2/ckpt_016000) on 64 px; R6 LeWM (runs/lewm_s1/final) and R6 random-encoder control (runs/lewm_rand/final) on 64 px; a supervised 64 px CNN (R6/P2 architecture, p2_lamp_probe.py: 4 convs, Adam 1e-3, 1500 steps x batch 128, seed 0) trained on the fit frames per task"
+ },
+ "features": {
+  "global (primary)": "final normalised tokens: [CLS ; mean of patch tokens] for DINOv2, LeWM checkpoints and random_vit; mean of patch tokens for V-JEPA (no CLS); P2-A' / R6 LeWM / R6 random: their 192-d embedding as in R6 (lewm/probes.py featurizer)",
+  "lewm_projected (reported)": "for the LeWM checkpoints: the 192-d projector output (the LeWM latent; = R6's 'lewm' row definition), BatchNorm in eval mode",
+  "grid (secondary)": "patch-token grid average-pooled 2x2 (DINOv2 / LeWM / random_vit 16x16 -> 8x8, V-JEPA 14x14 -> 7x7), plus CLS when present"
+ },
+ "probes": {
+  "linear (primary)": "standardised features (fit-set mean/std), linear softmax, Adam 1e-2 x 800 full-batch steps, L2 1e-3 on the weight = R6 lewm/probes.py; bearing: same optimiser, linear regression on the standardised target (MSE), L2 1e-3",
+  "attentive (secondary)": "standardised grid tokens; one learned query, keys/values Linear(d -> 64), softmax pooling, Linear head; AdamW 1e-3, weight decay 1e-4, 600 full-batch steps, seed 0",
+  "cnn": "as above, 64 px, one net per task (2-way head for lamp / plate, 1 output with MSE on the standardised bearing)"
+ },
+ "metrics": "lamp: test accuracy (headline) and AUC; plate in view: test AUC (headline) and accuracy; bearing: test mean absolute error in degrees (headline) against the constant fit-mean baseline. Test = held-out configs 0270-0299 only.",
+ "bars_restated_from_R6_on_R6_frames": {
+  "lamp_acc": {
+   "P2-A' s0": 0.837,
+   "supervised 64 px CNN": 0.953,
+   "R6 LeWM": 0.503,
+   "R6 random encoder": 0.525
+  },
+  "plate_auc": {
+   "P2-A' s0": 0.719
+  }
+ },
+ "reading": "No pass/fail gate: a bake-off. An encoder 'reads the lamp' if its primary linear lamp probe is >= 0.90 (R6's G4 bar). The LeWM checkpoint for the checkpoint-vs-scratch arm is picked by the rule in results/r8/lewm_ckpt/protocol.json from these numbers.",
+ "amendment_1": {
+  "written": "2026-11-05 15:53 CST, before the probe set was built (no probe number exists yet)",
+  "add_reported": "lamp test accuracy split by lamp size in the frame: >= 64 visible lamp pixels at 224 px (well in view) vs 16-63 px; reported only, the headline stays the full >= 16 px set",
+  "why": "a 16-px lamp at 224 px is ~1 px at 64 px, so the 64 px rows are expected to lose mainly on small lamps"
+ }
+}

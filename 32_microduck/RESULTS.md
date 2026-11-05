@@ -2492,3 +2492,46 @@ presses in no-press rooms; the bot's 1/7 on appearances; shuffled s1's long epis
 every selection / confirmation / fresh evaluation, `table_*.md`, `skillsel/`), `episodes/cache/r7_belief_v2/`,
 `episodes/r7_gaze/`, `episodes/r7_demo/`, `checkpoints/r7_1bv1_s0.safetensors` + `.json`, `media/r7_demo.html`,
 `tests/test_r7.py`, `tests/test_r7_eval.py`, `tests/test_r7_skillsel.py`, `logs/r7_*`.
+
+## Round 8 first batch (2026-11-05 afternoon) — paused by the owner; steady camera passes, walking and zero-shot navigation fail, pretrained encoders read the lamp far better than ours
+
+The owner redirected the project to a staged plan (`design/R8_STAGED_PLAN.md`): (1) walking that does what it's
+told, (2) steady eyes, (3) pretrained models fine-tuned on our data, always against the same model from scratch.
+The first batch ran four independent checks in parallel. Each folder under `results/r8/` has a `REPORT.md` and a
+pre-registered `protocol.json`; the lead checked every report against its data.
+
+| check | verdict | headline |
+|---|---|---|
+| A. BAM motor model (`results/r8/bam/`) | **fail** | Port is bit-exact to Pollen's code, but forward 0.38×, turn 1.43×, drift +0.18 rad/s (XML body: 0.44×, 1.39×, +0.22). Body v2 not adopted. |
+| B. steady camera (`results/r8/stabcam/`) | **pass (rule 2)** | Software stabilisation (140° render + rotation warp from gyro, gravity, encoders): 1.23° / 0.84° vs bars 2 / 1, about sim truth (1.17 / 0.83), steadier than a trunk camera (2.54 / 0.88). Needs sensor-to-frame latency well under 20 ms. |
+| C-nav. ViNT / NoMaD zero-shot (`results/r8/nav/`) | **does not transfer** | Waypoints ignore the goal (straight-ahead beats them in 50–59/69); distance heads ρ 0.22–0.38 vs bar 0.5. Camera height and pitch are the likely gap. |
+| C-rep. encoder probes (`results/r8/probes/`) | **done** | Lamp on/off from a linear probe: DINOv2-S 0.980, V-JEPA 2.1-L 0.962 (attentive 0.992), LeWM TwoRoom checkpoint 0.926, vs our R6 LeWM 0.409 and P2-A′ 0.759. |
+| C-rep. LeWM checkpoint vs scratch (`results/r8/lewm_ckpt/`) | **unfinished** | Stopped at step 2000 of 12,000 on both arms when the owner paused; no gate measured. Resume commands are in `results/r8/probes/REPORT.md`. |
+
+**What this changes.**
+- **Walking:** slow forward walking is the policy's own (Pollen's sim also gets 0.43×), so command tracking needs
+  a closed-loop waypoint layer whatever the body. Turning and drift track in Pollen's sim but not ours; the prime
+  suspect is backlash (v8 was trained on the `-Backlash-` task). The stage 1 gate was amended before any rerun:
+  body v2 must match Pollen's sim, not the command.
+- **Steady eyes:** no physical chicken head is needed. A software warp gets truth-level steadiness. Whether a
+  steady view helps the learned models is not yet measured; a paired frame set is saved.
+- **Pretrained models:** off-the-shelf encoders keep the lamp, the thing every from-scratch model here lost. The
+  navigation models' outputs don't transfer without fine-tuning.
+- **CNN baseline:** the R6/P2 supervised CNN recipe fails to train on 2 of 3 seeds on this probe set (seed 1:
+  0.929), so single-seed CNN bars from earlier rounds should be read with care.
+
+**Found along the way.**
+- Pollen's CPU BAM path (`bam.mujoco`) matches friction rows by joint id, while MuJoCo's `efc_id` is a DOF id. The
+  training path is correct. Not reported upstream (the owner's call).
+- MLX float32 matmuls on the GPU run in TF32 unless `MLX_ENABLE_TF32=0` is set (as found in 31); the ports need it
+  for parity.
+- ViNT's released context encoder gives nearly constant features for any input.
+
+**Disk.** About 61 GB new, all gitignored: `episodes/r8_rep` 51 GB (224 px, uncompressed), `data/r8_rep` 5.4 GB,
+`data/pretrained` 2.1 GB, `data/r8_stabcam` 0.37 GB, `runs/r8_*` 0.5 GB, `episodes/r8_nav` 0.13 GB. Nothing
+deleted.
+
+**Files.** `bam_m6.py` (Apache-2.0 port, header attribution), `duck.py` (opt-in `actuator="bam_m6"`; it now
+imports `bam_m6`, so commit them together), `r8_bam_*.py`, `r8_stabcam*.py`, `r8_nav/`, `r8_rep/`,
+`r8_job.sh`, `r8_power_guard.sh`, `tests/test_r8_*.py` (smoke: 170 tests), `media/r8_stabcam.mp4`,
+`media/r8_nav_strip.png`, `results/r8/`.

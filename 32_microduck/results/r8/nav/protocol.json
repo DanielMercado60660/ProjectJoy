@@ -1,0 +1,81 @@
+{
+ "title": "R8 Gate C (navigation part): zero-shot transfer of the published ViNT / NoMaD checkpoints to the duck's head camera",
+ "written": "2026-11-05T15:29-06:00, after the MLX ports passed parity (results/r8/nav/parity.json) and BEFORE any duck frame was recorded for this check or shown to either model",
+ "question": "Given a goal image taken from on the plate, do the temporal-distance head and the predicted waypoints point the duck to the plate?",
+ "models": {
+  "vint": "vint.pth (epoch 29), MLX port r8_nav/mlx_models.ViNT: context 5 (+ current), 85x64 input, 5 waypoints (x fwd, y left, cos, sin) + distance",
+  "nomad": "nomad.pth (EMA, 'ema_29'), MLX port r8_nav/mlx_models.NoMaD: context 3 (+ current), 96x96 input, 8 waypoints from 10-step DDPM, distance head on the goal-conditioned context (mask 0)",
+  "precision": "float32 with MLX_ENABLE_TF32=0 (the parity setting)"
+ },
+ "episodes": {
+  "configs": "splits/train.json configs train-0000 .. train-0039 (40 rooms, the first 40 in file order)",
+  "task": "set_lamp; per config the smallest k >= 0 whose make_episode(cfg, 'set_lamp', k) needs a press (target != initial lamp)",
+  "experts": {
+   "servo": "p2_servo_baseline.Servo, 'oracle' latch (reads needed_presses = simulator truth, labelled ORACLE; with a press needed it goes straight to the plate)",
+   "bot": "refbot.controller('set_lamp', 900) (the frozen reference bot)"
+  },
+  "n_episodes": "80 (40 per expert), unchanged shared modules, the task budget of 900 ticks",
+  "stop": "recording stops at the expert's done, the budget, or 1.0 s after the body centre first leaves the plate square",
+  "excluded": "episodes with no plate entry by the body centre (no goal frame) are excluded from every metric and counted"
+ },
+ "frames": {
+  "grid": "4 Hz nav-frame grid, rendered at 50 Hz policy step floor(12.5 k) (0.24 / 0.26 s alternating, mean 0.25 s = the training data's 4 Hz sampling), from the episode start",
+  "cameras": {
+   "normal": "the duck's head camera (MuJoCo fovy 45 deg), square 160x160 render via Duck.head_image",
+   "wide": "same camera pose, fovy 100 deg (hfov ~99 deg = RECON's calibrated pinhole: fx 272.5 px at 640 px), square 160x160; rendered with the fovy changed only for that render and restored before the expert's own frame"
+  },
+  "preprocessing": "centre crop to 4:3 (160 wide x 120 tall, the training pipeline's IMAGE_ASPECT_RATIO crop), PIL bicubic resize to 85x64 (ViNT) or 96x96 (NoMaD), /255, ImageNet mean/std",
+  "camera_height_note": "duck camera 0.22-0.25 m above the floor while walking (measured), vs 0.95 m in the README's RECON config (the only height listed there)",
+  "truth_recorded": "ORACLE/labels only, never a model input: trunk xy and yaw, camera position and optical axis, head joints, plate centre, on-plate flag, lamp state, time"
+ },
+ "goal_images": {
+  "G1_crossing (primary)": "the nav frame of the same episode, during the first plate crossing (body centre inside the 0.24 m plate square), whose body centre is closest to the plate centre; same camera as the observation",
+  "G2_placed (secondary)": "the duck placed standing at the plate centre in a fresh World of the same config, body yaw = the trunk yaw at the G1 frame, zero twist, head command (0, 0, 0, 0), rendered after 1.0 s of settling",
+  "wrong_room (control C1)": "the G1 goal image of the next episode in list order with the same expert and camera (a different room); metrics still scored against this episode's own plate",
+  "nomad_masked (control C2)": "NoMaD with goal mask 1 (exploration mode; the goal token is masked, the goal image irrelevant)",
+  "straight_ahead (control C3)": "a constant first waypoint at 0 deg (no model)"
+ },
+ "context": {
+  "primary": "0.25 s spacing (1 grid step), the models' training spacing: ViNT frames t-5s..t (s = spacing), NoMaD t-3s..t, oldest first",
+  "secondary": "0.5 s and 1.0 s spacing (2 and 4 grid steps): the duck walks ~0.13 m/s, so these bring the per-step motion closer to the training robots' (0.06-0.72 m per 4 Hz step in data_config.yaml); reported, not gating"
+ },
+ "query_frames": "grid frames with 5.0 s <= t < t_goal and t >= t_goal - 40 s (the same set for every model, camera, goal and spacing, so comparisons are paired)",
+ "frame_of_reference": "waypoints and truth in the 'camera ground frame': origin = trunk (body centre) xy, x axis = the camera optical axis projected on the floor, y to the left (the models see a camera fixed to the robot, so its heading is the robot heading they assume)",
+ "measures": {
+  "a_distance_rank": "per episode, Spearman rho between the distance-head output and the true remaining time t_goal - t over the query frames; summary = median over episodes (primary); also pooled rho over all query frames and rho vs the body-plate distance (secondary)",
+  "b_bearing_plate": "for query frames with body centre >= 0.5 m from the plate centre: |wrap(atan2(y, x) of the FIRST predicted waypoint - true bearing of the plate centre)|, degrees; summary = median over all such frames pooled (primary) and the median of per-episode medians",
+  "b_bearing_motion": "same frames, also requiring the trunk to move >= 0.05 m over the next 1.0 s (4 grid steps): |wrap(first-waypoint angle - direction of that displacement)|",
+  "nomad_sample": "8 DDPM samples per query (seeded); primary = sample 0's first waypoint (as deployed: naction[0]); secondary = the mean of the 8 samples' first waypoints",
+  "secondary_waypoint": "waypoint index 2 (the deployment default --waypoint 2), reported for both models"
+ },
+ "thresholds": {
+  "primary_condition": "normal camera, G1 goal, 0.25 s spacing, all included episodes of both experts pooled",
+  "G_a": "median per-episode rho >= 0.5",
+  "G_b": "pooled median bearing error to the plate <= 30 deg",
+  "G_c_distance": "vs wrong_room: median per-episode (rho_real - rho_wrong) >= 0.2 and two-sided sign test over episodes p < 0.05",
+  "G_c_bearing": "vs wrong_room: median per-episode (err_wrong - err_real) of per-episode median errors >= 10 deg and sign test p < 0.05; for NoMaD the same against nomad_masked as well",
+  "straight_ahead_reading": "the waypoint result also has to beat the straight-ahead constant (median per-episode err_straight - err_real > 0, sign test p < 0.05) to count as steering toward the plate rather than the walking-forward prior"
+ },
+ "verdict_rule": {
+  "transfers": "a model meets G_a, G_b, G_c (both parts) and the straight-ahead reading in the primary condition, or in the wide-camera condition (the one pre-registered alternative; two looks, disclosed)",
+  "partly": "otherwise, if in the primary or the wide condition it meets [G_a and G_c_distance] or [G_b and G_c_bearing and the straight-ahead reading]",
+  "does_not_transfer": "otherwise",
+  "secondary_conditions": "G2 goal, 0.5 / 1.0 s spacing, per-expert splits, waypoint 2, NoMaD sample mean: reported as findings; a pass only there is called 'conditional' and named, it does not change the verdict"
+ },
+ "seeds": "NoMaD noise: numpy default_rng([20261105, episode index, camera index, goal index, spacing index]); configs/episodes deterministic",
+ "compute": "recording through ./r8_job.sh (<= 4 processes); model runs through ./r8_job.sh; MLX on GPU, torch not in this path",
+ "disclosures": [
+  "the servo's ORACLE latch reads simulator truth (needed_presses) to decide to go for the plate; it does not change the frames' content",
+  "the experts move their heads (pitch 0-0.45 rad, the bot also sweeps yaw); the training robots had fixed cameras",
+  "the wide camera is a pinhole render (MuJoCo has no fisheye), not the 170 deg fisheye the deployment README recommends"
+ ],
+ "amendments": [
+  {
+   "written": "2026-11-05T15:32-06:00 (file mtime; the text first said 15:36, a typed guess, corrected at 16:54 with no other change), still before any duck frame was recorded (recording started 15:35:35) or shown to a model (additive; the primary condition and gates are unchanged)",
+   "A1_trained_horizon_slice": "secondary slice 't_goal - 5 s <= t < t_goal' (the distance heads were trained on 0-20 steps = <= 5 s to the goal, negatives labelled 20; ViNT's action labels only for < 10 steps, NoMaD's for 3-20): (a) per-episode Spearman on that slice (episodes with >= 5 slice frames); (b) bearing error to the plate on that slice with the 0.5 m filter replaced by 'body centre >= 0.15 m from the plate centre' (at ~0.13 m/s the >= 0.5 m filter already means >= ~4 s away, i.e. beyond ViNT's action-trained range). Reported, not gating; it separates 'does not transfer' from 'transfers only inside its trained horizon'",
+   "A2_head_yaw_filter_motion": "b_bearing_motion additionally requires |head_yaw joint| < 0.2 rad at t (the bot sweeps head yaw; trunk motion follows the body heading, the models predict in the camera heading). The plate-bearing metric is unaffected (computed in the camera ground frame)",
+   "A3_render_timing": "nav frames are rendered inside the expert's ticks at policy steps floor(12.5 k) by wrapping that World instance's step() (rendering only reads MjData; shared modules untouched); bit-exactness of the episode with vs without nav rendering is checked once",
+   "A4_run_order": "primary condition (normal camera, G1, 0.25 s, both models, all controls) is computed and written to zeroshot.json first; secondaries after, dropped first if time runs short"
+  }
+ ]
+}

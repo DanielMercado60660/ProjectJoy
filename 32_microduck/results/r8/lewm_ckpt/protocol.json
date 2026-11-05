@@ -1,0 +1,53 @@
+{
+ "written": "2026-11-05 15:40 CST, before the probe bake-off had produced any number and before any LeWM training on R8 data",
+ "question": "Does starting LeWM from an official checkpoint help on duck frames at native 224 px, against the identical architecture trained from scratch on the same data, steps, batch and seed? (owner's rule, design/R8_STAGED_PLAN.md s4)",
+ "model": "official LeWM as ported in r8_rep/rep_ports.py (LeWMOfficial; parity with a torch reference written from lucas-maes/le-wm + HF ViT, results/r8/probes/parity.json): ViT-tiny/14 at 224 px, [CLS] -> BN projector -> 192-d latent; ARPredictor (6 AdaLN blocks, 16x64 heads, MLP 2048, dropout 0.1, history 3) + pred_proj; action Embedder (Conv1d k1 -> 10, Linear 10-768, SiLU, Linear 768-192)",
+ "checkpoint_pick_rule": "Among lewm-{tworooms, pusht, cube, reacher}: the highest held-out lamp accuracy of the zero-shot LeWM latent (linear probe on the 192-d projector output, row 'linear_proj' of the R8 probe bake-off). Ties within 0.01: higher plate-in-view AUC of the same latent, then lower plate-bearing MAE, then the order tworooms, pusht, cube, reacher. Zero-shot prediction numbers are not defined here: the checkpoints' action encoders take another environment's 10/25-d actions, so their predictors cannot be run on duck actions without the new action encoder.",
+ "arms": {
+  "ckpt": "every weight from the picked checkpoint (encoder, projector, predictor incl. AdaLN, pred_proj, BN running stats) except the action encoder, which is new (input 30-d)",
+  "scratch": "the identical architecture freshly initialised as the official code would build it untrained (HF ViT init: trunc-normal 0.02, zero biases; torch-default Linear init elsewhere; AdaLN zero-init; predictor positions ~ N(0,1); BN 1/0)",
+  "random_encoder (G3 control, as R6)": "scratch init; encoder + projector frozen at init (BN statistics from 200 warm-up batches); predictor side trained on the prediction loss only",
+  "shared": "the action encoder is the same fresh init in every arm (seed 1000); same episode list (frozen in <run>/data.json), same batch ids per step (default_rng([0, step])), same dropout / SIGReg RNG per step, same optimiser and schedule; one seed (0) per arm"
+ },
+ "data": {
+  "train": "episodes/r8_rep set_lamp episodes of configs train-0000..0269 at 224 px: k=8 (clean reference bot) and k=9 (noisy bot, R6's noise settings); go_and_return was dropped from the training plan for recording time",
+  "heldout": "set_lamp episodes of configs train-0270..0299 (k=8, 10 clean; 9, 11 noisy); never trained on",
+  "dev": "the 80 p2_dev rooms (instances-dev 0010-0029, arrangements/appearances/distractor-dev 0000-0019), set_lamp k=0, clean bot, re-recorded at 224 px; never trained on",
+  "windows": "4 frames at frameskip 5 (0.5 s per block); action block i = the 5 executed commands [vx, wz, 4 head deltas] between frame i and i+1, each column z-scored with training-set mean/std (official recipe), 30-d"
+ },
+ "loss": "official lejepa_forward: MSE(pred(emb[:, :3], act[:, :3]), emb[:, 1:]) + 0.09 * SIGReg(emb) with the official SIGReg (1024 directions shared over the 4 time steps, 17 knots on [0, 3], weights 2*dt (dt at the ends) x exp(-t^2/2), x batch size). Note: R6's SIGReg used plain trapezoid weights, i.e. half the official statistic.",
+ "schedule": {
+  "batch": "32 windows x 4 frames (fp32 peak memory 9.5 GB measured at batch 32; batch 64 would pass the 16 GB cap)",
+  "steps": 12000,
+  "lr": "AdamW 5e-5, weight decay 1e-3, warm-up 500 steps then cosine to 0.1x at 12,000; grad clip 1.0; fp32",
+  "invocations": "<= 44 min each (guard), resumed with --resume; checkpoints every 250 steps",
+  "throughput_measured": "2.6 steps/s at batch 32, one process, load 17-21 (two recording jobs running): 12,000 steps ~ 1.3 h alone; two arms sharing the GPU expected ~1.3-1.8 steps/s each, i.e. 3-4 invocations per arm",
+  "resume_check": "40 steps straight vs 20 + resume 20 (ckpt init, batch 8, with held-out validation interleaved): max abs diff 0.0 over 253 weight arrays and 500 optimiser arrays",
+  "amendment_rule": "if after its first invocation either arm projects more than 5 invocations, both arms' total steps are cut to the same smaller number before either passes step 3,000, written here as an amendment"
+ },
+ "gates_restated_for_224px (R6 thresholds, results/lewm/protocol.json)": {
+  "G1_no_collapse": "held-out embeddings (eval mode, up to 20,000 frames of held-out set_lamp episodes): >= 90% of the 192 dims with std in [0.5, 2]; effective rank (exp entropy of the normalised covariance spectrum) >= 100; SIGReg statistic at the last log below its step-1000 value",
+  "G2_prediction": "one-block error ratio R = mean||zhat_3 - z_3||^2 / mean||z_2 - z_3||^2 with 3 true latents of history (copy-last = 1): R <= 0.70 on held-out windows AND R <= 0.85 on dev-room windows (4,000 windows each, rng 2026)",
+  "G3_action_ranking": "held-out windows: the true block 2 vs 15 blocks from windows of other episodes; the candidate whose prediction lands nearest the true z_3 wins; top-1 >= 0.50 AND >= 3x the random-encoder control's top-1 (chance 0.0625; 2,000 windows, rng 7)",
+  "G4_probes": "on the R8 probe set and probe (results/r8/probes/protocol.json, linear probe on the 192-d latent): lamp test accuracy >= 0.90 AND plate-in-view test AUC >= P2-A' s0's AUC on the same frames (bake-off row p2a)",
+  "verdict": "an arm passes only if all four gates pass; the checkpoint used is the final step (no selection)"
+ },
+ "comparison_rules": {
+  "clearly_beats_scratch": "the ckpt arm is better than scratch on at least 3 of 4 headline numbers by these margins: G2 held-out R lower by >= 0.03; G3 top-1 higher by >= 0.05; G4 lamp accuracy higher by >= 0.03; G1 effective rank higher by >= 10",
+  "narrow_miss": "every failed gate line within 10% of its bar (R <= 0.77 held-out / <= 0.935 dev; top-1 >= 0.45; lamp >= 0.81; rank >= 90; std share >= 0.81)",
+  "second_seed": "if the ckpt arm passes, or misses narrowly while clearly beating scratch, propose a second seed in the report (not run)"
+ },
+ "reported_not_gated": "training curves of both arms (loss, prediction loss, SIGReg every 50 steps; held-out R on 256 fixed windows every 1,000 steps); rollout error by horizon 1-5 blocks; [CLS ; mean-patch] probes; held-out go_and_return windows (R, top-1); the random-encoder control's G2 numbers",
+ "amendment_1": {
+  "written": "2026-11-05 16:16 CST, after the probe bake-off, before any LeWM training",
+  "checkpoint_pick_applied": "lewm-tworooms: zero-shot latent (linear_proj) lamp accuracy 0.8866 vs pusht 0.7738, reacher 0.7471, cube 0.6113 (results/r8/probes/table.json); margin 0.11, no tie-break used",
+  "training_list": "all set_lamp training-config episodes (k=8 clean, k=9 noisy) in episodes/r8_rep/index.jsonl when r8_rep/chain_k9_dev.sh writes data/r8_rep/train_data_ready.json (after the dev-room recording and the k=9 continuation); the counts are in that file; each arm freezes the list in <run>/data.json at its first invocation, and the lanes start only after the marker exists, so all arms see the same list",
+  "launch": "r8_rep/lane.sh per arm (WAIT_FOR=the marker), each invocation through r8_job.sh; ckpt and scratch run concurrently, the random-encoder control after them",
+  "G4_probe_set": "the R8 probe set built 16:05 (its fit frames come from training episodes, as R6's did; its test frames from held-out configs 0270-0299)"
+ },
+ "amendment_2_record_only": {
+  "written": "2026-11-05 16:57 CST, after launch (a record, no change of method)",
+  "frozen_training_data": "data/r8_rep/train_data_ready.json at 16:53:29: 540 set_lamp episodes (k=8: 270, k=9: 270), 247,599 ticks, 239,499 windows; held-out 120 set_lamp episodes, dev 80; both arms' data.json byte-identical (md5 9b87c713ca40c907deacd4b5a0bd511b)",
+  "launch": "both arms started 16:53:35 (slots 1 and 2); first-invocation throughput ~2.05 steps/s each with both running, i.e. ~3 invocations per arm: the amendment rule (cut steps if > 5 invocations) does not trigger"
+ }
+}

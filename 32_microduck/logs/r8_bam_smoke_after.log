@@ -1,0 +1,72 @@
+........................................................................ [ 42%]
+........................................................................ [ 85%]
+...........F.......FF....                                                [100%]
+=================================== FAILURES ===================================
+________________________ test_bicubic_identity_and_ramp ________________________
+
+    def test_bicubic_identity_and_ramp():
+        a = np.random.default_rng(0).standard_normal((6, 6, 3)).astype(np.float32)
+        assert np.allclose(P.bicubic_resize(a, (6, 6)), a, atol=1e-6)
+        const = np.full((37, 37, 2), 0.7, np.float32)
+        assert np.allclose(P.bicubic_resize(const, (16, 16), scale_factor=(16.1 / 37, 16.1 / 37)), 0.7, atol=1e-6)
+        ramp = np.tile(np.arange(37, dtype=np.float32)[:, None, None], (1, 37, 1))
+>       r = P.bicubic_resize(ramp, (16, 16), scale_factor=(16.1 / 37, 16.1 / 37))[:, 0, 0]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert False
+E        +  where False = <function allclose at 0x1074978b0>(array([2.240203 , 2.26339  , 2.3869772, 2.270114 , 2.2369938, 2.3593636,\n       2.3199825, 2.2305374, 2.300089 , 2.374483 , 2.2440224],\n      dtype=float32), np.float32(2.240203), atol=0.001)
+E        +    where <function allclose at 0x1074978b0> = np.allclose
+
+tests/test_r8_rep.py:41: AssertionError
+__________________ test_virtual_camera_reproduces_head_render __________________
+
+walked = (<r8_stabcam.StabWorld object at 0x1703ddd30>, <r8_stabcam.Rig object at 0x122320650>)
+
+    def test_virtual_camera_reproduces_head_render(walked):
+        _, rig = walked
+        hp, Rh = rig.head_pose()
+        head, virt = rig.render_head(), rig.render_pose(hp, Rh)
+>       assert np.abs(head.astype(int) - virt).mean() < 0.2
+E       AssertionError: assert np.float64(0.8748779296875) < 0.2
+E        +  where np.float64(0.8748779296875) = <built-in method mean of numpy.ndarray object at 0x162a37030>()
+E        +    where <built-in method mean of numpy.ndarray object at 0x162a37030> = array([[[0, 0, 0],\n        [0, 0, 0],\n        [0, 0, 0],\n        ...,\n        [0, 0, 0],\n        [0, 0, 0],\n        [0... 1, 2],\n        [1, 1, 2],\n        ...,\n        [1, 1, 1],\n        [1, 1, 1],\n        [1, 1, 2]]], shape=(128, 128, 3)).mean
+E        +      where array([[[0, 0, 0],\n        [0, 0, 0],\n        [0, 0, 0],\n        ...,\n        [0, 0, 0],\n        [0, 0, 0],\n        [0... 1, 2],\n        [1, 1, 2],\n        ...,\n        [1, 1, 1],\n        [1, 1, 1],\n        [1, 1, 2]]], shape=(128, 128, 3)) = <ufunc 'absolute'>((array([[[95, 92, 87],\n        [95, 92, 87],\n        [95, 92, 87],\n        ...,\n        [95, 92, 87],\n        [95, 92, ...    [86, 89, 90],\n        ...,\n        [65, 67, 68],\n        [69, 71, 73],\n        [74, 77, 78]]], shape=(128, 128, 3)) - array([[[95, 92, 87],\n        [95, 92, 87],\n        [95, 92, 87],\n        ...,\n        [95, 92, 87],\n        [95, 92, ...92],\n        ...,\n        [66, 68, 69],\n        [70, 72, 74],\n        [75, 78, 80]]], shape=(128, 128, 3), dtype=uint8)))
+E        +        where <ufunc 'absolute'> = np.abs
+E        +        and   array([[[95, 92, 87],\n        [95, 92, 87],\n        [95, 92, 87],\n        ...,\n        [95, 92, 87],\n        [95, 92, ...    [86, 89, 90],\n        ...,\n        [65, 67, 68],\n        [69, 71, 73],\n        [74, 77, 78]]], shape=(128, 128, 3)) = <built-in method astype of numpy.ndarray object at 0x162a36eb0>(int)
+E        +          where <built-in method astype of numpy.ndarray object at 0x162a36eb0> = array([[[95, 92, 87],\n        [95, 92, 87],\n        [95, 92, 87],\n        ...,\n        [95, 92, 87],\n        [95, 92, ...90],\n        ...,\n        [65, 67, 68],\n        [69, 71, 73],\n        [74, 77, 78]]], shape=(128, 128, 3), dtype=uint8).astype
+
+tests/test_r8_stabcam.py:54: AssertionError
+_______________________ test_warp_matches_direct_render ________________________
+
+walked = (<r8_stabcam.StabWorld object at 0x1703ddd30>, <r8_stabcam.Rig object at 0x122320650>)
+
+    def test_warp_matches_direct_render(walked):
+        w, _ = walked
+        rig = S.Rig(w, headlight_diffuse=0.0)                       # the headlight turns with the camera: off here
+        rig.sync()
+        hp, Rh = rig.head_pose()
+        a = S.angles(Rh)
+        wide = rig.render_pose(hp, Rh, S.WIDE_PX, wide=True)
+        for dy, dp in ((0.0, 0.0), (0.3, -0.2)):
+            Rt = S.level_matrix(a[0] + dy, a[1] + dp)
+            img, valid = S.warp(wide, Rh, Rt)
+            assert valid.all()
+>           assert np.abs(S.grey64(img) - S.grey64(rig.render_pose(hp, Rt))).mean() < 1.0
+E           AssertionError: assert np.float32(1.2923176) < 1.0
+E            +  where np.float32(1.2923176) = <built-in method mean of numpy.ndarray object at 0x7027e0c990>()
+E            +    where <built-in method mean of numpy.ndarray object at 0x7027e0c990> = array([[ 2.3333359 ,  0.        , 11.333336  , ...,  0.33332825,\n         0.        ,  2.3333359 ],\n       [ 9.333334 ...333359 ,  1.3333359 ,  1.3333359 , ...,  1.        ,\n         1.        ,  1.        ]], shape=(64, 64), dtype=float32).mean
+E            +      where array([[ 2.3333359 ,  0.        , 11.333336  , ...,  0.33332825,\n         0.        ,  2.3333359 ],\n       [ 9.333334 ...333359 ,  1.3333359 ,  1.3333359 , ...,  1.        ,\n         1.        ,  1.        ]], shape=(64, 64), dtype=float32) = <ufunc 'absolute'>((array([[41.333332, 27.666666, 44.333332, ..., 69.666664, 71.      ,\n        71.666664],\n       [37.      , 27.666666, ...       [75.      , 75.      , 75.      , ..., 59.666668, 59.666668,\n        59.666668]], shape=(64, 64), dtype=float32) - array([[43.666668, 27.666666, 55.666668, ..., 69.333336, 71.      ,\n        74.      ],\n       [27.666666, 27.666666, ...       [76.333336, 76.333336, 76.333336, ..., 60.666668, 60.666668,\n        60.666668]], shape=(64, 64), dtype=float32)))
+E            +        where <ufunc 'absolute'> = np.abs
+E            +        and   array([[41.333332, 27.666666, 44.333332, ..., 69.666664, 71.      ,\n        71.666664],\n       [37.      , 27.666666, ...       [75.      , 75.      , 75.      , ..., 59.666668, 59.666668,\n        59.666668]], shape=(64, 64), dtype=float32) = <function grey64 at 0x120fcf560>(array([[[61, 59, 55],\n        [29, 28, 26],\n        [29, 28, 26],\n        ...,\n        [70, 72, 74],\n        [69, 72, ...77],\n        ...,\n        [58, 60, 61],\n        [58, 60, 61],\n        [58, 60, 61]]], shape=(128, 128, 3), dtype=uint8))
+E            +          where <function grey64 at 0x120fcf560> = S.grey64
+E            +        and   array([[43.666668, 27.666666, 55.666668, ..., 69.333336, 71.      ,\n        74.      ],\n       [27.666666, 27.666666, ...       [76.333336, 76.333336, 76.333336, ..., 60.666668, 60.666668,\n        60.666668]], shape=(64, 64), dtype=float32) = <function grey64 at 0x120fcf560>(array([[[62, 60, 56],\n        [29, 28, 26],\n        [29, 28, 26],\n        ...,\n        [71, 73, 75],\n        [73, 75, ...78],\n        ...,\n        [59, 61, 62],\n        [59, 61, 62],\n        [59, 61, 62]]], shape=(128, 128, 3), dtype=uint8))
+E            +          where <function grey64 at 0x120fcf560> = S.grey64
+E            +          and   array([[[62, 60, 56],\n        [29, 28, 26],\n        [29, 28, 26],\n        ...,\n        [71, 73, 75],\n        [73, 75, ...78],\n        ...,\n        [59, 61, 62],\n        [59, 61, 62],\n        [59, 61, 62]]], shape=(128, 128, 3), dtype=uint8) = render_pose(array([-0.4307621 ,  0.51310448,  0.2277015 ]), array([[-0.06440058,  0.51743869, -0.85329348],\n       [-0.99792413, -0.03339267,  0.0550669 ],\n       [ 0.        ,  0.85506849,  0.51851506]]))
+E            +            where render_pose = <r8_stabcam.Rig object at 0x122322c30>.render_pose
+
+tests/test_r8_stabcam.py:68: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_r8_rep.py::test_bicubic_identity_and_ramp - assert False
+FAILED tests/test_r8_stabcam.py::test_virtual_camera_reproduces_head_render
+FAILED tests/test_r8_stabcam.py::test_warp_matches_direct_render - AssertionE...
+3 failed, 166 passed in 229.57s (0:03:49)
+OMP_NUM_THREADS=1 bash smoke.sh  201.64s user 17.65s system 94% cpu 3:52.04 total

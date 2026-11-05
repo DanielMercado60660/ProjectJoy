@@ -1,0 +1,286 @@
+{
+ "written": "2026-11-05 15:39 CST",
+ "status": "pre-registered BEFORE any battery, start check or tracking statistic on a BAM body",
+ "disclosed_development_runs": [
+  "2 s stand + 3 s walk at vx 0.3 on the primary body and on 'cpu'/no-lag (smoke: no NaN, no fall; it covered ~0.3 m from standing in 3 s)",
+  "timing probe: one control step on the BAM body ~2x the XML body at load ~17",
+  "parity: 14 s scripted rollout of the 'cpu'/no-lag body (r8_bam_parity.py)"
+ ],
+ "question": "Does replacing M0's XML position actuators with the BAM M6 XL330 model velstand was trained with bring command tracking within the plan's gate?",
+ "primary_body": {
+  "body": {
+   "scene": "allcollisions",
+   "jv_lag": 1,
+   "actuator": "bam_m6",
+   "bam": {}
+  },
+  "label": "allcollisions_bam_jvlag1",
+  "resolved_bam_options": {
+   "semantics": "mjlab",
+   "kp_fw": 200.0,
+   "vin": 7.4,
+   "vin_drop_gain": 0.1,
+   "vin_min": 6.0,
+   "max_current": null,
+   "force_vin": null,
+   "lag_min": 3,
+   "lag_max": 6,
+   "lag_resample": false
+  },
+  "meaning": "infer_policy.py's numeric BAM defaults (kp_fw 200, vin 7.4 V, sag gain 0.1 V/Nm, vin floor 6 V, no current limiter, force range +-vin*kt/R = 0.963 Nm) + training's friction semantics (bam.mjlab: friction rows matched by DOF, quadratic term without sign gate) + training's actuator delay (BamActuatorCfg delay_min/max_lag 3-6, read as 5 ms physics steps per bam's docs, one lag per episode drawn at reset) + training's 1-control-step joint-velocity observation lag (jv_lag 1, as M0). Scene allcollisions (velstand's training robot, no backlash), no observation noise, as M0."
+ },
+ "comparison": {
+  "M0_original": "results/m0/gate.json (frozen XML body)",
+  "xml": "the same frozen body re-run through this wrapper (gate_xml.json); expected identical to M0 except wall time"
+ },
+ "battery": "m0_gate.main(body) unchanged, seeds as M0: 16 pad trials (1.5 m, 8 directions x 2 start headings, oracle go-to controller), 20 x 60 s scripted runs at M0's chosen bounds (vx 0.2-0.4, back -0.3, turn in place +-0.5-0.6, forward+turn), 20 x 60 s at training bounds (vx 0.05-0.4, back -0.4, vy +-0.1-0.3, wz +-0.05-1.0), 96 push trials. Steady state = segment mean after the first 1.5 s.",
+ "gate": {
+  "forward": "median of achieved/commanded vx over the chosen-bounds 'fwd' segments in [0.75, 1.25]",
+  "turn": "median of achieved/commanded wz over all chosen-bounds segments with a wz command (turn in place + forward-and-turn, m0_gate's tracking 'wz') in [0.75, 1.25]",
+  "straight_yaw_drift": "|median achieved wz| over the chosen-bounds 'fwd' segments (wz command 0, vx 0.2-0.4) < 0.05 rad/s",
+  "falls": "0 falls (trunk tilt > 45 deg) over the 16 pad trials + 20 chosen-bounds runs + 20 training-bounds runs; push trials excluded (a push-recovery probe that knocks the duck over by design, reported separately)",
+  "pass": "all four, on the primary body"
+ },
+ "secondary_reported_not_gating": [
+  "backward ratio",
+  "turn in place and turn while walking separately",
+  "frac of segments within 25%",
+  "p10-p90",
+  "lateral response (training-bounds 'lat' segments: median achieved/commanded vy; and start checks)",
+  "drift by vx bin",
+  "pad reach and time",
+  "push fall/recovery table",
+  "head-pose error",
+  "start thresholds",
+  "control steps/s"
+ ],
+ "start_checks": {
+  "commands": [
+   [
+    0.1,
+    0,
+    0
+   ],
+   [
+    0.15,
+    0,
+    0
+   ],
+   [
+    0.2,
+    0,
+    0
+   ],
+   [
+    0.3,
+    0,
+    0
+   ],
+   [
+    0.4,
+    0,
+    0
+   ],
+   [
+    -0.2,
+    0,
+    0
+   ],
+   [
+    -0.3,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0.3
+   ],
+   [
+    0,
+    0,
+    -0.3
+   ],
+   [
+    0,
+    0,
+    0.5
+   ],
+   [
+    0,
+    0,
+    -0.5
+   ],
+   [
+    0,
+    0,
+    0.6
+   ],
+   [
+    0,
+    0,
+    -0.6
+   ],
+   [
+    0,
+    0,
+    1.0
+   ],
+   [
+    0,
+    0.15,
+    0
+   ],
+   [
+    0,
+    -0.15,
+    0
+   ],
+   [
+    0,
+    0.3,
+    0
+   ]
+  ],
+  "starting_states": [
+   "after_reset",
+   "stand_3s",
+   "walk_then_stand_3s",
+   "stand_3s_head_yaw",
+   "after_walk"
+  ],
+  "definition": "6 s segment, steady state = mean over the last 4.5 s on the commanded axis; 'started' = |steady| >= 0.05 m/s or rad/s (the M0 review's criterion); 4 standing states (straight after reset, after 3 s standing, after walking then 3 s standing, after 3 s standing with head yaw 0.8) + after 3 s walking at 0.3",
+  "bodies": [
+   "xml",
+   "bam",
+   "bam_infer",
+   "bam_limiter",
+   "bam_train"
+  ],
+  "threshold": "none: measured (Pollen: small commands stand still by design; a dead zone may remain)"
+ },
+ "variants_sensitivity_not_gating": {
+  "bam_infer": {
+   "body": {
+    "scene": "allcollisions",
+    "jv_lag": 1,
+    "actuator": "bam_m6",
+    "bam": {
+     "semantics": "cpu",
+     "lag_min": 0,
+     "lag_max": 0
+    }
+   },
+   "label": "allcollisions_bam-semcpu-lag0-lagmax0_jvlag1",
+   "why": "infer_policy.py's CPU BAM path exactly: 'cpu' friction semantics (bam.mujoco.MujocoController, incl. its joint-id friction-row matching and the sign-gated quadratic term) and no actuator delay (infer_policy's default). This is the configuration with bit-exact parity evidence."
+  },
+  "bam_cpu": {
+   "body": {
+    "scene": "allcollisions",
+    "jv_lag": 1,
+    "actuator": "bam_m6",
+    "bam": {
+     "semantics": "cpu"
+    }
+   },
+   "label": "allcollisions_bam-semcpu_jvlag1",
+   "why": "primary with 'cpu' friction semantics (isolates that switch)"
+  },
+  "bam_lag4": {
+   "body": {
+    "scene": "allcollisions",
+    "jv_lag": 1,
+    "actuator": "bam_m6",
+    "bam": {
+     "lag_min": 4,
+     "lag_max": 4
+    }
+   },
+   "label": "allcollisions_bam-lag4-lagmax4_jvlag1",
+   "why": "primary with a fixed 4-physics-step (20 ms) lag = M0's lag (isolates the actuator physics vs M0)"
+  },
+  "bam_resample": {
+   "body": {
+    "scene": "allcollisions",
+    "jv_lag": 1,
+    "actuator": "bam_m6",
+    "bam": {
+     "lag_resample": true
+    }
+   },
+   "label": "allcollisions_bam-resampleTrue_jvlag1",
+   "why": "primary with the lag re-drawn every physics step (the other reading of mjlab's delay defaults)"
+  },
+  "bam_limiter": {
+   "body": {
+    "scene": "allcollisions",
+    "jv_lag": 1,
+    "actuator": "bam_m6",
+    "bam": {
+     "max_current": 1.75
+    }
+   },
+   "label": "allcollisions_bam-imax1.75_jvlag1",
+   "why": "primary + firmware current limiter 1.75 A (bam.mjlab keeps XL330Actuator's max_current=1.75 at commit 62bd8ce; infer_policy sets None, stating training ran without it)"
+  },
+  "bam_vin65": {
+   "body": {
+    "scene": "allcollisions",
+    "jv_lag": 1,
+    "actuator": "bam_m6",
+    "bam": {
+     "vin": 6.5,
+     "force_vin": 8.2
+    }
+   },
+   "label": "allcollisions_bam-vin6.5-fvin8.2_jvlag1",
+   "why": "training's lowest battery voltage 6.5 V (force range at 8.2 V as in training's edit_spec)"
+  },
+  "bam_vin82": {
+   "body": {
+    "scene": "allcollisions",
+    "jv_lag": 1,
+    "actuator": "bam_m6",
+    "bam": {
+     "vin": 8.2,
+     "force_vin": 8.2
+    }
+   },
+   "label": "allcollisions_bam-vin8.2-fvin8.2_jvlag1",
+   "why": "training's highest battery voltage 8.2 V (force range at 8.2 V)"
+  },
+  "bam_train": {
+   "body": {
+    "scene": "allcollisions",
+    "jv_lag": 1,
+    "actuator": "bam_m6",
+    "bam": {
+     "max_current": 1.75,
+     "force_vin": 8.2,
+     "lag_resample": true
+    }
+   },
+   "label": "allcollisions_bam-imax1.75-fvin8.2-resampleTrue_jvlag1",
+   "why": "most training-like single setting: limiter on, force range at 8.2 V, lag re-drawn per physics step (vin 7.4 ~ DR mean 7.35, sag gain 0.1 = DR mean)"
+  }
+ },
+ "decision_rule": "The verdict is the primary body's. Variants are reported side by side; a variant that passes where the primary fails (or the reverse) is reported, never substituted for the primary.",
+ "pre_registered_expectations": {
+  "source": "vendor/microduck_rl/docs/velstand_policy.md: Pollen's own v8 evaluation in mjlab + BAM + backlash (NOT our simulator)",
+  "forward": "Pollen measured vx 0.4 -> 0.17 achieved (0.43x, the same as the walk teacher alpha_walking), M0 measured 0.44x. Prediction: forward ratio stays ~0.4-0.5 and the forward criterion FAILS for a policy reason (the policy under-tracks vx in its own training simulator), not an actuator one.",
+  "turn": "Pollen: in place +-0.6 -> +0.52/-0.57, +-1.0 -> +0.97/-0.87; walking 0.2 m/s with +-0.6 -> +0.54/-0.56. Prediction: if the port reproduces training, the turn ratio moves from M0's 1.39 to ~0.85-1.0 (criterion passes).",
+  "drift": "Pollen: straight-walk drift -0.02/+0.03/+0.08 rad/s at 0.2/0.3/0.4 m/s. Prediction: |median| < 0.05 (passes, marginal at 0.4 m/s); M0 was +0.22.",
+  "dead_zone": "Pollen: in place +-0.3 -> +0.08/-0.22, 'standing still WAS the reward optimum at 0.3'. Prediction: wz 0.3 in place starts weakly or not at all; vx 0.1 likely does not start.",
+  "falls": "0",
+  "overall": "Predicted verdict: FAIL on the forward criterion alone, with turn and drift brought into range by BAM."
+ },
+ "steps_per_s": "single process, OMP_NUM_THREADS=1, plain scene, vx 0.3, 2,000 control steps after 100 warm-up, 3 interleaved XML/BAM repeats, median; load average recorded",
+ "code_sha256": {
+  "bam_m6.py": "d693ca9b91cfbba2b531a0eee7124cfc1d3daf685e8ac939bc1438f51a73e5e8",
+  "duck.py": "5c713ee0f72166f69c8c8f03e86949b0e2ef567fa2d47dbcdd228ee0cb65a6d1",
+  "m0_gate.py": "2f92b3789db945bc65762a74d18bd1d60f7802a7290a73658d6cef695f369e3a",
+  "m0_from_rest.py": "3c9c35beb407d436c1758cc3938f2461e857a754d56ce35b6844ca1037326822",
+  "r8_bam_gate.py": "427b3b6cd26cae1692d3bb967d420eae480edbfe447b51bbbab24b60833b5eaa"
+ },
+ "bam_source": "Rhoban bam commit 62bd8ce12154340be97e06f7f41a0ca8f116d967 (Apache-2.0), tarball sha256 71e3b7f3a791c9577b934cb13154509892341b0006414d922fca0ace53cb8371"
+}
