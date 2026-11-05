@@ -334,3 +334,185 @@ init needed about 2.4× the steps to reach the same cb0 loss here, under a backb
   wall time and step counts differ slightly (r3 904, scratch 882 steps in 15 min).
 - Splits are 27's by chapter, but the 1–10 s keep rule computed on 22.05 kHz audio keeps 10,515 / 861 / 1,534 clips vs 27's
   10,555 / 865 / 1,536. All 100 val and 100 test eval clips are present.
+# Colab expansion progress — 2026-11-03
+
+This is preparation for a new experiment; it does not replace the earlier model
+quality results below. Main training on the expanded corpus has not started.
+
+- Colab A100 smoke: 30 steps, 64 unique training clips; validation loss
+  2.2211 -> 1.8127. Saved/uploaded at 15, resumed locally at 15, finished at 30.
+  Generated val-4 CER 96.51%, WER 100%, UTMOS 1.232, all four capped. This is a
+  pipeline check and preserved failure, not intelligible speech.
+- Full codec gate on LJ val-100: real CER/WER/UTMOS 0.35/1.29/4.402;
+  Ming mean 0.62/1.62/4.134; Ming posterior sample 0.62/1.62/4.129;
+  transformers Mimi 0.26/1.18/4.249. Ming was retained to test the smaller latent
+  representation, despite the lower round-trip UTMOS. Per-clip results and WAVs
+  are in private HF `DaMHuggingface/gemma-voice-ckpt/g270m_v1/gate`.
+- User requested 10,000+ usable hours. Emilia-YODAS EN access and MP3 decoding
+  were verified after the user accepted access terms. First archive has 25,482
+  records / 68.0537 raw hours. Metadata filters retained 10,968 train / 47 val /
+  121 test clips; rejected 13,192 for DNSMOS <3.3 and 1,154 for duration.
+  Splits group source video IDs, not verified cross-video speaker identity.
+- Three encoded pilot chunks: 1,536 Emilia clips / 4.2102 actual train hours.
+  Fresh HF recovery of one 512-clip chunk passed SHA256; continuation skipped
+  saved chunks. At this checkpoint total accepted train audio was 70.6962 h
+  including partially prepared original corpora. Validation and LJ repeats are
+  excluded. A subsequent bounded 40-minute preparation session is running.
+- First complete Emilia archive subsequently persisted 28.5418 training hours
+  (10,968 clips), 0.1346 validation hours (47 clips), and 0.3056 test hours
+  (121 clips). Total saved training audio reached 95.0278 hours; the next seeded
+  archive was observed encoding. This remains far below the requested target.
+- Seven CPU tests passed; standalone 17-cell notebook parses. Not measured:
+  full 10k-hour acceptance yield/runtime, full-corpus epoch length/throughput,
+  cold model checkpoint equivalence, large-run quality, baseline comparison or
+  headline held-out evaluation for this new model. The old 30,000-step schedule
+  needs replacement after measuring corpus coverage. Training's CUDA RNG/data
+  cursor/manifest identity must be addressed before a long run.
+- At 19:24 CST the user-approved first milestone was revised to **2,500 usable
+  training hours total**, within the selected 2,000–3,000 h range. This is an
+  experiment checkpoint, not a measured optimum. Continuous preparation now
+  has no application-imposed timer (`minutes=None`); Colab may still end the
+  runtime. Completed chunks remain resumable. Original corpora finish first,
+  then Emilia fills the remaining total; future expansion can reuse the chunks.
+- The revised live invocation restored/backed up 391.538 accepted training
+  hours, reached 394.618 h after completing clean100, and was observed encoding
+  and uploading successive clean360 shards. Eight local CPU tests pass,
+  including the optional deadline behavior. No new-model quality improvement
+  has been measured. A 30-minute monitor reports completion, failure or needed
+  intervention and does not launch training.
+
+- 2026-11-04 00:14 CST: live Colab output verified **DATA READY** with
+  **2,504.268353576392 accepted unique-ID training hours**, exceeding the 2,500 h
+  first milestone. Original corpora are complete (829.777 train hours); Emilia
+  contributes 1,674.4913535763924 train hours. Validation/test hours are excluded
+  from the target. The backup/identity audit passed and `data_ready=true`.
+  The continuous invocation took 293.43567242629996 minutes (4 h 53 min 26 s),
+  including work on data already partially prepared before this invocation.
+  The preparation monitor was paused. Exact reported totals are retained in
+  `colab/runs/2026-11-04/data-ready.json`.
+  Main model training has not started; quality improvement, full-corpus training
+  throughput and cold model checkpoint equivalence remain unmeasured.
+
+- 2026-11-04 training preflight: the full-data loader measured 1,302,750 training
+  entries including LJ x2, 36,699 speaker IDs and epoch batch counts
+  [45,143, 45,144, 45,144] at a 6,000-token batch budget, seed 20261104.
+  The initial 100-update timing calibration (steps 4–103) measured mean
+  0.2995365844 s/update, median 0.2976549000 s/update (first five excluded),
+  14.1741 GiB peak allocated GPU memory and 1.4453 minutes including final
+  checkpoint save/upload. These are calibration figures, not full-epoch timing.
+- Exact cold process recovery passed on the A100: save at step 3, run reference
+  step 4, force SIGTERM, restore in a fresh worker and replay step 4. The loss
+  was 2.231414318084717 in both branches; SHA256 over all trained model weights,
+  optimizer tensors, RNG and cursor matched exactly. Checkpoint/config/data
+  identity rejects changed metadata, shard sizes, tokenizer vocabulary, speaker
+  IDs, normalization or training policy. Six CPU regression checks passed.
+  The first subprocess failed authentication before training because Colab's
+  secret-backed token was not inherited; forwarding it only in the child process
+  environment fixed access. No credential was written to the launch configuration.
+- First-epoch training is now running (target 45,143 updates), with a three-epoch
+  cosine schedule available for later continuation. It advanced beyond 1,000
+  updates without nonfinite losses; early loss is not evidence of speech quality.
+  Speech checks retain WAVs, CER/WER/UTMOS, duration ratio, maximum-length hits
+  and recoverable HF checkpoint revisions. First-epoch completion, new-model
+  speech quality and comparison to the old model remain **not measured**.
+  Evidence: `colab/runs/2026-11-04/training-preflight-output.txt` and
+  `colab/runs/2026-11-04/first-epoch-running.png`.
+
+- 2026-11-04 05:35 CST first-epoch review: **FIRST_EPOCH_READY** was verified in
+  the rendered Colab output. Step **45,143** was saved and pushed; the evaluation
+  worker restored epoch 1, batch 0. Both final speech panels completed and their
+  WAVs and per-clip reports were uploaded. The notebook is idle, and the monitor
+  is paused for review before epochs 2–3. Checkpoint revision:
+  `7dd93c8f0005e72ab32725acf534da189123a118` in private HF
+  `DaMHuggingface/gemma-voice-ckpt`, run `g270m_2500_v1`.
+
+  | Final speech panel | Clips | CER % | WER % | UTMOS | UTMOS 95% CI | Generated/reference duration | Length-cap hits |
+  | --- | ---: | ---: | ---: | ---: | --- | ---: | ---: |
+  | LJ validation in LJ voice | 100 | 1.67 | 2.46 | 3.880 | 3.812–3.945 | 0.913 | 0 |
+  | Unseen Emilia text in LJ voice | 16 | 2.84 | 4.76 | 3.640 | 3.493–3.782 | 1.019 | 0 |
+
+  Final generation took 146.2 s for LJ and 29.0 s for Emilia; these exclude
+  subsequent judging and upload. The final 3,959-update worker segment measured
+  0.306998 s/update mean and 0.304831 median, 14.436 GiB peak allocated GPU memory,
+  and 23.096 minutes including its checkpoint uploads. The completed epoch saw
+  2,535.751 latent hours including LJ repetition and codec padding, while the
+  accepted unique-ID training corpus remains 2,504.268 hours.
+
+  The historical f3 LJ-100 reference is CER/WER/UTMOS 0.61/1.62/3.12. The new
+  run has higher predicted quality but worse transcription error against that
+  historical reference; it is not a fresh, fully matched comparison (the ASR
+  backend differs), and training data, codec, head, and training recipe all
+  changed. This does not isolate the benefit of more data. Earlier LJ panels
+  contain only 24 clips, so their aggregate scores should not be compared
+  directly with the final 100-clip score. On the fixed Emilia-16 panel, WER
+  changed from 22.62 to 69.64 to 12.20 to 4.76 at the quarter, half,
+  three-quarter, and full-epoch checks; the intermediate regression is retained.
+
+  Evidence and exact sample URLs: `colab/runs/2026-11-04/evaluation_45143.json`.
+  WAVs and `summary.json` are under the run's private HF `eval/` directories
+  `g270m_2500_v1_s45143_lj100` and `g270m_2500_v1_s45143_emilia16_ljvoice`;
+  the same directories exist under `/content/gv_full_ming_v1/eval/` in Colab.
+  Human listening is **not measured** by this monitor. The Emilia panel tests
+  text generalization in the trained LJ voice, not unseen-speaker synthesis.
+  No length-cap hits does not exclude repetition, skipped words, or early stops.
+  Next: listen to saved clips and inspect per-sample errors before deciding
+  whether to continue the unchanged schedule into epochs 2–3.
+
+
+## Colab epochs two and three: final matched speech comparison (2026-11-05)
+
+The original three-epoch schedule completed at step **135,431**, epoch 3,
+batch 0. `THIRD_EPOCH_READY` and private Hugging Face checkpoint upload were
+verified in Colab; remote metadata and the uploaded comparison were independently
+downloaded. No epoch four was launched. The monitor is paused for review.
+
+| Fixed panel | Epoch | CER % | WER % | UTMOS | UTMOS 95% CI | Generated/reference duration | Length-cap hits |
+| --- | ---: | ---: | ---: | ---: | --- | ---: | ---: |
+| LJ validation, 100 clips | 2 | 1.10 | 1.79 | 4.064 | 4.003–4.123 | 0.899 | 0 |
+| LJ validation, 100 clips | 3 | 0.82 | 1.40 | 4.071 | 4.011–4.130 | 0.894 | 0 |
+| Unseen Emilia text, LJ voice, 16 clips | 2 | 1.85 | 2.68 | 3.887 | 3.701–4.066 | 0.971 | 0 |
+| Unseen Emilia text, LJ voice, 16 clips | 3 | 1.69 | 2.38 | 3.758 | 3.550–3.964 | 0.989 | 0 |
+
+Text accuracy improved on both panels. LJ predicted naturalness is essentially
+unchanged; Emilia predicted naturalness decreased, with overlapping confidence
+intervals. This is not evidence of uniform improvement or a formal significance
+test. Intermediate Emilia UTMOS was 3.941, 3.817, 3.772 at steps 101573, 112859,
+124145 respectively; the non-monotonic results are retained in STATUS.md and
+remote evaluation reports. The user informally reported epoch three sounded good;
+controlled human listening is **not measured**.
+
+Texts, speaker 0, batch layout, seed 0 per batch and decoding settings were fixed.
+Downloaded summaries independently confirmed identical ordered IDs and references.
+Epoch two used L4; epoch three used A100-SXM4-80GB, so bitwise equivalence across
+hardware is not claimed. These automated ASR/UTMOS scores evaluate the trained LJ
+voice and text generalization, not broad unseen-speaker quality. Zero length-cap
+hits does not exclude omissions or repetition. Remaining ASR mismatches include
+`return` becoming `returned` in selected LJ041-0003, a duplicated `cuba`, omitted
+words, and `twenty five percent` becoming `to five percent` in Emilia. Some ASR
+mismatches may be transcription errors; confirm by listening. All per-clip results
+remain in the downloaded summaries, including these failures.
+
+The final A100 worker segment ran 131999→135431 in 18.388 minutes including saves,
+with median 0.287075 and mean 0.289491 seconds/update, peak 14.440 GiB allocated
+GPU memory. Final generation alone took 134.5 seconds (LJ100) and 36.5 seconds
+(Emilia16); judging and upload are excluded from those generation times. The
+unique accepted corpus remains 2,504.268 hours; cumulative latent exposure after
+three epochs was 7,607.254 hours including repetition and codec padding.
+
+Provenance: epoch-two checkpoint/evaluations at
+`06e601de2adf13957ee55d1f7719ad7a669c7909`; epoch-three checkpoint/evaluations at
+`09a2102883fb1d2ca5c1b8975df69c3ea835f542`; downloaded final comparison and artifacts
+at `86bd0b5b89b2e95053d2281ed2007c7ede71aee6` in private repo
+`DaMHuggingface/gemma-voice-ckpt`.
+
+Local evidence is under `colab/runs/2026-11-04/listening/`:
+`epoch_three_listening_manifest.json` records the four original selected WAV IDs,
+absolute paths, SHA256, durations, sample rates and individual scores. All four
+WAVs decoded as finite 44.1 kHz audio. Epoch-two files remain preserved alongside
+them. `g270m_2500_v1/evaluation_135431.json`, `epoch_three_comparison.json`, and both
+final panel `summary.json` files preserve aggregate and per-clip results.
+
+Next: inspect the fixed clips and remaining number/omission errors, then broaden
+held-out text and speaker evaluation before deciding on more training. Retain
+epoch two as a comparison checkpoint rather than assuming epoch three wins every
+quality dimension.
