@@ -1,5 +1,8 @@
 # 28 · Vocoder Thunderdome
 
+> **Round 6 (2026-11-04):** a GAN-trained drop-in vocoder on the same mel. Use `r6_vocoder.py` + `checkpoints/r6_gan.*`.
+> Real-mel UTMOS 2.59 → 3.05 on 27's test clips, pitch error slightly worse. See `RESULTS_R6.md` and the "Round 6" commands below.
+
 Hold the acoustic representation fixed, then race waveform reconstructors on it. First satisfying
 version: a classical **Griffin–Lim** baseline vs one small **neural vocoder trained in MLX**, scored on
 held-out LJSpeech clips, with level-matched blind listening.
@@ -79,6 +82,25 @@ the transient lead over GL varies 0.38–0.73 dB between nearby checkpoints, so 
 overwrite an existing `--out` file (`--overwrite` to force).
 Open `media/demo.html` in any browser (fully offline: audio and images are embedded).
 
+### Round 6: a GAN-trained vocoder on the same mel (results in `RESULTS_R6.md`; summary at the top of `RESULTS.md`)
+Drop-in for 27 / 33-laptop: `r6_vocoder.py` (standalone: numpy + mlx, its own copy of the fixed mel) + `checkpoints/r6_gan.{safetensors,json}`.
+```sh
+../.venv/bin/python r6_vocoder.py --ckpt checkpoints/r6_gan.safetensors --wav in.wav --out out.wav   # or --mel mel.npy (frames, 80)
+# python: from r6_vocoder import load, vocode;  G = load("checkpoints/r6_gan.safetensors");  wav16k = vocode(G, logmel)
+OMP_NUM_THREADS=4 ../bin/gpu_run ../.venv/bin/python r6_prepare.py        # -> cache_r6/ (3.5 GB): LJ001-040 (19.4 h) + val100/test27/ltr_heldout/hifi_unseen
+./r6_chain.sh checkpoints/r6_runs/gan 0 24000 --mode gan                 # GAN arm: chained <=43-min resumable chunks, val-scores each 4k snapshot
+./r6_chain.sh checkpoints/r6_runs/gan_mrstft 0 24000 --mode gan --mrstft_coeff 10   # GAN + MR-STFT arm
+OMP_NUM_THREADS=4 ../bin/gpu_run ../.venv/bin/python r6_train.py --mode recon --out checkpoints/r6_runs/recon   # equal-step no-GAN control
+OMP_NUM_THREADS=4 ../bin/gpu_run ./r6_run_eval.sh "test27 test28" "gt gl64 old recon=<ckpt> gan=<ckpt>"   # vocode + metrics + UTMOS
+../.venv/bin/python r6_stats.py --sets test27,test28 --systems gt,gl64,old,recon,gan --ref old --out results_r6/tables_test.md
+../.venv/bin/python r6_oracle.py --ckpt checkpoints/followup_val3k/best.safetensors --tag old   # magnitude/phase swap diagnosis
+OMP_NUM_THREADS=4 ../.venv/bin/python r6_bench.py --ckpt checkpoints/r6_gan.safetensors --out results_r6/bench_rtf.json
+../.venv/bin/python r6_demo.py                                           # -> media/demo_r6.html (+ media/r6/*.wav)
+./r6_smoke.sh                                                            # tiny end-to-end incl. stop/resume + pytest, ~30 s
+```
+UTMOS (`r6_utmos.py`) runs in `../.venv-sac` from the local torch.hub cache only (network calls are blocked in-process).
+`cache_r6/`, `checkpoints/r6_runs/` and `results_r6/wavs/` are derived (gitignored) and regenerable.
+
 ## Files
 | path | what |
 |---|---|
@@ -104,3 +126,10 @@ Open `media/demo.html` in any browser (fully offline: audio and images are embed
 | `make_demo_followup.py`, `demo_followup_template.html` | follow-up blind page `media/followup_val3k/demo.html` |
 | `checkpoints/followup_val3k/{best,last}.*` | follow-up: 3000 clips at the main run's 17,195 steps; best = val-selected (step 16,500) |
 | `results/followup_val3k/` | follow-up metrics (test: `best/`, `last/`; val: `valset_*/`), per-res MR-STFT, train log |
+| `r6_vocoder.py` | round 6: standalone generator + loader + CLI (copy this + a checkpoint into another project) |
+| `r6_prepare.py`, `r6_train.py`, `r6_disc.py`, `r6_chain.sh` | round 6 data, trainer (gan / recon modes, resume), MPD + MRD discriminators, chunk chaining |
+| `r6_eval.py`, `r6_run_eval.sh`, `r6_utmos.py`, `r6_stats.py` | round 6 eval: vocode + metrics, UTMOS22 (local cache only), paired bootstrap tables |
+| `r6_oracle.py`, `r6_bench.py`, `r6_demo.py`, `r6_demo_template.html` | magnitude/phase swap diagnosis, speed, listening page |
+| `test_r6.py`, `r6_smoke.sh` | round 6 tests (mel bit-exactness, old-checkpoint compatibility, phase grid, discriminators) and smoke |
+| `checkpoints/r6_gan.*` | round 6 shipped generator (see RESULTS_R6.md for which arm/step and why) |
+| `results_r6/` | round 6 metrics, UTMOS, tables, logs; `media/demo_r6.html` the round 6 listening page |

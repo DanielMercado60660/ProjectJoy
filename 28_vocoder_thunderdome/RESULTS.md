@@ -1,5 +1,19 @@
 # 28 · Vocoder Thunderdome — results
 
+## Round 6 (2026-11-04): GAN-trained vocoder, same mel (full write-up: `RESULTS_R6.md`)
+- **Shipped:** `checkpoints/r6_gan` + standalone `r6_vocoder.py`. It is the round-3 generator fine-tuned on all of LJ001–040
+  (19.4 h) with MPD + MRD hinge GAN + feature matching + 45 × mel L1 + 10 × MR-STFT, 24k steps, val-selected. Same mel,
+  same 7.74 M architecture, same speed.
+- **Real mel → vocoder UTMOS22, 27's 100 test clips:** old 2.59 → **3.05** (paired +0.46 [+0.42, +0.51]); recording 4.40, GL 64 2.03.
+  28's 24 clips: 2.66 → 3.16. Unseen LibriTTS-R / Hi-Fi TTS speakers: +0.63 / +0.54.
+- **GAN isolated:** the same init/data/batches/steps without the GAN gain only +0.06; with it, +0.41 over that control.
+- **Pitch got worse:** GPE 4.9% → 5.5% (+0.59 [+0.33, +0.87]); GL 64 is 4.2%. The GPE ≤ GL bar is not met.
+- **Diagnosis:** the old generator's magnitudes with the recording's true phase score UTMOS 4.20. The remaining gap is
+  phase. Direct phase-loss regression and Griffin–Lim on neural magnitudes both made things worse.
+- UTMOS is a proxy and was also the selection criterion. No listening test was run; `media/demo_r6.html` is the blind page.
+
+---
+
 **Headline (revised in cross-review):** after one 17-minute training run, the MLX neural vocoder
 **loses to Griffin–Lim on held-out pitch** (gross pitch error 7.7% vs 3.6%, f0 RMSE 41.7 vs 34.6 cents) and on
 mel L1 (0.195 vs 0.100). Mel L1 is GL's own objective, though: NNLS fits the given mel, GL then iterates
